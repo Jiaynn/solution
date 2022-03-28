@@ -50,7 +50,7 @@ const preRunTask = {
 
   // Other
   'qnweb-im-demo': {
-    title: 'im mode',
+    title: 'im demo',
     async run() {
       await buildSDK('qnweb-im');
       await runShell('copy_im');
