@@ -1,0 +1,36 @@
+{
+  "name": "qnweb-im-demo",
+  "version": "1.0.4-beta.5",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {
+    "antd": "^4.16.7",
+    "classnames": "^2.3.1",
+    "emoji-picker-react": "^3.4.8",
+    "js-audio-recorder": "^1.0.7",
+    "lamejs": "^1.2.0",
+    "lodash": "^4.17.21",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "@types/lodash": "^4.14.171",
+    "@types/node": "^16.3.3",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-router-dom": "^5.1.8",
+    "@vitejs/plugin-react-refresh": "^1.3.1",
+    "jest": "^27.1.0",
+    "sass": "^1.35.2",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.3.2",
+    "vite": "^2.4.2"
+  }
+}

@@ -1,0 +1,80 @@
+.room {
+  width: 100vw;
+  height: 100vh;
+}
+
+.cameraTrack {
+  width: 100%;
+  //height: 200px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.remoteTrack {
+  width: 150px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+.toolBtn {
+  margin: 5px;
+}
+
+.caption {
+  width: fit-content;
+  min-height: 20px;
+  position: fixed;
+  bottom: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #fff;
+  padding: 10px;
+}
+
+.targetFileInput {
+  display: none;
+}
+
+.liveAction {
+  margin: 0 10px;
+}
+
+.faceActionLiveDetectorToast {
+  min-width: 120px;
+  min-height: 32px;
+  padding: 0 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.replayVideo {
+  width: 200px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.aiText {
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  word-break: break-all;
+}
+
+.loadingMask {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

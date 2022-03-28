@@ -1,0 +1,46 @@
+{
+  "name": "root",
+  "private": true,
+  "version": "1.0.0",
+  "keywords": [],
+  "engines": {
+    "node": ">=v14.16.1"
+  },
+  "scripts": {
+    "interview-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-interview-demo",
+    "whiteboard-demo:jenkins-test": "pnpm install && ts-node scripts/start.ts qnweb-whiteboard-demo",
+    "whiteboard-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-whiteboard-demo",
+    "rtc-ai-demo:jenkins-test": "pnpm install && ts-node scripts/start.ts qnweb-rtc-ai-demo",
+    "rtc-ai-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-rtc-ai-demo",
+    "im-demo:jenkins-test": "pnpm install && ts-node scripts/start.ts qnweb-im-demo",
+    "im-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-im-demo",
+    "overhaul-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-overhaul-demo",
+    "cloud-class-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-cloud-class-demo",
+    "video-together-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-video-together-demo",
+    "exam-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-exam-system-demo",
+    "commit": "git-cz",
+    "cube": "sh shell/cube.sh",
+    "start": "ts-node scripts/start.ts",
+    "pull-sub-whiteboard": "git subtree pull --prefix=packages/sdk/whiteboard subtree-whiteboard master",
+    "push-sub-whiteboard": "git subtree push --prefix=packages/sdk/whiteboard subtree-whiteboard master"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^16.2.1",
+    "@manypkg/get-packages": "^1.1.3",
+    "commitizen": "^4.2.4",
+    "commitlint": "^16.2.1",
+    "conventional-changelog-cli": "^2.2.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "execa": "^5.1.1",
+    "git-cz": "^4.8.0",
+    "husky": "^7.0.4",
+    "kolorist": "^1.5.1",
+    "prompts": "^2.4.2",
+    "ts-node": "^10.7.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  }
+}

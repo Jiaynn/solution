@@ -1,0 +1,1 @@
+declare const SDK_VERSION: string;
