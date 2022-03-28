@@ -65,7 +65,7 @@ importers:
       axios: 0.21.4
       classnames: 2.3.1
       lodash: 4.17.21
-      qnweb-high-level-rtc: link:../qnweb-high-level-rtc
+      qnweb-high-level-rtc: link:../../sdk/qnweb-high-level-rtc
       qnweb-rtc: 4.0.8
       qnweb-whiteboard: link:../../sdk/qnweb-whiteboard
       qs: 6.10.3
@@ -130,7 +130,7 @@ importers:
       lodash: 4.17.21
       moment: 2.29.1
       qn-rtplayer-web: 1.0.3
-      qnweb-high-level-rtc: link:../qnweb-high-level-rtc
+      qnweb-high-level-rtc: link:../../sdk/qnweb-high-level-rtc
       qnweb-rtc: 4.0.8
       qnweb-rtc-ai: 4.0.0-beta.4
       qrcode.react: 1.0.1_react@17.0.2
@@ -145,61 +145,6 @@ importers:
       typescript: 4.5.5
       vite: 2.8.4
       vite-plugin-imp: 2.1.3_vite@2.8.4
-
-  packages/demo/qnweb-high-level-rtc:
-    specifiers:
-      '@rollup/plugin-commonjs': ^19.0.0
-      '@rollup/plugin-json': ^4.1.0
-      '@rollup/plugin-node-resolve': ^13.0.0
-      '@rollup/plugin-replace': ^2.4.2
-      '@rongcloud/imlib-v4': ^4.5.1
-      '@types/jest': ^26.0.23
-      '@types/node': ^15.12.2
-      colors: ^1.4.0
-      jest: ^27.0.4
-      prompt: ^1.1.0
-      qnweb-im: ^1.0.4-beta.5
-      qnweb-rtc: ^4.0.2
-      replace-in-file: ^6.2.0
-      rimraf: ^3.0.2
-      rollup: ^2.51.1
-      rollup-plugin-terser: ^7.0.2
-      rollup-plugin-typescript2: ^0.30.0
-      rollup-plugin-uglify: ^6.0.4
-      shelljs: ^0.8.4
-      ts-jest: ^27.0.3
-      ts-node: ^10.0.0
-      tslib: ^2.2.0
-      typedoc: ^0.22.11
-      typedoc-plugin-markdown: ^3.11.14
-      typescript: ^4.3.2
-    dependencies:
-      '@rongcloud/imlib-v4': 4.6.0
-      qnweb-im: link:../../sdk/qnweb-im
-      qnweb-rtc: 4.0.8
-    devDependencies:
-      '@rollup/plugin-commonjs': 19.0.2_rollup@2.67.3
-      '@rollup/plugin-json': 4.1.0_rollup@2.67.3
-      '@rollup/plugin-node-resolve': 13.1.3_rollup@2.67.3
-      '@rollup/plugin-replace': 2.4.2_rollup@2.67.3
-      '@types/jest': 26.0.24
-      '@types/node': 15.14.9
-      colors: 1.4.0
-      jest: 27.5.1_ts-node@10.5.0
-      prompt: 1.2.2
-      replace-in-file: 6.3.2
-      rimraf: 3.0.2
-      rollup: 2.67.3
-      rollup-plugin-terser: 7.0.2_rollup@2.67.3
-      rollup-plugin-typescript2: 0.30.0_rollup@2.67.3+typescript@4.5.5
-      rollup-plugin-uglify: 6.0.4_rollup@2.67.3
-      shelljs: 0.8.5
-      ts-jest: 27.1.3_da512f36338473c047dc2792db8d85e9
-      ts-node: 10.5.0_7d00d2429772d24b1ab59ed4dc96725e
-      tslib: 2.3.1
-      typedoc: 0.22.12_typescript@4.5.5
-      typedoc-plugin-markdown: 3.11.14_typedoc@0.22.12
-      typescript: 4.5.5
 
   packages/demo/qnweb-im-demo:
     specifiers:
@@ -309,7 +254,7 @@ importers:
       dayjs: 1.10.7
       lodash: 4.17.21
       pili-rtc-web: 2.5.2
-      qnweb-high-level-rtc: link:../qnweb-high-level-rtc
+      qnweb-high-level-rtc: link:../../sdk/qnweb-high-level-rtc
       qnweb-rtc: 4.0.8
       qs: 6.10.3
       react: 17.0.2
@@ -380,7 +325,7 @@ importers:
       lodash: 4.17.21
       pili-rtc-web: 2.5.2
       qn-rtplayer-web: 1.0.3
-      qnweb-high-level-rtc: link:../qnweb-high-level-rtc
+      qnweb-high-level-rtc: link:../../sdk/qnweb-high-level-rtc
       qnweb-rtc: 4.0.8
       qs: 6.10.3
       react: 17.0.2
@@ -515,7 +460,7 @@ importers:
       classnames: 2.3.1
       emoji-mart: 3.0.1_react@17.0.2
       lodash: 4.17.21
-      qnweb-high-level-rtc: link:../qnweb-high-level-rtc
+      qnweb-high-level-rtc: link:../../sdk/qnweb-high-level-rtc
       qnweb-rtc: 4.0.8
       qnweb-whiteboard: link:../../sdk/qnweb-whiteboard
       qrcode.react: 1.0.1_react@17.0.2
@@ -753,6 +698,61 @@ importers:
       ts-jest: 27.1.3_da512f36338473c047dc2792db8d85e9
       ts-node: 10.7.0_7d00d2429772d24b1ab59ed4dc96725e
       tslib: 2.3.1
+      typescript: 4.5.5
+
+  packages/sdk/qnweb-high-level-rtc:
+    specifiers:
+      '@rollup/plugin-commonjs': ^19.0.0
+      '@rollup/plugin-json': ^4.1.0
+      '@rollup/plugin-node-resolve': ^13.0.0
+      '@rollup/plugin-replace': ^2.4.2
+      '@rongcloud/imlib-v4': ^4.5.1
+      '@types/jest': ^26.0.23
+      '@types/node': ^15.12.2
+      colors: ^1.4.0
+      jest: ^27.0.4
+      prompt: ^1.1.0
+      qnweb-im: ^1.0.4-beta.5
+      qnweb-rtc: ^4.0.2
+      replace-in-file: ^6.2.0
+      rimraf: ^3.0.2
+      rollup: ^2.51.1
+      rollup-plugin-terser: ^7.0.2
+      rollup-plugin-typescript2: ^0.30.0
+      rollup-plugin-uglify: ^6.0.4
+      shelljs: ^0.8.4
+      ts-jest: ^27.0.3
+      ts-node: ^10.0.0
+      tslib: ^2.2.0
+      typedoc: ^0.22.11
+      typedoc-plugin-markdown: ^3.11.14
+      typescript: ^4.3.2
+    dependencies:
+      '@rongcloud/imlib-v4': 4.6.0
+      qnweb-im: link:../qnweb-im
+      qnweb-rtc: 4.0.9
+    devDependencies:
+      '@rollup/plugin-commonjs': 19.0.2_rollup@2.67.3
+      '@rollup/plugin-json': 4.1.0_rollup@2.67.3
+      '@rollup/plugin-node-resolve': 13.1.3_rollup@2.67.3
+      '@rollup/plugin-replace': 2.4.2_rollup@2.67.3
+      '@types/jest': 26.0.24
+      '@types/node': 15.14.9
+      colors: 1.4.0
+      jest: 27.5.1_ts-node@10.7.0
+      prompt: 1.2.2
+      replace-in-file: 6.3.2
+      rimraf: 3.0.2
+      rollup: 2.67.3
+      rollup-plugin-terser: 7.0.2_rollup@2.67.3
+      rollup-plugin-typescript2: 0.30.0_rollup@2.67.3+typescript@4.5.5
+      rollup-plugin-uglify: 6.0.4_rollup@2.67.3
+      shelljs: 0.8.5
+      ts-jest: 27.1.3_da512f36338473c047dc2792db8d85e9
+      ts-node: 10.7.0_7d00d2429772d24b1ab59ed4dc96725e
+      tslib: 2.3.1
+      typedoc: 0.22.12_typescript@4.5.5
+      typedoc-plugin-markdown: 3.11.14_typedoc@0.22.12
       typescript: 4.5.5
 
   packages/sdk/qnweb-im:
@@ -15439,7 +15439,6 @@ packages:
       semver: 5.7.1
       webrtc-adapter: 8.1.1
       wolfy87-eventemitter: 5.2.9
-    dev: true
 
   /qr.js/0.0.0:
     resolution: {integrity: sha1-ys6GOG9ZoNuAUPqQ2baw6IoeNk8=}
@@ -18782,7 +18781,7 @@ packages:
       '@types/jest': 26.0.24
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 27.5.1_ts-node@10.7.0
+      jest: 27.5.1_ts-node@10.5.0
       jest-util: 27.5.1
       json5: 2.2.0
       lodash.memoize: 4.1.2
