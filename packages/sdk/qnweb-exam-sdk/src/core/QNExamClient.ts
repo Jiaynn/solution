@@ -8,17 +8,16 @@ import QNRTC, {
   QNRTCClient,
   QNScreenVideoTrack,
 } from 'qnweb-rtc';
-
-import { isQNCamera, isQNMicrophone, isQNScreen, QNCamera, QNInternalDevice, QNMicrophone, QNScreen } from './QNDevice';
-import {
-  isQNAudioDetector, isQNBrowserDetector, isQNVideoDetector,
-  QNAudioDetector,
-  QNBrowserDetector,
-  QNDetector, QNVideoDetector
-} from './QNDetector';
-import { log, parseStringToObject } from '../utils';
-import { QNTestResult } from '../types';
 import { QNRtcAiManager } from 'qnweb-rtc-ai';
+
+import {
+  isQNCamera, isQNMicrophone, isQNScreen,
+  isQNAudioDetector, isQNBrowserDetector, isQNVideoDetector,
+  QNCamera, QNInternalDevice, QNMicrophone, QNScreen,
+  QNAudioDetector, QNBrowserDetector, QNDetector, QNVideoDetector
+} from '@/core';
+import { log, parseStringToObject } from '@/utils';
+import { QNTestResult } from '@/types';
 
 type DeviceId = 'camera' | 'microphone' | 'screen';
 

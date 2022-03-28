@@ -1,6 +1,4 @@
-import { QNCamera } from './QNCamera';
-import { QNMicrophone } from './QNMicrophone';
-import { QNScreen } from './QNScreen';
+import { QNCamera, QNMicrophone, QNScreen } from '@/core';
 
 export abstract class QNDevice {
   abstract start(): Promise<unknown>;
