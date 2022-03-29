@@ -1,7 +1,8 @@
 import React, { CSSProperties } from 'react';
 import QRCode from 'qrcode.react';
-import './index.scss';
 import classNames from 'classnames';
+
+import './index.scss';
 
 export interface MobileMediaDetectorPros {
   qrCodeUrl: string;

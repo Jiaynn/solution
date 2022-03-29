@@ -34,8 +34,8 @@ const MobileCamera = () => {
         .then(() => {
           return new Promise((resolve, reject) => {
             Modal.info({
-              title: '加入房间',
-              okText: '加入',
+              title: '点击确认播放视频',
+              okText: '确认',
               onOk() {
                 resolve(
                   mtTrackRoom.setLocalCameraWindowView('mobile-camera')

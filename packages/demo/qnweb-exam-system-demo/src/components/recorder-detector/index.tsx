@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
-import QNRTC, { QNLocalTrack } from 'qnweb-rtc';
+import { QNLocalTrack } from 'qnweb-rtc';
 import { Button } from 'antd';
 import { QNMediaRecorder } from 'qnweb-rtc-ai';
+import { QNCamera, QNMicrophone } from 'qnweb-exam-sdk';
+
 import './index.scss';
 
 export type RecorderDetectorProps = React.HTMLAttributes<HTMLDivElement>
@@ -12,30 +14,41 @@ const RecorderDetector: React.FC<RecorderDetectorProps> = (props) => {
   const localCameraTrackRef = useRef<QNLocalTrack>();
   const localMicrophoneTrackRef = useRef<QNLocalTrack>();
   const [isRecording, setIsRecording] = useState(false);
-  const recorderRef = useRef<QNMediaRecorder>();
+  const [recorder] = useState<QNMediaRecorder>(() => {
+    return new QNMediaRecorder();
+  })
 
+  /**
+   * 摄像头
+   */
   useEffect(() => {
-    recorderRef.current = new QNMediaRecorder();
-  }, []);
-
-  useEffect(() => {
-    QNRTC.createCameraVideoTrack().then((track) => {
-      localCameraTrackRef.current = track;
-      const localCameraElement = document.getElementById('local-camera');
-      if (localCameraElement) {
-        localCameraTrackRef.current.play(localCameraElement);
-      }
+    const camera = QNCamera.create({
+      elementId: 'local-camera',
     });
-    QNRTC.createMicrophoneAudioTrack().then((track) => {
-      localMicrophoneTrackRef.current = track;
-      const localCameraElement = document.getElementById('local-camera');
-      if (localCameraElement) {
-        localMicrophoneTrackRef.current.play(localCameraElement);
-      }
+    camera.start().then(() => {
+      localCameraTrackRef.current = camera.cameraVideoTrack
     });
     return () => {
-      localCameraTrackRef.current?.destroy();
-      localMicrophoneTrackRef.current?.destroy();
+      camera.stop().then(() => {
+        localCameraTrackRef.current = undefined;
+      });
+    };
+  }, []);
+
+  /**
+   * 麦克风
+   */
+  useEffect(() => {
+    const microphone = QNMicrophone.create({
+      elementId: 'local-camera',
+    });
+    microphone.start().then(() => {
+      localMicrophoneTrackRef.current = microphone.microphoneAudioTrack
+    });
+    return () => {
+      microphone.stop().then(() => {
+        localMicrophoneTrackRef.current = undefined;
+      });
     };
   }, []);
 
@@ -43,12 +56,12 @@ const RecorderDetector: React.FC<RecorderDetectorProps> = (props) => {
   const onToggleRecording = () => {
     const nextIsRecording = !isRecording;
     if (nextIsRecording) { // 开始录制
-      recorderRef.current?.start({
+      recorder.start({
         videoTrack: localCameraTrackRef.current,
         audioTrack: localMicrophoneTrackRef.current,
       });
     } else { // 结束录制
-      const blob = recorderRef.current?.stop();
+      const blob = recorder.stop();
       const replayVideoElement = document.getElementById('replay-video') as HTMLVideoElement;
       if (replayVideoElement && blob) {
         replayVideoElement.src = URL.createObjectURL(blob);
@@ -61,9 +74,9 @@ const RecorderDetector: React.FC<RecorderDetectorProps> = (props) => {
   return (
     <div className={classNames('recorder-detector', className)} {...restProps}>
       <div className="cameras">
-        <div id="local-camera" className="local-camera" />
+        <div id="local-camera" className="local-camera"/>
         <div className="replay">
-          <video id="replay-video" className="replay-video" />
+          <video id="replay-video" className="replay-video"/>
         </div>
       </div>
       <div className="action">

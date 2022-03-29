@@ -109,6 +109,7 @@ importers:
       lodash: ^4.17.21
       moment: ^2.29.1
       qn-rtplayer-web: ^1.0.3
+      qnweb-exam-sdk: ^0.0.0-beta.1
       qnweb-high-level-rtc: ^4.0.0-beta.4
       qnweb-rtc: ^4.0.8
       qnweb-rtc-ai: ^4.0.0-beta.1
@@ -116,6 +117,7 @@ importers:
       react: ^17.0.2
       react-dom: ^17.0.2
       react-router-dom: ^5.3.0
+      recoil: ^0.3.1
       typescript: ^4.4.4
       vconsole: ^3.7.0
       vite: ^2.7.2
@@ -130,6 +132,7 @@ importers:
       lodash: 4.17.21
       moment: 2.29.1
       qn-rtplayer-web: 1.0.3
+      qnweb-exam-sdk: link:../../sdk/qnweb-exam-sdk
       qnweb-high-level-rtc: link:../../sdk/qnweb-high-level-rtc
       qnweb-rtc: 4.0.8
       qnweb-rtc-ai: 4.0.0-beta.4
@@ -137,6 +140,7 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-router-dom: 5.3.0_react@17.0.2
+      recoil: 0.3.1_react-dom@17.0.2+react@17.0.2
       vconsole: 3.12.0
     devDependencies:
       '@types/react': 17.0.39
@@ -5380,7 +5384,7 @@ packages:
   /axios/0.24.0:
     resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
     dependencies:
-      follow-redirects: 1.14.9_debug@4.3.3
+      follow-redirects: 1.14.9
     transitivePeerDependencies:
       - debug
     dev: false
@@ -9446,6 +9450,16 @@ packages:
     dependencies:
       inherits: 2.0.4
       readable-stream: 2.3.7
+    dev: false
+
+  /follow-redirects/1.14.9:
+    resolution: {integrity: sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
     dev: false
 
   /follow-redirects/1.14.9_debug@4.3.3:
@@ -18793,7 +18807,7 @@ packages:
       '@types/jest': 26.0.24
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 27.5.1_ts-node@10.7.0
+      jest: 27.5.1_ts-node@10.5.0
       jest-util: 27.5.1
       json5: 2.2.0
       lodash.memoize: 4.1.2
@@ -19608,7 +19622,7 @@ packages:
       chalk: 4.1.2
       param-case: 3.0.4
       pascal-case: 3.1.2
-      vite: 2.8.4_sass@1.49.8
+      vite: 2.8.4
     transitivePeerDependencies:
       - supports-color
     dev: true
