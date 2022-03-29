@@ -33,6 +33,10 @@ export class QNExamClient {
 
   constructor() {
     this.rtcClient = QNRTC.createClient();
+    this.userJoined = this.userJoined.bind(this);
+    this.userLeft = this.userLeft.bind(this);
+    this.userPublished = this.userPublished.bind(this);
+    this.userUnpublished = this.userUnpublished.bind(this);
   }
 
   public rtcClient: QNRTCClient;

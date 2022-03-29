@@ -37,9 +37,17 @@ export class QNScreen extends QNDevice {
     ) as QNScreenVideoTrack;
   }
 
-  async start(): Promise<QNScreenVideoTrack> {
+  async start() {
     this.screenVideoTrack = await this.createScreenVideoTrack();
-    return this.screenVideoTrack;
+    const elementId = this.config.elementId;
+    if (!elementId) {
+      return;
+    }
+    const element = document.getElementById(elementId);
+    if (!element) {
+      throw new TypeError(`elementId ${elementId} is not found`);
+    }
+    return this.screenVideoTrack.play(element);
   }
 
   async stop(): Promise<void> {

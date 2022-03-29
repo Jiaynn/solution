@@ -64,11 +64,11 @@ export default {
     // https://github.com/rollup/rollup-plugin-node-resolve#usage
     nodeResolve(),
     uglify(),
-    terser({
-      compress: {
-        pure_funcs: ['console.log'] // remove console.log
-      }
-    }),
+    // terser({
+    //   compress: {
+    //     pure_funcs: ['console.log'] // remove console.log
+    //   }
+    // }),
     alias({
       entries: [
         { find: '@', replacement: 'src' }

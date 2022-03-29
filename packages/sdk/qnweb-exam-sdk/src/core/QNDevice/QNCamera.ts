@@ -43,9 +43,17 @@ export class QNCamera extends QNDevice {
     });
   }
 
-  async start(): Promise<QNCameraVideoTrack> {
+  async start() {
     this.cameraVideoTrack = await this.createCameraVideoTrack();
-    return this.cameraVideoTrack;
+    const elementId = this.config.elementId;
+    if (!elementId) {
+      return;
+    }
+    const element = document.getElementById(elementId);
+    if (!element) {
+      throw new TypeError(`elementId ${elementId} is not found`);
+    }
+    return this.cameraVideoTrack.play(element);
   }
 
   async stop(): Promise<void> {
