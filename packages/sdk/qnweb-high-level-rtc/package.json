@@ -57,11 +57,11 @@
   "dependencies": {
     "@rongcloud/imlib-v4": "^4.5.1",
     "qnweb-im": "^1.0.4-beta.5",
-    "qnweb-rtc": "^4.0.2"
+    "qnweb-rtc": "^4.1.0"
   },
   "peerDependencies": {
     "@rongcloud/imlib-v4": "^4.5.1",
     "qnweb-im": "^1.0.4-beta.5",
-    "qnweb-rtc": "^4.0.2"
+    "qnweb-rtc": "^4.1.0"
   }
 }

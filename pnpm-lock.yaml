@@ -49,7 +49,7 @@ importers:
       jest: ^27.5.1
       lodash: ^4.17.21
       qnweb-high-level-rtc: ^4.0.0-beta.4
-      qnweb-rtc: ^4.0.2
+      qnweb-rtc: ^4.1.0
       qnweb-whiteboard: ^1.1.0-beta.3
       qs: ^6.10.1
       react: ^17.0.0
@@ -66,7 +66,7 @@ importers:
       classnames: 2.3.1
       lodash: 4.17.21
       qnweb-high-level-rtc: link:../../sdk/qnweb-high-level-rtc
-      qnweb-rtc: 4.0.8
+      qnweb-rtc: 4.1.0
       qnweb-whiteboard: link:../../sdk/qnweb-whiteboard
       qs: 6.10.3
       react: 17.0.2
@@ -111,7 +111,7 @@ importers:
       qn-rtplayer-web: ^1.0.3
       qnweb-exam-sdk: ^0.0.0-beta.1
       qnweb-high-level-rtc: ^4.0.0-beta.4
-      qnweb-rtc: ^4.0.8
+      qnweb-rtc: ^4.1.0
       qnweb-rtc-ai: ^4.0.0-beta.1
       qrcode.react: ^1.0.1
       react: ^17.0.2
@@ -134,7 +134,7 @@ importers:
       qn-rtplayer-web: 1.0.3
       qnweb-exam-sdk: link:../../sdk/qnweb-exam-sdk
       qnweb-high-level-rtc: link:../../sdk/qnweb-high-level-rtc
-      qnweb-rtc: 4.0.8
+      qnweb-rtc: 4.1.0
       qnweb-rtc-ai: 4.0.0-beta.4
       qrcode.react: 1.0.1_react@17.0.2
       react: 17.0.2
@@ -226,7 +226,7 @@ importers:
       lodash: ^4.17.21
       pili-rtc-web: ^2.5.0
       qnweb-high-level-rtc: ^4.0.0-beta.4
-      qnweb-rtc: ^4.0.6
+      qnweb-rtc: ^4.1.0
       qs: ^6.10.1
       react: ^17.0.2
       react-app-rewired: ^2.1.8
@@ -259,7 +259,7 @@ importers:
       lodash: 4.17.21
       pili-rtc-web: 2.5.2
       qnweb-high-level-rtc: link:../../sdk/qnweb-high-level-rtc
-      qnweb-rtc: 4.0.8
+      qnweb-rtc: 4.1.0
       qs: 6.10.3
       react: 17.0.2
       react-copy-to-clipboard: 5.0.4_react@17.0.2
@@ -311,7 +311,7 @@ importers:
       pili-rtc-web: ^2.5.0
       qn-rtplayer-web: ^1.0.1
       qnweb-high-level-rtc: ^4.0.0-beta.4
-      qnweb-rtc: ^4.0.6
+      qnweb-rtc: ^4.1.0
       qs: ^6.10.1
       react: ^17.0.0
       react-dom: ^17.0.0
@@ -330,7 +330,7 @@ importers:
       pili-rtc-web: 2.5.2
       qn-rtplayer-web: 1.0.3
       qnweb-high-level-rtc: link:../../sdk/qnweb-high-level-rtc
-      qnweb-rtc: 4.0.8
+      qnweb-rtc: 4.1.0
       qs: 6.10.3
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -442,7 +442,7 @@ importers:
       postcss-px-to-viewport: https://github.com/evrone/postcss-px-to-viewport.git
       postcss-pxtorem: ^6.0.0
       qnweb-high-level-rtc: ^4.0.0-beta.4
-      qnweb-rtc: ^4.0.3
+      qnweb-rtc: ^4.1.0
       qnweb-whiteboard: ^1.1.0-beta.3
       qrcode.react: ^1.0.1
       rc-bullets: ^1.5.16
@@ -465,7 +465,7 @@ importers:
       emoji-mart: 3.0.1_react@17.0.2
       lodash: 4.17.21
       qnweb-high-level-rtc: link:../../sdk/qnweb-high-level-rtc
-      qnweb-rtc: 4.0.8
+      qnweb-rtc: 4.1.0
       qnweb-whiteboard: link:../../sdk/qnweb-whiteboard
       qrcode.react: 1.0.1_react@17.0.2
       rc-bullets: 1.5.16_react-dom@17.0.2+react@17.0.2
@@ -667,7 +667,7 @@ importers:
       jest: ^27.0.4
       lodash.camelcase: ^4.3.0
       prompt: ^1.1.0
-      qnweb-rtc: ^4.0.9
+      qnweb-rtc: ^4.1.0
       qnweb-rtc-ai: ^4.0.0-beta.4
       replace-in-file: ^6.2.0
       rimraf: ^3.0.2
@@ -692,7 +692,7 @@ importers:
       jest: 27.5.1_ts-node@10.7.0
       lodash.camelcase: 4.3.0
       prompt: 1.2.2
-      qnweb-rtc: 4.0.9
+      qnweb-rtc: 4.1.0
       qnweb-rtc-ai: 4.0.0-beta.4
       replace-in-file: 6.3.2
       rimraf: 3.0.2
@@ -719,7 +719,7 @@ importers:
       jest: ^27.0.4
       prompt: ^1.1.0
       qnweb-im: ^1.0.4-beta.5
-      qnweb-rtc: ^4.0.2
+      qnweb-rtc: ^4.1.0
       replace-in-file: ^6.2.0
       rimraf: ^3.0.2
       rollup: ^2.51.1
@@ -736,7 +736,7 @@ importers:
     dependencies:
       '@rongcloud/imlib-v4': 4.6.0
       qnweb-im: link:../qnweb-im
-      qnweb-rtc: 4.0.9
+      qnweb-rtc: 4.1.0
     devDependencies:
       '@rollup/plugin-commonjs': 19.0.2_rollup@2.67.3
       '@rollup/plugin-json': 4.1.0_rollup@2.67.3
@@ -5384,7 +5384,7 @@ packages:
   /axios/0.24.0:
     resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
     dependencies:
-      follow-redirects: 1.14.9
+      follow-redirects: 1.14.9_debug@4.3.3
     transitivePeerDependencies:
       - debug
     dev: false
@@ -9452,16 +9452,6 @@ packages:
       readable-stream: 2.3.7
     dev: false
 
-  /follow-redirects/1.14.9:
-    resolution: {integrity: sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dev: false
-
   /follow-redirects/1.14.9_debug@4.3.3:
     resolution: {integrity: sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==}
     engines: {node: '>=4.0'}
@@ -10042,7 +10032,7 @@ packages:
       source-map: 0.6.1
       wordwrap: 1.0.0
     optionalDependencies:
-      uglify-js: 3.15.1
+      uglify-js: 3.15.3
     dev: true
 
   /har-schema/1.0.5:
@@ -12680,7 +12670,7 @@ packages:
       graceful-fs: 4.2.9
       image-size: 0.5.5
       mime: 1.6.0
-      mkdirp: 0.5.5
+      mkdirp: 0.5.6
       promise: 7.3.1
       request: 2.81.0
       source-map: 0.5.7
@@ -13261,6 +13251,9 @@ packages:
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
 
+  /minimist/1.2.6:
+    resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
+
   /minipass-collect/1.0.2:
     resolution: {integrity: sha512-6T6lH0H8OG9kITm/Jm6tdooIbogG9e0tLgpY6mphXSm/A9u8Nq1ryBG+Qspiub9LjWlBPsPS3tWQ/Botq4FdxA==}
     engines: {node: '>= 8'}
@@ -13330,6 +13323,15 @@ packages:
     hasBin: true
     dependencies:
       minimist: 1.2.5
+
+  /mkdirp/0.5.6:
+    resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      minimist: 1.2.6
+    dev: true
+    optional: true
 
   /mkdirp/1.0.4:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
@@ -15410,37 +15412,10 @@ packages:
     dependencies:
       crypto-js: 4.1.1
       image-conversion: 2.1.1
-      qnweb-rtc: 4.0.8
+      qnweb-rtc: 4.1.0
 
-  /qnweb-rtc/4.0.8:
-    resolution: {integrity: sha512-h34Esb9TgMWrid8/Lcx722U/5A53howjEHAveSmKaFU9SaI7ZD2rZ5e5n8thaf5kELP3dmiY5orfPNPjMZWERw==}
-    dependencies:
-      '@babel/runtime': 7.17.2
-      '@microsoft/api-extractor': 7.19.4
-      '@types/blueimp-md5': 2.18.0
-      '@types/detect-browser': 2.0.1
-      '@types/lodash.groupby': 4.6.6
-      '@types/lodash.remove': 4.7.6
-      '@types/lodash.uniqby': 4.7.6
-      '@types/sdp-transform': 2.4.5
-      '@types/semver': 5.5.0
-      blueimp-md5: 2.19.0
-      detect-browser: 3.0.1
-      fingerprintjs2: 2.1.4
-      gzip-js: 0.3.2
-      localforage: 1.10.0
-      lodash.groupby: 4.6.0
-      lodash.remove: 4.7.0
-      lodash.uniqby: 4.7.0
-      mobile-detect: 1.4.5
-      rimraf: 3.0.2
-      sdp-transform: 2.14.1
-      semver: 5.7.1
-      webrtc-adapter: 8.1.1
-      wolfy87-eventemitter: 5.2.9
-
-  /qnweb-rtc/4.0.9:
-    resolution: {integrity: sha512-20SkKCfRoVMvAB2Q+bo9ZUcsJbEqritnha6A6z3D4SQuWFCLLh8v1Mfbdv5OLkb5AegEe4sD+31tGvrViHjsjA==}
+  /qnweb-rtc/4.1.0:
+    resolution: {integrity: sha512-PduvbogCG0DYXc0VxroUeQ6d32H11GuvPh3BG4zVwqC69rQh/ktcl/UbLudKxmY0JO26e4VGxwv0V02OpGQRpA==}
     dependencies:
       '@babel/runtime': 7.17.2
       '@microsoft/api-extractor': 7.19.4
@@ -16081,7 +16056,7 @@ packages:
     dependencies:
       deep-extend: 0.6.0
       ini: 1.3.8
-      minimist: 1.2.5
+      minimist: 1.2.6
       strip-json-comments: 2.0.1
     dev: false
 
@@ -19198,6 +19173,14 @@ packages:
     hasBin: true
     dev: true
 
+  /uglify-js/3.15.3:
+    resolution: {integrity: sha512-6iCVm2omGJbsu3JWac+p6kUiOpg3wFO2f8lIXjfEb8RrmLjzog1wTPMmwKB7swfzzqxj9YM+sGUM++u1qN4qJg==}
+    engines: {node: '>=0.8.0'}
+    hasBin: true
+    requiresBuild: true
+    dev: true
+    optional: true
+
   /umd/3.0.3:
     resolution: {integrity: sha512-4IcGSufhFshvLNcMCV80UnQVlZ5pMOC8mvNPForqwA4+lzYQuetTESLDQkeLmihq8bRcnpbQa48Wb8Lh16/xow==}
     hasBin: true
@@ -19622,7 +19605,7 @@ packages:
       chalk: 4.1.2
       param-case: 3.0.4
       pascal-case: 3.1.2
-      vite: 2.8.4
+      vite: 2.8.4_sass@1.49.8
     transitivePeerDependencies:
       - supports-color
     dev: true
