@@ -24,6 +24,7 @@ type DeviceId = 'camera' | 'microphone' | 'screen';
 interface TokenParams {
   rtcToken: string;
   aiToken?: string;
+  userData?: string;
 }
 
 export class QNExamClient {
@@ -172,12 +173,12 @@ export class QNExamClient {
    * @param token
    */
   async start(token: TokenParams) {
-    const { rtcToken, aiToken } = token;
+    const { rtcToken, aiToken, userData } = token;
     this.addRTCEventListener();
     if (aiToken) {
       QNRtcAiManager.init(aiToken);
     }
-    await this.rtcClient.join(rtcToken);
+    await this.rtcClient.join(rtcToken, userData );
     await Promise.all([
       this.enableCamera(),
       this.enableMicrophone(),
