@@ -2,7 +2,7 @@ import React, {
   useContext, useEffect, useMemo, useRef, useState,
 } from 'react';
 import {
-  Button, Divider, message, Modal, Progress,
+  Button, message, Modal,
 } from 'antd';
 import {
   InviteSignaling,
@@ -11,7 +11,9 @@ import {
 import moment from 'moment';
 import { useInterval, useUnmount } from 'ahooks';
 import { useHistory } from 'react-router-dom';
-import { QNCameraVideoTrack, QNLocalVideoTrack, QNRemoteVideoTrack } from 'qnweb-rtc';
+import { QNCameraVideoTrack } from 'qnweb-rtc';
+import { QNRtcAiManager } from 'qnweb-rtc-ai';
+
 import useQNIM from '@/hooks/useQNIM';
 import { IM_APPKEY } from '@/config';
 import useMtTrackRoom from '@/hooks/useMtTrackRoom';
@@ -23,13 +25,15 @@ import useExamPaper from '@/hooks/useExamPaper';
 import QrCodePopup from '@/components/qr-code-popup';
 import useJoinMtTrackRoom from '@/hooks/useJoinMtTrackRoom';
 import { getUrlQueryParams, isInvitationSignal, log, pandora } from '@/utils';
-import styles from './index.module.scss';
 import { userStoreContext } from '@/store/UserStore';
 import ExamApi from '@/api/ExamApi';
 import AIApi from '@/api/AIApi';
-import { QNAuthoritativeFaceComparer, QNFaceDetector, QNRtcAiManager } from 'qnweb-rtc-ai';
+import { checkAuthFaceCompare, checkFaceDetect } from '@/pages/student/room/utils';
+import ScheduleCard from './schedule-card';
 
-type TAnswer = {
+import styles from './index.module.scss';
+
+type Answer = {
   questionId: string;
   value?: string
 };
@@ -51,7 +55,7 @@ const StudentRoom = () => {
   // 考场信息
   const [countDown, setCountDown] = useState(0); // 倒计时(ms)
   const { questions, totalScore } = useExamPaper(urlQueryRef.current.examId);
-  const [answer, setAnswer] = useState<TAnswer[]>([]);
+  const [answer, setAnswer] = useState<Answer[]>([]);
   const mixStreamToolRef = useRef<MixStreamTool>();
   const [isEnableMergeStream, setIsEnableMergeStream] = useState(false);
   const [isQrCodeVisible, setIsQrCodeVisible] = useState(true);
@@ -63,6 +67,18 @@ const StudentRoom = () => {
   );
   const { loginIM, imClient } = useQNIM(IM_APPKEY);
 
+  /**
+   * 初始化aiToken
+   */
+  useEffect(() => {
+    AIApi.getToken().then((result) => {
+      QNRtcAiManager.init(result.aiToken);
+    });
+  }, []);
+
+  /**
+   * 播放老师端音频
+   */
   useEffect(() => {
     mtTrackRoomMicSeats.forEach(
       (seat) => {
@@ -140,44 +156,6 @@ const StudentRoom = () => {
   }, [userStore.state.userInfo?.accountId]);
 
   /**
-   * 权威人脸对比
-   */
-  const checkAuthFaceCompare = (
-    track: QNLocalVideoTrack | QNRemoteVideoTrack,
-    userId: string,
-    examId: string,
-  ) => QNAuthoritativeFaceComparer.run(
-    track,
-    {
-      idcard: localStorage.getItem('idCard') || '',
-      realname: localStorage.getItem('fullName') || '',
-    },
-  ).then((result) => ExamApi.reportCheating({
-    examId,
-    userId,
-    event: {
-      action: 'authFaceCompare',
-      value: `${result.response.similarity}`,
-    },
-  }));
-
-  /**
-   * 人脸对比
-   */
-  const checkFaceDetect = (
-    track: QNLocalVideoTrack | QNRemoteVideoTrack,
-    userId: string,
-    examId: string,
-  ) => QNFaceDetector.run(track).then((result) => ExamApi.reportCheating({
-    examId,
-    userId,
-    event: {
-      action: 'faceDetect',
-      value: `${result.response.num_face}`,
-    },
-  }));
-
-  /**
    * 定时监控:
    * 权威人脸对比监控
    * 多人同框监控
@@ -193,13 +171,6 @@ const StudentRoom = () => {
       checkFaceDetect(localCameraTrack, userId, examId);
     }
   }, 3000);
-
-  // 获取aiToken
-  useEffect(() => {
-    AIApi.getToken().then((result) => {
-      QNRtcAiManager.init(result.aiToken);
-    });
-  }, []);
 
   /**
    * 房间心跳
@@ -226,7 +197,6 @@ const StudentRoom = () => {
   /**
    * 屏幕共享合流
    */
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
     const handler = {
       onScreenMicSeatAdd(seat: ScreenMicSeat) {
@@ -310,8 +280,8 @@ const StudentRoom = () => {
    * 更新倒计时
    */
   useEffect(() => {
-    const result = examInfo?.endTime ? moment(examInfo?.endTime).diff(moment(), 'milliseconds')
-      : 0;
+    const result = examInfo?.endTime ?
+      moment(examInfo?.endTime).diff(moment(), 'milliseconds') : 0;
     setCountDown(result);
   }, [examInfo?.endTime]);
 
@@ -502,7 +472,7 @@ const StudentRoom = () => {
 
   return (
     <div className={styles.container}>
-      <div id="teacher-microphone" />
+      <div id="teacher-microphone"/>
       <QrCodePopup
         className={styles.qrCodePopup}
         visible={isQrCodeVisible}
@@ -518,33 +488,12 @@ const StudentRoom = () => {
           <div id="mobile-camera" className={styles.mobileCamera}>
             <span className={styles.cameraTip}>副摄像头画面</span>
           </div>
-          <div className={styles.examDetail}>
-            <div className={styles.examDetailTime}>
-              <div className={styles.examDetailTimeTip}>剩余时间</div>
-              <div className={styles.examDetailTimeCount}>
-                {
-                  moment({
-                    h: moment.duration(countDown, 'milliseconds').hours(),
-                    m: moment.duration(countDown, 'milliseconds').minutes(),
-                    s: moment.duration(countDown, 'milliseconds').seconds(),
-                  }).format('HH:mm:ss')
-                }
-              </div>
-            </div>
-            <Divider className={styles.dividerLine} />
-            <div className={styles.examProgress}>
-              <div className={styles.examProgressTip}>当前进度</div>
-              <div className={styles.examProgressCurrent}>
-                {currentProgress}
-                /
-                {questions.length}
-              </div>
-              <Progress
-                percent={+((currentProgress / questions.length) * 100).toFixed(1)}
-                className={styles.examProgressBar}
-              />
-            </div>
-          </div>
+          <ScheduleCard
+            className={styles.examDetail}
+            current={currentProgress}
+            total={questions.length}
+            countDown={countDown}
+          />
           <SheetCard
             questionCount={questions.length}
             totalScore={totalScore || 0}
