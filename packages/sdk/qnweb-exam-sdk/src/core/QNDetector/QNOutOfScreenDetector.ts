@@ -4,7 +4,7 @@ import { QNLocalVideoTrack, QNRemoteVideoTrack } from 'qnweb-rtc';
 import { QNVideoDetector } from './QNDetector';
 
 interface Config {
-  interval: number;
+  interval?: number;
 }
 
 /**
@@ -22,10 +22,10 @@ export class QNOutOfScreenDetector extends QNVideoDetector {
 
   private config?: Config;
   private timer?: NodeJS.Timer;
-  private onCallback: Function = () => {
+  private onCallback: (result: boolean) => void = () => {
   };
 
-  on(callback: Function) {
+  on(callback: (result: boolean) => void) {
     this.onCallback = callback;
   }
 

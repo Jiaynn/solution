@@ -8,10 +8,15 @@ export class QNKeyboardCutDetector extends QNBrowserDetector {
     return new this();
   }
 
-  private onCallback: Function = () => {
+  constructor() {
+    super();
+    this.handleCut = this.handleCut.bind(this);
+  }
+
+  private onCallback: (result: ClipboardEvent) => void = () => {
   };
 
-  on(callback: Function) {
+  on(callback: (result: ClipboardEvent) => void) {
     this.onCallback = callback;
   }
 

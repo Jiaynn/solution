@@ -8,10 +8,15 @@ export class QNKeyboardCopyDetector extends QNBrowserDetector {
     return new this();
   }
 
+  constructor() {
+    super();
+    this.handleCopy = this.handleCopy.bind(this);
+  }
+
   private onCallback: Function = () => {
   };
 
-  on(callback: Function) {
+  on(callback: (result: ClipboardEvent) => void) {
     this.onCallback = callback;
   }
 

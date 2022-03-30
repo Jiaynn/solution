@@ -23,10 +23,10 @@ export class QNUserTakerDetector extends QNVideoDetector {
 
   private config: Config;
   private timer?: NodeJS.Timer;
-  private onCallback: Function = () => {
+  private onCallback: (result: number) => void = () => {
   };
 
-  on(callback: Function) {
+  on(callback: (result: number) => void) {
     this.onCallback = callback;
   }
 
