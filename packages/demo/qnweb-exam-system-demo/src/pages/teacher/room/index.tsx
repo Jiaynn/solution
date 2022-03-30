@@ -2,7 +2,7 @@ import React, {
   useContext,
   useEffect, useMemo, useRef, useState,
 } from 'react';
-import { Button, message, Pagination } from 'antd';
+import { Button, message, Modal, Pagination } from 'antd';
 import {
   InviteSignaling, RtmManager, ScreenMicSeat,
 } from 'qnweb-high-level-rtc';
@@ -348,6 +348,11 @@ const TeacherRoom = () => {
     if (voiceCallStatus === 'idle') {
       sendMicConnectMsg().then(() => {
         setVoiceCallStatus('connecting');
+      }).catch((error: unknown) => {
+        Modal.error({
+          title: '连接失败',
+          content: JSON.stringify(error),
+        });
       });
     }
     if (voiceCallStatus === 'connected') {
@@ -433,7 +438,8 @@ const TeacherRoom = () => {
               </span>
             </div>
           </div>
-          <Button loading={voiceCallStatus === 'connecting'} type="primary" style={{ marginBottom: 20 }} onClick={onMicrophoneRequest}>
+          <Button loading={voiceCallStatus === 'connecting'} type="primary" style={{ marginBottom: 20 }}
+                  onClick={onMicrophoneRequest}>
             {renderVoiceCallText()}
           </Button>
           <div className={styles.videos}>
