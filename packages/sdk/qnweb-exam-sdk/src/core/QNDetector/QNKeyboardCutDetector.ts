@@ -15,10 +15,16 @@ export class QNKeyboardCutDetector extends QNBrowserDetector {
     this.onCallback = callback;
   }
 
+  /**
+   * 开启检测
+   */
   enable() {
     document.addEventListener('cut', this.handleCut);
   }
 
+  /**
+   * 关闭检测
+   */
   disable() {
     document.removeEventListener('cut', this.handleCut);
   }

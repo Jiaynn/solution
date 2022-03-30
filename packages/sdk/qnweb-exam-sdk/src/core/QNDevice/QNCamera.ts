@@ -22,8 +22,8 @@ export class QNCamera extends QNDevice {
     this.config = config;
   }
 
-  public cameraVideoTrack?: QNCameraVideoTrack; // 当前Track对象
-  public config: QNCameraConfig;
+  public cameraVideoTrack?: QNCameraVideoTrack; // 摄像头视频轨道
+  public config: QNCameraConfig; // 摄像头采集配置
 
   /**
    * 采集摄像头视频流
@@ -43,6 +43,9 @@ export class QNCamera extends QNDevice {
     });
   }
 
+  /**
+   * 采集/播放摄像头视频流
+   */
   async start() {
     this.cameraVideoTrack = await this.createCameraVideoTrack();
     const elementId = this.config.elementId;
@@ -56,6 +59,9 @@ export class QNCamera extends QNDevice {
     return this.cameraVideoTrack.play(element);
   }
 
+  /**
+   * 停止采集/播放摄像头视频流
+   */
   async stop(): Promise<void> {
     if (this.cameraVideoTrack) {
       await this.cameraVideoTrack.destroy();

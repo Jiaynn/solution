@@ -29,6 +29,10 @@ export class QNOutOfScreenDetector extends QNVideoDetector {
     this.onCallback = callback;
   }
 
+  /**
+   * 开启检测
+   * @param track
+   */
   enable(track: QNLocalVideoTrack | QNRemoteVideoTrack) {
     if (this.timer) {
       clearInterval(this.timer);
@@ -40,6 +44,9 @@ export class QNOutOfScreenDetector extends QNVideoDetector {
     }, this.config?.interval || 1000);
   }
 
+  /**
+   * 关闭检测
+   */
   disable() {
     if (this.timer) {
       clearInterval(this.timer);

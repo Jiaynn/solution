@@ -1,6 +1,7 @@
-import { QNDevice } from './index';
-import { QNMicrophoneConfig } from '../../types';
 import QNRTC, { QNMicrophoneAudioTrack } from 'qnweb-rtc';
+
+import { QNDevice } from '@/core';
+import { QNMicrophoneConfig } from '@/types';
 
 export class QNMicrophone extends QNDevice {
   static create(config: QNMicrophoneConfig) {
@@ -21,11 +22,11 @@ export class QNMicrophone extends QNDevice {
     this.config = config;
   }
 
-  public microphoneAudioTrack?: QNMicrophoneAudioTrack; // 当前Track对象
-  public config: QNMicrophoneConfig;
+  public microphoneAudioTrack?: QNMicrophoneAudioTrack; // 麦克风音频轨道
+  public config: QNMicrophoneConfig; // 麦克风采集配置
 
   /**
-   * 采集摄像头音频流
+   * 采集麦克风音频流
    * @private
    */
   private async createMicrophoneVideoTrack(): Promise<QNMicrophoneAudioTrack> {
@@ -44,6 +45,9 @@ export class QNMicrophone extends QNDevice {
     });
   }
 
+  /**
+   * 采集/播放麦克风音频流
+   */
   async start() {
     this.microphoneAudioTrack = await this.createMicrophoneVideoTrack();
     const elementId = this.config.elementId;
@@ -57,6 +61,9 @@ export class QNMicrophone extends QNDevice {
     return this.microphoneAudioTrack.play(element);
   }
 
+  /**
+   * 停止采集/播放麦克风音频流
+   */
   async stop(): Promise<void> {
     if (this.microphoneAudioTrack) {
       await this.microphoneAudioTrack.destroy();

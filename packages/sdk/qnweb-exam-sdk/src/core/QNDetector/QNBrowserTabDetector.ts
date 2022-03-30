@@ -15,10 +15,16 @@ export class QNBrowserTabDetector extends QNBrowserDetector {
     this.onCallback = callback;
   }
 
+  /**
+   * 开启检测
+   */
   enable() {
     document.addEventListener('visibilitychange', this.handleVisibilityChange);
   }
 
+  /**
+   * 关闭检测
+   */
   disable() {
     document.removeEventListener('visibilitychange', this.handleVisibilityChange);
   }

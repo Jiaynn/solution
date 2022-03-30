@@ -39,13 +39,17 @@ export class QNExamClient {
     this.userUnpublished = this.userUnpublished.bind(this);
   }
 
-  public rtcClient: QNRTCClient;
-  public subscribedTracks: (QNRemoteVideoTrack | QNRemoteAudioTrack)[] = [];
-  public registeredDevice: Map<DeviceId, QNInternalDevice> = new Map();
-  public enabledVideoDetector: Map<QNVideoDetector, QNInternalDevice> = new Map();
-  public enabledAudioDetector: Map<QNAudioDetector, QNInternalDevice> = new Map();
-  public enabledBrowserDetector: QNBrowserDetector[] = [];
+  public rtcClient: QNRTCClient; // 实例化的rtc客户端
+  public subscribedTracks: (QNRemoteVideoTrack | QNRemoteAudioTrack)[] = []; // 订阅的视频设备
+  public registeredDevice: Map<DeviceId, QNInternalDevice> = new Map(); // 已注册的设备
+  public enabledVideoDetector: Map<QNVideoDetector, QNInternalDevice> = new Map(); // 已开启的视频检测器
+  public enabledAudioDetector: Map<QNAudioDetector, QNInternalDevice> = new Map(); // 已开启的音频检测器
+  public enabledBrowserDetector: QNBrowserDetector[] = []; // 已开启的浏览器检测器
 
+  /**
+   * 添加rtc事件监听
+   * @private
+   */
   private addRTCEventListener() {
     this.rtcClient.on('user-joined', this.userJoined);
     this.rtcClient.on('user-left', this.userLeft);
@@ -53,6 +57,10 @@ export class QNExamClient {
     this.rtcClient.on('user-unpublished', this.userUnpublished);
   }
 
+  /**
+   * 移除rtc事件监听
+   * @private
+   */
   private removeRTCEventListener() {
     this.rtcClient.off('user-joined', this.userJoined);
     this.rtcClient.off('user-left', this.userLeft);
@@ -124,6 +132,7 @@ export class QNExamClient {
   }
 
   /**
+   * TODO
    * 身份识别
    * @param headImgPath
    */
@@ -132,6 +141,7 @@ export class QNExamClient {
   }
 
   /**
+   * TODO
    * 设备调试
    */
   async test(): Promise<QNTestResult> {
@@ -164,6 +174,10 @@ export class QNExamClient {
     return result;
   }
 
+  /**
+   * TODO
+   * 停止设备调试
+   */
   async stopTest() {
     return Promise.all([
       this.registeredDevice.get('camera')?.stop(),
@@ -234,6 +248,10 @@ export class QNExamClient {
     });
   }
 
+  /**
+   * 开启/发布摄像头
+   * @private
+   */
   private async enableCamera() {
     const device = this.registeredDevice.get('camera');
     const isCameraDevice = device instanceof QNCamera;
@@ -244,6 +262,10 @@ export class QNExamClient {
     );
   }
 
+  /**
+   * 关闭/取消发布摄像头
+   * @private
+   */
   private async disableCamera() {
     const device = this.registeredDevice.get('camera');
     const isCameraDevice = device instanceof QNCamera;
@@ -254,6 +276,10 @@ export class QNExamClient {
     );
   }
 
+  /**
+   * 开启/发布麦克风
+   * @private
+   */
   private async enableMicrophone() {
     const device = this.registeredDevice.get('microphone');
     const isMicrophoneDevice = device instanceof QNMicrophone;
@@ -264,6 +290,10 @@ export class QNExamClient {
     );
   }
 
+  /**
+   * 关闭/取消发布麦克风
+   * @private
+   */
   private async disableMicrophone() {
     const device = this.registeredDevice.get('microphone');
     const isMicrophoneDevice = device instanceof QNMicrophone;
@@ -274,6 +304,10 @@ export class QNExamClient {
     );
   }
 
+  /**
+   * 开启/发布屏幕
+   * @private
+   */
   private async enableScreen() {
     const device = this.registeredDevice.get('screen');
     const isScreenDevice = device instanceof QNScreen;
@@ -284,6 +318,10 @@ export class QNExamClient {
     );
   }
 
+  /**
+   * 关闭/取消发布屏幕
+   * @private
+   */
   private async disableScreen() {
     const device = this.registeredDevice.get('screen');
     const isScreenDevice = device instanceof QNScreen;

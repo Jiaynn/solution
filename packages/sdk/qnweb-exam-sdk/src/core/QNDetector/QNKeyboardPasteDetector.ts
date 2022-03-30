@@ -15,10 +15,16 @@ export class QNKeyboardPasteDetector extends QNBrowserDetector {
     this.onCallback = callback;
   }
 
+  /**
+   * 开启检测
+   */
   enable() {
     document.addEventListener('paste', this.handlePaste);
   }
 
+  /**
+   * 关闭检测
+   */
   disable() {
     document.removeEventListener('paste', this.handlePaste);
   }

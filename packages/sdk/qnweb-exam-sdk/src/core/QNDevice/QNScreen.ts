@@ -1,7 +1,7 @@
 import QNRTC, { QNLocalAudioTrack, QNScreenVideoTrack } from 'qnweb-rtc';
 
-import { QNDevice } from '../index';
-import { QNMicrophoneConfig, QNScreenConfig } from '../../types';
+import { QNDevice } from '@/core';
+import { QNMicrophoneConfig, QNScreenConfig } from '@/types';
 
 export class QNScreen extends QNDevice {
   static create(config: QNMicrophoneConfig) {
@@ -13,8 +13,8 @@ export class QNScreen extends QNDevice {
     this.config = config;
   }
 
-  public screenVideoTrack?: QNScreenVideoTrack;
-  public config: QNScreenConfig;
+  public screenVideoTrack?: QNScreenVideoTrack; // 屏幕共享视频流
+  public config: QNScreenConfig; // 屏幕共享采集配置
 
   /**
    * 采集屏幕共享视频流
@@ -37,6 +37,9 @@ export class QNScreen extends QNDevice {
     ) as QNScreenVideoTrack;
   }
 
+  /**
+   * 开始采集/播放屏幕共享视频流
+   */
   async start() {
     this.screenVideoTrack = await this.createScreenVideoTrack();
     const elementId = this.config.elementId;
@@ -50,6 +53,9 @@ export class QNScreen extends QNDevice {
     return this.screenVideoTrack.play(element);
   }
 
+  /**
+   * 停止采集/播放屏幕共享视频流
+   */
   async stop(): Promise<void> {
     if (this.screenVideoTrack) {
       await this.screenVideoTrack.destroy();
