@@ -4,7 +4,7 @@ import { QNDevice } from '@/core';
 import { QNMicrophoneConfig } from '@/types';
 
 export class QNMicrophone extends QNDevice {
-  static create(config: QNMicrophoneConfig) {
+  static create(config?: QNMicrophoneConfig) {
     return new this(config);
   }
 
@@ -17,13 +17,13 @@ export class QNMicrophone extends QNDevice {
     return QNRTC.getMicrophones(skipPermissionCheck);
   }
 
-  constructor(config: QNMicrophoneConfig) {
+  constructor(config?: QNMicrophoneConfig) {
     super();
     this.config = config;
   }
 
   public microphoneAudioTrack?: QNMicrophoneAudioTrack; // 麦克风音频轨道
-  public config: QNMicrophoneConfig; // 麦克风采集配置
+  public config?: QNMicrophoneConfig; // 麦克风采集配置
 
   /**
    * 采集麦克风音频流
@@ -32,16 +32,16 @@ export class QNMicrophone extends QNDevice {
   private async createMicrophoneVideoTrack(): Promise<QNMicrophoneAudioTrack> {
     return QNRTC.createMicrophoneAudioTrack({
       tag: 'microphone',
-      microphoneId: this.config.microphoneId,
+      microphoneId: this.config?.microphoneId,
       encoderConfig: {
-        bitrate: this.config.bitrate,
-        sampleRate: this.config.sampleRate,
-        sampleSize: this.config.sampleSize,
-        stereo: this.config.stereo,
+        bitrate: this.config?.bitrate,
+        sampleRate: this.config?.sampleRate,
+        sampleSize: this.config?.sampleSize,
+        stereo: this.config?.stereo,
       },
-      AEC: this.config.AEC,
-      AGC: this.config.AGC,
-      ANS: this.config.ANS
+      AEC: this.config?.AEC,
+      AGC: this.config?.AGC,
+      ANS: this.config?.ANS
     });
   }
 
@@ -50,7 +50,7 @@ export class QNMicrophone extends QNDevice {
    */
   async start() {
     this.microphoneAudioTrack = await this.createMicrophoneVideoTrack();
-    const elementId = this.config.elementId;
+    const elementId = this.config?.elementId;
     if (!elementId) {
       return;
     }

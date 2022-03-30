@@ -141,7 +141,6 @@ export class QNExamClient {
   }
 
   /**
-   * TODO
    * 设备调试
    */
   async test(): Promise<QNTestResult> {
@@ -156,34 +155,16 @@ export class QNExamClient {
       return result;
     }
 
-    const cameraDevice = this.registeredDevice.get('camera');
-    const microphoneDevice = this.registeredDevice.get('microphone');
-    const screenDevice = this.registeredDevice.get('screen');
-    if (cameraDevice) {
-      await cameraDevice.start();
-      result.isCameraEnabled = true;
-    }
-    if (microphoneDevice) {
-      await microphoneDevice.start();
-      result.isMicrophoneEnabled = true;
-    }
-    if (screenDevice) {
-      await screenDevice.start();
-      result.isScreenEnabled = true;
-    }
-    return result;
-  }
-
-  /**
-   * TODO
-   * 停止设备调试
-   */
-  async stopTest() {
-    return Promise.all([
-      this.registeredDevice.get('camera')?.stop(),
-      this.registeredDevice.get('microphone')?.stop(),
-      this.registeredDevice.get('screen')?.stop(),
-    ]);
+    return Promise.allSettled([
+      QNCamera.create().start(),
+      QNMicrophone.create().start(),
+      QNScreen.create().start(),
+    ]).then(results => {
+      result.isCameraEnabled = results[0].status === 'fulfilled';
+      result.isMicrophoneEnabled = results[1].status === 'fulfilled';
+      result.isScreenEnabled = results[2].status === 'fulfilled';
+      return result;
+    });
   }
 
   /**

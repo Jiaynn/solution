@@ -4,7 +4,7 @@ import { QNDevice } from '@/core';
 import { QNCameraConfig } from '@/types';
 
 export class QNCamera extends QNDevice {
-  static create(config: QNCameraConfig) {
+  static create(config?: QNCameraConfig) {
     return new this(config);
   }
 
@@ -17,13 +17,13 @@ export class QNCamera extends QNDevice {
     return QNRTC.getCameras(skipPermissionCheck);
   }
 
-  constructor(config: QNCameraConfig) {
+  constructor(config?: QNCameraConfig) {
     super();
     this.config = config;
   }
 
   public cameraVideoTrack?: QNCameraVideoTrack; // 摄像头视频轨道
-  public config: QNCameraConfig; // 摄像头采集配置
+  public config?: QNCameraConfig; // 摄像头采集配置
 
   /**
    * 采集摄像头视频流
@@ -32,14 +32,14 @@ export class QNCamera extends QNDevice {
   private async createCameraVideoTrack(): Promise<QNCameraVideoTrack> {
     return QNRTC.createCameraVideoTrack({
       tag: 'camera',
-      cameraId: this.config.cameraId,
+      cameraId: this.config?.cameraId,
       encoderConfig: {
-        bitrate: this.config.bitrate,
-        frameRate: this.config.frameRate,
-        width: this.config.width,
-        height: this.config.height
+        bitrate: this.config?.bitrate,
+        frameRate: this.config?.frameRate,
+        width: this.config?.width,
+        height: this.config?.height
       },
-      optimizationMode: this.config.optimizationMode
+      optimizationMode: this.config?.optimizationMode
     });
   }
 
@@ -48,7 +48,7 @@ export class QNCamera extends QNDevice {
    */
   async start() {
     this.cameraVideoTrack = await this.createCameraVideoTrack();
-    const elementId = this.config.elementId;
+    const elementId = this.config?.elementId;
     if (!elementId) {
       return;
     }
