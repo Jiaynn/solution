@@ -6,21 +6,26 @@ import {
 } from 'antd';
 import {
   InviteSignaling,
-  MixStreamTool, RtmManager, ScreenMicSeat,
+  RtmManager,
 } from 'qnweb-high-level-rtc';
 import moment from 'moment';
-import { useInterval, useUnmount } from 'ahooks';
 import { useHistory } from 'react-router-dom';
-import { QNCameraVideoTrack } from 'qnweb-rtc';
-import { QNRtcAiManager } from 'qnweb-rtc-ai';
+import { useMount } from 'ahooks';
+import {
+  QNBrowserTabDetector,
+  QNCamera,
+  QNMicrophone,
+  QNMultiplePeopleDetector,
+  QNScreen,
+  QNUserTakerDetector
+} from 'qnweb-exam-sdk';
+import { QNRemoteAudioTrack, QNRemoteVideoTrack } from 'qnweb-rtc';
 
 import useQNIM from '@/hooks/useQNIM';
 import { IM_APPKEY } from '@/config';
-import useMtTrackRoom from '@/hooks/useMtTrackRoom';
 import SheetCard from '@/components/sheet-card';
 import SingleChoiceSubject from '@/components/single-choice-subject';
 import useExamInfo from '@/hooks/useExamInfo';
-import useBaseRoomHeartbeat from '@/hooks/useBaseRoomHeartbeat';
 import useExamPaper from '@/hooks/useExamPaper';
 import QrCodePopup from '@/components/qr-code-popup';
 import useJoinMtTrackRoom from '@/hooks/useJoinMtTrackRoom';
@@ -28,14 +33,15 @@ import { getUrlQueryParams, isInvitationSignal, log } from '@/utils';
 import { userStoreContext } from '@/store/UserStore';
 import ExamApi from '@/api/ExamApi';
 import AIApi from '@/api/AIApi';
+import useExamSDK from '@/hooks/useExamSDK';
 import {
-  checkAuthFaceCompare,
-  checkFaceDetect,
   quitAnswerQuestionsReport,
   commitExamPaperReport,
-  startExamReport
 } from './utils';
 import ScheduleCard from './schedule-card';
+import useRoomJoin from '@/hooks/useRoomJoin';
+import useRoomHeart from '@/hooks/useRoomHeart';
+import useMixStreamJob from '@/hooks/useMixStreamJob';
 
 import styles from './index.module.scss';
 
@@ -53,50 +59,182 @@ const StudentRoom = () => {
     examId: getUrlQueryParams('examId') || '',
     roomId: getUrlQueryParams('roomId') || '',
   });
-  const { micSeats: mtTrackRoomMicSeats, room: mtTrackRoom } = useMtTrackRoom();
-  const { joinRoom: joinMtTrackRoom, imConfig } = useJoinMtTrackRoom();
-  const [isMtTrackRoomJoined, setIsMtTrackRoomJoined] = useState(false);
+  const { imConfig } = useJoinMtTrackRoom();
   const { examInfo } = useExamInfo(urlQueryRef.current.examId);
 
   // 考场信息
   const [timeRemaining, setTimeRemaining] = useState(0); // 剩余时间, ms
   const { questions, totalScore } = useExamPaper(urlQueryRef.current.examId);
   const [answer, setAnswer] = useState<Answer[]>([]);
-  const mixStreamToolRef = useRef<MixStreamTool>();
-  const [isEnableMergeStream, setIsEnableMergeStream] = useState(false);
   const [isQrCodeVisible, setIsQrCodeVisible] = useState(true);
-  const latestMobileSeat = useMemo(
-    () => mtTrackRoomMicSeats.slice().reverse().find(
-      (s) => s.userExtension?.userExtRoleType === 'mobile',
-    ),
-    [mtTrackRoomMicSeats],
-  );
   const { loginIM, imClient } = useQNIM(IM_APPKEY);
 
-  /**
-   * 初始化aiToken
-   */
-  useEffect(() => {
-    AIApi.getToken().then((result) => {
-      QNRtcAiManager.init(result.aiToken);
-    });
-  }, []);
+  const { examClient } = useExamSDK();
+  const { joinRoomApi, rtcInfo } = useRoomJoin();
+  const { enableHeart, enabled } = useRoomHeart();
+  const { startMixStreamJob, updateMixStreamJob, stopMixStreamJob } = useMixStreamJob(examClient.rtcClient);
 
   /**
-   * 播放老师端音频
+   * 开始监考
+   */
+  useMount(() => {
+    const hide = message.loading('加载中...', 0);
+    const camera = QNCamera.create({
+      elementId: 'pc-camera',
+    });
+    const microphone = QNMicrophone.create();
+    const screen = QNScreen.create();
+
+    // tab切换检测器
+    const browserTabDetector = QNBrowserTabDetector.create();
+    // 用户替考检测器
+    const userTakerDetector = QNUserTakerDetector.create({
+      interval: 3000,
+      idCard: localStorage.getItem('idCard') || '',
+      realName: localStorage.getItem('fullName') || '',
+    });
+    // 多人同框检测器
+    const multiplePeopleDetector = QNMultiplePeopleDetector.create({
+      interval: 3000
+    });
+
+    userTakerDetector.on(result => {
+      ExamApi.reportCheating({
+        examId: urlQueryRef.current.examId,
+        userId: userStore.state.userInfo?.accountId || '',
+        event: {
+          action: 'authFaceCompare',
+          value: `${result}`
+        },
+      });
+    });
+    browserTabDetector.on(result => {
+      ExamApi.reportCheating({
+        examId: urlQueryRef.current.examId,
+        userId: userStore.state.userInfo?.accountId || '',
+        event: {
+          action: 'visibilitychange',
+          value: result
+        },
+      });
+    });
+    multiplePeopleDetector.on(result => {
+      ExamApi.reportCheating({
+        examId: urlQueryRef.current.examId,
+        userId: userStore.state.userInfo?.accountId || '',
+        event: {
+          action: 'faceDetect',
+          value: `${result}`,
+        },
+      });
+    });
+
+    examClient.registerDevice('camera', camera);
+    examClient.registerDevice('microphone', microphone);
+    examClient.registerDevice('screen', screen);
+
+    examClient.enable(browserTabDetector);
+    examClient.enable(userTakerDetector, 'camera');
+    examClient.enable(multiplePeopleDetector, 'camera');
+
+    Promise.all([
+      AIApi.getToken(),
+      joinRoomApi(urlQueryRef.current.roomId),
+      loginIM({
+        account: userStore.state.imConfig?.imUsername || '',
+        password: userStore.state.imConfig?.imPassword || '',
+      })
+    ]).then(([{ aiToken }, { rtcInfo }]) => {
+      const rtcToken = rtcInfo?.roomToken || '';
+      return examClient.start({
+        aiToken,
+        rtcToken
+      });
+    }).then(() => {
+      message.success('加载成功');
+      return enableHeart(urlQueryRef.current.roomId);
+    }).catch(error => {
+      Modal.error({
+        content: error.message,
+      });
+    }).finally(() => {
+      hide();
+    });
+  });
+
+
+  /**
+   * 合流本地视频流
    */
   useEffect(() => {
-    mtTrackRoomMicSeats.forEach(
-      (seat) => {
-        if (!seat.isMySeat && seat.isOwnerOpenAudio) {
-          mtTrackRoom.setUserMicrophoneWindowView(
-            seat.uid,
-            'teacher-microphone',
-          );
+    const url = rtcInfo?.publishUrl;
+    const streamID = urlQueryRef.current.roomId;
+    if (enabled && url && examClient) {
+      startMixStreamJob({
+        streamID,
+        url,
+        width: 400,
+        height: 400,
+      }).then(() => {
+        const camera = (examClient.registeredDevice.get('camera') as QNCamera);
+        const screen = (examClient.registeredDevice.get('screen') as QNScreen);
+        return Promise.all([
+          updateMixStreamJob(streamID, [
+            {
+              trackID: camera.cameraVideoTrack?.trackID || '',
+              x: 0,
+              y: 0,
+              width: 200,
+              height: 200
+            },
+            {
+              trackID: screen.screenVideoTrack?.trackID || '',
+              x: 200,
+              y: 0,
+              width: 200,
+              height: 200
+            }
+          ])
+        ]).then(() => {
+          console.log('本地摄像头+屏幕共享合流成功');
+        });
+      });
+    }
+  }, [enabled, examClient]);
+
+  /**
+   * 副摄像头播放+合流
+   */
+  useEffect(() => {
+    const userPublished = (userID: string, tracks: (QNRemoteAudioTrack | QNRemoteVideoTrack)[]) => {
+      const cameraTrack = tracks.find(track => track.tag === 'camera');
+      updateMixStreamJob(urlQueryRef.current.roomId, [
+        {
+          trackID: cameraTrack?.trackID || '',
+          x: 100,
+          y: 200,
+          width: 200,
+          height: 200
         }
-      },
-    );
-  }, [mtTrackRoom, mtTrackRoomMicSeats]);
+      ]);
+      const element = document.getElementById('mobile-camera');
+      if (element && cameraTrack) {
+        cameraTrack.play(element).catch(() => {
+          Modal.error({
+            content: '视频播放出错，点击确认重新播放',
+            okText: '确定',
+            onOk() {
+              cameraTrack.play(element);
+            }
+          });
+        });
+      }
+    };
+    examClient.rtcClient.on('user-published', userPublished);
+    return () => {
+      examClient.rtcClient.off('user-published', userPublished);
+    };
+  }, [examClient]);
 
   /**
    * im消息监听
@@ -142,136 +280,6 @@ const StudentRoom = () => {
   }, [imClient, imConfig?.imGroupId, userStore.state.userInfo?.accountId]);
 
   /**
-   * 监控visibilitychange
-   */
-  useEffect(() => {
-    const handleVisibilitychange = () => {
-      ExamApi.reportCheating({
-        examId: urlQueryRef.current.examId,
-        userId: userStore.state.userInfo?.accountId || '',
-        event: {
-          action: 'visibilitychange',
-          value: document.visibilityState,
-        },
-      });
-    };
-    window.addEventListener('visibilitychange', handleVisibilitychange);
-    return () => {
-      window.removeEventListener('visibilitychange', handleVisibilitychange);
-    };
-  }, [userStore.state.userInfo?.accountId]);
-
-  /**
-   * 定时监控:
-   * 权威人脸对比监控
-   * 多人同框监控
-   */
-  useInterval(() => {
-    const userId = userStore.state.userInfo?.accountId || '';
-    const localCameraTrack = mtTrackRoom.getUserCameraTrack(userId) as QNCameraVideoTrack;
-    const { examId } = urlQueryRef.current;
-    if (localCameraTrack && userId) {
-      // 权威人脸对比监控
-      checkAuthFaceCompare(localCameraTrack, userId, examId);
-      // 人脸对比
-      checkFaceDetect(localCameraTrack, userId, examId);
-    }
-  }, 3000);
-
-  /**
-   * 房间心跳
-   */
-  const { setIsEnabled } = useBaseRoomHeartbeat({
-    roomId: urlQueryRef.current.roomId,
-  });
-
-  /**
-   * 开始创建合流任务
-   */
-  useEffect(() => {
-    if (isMtTrackRoomJoined && mtTrackRoom) {
-      mixStreamToolRef.current = mtTrackRoom.getMixStreamTool();
-      mixStreamToolRef.current.startMixStreamJob({
-        width: 400,
-        height: 400,
-      })?.then(() => {
-        setIsEnableMergeStream(true);
-      });
-    }
-  }, [isMtTrackRoomJoined, mtTrackRoom, userStore.state.userInfo]);
-
-  /**
-   * 屏幕共享合流
-   */
-  useEffect(() => {
-    const handler = {
-      onScreenMicSeatAdd(seat: ScreenMicSeat) {
-        log.log('onScreenMicSeatAdd', seat);
-        mixStreamToolRef.current?.updateUserScreenMergeOptions(
-          seat.uid,
-          {
-            x: 200,
-            y: 0,
-            width: 200,
-            height: 200,
-          },
-        );
-      },
-    };
-    if (mtTrackRoom) {
-      mtTrackRoom.getScreenTrackTool().addScreenMicSeatListener(handler);
-      return () => {
-        mtTrackRoom.getScreenTrackTool().removeScreenMicSeatListener(handler);
-      };
-    }
-  }, [mtTrackRoom]);
-
-  /**
-   * 合流h5端副摄像头
-   */
-  useEffect(() => {
-    if (!isEnableMergeStream) return;
-    if (latestMobileSeat) {
-      const mobileUserId = latestMobileSeat.uid;
-      mixStreamToolRef.current?.updateUserCameraMergeOptions(
-        mobileUserId,
-        {
-          x: 100,
-          y: 200,
-          width: 200,
-          height: 200,
-        },
-      );
-    }
-  }, [isEnableMergeStream, latestMobileSeat]);
-
-  /**
-   * 合流本地摄像头
-   */
-  useEffect(() => {
-    if (!isEnableMergeStream) return;
-    const localMtRoomSeat = mtTrackRoomMicSeats.find(
-      (s) => s.uid === userStore.state.userInfo?.accountId,
-    );
-    if (localMtRoomSeat) {
-      const localUserId = localMtRoomSeat.uid;
-      mixStreamToolRef.current?.updateUserCameraMergeOptions(
-        localUserId,
-        {
-          x: 0,
-          y: 0,
-          width: 200,
-          height: 200,
-        },
-      );
-    }
-  }, [
-    isEnableMergeStream,
-    mtTrackRoomMicSeats,
-    userStore.state.userInfo?.accountId,
-  ]);
-
-  /**
    * 答案数量和问题数量匹配
    */
   useEffect(() => {
@@ -290,92 +298,6 @@ const StudentRoom = () => {
       moment(examInfo?.endTime).diff(moment(), 'milliseconds') : 0;
     setTimeRemaining(remaining);
   }, [examInfo?.endTime]);
-
-  /**
-   * 开启麦克风、摄像头、屏幕共享
-   */
-  useEffect(() => {
-    if (mtTrackRoom && isMtTrackRoomJoined) {
-      Promise.all([
-        mtTrackRoom
-          .enableCamera()
-          .then(() => mtTrackRoom.setLocalCameraWindowView(
-            'pc-camera',
-          ))
-          .catch(() => Promise.reject(new Error('摄像头开启失败'))),
-        mtTrackRoom
-          .enableMicrophone()
-          .catch(() => Promise.reject(new Error('麦克风开启失败'))),
-        mtTrackRoom
-          .getScreenTrackTool()
-          .enableScreen()
-          .catch(() => Promise.reject(new Error('屏幕共享开启失败'))),
-      ]).catch((error) => {
-        Modal.error({
-          title: '媒体设备开启失败',
-          content: error.message,
-        });
-      });
-    }
-  }, [isMtTrackRoomJoined, mtTrackRoom]);
-
-  /**
-   * 移动端摄像头预览
-   */
-  useEffect(() => {
-    log.log('latestMobileSeat', latestMobileSeat);
-    if (mtTrackRoom && latestMobileSeat?.isOwnerOpenVideo) {
-      mtTrackRoom.setUserCameraWindowView(
-        latestMobileSeat.uid,
-        'mobile-camera',
-      );
-    }
-  }, [mtTrackRoom, latestMobileSeat]);
-
-  /**
-   * 进入房间
-   */
-  useEffect(() => {
-    if (mtTrackRoom) {
-      const hide = message.loading('正在加入房间...', 0);
-      loginIM({
-        account: userStore.state.imConfig?.imUsername || '',
-        password: userStore.state.imConfig?.imPassword || '',
-      })
-        .then(() => joinMtTrackRoom({
-          room: mtTrackRoom,
-          roomId: urlQueryRef.current.roomId,
-          userExtension: {
-            userExtRoleType: 'pc',
-          },
-        }))
-        .then(() => {
-          setIsMtTrackRoomJoined(true);
-          setIsEnabled(true);
-          message.success('房间加入成功');
-        })
-        .then(() => ExamApi.join(urlQueryRef.current))
-        .then(() => {
-          message.success('开始考试');
-          startExamReport(urlQueryRef.current.examId)
-        })
-        .finally(() => hide());
-    }
-  }, [
-    joinMtTrackRoom, loginIM, mtTrackRoom,
-    setIsEnabled, userStore.state.imConfig?.imPassword,
-    userStore.state.imConfig?.imUsername,
-  ]);
-
-  /**
-   * 离开房间
-   */
-  useUnmount(() => {
-    mtTrackRoom?.leaveRoom()
-      .then(() => {
-        log.log('leaveRoom success');
-      });
-  });
 
   /**
    * 选择答案

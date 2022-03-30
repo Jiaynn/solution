@@ -58,10 +58,10 @@ export default {
     // https://github.com/rollup/rollup-plugin-node-resolve#usage
     nodeResolve(),
     uglify(),
-    isProd && terser({
-      compress: {
-        pure_funcs: ['console.log'] // remove console.log
-      }
-    })
+    // isProd && terser({
+    //   compress: {
+    //     pure_funcs: ['console.log'] // remove console.log
+    //   }
+    // })
   ]
 };

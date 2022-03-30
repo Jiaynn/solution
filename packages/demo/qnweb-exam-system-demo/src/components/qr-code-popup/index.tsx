@@ -25,7 +25,7 @@ const QrCodePopup: FC<QrCodePopupProps> = (props) => {
       </div>
       {
       visible && (
-      <div className="body">
+      <div className="body" data-url={qrCodeUrl}>
         <QRCode value={qrCodeUrl} size={180} />
       </div>
       )
