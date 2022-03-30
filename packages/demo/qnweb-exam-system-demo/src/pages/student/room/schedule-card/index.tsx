@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
 import { Divider, Progress } from 'antd';
 import classNames from 'classnames';
+import { useInterval } from 'ahooks';
 
 import './index.scss';
 
 export interface ScheduleCardProps extends Pick<React.HTMLAttributes<HTMLDivElement>, 'style' | 'className'> {
   current: number;
   total: number;
-  countDown: number;
+  timeRemaining: number;
 }
 
+const INTERVAL = 1000;
+
 const ScheduleCard: React.FC<ScheduleCardProps> = (props) => {
-  const { current, total, countDown, className, style } = props;
+  const { current, total, className, style, timeRemaining } = props;
+  const [countDown, setCountDown] = React.useState<number>();
+
+  useEffect(() => {
+    setCountDown(timeRemaining);
+  }, [timeRemaining]);
+
+
+  useInterval(() => {
+    if (countDown) {
+      setCountDown(countDown - INTERVAL);
+    } else {
+      setCountDown(undefined);
+    }
+  }, countDown ? INTERVAL : undefined);
+
   return <div className={classNames('schedule-card', className)} style={style}>
     <div className="time">
       <div className="time-tip text-center">剩余时间</div>

@@ -24,11 +24,17 @@ import useBaseRoomHeartbeat from '@/hooks/useBaseRoomHeartbeat';
 import useExamPaper from '@/hooks/useExamPaper';
 import QrCodePopup from '@/components/qr-code-popup';
 import useJoinMtTrackRoom from '@/hooks/useJoinMtTrackRoom';
-import { getUrlQueryParams, isInvitationSignal, log, pandora } from '@/utils';
+import { getUrlQueryParams, isInvitationSignal, log } from '@/utils';
 import { userStoreContext } from '@/store/UserStore';
 import ExamApi from '@/api/ExamApi';
 import AIApi from '@/api/AIApi';
-import { checkAuthFaceCompare, checkFaceDetect } from '@/pages/student/room/utils';
+import {
+  checkAuthFaceCompare,
+  checkFaceDetect,
+  quitAnswerQuestionsReport,
+  commitExamPaperReport,
+  startExamReport
+} from './utils';
 import ScheduleCard from './schedule-card';
 
 import styles from './index.module.scss';
@@ -53,7 +59,7 @@ const StudentRoom = () => {
   const { examInfo } = useExamInfo(urlQueryRef.current.examId);
 
   // 考场信息
-  const [countDown, setCountDown] = useState(0); // 倒计时(ms)
+  const [timeRemaining, setTimeRemaining] = useState(0); // 剩余时间, ms
   const { questions, totalScore } = useExamPaper(urlQueryRef.current.examId);
   const [answer, setAnswer] = useState<Answer[]>([]);
   const mixStreamToolRef = useRef<MixStreamTool>();
@@ -280,9 +286,9 @@ const StudentRoom = () => {
    * 更新倒计时
    */
   useEffect(() => {
-    const result = examInfo?.endTime ?
+    const remaining = examInfo?.endTime ?
       moment(examInfo?.endTime).diff(moment(), 'milliseconds') : 0;
-    setCountDown(result);
+    setTimeRemaining(remaining);
   }, [examInfo?.endTime]);
 
   /**
@@ -351,15 +357,7 @@ const StudentRoom = () => {
         .then(() => ExamApi.join(urlQueryRef.current))
         .then(() => {
           message.success('开始考试');
-          pandora.report({
-            action: 'start_exam',
-            value: {
-              userId: pandora.getCacheValue('userId'),
-              role: pandora.getCacheValue('role'),
-              pathname: pandora.getCacheValue('pathname'),
-              examId: urlQueryRef.current.examId,
-            },
-          });
+          startExamReport(urlQueryRef.current.examId)
         })
         .finally(() => hide());
     }
@@ -380,13 +378,6 @@ const StudentRoom = () => {
   });
 
   /**
-   * 倒计时
-   */
-  useInterval(() => {
-    setCountDown(countDown - 1000);
-  }, 1000);
-
-  /**
    * 选择答案
    * @param currentQuestionIndex
    * @param currentQuestionValue
@@ -405,15 +396,7 @@ const StudentRoom = () => {
    * 提交试卷
    */
   const onSubmitPaper = () => {
-    pandora.report({
-      action: 'commit_exam_paper',
-      value: {
-        userId: pandora.getCacheValue('userId'),
-        role: pandora.getCacheValue('role'),
-        pathname: pandora.getCacheValue('pathname'),
-        examId: urlQueryRef.current.examId,
-      },
-    });
+    commitExamPaperReport(urlQueryRef.current.examId);
     const hide = message.loading('正在提交试卷', 0);
     const answerList = answer.map((a) => ({
       questionId: a.questionId,
@@ -440,15 +423,7 @@ const StudentRoom = () => {
    * 退出答题
    */
   const onExitExam = () => {
-    pandora.report({
-      action: 'quit_answer_questions',
-      value: {
-        userId: pandora.getCacheValue('userId'),
-        role: pandora.getCacheValue('role'),
-        pathname: pandora.getCacheValue('pathname'),
-        examId: urlQueryRef.current.examId,
-      },
-    });
+    quitAnswerQuestionsReport(urlQueryRef.current.examId);
     Modal.confirm({
       title: '提示',
       content: '考试还未结束，请确认是否退出答题，答题内容将不会被保留',
@@ -492,7 +467,7 @@ const StudentRoom = () => {
             className={styles.examDetail}
             current={currentProgress}
             total={questions.length}
-            countDown={countDown}
+            timeRemaining={timeRemaining}
           />
           <SheetCard
             questionCount={questions.length}
