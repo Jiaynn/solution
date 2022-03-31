@@ -5,6 +5,7 @@ import {
   Button, message, Modal,
 } from 'antd';
 import {
+  ClientRoleType,
   InviteSignaling,
   RtmManager,
 } from 'qnweb-high-level-rtc';
@@ -72,7 +73,7 @@ const StudentRoom = () => {
   const { examClient } = useExamSDK();
   const { joinRoomApi, rtcInfo } = useRoomJoin();
   const { enableHeart, enabled } = useRoomHeart();
-  const { startMixStreamJob, updateMixStreamJob, stopMixStreamJob } = useMixStreamJob(examClient.rtcClient);
+  const { startMixStreamJob, updateMixStreamJob } = useMixStreamJob(examClient.rtcClient);
 
   /**
    * 开始监考
@@ -144,7 +145,12 @@ const StudentRoom = () => {
       const rtcToken = rtcInfo?.roomToken || '';
       return examClient.start({
         aiToken,
-        rtcToken
+        rtcToken,
+        userData: JSON.stringify({
+          clientRoleType: ClientRoleType.CLIENT_ROLE_BROADCASTER,
+          uid: userStore.state.userInfo?.accountId || '',
+          userExtRoleType: 'pc'
+        })
       });
     }).then(() => {
       message.success('RTC加载成功');
