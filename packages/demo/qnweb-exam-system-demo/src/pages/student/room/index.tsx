@@ -78,7 +78,7 @@ const StudentRoom = () => {
    * 开始监考
    */
   useMount(() => {
-    const hide = message.loading('加载中...', 0);
+    const hide = message.loading('RTC加载中...', 0);
     const camera = QNCamera.create({
       elementId: 'pc-camera',
     });
@@ -139,11 +139,7 @@ const StudentRoom = () => {
 
     Promise.all([
       AIApi.getToken(),
-      joinRoomApi(urlQueryRef.current.roomId),
-      loginIM({
-        account: userStore.state.imConfig?.imUsername || '',
-        password: userStore.state.imConfig?.imPassword || '',
-      })
+      joinRoomApi(urlQueryRef.current.roomId)
     ]).then(([{ aiToken }, { rtcInfo }]) => {
       const rtcToken = rtcInfo?.roomToken || '';
       return examClient.start({
@@ -151,12 +147,31 @@ const StudentRoom = () => {
         rtcToken
       });
     }).then(() => {
-      message.success('加载成功');
+      message.success('RTC加载成功');
       return enableHeart(urlQueryRef.current.roomId);
     }).catch(error => {
+      console.error(error);
       Modal.error({
         content: error.message,
       });
+    }).finally(() => {
+      hide();
+    });
+  });
+
+  /**
+   * im
+   */
+  useMount(() => {
+    const hide = message.loading('IM加载中...', 0);
+    loginIM({
+      account: userStore.state.imConfig?.imUsername || '',
+      password: userStore.state.imConfig?.imPassword || '',
+    }).then(() => {
+      message.success('IM加载成功');
+    }).catch(error => {
+      console.error(error);
+      message.error(JSON.stringify(error));
     }).finally(() => {
       hide();
     });
@@ -195,9 +210,7 @@ const StudentRoom = () => {
               height: 200
             }
           ])
-        ]).then(() => {
-          console.log('本地摄像头+屏幕共享合流成功');
-        });
+        ]);
       });
     }
   }, [enabled, examClient]);
@@ -219,14 +232,12 @@ const StudentRoom = () => {
       ]);
       const element = document.getElementById('mobile-camera');
       if (element && cameraTrack) {
-        cameraTrack.play(element).catch(() => {
-          Modal.error({
-            content: '视频播放出错，点击确认重新播放',
-            okText: '确定',
-            onOk() {
-              cameraTrack.play(element);
-            }
-          });
+        Modal.info({
+          content: '检测到副摄像头接入，点击确定进行播放',
+          okText: '确定',
+          onOk() {
+            cameraTrack.play(element);
+          }
         });
       }
     };
