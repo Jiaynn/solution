@@ -174,7 +174,6 @@ export class QNExamClient {
    */
   async start(token: TokenParams) {
     const { rtcToken, aiToken, userData } = token;
-    this.addRTCEventListener();
     if (aiToken) {
       QNRtcAiManager.init(aiToken);
     }
@@ -207,7 +206,6 @@ export class QNExamClient {
    * 结束监考
    */
   async stop() {
-    this.removeRTCEventListener();
     return Promise.all([
       this.disableCamera(),
       this.disableMicrophone(),

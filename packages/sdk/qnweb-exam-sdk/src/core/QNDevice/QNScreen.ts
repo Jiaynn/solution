@@ -22,6 +22,7 @@ export class QNScreen extends QNDevice {
    */
   private async createScreenVideoTrack() {
     const track = await QNRTC.createScreenVideoTrack({
+      screenVideoTag: 'screen',
       encoderConfig: {
         bitrate: this.config?.bitrate,
         width: this.config?.width,
