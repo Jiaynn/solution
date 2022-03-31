@@ -20,11 +20,13 @@
     "exam-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-exam-system-demo",
     "commit": "git-cz",
     "cube": "sh shell/cube.sh",
-    "start": "ts-node scripts/start.ts"
+    "start": "ts-node scripts/start.ts",
+    "ar-changelog": "ar-changelog"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^16.2.1",
     "@manypkg/get-packages": "^1.1.3",
+    "ar-changelog": "^1.0.4",
     "commitlint": "^16.2.3",
     "execa": "^5.1.1",
     "git-cz": "^4.8.0",
