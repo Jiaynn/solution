@@ -1,5 +1,6 @@
 import { QNBrowserDetector } from './QNDetector';
 
+
 /**
  * 浏览器tab检测器
  */
@@ -8,17 +9,28 @@ export class QNBrowserTabDetector extends QNBrowserDetector {
     return new this();
   }
 
-  private onCallback: Function = () => {
+  constructor() {
+    super();
+    this.handleVisibilityChange = this.handleVisibilityChange.bind(this);
+  }
+
+  private onCallback: (result: VisibilityState) => void = () => {
   };
 
-  on(callback: Function) {
+  on(callback: (result: VisibilityState) => void) {
     this.onCallback = callback;
   }
 
+  /**
+   * 开启检测
+   */
   enable() {
     document.addEventListener('visibilitychange', this.handleVisibilityChange);
   }
 
+  /**
+   * 关闭检测
+   */
   disable() {
     document.removeEventListener('visibilitychange', this.handleVisibilityChange);
   }

@@ -22,6 +22,7 @@ const preRunTask = {
     async run() {
       await buildSDK('qnweb-im');
       await buildSDK('qnweb-high-level-rtc');
+      await buildSDK('qnweb-exam-sdk');
     }
   },
   'qnweb-interview-demo': {
@@ -50,7 +51,7 @@ const preRunTask = {
 
   // Other
   'qnweb-im-demo': {
-    title: 'im mode',
+    title: 'im demo',
     async run() {
       await buildSDK('qnweb-im');
       await runShell('copy_im');

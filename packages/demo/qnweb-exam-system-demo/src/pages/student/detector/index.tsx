@@ -1,22 +1,22 @@
-import { Button, message, Steps } from 'antd';
+import { Button, message, Modal, Steps } from 'antd';
 import React, {
-  useEffect, useMemo, useRef, useState,
+  useEffect, useRef, useState,
 } from 'react';
-import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
-import { useMount, useUnmount } from 'ahooks';
 import { MutableTrackRoom, MutableTrackRoomSeat } from 'qnweb-high-level-rtc';
-import { getUrlQueryParams, log, pandora } from '@/utils';
-import useExamInfo from '../../../hooks/useExamInfo';
-import StudentInfoCard from '../../../components/student-info-card';
-import IdentityAuth, { IdentityAuthResult } from '../../../components/identity-auth';
-import MobileMediaDetector from '../../../components/mobile-media-detector';
-import MediaDetector from '../../../components/media-detector';
-import RecorderDetector from '../../../components/recorder-detector';
-import useMtTrackRoom from '../../../hooks/useMtTrackRoom';
-import useBaseRoomHeartbeat from '../../../hooks/useBaseRoomHeartbeat';
-import useJoinMtTrackRoom from '../../../hooks/useJoinMtTrackRoom';
+import { QNExamClient } from 'qnweb-exam-sdk';
+
+import { getUrlQueryParams, log } from '@/utils';
+import useExamInfo from '@/hooks/useExamInfo';
+import StudentInfoCard from '@/components/student-info-card';
+import IdentityAuth, { IdentityAuthResult } from '@/components/identity-auth';
+import useMtTrackRoom from '@/hooks/useMtTrackRoom';
+import DeviceDetector from '@/pages/student/detector/device-detector';
+import useRoomJoin from '@/hooks/useRoomJoin';
+
 import styles from './index.module.scss';
+import useRoomHeart from '@/hooks/useRoomHeart';
+import { QNRemoteAudioTrack, QNRemoteVideoTrack } from 'qnweb-rtc';
 
 log.setPreTitle('[DeviceDetector]');
 
@@ -28,84 +28,6 @@ export interface DeviceDetectorProps {
   roomId?: string;
   onPass?: () => void;
 }
-
-/**
- * 设备检测
- * @param props
- * @constructor
- */
-const DeviceDetector: React.FC<DeviceDetectorProps> = (props) => {
-  const {
-    mtTrackRoomMicSeats = [], mtTrackRoom, roomId,
-  } = props;
-  const [mediaMenus] = useState([
-    { title: '摄像头和麦克风检测', value: 0 },
-    { title: '副摄像头检测', value: 1 },
-    { title: 'pc端录屏功能检测', value: 2 },
-  ]);
-  const [currentMediaMenu, setCurrentMediaMenu] = useState(0);
-  const latestMobileSeat = useMemo(
-    () => mtTrackRoomMicSeats.slice().reverse().find(
-      (s) => s.userExtension?.userExtRoleType === 'mobile',
-    ),
-    [mtTrackRoomMicSeats],
-  );
-
-  useMount(() => {
-    pandora.report({
-      action: 'device_detect',
-      value: {
-        userId: pandora.getCacheValue('userId'),
-        role: pandora.getCacheValue('role'),
-        pathname: pandora.getCacheValue('pathname'),
-      },
-    });
-  });
-
-  /**
-   * 移动端摄像头预览
-   */
-  useEffect(() => {
-    if (
-      currentMediaMenu === 1
-      && mtTrackRoom
-      && latestMobileSeat
-    ) {
-      log.log('latestMobileSeat', latestMobileSeat);
-      mtTrackRoom.setUserCameraWindowView(
-        latestMobileSeat.uid,
-        'mobile-camera',
-      );
-    }
-  }, [currentMediaMenu, latestMobileSeat, mtTrackRoom]);
-  const qrCodeUrl = useMemo(() => `${window.location.origin}/mobile-camera?roomId=${roomId}`, [roomId]);
-  return (
-    <div className={styles.deviceDetector}>
-      <div className={styles.deviceMenu}>
-        {
-        mediaMenus.map((menuItem) => (
-          <div
-            key={menuItem.value}
-            className={classNames(styles.deviceItem, {
-              [styles.deviceActive]: currentMediaMenu === menuItem.value,
-            })}
-            onClick={() => {
-              setCurrentMediaMenu(menuItem.value);
-            }}
-          >
-            {menuItem.title}
-          </div>
-        ))
-      }
-      </div>
-      <div className={styles.frame}>
-        {currentMediaMenu === 0 ? <MediaDetector /> : null}
-        {currentMediaMenu === 1 ? <MobileMediaDetector qrCodeUrl={qrCodeUrl} /> : null}
-        {currentMediaMenu === 2 ? <RecorderDetector /> : null}
-      </div>
-    </div>
-  );
-};
 
 const steps = [
   {
@@ -128,15 +50,15 @@ const Detector = () => {
     examId: getUrlQueryParams('examId') || '',
     examName: getUrlQueryParams('examName') || '',
   });
+
+  const { createAndJoinRoomApi, roomInfo } = useRoomJoin();
+  const { enableHeart } = useRoomHeart();
+
   const { micSeats: mtTrackRoomMicSeats, room: mtTrackRoom } = useMtTrackRoom();
-  const { createAndJoinRoom: createAndJoinMtTrackRoom, roomInfo } = useJoinMtTrackRoom();
   const [currentStep, setCurrentStep] = useState(0);
   const [identityAuthResult, setIdentityAuthResult] = useState<IdentityAuthResult>();
-  const { setIsEnabled } = useBaseRoomHeartbeat({
-    roomId: roomInfo?.roomId,
-  });
   const { examInfo } = useExamInfo(urlQueryRef.current.examId);
-  const [stepKey, setStepKey] = useState<{[key: string]: number}>({
+  const [stepKey, setStepKey] = useState<{ [key: string]: number }>({
     step1: 1,
     step2: 1,
     step3: 1,
@@ -146,30 +68,48 @@ const Detector = () => {
    * 进入房间
    */
   useEffect(() => {
-    // 创建rtc房间 -> 加入rtc房间
-    if (mtTrackRoom) {
-      const hide = message.loading('初始化中...', 0);
-      createAndJoinMtTrackRoom({
-        room: mtTrackRoom,
-        title: urlQueryRef.current.examName,
-      })
-        .then(() => {
-          message.success('初始化完成');
-          setIsEnabled(true);
-        })
-        .finally(() => hide());
-    }
-  }, [createAndJoinMtTrackRoom, mtTrackRoom, setIsEnabled]);
-
-  /**
-   * 离开房间
-   */
-  useUnmount(() => {
-    mtTrackRoom?.leaveRoom()
-      .then(() => {
-        log.log('leaveRoom success');
-      });
-  });
+    const examClient = QNExamClient.create();
+    const userPublished = async (userID: string, tracks: (QNRemoteAudioTrack | QNRemoteVideoTrack)[]) => {
+      await examClient.rtcClient.subscribe(tracks);
+      const track = tracks.find((track) => track.tag === 'camera');
+      const element = document.getElementById('mobile-camera');
+      if (element && track) {
+        Modal.info({
+          title: '检测到副摄像头接入，点击确认播放视频',
+          onOk() {
+            track.play(element);
+          }
+        });
+      }
+    };
+    examClient.rtcClient.on('user-published', userPublished);
+    const hide = message.loading('初始化中...', 0);
+    createAndJoinRoomApi(urlQueryRef.current.examName).then(result => {
+      const roomToken = result.rtcInfo?.roomToken;
+      if (roomToken) {
+        return examClient.start({
+          rtcToken: roomToken
+        }).then(() => {
+          return result.roomInfo?.roomId;
+        });
+      }
+      return Promise.reject(new TypeError('roomToken is empty'));
+    }).then((roomId) => {
+      if (roomId) {
+        return enableHeart(roomId);
+      }
+      return Promise.reject(new TypeError('roomId is empty'));
+    }).finally(() => {
+      hide();
+      message.success('初始化成功');
+    });
+    return () => {
+      hide();
+      message.destroy();
+      examClient.rtcClient.off('user-published', userPublished);
+      examClient.stop();
+    };
+  }, []);
 
   /**
    * 开始考试
@@ -250,15 +190,13 @@ const Detector = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.content}>
-        <Steps current={currentStep} style={{ margin: '40px auto', display: 'flex', justifyContent: 'center' }}>
-          {steps.map((item) => (
-            <Step key={item.title} title={item.title} />
-          ))}
-        </Steps>
-        {renderContentWithStep(currentStep)}
-        {renderFooter()}
-      </div>
+      <Steps current={currentStep} style={{ margin: '40px auto', display: 'flex', justifyContent: 'center' }}>
+        {steps.map((item) => (
+          <Step key={item.title} title={item.title}/>
+        ))}
+      </Steps>
+      {renderContentWithStep(currentStep)}
+      {renderFooter()}
     </div>
   );
 };

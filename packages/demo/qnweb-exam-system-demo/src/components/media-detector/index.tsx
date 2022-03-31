@@ -1,11 +1,14 @@
 import React, {
-  useEffect, useMemo, useRef, useState,
+  useEffect, useMemo, useState,
 } from 'react';
 import { Select } from 'antd';
-import QNRTC, { QNLocalTrack } from 'qnweb-rtc';
+import QNRTC  from 'qnweb-rtc';
+import { QNCamera, QNMicrophone } from 'qnweb-exam-sdk';
 import classNames from 'classnames';
+
 import testAudio from './test.mp3';
 import './index.scss';
+
 
 export type MediaDetectorProps = React.HTMLAttributes<HTMLDivElement>
 
@@ -15,27 +18,24 @@ const MediaDetector: React.FC<MediaDetectorProps> = (props) => {
   const { className, ...restProps } = props;
 
   const [cameras, setCameras] = useState<MediaDeviceInfo[]>([]);
-  const [currentCamera, setCurrentCamera] = useState<string>();
+  const [cameraId, setCameraId] = useState<string>();
   const [cameraStatus, setCameraStatus] = useState<MediaStatus>('pending');
 
   const [microphones, setMicrophones] = useState<MediaDeviceInfo[]>([]);
-  const [currentMicrophone, setCurrentMicrophone] = useState<string>();
+  const [microphoneId, setMicrophoneId] = useState<string>();
   const [microphoneStatus, setMicrophoneStatus] = useState<MediaStatus>('pending');
-
-  const localCameraTrackRef = useRef<QNLocalTrack>();
-  const localMicrophoneTrackRef = useRef<QNLocalTrack>();
 
   /**
    * 枚举媒体设备
    */
   useEffect(() => {
     // 枚举可用的视频输入设备，比如摄像头
-    const getCameras = () => QNRTC.getCameras()
+    const getCameras = () => QNCamera.getCameras()
       .then((mediaDeviceInfos) => {
         setCameras(mediaDeviceInfos);
       });
     // 枚举可用的音频输入设备，比如麦克风
-    const getMicrophones = () => QNRTC.getMicrophones()
+    const getMicrophones = () => QNMicrophone.getMicrophones()
       .then((mediaDeviceInfos) => {
         setMicrophones(mediaDeviceInfos);
       });
@@ -54,59 +54,51 @@ const MediaDetector: React.FC<MediaDetectorProps> = (props) => {
    * 初始化选择第一个摄像头
    */
   useEffect(() => {
-    setCurrentCamera(cameras[0]?.deviceId);
+    setCameraId(cameras[0]?.deviceId);
   }, [cameras]);
 
   /**
    * 初始化选择第一个麦克风
    */
   useEffect(() => {
-    setCurrentMicrophone(microphones[0]?.deviceId);
+    setMicrophoneId(microphones[0]?.deviceId);
   }, [microphones]);
 
   /**
-   * 采集pc端摄像头
+   * 采集摄像头
    */
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
-    const pcCameraContainer = document.querySelector<HTMLDivElement>('#pc-camera');
-    if (currentCamera) {
-      QNRTC.createCameraVideoTrack({
-        tag: 'pc-camera',
-        cameraId: currentCamera,
-      }).then((track) => {
-        localCameraTrackRef.current = track;
-        if (pcCameraContainer) {
-          track.play(pcCameraContainer).then(() => setCameraStatus('fulfilled'));
-        }
-      }).catch(() => setCameraStatus('rejected'));
+    if (cameraId) {
+      const camera = QNCamera.create({
+        elementId: 'pc-camera',
+        cameraId,
+      });
+      camera.start().then(() => {
+        setCameraStatus('fulfilled');
+      });
       return () => {
-        localCameraTrackRef.current?.destroy();
+        camera.stop();
       };
     }
-  }, [currentCamera]);
+  }, [cameraId]);
 
   /**
-   * 采集pc端麦克风
+   * 采集麦克风
    */
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
-    const pcCameraContainer = document.querySelector<HTMLDivElement>('#pc-camera');
-    if (currentMicrophone) {
-      QNRTC.createMicrophoneAudioTrack({
-        tag: 'pc-microphone',
-        microphoneId: currentMicrophone,
-      }).then((track) => {
-        localMicrophoneTrackRef.current = track;
-        if (pcCameraContainer) {
-          track.play(pcCameraContainer).then(() => setMicrophoneStatus('fulfilled'));
-        }
-      }).catch(() => setMicrophoneStatus('rejected'));
+    if (microphoneId) {
+      const microphone = QNMicrophone.create({
+        elementId: 'pc-camera',
+        microphoneId,
+      });
+      microphone.start().then(() => {
+        setMicrophoneStatus('fulfilled');
+      });
       return () => {
-        localMicrophoneTrackRef.current?.destroy();
+        microphone.stop();
       };
     }
-  }, [currentMicrophone]);
+  }, [microphoneId]);
 
   const mapMediaStatusToText = useMemo(() => new Map<MediaStatus, string>([
     ['pending', '加载中'],
@@ -117,10 +109,10 @@ const MediaDetector: React.FC<MediaDetectorProps> = (props) => {
   return (
     <div className={classNames('media-detector', className)} {...restProps}>
       <div className="main">
-        <div id="pc-camera" className="pc-camera" />
+        <div id="pc-camera" className="pc-camera"/>
         <div className="media-device-select">
           <span style={{ marginRight: 10 }}>选择摄像头:</span>
-          <Select style={{ width: 200, marginRight: 10 }} value={currentCamera}>
+          <Select style={{ width: 200, marginRight: 10 }} value={cameraId}>
             {
               cameras.map((camera) => (
                 <Select.Option
@@ -139,7 +131,7 @@ const MediaDetector: React.FC<MediaDetectorProps> = (props) => {
         </div>
         <div className="media-device-select">
           <span style={{ marginRight: 10 }}>选择麦克风:</span>
-          <Select style={{ width: 200, marginRight: 10 }} value={currentMicrophone}>
+          <Select style={{ width: 200, marginRight: 10 }} value={microphoneId}>
             {
               microphones.map((microphone) => (
                 <Select.Option

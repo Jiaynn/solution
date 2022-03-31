@@ -6,6 +6,7 @@ import { Button, Input, Modal } from 'antd';
 import BoxAngle, { BoxAngleProps } from '../box-angle';
 import './index.scss';
 import AIApi from '@/api/AIApi';
+import { QNCamera } from 'qnweb-exam-sdk';
 
 export interface IdentityAuthResult {
   fullName: string;
@@ -25,12 +26,14 @@ export type IdentityAuthStatus = 'pending' | 'success' | 'failed';
  */
 const IdentityAuth: React.FC<IdentityAuthProps> = (props) => {
   const { className, onPass, ...restProps } = props;
-  const localCameraTrackRef = useRef<QNLocalVideoTrack>();
+
   const [fullName, setFullName] = useState('');
   const [idCardNumber, setIDCardNumber] = useState('');
   const [visible, setVisible] = useState(true);
   const [status, setStatus] = useState<IdentityAuthStatus>('pending');
   const [loading, setLoading] = useState(false);
+
+  const localCameraTrackRef = useRef<QNLocalVideoTrack>();
 
   // 获取aiToken
   useEffect(() => {
@@ -41,16 +44,12 @@ const IdentityAuth: React.FC<IdentityAuthProps> = (props) => {
 
   // 采集摄像头
   useEffect(() => {
-    QNRTC.createCameraVideoTrack().then((track) => {
-      localCameraTrackRef.current = track;
-      const localCameraElement = document.getElementById('identity-auth-camera');
-      if (localCameraElement) {
-        localCameraTrackRef.current.play(localCameraElement);
-      }
+    const camera = QNCamera.create({
+      elementId: 'identity-auth-camera'
     });
-    return () => {
-      localCameraTrackRef.current?.destroy();
-    };
+    camera.start().then(() => {
+      localCameraTrackRef.current = camera.cameraVideoTrack;
+    });
   }, []);
 
   // 开始身份认证

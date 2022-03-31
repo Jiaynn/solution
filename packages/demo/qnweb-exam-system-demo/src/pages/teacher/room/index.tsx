@@ -2,7 +2,7 @@ import React, {
   useContext,
   useEffect, useMemo, useRef, useState,
 } from 'react';
-import { Button, message, Pagination } from 'antd';
+import { Button, message, Modal, Pagination } from 'antd';
 import {
   InviteSignaling, RtmManager, ScreenMicSeat,
 } from 'qnweb-high-level-rtc';
@@ -345,14 +345,31 @@ const TeacherRoom = () => {
   const sendMicHangupMsg = () => mtTrackRoom.disableMicrophone();
 
   const onMicrophoneRequest = () => {
+    if (!currentStudent?.userId) {
+      Modal.error({
+        content: '请先加入学生房间',
+      });
+      return;
+    }
     if (voiceCallStatus === 'idle') {
       sendMicConnectMsg().then(() => {
         setVoiceCallStatus('connecting');
+      }).catch((error: unknown) => {
+        setVoiceCallStatus('idle');
+        Modal.error({
+          title: '连接失败',
+          content: JSON.stringify(error),
+        });
       });
     }
     if (voiceCallStatus === 'connected') {
       sendMicHangupMsg().then(() => {
         setVoiceCallStatus('idle');
+      }).catch((error: unknown) => {
+        Modal.error({
+          title: '挂断失败',
+          content: JSON.stringify(error),
+        });
       });
     }
   };
@@ -433,7 +450,12 @@ const TeacherRoom = () => {
               </span>
             </div>
           </div>
-          <Button loading={voiceCallStatus === 'connecting'} type="primary" style={{ marginBottom: 20 }} onClick={onMicrophoneRequest}>
+          <Button
+            loading={voiceCallStatus === 'connecting'}
+            type="primary"
+            style={{ marginBottom: 20 }}
+            onClick={onMicrophoneRequest}
+          >
             {renderVoiceCallText()}
           </Button>
           <div className={styles.videos}>

@@ -5,6 +5,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import { uglify } from 'rollup-plugin-uglify';
 import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
+import alias from '@rollup/plugin-alias';
 
 const pkg = require('./package.json');
 
@@ -63,10 +64,15 @@ export default {
     // https://github.com/rollup/rollup-plugin-node-resolve#usage
     nodeResolve(),
     uglify(),
-    terser({
-      compress: {
-        pure_funcs: ['console.log'] // remove console.log
-      }
+    // terser({
+    //   compress: {
+    //     pure_funcs: ['console.log'] // remove console.log
+    //   }
+    // }),
+    alias({
+      entries: [
+        { find: '@', replacement: 'src' }
+      ]
     })
   ]
 };

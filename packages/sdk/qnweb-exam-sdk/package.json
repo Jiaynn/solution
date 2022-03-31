@@ -3,7 +3,7 @@
   "version": "0.0.0-beta.1",
   "main": "build/qnweb-exam-sdk.umd.js",
   "module": "build/qnweb-exam-sdk.esm.js",
-  "types": "build/types/qnweb-exam-sdk.d.ts",
+  "types": "build/types/index.d.ts",
   "author": "Spencer17x <1253478653@qq.com>",
   "repository": {
     "type": "git",
@@ -15,10 +15,13 @@
     "README.md"
   ],
   "scripts": {
+    "doc:preview": "npm run doc:build && http-server doc",
+    "doc:build": "rimraf doc && typedoc --out doc src/index.ts",
     "build:prod": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:prod",
     "build:test": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:test",
     "build:dev": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:dev",
     "build": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:prod",
+    "dev": "rimraf build && rollup -c rollup.config.ts --silent --watch --environment NODE_ENV:dev",
     "test": "jest -c jest.config.ts",
     "coverage": "jest -c jest.config.ts --coverage",
     "test:watch": "jest -c jest.config.ts --coverage --watch",
@@ -26,6 +29,7 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
+    "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
@@ -33,10 +37,11 @@
     "@types/jest": "^26.0.23",
     "@types/node": "^15.12.2",
     "colors": "^1.4.0",
+    "http-server": "^14.1.0",
     "jest": "^27.0.4",
     "lodash.camelcase": "^4.3.0",
     "prompt": "^1.1.0",
-    "qnweb-rtc": "^4.0.9",
+    "qnweb-rtc": "^4.1.0",
     "qnweb-rtc-ai": "^4.0.0-beta.4",
     "replace-in-file": "^6.2.0",
     "rimraf": "^3.0.2",
@@ -48,10 +53,11 @@
     "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
     "tslib": "^2.2.0",
+    "typedoc": "^0.22.11",
     "typescript": "^4.3.2"
   },
   "peerDependencies": {
-    "qnweb-rtc": "^4.0.9",
+    "qnweb-rtc": "^4.1.0",
     "qnweb-rtc-ai": "^4.0.0-beta.4"
   }
 }

@@ -48,33 +48,6 @@
   }
 }
 
-.examDetail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-.examDetailTime, .examProgress {
-  width: 100%;
-}
-
-.examDetailTimeCount {
-  color: #ff2231;
-  font-size: 28px;
-  font-weight: 500;
-}
-
-.examDetailTimeTip, .examDetailTimeCount,
-.examProgressTip, .examProgressCurrent, .examProgressBar {
-  text-align: center;
-}
-
-.dividerLine {
-  margin: 10px 0;
-  background-color: #bbb;
-}
-
 .rightSideHeader {
   display: flex;
   width: 100%;

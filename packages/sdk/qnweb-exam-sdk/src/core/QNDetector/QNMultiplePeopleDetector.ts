@@ -4,7 +4,7 @@ import { QNLocalVideoTrack, QNRemoteVideoTrack } from 'qnweb-rtc';
 import { QNVideoDetector } from './QNDetector';
 
 interface Config {
-  interval: number;
+  interval?: number;
 }
 
 /**
@@ -22,24 +22,31 @@ export class QNMultiplePeopleDetector extends QNVideoDetector {
 
   private config?: Config;
   private timer?: NodeJS.Timer;
-  private onCallback: Function = () => {
+  private onCallback: (result: number) => void = () => {
   };
 
-  on(callback: Function) {
+  on(callback: (result: number) => void) {
     this.onCallback = callback;
   }
 
+  /**
+   * 开启检测
+   * @param track
+   */
   enable(track: QNLocalVideoTrack | QNRemoteVideoTrack) {
     if (this.timer) {
       clearInterval(this.timer);
     }
     this.timer = setInterval(() => {
       QNFaceDetector.run(track).then(result => {
-        this.onCallback(result.response.num_face > 1);
+        this.onCallback(result.response.num_face);
       });
     }, this.config?.interval || 1000);
   }
 
+  /**
+   * 关闭检测
+   */
   disable() {
     if (this.timer) {
       clearInterval(this.timer);

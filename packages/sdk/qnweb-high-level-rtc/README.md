@@ -14,16 +14,13 @@ $ pnpm install
 $ pnpm build:prod
 ```
 
-## 生成文档
+## 文档
 
 ```shell
-# 生成 markdown 文档
-$ pnpm doc:md
-
-或者
-
-# 生成 html 文档
-$ pnpm doc:html
+# 生成文档
+$ pnpm doc:build
+# 预览文档
+$ pnpm doc:preview
 ```
 
 ## 角色系统
