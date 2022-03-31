@@ -11,7 +11,7 @@ $ pnpm install
 ## 如何打包
 
 ```shell
-$ pnpm build:prod
+$ pnpm build
 ```
 
 ## 文档
