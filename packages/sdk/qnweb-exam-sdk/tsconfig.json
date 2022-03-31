@@ -18,12 +18,7 @@
     "emitDecoratorMetadata": true,
     "declarationDir": "build/types",
     "outDir": "build",
-    "downlevelIteration": true,
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    }
+    "downlevelIteration": true
   },
   "include": [
     "src"
