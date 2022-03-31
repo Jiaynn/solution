@@ -1,7 +1,7 @@
 import QNRTC, { QNLocalAudioTrack, QNScreenVideoTrack } from 'qnweb-rtc';
 
-import { QNDevice } from '@/core';
-import { QNMicrophoneConfig, QNScreenConfig } from '@/types';
+import { QNDevice } from '../../core';
+import { QNMicrophoneConfig, QNScreenConfig } from '../../types';
 
 export class QNScreen extends QNDevice {
   static create(config?: QNMicrophoneConfig) {

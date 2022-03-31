@@ -15,9 +15,9 @@ import {
   isQNAudioDetector, isQNBrowserDetector, isQNVideoDetector,
   QNCamera, QNInternalDevice, QNMicrophone, QNScreen,
   QNAudioDetector, QNBrowserDetector, QNDetector, QNVideoDetector
-} from '@/core';
-import { log, parseStringToObject } from '@/utils';
-import { QNTestResult } from '@/types';
+} from './index';
+import { log, parseStringToObject } from '../utils';
+import { QNTestResult } from '../types';
 
 type DeviceId = 'camera' | 'microphone' | 'screen';
 
