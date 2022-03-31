@@ -69,7 +69,8 @@ const Detector = () => {
    */
   useEffect(() => {
     const examClient = QNExamClient.create();
-    const userPublished = (userID: string, tracks: (QNRemoteAudioTrack | QNRemoteVideoTrack)[]): void => {
+    const userPublished = async (userID: string, tracks: (QNRemoteAudioTrack | QNRemoteVideoTrack)[]) => {
+      await examClient.rtcClient.subscribe(tracks);
       const track = tracks.find((track) => track.tag === 'camera');
       const element = document.getElementById('mobile-camera');
       if (element && track) {
@@ -78,7 +79,7 @@ const Detector = () => {
           onOk() {
             track.play(element);
           }
-        })
+        });
       }
     };
     examClient.rtcClient.on('user-published', userPublished);

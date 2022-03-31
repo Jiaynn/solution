@@ -29,7 +29,6 @@ import SingleChoiceSubject from '@/components/single-choice-subject';
 import useExamInfo from '@/hooks/useExamInfo';
 import useExamPaper from '@/hooks/useExamPaper';
 import QrCodePopup from '@/components/qr-code-popup';
-import useJoinMtTrackRoom from '@/hooks/useJoinMtTrackRoom';
 import { getUrlQueryParams, isInvitationSignal, log } from '@/utils';
 import { userStoreContext } from '@/store/UserStore';
 import ExamApi from '@/api/ExamApi';
@@ -60,7 +59,6 @@ const StudentRoom = () => {
     examId: getUrlQueryParams('examId') || '',
     roomId: getUrlQueryParams('roomId') || '',
   });
-  const { imConfig } = useJoinMtTrackRoom();
   const { examInfo } = useExamInfo(urlQueryRef.current.examId);
 
   // 考场信息
@@ -68,10 +66,10 @@ const StudentRoom = () => {
   const { questions, totalScore } = useExamPaper(urlQueryRef.current.examId);
   const [answer, setAnswer] = useState<Answer[]>([]);
   const [isQrCodeVisible, setIsQrCodeVisible] = useState(true);
-  const { loginIM, imClient } = useQNIM(IM_APPKEY);
+  const { loginIM, imClient, joinChatroom } = useQNIM(IM_APPKEY);
 
   const { examClient } = useExamSDK();
-  const { joinRoomApi, rtcInfo } = useRoomJoin();
+  const { joinRoomApi, rtcInfo, imConfig } = useRoomJoin();
   const { enableHeart, enabled } = useRoomHeart();
   const { startMixStreamJob, updateMixStreamJob } = useMixStreamJob(examClient.rtcClient);
 
@@ -152,7 +150,7 @@ const StudentRoom = () => {
           userExtRoleType: 'pc'
         })
       });
-    }).then(() => {
+    }).then(() => ExamApi.join(urlQueryRef.current)).then(() => {
       message.success('RTC加载成功');
       return enableHeart(urlQueryRef.current.roomId);
     }).catch(error => {
@@ -168,20 +166,27 @@ const StudentRoom = () => {
   /**
    * im
    */
-  useMount(() => {
-    const hide = message.loading('IM加载中...', 0);
-    loginIM({
-      account: userStore.state.imConfig?.imUsername || '',
-      password: userStore.state.imConfig?.imPassword || '',
-    }).then(() => {
-      message.success('IM加载成功');
-    }).catch(error => {
-      console.error(error);
-      message.error(JSON.stringify(error));
-    }).finally(() => {
-      hide();
-    });
-  });
+  useEffect(() => {
+    if (imConfig?.imGroupId) {
+      const hide = message.loading('IM加载中...', 0);
+      loginIM({
+        account: userStore.state.imConfig?.imUsername || '',
+        password: userStore.state.imConfig?.imPassword || '',
+      }).then(() => {
+        console.log('imConfig?.imGroupId', imConfig?.imGroupId);
+        return joinChatroom({
+          chatroomId: `${imConfig?.imGroupId || ''}`
+        });
+      }).then(() => {
+        message.success('IM加载成功');
+      }).catch(error => {
+        console.error(error);
+        message.error(JSON.stringify(error));
+      }).finally(() => {
+        hide();
+      });
+    }
+  }, [imConfig?.imGroupId]);
 
 
   /**
@@ -225,8 +230,11 @@ const StudentRoom = () => {
    * 副摄像头播放+合流
    */
   useEffect(() => {
-    const userPublished = (userID: string, tracks: (QNRemoteAudioTrack | QNRemoteVideoTrack)[]) => {
+    const userPublished = async (userID: string, tracks: (QNRemoteAudioTrack | QNRemoteVideoTrack)[]) => {
       const cameraTrack = tracks.find(track => track.tag === 'camera');
+      const microphoneTrack = tracks.find(track => track.tag === 'audio');
+      await examClient.rtcClient.subscribe(tracks);
+      microphoneTrack?.play(document.body);
       updateMixStreamJob(urlQueryRef.current.roomId, [
         {
           trackID: cameraTrack?.trackID || '',
