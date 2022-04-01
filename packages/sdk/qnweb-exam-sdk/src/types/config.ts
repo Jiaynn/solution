@@ -30,7 +30,3 @@ export interface QNScreenConfig {
   height?: number | QNNumberRange, // 输出画面的高度
   optimizationMode?: QNOptimizationMode; // 传输优化模式
 }
-
-export interface QNAIDetectorConfig {
-  interval: number; // 检测时间间隔, 单位毫秒(ms), 默认5000毫秒(ms)
-}

@@ -4,7 +4,7 @@ import { QNDevice } from '../../core';
 import { QNCameraConfig } from '../../types';
 
 export class QNCamera extends QNDevice {
-  static create(config?: QNCameraConfig) {
+  static create(config?: QNCameraConfig): QNCamera {
     return new this(config);
   }
 
@@ -46,7 +46,7 @@ export class QNCamera extends QNDevice {
   /**
    * 采集/播放摄像头视频流
    */
-  async start() {
+  async start(): Promise<void> {
     this.cameraVideoTrack = await this.createCameraVideoTrack();
     const elementId = this.config?.elementId;
     if (!elementId) {

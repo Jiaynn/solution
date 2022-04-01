@@ -19,9 +19,9 @@ import {
 import { log, parseStringToObject } from '../utils';
 import { QNTestResult } from '../types';
 
-type DeviceId = 'camera' | 'microphone' | 'screen';
+export type QNDeviceId = 'camera' | 'microphone' | 'screen';
 
-interface TokenParams {
+export interface QNTokenParams {
   rtcToken: string;
   aiToken?: string;
   userData?: string;
@@ -42,7 +42,7 @@ export class QNExamClient {
 
   public rtcClient: QNRTCClient; // 实例化的rtc客户端
   public subscribedTracks: (QNRemoteVideoTrack | QNRemoteAudioTrack)[] = []; // 订阅的视频设备
-  public registeredDevice: Map<DeviceId, QNInternalDevice> = new Map(); // 已注册的设备
+  public registeredDevice: Map<QNDeviceId, QNInternalDevice> = new Map(); // 已注册的设备
   public enabledVideoDetector: Map<QNVideoDetector, QNInternalDevice> = new Map(); // 已开启的视频检测器
   public enabledAudioDetector: Map<QNAudioDetector, QNInternalDevice> = new Map(); // 已开启的音频检测器
   public enabledBrowserDetector: QNBrowserDetector[] = []; // 已开启的浏览器检测器
@@ -74,7 +74,7 @@ export class QNExamClient {
    * @param deviceId
    * @param device
    */
-  registerDevice(deviceId: DeviceId, device: QNInternalDevice): void {
+  registerDevice(deviceId: QNDeviceId, device: QNInternalDevice): void {
     this.registeredDevice.set(deviceId, device);
   }
 
@@ -82,7 +82,7 @@ export class QNExamClient {
    * 取消注册设备
    * @param deviceId
    */
-  unregisterDevice(deviceId: DeviceId): void {
+  unregisterDevice(deviceId: QNDeviceId): void {
     this.registeredDevice.delete(deviceId);
   }
 
@@ -91,7 +91,7 @@ export class QNExamClient {
    * @param detector
    * @param deviceId
    */
-  enable(detector: QNDetector, deviceId?: DeviceId): void {
+  enable(detector: QNDetector, deviceId?: QNDeviceId): void {
     if (deviceId) {
       const device = this.registeredDevice.get(deviceId);
       if (isQNVideoDetector(detector) && device) {
@@ -172,7 +172,7 @@ export class QNExamClient {
    * 开始监考
    * @param token
    */
-  async start(token: TokenParams) {
+  async start(token: QNTokenParams): Promise<void> {
     const { rtcToken, aiToken, userData } = token;
     if (aiToken) {
       QNRtcAiManager.init(aiToken);
@@ -205,7 +205,7 @@ export class QNExamClient {
   /**
    * 结束监考
    */
-  async stop() {
+  async stop(): Promise<void> {
     return Promise.all([
       this.disableCamera(),
       this.disableMicrophone(),

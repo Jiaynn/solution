@@ -1,9 +1,9 @@
-import {  QNVideoDetector } from './QNDetector';
 import { QNAuthoritativeFaceComparer } from 'qnweb-rtc-ai';
 import { QNLocalVideoTrack, QNRemoteVideoTrack } from 'qnweb-rtc';
 
-interface Config {
-  interval?: number;
+import { QNMediaDetectorConfig, QNVideoDetector } from './QNDetector';
+
+export interface QNUserTakerDetectorConfig extends QNMediaDetectorConfig {
   realName: string;
   idCard: string;
 }
@@ -12,21 +12,25 @@ interface Config {
  * 用户替考检测器
  */
 export class QNUserTakerDetector extends QNVideoDetector {
-  static create(config: Config) {
+  static create(config: QNUserTakerDetectorConfig) {
     return new this(config);
   }
 
-  constructor(config: Config) {
+  constructor(config: QNUserTakerDetectorConfig) {
     super();
     this.config = config;
   }
 
-  private config: Config;
+  private config: QNUserTakerDetectorConfig;
   private timer?: NodeJS.Timer;
   private onCallback: (result: number) => void = () => {
   };
 
-  on(callback: (result: number) => void) {
+  /**
+   * 注册回调
+   * @param callback
+   */
+  on(callback: (result: number) => void): void {
     this.onCallback = callback;
   }
 
@@ -34,7 +38,7 @@ export class QNUserTakerDetector extends QNVideoDetector {
    * 开启检测
    * @param track
    */
-  enable(track: QNLocalVideoTrack | QNRemoteVideoTrack) {
+  enable(track: QNLocalVideoTrack | QNRemoteVideoTrack): void {
     if (this.timer) {
       clearInterval(this.timer);
     }
@@ -51,7 +55,7 @@ export class QNUserTakerDetector extends QNVideoDetector {
   /**
    * 关闭检测
    */
-  disable() {
+  disable(): void {
     if (this.timer) {
       clearInterval(this.timer);
     }

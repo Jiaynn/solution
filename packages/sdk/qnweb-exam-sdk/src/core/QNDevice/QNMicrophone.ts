@@ -4,7 +4,7 @@ import { QNDevice } from '../../core';
 import { QNMicrophoneConfig } from '../../types';
 
 export class QNMicrophone extends QNDevice {
-  static create(config?: QNMicrophoneConfig) {
+  static create(config?: QNMicrophoneConfig): QNMicrophone {
     return new this(config);
   }
 
@@ -48,7 +48,7 @@ export class QNMicrophone extends QNDevice {
   /**
    * 采集/播放麦克风音频流
    */
-  async start() {
+  async start(): Promise<void> {
     this.microphoneAudioTrack = await this.createMicrophoneVideoTrack();
     const elementId = this.config?.elementId;
     if (!elementId) {
