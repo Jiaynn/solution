@@ -93,3 +93,7 @@ export function isQNAudioDetector(detector: QNDetector): detector is QNAudioDete
 export function isQNBrowserDetector(detector: QNDetector): detector is QNBrowserDetector {
   return detector instanceof QNBrowserDetector;
 }
+
+export interface QNMediaDetectorConfig {
+  interval?: number;
+}

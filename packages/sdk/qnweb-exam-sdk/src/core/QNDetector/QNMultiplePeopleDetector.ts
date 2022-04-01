@@ -1,31 +1,31 @@
 import { QNFaceDetector } from 'qnweb-rtc-ai';
 import { QNLocalVideoTrack, QNRemoteVideoTrack } from 'qnweb-rtc';
 
-import { QNVideoDetector } from './QNDetector';
-
-interface Config {
-  interval?: number;
-}
+import { QNMediaDetectorConfig, QNVideoDetector } from './QNDetector';
 
 /**
  * 多人同框检测器
  */
 export class QNMultiplePeopleDetector extends QNVideoDetector {
-  static create(config?: Config) {
+  static create(config?: QNMediaDetectorConfig) {
     return new this(config);
   }
 
-  constructor(config?: Config) {
+  constructor(config?: QNMediaDetectorConfig) {
     super();
     this.config = config;
   }
 
-  private config?: Config;
+  private config?: QNMediaDetectorConfig;
   private timer?: NodeJS.Timer;
   private onCallback: (result: number) => void = () => {
   };
 
-  on(callback: (result: number) => void) {
+  /**
+   * 注册回调
+   * @param callback
+   */
+  on(callback: (result: number) => void): void {
     this.onCallback = callback;
   }
 
@@ -33,7 +33,7 @@ export class QNMultiplePeopleDetector extends QNVideoDetector {
    * 开启检测
    * @param track
    */
-  enable(track: QNLocalVideoTrack | QNRemoteVideoTrack) {
+  enable(track: QNLocalVideoTrack | QNRemoteVideoTrack): void {
     if (this.timer) {
       clearInterval(this.timer);
     }
@@ -47,7 +47,7 @@ export class QNMultiplePeopleDetector extends QNVideoDetector {
   /**
    * 关闭检测
    */
-  disable() {
+  disable(): void {
     if (this.timer) {
       clearInterval(this.timer);
     }

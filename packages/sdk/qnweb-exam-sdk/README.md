@@ -1,33 +1,320 @@
-# 监考系统 High Level SDK
+# qnweb-exam-sdk
 
-## DOM树
+监考系统 High Level SDK
+
+## 如何安装
+
+```shell
+$ pnpm add qnweb-exam-sdk
+```
+
+## 文档
+
+通过以下命令会使用typedoc来自动生成api文档并预览
+
+```shell
+# 生成文档
+$ pnpm doc:build
+# 预览文档
+$ pnpm doc:preview
+```
+
+## 快速开始
 
 ```ts
-|-- QNDevice
-  |-- QNTrack
-|-- QNDetector
-|-- QNExamClient
+import { QNExamClient } from 'qnweb-exam-sdk';
+
+const client = QNExamClient.create();
+
+// 检测设备是否开启以及SDK是否支持
+client.test().then(result => {
+  console.log('test result', result);
+});
+
+// 开始监考
+// 创建媒体设备
+const camera = QNCamera.create({
+  elementId: 'pc-camera',
+});
+const microphone = QNMicrophone.create();
+const screen = QNScreen.create();
+// 创建检测器
+const browserTabDetector = QNBrowserTabDetector.create();
+const userTakerDetector = QNUserTakerDetector.create({
+  interval: 3000,
+  idCard: 'xxxxxxx',
+  realName: 'xxxxxxx',
+});
+const multiplePeopleDetector = QNMultiplePeopleDetector.create({
+  interval: 3000
+});
+// 注册回调监听
+userTakerDetector.on(result => { console.log('userTakerDetector result', result) });
+browserTabDetector.on(result => { console.log('browserTabDetector result', result) });
+multiplePeopleDetector.on(result => { console.log('multiplePeopleDetector result', result) });
+// 将设备id与设备进行绑定
+examClient.registerDevice('camera', camera);
+examClient.registerDevice('microphone', microphone);
+examClient.registerDevice('screen', screen);
+// 开启检测，设备检测需要绑定到对应设备上
+examClient.enable(browserTabDetector);
+examClient.enable(userTakerDetector, 'camera');
+examClient.enable(multiplePeopleDetector, 'camera');
+// 开始监考
+examClient.start({
+  rtcToken: 'xxx',
+  aiToken: 'xxxxxx',
+  userData: 'xxxxx'
+})
 ```
+
+## API概览
+
+### QNDetector
+
+> 检测器
+
+#### QNVideoDetector
+
+视频检测器
+
+| 类                                                    | 描述           |
+| :---------------------------------------------------- | :------------- |
+| [QNMultiplePeopleDetector](#qnmultiplepeopledetector) | 多人同框检测器 |
+| [QNOutOfScreenDetector](#qnoutofscreendetector)       | 用户出框检测器 |
+| [QNUserTakerDetector](#qnusertakerdetector)           | 用户替考检测器 |
+
+#### QNBrowserDetector
+
+> 键盘/浏览器检测器
+
+| 类                                                  | 描述            |
+| :-------------------------------------------------- | :-------------- |
+| [QNBrowserTabDetector](#qnbrowsertabdetector)       | 浏览器tab检测器 |
+| [QNKeyboardCopyDetector](#qnkeyboardcopydetector)   | 复制检测器      |
+| [QNKeyboardCutDetector](#qnkeyboardcutdetector)     | 剪切检测器      |
+| [QNKeyboardPasteDetector](#qnkeyboardpastedetector) | 粘贴检测器      |
+
+### QNDevice
+
+> 媒体设备相关
+
+| 类                            | 描述     |
+| :---------------------------- | :------- |
+| [QNCamera](#qncamera)         | 摄像头   |
+| [QNMicrophone](#qnmicrophone) | 麦克风   |
+| [QNScreen](#qnscreen)         | 屏幕共享 |
 
 ## API
 
-### 通用类型
+### QNExamClient
+
+> 监考类
+
+| 方法             | 类型                                                         | 描述         |
+| :--------------- | :----------------------------------------------------------- | :----------- |
+| static create    | (): [QNExamClient](#qnexamclient)                            | 创建client   |
+| registerDevice   | (deviceId: [QNDeviceId](#qndeviceid), device: [QNInternalDevice](#qninternaldevice)): void | 注册设备     |
+| unregisterDevice | (deviceId: [QNDeviceId](#qndeviceid)): void                  | 取消注册设备 |
+| enable           | (detector: [QNDetector](#qndetector), deviceId?: [QNDeviceId](#qndeviceid)): void | 开启检测     |
+| disable          | (detector: [QNDetector](#qndetector)): void                  | 关闭检测     |
+| test             | (): Promise\<[QNTestResult](#qntestresult)>                  | 设备调试     |
+| start            | (token: [QNTokenParams](#qntokenparams)): Promise\<void>     | 开始监考     |
+| stop             | (): Promise\<void>                                           | 结束监考     |
+
+### QNDetector
+
+> 检测器
+
+#### QNBrowserTabDetector
+
+| 方法          | 类型                                                         | 描述             |
+| :------------ | :----------------------------------------------------------- | :--------------- |
+| static create | (): [QNBrowserTabDetector](#qnbrowsertabdetector)            | 创建检测器(实例) |
+| on            | (callback: (result: [VisibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState)) => void): void | 注册回调         |
+| enable        | (): void                                                     | 开启检测         |
+| disable       | (): void                                                     | 关闭检测         |
+
+> tab检测器
+
+#### QNKeyboardCopyDetector
+
+> 复制检测器
+
+| 方法          | 类型                                                         | 描述             |
+| :------------ | :----------------------------------------------------------- | :--------------- |
+| static create | (): [QNKeyboardCopyDetector](#qnkeyboardcopydetector)        | 创建检测器(实例) |
+| on            | (callback: (result: [ClipboardEvent](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent)) => void): void | 注册回调         |
+| enable        | (): void                                                     | 开启检测         |
+| disable       | (): void                                                     | 关闭检测         |
+
+#### QNKeyboardCutDetector
+
+> 剪切检测器
+
+| 方法          | 类型                                                         | 描述             |
+| :------------ | :----------------------------------------------------------- | :--------------- |
+| static create | (): [QNKeyboardCutDetector](#qnkeyboardcutdetector)          | 创建检测器(实例) |
+| on            | (callback: (result: [ClipboardEvent](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent)) => void): void | 注册回调         |
+| enable        | (): void                                                     | 开启检测         |
+| disable       | (): void                                                     | 关闭检测         |
+
+#### QNKeyboardPasteDetector
+
+> 粘贴检测器
+
+| 方法          | 类型                                                         | 描述             |
+| :------------ | :----------------------------------------------------------- | :--------------- |
+| static create | (): [QNKeyboardPasteDetector](#qnkeyboardpastedetector)      | 创建检测器(实例) |
+| on            | (callback: (result:  [ClipboardEvent](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent)) => void): void | 注册回调         |
+| enable        | (): void                                                     | 开启检测         |
+| disable       | (): void                                                     | 关闭检测         |
+
+#### QNMultiplePeopleDetector
+
+> 多人同框检测器
+
+| 方法          | 类型                                                         | 描述             |
+| :------------ | :----------------------------------------------------------- | :--------------- |
+| static create | (config?: [QNMediaDetectorConfig](#qnmediadetectorconfig)): [QNMultiplePeopleDetector](#qnmultiplepeopledetector) | 创建检测器(实例) |
+| on            | (callback: (result: number) => void): void                   | 注册回调         |
+| enable        | (track: [QNLocalVideoTrack](https://developer.qiniu.com/rtc/9061/WebQNLocalVideoTrack) \| [QNRemoteVideoTrack](https://developer.qiniu.com/rtc/9060/WebQNRemoteVideoTrack)): void | 开启检测         |
+| disable       | (): void                                                     | 关闭检测         |
+
+
+#### QNOutOfScreenDetector
+
+> 用户出框检测器
+
+| 方法          | 类型                                                         | 描述             |
+| :------------ | :----------------------------------------------------------- | :--------------- |
+| static create | (config?: [QNMediaDetectorConfig](#qnmediadetectorconfig)): [QNOutOfScreenDetector](#qnoutofscreendetector) | 创建检测器(实例) |
+| on            | (callback: (result: boolean) => void): void                  | 注册回调         |
+| enable        | (track: [QNLocalVideoTrack](https://developer.qiniu.com/rtc/9061/WebQNLocalVideoTrack) \| [QNRemoteVideoTrack](https://developer.qiniu.com/rtc/9060/WebQNRemoteVideoTrack)): void | 开启检测         |
+| disable       | (): void                                                     | 关闭检测         |
+
+#### QNUserTakerDetector
+
+| 方法          | 类型                                                         | 描述             |
+| :------------ | :----------------------------------------------------------- | :--------------- |
+| static create | (config?: [QNUserTakerDetectorConfig](#qnusertakerdetectorconfig)): [QNOutOfScreenDetector](#qnoutofscreendetector) | 创建检测器(实例) |
+| on            | (callback: (result: number) => void): void                   | 注册回调         |
+| enable        | (track: [QNLocalVideoTrack](https://developer.qiniu.com/rtc/9061/WebQNLocalVideoTrack) \| [QNRemoteVideoTrack](https://developer.qiniu.com/rtc/9060/WebQNRemoteVideoTrack)): void | 开启检测         |
+| disable       | (): void                                                     | 关闭检测         |
+
+### QNDevice
+
+> 媒体设备
+
+#### QNCamera
+
+> 摄像头
+
+| 属性             | 类型                                                         | 描述           |
+| ---------------- | ------------------------------------------------------------ | -------------- |
+| cameraVideoTrack | [QNCameraVideoTrack](https://developer.qiniu.com/rtc/9068/WebQNCameraVideoTrack) | 摄像头视频轨道 |
+
+| 方法              | 类型                                                         | 描述                      |
+| :---------------- | :----------------------------------------------------------- | :------------------------ |
+| static create     | (config?: [QNCameraConfig](#qncameraconfig)): [QNCamera](#qncamera) | 创建摄像头(实例)          |
+| static getCameras | (skipPermissionCheck?: boolean): Promise\<[MediaDeviceInfo](https://developer.mozilla.org/en-US/docs/Web/API/MediaDeviceInfo)[]> | 枚举可用的摄像头输入设备  |
+| start             | (): Promise\<void>                                           | 采集/播放摄像头视频流     |
+| stop              | (): Promise\<void>                                           | 停止采集/播放摄像头视频流 |
+
+#### QNMicrophone
+
+> 麦克风
+
+| 属性                 | 类型                                                         | 描述           |
+| -------------------- | ------------------------------------------------------------ | -------------- |
+| microphoneAudioTrack | [QNMicrophoneAudioTrack](https://developer.qiniu.com/rtc/9064/WebQNMicrophoneAudioTrack) | 麦克风音频轨道 |
+
+| 方法                  | 类型                                                         | 描述                      |
+| :-------------------- | :----------------------------------------------------------- | :------------------------ |
+| static create         | (config?: [QNMicrophoneConfig](#qnmicrophoneconfig)): [QNMicrophone](#qnmicrophone) | 创建麦克风(实例)          |
+| static getMicrophones | (skipPermissionCheck?: boolean): Promise\<[MediaDeviceInfo](https://developer.mozilla.org/en-US/docs/Web/API/MediaDeviceInfo)[]> | 枚举可用的麦克风输入设备  |
+| start                 | (): Promise\<void>                                           | 采集/播放麦克风音频流     |
+| stop                  | (): Promise\<void>                                           | 停止采集/播放麦克风音频流 |
+
+#### QNScreen
+
+> 屏幕共享
+
+| 属性             | 类型                                                         | 描述           |
+| ---------------- | ------------------------------------------------------------ | -------------- |
+| screenVideoTrack | [QNScreenVideoTrack](https://developer.qiniu.com/rtc/9092/WebQNScreenVideoTrack) | 屏幕共享视频流 |
+
+| 方法          | 类型                                                         | 描述                        |
+| :------------ | :----------------------------------------------------------- | :-------------------------- |
+| static create | (config?: [QNScreenConfig](#qnscreenconfig)): [QNScreen](#qnscreen) | 创建屏幕共享(实例)          |
+| start         | (): Promise\<void>                                           | 采集/播放屏幕共享视频流     |
+| stop          | (): Promise\<void>                                           | 停止采集/播放屏幕共享视频流 |
+
+## 类型定义
+
+### QNDeviceId
 
 ```ts
-interface QNNumberRange {
+export type QNDeviceId = 'camera' | 'microphone' | 'screen';
+```
+
+### QNTokenParams
+
+```ts
+export interface QNTokenParams {
+  rtcToken: string; // rtc房间token
+  aiToken?: string; // ai检测token
+  userData?: string; // 用户加入rtc房间扩展字段
+}
+```
+
+### QNInternalDevice
+
+```ts
+export type QNInternalDevice = QNCamera | QNMicrophone | QNScreen; // 内置设备
+```
+
+### QNTestResult
+
+```ts
+export interface QNTestResult {
+  isCameraEnabled: boolean, // 摄像头是否正常开启
+  isMicrophoneEnabled: boolean, // 麦克风是否正常开启
+  isScreenEnabled: boolean, // 屏幕共享是否正常开启
+  isSDKSupport: boolean; // SDK 是否支持
+}
+```
+
+### QNMediaDetectorConfig
+
+```ts
+export interface QNMediaDetectorConfig {
+  interval?: number; // 检测间隔时间，单位ms，默认为1000ms
+}
+```
+
+### QNUserTakerDetectorConfig
+
+```ts
+export interface QNUserTakerDetectorConfig extends QNMediaDetectorConfig {
+  realName: string; // 姓名
+  idCard: string; // 身份证号
+}
+```
+
+### QNCameraConfig
+
+```ts
+export interface QNNumberRange {
   max?: number; // 最大值
   min?: number; // 最小值
   exact?: number; // 希望能取到exact的值，如果失败就抛出错误
   ideal?: number; // 优先取ideal的值, 其次取min-max范围内一个支持的值, 否则就抛出错误
 }
 
-type QNOptimizationMode = 'motion' | 'detail'; // 传输优化模式, motion: 流畅优先, detail: 清晰优先, 默认浏览器根据自身算法确定模式
-```
+export type QNOptimizationMode = QNVideoOptimizationMode; // 传输优化模式, motion: 流畅优先, detail: 清晰优先, 默认浏览器根据自身算法确定模式
 
-### 配置类型
-
-```ts
-interface QNCameraConfig {
+export interface QNCameraConfig {
   cameraId?: string, // 选择摄像头id
   elementId?: string, // 绑定元素的id
   bitrate?: number, // 传输的码率，单位 kbps
@@ -36,188 +323,34 @@ interface QNCameraConfig {
   width?: number | QNNumberRange, // 视频宽度
   optimizationMode?: QNOptimizationMode; // 传输优化模式
 }
+```
 
-interface QNMicrophoneConfig {
+### QNMicrophoneConfig
+
+```ts
+export interface QNMicrophoneConfig {
   microphoneId?: string, // 选择麦克风id
   elementId?: string, // 绑定元素的id
   bitrate?: number, // 传输的码率，单位 kbps
   // 以下建议不要更改，浏览器会根据设备自动适配
   sampleRate?: number, // 采样率
   sampleSize?: number, // 采样大小
-  channelCount?: number, // 声道数
-  isAutoGainControlEnabled?: boolean, // 是否打开自动增益
-  isEchoCancellationEnabled?: boolean, // 是否打开回声消除
-  isNoiseSuppressionEnabled?: boolean, // 是否打开噪声抑制
+  stereo?: boolean, // 是否采用双声道
+  AEC?: boolean, // 是否启动 automatic echo cancellation
+  AGC?: boolean, // 是否启动 audio gain control
+  ANS?: boolean, // 是否启动 automatic noise suppression
 }
+```
 
-interface QNScreenConfig {
+### QNScreenConfig
+
+```ts
+export interface QNScreenConfig {
   elementId?: string, // 绑定元素的id
   bitrate?: number, // 传输的码率，单位 kbps
   width?: number | QNNumberRange, // 输出画面的宽度
   height?: number | QNNumberRange, // 输出画面的高度
   optimizationMode?: QNOptimizationMode; // 传输优化模式
 }
-
-interface QNAIDetectorConfig {
-  interval: number; // 检测时间间隔, 单位毫秒(ms), 默认5000毫秒(ms)
-}
 ```
 
-### 响应类型
-
-```ts
-interface QNTestResult {
-  isCameraEnabled?: boolean, // 摄像头是否正常开启
-  isMicrophoneEnabled?: boolean, // 麦克风是否正常开启
-  isScreenEnabled?: boolean, // 屏幕共享是否正常开启
-  isSDKSupport?: boolean; // SDK 是否支持
-}
-
-interface QNDetectorResult<T> {
-  code: number, // 0: 成功, 其他: 失败
-  timestamp: number, // 触发时间
-  id: string, // 响应id
-  data?: T, // 响应数据结果
-  message: string, // 成功/错误消息提示
-}
-
-type QNAIDetectorResult = QNDetectorResult<{score: number}>; // score: 检测结果得分
-
-type QNKeyboardDetectorResult = QNDetectorResult<{text: string}>; // text: 文本内容
-
-type QNBrowserTabDetectorResult = QNDetectorResult<{visible: boolean}>; // visible: tab是否可见
-```
-
-### 内置设备(QNDevice)
-
-```ts
-abstract class QNDevice {
-  static create: (config: QNCameraConfig | QNMicrophoneConfig | QNScreenConfig) => QNDevice; // 创建设备
-  start(): Promise<void>; // 开启设备
-  stop(): Promise<void>; // 关闭设备
-}
-
-class QNCamera implements QNDevice {
-  static create(config: QNCameraConfig): QNCamera; // 创建摄像头
-  static getCameras(): MediaDeviceInfo[]; // 枚举可用的摄像头输入设备
-  cameraVideoTrack: QNCameraVideoTrack; // 当前Track对象
-  start(): Promise<void>; // 开启摄像头
-  stop(): Promise<void>; // 关闭摄像头
-}
-
-class QNMicrophone implements QNDevice {
-  static create(config: QNMicrophoneConfig): QNMicrophone; // 创建麦克风
-  static getMicrophones(): MediaDeviceInfo[]; // 枚举可用的麦克风输入设备
-  microphoneAudioTrack: QNMicrophoneAudioTrack; // 当前Track对象
-  start(): Promise<void>; // 开启麦克风
-  stop(): Promise<void>; // 关闭麦克风
-}
-
-class QNScreen implements QNDevice {
-  static create(config: QNScreenConfig): QNScreen; // 创建屏幕共享
-  screenVideoTrack: QNScreenVideoTrack; // 当前Track对象
-  start(): Promise<void>; // 开启屏幕共享
-  stop(): Promise<void>; // 关闭屏幕共享
-}
-```
-
-### 内置检测器(QNDetector)
-
-```ts
-abstract class QNDetector {
-  static create(config?): Detector; // 创建检测器
-  abstract on(callback: Function): void; // 监听回调
-}
-
-// 用户出框检测器
-class QNOutOfScreenDetector implements QNDetector {
-  static create(config: QNAIDetectorConfig): QNOutOfScreenDetector;
-  on(result: QNAIDetectorResult): void;
-}
-// 多人同框检测器
-class QNMultiplePeopleDetector implements QNDetector {
-  static create(config: QNAIDetectorConfig): QNMultiplePeopleDetector;
-  on(result: QNAIDetectorResult): void;
-}
-// 用户替考检测器
-class QNUserTakerDetector implements QNDetector {
-  static create(config: QNAIDetectorConfig): QNUserTakerDetector;
-  on(result: QNAIDetectorResult): void;
-}
-// 声音异常检测器
-class QNAbnormalSoundDetector implements QNDetector {
-  static create(config: QNAIDetectorConfig): QNAbnormalSoundDetector;
-  on(result: QNAIDetectorResult): void;
-}
-
-// 复制检测器
-class QNKeyboardCopyDetector implements QNDetector {
-  static create(): QNKeyboardCopyDetector;
-  on(result: QNKeyboardDetectorResult): void;
-}
-// 粘贴检测器
-class QNKeyboardPasteDetector implements QNDetector {
-  static create(): QNKeyboardPasteDetector;
-  on(result: QNKeyboardDetectorResult): void;
-}
-// 剪切检测器
-class QNKeyboardCutDetector implements QNDetector {
-  static create(): QNKeyboardCutDetector;
-  on(result: QNKeyboardDetectorResult): void;
-}
-
-// 浏览器tab检测器
-class QNBrowserTabDetector implements QNDetector {
-  static create(): QNBrowserTabDetector;
-  on(result: QNBrowserTabDetectorResult): void;
-}
-```
-
-### 核心类(QNExamClient)
-
-```ts
-class QNExamClient {
-  static create(): QNExamClient; // 创建 client
-  
-  registerDevice(deviceId: string, device: QNDevice): void; // 注册设备
-  unregisterDevice(device: QNDevice): void; // 取消注册设备
-  
-  enable(detector: QNDetector, deviceId?: string): void; // 开启检测 
-  disable(detector: QNDetector): void; // 关闭检测
-  
-  identify(headImgPath: string): Promise<QNAIDetectorResult>; // 身份识别 
-  
-  test(): Promise<QNTestResult>; // 设备调试
-
-  start(token: string): Promise<void>; // 开始监考
-  stop(): Promise<void>; // 结束监考
-}
-```
-
-## 如何使用
-
-```ts
-const client = QNExamClient.create(); // 创建监考系统
-
-const camera = QNCamera.create({
-  widht: 480,
-  height: 720
-}); // 创建摄像头设备
-
-client.registerDevice('1000', camera); // 注册设备
-
-const outOfScreenDetector = QNOutOfScreenDetector.create({
-  interval: 4000
-}); // 创建出框检测, 检测间隔4000毫秒(ms)
-
-// 设置出框检测结果回调方法
-outOfScreenDetector.on(result => {
-  // 得到出框检测结果
-  console.log('result', result);
-});
-
-client.enable(outOfScreenDetector, '1000'); // 将设备id为'1000'的设备开启出框检测
-
-client.start(); // 开始监考
-client.stop(); // 结束监考
-```

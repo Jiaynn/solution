@@ -16,21 +16,25 @@ export class QNKeyboardCopyDetector extends QNBrowserDetector {
   private onCallback: Function = () => {
   };
 
-  on(callback: (result: ClipboardEvent) => void) {
+  /**
+   * 注册回调
+   * @param callback
+   */
+  on(callback: (result: ClipboardEvent) => void): void {
     this.onCallback = callback;
   }
 
   /**
    * 开启检测
    */
-  enable() {
+  enable(): void {
     document.addEventListener('copy', this.handleCopy);
   }
 
   /**
    * 关闭检测
    */
-  disable() {
+  disable(): void {
     document.removeEventListener('copy', this.handleCopy)
   }
 

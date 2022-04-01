@@ -4,7 +4,7 @@ import { QNDevice } from '../../core';
 import { QNMicrophoneConfig, QNScreenConfig } from '../../types';
 
 export class QNScreen extends QNDevice {
-  static create(config?: QNMicrophoneConfig) {
+  static create(config?: QNMicrophoneConfig): QNScreen {
     return new this(config);
   }
 
@@ -13,7 +13,7 @@ export class QNScreen extends QNDevice {
     this.config = config;
   }
 
-  public screenVideoTrack?: QNScreenVideoTrack; // 屏幕共享视频流
+  public screenVideoTrack?: QNScreenVideoTrack; // 屏幕共享轨道
   public config?: QNScreenConfig; // 屏幕共享采集配置
 
   /**
@@ -41,7 +41,7 @@ export class QNScreen extends QNDevice {
   /**
    * 开始采集/播放屏幕共享视频流
    */
-  async start() {
+  async start(): Promise<void> {
     this.screenVideoTrack = await this.createScreenVideoTrack();
     const elementId = this.config?.elementId;
     if (!elementId) {
