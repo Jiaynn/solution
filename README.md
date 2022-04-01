@@ -42,6 +42,7 @@ $ pnpm start
   * [qnweb-rtc-ai](./packages/sdk/qnweb-rtc-ai/README.md)
   * [qnweb-whiteboard](./packages/sdk/qnweb-whiteboard/README.md)
   * [whiteboard](./packages/sdk/whiteboard/README.md)
+  * [qnweb-exam-sdk](./packages/sdk/qnweb-exam-sdk/README.md)
 * demo部分
   * [qnuniapp-im-demo](./packages/demo/qnuniapp-im-demo/README.md)
   * [qnweapp-im-demo](./packages/demo/qnweapp-im-demo/README.md)
