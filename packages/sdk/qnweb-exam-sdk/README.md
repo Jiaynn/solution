@@ -76,7 +76,7 @@ examClient.start({
 
 #### QNVideoDetector
 
-视频检测器
+> 视频检测器
 
 | 类                                                    | 描述           |
 | :---------------------------------------------------- | :------------- |
@@ -128,14 +128,14 @@ examClient.start({
 
 #### QNBrowserTabDetector
 
+> tab检测器
+
 | 方法          | 类型                                                         | 描述             |
 | :------------ | :----------------------------------------------------------- | :--------------- |
 | static create | (): [QNBrowserTabDetector](#qnbrowsertabdetector)            | 创建检测器(实例) |
 | on            | (callback: (result: [VisibilityState](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState)) => void): void | 注册回调         |
 | enable        | (): void                                                     | 开启检测         |
 | disable       | (): void                                                     | 关闭检测         |
-
-> tab检测器
 
 #### QNKeyboardCopyDetector
 
@@ -194,6 +194,8 @@ examClient.start({
 | disable       | (): void                                                     | 关闭检测         |
 
 #### QNUserTakerDetector
+
+> 用户替考检测器
 
 | 方法          | 类型                                                         | 描述             |
 | :------------ | :----------------------------------------------------------- | :--------------- |
