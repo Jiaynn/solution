@@ -181,7 +181,7 @@ export enum WhiteboardEvent {
  * 高级对象
  */
 export interface AdvancedObject<V = any> {
-  [key: string]: V
+  [key: string]: V;
 }
 
 /**
@@ -193,17 +193,15 @@ export enum JoinRoomStatus {
   Close = 'close'
 }
 
-export interface JoinRoomCallbackRes {
+export interface JoinRoomCallbackResult {
   status: JoinRoomStatus;
-  event: any
+  event: Event;
 }
 
 /**
  * 加入房间 WebSocket 状态
  */
-export interface JoinRoomCallback {
-  (joinRoomCallbackRes: JoinRoomCallbackRes): void
-}
+export type JoinRoomCallback = (result: JoinRoomCallbackResult) => void;
 
 /**
  * 设置 canvas
