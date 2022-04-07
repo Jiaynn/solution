@@ -134,7 +134,7 @@ importers:
       lodash: 4.17.21
       moment: 2.29.1
       qn-rtplayer-web: 1.0.3
-      qnweb-exam-sdk: link:../../sdk/qnweb-exam-sdk
+      qnweb-exam-sdk: 0.0.0-beta.1_2e0e1b0c8dc104d9f9fa4c3d69a26d73
       qnweb-high-level-rtc: link:../../sdk/qnweb-high-level-rtc
       qnweb-rtc: 4.1.0
       qnweb-rtc-ai: 4.0.0-beta.4
@@ -15448,6 +15448,16 @@ packages:
       ua-parser-js: 0.7.31
       webrtc-adapter: 7.7.1
       wolfy87-eventemitter: 5.2.9
+    dev: false
+
+  /qnweb-exam-sdk/0.0.0-beta.1_2e0e1b0c8dc104d9f9fa4c3d69a26d73:
+    resolution: {integrity: sha512-bJeE7F40XKAPoeeYJugkw472RYbQRsbsISJ7PGUPi4dIEGK0U4AiWl7dQLd/gkcDLUsGQrlKYGM34OsMFjXWCg==}
+    peerDependencies:
+      qnweb-rtc: ^4.0.9
+      qnweb-rtc-ai: ^4.0.0-beta.4
+    dependencies:
+      qnweb-rtc: 4.1.0
+      qnweb-rtc-ai: 4.0.0-beta.4
     dev: false
 
   /qnweb-rtc-ai/4.0.0-beta.4:
