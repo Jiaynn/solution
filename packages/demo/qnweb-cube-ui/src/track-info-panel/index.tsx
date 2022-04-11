@@ -7,17 +7,19 @@ import { prefixCls } from '../_utils';
 import './index.scss';
 
 export interface TrackInfoPanelProps {
-  audioStatus: QNLocalAudioTrackStats | null;
-  videoStatus: QNLocalVideoTrackStats | null;
-  screenStatus: QNLocalVideoTrackStats | null;
-  isMobile: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+  audioStatus?: QNLocalAudioTrackStats;
+  videoStatus?: QNLocalVideoTrackStats;
+  screenStatus?: QNLocalVideoTrackStats;
+  isMobile?: boolean;
 }
 
 const rootCls = prefixCls('track-info-panel');
 
 export const TrackInfoPanel: React.FC<TrackInfoPanelProps> = (props) => {
-  const { videoStatus, screenStatus, audioStatus, isMobile } = props;
-  return <div className={classNames(rootCls, { [`${rootCls}-mobile`]: isMobile })}>
+  const { videoStatus, screenStatus, audioStatus, isMobile = false, className, style } = props;
+  return <div className={classNames(rootCls, { [`${rootCls}-mobile`]: isMobile }, className)} style={style}>
     <div className="content">
       <div className="ctx">
         <div className="label">视频丢包率</div>
