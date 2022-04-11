@@ -1,10 +1,11 @@
 import * as process from 'process';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import prompts from 'prompts';
 import { getPackages } from '@manypkg/get-packages';
+import { cyan, red } from 'kolorist';
 
 import { buildDemo, buildSDK, devProject, runShell } from './utils';
-import { cyan, red } from 'kolorist';
 
 const preRunTask = {
   // Cube
@@ -15,6 +16,7 @@ const preRunTask = {
       await buildSDK('qnweb-whiteboard');
       await buildSDK('qnweb-im');
       await buildSDK('qnweb-high-level-rtc');
+      await buildSDK('qnweb-cube-ui');
     }
   },
   'qnweb-exam-system-demo': {
@@ -23,6 +25,7 @@ const preRunTask = {
       await buildSDK('qnweb-im');
       await buildSDK('qnweb-high-level-rtc');
       await buildSDK('qnweb-exam-sdk');
+      await buildSDK('qnweb-cube-ui');
     }
   },
   'qnweb-interview-demo': {
@@ -30,15 +33,17 @@ const preRunTask = {
     async run() {
       await buildSDK('qnweb-im');
       await buildSDK('qnweb-high-level-rtc');
+      await buildSDK('qnweb-cube-ui');
     }
   },
   'qnweb-overhaul-demo': {
     title: '检修场景',
     async run() {
-      buildSDK('whiteboard');
-      buildSDK('qnweb-whiteboard');
-      buildSDK('qnweb-im');
-      buildSDK('qnweb-high-level-rtc');
+      await buildSDK('whiteboard');
+      await buildSDK('qnweb-whiteboard');
+      await buildSDK('qnweb-im');
+      await buildSDK('qnweb-high-level-rtc');
+      await buildSDK('qnweb-cube-ui');
     }
   },
   'qnweb-video-together-demo': {
@@ -46,6 +51,7 @@ const preRunTask = {
     async run() {
       await buildSDK('qnweb-im');
       await buildSDK('qnweb-high-level-rtc');
+      await buildSDK('qnweb-cube-ui');
     }
   },
 
