@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "lint": "eslint src --ext .ts,.tsx"
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx, \"src/**/*\""
   },
   "dependencies": {
     "@rongcloud/imlib-v4": "^4.4.9",

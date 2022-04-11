@@ -7,9 +7,9 @@
     "build:prod": "tsc && vite build --mode prod",
     "build": "tsc && vite build --mode prod",
     "serve": "vite preview",
-    "lint": "eslint src --ext .ts,.tsx",
     "e2e": "cypress open",
-    "e2e:report": "npx nyc report --reporter=text-summary"
+    "e2e:report": "npx nyc report --reporter=text-summary",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx, \"src/**/*\""
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",

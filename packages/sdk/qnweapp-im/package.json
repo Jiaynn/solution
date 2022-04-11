@@ -21,9 +21,8 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "test:watch": "jest --coverage --watch",
-    "tsc": "tsc -init",
-    "deploy-docs": "ts-node tools/gh-pages-publish",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx, \"src/**/*\""
   },
   "license": "MIT",
   "devDependencies": {
@@ -34,6 +33,7 @@
     "@types/jest": "^26.0.23",
     "@types/node": "^15.12.2",
     "colors": "^1.4.0",
+    "eslint": "^7.32.0",
     "jest": "^27.0.4",
     "jest-config": "^27.0.4",
     "lodash.camelcase": "^4.3.0",
