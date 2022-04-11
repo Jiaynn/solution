@@ -161,6 +161,7 @@ importers:
       lodash: ^4.17.21
       moment: ^2.29.1
       qn-rtplayer-web: ^1.0.3
+      qnweb-cube-ui: workspace:^0.0.0
       qnweb-exam-sdk: workspace:^0.0.2
       qnweb-high-level-rtc: ^4.0.0-beta.4
       qnweb-rtc: ^4.1.0
@@ -184,6 +185,7 @@ importers:
       lodash: 4.17.21
       moment: 2.29.1
       qn-rtplayer-web: 1.0.3
+      qnweb-cube-ui: link:../qnweb-cube-ui
       qnweb-exam-sdk: link:../../sdk/qnweb-exam-sdk
       qnweb-high-level-rtc: link:../../sdk/qnweb-high-level-rtc
       qnweb-rtc: 4.1.0
