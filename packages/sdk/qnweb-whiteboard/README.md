@@ -116,17 +116,15 @@ enum JoinRoomStatus {
   Close = 'close'
 }
 
-interface JoinRoomCallbackRes {
+interface JoinRoomCallbackResult {
   status: JoinRoomStatus;
-  event: any;
+  event: Event;
 }
 
 /**
  * 加入房间 WebSocket 状态
  */
-interface JoinRoomCallback {
-  (joinRoomCallbackRes: JoinRoomCallbackRes): void
-}
+type JoinRoomCallback = (result: JoinRoomCallbackResult) => void;
 
 /**
  * 白板的大小
@@ -232,15 +230,13 @@ setPenStyle(penStyle: PenStyle)
 #### 设置白板输入模式
 
 ```js
-enum
-InputMode
-{
+enum InputMode {
   Select = 'select', // 选择模式
-    Pencil = 'pencil', // 普通画笔模式
-    Laser = 'laser', // 激光模式
-    Rubber = 'rubber', // 橡皮模式
-    Geometry = 'geometry', // 图形模式
-    Mark = 'mark' // mark 笔模式
+  Pencil = 'pencil', // 普通画笔模式
+  Laser = 'laser', // 激光模式
+  Rubber = 'rubber', // 橡皮模式
+  Geometry = 'geometry', // 图形模式
+  Mark = 'mark' // mark 笔模式
 }
 setInputMode(mode: InputMode)
 ```
@@ -255,12 +251,11 @@ setEraseSize(size: number)
 
 ```js
 // 0-矩形，1-圆，3-线，6-箭头
-enum GeometryMode
-{
+enum GeometryMode {
   Rectangle = 0,
-    Circle = 1,
-    Line = 3,
-    Arrow = 6
+  Circle = 1,
+  Line = 3,
+  Arrow = 6
 }
 setGeometryMode(mode: Mode)
 ```

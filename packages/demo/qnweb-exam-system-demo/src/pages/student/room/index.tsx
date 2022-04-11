@@ -11,7 +11,7 @@ import {
 } from 'qnweb-high-level-rtc';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
-import { useMount } from 'ahooks';
+import { useInterval, useMount } from 'ahooks';
 import {
   QNBrowserTabDetector,
   QNCamera,
@@ -20,7 +20,16 @@ import {
   QNScreen,
   QNUserTakerDetector
 } from 'qnweb-exam-sdk';
-import { QNRemoteAudioTrack, QNRemoteVideoTrack } from 'qnweb-rtc';
+import {
+  QNCameraVideoTrack,
+  QNMicrophoneAudioTrack,
+  QNRemoteAudioTrack,
+  QNRemoteVideoTrack,
+  QNScreenVideoTrack,
+  QNTrack
+} from 'qnweb-rtc';
+import { TrackInfoPanel, TrackInfoPanelProps } from 'qnweb-cube-ui';
+import 'qnweb-cube-ui/dist/index.css'
 
 import useQNIM from '@/hooks/useQNIM';
 import { IM_APPKEY } from '@/config';
@@ -72,6 +81,9 @@ const StudentRoom = () => {
   const { joinRoomApi, rtcInfo, imConfig } = useRoomJoin();
   const { enableHeart, enabled } = useRoomHeart();
   const { startMixStreamJob, updateMixStreamJob } = useMixStreamJob(examClient.rtcClient);
+
+  const [publishedTracks, setPublishedTracks] = useState<QNTrack[]>([]);
+  const [trackInfo, setTrackInfo] = useState<TrackInfoPanelProps>();
 
   /**
    * 开始监考
@@ -152,6 +164,17 @@ const StudentRoom = () => {
       });
     }).then(() => ExamApi.join(urlQueryRef.current)).then(() => {
       message.success('RTC加载成功');
+      const tracks = [];
+      if (camera.cameraVideoTrack) {
+        tracks.push(camera.cameraVideoTrack);
+      }
+      if (microphone.microphoneAudioTrack) {
+        tracks.push(microphone.microphoneAudioTrack);
+      }
+      if (screen.screenVideoTrack) {
+        tracks.push(screen.screenVideoTrack);
+      }
+      setPublishedTracks(tracks);
       return enableHeart(urlQueryRef.current.roomId);
     }).catch(error => {
       console.error(error);
@@ -162,6 +185,15 @@ const StudentRoom = () => {
       hide();
     });
   });
+
+  // track 信息面板
+  useInterval(() => {
+    setTrackInfo({
+      videoStatus: (publishedTracks.find(track => track.tag === 'camera') as QNCameraVideoTrack)?.getStats()[0],
+      audioStatus: (publishedTracks.find(track => track.tag === 'microphone') as QNMicrophoneAudioTrack)?.getStats(),
+      screenStatus: (publishedTracks.find(track => track.tag === 'screen') as QNScreenVideoTrack)?.getStats()[0],
+    })
+  }, publishedTracks.length > 0 ? 1000 : undefined);
 
   /**
    * im
@@ -451,6 +483,19 @@ const StudentRoom = () => {
           </div>
         </div>
       </div>
+
+      <TrackInfoPanel
+        videoStatus={trackInfo?.videoStatus}
+        audioStatus={trackInfo?.audioStatus}
+        screenStatus={trackInfo?.screenStatus}
+        style={{
+          position: 'fixed',
+          top: 'revert',
+          left: 'revert',
+          right: 0,
+          bottom: 0,
+        }}
+      />
     </div>
   );
 };

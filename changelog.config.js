@@ -1,3 +1,7 @@
+const { getPackagesSync } = require('@manypkg/get-packages');
+
+const packages = getPackagesSync(process.cwd()).packages.map(pkg => pkg.packageJson.name);
+
 module.exports = {
   disableEmoji: true,
   format: '{type}{scope}: {emoji}{subject}',
@@ -5,28 +9,7 @@ module.exports = {
   maxMessageLength: 64,
   minMessageLength: 3,
   questions: ['type', 'scope', 'subject', 'body', 'breaking', 'issues', 'lerna'],
-  scopes: [
-    '',
-    'qnuniapp-im-demo',
-    'qnweapp-im-demo',
-    'qnweapp-interview-demo',
-    'qnweb-cloud-class-demo',
-    'qnweb-exam-system-demo',
-    'qnweb-high-level-rtc',
-    'qnweb-im-demo',
-    'qnweb-interview-demo',
-    'qnweb-overhaul-demo',
-    'qnweb-rtc-ai-demo',
-    'qnweb-video-together-demo',
-    'qnweb-whiteboard-demo',
-    'qnuniapp-im',
-    'qnweapp-im',
-    'qnweb-exam-sdk',
-    'qnweb-im',
-    'qnweb-rtc-ai',
-    'qnweb-whiteboard',
-    'whiteboard'
-  ],
+  scopes: packages.concat(''),
   types: {
     chore: {
       description: 'Build process or auxiliary tool changes',

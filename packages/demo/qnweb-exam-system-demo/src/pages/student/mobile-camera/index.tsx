@@ -1,16 +1,36 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { message, Modal } from 'antd';
 import { ClientRoleType } from 'qnweb-high-level-rtc';
-import styles from './index.module.scss';
-import useMtTrackRoom from '../../../hooks/useMtTrackRoom';
+import { QNCameraVideoTrack, QNMicrophoneAudioTrack, QNScreenVideoTrack, QNTrack } from 'qnweb-rtc';
+import { TrackInfoPanel, TrackInfoPanelProps } from 'qnweb-cube-ui';
+
+import 'qnweb-cube-ui/dist/index.css';
+
+import useMtTrackRoom from '@/hooks/useMtTrackRoom';
 import ExamApi from '@/api/ExamApi';
 import { getUrlQueryParams } from '@/utils';
+
+import styles from './index.module.scss';
+import { useInterval } from 'ahooks';
 
 const MobileCamera = () => {
   const urlQueryRef = useRef({
     roomId: getUrlQueryParams('roomId') || '',
   });
   const { room: mtTrackRoom } = useMtTrackRoom();
+
+  const [publishedTracks, setPublishedTracks] = useState<QNTrack[]>([]);
+  const [trackInfo, setTrackInfo] = useState<TrackInfoPanelProps>();
+
+  // track 信息面板
+  useInterval(() => {
+    console.log('trackInfo', trackInfo);
+    setTrackInfo({
+      videoStatus: (publishedTracks.find(track => track.tag === 'camera') as QNCameraVideoTrack)?.getStats()[0],
+      audioStatus: (publishedTracks.find(track => track.tag === 'microphone') as QNMicrophoneAudioTrack)?.getStats(),
+      screenStatus: (publishedTracks.find(track => track.tag === 'screen') as QNScreenVideoTrack)?.getStats()[0],
+    });
+  }, publishedTracks.length > 0 ? 1000 : undefined);
 
   /**
    * 加入rtc房间
@@ -24,13 +44,15 @@ const MobileCamera = () => {
       });
       ExamApi.examRoomToken({
         roomId: urlQueryRef.current.roomId,
-      }).then((result) => {
-        return mtTrackRoom.joinRoom({
-          roomToken: result.roomToken,
-        }, {
-          userExtRoleType: 'mobile',
-        });
-      }).then(() => mtTrackRoom.enableCamera())
+      })
+        .then((result) => {
+          return mtTrackRoom.joinRoom({
+            roomToken: result.roomToken,
+          }, {
+            userExtRoleType: 'mobile',
+          });
+        })
+        .then(() => mtTrackRoom.enableCamera())
         .then(() => {
           return new Promise((resolve, reject) => {
             Modal.info({
@@ -39,16 +61,21 @@ const MobileCamera = () => {
               onOk() {
                 resolve(
                   mtTrackRoom.setLocalCameraWindowView('mobile-camera')
-                )
+                );
               },
               onCancel() {
-                reject(new Error('cancel'))
+                reject(new Error('cancel'));
               }
-            })
-          })
+            });
+          });
         })
         .then(() => {
-          message.success('加入成功')
+          const tracks = [
+            mtTrackRoom.localCameraTrack as QNCameraVideoTrack,
+            mtTrackRoom.localMicrophoneTrack as QNMicrophoneAudioTrack
+          ].filter(Boolean);
+          setPublishedTracks(tracks);
+          message.success('加入成功');
         })
         .catch((error) => {
           Modal.error({
@@ -64,7 +91,7 @@ const MobileCamera = () => {
     const handler = (event: BeforeUnloadEvent) => {
       event.preventDefault();
       event.returnValue = '';
-      mtTrackRoom.leaveRoom()
+      mtTrackRoom.leaveRoom();
     };
     if (mtTrackRoom) {
       window.addEventListener('beforeunload', handler);
@@ -73,10 +100,16 @@ const MobileCamera = () => {
         window.removeEventListener('beforeunload', handler);
       };
     }
-  }, [mtTrackRoom])
+  }, [mtTrackRoom]);
 
   return (
-    <div className={styles.container} id="mobile-camera"/>
+    <>
+      <div className={styles.container} id="mobile-camera"/>
+      <TrackInfoPanel
+        videoStatus={trackInfo?.videoStatus}
+        isMobile={true}
+      />
+    </>
   );
 };
 

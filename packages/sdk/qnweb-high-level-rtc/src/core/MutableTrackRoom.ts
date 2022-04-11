@@ -33,7 +33,7 @@ export interface MutableTrackRoomSeat extends UserMicSeat {
 class MutableTrackRoom extends RtcRoom {
   public mMicSeats: MutableTrackRoomSeat[] = []; // 麦位列表
   public micSeatListeners: MicSeatListener<MutableTrackRoomSeat>[] = []; // 麦位监听器
-  public tag: string = '[MutableTrackRoom]'; // 日志标签
+  public tag = '[MutableTrackRoom]'; // 日志标签
   constructor() {
     super();
     this.handleRtcUserJoined = this.handleRtcUserJoined.bind(this); // 用户加入房间
