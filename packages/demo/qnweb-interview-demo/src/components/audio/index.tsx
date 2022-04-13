@@ -1,14 +1,13 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { linkConfig } from '../../config';
+
+import audioTestFile from './device-test-audio.mp3';
+
 import './index.scss';
 
-interface AudioProps extends React.AudioHTMLAttributes<HTMLAudioElement> {
+export type AudioProps = React.AudioHTMLAttributes<HTMLAudioElement>;
 
-}
-
-const Audio: React.FC<AudioProps> = props => {
-  const { src = `${linkConfig.cloudStorageUrl}/device-test-audio.mp3`, controls = true } = props;
+const Audio: React.FC<AudioProps> = () => {
   const audioBarGroup = 6;
   const audioRef = useRef<HTMLAudioElement>(null);
   const [audioDuration, setAudioDuration] = useState(0);
@@ -47,16 +46,15 @@ const Audio: React.FC<AudioProps> = props => {
             <div className={classNames('audio-bar audio-bar-18', { 'green-bar': index < audioCurrentTime })}></div>
             {
               index < audioBarGroup &&
-							<div className={classNames('audio-bar audio-bar-14', { 'green-bar': index < audioCurrentTime })}></div>
+              <div className={classNames('audio-bar audio-bar-14', { 'green-bar': index < audioCurrentTime })}></div>
             }
           </Fragment>;
         })
       }
     </div>
-    <div className="time-total">{audioDuration}"</div>
+    <div className="time-total">{`${audioDuration}"`}</div>
     <audio
-      controls={controls}
-      src={src}
+      src={audioTestFile}
       className="test-audio-player"
       ref={audioRef}
     ></audio>

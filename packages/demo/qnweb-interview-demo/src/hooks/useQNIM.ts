@@ -1,6 +1,8 @@
-import { useContext, useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
+import * as QNIM from 'qnweb-im';
+
 import { IMConfig } from '@/api';
-import { UserStoreContext } from '@/store';
+import { useUserStore, useIMStore } from '@/store';
 
 export interface State {
   im?: any;
@@ -11,7 +13,7 @@ export interface Action {
   payload: any;
 }
 
-export function reducer(state: State, action: Action) {
+export function reducer(state: State, action: Action): State {
   if (action.type === 'setIM') {
     return {
       ...state,
@@ -21,7 +23,7 @@ export function reducer(state: State, action: Action) {
   return state;
 }
 
-export function log(...args: any[]) {
+export function log(...args: unknown[]): void {
   console.log('useQNIM', ...args);
 }
 
@@ -75,21 +77,21 @@ export interface SendMessageConfig {
 }
 
 export interface Message {
-  id:        string;
-  from:      string;
-  to:        string;
-  content:   string;
-  type:      string;
-  status:    number;
+  id: string;
+  from: string;
+  to: string;
+  content: string;
+  type: string;
+  status: number;
   timestamp: string;
-  toType:    string;
+  toType: string;
 }
 
 /**
  * 发送文本消息
  * @param sendMessageConfig
  */
-export function sendTextMessage(sendMessageConfig: SendMessageConfig){
+export function sendTextMessage(sendMessageConfig: SendMessageConfig): void {
   const im = sendMessageConfig.im;
   const message = {
     content: JSON.stringify({
@@ -103,7 +105,7 @@ export function sendTextMessage(sendMessageConfig: SendMessageConfig){
   im.sysManage.sendGroupMessage(message);
 }
 
-const useQNIM = (config?: IMConfig) => {
+export const useQNIM = (config?: IMConfig) => {
   const [retryCount, setRetryCount] = useState<number>(0);
   const [state, dispatch] = useReducer(reducer, {
     im: null
@@ -112,7 +114,8 @@ const useQNIM = (config?: IMConfig) => {
   const [chatroomJoined, setChatroomJoined] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([]);
 
-  const { state: userState } = useContext(UserStoreContext);
+  const { state: userStoreState } = useUserStore();
+  const { state: imStoreState } = useIMStore();
 
   /**
    * 初始化 im
@@ -155,10 +158,10 @@ const useQNIM = (config?: IMConfig) => {
    */
   useEffect(() => {
     const im = state.im;
-    const name = userState?.imConfig?.imUsername;
-    const password = userState?.imConfig?.imPassword;
-    log('name', name)
-    log('password', password)
+    const name = imStoreState.imUsername;
+    const password = imStoreState.imPassword;
+    log('name', name);
+    log('password', password);
     if (im && name && password) {
       log('开始登录');
       setLoginStatus(LoginStatus.Logging);
@@ -166,7 +169,7 @@ const useQNIM = (config?: IMConfig) => {
         name, password
       });
     }
-  }, [state.im, userState?.imConfig?.imPassword, userState?.imConfig?.imUsername]);
+  }, [state.im, imStoreState.imPassword, imStoreState.imUsername]);
 
   /**
    * im 事件监听
@@ -211,28 +214,28 @@ const useQNIM = (config?: IMConfig) => {
       im.chatroomManage
         .join(imGroupId)
         .then((res: ChatroomManageJoinRes) => {
-          log('聊天室加入成功', res)
-          setChatroomJoined(true)
+          log('聊天室加入成功', res);
+          setChatroomJoined(true);
         })
         .catch((error: ChatroomManageJoinError) => {
           if (error.code === 20017) {
-            log('聊天室加入成功')
-            setChatroomJoined(true)
+            log('聊天室加入成功');
+            setChatroomJoined(true);
           } else {
-            log('聊天室加入失败')
+            log('聊天室加入失败');
             return Promise.reject(error);
           }
         });
       return () => {
         im.chatroomManage.leave(imGroupId);
-      }
+      };
     }
   }, [config?.imGroupId, loginStatus, state.im]);
 
   useEffect(() => {
     if (chatroomJoined) {
-      const senderId = userState.userInfo?.accountId;
-      const senderName = userState.userInfo?.nickname;
+      const senderId = userStoreState.accountId;
+      const senderName = userStoreState.nickname;
       const imGroupId = config?.imGroupId;
       sendTextMessage({
         im: state.im,
@@ -241,15 +244,13 @@ const useQNIM = (config?: IMConfig) => {
           action: MessageBodyAction.Welcome,
           msgStr: { senderId, senderName, msgContent: '进入了房间' }
         }
-      })
+      });
     }
-  }, [chatroomJoined, state.im, config, userState.userInfo?.accountId, userState.userInfo?.nickname]);
+  }, [chatroomJoined, state.im, config, userStoreState.accountId, userStoreState.nickname]);
 
   return {
     im: state.im,
     chatroomJoined,
     messages
-  }
+  };
 };
-
-export default useQNIM;

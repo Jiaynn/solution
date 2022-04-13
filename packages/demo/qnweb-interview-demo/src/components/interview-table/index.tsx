@@ -1,10 +1,12 @@
 import React from 'react';
 import { PaginationProps, Table, TableColumnType } from 'antd';
 import dayjs from 'dayjs';
-import {Interview} from "../../api";
+
+import { Interview } from '@/api';
+
 import './index.scss';
 
-const columns = [
+const baseColumns = [
   {
     title: '面试标题',
     dataIndex: 'title',
@@ -41,9 +43,9 @@ const columns = [
         '10': '#1883FF',
         '0': '#FCC859',
         '-10': '#999999'
-      }
+      };
       const color = mapColor[statusCode];
-      return <span style={{color, display: 'flex', alignItems: 'center'}}>
+      return <span style={{ color, display: 'flex', alignItems: 'center' }}>
         <span
           style={{
             backgroundColor: color, display: 'inline-block',
@@ -52,7 +54,7 @@ const columns = [
             flexShrink: 0
           }}></span>
         <span>{text}</span>
-      </span>
+      </span>;
     }
   },
   {
@@ -61,7 +63,7 @@ const columns = [
     render: (record: Interview) => {
       return <span>
         {record.goverment}/{record.career}
-      </span>
+      </span>;
     }
   },
   {
@@ -71,25 +73,25 @@ const columns = [
       const endTime = record.endTime > 0 ? `${dayjs(record.endTime * 1000).format('YYYY年MM月DD日 HH:mm')}` : '';
       return <span>
         {startTime}~{endTime}
-      </span>
+      </span>;
     }
   },
 ];
 
 
-interface Props {
+export interface InterviewTableProps {
   data?: Interview[];
-  customColumns?: TableColumnType<Interview>[];
+  columns?: TableColumnType<Interview>[];
   pagination?: PaginationProps;
   loading?: boolean;
 }
 
-
-const InterviewTable: React.FC<Props> = props => {
+const InterviewTable: React.FC<InterviewTableProps> = props => {
   const {
-    data = [], customColumns = [], pagination, loading
+    data = [], columns = [], pagination, loading
   } = props;
-  const transformColumns: TableColumnType<Interview>[] = [...columns, ...customColumns].map(column => ({...column, align: 'center'}));
+  const transformColumns: TableColumnType<Interview>[] = [...baseColumns, ...columns]
+    .map(column => ({ ...column, align: 'center' }));
   return <Table
     bordered={false}
     className="interview-table"

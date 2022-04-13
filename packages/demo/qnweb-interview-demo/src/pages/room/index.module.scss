@@ -1,9 +1,15 @@
-.room {
+.container {
   width: 100%;
   height: 100%;
   background-color: #000;
   box-sizing: border-box;
   padding: 50px 72px;
+}
+
+.body {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .rtcModule {
@@ -15,12 +21,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.remote {
-  display: flex;
-  width: 100%;
-  height: 100%;
 }
 
 .chat {

@@ -37,7 +37,7 @@ log.setPreTitle('LazyTrackRoom');
 class LazyTrackRoom extends RtcRoom {
   public mMicSeats: LazyTrackRoomSeat[] = []; // 麦位列表
   public micSeatListeners: MicSeatListener<LazyTrackRoomSeat>[] = []; // 麦位监听器
-  public tag: string = '[LazyTrackRoom]'; // 日志标签
+  public tag = '[LazyTrackRoom]'; // 日志标签
 
   constructor() {
     super();

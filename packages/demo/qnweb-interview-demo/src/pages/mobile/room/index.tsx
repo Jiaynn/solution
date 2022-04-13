@@ -1,30 +1,34 @@
-import Icon from '@/components/icon';
-import Chat, { OnInputKeyEnterHandler } from '@/pages/mobile/components/chat';
-import useSupported from '@/pages/mobile/hooks/useSupported';
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { BaseMessageJson, RtmManager } from 'qnweb-high-level-rtc';
+import { deviceManager, Track, TrackModeSession } from 'pili-rtc-web';
 import classNames from 'classnames';
 import { useHistory, useParams } from 'react-router-dom';
-import useJoinRoom from '@/pages/mobile/hooks/useJoinRoom';
-import { deviceManager, Track, TrackModeSession } from 'pili-rtc-web';
+import { Modal, Button } from 'antd';
+import { useUnmount } from 'ahooks';
+
+import Icon from '@/components/icon';
+import Chat, { OnInputKeyEnterHandler } from '@/pages/mobile/components/chat';
+import { RTCDisconnectRes } from '@/components/video-remote';
+import { QNRTCDisconnectCode } from '@/config';
+import useInterviewHeartBeat from '@/pages/mobile/hooks/useInterviewHeartBeat';
+import { endInterview, leaveInterview } from '@/api';
+import { useUserStore, useIMStore } from '@/store';
+import useSupported from '../hooks/useSupported';
+import useJoinRoom from '../hooks/useJoinRoom';
+import { QNIMConfig, useQNIM } from '../hooks/useQNIM';
 import {
   isAudioTrack,
   isCameraTrack,
   isScreenTrack,
   publishTracks,
 } from '@/sdk';
-import { Modal, Button } from 'antd';
-import { RTCDisconnectRes } from '@/components/video-remote';
-import { QNRTCDisconnectCode } from '@/config';
-import useInterviewHeartBeat from '@/pages/mobile/hooks/useInterviewHeartBeat';
-import { endInterview, leaveInterview } from '@/api';
+
 import css from './index.module.scss';
-import useQNIM, { QNIMConfig } from '../hooks/useQNIM';
-import { UserStoreContext } from '@/store';
-import { BaseMessageJson, RtmManager } from 'qnweb-high-level-rtc';
-import { useUnmount } from '@/hooks';
 
 const MobileRoom = () => {
-  const { state: userState } = useContext(UserStoreContext);
+  const { state: userStoreState } = useUserStore();
+  const { state: imStoreState } = useIMStore();
+
   const { interviewId } = useParams<{ interviewId: string }>();
   const [micro, setMicro] = useState(false);
   const [camera, setCamera] = useState(false);
@@ -52,10 +56,26 @@ const MobileRoom = () => {
   const [isRTCRoomJoinedOk, setIsRTCRoomJoinedOk] = useState(false);
   const [mediaConfig] = useState([{
     audio: { enabled: true, tag: 'audio', channelCount: 1 },
-    video: { enabled: true, tag: 'camera', facingMode: 'user', width: 3840, height: 2160, frameRate: 60, bitrate: 13500 }
+    video: {
+      enabled: true,
+      tag: 'camera',
+      facingMode: 'user',
+      width: 3840,
+      height: 2160,
+      frameRate: 60,
+      bitrate: 13500
+    }
   }, {
     audio: { enabled: true, tag: 'audio', channelCount: 1 },
-    video: { enabled: true, tag: 'camera', facingMode: 'environment', width: 3840, height: 2160, frameRate: 60, bitrate: 13500 }
+    video: {
+      enabled: true,
+      tag: 'camera',
+      facingMode: 'environment',
+      width: 3840,
+      height: 2160,
+      frameRate: 60,
+      bitrate: 13500
+    }
   }]);
   const [toggleCameraLoading, setToggleCameraLoading] = useState(false);
   const [qnImConfig, setQnImConfig] = useState<QNIMConfig>();
@@ -69,10 +89,10 @@ const MobileRoom = () => {
     const msg = JSON.stringify({
       action: 'quit_room',
       data: {
-        senderId: userState.userInfo?.accountId,
-        senderName: userState.userInfo?.nickname,
+        senderId: userStoreState.accountId,
+        senderName: userStoreState.nickname,
         msgContent: '离开了房间',
-        avatar: userState.userInfo?.avatar,
+        avatar: userStoreState.avatar,
         timestamp: Date.now(),
       },
     });
@@ -90,21 +110,21 @@ const MobileRoom = () => {
       const msg = JSON.stringify({
         action: 'pub_chat_text',
         data: {
-          senderId: userState.userInfo?.accountId,
-          senderName: userState.userInfo?.nickname,
+          senderId: userStoreState.accountId,
+          senderName: userStoreState.nickname,
           msgContent: '进入了房间',
-          avatar: userState.userInfo?.avatar,
+          avatar: userStoreState.avatar,
         },
       });
       adapter.sendChannelMsg(
         msg, qnImConfig?.chatRoomId, true,
-      )
+      );
     }
   }, [
     adapter, joinState, qnImConfig?.chatRoomId,
-    userState.userInfo?.accountId, userState.userInfo?.avatar,
-    userState.userInfo?.nickname
-  ])
+    userStoreState.accountId, userStoreState.avatar,
+    userStoreState.nickname
+  ]);
 
   /**
    * 设置im消息监听
@@ -115,13 +135,13 @@ const MobileRoom = () => {
       console.log('channelMessageHandler json', json);
       setMessages((prevMessages) => prevMessages.concat(json));
     };
-    if (adapter && userState.userInfo?.accountId) {
+    if (adapter && userStoreState.accountId) {
       RtmManager.addRtmChannelListener(channelMessageHandler);
       return () => {
         RtmManager.removeRtmChannelListener(channelMessageHandler);
       };
     }
-  }, [adapter, joinState, userState.userInfo?.accountId])
+  }, [adapter, joinState, userStoreState.accountId]);
 
   /**
    * 设置im相关配置
@@ -130,12 +150,12 @@ const MobileRoom = () => {
     setQnImConfig({
       appKey: 'cigzypnhoyno',
       loginAccount: {
-        name: userState.imConfig?.imUsername,
-        password: userState.imConfig?.imPassword
+        name: imStoreState.imUsername,
+        password: imStoreState.imPassword
       },
       chatRoomId: imConfig?.imGroupId + ''
-    })
-  }, [imConfig, userState.imConfig?.imPassword, userState.imConfig?.imUsername])
+    });
+  }, [imConfig, imStoreState.imPassword, imStoreState.imUsername]);
 
   useEffect(() => {
     if (isRTCRoomJoined) {
@@ -157,17 +177,17 @@ const MobileRoom = () => {
       const msg = JSON.stringify({
         action: 'pub_chat_text',
         data: {
-          senderId: userState.userInfo?.accountId,
-          senderName: userState.userInfo?.nickname,
+          senderId: userStoreState.accountId,
+          senderName: userStoreState.nickname,
           msgContent: value,
-          avatar: userState.userInfo?.avatar,
+          avatar: userStoreState.avatar,
         },
       });
       adapter.sendChannelMsg(
         msg, qnImConfig?.chatRoomId || '', true,
       );
     }
-  }
+  };
 
   /**
    * 大小屏切换
@@ -421,7 +441,7 @@ const MobileRoom = () => {
         [css.userPlayerSmall]: win.small === 'remote-camera',
         [css.userPlayerBig]: win.big === 'remote-camera'
       })}
-      id='remote-camera'
+      id="remote-camera"
       onClick={() => {
         if (win.small === 'remote-camera') {
           onToggleWin();
@@ -430,7 +450,7 @@ const MobileRoom = () => {
     >
       {
         remoteUser && remoteCover ?
-          <img className={css.userPlayerCover} src={remoteUser.avatar} alt='' /> : null
+          <img className={css.userPlayerCover} src={remoteUser.avatar} alt=""/> : null
       }
       {
         win.small === 'remote-camera' && remoteUser ?
@@ -442,7 +462,7 @@ const MobileRoom = () => {
         [css.userPlayerSmall]: win.small === 'remote-screen',
         [css.userPlayerBig]: win.big === 'remote-screen'
       })}
-      id='remote-screen'
+      id="remote-screen"
       onClick={() => {
         if (win.small === 'remote-screen') {
           onToggleWin();
@@ -459,7 +479,7 @@ const MobileRoom = () => {
         [css.userPlayerSmall]: win.small === 'local-camera',
         [css.userPlayerBig]: win.big === 'local-camera'
       })}
-      id='local-camera'
+      id="local-camera"
       onClick={() => {
         if (win.small === 'local-camera') {
           onToggleWin();
@@ -468,7 +488,7 @@ const MobileRoom = () => {
     >
       {
         userInfo && localCover ?
-          <img className={css.userPlayerCover} src={userInfo.avatar} alt='' /> : null
+          <img className={css.userPlayerCover} src={userInfo.avatar} alt=""/> : null
       }
       {
         userInfo && win.small === 'local-camera' ?
@@ -479,7 +499,7 @@ const MobileRoom = () => {
       <div className={css.leftIcons}>
         {
           showLeaveInterview ? <Icon
-            type='icon-quit'
+            type="iconQuit"
             className={css.leftButton}
             onClick={() => {
               history.goBack();
@@ -493,7 +513,7 @@ const MobileRoom = () => {
       <div className={css.title}>{interview?.title}</div>
       <div className={css.rightIcons}>
         <Icon
-          type='icon-chat'
+          type="iconChat"
           className={css.rightButton}
           onClick={useCallback(() => setChatInputShow(!chatInputShow), [chatInputShow])}
         />
@@ -511,7 +531,7 @@ const MobileRoom = () => {
       dots.length >= 2 ? <div className={css.dots}>
         {
           dots.map((_, index) => {
-            return <span className={classNames(css.dot, {
+            return <span key={index} className={classNames(css.dot, {
               [css.activeDot]: activeDot === index
             })}></span>;
           })
@@ -519,18 +539,18 @@ const MobileRoom = () => {
       </div> : null
     }
     <div className={css.translateAudioSwitchContainer}>
-      <Button type='primary' onClick={onToggleCamera} loading={toggleCameraLoading}>切换摄像头</Button>
+      <Button type="primary" onClick={onToggleCamera} loading={toggleCameraLoading}>切换摄像头</Button>
     </div>
     <div className={css.buttons}>
       <Icon
-        type={micro ? 'icon-microphone-on' : 'icon-microphone-off'}
+        type={micro ? 'iconMicrophoneOn' : 'iconMicrophoneOff'}
         className={css.button}
         onClick={() => onToggleMuteMedia('audio').then(() => {
           setMicro(!micro);
         })}
       />
       <Icon
-        type='icon-hangup'
+        type="iconHangup"
         className={css.button}
         onClick={() => {
           history.goBack();
@@ -540,7 +560,7 @@ const MobileRoom = () => {
         }}
       />
       <Icon
-        type={camera ? 'icon-video-on' : 'icon-video-off'}
+        type={camera ? 'iconVideoOn' : 'iconVideoOff'}
         className={css.button}
         onClick={() => onToggleMuteMedia('camera').then(() => {
           setCamera(!camera);

@@ -4,19 +4,20 @@ import dayjs, { Dayjs } from 'dayjs';
 import weekday from 'dayjs/plugin/weekday';
 import localeData from 'dayjs/plugin/localeData';
 import { Callbacks, FieldData } from 'rc-field-form/lib/interface';
-import { limitNumberUtil, phoneNumberUtil } from '../../utils';
 import { Moment } from 'moment';
+
+import { limitNumberUtil, phoneNumberUtil, buildRandomStr } from '@/utils';
+
 import './index.scss';
-import { buildRandomStr } from '../../utils';
 
 dayjs.extend(weekday);
 dayjs.extend(localeData);
 
-export type FormAction = 'create' | 'update' | 'disabled';
+export type FormType = 'create' | 'update' | 'disabled';
 
-interface InterviewFormProps extends FormProps {
+export interface InterviewFormProps extends FormProps {
   onCancel: () => void;
-  action: FormAction;
+  type: FormType;
   onFinish?: Callbacks['onFinish'];
 }
 

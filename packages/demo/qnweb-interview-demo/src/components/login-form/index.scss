@@ -3,13 +3,13 @@
   //width: 910px;
   //height: 504px;
   background: #FFFFFF;
-  box-shadow: 0 4px 18px 0 rgba(4,90,133,0.50);
+  box-shadow: 0 4px 18px 0 rgba(4, 90, 133, 0.50);
   border-radius: 8px;
   display: flex;
   overflow: hidden;
 
   h1 {
-    font-family: PingFangSC-Medium;
+    font-family: PingFangSC-Medium, sans-serif;
     font-size: 20px;
     color: #1890FF;
     margin-bottom: 66px;
@@ -18,6 +18,7 @@
   .left {
     width: 465px;
     flex-shrink: 0;
+
     > img {
       width: 100%;
       height: 100%;
@@ -33,8 +34,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     .bar {
-      background-image: url("../../assets/images/bar.svg");
+      background-image: url("./bar.svg");
       display: inline-block;
       width: 112px;
       height: 2px;
@@ -42,10 +44,12 @@
       @media screen and (max-width: 640px) {
         width: 80px;
       }
+
       &-mirror {
         transform: rotateY(180deg);
       }
     }
+
     .text {
       margin: 0 20px;
     }
@@ -55,8 +59,9 @@
     display: flex;
   }
 
-  .captcha-input {
+  .sms-input {
     padding-right: 90px;
+
     &-btn {
       position: absolute;
       right: 0;
@@ -64,34 +69,42 @@
     }
   }
 
+  .countdown-button {
+    position: absolute;
+    right: 0;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    width: 90px;
+    padding: 0;
+  }
+
   .tip {
     margin-bottom: 20px;
-    font-family: PingFangSC-Regular;
+    font-family: PingFangSC-Regular, sans-serif;
     font-size: 12px;
     color: #999999;
   }
 
-  .button-wrap {
+  .button {
+    //margin-top: 20px;
     text-align: center;
-    margin-top: 20px;
-    .button {
-      text-align: center;
-      width: 266px;
-      border-radius: 26px;
-      height: 42px;
-      font-size: 16px;
-    }
+    border-radius: 26px;
+    height: 42px;
+    font-size: 16px;
   }
 
   .body {
     .ant-form-item-label {
-      font-family: PingFangSC-Medium;
+      font-family: PingFangSC-Medium, sans-serif;
       font-size: 14px;
       color: #000000;
     }
+
     .base-input {
       border-bottom: 1px solid #E8E8E8;
       padding-left: 0;
+
       &:focus {
         border-bottom-color: #1890FF;
       }
@@ -101,7 +114,7 @@
   .agreement-check {
     text-align: center;
     cursor: pointer;
-    font-family: PingFangSC-Regular;
+    font-family: PingFangSC-Regular, sans-serif;
   }
 
   .agreement {
@@ -112,7 +125,7 @@
   }
 
   .blank-link {
-    font-family: PingFangSC-Semibold;
+    font-family: PingFangSC-Semibold, sans-serif;
     font-weight: bold;
   }
 }
@@ -122,9 +135,11 @@
     width: 100%;
     height: 100%;
     border-radius: 0;
+
     .left {
       display: none;
     }
+
     .header {
       .bar {
         width: 80px;

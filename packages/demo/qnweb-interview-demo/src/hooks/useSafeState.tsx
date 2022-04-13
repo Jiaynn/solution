@@ -1,9 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
-function useSafeState<S>(initialState: S | (() => S)): [S, Dispatch<SetStateAction<S>>];
-function useSafeState<S = undefined>(): [S | undefined, Dispatch<SetStateAction<S | undefined>>];
-
-function useSafeState<S = undefined>(initialState?: S | (() => S)): [S | undefined, Dispatch<SetStateAction<S | undefined>>] {
+export function useSafeState<S>(initialState: S | (() => S)): [S, Dispatch<SetStateAction<S>>];
+export function useSafeState<S = undefined>(): [S | undefined, Dispatch<SetStateAction<S | undefined>>];
+export function useSafeState<S = undefined>(initialState?: S | (() => S)): [S | undefined, Dispatch<SetStateAction<S | undefined>>] {
   const mounted = useRef<boolean>(false);
   const [state, setState] = useState(initialState);
   useEffect(() => {
@@ -22,5 +21,3 @@ function useSafeState<S = undefined>(initialState?: S | (() => S)): [S | undefin
     setSafeState
   ];
 }
-
-export default useSafeState;

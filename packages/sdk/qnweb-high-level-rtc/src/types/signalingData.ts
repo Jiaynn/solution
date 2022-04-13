@@ -9,7 +9,7 @@ export interface UserExtension {
   // 用户扩展类型
   userExtRoleType?: string,
   // 用户扩展资料
-  userExtProfile?: string | object,
+  userExtProfile?: string | Record<string, unknown>,
   // 加入房间附加的扩展字段
   userExtensionMsg?: string,
   // 内部角色

@@ -1,7 +1,10 @@
+import { FunctionType } from '../types';
+
 export type ExtQNClientEventName = 'localPublished' | 'localUnPublished' | 'roomLeft';
 
 class ExtQNClientEventListener {
-  public eventMap: Map<ExtQNClientEventName, Function[]>;
+  public eventMap: Map<ExtQNClientEventName, FunctionType[]>;
+
   constructor() {
     this.eventMap = new Map();
   }
@@ -11,7 +14,7 @@ class ExtQNClientEventListener {
    * @param eventName
    * @param listener
    */
-  addExtEventListener(eventName: ExtQNClientEventName, listener: Function) {
+  addExtEventListener(eventName: ExtQNClientEventName, listener: FunctionType) {
     const listeners = this.eventMap.get(eventName) || [];
     this.eventMap.set(
       eventName,
@@ -24,14 +27,14 @@ class ExtQNClientEventListener {
    * @param eventName
    * @param listener
    */
-  removeExtEventListener(eventName: ExtQNClientEventName, listener: Function) {
+  removeExtEventListener(eventName: ExtQNClientEventName, listener: FunctionType) {
     const listeners = (this.eventMap.get(eventName) || []).filter(
       l => l !== listener
     );
     this.eventMap.set(
       eventName,
       listeners,
-    )
+    );
   }
 
   /**

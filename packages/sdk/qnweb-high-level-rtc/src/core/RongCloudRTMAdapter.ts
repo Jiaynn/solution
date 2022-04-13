@@ -10,20 +10,21 @@ log.setPreTitle('RongCloudRTMAdapter');
 /**
  * 融云 IM 适配器
  */
-class RongCloudRTMAdapter implements RtmAdapter {
+class RongCloudRTMAdapter extends RtmAdapter {
   public im: RongIMLib.IMClient;
 
   constructor(appkey: string) {
+    super();
     this.im = RongIMLib.init({
       appkey
     });
-    this.addIMEventListener();
+    this.addListener();
   }
 
   /**
    * 设置监听
    */
-  addIMEventListener() {
+  private addListener() {
     this.im.watch({
       message: (event) => {
         log.log('收到消息', event);
@@ -109,7 +110,10 @@ class RongCloudRTMAdapter implements RtmAdapter {
    * @param isDispatchToLocal
    * @param callback
    */
-  sendChannelMsg(msg: string, channelId: string, isDispatchToLocal: boolean, callback?: RtmCallBack) {
+  sendChannelMsg(
+    msg: string, channelId: string, isDispatchToLocal: boolean,
+    callback?: RtmCallBack
+  ) {
     return this.im.ChatRoom.get({
       id: channelId
     }).send({
@@ -126,13 +130,45 @@ class RongCloudRTMAdapter implements RtmAdapter {
       if (isDispatchToLocal) {
         RtmManager.mRtmChannelListeners.forEach(listener => {
           listener(msg, channelId);
-        })
+        });
       }
     }).catch(function (error) {
       log.log('发送文字消息失败', error);
       if (callback?.onFailure) callback.onFailure(error);
       return Promise.reject(error);
     });
+  }
+
+  /**
+   * TODO
+   * @param channelId
+   * @param callback
+   */
+  createChannel(channelId: string, callback?: RtmCallBack): Promise<unknown> {
+    return Promise.resolve(undefined);
+  }
+
+  /**
+   * TODO
+   * @param channelId
+   * @param callback
+   */
+  releaseChannel(channelId: string, callback?: RtmCallBack): Promise<unknown> {
+    return Promise.resolve(undefined);
+  }
+
+  /**
+   * TODO
+   * @param msg
+   * @param peerId
+   * @param isDispatchToLocal
+   * @param callback
+   */
+  sendC2cMsg(
+    msg: string, peerId: string, isDispatchToLocal: boolean,
+    callback?: RtmCallBack
+  ): Promise<unknown> {
+    return Promise.resolve(undefined);
   }
 }
 

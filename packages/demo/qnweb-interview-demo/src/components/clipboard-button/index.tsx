@@ -3,7 +3,7 @@ import { Button, ButtonProps } from 'antd';
 import { CopyToClipboard, Props as CopyToClipboardProps } from 'react-copy-to-clipboard';
 
 export interface ClipboardButtonProps extends CopyToClipboardProps {
-  button?: ButtonProps;
+  buttonProps?: ButtonProps;
   type?: 'button' | 'text';
 }
 
@@ -13,12 +13,12 @@ export interface ClipboardButtonProps extends CopyToClipboardProps {
  * @constructor
  */
 const ClipboardButton: React.FC<ClipboardButtonProps> = props => {
-  const { button, children, type = 'button', ...restProps } = props;
+  const { buttonProps, children, type = 'button', ...restProps } = props;
   return <CopyToClipboard
     {...restProps}
   >
     {
-      type === 'button' ? <Button {...button}>{children}</Button> : children
+      type === 'button' ? <Button {...buttonProps}>{children}</Button> : children
     }
   </CopyToClipboard>;
 };

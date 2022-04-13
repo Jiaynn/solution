@@ -17,7 +17,7 @@ const RouterConfig = [
   },
   {
     path: '/room/:interviewId',
-    component: lazy(() => import(/* webpackChunkName: 'room'*/ '../pages/room'))
+    component: lazy(() => import(/* webpackChunkName: 'room'*/ '../pages/new-room'))
   },
   {
     path: '/device-test',
@@ -29,29 +29,21 @@ const RouterConfig = [
   }
 ];
 
-interface RootRouterProps {
-}
-
-const Routes = () => {
-  return <Switch>
-    {
-      RouterConfig.map(config => {
-        return <Route key={config.path} {...config} />;
-      })
-    }
-    <Redirect to='/login' path='*' />
-  </Switch>;
-};
-
-const RootRouter: React.FC<RootRouterProps> = () => {
-
+const RootRouter: React.FC = () => {
   return <Router>
     <Suspense fallback={
-      <div className='page-render-loading'>
-        <Spin spinning={true} tip='loading...' />
+      <div className="page-render-loading">
+        <Spin spinning={true} tip="loading..."/>
       </div>
     }>
-      <Routes />
+      <Switch>
+        {
+          RouterConfig.map(config => {
+            return <Route key={config.path} {...config} />;
+          })
+        }
+        <Redirect to="/login" path="*"/>
+      </Switch>
     </Suspense>
   </Router>;
 };

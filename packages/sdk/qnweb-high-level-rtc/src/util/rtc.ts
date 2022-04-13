@@ -1,3 +1,5 @@
+import { AddTimestamp } from '../types';
+
 /**
  * roomToken存在的信息
  */
@@ -18,4 +20,16 @@ export function parseRoomToken(token: string): RtcRoomInfo {
   const lastString = splitRoomToken[splitRoomToken.length - 1] || '';
   const decodedString = atob(lastString);
   return JSON.parse(decodedString) || {};
+}
+
+/**
+ * 添加时间戳属性
+ * @param value
+ */
+export function addTimeStamp<T = Record<string, any>>(value: T): AddTimestamp<T> {
+  const timestamp = new Date().getTime();
+  return {
+    ...value,
+    timestamp,
+  };
 }

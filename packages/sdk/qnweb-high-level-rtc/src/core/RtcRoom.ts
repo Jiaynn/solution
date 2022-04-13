@@ -26,7 +26,7 @@ log.setPreTitle('RTCRoom');
 class RtcRoom {
   public roomEntity: null | RoomEntity = null;  // 房间实体
   public rtcClient: QNRTCClient = QNRTC.createClient(); // QNRTCClient
-  public isJoined: boolean = false; // 是否已加入
+  public isJoined = false; // 是否已加入
   public localCameraParams?: QNCameraVideoTrackConfig; // 本地摄像头采集参数
   public localMicrophoneParams?: QNMicrophoneAudioTrackConfig; // 本地麦克风采集参数
   public localCameraTrack?: QNCameraVideoTrack | null; // 本地摄像头track
@@ -38,10 +38,10 @@ class RtcRoom {
   public customTrackTool: CustomTrackTool = new CustomTrackTool(this); // 自定义track工具
   public mixStreamTool: MixStreamTool = new MixStreamTool(this); // 混流工具
   public playerTool: PlayerTool = new PlayerTool(this); // 播放器工具
-  public currentUserId: string = ''; // 当前用户id
+  public currentUserId = ''; // 当前用户id
   public currentUserExtension?: UserExtension; // 当前用户
   public QNRTCVersion: string = QNRTC.VERSION; // QNRTC版本
-  public tag: string = '[RtcRoom]'; // 日志标签
+  public tag = '[RtcRoom]'; // 日志标签
   // 过滤掉远端指定的track类型
   // admin: 服务端
   public filteredTrackTypes: string[] = [];
@@ -91,14 +91,14 @@ class RtcRoom {
       return rtmClient.joinChannel(imGroupId)
         .then((data: unknown) => {
           log.log('rtmClient.joinChannel', data);
-          return this.joinRtcRoom(roomToken)
+          return this.joinRtcRoom(roomToken);
         })
         .then(() => {
-          this.isJoined = true
+          this.isJoined = true;
         });
     }
     return this.joinRtcRoom(roomToken).then(() => {
-      this.isJoined = true
+      this.isJoined = true;
     });
   }
 
@@ -106,7 +106,7 @@ class RtcRoom {
    * 离开房间
    * 销毁本地的track
    */
- public leaveRoom() {
+  public leaveRoom() {
     ExtQNClientEventListener.dispatchExtEventListener('roomLeft');
     const rtmClient = RtmManager.getRtmAdapter();
     const imGroupId = this.roomEntity?.imGroupId;
@@ -115,11 +115,11 @@ class RtcRoom {
       return rtmClient.leaveChannel(imGroupId)
         .then(() => this.leaveRtcRoom())
         .then(() => {
-          this.isJoined = false
+          this.isJoined = false;
         });
     }
     return this.leaveRtcRoom().then(() => {
-      this.isJoined = false
+      this.isJoined = false;
     });
   }
 
@@ -256,8 +256,10 @@ class RtcRoom {
       track => track.tag === TAG_CAMERA
     );
     if (!tracks?.length) {
-      throw new TypeError(
-        `muteRemoteCamera error, user: ${userId} does not have camera track`
+      return Promise.reject(
+        new TypeError(
+          `muteRemoteCamera error, user: ${userId} does not have camera track`
+        )
       );
     }
     return muted ? this.rtcClient.unsubscribe(
@@ -280,8 +282,10 @@ class RtcRoom {
       track => track.tag === TAG_MICROPHONE
     );
     if (!tracks?.length) {
-      throw new TypeError(
-        `muteRemoteMicrophone error, user: ${userId} does not have microphone track`
+      return Promise.reject(
+        new TypeError(
+          `muteRemoteMicrophone error, user: ${userId} does not have microphone track`
+        )
       );
     }
     return muted ? this.rtcClient.unsubscribe(
@@ -340,7 +344,9 @@ class RtcRoom {
   public setLocalCameraWindowView(elementId: string) {
     const element = document.getElementById(elementId);
     if (!element) {
-      throw new Error(`setLocalCameraWindowView error, elementId ${elementId} not found`);
+      return Promise.reject(
+        new Error(`setLocalCameraWindowView error, elementId ${elementId} not found`)
+      );
     }
     log.log('setLocalCameraWindowView', this.localCameraTrack);
     return this.localCameraTrack?.play(element);
@@ -353,7 +359,9 @@ class RtcRoom {
   public setLocalMicrophoneWindowView(elementId: string) {
     const element = document.getElementById(elementId);
     if (!element) {
-      throw new Error(`setLocalMicrophoneWindowView error, elementId ${elementId} not found`);
+      return Promise.reject(
+        new Error(`setLocalMicrophoneWindowView error, elementId ${elementId} not found`)
+      );
     }
     log.log('setLocalMicrophoneWindowView', this.localMicrophoneTrack);
     return this.localMicrophoneTrack?.play(element);
@@ -367,7 +375,9 @@ class RtcRoom {
   public setUserCameraWindowView(userId: string, elementId: string) {
     const element = document.getElementById(elementId);
     if (!element) {
-      throw new Error(`setUserCameraWindowView error, elementId ${elementId} not found`);
+      return Promise.resolve(
+        new Error(`setUserCameraWindowView error, elementId ${elementId} not found`)
+      );
     }
     const track = [
       ...this.subscribedTracks,
@@ -388,7 +398,9 @@ class RtcRoom {
   public setUserMicrophoneWindowView(userId: string, elementId: string) {
     const element = document.getElementById(elementId);
     if (!element) {
-      throw new Error(`setUserMicrophoneWindowView error, elementId ${elementId} not found`);
+      return Promise.reject(
+        new Error(`setUserMicrophoneWindowView error, elementId ${elementId} not found`)
+      );
     }
     const track = [
       ...this.subscribedTracks,
@@ -475,7 +487,7 @@ class RtcRoom {
       roomToken,
       JSON.stringify(this.currentUserExtension)
     );
-  };
+  }
 
   /**
    * 区分用户角色离开rtc房间
@@ -505,7 +517,7 @@ class RtcRoom {
   protected getSubscribeTracks(remoteTracks: QNRemoteTrack[]) {
     const isAdminTrack = (track: QNTrack) => {
       return track.userID?.startsWith('admin');
-    }
+    };
     return remoteTracks.reduce<QNRemoteTrack[]>((tracks, remoteTrack) => {
       if (
         this.filteredTrackTypes.includes('admin') &&

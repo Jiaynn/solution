@@ -1,3 +1,5 @@
+import { RtmManager } from '../event-bus';
+
 /**
  * RtmManager 监听器
  */
@@ -6,16 +8,16 @@ export type RtmManagerLister = (msg: string, peerId: string) => void;
 /**
  * 适配器
  */
-export interface RtmAdapter {
+export abstract class RtmAdapter {
   /**
-   * TODO
    * 发送 c2c 消息
    * @param msg
    * @param peerId
    * @param isDispatchToLocal
    * @param callback
    */
-  sendC2cMsg?: (msg: string, peerId: string, isDispatchToLocal: boolean, callback?: RtmCallBack) => Promise<unknown>;
+  abstract sendC2cMsg(msg: string, peerId: string, isDispatchToLocal: boolean, callback?: RtmCallBack): Promise<unknown>;
+
   /**
    * 发送频道消息
    * @param msg
@@ -23,33 +25,67 @@ export interface RtmAdapter {
    * @param isDispatchToLocal
    * @param callback
    */
-  sendChannelMsg: (msg: string, channelId: string, isDispatchToLocal: boolean, callback?: RtmCallBack) => Promise<unknown>;
+  abstract sendChannelMsg(msg: string, channelId: string, isDispatchToLocal: boolean, callback?: RtmCallBack): Promise<unknown>;
+
   /**
-   * TODO
    * 创建频道
    * @param channelId
    * @param callback
    */
-  createChannel?: (channelId: string, callback?: RtmCallBack) => Promise<unknown>;
+  abstract createChannel(channelId: string, callback?: RtmCallBack): Promise<unknown>;
+
   /**
    * 加入频道
    * @param channelId
    * @param callback
    */
-  joinChannel: (channelId: string, callback?: RtmCallBack) => Promise<unknown>;
+  abstract joinChannel(channelId: string, callback?: RtmCallBack): Promise<unknown>;
+
   /**
    * 离开频道
    * @param channelId
    * @param callback
    */
-  leaveChannel: (channelId: string, callback?: RtmCallBack) => Promise<unknown>;
+  abstract leaveChannel(channelId: string, callback?: RtmCallBack): Promise<unknown>;
+
   /**
-   * TODO
    * 销毁频道
    * @param channelId
    * @param callBack
    */
-  releaseChannel?: (channelId: string, callback?: RtmCallBack) => Promise<unknown>;
+  abstract releaseChannel(channelId: string, callback?: RtmCallBack): Promise<unknown>;
+
+  /**
+   * 添加点对点消息监听
+   * @param listener
+   */
+  addRtmC2cListener(listener: RtmManagerLister) {
+    RtmManager.addRtmC2cListener(listener);
+  }
+
+  /**
+   * 移除点对点消息监听
+   * @param listener
+   */
+  removeRtmC2cListener(listener: RtmManagerLister) {
+    RtmManager.removeRtmC2cListener(listener);
+  }
+
+  /**
+   * 添加频道消息监听
+   * @param listener
+   */
+  addRtmChannelListener(listener: RtmManagerLister) {
+    RtmManager.addRtmChannelListener(listener);
+  }
+
+  /**
+   * 移除频道消息监听
+   * @param listener
+   */
+  removeRtmChannelListener(listener: RtmManagerLister) {
+    RtmManager.removeRtmChannelListener(listener);
+  }
 }
 
 /**
@@ -57,7 +93,7 @@ export interface RtmAdapter {
  */
 export interface RtmCallBack {
   onSuccess?: (res?: unknown) => void;
-  onFailure?: (error?: unknown) => void
+  onFailure?: (error?: unknown) => void;
 }
 
 /**
@@ -68,6 +104,7 @@ export interface BaseMessageJsonData {
   senderId: string;
   senderName: string;
   msgContent: string;
+
   [key: string]: any;
 }
 

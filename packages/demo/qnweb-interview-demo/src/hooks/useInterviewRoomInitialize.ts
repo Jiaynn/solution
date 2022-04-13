@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { BaseUserInfo, heartBeatInterview, IMConfig, Interview, joinInterview } from '@/api';
 
-const useInterviewRoomInitialize = (interviewId?: string) => {
+export const useInterviewRoomInitialize = (interviewId?: string) => {
   const [interview, setInterview] = useState<Partial<Interview>>();
   const [roomToken, setRoomToken] = useState<string>();
   const [onlineUserList, setOnlineUserList] = useState<BaseUserInfo[]>();
@@ -11,6 +11,7 @@ const useInterviewRoomInitialize = (interviewId?: string) => {
   const [imConfig, setImConfig] = useState<IMConfig>();
   const heartBeatTimer = useRef<NodeJS.Timer | null>(null);
   const [interviewRoomJoined, setInterviewRoomJoined] = useState<boolean>(false);
+
   useEffect(() => {
     // 心跳监听
     async function listenHeartBeat(interviewId: string) {
@@ -52,5 +53,3 @@ const useInterviewRoomInitialize = (interviewId?: string) => {
     imConfig
   }
 }
-
-export default useInterviewRoomInitialize;

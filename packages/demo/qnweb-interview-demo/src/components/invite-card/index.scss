@@ -1,10 +1,11 @@
 .invite-card {
   box-shadow: 0 2px 13px 0 #1AC1FF;
-  overflow: hidden;
   border-radius: 12px;
   width: 506px;
   box-sizing: border-box;
-  padding-bottom: 40px;
+  padding: 40px 0;
+  max-height: 90%;
+  overflow: auto;
 
   .info {
     display: flex;
@@ -24,7 +25,7 @@
 
     &-panel {
       width: 100%;
-      padding: 48px 48px 28px;
+      padding: 0 48px 28px;
 
       &-title {
         text-align: center;
@@ -37,6 +38,7 @@
         margin-bottom: 16px;
         display: grid;
         grid-template-columns: 80px auto;
+        word-break: break-all;
       }
 
       &-label, &-dtl {
@@ -55,6 +57,8 @@
         margin-bottom: 50px;
         margin-top: 54px;
         border-radius: 16px;
+        min-height: 180px;
+        word-break: break-all;
 
         .date {
           font-weight: 500;
@@ -64,17 +68,14 @@
           margin-bottom: 8px;
         }
 
-        .time-box {
+        .time {
           display: flex;
           align-items: center;
           justify-content: center;
           margin-bottom: 20px;
-
-          .time {
-            font-weight: 500;
-            font-size: 28px;
-            color: #333;
-          }
+          font-weight: 500;
+          font-size: 28px;
+          color: #333;
         }
       }
 
