@@ -1,4 +1,5 @@
 import type { Options as ExecaOptions } from 'execa';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import execa from 'execa';
 
@@ -44,7 +45,7 @@ export async function buildDemo(name: string) {
  * @param name
  */
 export async function buildSDK(name: string) {
-  return pnpmFilter(name, 'build:prod');
+  return pnpmFilter(name, 'build');
 }
 
 /**
