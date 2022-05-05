@@ -31,6 +31,7 @@ export const useMixStream = (params: Params): void => {
     if (!params.enabled) return;
     if (!roomClient) return;
     if (!params.isNeedStart) return;
+    console.log('useMixStream 开始合流任务')
     roomClient.getMixStreamTool().startMixStreamJob({
       width: 640,
       height: 400,
@@ -51,6 +52,7 @@ export const useMixStream = (params: Params): void => {
       width: 640,
       height: 400,
     };
+    console.log('useMixStream 合大屏流')
     if (large.type === 'camera') {
       roomClient.getMixStreamTool().updateUserCameraMergeOptions(large.uid, options);
     }
@@ -74,6 +76,7 @@ export const useMixStream = (params: Params): void => {
       height: 100,
       zOrder: 1
     };
+    console.log('useMixStream 合小屏流')
     if (small.type === 'camera') {
       roomClient.getMixStreamTool().updateUserCameraMergeOptions(small.uid, option);
     }
