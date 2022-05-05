@@ -50,7 +50,7 @@ const Room: React.FC = () => {
   });
 
   useMixStream({
-    enabled: isJoined,
+    enabled: isJoined && interview?.roleCode === 1,
     queue: playerQueue,
     isNeedStart: false
   });
