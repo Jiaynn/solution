@@ -7,5 +7,4 @@ declare module 'moment' {
     type Moment = Dayjs
   }
   export = moment
-  export as namespace moment
 }

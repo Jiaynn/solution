@@ -2,6 +2,9 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Avatar, Button, Input, Popover } from 'antd';
 
+import logoPNG from './logo.png';
+import iconConfirm from './icon-confirm.svg';
+
 import './index.scss';
 
 export interface CommonHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -29,7 +32,7 @@ const UserBox: React.FC<CommonHeaderProps> = props => {
         <div className="content">
           <Input className="input" value={username} onChange={event => setUsername(event.target.value)}/>
           <img
-            src={require('../../assets/images/icon-confirm.svg').default}
+            src={iconConfirm}
             className="confirm-btn"
             onClick={() => onUpdateUsername(username)}
             alt='icon-confirm'
@@ -46,7 +49,7 @@ const CommonHeader: React.FC<CommonHeaderProps> = props => {
   return <div className={classNames('common-header', className)}>
     <div className="header">
       <div className="header-logo">
-        <img src={require('@/assets/images/logo.png').default} alt=""/>
+        <img src={logoPNG} alt=""/>
       </div>
       <div className="header-user">
         <Popover

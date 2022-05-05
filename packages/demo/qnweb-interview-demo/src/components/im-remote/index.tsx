@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { Button, Input } from 'antd';
-import ClipboardButton, { ClipboardButtonProps } from '../clipboard-button';
 import dayjs from 'dayjs';
+
 import { BaseUserInfo, IMConfig } from '@/api';
-import { LeaveUser } from '../video-remote';
 import { MessageBodyAction, sendTextMessage, useGroupByMessages, useQNIM } from '@/hooks';
+import iconLink from './icon-link.svg';
+import ClipboardButton, { ClipboardButtonProps } from '../clipboard-button';
+import { LeaveUser } from '../video-remote';
+
 import './index.scss';
 
 export interface IMRemoteProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -96,7 +99,7 @@ const IMRemote: React.FC<IMRemoteProps> = props => {
       <div className="row-flex-end">
         <ClipboardButton {...copyConfig}>
           <div className="copy-btn">
-            <img className="copy-btn-icon" src={require('../../assets/images/icon-link.svg').default} alt=""/>
+            <img className="copy-btn-icon" src={iconLink} alt=""/>
             <span className="copy-btn-text">复制本次面试地址</span>
           </div>
         </ClipboardButton>

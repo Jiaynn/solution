@@ -1,4 +1,4 @@
-import {deviceManager, RecordConfig, Track, TrackModeSession} from "pili-rtc-web";
+import { deviceManager, RecordConfig, Track, TrackModeSession } from 'pili-rtc-web';
 
 export interface LocalTracksRes {
   status: 'success' | 'failed';
@@ -10,10 +10,12 @@ export function isCameraTrack(track: Track) {
   // 兼容小程序无法自定义tag的问题
   return track.info.kind === 'video' && track.info.tag !== 'screen';
 }
+
 // 音频
 export function isAudioTrack(track: Track) {
   return track.info.kind === 'audio';
 }
+
 // 屏幕共享
 export function isScreenTrack(track: Track) {
   return track.info.kind === 'video' && track.info.tag === 'screen';
@@ -48,7 +50,7 @@ export async function getLocalTracks(config: RecordConfig): Promise<LocalTracksR
   return {
     status,
     tracks: successTracks
-  }
+  };
 }
 
 /**
@@ -65,7 +67,7 @@ export function publishTracks(roomSession: TrackModeSession, tracks: Track[]) {
     return roomSession.publishedTracks.every(
       publishedTrack => publishedTrack.info.trackId !== track.info.trackId
     );
-  })
+  });
   return roomSession.publish(preparedPublishTracks);
 }
 

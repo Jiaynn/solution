@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import VideoRemote, { LeaveUser } from '@/components/video-remote';
-import IMRemote from '@/components/im-remote';
-import { endInterview, leaveInterview } from '@/api';
 import { message, Spin } from 'antd';
 import { TrackModeSession } from 'pili-rtc-web';
 import classNames from 'classnames';
+
+import VideoRemote, { LeaveUser } from '@/components/video-remote';
+import IMRemote from '@/components/im-remote';
+import { endInterview, leaveInterview } from '@/api';
 import { ClipboardButtonProps } from '@/components/clipboard-button';
 import { useInterviewRoomInitialize } from '@/hooks';
-import css from './index.module.scss';
+
+import styles from './index.module.scss';
 
 const Room: React.FC = () => {
   const { interviewId } = useParams<{ interviewId: string }>();
@@ -20,6 +22,10 @@ const Room: React.FC = () => {
     allUserList, curUser, showLeaveInterview,
     interviewRoomJoined, imConfig
   } = useInterviewRoomInitialize(interviewId);
+
+  useEffect(() => {
+    setRoomSession(new TrackModeSession());
+  }, [])
 
   // 离开面试房间
   const leaveRoom = () => {
@@ -37,10 +43,6 @@ const Room: React.FC = () => {
     });
   }
 
-  useEffect(() => {
-    setRoomSession(new TrackModeSession());
-  }, [])
-
   /**
    * 复制文本配置
    */
@@ -56,10 +58,10 @@ const Room: React.FC = () => {
     }
   };
 
-  return <div className={css.room}>
-    <div className={css.remote}>
-      <div className={classNames(css.rtcModule, {
-        [css.rtcModuleLoading]: !roomToken
+  return <div className={styles.container}>
+    <div className={styles.body}>
+      <div className={classNames(styles.rtcModule, {
+        [styles.rtcModuleLoading]: !roomToken
       })}>
         {
           roomToken ? <VideoRemote
@@ -81,7 +83,7 @@ const Room: React.FC = () => {
       <IMRemote
         copyConfig={copyConfig}
         interviewId={interviewId}
-        className={css.chat}
+        className={styles.chat}
         candidateName={interview?.candidateName}
         career={interview?.career}
         onlineUserList={onlineUserList}

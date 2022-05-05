@@ -8,7 +8,7 @@ export interface GroupByMessage {
   list: (Omit<Message, 'content'> & { content: MessageBody })[];
 }
 
-const useGroupByMessages = (messages: Message[]) => {
+export const useGroupByMessages = (messages: Message[]) => {
   const [groupByMessages, setGroupByMessages] = useState<GroupByMessage[]>([]);
 
   useEffect(() => {
@@ -43,5 +43,3 @@ const useGroupByMessages = (messages: Message[]) => {
     groupByMessages
   ]
 }
-
-export default useGroupByMessages;

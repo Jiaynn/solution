@@ -109,7 +109,7 @@ class MutableTrackRoom extends RtcRoom {
           );
         }
       }
-      this.initRemoteMicSeats();
+      // this.initRemoteMicSeats();
     });
   }
 
@@ -228,9 +228,10 @@ class MutableTrackRoom extends RtcRoom {
     this.userCameraStatusChanged(this.currentUserId, !muted);
     const userMicSeat = this.getMicSeatByUid(this.currentUserId);
     if (userMicSeat) {
-      RoomSignalingManager.sendUserCameraStatusChange(
-        userMicSeat,
-      );
+      RoomSignalingManager.sendUserCameraStatusChange({
+        ...userMicSeat,
+        isOwnerOpenVideo: !muted,
+      });
     }
   }
 
@@ -246,9 +247,10 @@ class MutableTrackRoom extends RtcRoom {
     this.userMicrophoneStatusChanged(this.currentUserId, !muted);
     const userMicSeat = this.getMicSeatByUid(this.currentUserId);
     if (userMicSeat) {
-      RoomSignalingManager.sendUserMicrophoneStatusChange(
-        userMicSeat,
-      );
+      RoomSignalingManager.sendUserMicrophoneStatusChange({
+        ...userMicSeat,
+        isOwnerOpenAudio: !muted,
+      });
     }
   }
 
@@ -405,13 +407,13 @@ class MutableTrackRoom extends RtcRoom {
   /**
    * 用户摄像头状态改变
    * @param uid
-   * @param status
+   * @param isOpen
    */
-  private userCameraStatusChanged(uid: string, status: boolean) {
+  private userCameraStatusChanged(uid: string, isOpen: boolean) {
     this.mMicSeats = this.mMicSeats.map(
       mMicSeat => mMicSeat.uid === uid ? {
         ...mMicSeat,
-        isOwnerOpenVideo: status
+        isOwnerOpenVideo: isOpen
       } : mMicSeat
     );
     const currentMicSeat = this.getMicSeatByUid(uid);
@@ -425,13 +427,13 @@ class MutableTrackRoom extends RtcRoom {
   /**
    * 用户麦克风状态改变
    * @param uid
-   * @param status
+   * @param isOpen
    */
-  private userMicrophoneStatusChanged(uid: string, status: boolean) {
+  private userMicrophoneStatusChanged(uid: string, isOpen: boolean) {
     this.mMicSeats = this.mMicSeats.map(
       mMicSeat => mMicSeat.uid === uid ? {
         ...mMicSeat,
-        isOwnerOpenAudio: status
+        isOwnerOpenAudio: isOpen
       } : mMicSeat
     );
     const currentMicSeat = this.getMicSeatByUid(uid);
@@ -520,7 +522,7 @@ class MutableTrackRoom extends RtcRoom {
     this.rtcClient.subscribe(subscribeTracks).then((res) => {
       this.subscribedTracks = this.subscribedTracks.concat(subscribeTracks);
       log.log('订阅成功 res', res);
-      log.log('订阅成功 subscribedTracks', subscribeTracks);
+      log.log('订阅成功 subscribedTracks', this.subscribedTracks);
       this.addTrackMuteListener(subscribeTracks);
       this.initTrackMicSeats(subscribeTracks);
       log.log('mMicSeats', this.mMicSeats);
@@ -633,10 +635,10 @@ class MutableTrackRoom extends RtcRoom {
       track.on('mute-state-changed', (isMuted: boolean) => {
         log.log('mute-state-changed', isMuted);
         if (track.tag === TAG_CAMERA && track.userID) {
-          return this.userCameraStatusChanged(track.userID, isMuted);
+          return this.userCameraStatusChanged(track.userID, !isMuted);
         }
         if (track.tag === TAG_MICROPHONE && track.userID) {
-          return this.userMicrophoneStatusChanged(track.userID, isMuted);
+          return this.userMicrophoneStatusChanged(track.userID, !isMuted);
         }
       });
     });

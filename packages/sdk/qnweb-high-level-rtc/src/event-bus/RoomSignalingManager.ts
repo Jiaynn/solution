@@ -8,14 +8,13 @@ import {
   UserMicSeat
 } from '../types';
 import RoomManager from './RoomManager';
-import { LogModel } from '../util';
+import { addTimeStamp, LogModel } from '../util';
 
 const log = new LogModel('log');
 log.setPreTitle('RoomSignalingManager');
 
 class RoomSignalingManager {
-
-  public tag: string = 'RoomSignalingManager'
+  public tag = 'RoomSignalingManager'
 
   getImGroupId() {
     return RoomManager.getRoomEntity()?.imGroupId || '';
@@ -28,7 +27,7 @@ class RoomSignalingManager {
   sendUserSitDown(data: UserMicSeat) {
     const signaling: SitDownUpSignaling = {
       action: 'rtc_sitDown',
-      data
+      data: addTimeStamp(data),
     };
     const msg = JSON.stringify(signaling);
     log.log('RtmManager.getRtmAdapter()', RtmManager.getRtmAdapter());
@@ -47,7 +46,7 @@ class RoomSignalingManager {
   sendUserSitUp(data: UserMicSeat) {
     const signaling: SitDownUpSignaling = {
       action: 'rtc_sitUp',
-      data
+      data: addTimeStamp(data),
     };
     const msg = JSON.stringify(signaling);
     return RtmManager.getRtmAdapter()?.sendChannelMsg(
@@ -64,7 +63,7 @@ class RoomSignalingManager {
   sendUserCameraStatusChange(data: UserMicSeat) {
     const signaling: CameraMicStatusSignaling = {
       action: 'rtc_cameraStatus',
-      data
+      data: addTimeStamp(data),
     };
     const msg = JSON.stringify(signaling);
     return RtmManager.getRtmAdapter()?.sendChannelMsg(
@@ -81,7 +80,7 @@ class RoomSignalingManager {
   sendUserMicrophoneStatusChange(data: UserMicSeat) {
     const signaling: CameraMicStatusSignaling = {
       action: 'rtc_microphoneStatus',
-      data
+      data: addTimeStamp(data),
     };
     const msg = JSON.stringify(signaling);
     return RtmManager.getRtmAdapter()?.sendChannelMsg(
@@ -98,7 +97,7 @@ class RoomSignalingManager {
   sendUserPubScreen(data: ScreenMicSeat) {
     const signaling: ScreenSignaling = {
       action: 'rtc_pubScreen',
-      data
+      data: addTimeStamp(data),
     };
     const msg = JSON.stringify(signaling);
     return RtmManager.getRtmAdapter()?.sendChannelMsg(
@@ -115,7 +114,7 @@ class RoomSignalingManager {
   sendUserUnPubScreen(data: ScreenMicSeat) {
     const signaling: ScreenSignaling = {
       action: 'rtc_unPubScreen',
-      data
+      data: addTimeStamp(data),
     };
     const msg = JSON.stringify(signaling);
     return RtmManager.getRtmAdapter()?.sendChannelMsg(
@@ -132,7 +131,7 @@ class RoomSignalingManager {
   sendUserJoin(data: UserExtension) {
     const signaling: UserJoinSignaling = {
       action: 'rtc_userJoin',
-      data
+      data: addTimeStamp(data),
     };
     const msg = JSON.stringify(signaling);
     return RtmManager.getRtmAdapter()?.sendChannelMsg(
@@ -149,7 +148,7 @@ class RoomSignalingManager {
   sendUserLeft(data: UserExtension) {
     const signaling: UserJoinSignaling = {
       action: 'rtc_userLeft',
-      data
+      data: addTimeStamp(data),
     };
     const msg = JSON.stringify(signaling);
     return RtmManager.getRtmAdapter()?.sendChannelMsg(

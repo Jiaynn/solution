@@ -1,103 +1,192 @@
-import React, { HTMLAttributes, useRef } from 'react';
-import { Form, Input } from 'antd';
-import CaptchaButton, { InternalChangeEventHandler } from '../captcha-button';
-import { Callbacks } from 'rc-field-form/lib/interface';
-import { LoadingButton } from '../button';
-import { phoneNumberUtil } from '../../utils';
-import Icon from '../icon';
-import { linkConfig } from '../../config';
-import VConsole  from 'vconsole';
-import './index.scss'
+import React, { useState } from 'react';
+import classNames from 'classnames';
+import { Button, Form, Input } from 'antd';
+import { useInterval } from 'ahooks';
+
+import iconChecked from './icon-checked.svg';
+import iconUnchecked from './icon-unchecked.svg';
+import bgPNG from './login-card-bg.png';
+
+import './index.scss';
 
 export interface LoginData {
+  /**
+   * 手机号
+   */
   phone: string;
+  /**
+   * 验证码
+   */
   smsCode: string;
+  /**
+   * 是否阅读相关协议
+   */
   checked: boolean;
 }
 
-interface LoginFormProps extends HTMLAttributes<HTMLDivElement> {
-  tip?: string;
-  onFinish?: Callbacks['onFinish'];
-  onFinishFailed?: Callbacks['onFinishFailed'];
-  onFormChange: (value: LoginData) => void; 
-  data: LoginData
-  onGetCaptcha: InternalChangeEventHandler;
-  onOk: (data: LoginData) => void;
-  onCheck: () => void;
+interface LoginFormProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSubmit' | 'onChange'> {
+  /**
+   * 表单数据
+   */
+  data: LoginData;
+  /**
+   * 表单数据改变触发的事件
+   * @param value
+   */
+  onChange: (value: LoginData) => void;
+  /**
+   * 点击获取验证码按钮
+   */
+  onSmsClick: () => Promise<boolean> | boolean;
+  /**
+   * 点击登录按钮
+   * @param data
+   */
+  onSubmit: (data: LoginData) => void;
+  /**
+   * 点击欢迎登录标题
+   */
+  onHeaderClick?: () => void;
 }
 
+/**
+ * 登录表单
+ * @param props
+ * @constructor
+ */
 const LoginForm: React.FC<LoginFormProps> = props => {
-  const { tip, onFinish, onFinishFailed, onFormChange, data, onGetCaptcha, onOk, onCheck } = props;
-  const debug = useRef<VConsole>();
-  function onOpenDebug() {
-    if (!debug.current) {
-      debug.current = new VConsole();
+  const {
+    className, data,
+    onHeaderClick,
+    onChange, onSmsClick, onSubmit,
+    ...restProps
+  } = props;
+
+  const [countdown, setCountdown] = useState<number>(); // 倒计时
+  const [smsLoading, setSmsLoading] = useState<boolean>(false); // 获取验证码加载
+
+  /**
+   * 点击发送验证码开始倒计时
+   */
+  const onSms = async () => {
+    setSmsLoading(true);
+    const ok = await onSmsClick();
+    if (ok) {
+      setCountdown(60);
     }
-  }
-  return <div className='login-form'>
-    <div className='left'>
-      <img src={require('@/assets/images/login-card-bg.png').default} alt="登录表单背景图"/>
+    setSmsLoading(false);
+  };
+
+  /**
+   * 验证码倒计时
+   */
+  useInterval(() => {
+    if (countdown) {
+      if (countdown > 0) {
+        setCountdown(countdown - 1);
+      } else {
+        setCountdown(undefined);
+      }
+    }
+  }, (countdown && countdown > 0) ? 1000 : undefined);
+
+  return <div className={classNames('login-form', className)} {...restProps}>
+    <div className="left">
+      <img src={bgPNG} alt="登录表单背景图"/>
     </div>
-    <div className='right'>
-      <h1 className='header'>
-        <span className='bar'></span>
-        <span className='text' onClick={onOpenDebug}>欢迎登录</span>
-        <span className='bar bar-mirror'></span>
+    <div className="right">
+      <h1 className="header" onClick={onHeaderClick}>
+        <span className="bar"/>
+        <span className="text">欢迎登录</span>
+        <span className="bar bar-mirror"/>
       </h1>
-      <div className='body'>
+      <div className="body">
         <Form
-          layout='vertical'
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
+          layout="vertical"
         >
           <Form.Item
             label="手机号"
-            style={{marginBottom: 10}}
+            style={{ marginBottom: 10 }}
           >
             <Input
-              className='base-input'
+              className="base-input"
               bordered={false}
-              placeholder='请输入手机号'
+              placeholder="请输入手机号"
               value={data.phone}
-              onChange={event => onFormChange({...data, phone: phoneNumberUtil(event.target.value)})}
+              onChange={event => {
+                const value = event.target.value;
+                onChange({
+                  ...data,
+                  phone: value,
+                });
+              }}
             />
           </Form.Item>
 
-          <div className='tip'>{tip || '未注册用户可以手机号直接登录'}</div>
+          <div className="tip">
+            未注册用户可以手机号直接登录
+          </div>
 
           <Form.Item
             label="验证码"
           >
-            <div className='captcha'>
+            <div className="captcha">
               <Input
                 bordered={false}
-                placeholder='请输入验证码'
-                className='captcha-input base-input'
+                placeholder="请输入验证码"
+                className="sms-input base-input"
                 value={data.smsCode}
-                onChange={event => onFormChange({...data, smsCode: event.target.value})}
+                onChange={event => {
+                  onChange({
+                    ...data,
+                    smsCode: event.target.value
+                  });
+                }}
               />
-              <CaptchaButton
-                className='captcha-input-btn'
-                onChange={onGetCaptcha}
-              />
+              {
+                countdown && countdown > 0 ?
+                  <Button type="link" className="countdown-button">{countdown}s</Button> :
+                  <Button
+                    type="link"
+                    onClick={onSms}
+                    className="countdown-button"
+                    loading={smsLoading}
+                  >获取验证码</Button>
+              }
             </div>
           </Form.Item>
 
-          <Form.Item style={{marginBottom: '16px'}}>
-            <div className='button-wrap'>
-              <LoadingButton
-                className='button'
-                type="primary"
-                htmlType="submit"
-                onClick={() => onOk(data)}
-              >登录</LoadingButton>
-            </div>
+          <Form.Item style={{ marginBottom: '16px' }}>
+            <Button
+              block
+              className="button"
+              type="primary"
+              htmlType="submit"
+              onClick={() => onSubmit(data)}
+            >登录</Button>
           </Form.Item>
 
           <Form.Item>
-            <div className='agreement-check' onClick={onCheck}>
-              <Icon type={data.checked ? 'icon-pitch-on' : 'icon-pitch-on-off'}/>
-              <span className='agreement'>我已阅读并同意<a target='_blank' href={linkConfig.userAgreement} className='blank-link' rel="noreferrer">《七牛云服务用户协议》</a>和<a className='blank-link' target='_blank' href={linkConfig.privacyRight} rel="noreferrer">《隐私权政策》</a></span>
+            <div className="agreement-check" onClick={() => onChange({ ...data, checked: !data.checked })}>
+              <img
+                src={data.checked ? iconChecked : iconUnchecked}
+                alt={`icon-checked-${data.checked}`}
+              />
+              <span className="agreement">
+                <span>我已阅读并同意</span>
+                <a
+                  className="blank-link"
+                  target="_blank"
+                  href="https://www.qiniu.com/user-agreement"
+                  rel="noreferrer"
+                >《七牛云服务用户协议》</a>
+                <span>和</span>
+                <a
+                  className="blank-link"
+                  target="_blank"
+                  href="https://www.qiniu.com/privacy-right"
+                  rel="noreferrer">《隐私权政策》</a>
+              </span>
             </div>
           </Form.Item>
         </Form>

@@ -15,7 +15,7 @@ export interface QNIMConfig {
  */
 export type QNIMJoinState = 'notIn' | 'entering' | 'joined' | 'failed';
 
-const useQNIM = (config?: QNIMConfig) => {
+export const useQNIM = (config?: QNIMConfig) => {
   const [isConnected, setIsConnected] = useState(false);
   const [adapter, setAdapter] = useState<QNRTMAdapter>();
   const [joinState, setJoinState] = useState<QNIMJoinState>('notIn');
@@ -76,4 +76,3 @@ const useQNIM = (config?: QNIMConfig) => {
   };
 };
 
-export default useQNIM;

@@ -1,4 +1,5 @@
 import * as QNIM from 'qnweb-im';
+
 import { RtmAdapter, RtmCallBack } from '../types';
 import RtmManager from '../event-bus/RtmManager';
 import { LogModel } from '../util';
@@ -6,11 +7,10 @@ import { LogModel } from '../util';
 const log = new LogModel('log');
 log.setPreTitle('QNRTMAdapter');
 
-class QNRTMAdapter implements RtmAdapter {
+class QNRTMAdapter extends RtmAdapter {
   public appKey: string;
   public im: any;
   public loginCallback?: RtmCallBack | null;
-  public sendChannelMsgCallback?: RtmCallBack | null;
   public maxInitCount: number;
   public initCount: number;
   // 本地消息暂存队列
@@ -21,10 +21,11 @@ class QNRTMAdapter implements RtmAdapter {
     msg: string,
     channelId: string
   }[] = [];
-  public tag: string = 'QNRTMAdapter';
+  public tag = 'QNRTMAdapter';
   private joinChannelSuccessCallback: ((res?: unknown) => void) | undefined;
 
   constructor(appKey: string) {
+    super();
     this.appKey = appKey;
     this.maxInitCount = 20;
     this.initCount = 0;
@@ -32,47 +33,22 @@ class QNRTMAdapter implements RtmAdapter {
       autoLogin: false,
       appid: this.appKey,
     });
-    this.addIMEventListener();
-  }
-
-  /**
-   * 获取IM实例
-   * 因为im实例过程中，是个异步任务，所以需要定时实例，直到实例成功
-   */
-  getIM(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      if (this.initCount > this.maxInitCount) {
-        // 超出最大实例化次数
-        return reject('Instantiation failed');
-      }
-      if (!this.im) {
-        this.im = QNIM.init({
-          autoLogin: false,
-          appid: this.appKey,
-        });
-      }
-      if (this.im && this.im.isReady && this.im.isReady()) {
-        resolve(this.im);
-      } else {
-        setTimeout(() => {
-          this.initCount++;
-          resolve(this.getIM());
-        }, 1000);
-      }
-    });
+    this.addListener();
   }
 
   /**
    * 设置监听
    */
-  addIMEventListener() {
+  private addListener() {
     this.im.on({
       imGroupJoined: (data: unknown) => {
+        log.log('imGroupJoined', data)
         /**
          * 聊天室加入成功
          */
         if (this.joinChannelSuccessCallback) {
-          this.joinChannelSuccessCallback(data)
+          log.log('imGroupJoined this.joinChannelSuccessCallback', data)
+          this.joinChannelSuccessCallback(data);
         }
       },
       /**
@@ -152,7 +128,10 @@ class QNRTMAdapter implements RtmAdapter {
    * @param config
    * @param callback
    */
-  _connect(config: { name: string; password: string }, callback?: RtmCallBack) {
+  private _connect(
+    config: { name: string; password: string },
+    callback?: RtmCallBack
+  ) {
     const { name, password } = config;
     this.loginCallback = callback;
     this.getIM().then(() => {
@@ -164,9 +143,64 @@ class QNRTMAdapter implements RtmAdapter {
   }
 
   /**
+   * 发送频道消息内部消息
+   * @param msg
+   * @param channelId
+   * @param isDispatchToLocal
+   * @param callback
+   */
+  private _sendChannelMsg(
+    msg: string, channelId: string, isDispatchToLocal: boolean,
+    callback?: RtmCallBack
+  ) {
+    const clientMId = this.im.sysManage.sendGroupMessage({
+      content: msg,
+      gid: channelId,
+    });
+    // 本地发送消息暂存队列
+    this.localMessageQueue.push({
+      clientMId,
+      callback,
+      isDispatchToLocal,
+      msg,
+      channelId
+    });
+  }
+
+  /**
+   * 获取IM实例
+   * 因为im实例过程中，是个异步任务，所以需要定时实例，直到实例成功
+   */
+  getIM(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (this.initCount > this.maxInitCount) {
+        // 超出最大实例化次数
+        return reject('Instantiation failed');
+      }
+      if (!this.im) {
+        this.im = QNIM.init({
+          autoLogin: false,
+          appid: this.appKey,
+        });
+      }
+      if (this.im && this.im.isReady && this.im.isReady()) {
+        resolve(this.im);
+      } else {
+        setTimeout(() => {
+          this.initCount++;
+          resolve(this.getIM());
+        }, 1000);
+      }
+    });
+  }
+
+  /**
    * 初始化 im
    */
-  connect(config: { name: string; password: string }, callback?: RtmCallBack) {
+  connect(
+    config: { name: string; password: string },
+    callback?: RtmCallBack
+  ) {
     return new Promise((resolve, reject) => {
       this._connect(config, {
         onSuccess: (res: any) => {
@@ -188,12 +222,13 @@ class QNRTMAdapter implements RtmAdapter {
    */
   joinChannel(channelId: string, callback?: RtmCallBack) {
     return this.im.chatroomManage.join(channelId).then(() => {
+      log.log('join after')
       return new Promise(resolve => {
         this.joinChannelSuccessCallback = (data: unknown) => {
           if (callback?.onSuccess) callback?.onSuccess(data);
           resolve(data);
-        }
-      })
+        };
+      });
     }).catch((error: any) => {
       if (error.code === 20017) {
         if (callback?.onSuccess) return callback.onSuccess(error);
@@ -221,28 +256,6 @@ class QNRTMAdapter implements RtmAdapter {
   }
 
   /**
-   * 发送频道消息内部消息
-   * @param msg
-   * @param channelId
-   * @param isDispatchToLocal
-   * @param callback
-   */
-  _sendChannelMsg(msg: string, channelId: string, isDispatchToLocal: boolean, callback?: RtmCallBack) {
-    const clientMId = this.im.sysManage.sendGroupMessage({
-      content: msg,
-      gid: channelId,
-    });
-    // 本地发送消息暂存队列
-    this.localMessageQueue.push({
-      clientMId,
-      callback,
-      isDispatchToLocal,
-      msg,
-      channelId
-    });
-  }
-
-  /**
    * 发送频道消息
    * 发送消息
    * @param msg
@@ -250,7 +263,10 @@ class QNRTMAdapter implements RtmAdapter {
    * @param isDispatchToLocal
    * @param callback
    */
-  sendChannelMsg(msg: string, channelId: string, isDispatchToLocal: boolean, callback?: RtmCallBack) {
+  sendChannelMsg(
+    msg: string, channelId: string, isDispatchToLocal: boolean,
+    callback?: RtmCallBack
+  ) {
     return new Promise((resolve, reject) => {
       this._sendChannelMsg(msg, channelId, isDispatchToLocal, {
         onSuccess(res) {
@@ -263,6 +279,42 @@ class QNRTMAdapter implements RtmAdapter {
         }
       });
     });
+  }
+
+  /**
+   * TODO
+   * @param msg
+   * @param peerId
+   * @param isDispatchToLocal
+   * @param callback
+   */
+  sendC2cMsg(
+    msg: string, peerId: string, isDispatchToLocal: boolean,
+    callback?: RtmCallBack
+  ): Promise<unknown> {
+    return Promise.resolve(undefined);
+  }
+
+  /**
+   * TODO
+   * @param channelId
+   * @param callback
+   */
+  createChannel(
+    channelId: string, callback?: RtmCallBack
+  ): Promise<unknown> {
+    return Promise.resolve(undefined);
+  }
+
+  /**
+   * TODO
+   * @param channelId
+   * @param callback
+   */
+  releaseChannel(
+    channelId: string, callback?: RtmCallBack
+  ): Promise<unknown> {
+    return Promise.resolve(undefined);
   }
 }
 

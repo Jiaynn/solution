@@ -15,6 +15,11 @@ export interface RoomEntity {
   imGroupId?: string;
 
   /**
+   * 合流任务id
+   */
+  streamID?: string;
+
+  /**
    * 推流地址
    */
   pushUri?: string;
@@ -84,5 +89,6 @@ export enum ClientRoleType {
  */
 export interface ScreenMicSeatListener {
   onScreenMicSeatAdd?(seat: ScreenMicSeat): void;
+
   onScreenMicSeatRemove?(seat: ScreenMicSeat): void;
 }

@@ -9,6 +9,7 @@ import RtcRoom from './RtcRoom';
 import ExtQNClientEventListener, { ExtQNClientEventName } from '../event-bus/ExtQNClientEventListener';
 import { TAG_CAMERA, TAG_MICROPHONE, TAG_SCREEN } from '../constants';
 import { LogModel } from '../util';
+import { FunctionType } from '../types';
 
 export type MixStreamJobConfig = Omit<QNTranscodingLiveStreamingConfig, 'streamID' | 'url'>;
 
@@ -45,39 +46,31 @@ log.setPreTitle('MixStreamTool');
  */
 class MixStreamTool {
   public rtcRoom?: RtcRoom;
-  public tag: string = 'MixStreamManager';
+  public tag = 'MixStreamManager';
   public tracksMap = new Map<string, MergeOption>();
   public toDoCameraMergeOptionsMap = new Map<string, MergeOption>();
   public toDoMicrophoneMergeOptionsMap = new Map<string, MergeOption>();
   public toDoScreenMergeOptionsMap = new Map<string, MergeOption>();
   public toDoCustomMergeOptionsMap = new Map<string, MergeOption>();
   public rtcEventMap: {
-    [key: string]: Function,
+    [key: string]: (userID: string, tracks: (QNRemoteAudioTrack | QNRemoteVideoTrack)[]) => void;
   };
   public extRtcEventMap: {
-    [eventName in ExtQNClientEventName]?: Function
-  }
+    [eventName in ExtQNClientEventName]?: (tracks: QNLocalTrack[]) => void;
+  };
 
   /**
    * 推流地址
    */
   getPushUri() {
-    const pushUri = this.rtcRoom?.roomEntity?.pushUri;
-    if (!pushUri) {
-      throw new Error('pushUri does not exist');
-    }
-    return pushUri;
+    return this.rtcRoom?.roomEntity?.pushUri || '';
   }
 
   /**
    * 房间id
    */
-  getRoomId() {
-    const roomId = this.rtcRoom?.roomEntity?.roomId;
-    if (!roomId) {
-      throw new Error('roomId does not exist');
-    }
-    return roomId;
+  getStreamID() {
+    return this.rtcRoom?.roomEntity?.streamID || '';
   }
 
   constructor(rtcRoom: RtcRoom) {
@@ -189,8 +182,8 @@ class MixStreamTool {
       if (listener) {
         ExtQNClientEventListener.addExtEventListener(
           <ExtQNClientEventName>eventName,
-          listener
-        )
+          listener as FunctionType
+        );
       }
     }
   }
@@ -207,8 +200,8 @@ class MixStreamTool {
       if (listener) {
         ExtQNClientEventListener.removeExtEventListener(
           <ExtQNClientEventName>eventName,
-          listener
-        )
+          listener as FunctionType
+        );
       }
     }
   }
@@ -220,7 +213,7 @@ class MixStreamTool {
     return this.rtcRoom?.rtcClient.startDirectLiveStreaming({
       videoTrack: this.rtcRoom?.localCameraTrack || undefined,
       audioTrack: this.rtcRoom?.localMicrophoneTrack || undefined,
-      streamID: this.getRoomId(),
+      streamID: this.getStreamID(),
       url: this.getPushUri()
     });
   }
@@ -230,7 +223,7 @@ class MixStreamTool {
    */
   stopForwardJob() {
     return this.rtcRoom?.rtcClient.stopDirectLiveStreaming(
-      this.getRoomId()
+      this.getStreamID()
     );
   }
 
@@ -240,12 +233,12 @@ class MixStreamTool {
   startMixStreamJob(config?: MixStreamJobConfig) {
     log.log('startMixStreamJob', {
       ...config,
-      streamID: this.getRoomId(),
+      streamID: this.getStreamID(),
       url: this.getPushUri()
     });
     return this.rtcRoom?.rtcClient.startTranscodingLiveStreaming({
       ...config,
-      streamID: this.getRoomId(),
+      streamID: this.getStreamID(),
       url: this.getPushUri()
     });
   }
@@ -255,7 +248,7 @@ class MixStreamTool {
    */
   stopMixStreamJob() {
     return this.rtcRoom?.rtcClient.stopTranscodingLiveStreaming(
-      this.getRoomId(),
+      this.getStreamID(),
     );
   }
 
@@ -295,9 +288,9 @@ class MixStreamTool {
    * @param option
    */
   updateUserScreenMergeOptions(userId: string, option?: MergeOption) {
-    log.log('updateUserScreenMergeOptions userId_option', userId, option)
+    log.log('updateUserScreenMergeOptions userId_option', userId, option);
     const trackId = this.rtcRoom?.getScreenTrackTool().getUserScreenTrack(userId)?.trackID;
-    log.log('updateUserScreenMergeOptions trackId', trackId)
+    log.log('updateUserScreenMergeOptions trackId', trackId);
     return this.updateUserMergeOptions({
       userId,
       trackId,
@@ -373,7 +366,7 @@ class MixStreamTool {
       } else {
         this.toDoCameraMergeOptionsMap.delete(userId);
       }
-    }
+    };
     // 更新toDoMicrophoneMergeOptionsMap
     const updateToDoMicrophoneMergeOptionsMap = (
       userId: string,
@@ -384,7 +377,7 @@ class MixStreamTool {
       } else {
         this.toDoMicrophoneMergeOptionsMap.delete(userId);
       }
-    }
+    };
     // 更新toDoScreenMergeOptionsMap
     const updateTodoScreenMergeOptionsMap = (
       userId: string,
@@ -395,7 +388,7 @@ class MixStreamTool {
       } else {
         this.toDoScreenMergeOptionsMap.delete(userId);
       }
-    }
+    };
     // 更新toDoCustomMergeOptionsMap
     const updateTodoCustomMergeOptionsMap = (
       userId: string,
@@ -406,7 +399,7 @@ class MixStreamTool {
       } else {
         this.toDoCustomMergeOptionsMap.delete(userId);
       }
-    }
+    };
     if (trackId) {
       if (option) {
         this.tracksMap.set(trackId, option);
@@ -434,7 +427,7 @@ class MixStreamTool {
     );
     log.log('resetOps', mergeTrackOptions);
     return this.rtcRoom?.rtcClient.setTranscodingLiveStreamingTracks(
-      this.getRoomId(),
+      this.getStreamID() || null,
       mergeTrackOptions
     );
   }

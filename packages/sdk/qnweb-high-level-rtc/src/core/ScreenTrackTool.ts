@@ -4,7 +4,7 @@ import QNRTC, {
   QNRemoteTrack,
   QNRemoteVideoTrack,
   QNScreenVideoTrack,
-  QNScreenVideoTrackConfig
+  QNScreenVideoTrackConfig, QNTrack
 } from 'qnweb-rtc';
 import { ClientRoleType, ScreenMicSeat, ScreenMicSeatListener } from '../types';
 import ExtQNClientEventListener from '../event-bus/ExtQNClientEventListener';
@@ -12,14 +12,14 @@ import { TAG_SCREEN } from '../constants';
 import { LogModel } from '../util';
 
 const log = new LogModel('log');
-log.setPreTitle('ScreenTrackTool')
+log.setPreTitle('ScreenTrackTool');
 
 /**
  * 屏幕共享
  */
 class ScreenTrackTool {
   public rtcRoom: RtcRoom;
-  public tag: string = '[ScreenTrackTool]';
+  public tag = '[ScreenTrackTool]';
 
   // 本地屏幕采集参数
   public localScreenParams?: QNScreenVideoTrackConfig;
@@ -74,7 +74,7 @@ class ScreenTrackTool {
     userID: string,
     tracks: (QNRemoteAudioTrack | QNRemoteVideoTrack)[]
   ) {
-    log.log('handleRtcUserPublished', userID, tracks)
+    log.log('handleRtcUserPublished', userID, tracks);
     const screenTracks = tracks.filter(
       track => track.tag === TAG_SCREEN
     );
@@ -87,7 +87,7 @@ class ScreenTrackTool {
         // 用户上麦
         screenTracks.forEach(track => {
           this.userSitDown(track.userID as string);
-        })
+        });
       });
     }
   }
@@ -114,7 +114,7 @@ class ScreenTrackTool {
     // 用户下麦
     screenTracks.forEach(track => {
       this.userSitUp(track.userID as string);
-    })
+    });
   }
 
 
@@ -137,7 +137,7 @@ class ScreenTrackTool {
   enableScreen() {
     if (!this.localScreenParams) this.setUpLocalScreenParams(this.localScreenParams);
     return QNRTC.createScreenVideoTrack(this.localScreenParams).then(track => {
-      const tracks = Array().concat(track);
+      const tracks: QNTrack[] = new Array<QNTrack>().concat(track);
       this.localScreenTrack = tracks.find(itemTrack => itemTrack.tag === TAG_SCREEN) as QNScreenVideoTrack;
       this.rtcRoom.localTracks = this.rtcRoom.localTracks.concat(this.localScreenTrack);
       if (this.rtcRoom?.isJoined && this.rtcRoom?.clientRoleType === ClientRoleType.CLIENT_ROLE_BROADCASTER) {
@@ -164,7 +164,7 @@ class ScreenTrackTool {
         this.userSitUp(this.rtcRoom.currentUserId);
         ExtQNClientEventListener.dispatchExtEventListener(
           'localUnPublished',
-          this.localScreenTrack
+          [this.localScreenTrack]
         );
         this.rtcRoom.localTracks = this.rtcRoom.localTracks.filter(
           track => track.trackID !== this.localScreenTrack?.trackID
@@ -172,6 +172,7 @@ class ScreenTrackTool {
         this.localScreenTrack = null;
       });
     }
+    return Promise.resolve();
   }
 
   /**
@@ -192,11 +193,11 @@ class ScreenTrackTool {
     }
     const noticeMicSeat = this.screenMicSeats.find(
       s => s.uid === userID
-    )
+    );
     if (noticeMicSeat) {
       this.screenMicSeatListeners.forEach(
         listener => listener.onScreenMicSeatAdd?.(noticeMicSeat)
-      )
+      );
     }
   }
 
@@ -206,16 +207,19 @@ class ScreenTrackTool {
    * @private
    */
   private userSitUp(userID: string) {
+    const noticeMicSeat = this.screenMicSeats.find(
+      s => s.uid === userID
+    );
     this.screenMicSeats = this.screenMicSeats.filter(
       s => s.uid !== userID
     );
-    const noticeMicSeat = this.screenMicSeats.find(
-      s => s.uid === userID
-    )
     if (noticeMicSeat) {
       this.screenMicSeatListeners.forEach(
-        listener => listener.onScreenMicSeatAdd?.(noticeMicSeat)
-      )
+        listener => listener.onScreenMicSeatRemove?.({
+          ...noticeMicSeat,
+          isScreenOpen: false
+        })
+      );
     }
   }
 
