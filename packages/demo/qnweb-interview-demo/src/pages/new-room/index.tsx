@@ -38,7 +38,7 @@ const Room: React.FC = () => {
 
   const { allUserList, interview, showLeaveInterview, isJoined, userInfo, imConfig } = useJoinRoom(params.interviewId);
 
-  const { playerQueue, setPlayerQueue } = usePlayer();
+  const { playerQueue, dispatchPlayerQueue } = usePlayer();
 
   const largePlayer = useMemo(() => playerQueue[0], [playerQueue[0]]);
   const smallPlayer = useMemo(() => playerQueue[1], [playerQueue[1]]);
@@ -228,13 +228,7 @@ const Room: React.FC = () => {
       });
       return;
     }
-    const front = playerQueue[0];
-    const back = playerQueue[playerQueue.length - 1];
-    setPlayerQueue([
-      back,
-      ...playerQueue.slice(1, playerQueue.length - 1),
-      front,
-    ]);
+    dispatchPlayerQueue({ type: 'SWITCH_CHANGED' });
     setIsSwitched(value);
   };
 
@@ -275,12 +269,7 @@ const Room: React.FC = () => {
    * 大小屏切换
    */
   const onPlayerClick = () => {
-    const [large, small, ...rest] = playerQueue;
-    setPlayerQueue([
-      small,
-      large,
-      ...rest,
-    ]);
+    dispatchPlayerQueue({ type: 'LARGE_SMALL_TOGGLED' });
   };
 
   /**
