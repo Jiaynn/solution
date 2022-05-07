@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { JoinRoomCallbackRes, JoinRoomStatus } from 'qnweb-whiteboard';
+import { JoinRoomCallbackResult, JoinRoomStatus } from 'qnweb-whiteboard';
 import QNWhiteboard from 'qnweb-whiteboard';
 
 import { log } from '../utils';
@@ -12,11 +12,11 @@ const useJoinedRoom = () => {
   const { state } = useContext(storeContext);
   const [whiteboardClient, setWhiteboardClient] = useState<any>(state.whiteboardClient);
   const [isJoined, setIsJoined] = useState<boolean>(false);
-  const [roomError, setRoomError] = useState<JoinRoomCallbackRes['status']>();
+  const [roomError, setRoomError] = useState<JoinRoomCallbackResult['status']>();
   const [roomToken, setRoomToken] = useState<string | null>(null);
 
   useEffect(() => {
-    function joinRoomCallback(res: JoinRoomCallbackRes) {
+    function joinRoomCallback(res: JoinRoomCallbackResult) {
       log('joinRoomCallbackRes', res);
       if (res.status === JoinRoomStatus.Open) {
         setIsJoined(true);
