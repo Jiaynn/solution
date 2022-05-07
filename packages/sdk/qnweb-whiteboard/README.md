@@ -361,14 +361,6 @@ interface SetCanvasStyle {
 setCanvasStyle(style: SetCanvasStyle)
 ```
 
-#### 销毁 webgl 上下文
-
-```tsx
-// 可以通过访问 QNWhiteboard.controller.isWebglContextLost 来访问 webgl 上下文是否被销毁
-// controller.isWebglContextLost 为 true，则为被销毁；false 为未被销毁
-destroyWebglContext();
-```
-
 #### 事件回调接口介绍
 
 示例：
