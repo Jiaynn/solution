@@ -1,0 +1,3 @@
+[submodule "packages/demo/qnweb-whiteboard-demo"]
+	path = packages/demo/qnweb-whiteboard-demo
+	url = https://github.com/Spencer17x/QNWebWhiteBoardSDK.git
