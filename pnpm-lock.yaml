@@ -552,7 +552,6 @@ importers:
       customize-cra: ^1.0.0
       electron: '13.0'
       eruda: ^2.4.1
-      eslint: ^7.32.0
       qnweb-whiteboard: ^1.1.0
       react: ^17.0.2
       react-app-rewired: ^2.1.8
@@ -589,7 +588,6 @@ importers:
       cross-env: 7.0.3
       customize-cra: 1.0.0
       electron: 13.0.1
-      eslint: 7.32.0
       react-app-rewired: 2.2.1_react-scripts@4.0.3
       webpack: 5.69.1
 
@@ -20312,7 +20310,7 @@ packages:
       chalk: 4.1.2
       param-case: 3.0.4
       pascal-case: 3.1.2
-      vite: 2.8.4
+      vite: 2.8.4_sass@1.49.8
     transitivePeerDependencies:
       - supports-color
     dev: true
