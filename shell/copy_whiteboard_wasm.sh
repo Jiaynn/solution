@@ -1,6 +1,6 @@
-source_dir=packages/sdk/whiteboard/test
-sdk_dir=packages/sdk/qnweb-whiteboard
-demo_dir=packages/demo/qnweb-whiteboard-demo
+source_dir=packages/whiteboard/test
+sdk_dir=packages/qnweb-whiteboard
+demo_dir=packages/qnweb-whiteboard-demo
 file_name=whiteboard_webassembly
 
 cp ${source_dir}/${file_name}.data \

@@ -1,0 +1,19 @@
+.geometry-panel {
+  &--icon-panel {
+    display: flex;
+    justify-content: space-around;
+
+    .common-icon {
+      background-color: #fff;
+      padding: 5px;
+      box-sizing: content-box;
+      transition: background-color 0.4s;
+    }
+
+    .common-icon.active {
+      position: relative;
+      background-color: rgba(33, 35, 36, 0.1);
+      border-radius: 2px;
+    }
+  }
+}

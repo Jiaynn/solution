@@ -1,0 +1,7 @@
+<view class="home-card">
+  <van-row custom-class="m-b-20">
+    <van-field placeholder="请输入 roomToken" model:value="{{roomToken}}"/>
+  </van-row>
+  <van-button custom-class="m-b-20" type="primary" block bind:click="onJoinChatroom">进入聊天室</van-button>
+  <van-button type="primary" block bind:click="onGenerateRoomToken">随机生成 roomToken</van-button>
+</view>

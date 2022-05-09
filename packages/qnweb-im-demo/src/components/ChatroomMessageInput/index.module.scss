@@ -1,0 +1,43 @@
+.container {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.inputArea {
+  display: flex;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 5px;
+}
+
+.iconButton {
+  font-size: 28px!important;
+  margin: 0 5px;
+}
+
+.username {
+  flex-shrink: 0;
+}
+
+.userMessage {
+  word-break: break-all;
+}
+
+.holdDownButton, .messageInput {
+  flex: 1;
+  background-color: #fff;
+  height: 32px;
+  box-sizing: border-box;
+  border: none!important;
+  line-height: 32px;
+}
+
+.holdDownButton {
+  text-align: center;
+  user-select: none;
+}
+
+.msgFile {
+  display: none;
+}

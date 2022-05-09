@@ -1,5 +1,5 @@
-sdk_dir=packages/sdk
-demo_dir=packages/demo
+sdk_dir=packages
+demo_dir=packages
 
 rm -rf ${sdk_dir}/qnuniapp-im \
 ${sdk_dir}/qnweapp-im  \

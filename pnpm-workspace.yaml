@@ -1,4 +1,5 @@
 packages:
-  - 'packages/sdk/**'
-  - 'packages/demo/qnweb-*'
-  - 'packages/demo/cube-ui'
+  - 'packages/qnweb-*'
+  - 'packages/whiteboard'
+  - 'packages/qnuniapp-im'
+  - 'packages/qnweapp-im'

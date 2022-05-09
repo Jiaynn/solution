@@ -1,15 +1,15 @@
-[submodule "packages/demo/qnweb-whiteboard-demo"]
-	path = packages/demo/qnweb-whiteboard-demo
+[submodule "packages/qnweb-whiteboard-demo"]
+	path = packages/qnweb-whiteboard-demo
 	url = https://github.com/Spencer17x/QNWebWhiteBoardSDK.git
-[submodule "packages/demo/qnweb-im-demo"]
-	path = packages/demo/qnweb-im-demo
+[submodule "packages/qnweb-im-demo"]
+	path = packages/qnweb-im-demo
 	url = https://github.com/Spencer17x/QNWebIMSDK.git
-[submodule "packages/demo/qnweb-rtc-ai-demo"]
-	path = packages/demo/qnweb-rtc-ai-demo
+[submodule "packages/qnweb-rtc-ai-demo"]
+	path = packages/qnweb-rtc-ai-demo
 	url = https://github.com/Spencer17x/QNWebRTCAISDK.git
-[submodule "packages/demo/qnweapp-im-demo"]
-	path = packages/demo/qnweapp-im-demo
+[submodule "packages/qnweapp-im-demo"]
+	path = packages/qnweapp-im-demo
 	url = https://github.com/Spencer17x/QNWeappIMSDK.git
-[submodule "packages/demo/qnuniapp-im-demo"]
-	path = packages/demo/qnuniapp-im-demo
+[submodule "packages/qnuniapp-im-demo"]
+	path = packages/qnuniapp-im-demo
 	url = https://github.com/Spencer17x/QNUniappIMSDK.git

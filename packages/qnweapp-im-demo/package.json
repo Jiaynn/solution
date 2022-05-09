@@ -1,0 +1,9 @@
+{
+  "name": "qnweapp-im-demo",
+  "version": "1.0.2",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@vant/weapp": "^1.8.0"
+  }
+}
