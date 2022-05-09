@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import QNWhiteboard, { JoinRoomCallbackRes } from 'qnweb-whiteboard';
+import QNWhiteboard, { JoinRoomCallbackResult } from 'qnweb-whiteboard';
 import { QNWhiteBoardStoreContext } from '../_store';
 
 export const log = (...args: any[]) => {
@@ -37,7 +37,7 @@ const useQNWhiteBoard = (roomToken?: string | null) => {
     const client = state.whiteboard;
     if (client && roomToken) {
       setJoinState('entering');
-      client.joinRoom(roomToken, (res: JoinRoomCallbackRes) => {
+      client.joinRoom(roomToken, (res: JoinRoomCallbackResult) => {
         if (res.status === 'open') {
           setJoinState('joined');
         } else {

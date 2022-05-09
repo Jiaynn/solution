@@ -26,11 +26,9 @@ const renderSeat = (client: LazyTrackRoom | null, seat: LazyTrackRoomSeat) => {
   log('renderSeat seat', seat);
   if (seat.isOwnerOpenVideo && !isCameraPlaying) {
     log('renderSeat setUserCameraWindowView', seat);
-    Promise.resolve(
-      client.setUserCameraWindowView(
-        seat.uid, elementId,
-      ),
-    ).catch((err) => {
+    client.setUserCameraWindowView(
+      seat.uid, elementId,
+    )?.catch((err) => {
       console.error(err);
       Modal.error({
         title: 'RTC视频流播放视频失败',

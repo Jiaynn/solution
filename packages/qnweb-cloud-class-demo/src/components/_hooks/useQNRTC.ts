@@ -1,19 +1,7 @@
 import {
-  ClientRoleType, MutableTrackRoom, MutableTrackRoomSeat, RoomEntity,
+  ClientRoleType, MutableTrackRoom, MutableTrackRoomSeat, RoomEntity, UserExtension,
 } from 'qnweb-high-level-rtc';
 import { useEffect, useState } from 'react';
-
-export interface UserExtProfile {
-  avatar?: string;
-  name?: string;
-}
-
-export interface UserExtension {
-  uid?: string;
-  userExtRoleType?: 'teacher' | 'student';
-  userExtProfile?:UserExtProfile;
-  userExtensionMsg?: string;
-}
 
 /**
  * notIn: 未加入, entering: 加入中, joined: 已加入, failed: 加入失败

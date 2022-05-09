@@ -1,21 +1,9 @@
-import { LazyTrackRoom, LazyTrackRoomSeat } from 'qnweb-high-level-rtc';
+import { LazyTrackRoom, LazyTrackRoomSeat, UserExtension } from 'qnweb-high-level-rtc';
 import {
   useContext, useEffect, useMemo, useState,
 } from 'react';
 import { UserStoreContext } from '../store/UserStore';
 import { baseGetRoomMicInfoApi } from '../api/baseRoomApi';
-
-export interface UserExtProfile {
-  avatar?: string;
-  name?: string;
-}
-
-export interface UserExtension {
-  uid?: string;
-  userExtRoleType?: 'teacher' | 'student';
-  userExtProfile?: UserExtProfile;
-  userExtensionMsg?: string;
-}
 
 /**
  * notIn: 未加入, entering: 加入中, joined: 已加入, failed: 加入失败
