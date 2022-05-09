@@ -217,7 +217,6 @@ importers:
       antd: ^4.16.7
       classnames: ^2.3.1
       emoji-picker-react: ^3.4.8
-      eslint: ^7.32.0
       jest: ^27.1.0
       js-audio-recorder: ^1.0.7
       lamejs: ^1.2.0
@@ -225,7 +224,6 @@ importers:
       react: ^17.0.0
       react-dom: ^17.0.0
       react-router-dom: ^5.2.0
-      recoil: ^0.3.1
       sass: ^1.35.2
       ts-jest: ^27.0.5
       ts-node: ^10.2.1
@@ -241,7 +239,6 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-router-dom: 5.3.0_react@17.0.2
-      recoil: 0.3.1_react-dom@17.0.2+react@17.0.2
     devDependencies:
       '@types/jest': 27.4.0
       '@types/lodash': 4.14.178
@@ -250,7 +247,6 @@ importers:
       '@types/react-dom': 17.0.11
       '@types/react-router-dom': 5.3.3
       '@vitejs/plugin-react-refresh': 1.3.6
-      eslint: 7.32.0
       jest: 27.5.1_ts-node@10.5.0
       sass: 1.49.8
       ts-jest: 27.1.3_1e2406a8ca2ae3dc934d01f9ee2aebbb
@@ -20310,7 +20306,7 @@ packages:
       chalk: 4.1.2
       param-case: 3.0.4
       pascal-case: 3.1.2
-      vite: 2.8.4
+      vite: 2.8.4_sass@1.49.8
     transitivePeerDependencies:
       - supports-color
     dev: true

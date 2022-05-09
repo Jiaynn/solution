@@ -1,3 +1,6 @@
 [submodule "packages/demo/qnweb-whiteboard-demo"]
 	path = packages/demo/qnweb-whiteboard-demo
 	url = https://github.com/Spencer17x/QNWebWhiteBoardSDK.git
+[submodule "packages/demo/qnweb-im-demo"]
+	path = packages/demo/qnweb-im-demo
+	url = https://github.com/Spencer17x/QNWebIMSDK.git
