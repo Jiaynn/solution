@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "mp-emoji":"../../components/emoji"
-  },
-  "navigationBarTitleText": "聊天室"
-}
