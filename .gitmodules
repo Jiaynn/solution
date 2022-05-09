@@ -4,3 +4,6 @@
 [submodule "packages/demo/qnweb-im-demo"]
 	path = packages/demo/qnweb-im-demo
 	url = https://github.com/Spencer17x/QNWebIMSDK.git
+[submodule "packages/demo/qnweb-rtc-ai-demo"]
+	path = packages/demo/qnweb-rtc-ai-demo
+	url = https://github.com/Spencer17x/QNWebRTCAISDK.git
