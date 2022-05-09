@@ -7,3 +7,6 @@
 [submodule "packages/demo/qnweb-rtc-ai-demo"]
 	path = packages/demo/qnweb-rtc-ai-demo
 	url = https://github.com/Spencer17x/QNWebRTCAISDK.git
+[submodule "packages/demo/qnweapp-im-demo"]
+	path = packages/demo/qnweapp-im-demo
+	url = https://github.com/Spencer17x/QNWeappIMSDK.git
