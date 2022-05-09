@@ -10,3 +10,6 @@
 [submodule "packages/demo/qnweapp-im-demo"]
 	path = packages/demo/qnweapp-im-demo
 	url = https://github.com/Spencer17x/QNWeappIMSDK.git
+[submodule "packages/demo/qnuniapp-im-demo"]
+	path = packages/demo/qnuniapp-im-demo
+	url = https://github.com/Spencer17x/QNUniappIMSDK.git
