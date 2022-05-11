@@ -1,11 +1,11 @@
-import whiteboard from './whiteboard_sdk';
+import * as whiteboard from './whiteboard_sdk';
 import { QNJoinRoomParams } from './types';
 import { buildAuthURL, buildUrl, makeToStringString, parseRoomToken } from './utils';
 import { baseURL } from './config';
 
-export class QNWhiteBoardRoom {
-  controller = whiteboard.controller;
-  roomTokenJson: ReturnType<typeof parseRoomToken> = {
+class QNWhiteBoardRoom {
+  protected controller = whiteboard.controller;
+  protected roomTokenJson: ReturnType<typeof parseRoomToken> = {
     appId: '',
     expireAt: 0,
     permission: '',
@@ -224,3 +224,5 @@ export class QNWhiteBoardRoom {
     return this.controller.clean_document(widgetId);
   }
 }
+
+export default QNWhiteBoardRoom;

@@ -1,7 +1,7 @@
 import { version } from './config';
-import { QNWhiteBoardRoom } from './QNWhiteBoardRoom';
+import QNWhiteBoardRoom  from './QNWhiteBoardRoom';
 
-export class QNWhiteBoard extends QNWhiteBoardRoom {
+class QNWhiteBoard extends QNWhiteBoardRoom {
   static version = version;
 
   /**
@@ -21,3 +21,5 @@ export class QNWhiteBoard extends QNWhiteBoardRoom {
     return this.controller.createInstance(bucketId);
   }
 }
+
+export default QNWhiteBoard;
