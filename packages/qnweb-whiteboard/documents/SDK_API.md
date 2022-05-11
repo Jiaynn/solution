@@ -9,7 +9,7 @@ const instance = client.createInstance(bucketId);
 
 ## 房间关键方法
 
--   以下方法均为 `client` 暴露的方法
+以下方法均为 `client` 暴露的方法
 
 | 方法名称                                | 方法描述                                                     |
 | --------------------------------------- | ------------------------------------------------------------ |
@@ -20,7 +20,7 @@ const instance = client.createInstance(bucketId);
 
 ## 房间内主动控制的方法
 
--   以下方法均为 `client` 暴露的方法，无返回值
+以下方法均为 `client` 暴露的方法，无返回值
 
 | 参数                                    | 描述                 |
 | --------------------------------------- | -------------------- |
@@ -39,9 +39,43 @@ const instance = client.createInstance(bucketId);
 | [deleteDocument](#deleteDocument)       | 删除文档             |
 | [cleanDocument](#cleanDocument)         | 清空文档             |
 
+## 以下方法都通过 `instance` 调用
+
+| 方法名称                                            | 方法描述          |
+| --------------------------------------------------- | ----------------- |
+| [openWhiteBoard](#openWhiteBoard)                   | 打开白板          |
+| [closeWhiteBoard](#closeWhiteBoard)                 | 关闭白板          |
+| [registerWhiteBoardEvent](#registerWhiteBoardEvent) | 注册白板事件回调  |
+| [registerPPTEvent](#registerPPTEvent)               | 注册 PPT 事件回调 |
+
+## instance 主动控制的方法
+
+| 参数                            | 描述                              |
+| ------------------------------- | --------------------------------- |
+| [nextStep](#nextStep)           | ppt 下一步（仅 ppt 模式可用）     |
+| [preStep](#preStep)             | ppt 上一步（仅 ppt 模式可用）     |
+| [jumpStep](#jumpStep)           | ppt 跳到指定步（仅 ppt 模式可用） |
+| [nextPage](#nextPage)           | 下一页                            |
+| [prePage](#prePage)             | 上一页                            |
+| [jumpPage](#jumpPage)           | 跳到指定页                        |
+| [getFileState](#getFileState)   | 获取当前文件状态                  |
+| [getBucketId](#getBucketId)     | 获取白板 bucketId                 |
+| [getBoardMode](#getBoardMode)   | 获取白板模式                      |
+| [jumpBoardPage](#jumpBoardPage) | 跳转到指定页号的白板页            |
+
 # API
 
 * 以下方法都通过 `client` 调用
+
+## QNWhiteBoard
+
+### static create
+
+创建实例
+
+```ts
+const client = QNWhiteBoard.create()
+```
 
 ## client 方法
 
@@ -62,7 +96,7 @@ const instance = client.createInstance(bucketId);
 加入房间
 
 ```ts
-client.join(roomToken: string, params: JoinRoomParams)
+client.join(roomToken: string, params?: JoinRoomParams)
 ```
 
 | 参数 | 类型|描述 |
@@ -273,39 +307,7 @@ client.cleanDocument(widgetId: string)
 
 ## instance 方法
 
-实例由 [createInstance](#createInstance) 方法创建并返回
-
-```ts
-const instance = client.createInstance(bucketId: string)
-```
-
--   以下方法都通过实例调用
-
-| 方法名称                                            | 方法描述          |
-| --------------------------------------------------- | ----------------- |
-| [openWhiteBoard](#openWhiteBoard)                   | 打开白板          |
-| [closeWhiteBoard](#closeWhiteBoard)                 | 关闭白板          |
-| [registerWhiteBoardEvent](#registerWhiteBoardEvent) | 注册白板事件回调  |
-| [registerPPTEvent](#registerPPTEvent)               | 注册 PPT 事件回调 |
-
-### 白板实例中主动控制的方法
-
-| 参数                            | 描述                   |
-| ------------------------------- | ---------------------- |
-| [nextStep](#nextStep)           | ppt 下一步（仅 ppt 模式可用） |
-| [preStep](#preStep)             | ppt 上一步（仅 ppt 模式可用） |
-| [jumpStep](#jumpStep)           | ppt 跳到指定步（仅 ppt 模式可用） |
-| [nextPage](#nextPage)           | 下一页             |
-| [prePage](#prePage)             | 上一页             |
-| [jumpPage](#jumpPage)           | 跳到指定页         |
-| [getFileState](#getFileState)                 | 获取当前文件状态         |
-| [getBucketId](#getBucketId)     | 获取白板 bucketId      |
-| [getBoardMode](#getBoardMode)   | 获取白板模式           |
-| [jumpBoardPage](#jumpBoardPage) | 跳转到指定页号的白板页 |
-
-### 白板相关方法详情
-
-#### openWhiteBoard
+### openWhiteBoard
 
 打开白板
 
@@ -313,7 +315,7 @@ const instance = client.createInstance(bucketId: string)
 instance.openWhiteBoard()
 ```
 
-#### closeWhiteBoard
+### closeWhiteBoard
 
 关闭白板
 
@@ -321,7 +323,7 @@ instance.openWhiteBoard()
 instance.closeWhiteBoard()
 ```
 
-#### registerWhiteBoardEvent
+### registerWhiteBoardEvent
 
 注册白板事件回调
 
@@ -339,7 +341,7 @@ instantce.registerWhiteBoardEvent({
 | onWhiteBoardOpenFailed | 打开白板失败 |
 | onWhiteBoardClosed     | 关闭白板成功 |
 
-#### registerPPTEvent
+### registerPPTEvent
 
 注册 ppt 事件回调，以下回调只有在 ppt-play 模式才会触发
 
@@ -371,7 +373,7 @@ instance.registerPPTEvent({
 |501 | 幻灯片下载失败|
 |502| 脚本下载失败 |
 
-#### registerPDFEvent
+### registerPDFEvent
 
 注册 pdf 事件回调，以下回调只有在 pdf-play 模式才会触发
 
@@ -403,21 +405,21 @@ instance.registerPDFEvent({
 |503| 文件丢失 |
 |504| 意外的错误 |
 
-####  nextStep
+###  nextStep
 
 ppt 下一步
 ```ts
 instance.nextStep()
 ````
 
-#### preStep
+### preStep
 
 ppt 上一步
 ```ts
 instance.preStep()
 ```
 
-#### jumpStep
+### jumpStep
 
 ppt 跳到指定步
 ```ts
@@ -427,21 +429,21 @@ instance.jumpStep(step)
 |-|-|-|
 |step|number|ppt 目标步|
 
-####  nextPage
+###  nextPage
 
 下一页
 ```ts
 instance.nextPage()
 ```
 
-####  prePage
+###  prePage
 
 上一页
 ```ts
 instance.prePage()
 ```
 
-####  jumpPage
+###  jumpPage
 
 跳到指定页
 ```ts
@@ -451,28 +453,28 @@ instance.jumpPage(page)
 |-|-|-|
 |page|int|ppt 目标页|
 
-#### getFileState
+### getFileState
 
 获取当前文件状态，返回值参考下方ppt/pdf事件回调onFileStateChanged参数
 ```ts
 instance.getFileState()
 ```
 
-#### getBucketId
+### getBucketId
 
 获取白板 bucketId
 ```ts
 instance.getBucketId()
 ```
 
-#### getBoardMode
+### getBoardMode
 
 获取白板模式
 ```ts
 instance.getBoardMode()
 ```
 
-#### jumpBoardPage
+### jumpBoardPage
 
 跳转到指定页号的白板页
 ```ts
