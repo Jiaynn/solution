@@ -1,16 +1,8 @@
-/**
- * auth 和 cbauth 接口所需
- */
-export enum AuthURLConfigSuffix {
-  CbAuth = 'cbauth',
-  Auth = 'auth'
-}
-
-export interface AuthURLConfig {
+export interface AuthUrlParams {
   baseURL: string;
   appId: string;
   roomName: string;
-  suffix: AuthURLConfigSuffix;
+  suffix: 'auth' | 'cbauth';
 }
 
 /**
@@ -35,7 +27,7 @@ export enum BgColor {
 /**
  * 加入房间配置
  */
-export interface JoinRoomConfig {
+export interface JoinRoomParams {
   boardSizeId?: BoardSize;
   bgColor?: BgColor;
   // 0 代表不限制：如果 > 0，代表白板内最多limitNumber个人，只要白板内人数超过limitNumber数量时，就会进不去。
@@ -175,13 +167,6 @@ export enum WhiteboardEvent {
   RecoveryState,
   // 有文件发生变化，例如插入、删除等
   WidgetAction
-}
-
-/**
- * 高级对象
- */
-export interface AdvancedObject<V = any> {
-  [key: string]: V;
 }
 
 /**

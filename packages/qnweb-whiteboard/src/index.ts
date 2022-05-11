@@ -1,5 +1,2 @@
-import QNWhiteboard from './core';
-
-export default QNWhiteboard;
-
 export * from './types';
+export * from './core';

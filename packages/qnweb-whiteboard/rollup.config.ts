@@ -2,12 +2,12 @@ import typescript from 'rollup-plugin-typescript2';
 import { uglify } from 'rollup-plugin-uglify';
 import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
-import { terser } from 'rollup-plugin-terser';
+// import { terser } from 'rollup-plugin-terser';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 const pkg = require('./package.json');
 
-const libraryName = 'QNWhiteboard';
+const libraryName = 'QNWhiteBoard';
 
 const buildEnvironment = process.env.NODE_ENV;
 

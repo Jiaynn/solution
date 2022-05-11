@@ -1,11 +1,11 @@
-import { AdvancedObject, AuthURLConfig } from '../types/qn-whiteboard';
+import { AuthUrlParams } from '../types/qn-whiteboard';
 
 /**
  * 生成 auth/cbauth 接口 URL 请求地址
- * @param config
+ * @param params
  */
-export function generateAuthURL(config: AuthURLConfig): string {
-  const { baseURL, appId, roomName, suffix } = config;
+export function buildAuthURL(params: AuthUrlParams): string {
+  const { baseURL, appId, roomName, suffix } = params;
   return `${baseURL}/v3/apps/${appId}/rooms/${roomName}/${suffix}`;
 }
 
@@ -13,8 +13,8 @@ export function generateAuthURL(config: AuthURLConfig): string {
  * { [key: string]: number | string } => { [key: string]: string }
  * @param object
  */
-export function makeToStringString(object: AdvancedObject): AdvancedObject<string> {
-  return Object.keys(object).reduce((prevObject: AdvancedObject, curKey: string) => {
+export function makeToStringString(object: Record<string, any>): Record<string, string> {
+  return Object.keys(object).reduce((prevObject: Record<string, any>, curKey: string) => {
     prevObject[curKey] = String(object[curKey]);
     return prevObject;
   }, {});
