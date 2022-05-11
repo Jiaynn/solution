@@ -1,4 +1,4 @@
-export interface AuthUrlParams {
+export interface QNAuthUrlParams {
   baseURL: string;
   appId: string;
   roomName: string;
@@ -9,7 +9,7 @@ export interface AuthUrlParams {
  * 白板的大小
  * 默认 3
  */
-export enum BoardSize {
+export enum QNBoardSize {
   Row2Column2 = 1,
   Row3Column3,
   Row1Column3
@@ -18,7 +18,7 @@ export enum BoardSize {
 /**
  * 表示白板的颜色
  */
-export enum BgColor {
+export enum QNBgColor {
   White = 1,
   Black,
   Green
@@ -27,10 +27,12 @@ export enum BgColor {
 /**
  * 加入房间配置
  */
-export interface JoinRoomParams {
-  boardSizeId?: BoardSize;
-  bgColor?: BgColor;
-  // 0 代表不限制：如果 > 0，代表白板内最多limitNumber个人，只要白板内人数超过limitNumber数量时，就会进不去。
+export interface QNJoinRoomParams {
+  boardSizeId?: QNBoardSize;
+  bgColor?: QNBgColor;
+  // 0 代表不限制
+  // 如果 > 0，代表白板内最多limitNumber个人
+  // 只要白板内人数超过limitNumber数量时，就会进不去。
   limitNumber?: number;
   // aspectRatio 宽高比，0.5 ～ 2.5之间，非必填
   aspectRatio?: number;
@@ -46,12 +48,12 @@ export interface JoinRoomParams {
 /**
  * widget 配置
  */
-export interface WidgetConfig {
+export interface QNWidgetConfig {
   widgetId?: number;
-  scale?: WidgetConfigScale;
+  scale?: QNWidgetConfigScale;
 }
 
-export enum WidgetConfigScale {
+export enum QNWidgetConfigScale {
   Zoom = 1,
   ZoomOut = -1
 }
@@ -59,7 +61,7 @@ export enum WidgetConfigScale {
 /**
  * 画笔类型
  */
-export enum PenType {
+export enum QNPenType {
   WritingPen,
   HighlighterPen,
   Pointer1,
@@ -72,8 +74,8 @@ export enum PenType {
  * 画笔样式
  * color: #FF+颜色 彩笔: #7F+颜色
  */
-export interface PenStyle {
-  type?: PenType,
+export interface QNPenStyle {
+  type?: QNPenType,
   color?: string,
   size?: number
 }
@@ -81,7 +83,7 @@ export interface PenStyle {
 /**
  * 白板输入模式
  */
-export enum InputMode {
+export enum QNInputMode {
   Select = 'select', // 选择模式
   Pencil = 'pencil', // 普通画笔模式
   Laser = 'laser', // 激光模式
@@ -93,7 +95,7 @@ export enum InputMode {
 /**
  * 图形模式
  */
-export enum GeometryMode {
+export enum QNGeometryMode {
   Rectangle = 0,
   Circle = 1,
   Line = 3,
@@ -103,7 +105,7 @@ export enum GeometryMode {
 /**
  * Object.assign(controller.room,controller.me)
  */
-export interface Superior {
+export interface QNSuperior {
   appId: string;
   meetingId: string;
   userId: string;
@@ -113,13 +115,13 @@ export interface Superior {
   sessionId: string;
   nickName: string;
   avatar: string;
-  roleId: RoleID[];
+  roleId: QNRoleID[];
 }
 
 /**
  * 角色
  */
-export interface RoleID {
+export interface QNRoleID {
   roleName: string;
   roleId: number;
   level: number;
@@ -129,9 +131,9 @@ export interface RoleID {
 /**
  * 上传文件配置
  */
-export interface UploadFileConfig {
+export interface QNUploadFileConfig {
   file?: File;
-  superior?: Superior,
+  superior?: QNSuperior,
   left?: number;
   top?: number;
   width?: number;
@@ -142,7 +144,7 @@ export interface UploadFileConfig {
 /**
  * 事件
  */
-export enum WhiteboardEvent {
+export enum QNWhiteboardEvent {
   // 所有事件
   AllEvent,
   // 页面列表变更，例如有人新建或者删除页面
@@ -172,26 +174,26 @@ export enum WhiteboardEvent {
 /**
  * 加入房间状态
  */
-export enum JoinRoomStatus {
+export enum QNJoinRoomStatus {
   Open = 'open',
   Error = 'error',
   Close = 'close'
 }
 
-export interface JoinRoomCallbackResult {
-  status: JoinRoomStatus;
+export interface QNJoinRoomCallbackResult {
+  status: QNJoinRoomStatus;
   event: Event;
 }
 
 /**
  * 加入房间 WebSocket 状态
  */
-export type JoinRoomCallback = (result: JoinRoomCallbackResult) => void;
+export type QNJoinRoomCallback = (result: QNJoinRoomCallbackResult) => void;
 
 /**
  * 设置 canvas
  */
-export interface SetCanvasStyle {
+export interface QNSetCanvasStyle {
   width?: number;
   height?: number;
   left?: number;
@@ -201,6 +203,6 @@ export interface SetCanvasStyle {
 /**
  * 清屏
  */
-export interface ClearPageConfig {
+export interface QNClearPageConfig {
   widgetId: string;
 }

@@ -1,5 +1,5 @@
 import whiteboard from './whiteboard_sdk';
-import { JoinRoomParams } from './types';
+import { QNJoinRoomParams } from './types';
 import { buildAuthURL, buildUrl, makeToStringString, parseRoomToken } from './utils';
 import { baseURL } from './config';
 
@@ -37,7 +37,7 @@ export class QNWhiteBoardRoom {
    * @param params
    * @private
    */
-  private makeCbAuthUrl(roomToken: string, params?: JoinRoomParams) {
+  private makeCbAuthUrl(roomToken: string, params?: QNJoinRoomParams) {
     return buildUrl(buildAuthURL({
       baseURL,
       appId: this.roomTokenJson.appId,
@@ -67,7 +67,7 @@ export class QNWhiteBoardRoom {
    */
   joinRoom(
     roomToken: string,
-    params?: JoinRoomParams
+    params?: QNJoinRoomParams
   ) {
     const roomTokenJson = parseRoomToken(roomToken);
     this.roomTokenJson = roomTokenJson;
@@ -99,7 +99,7 @@ export class QNWhiteBoardRoom {
   registerRoomEvent(events: {
     onJoinSuccess?: () => void;
     onJoinFailed?: () => void;
-    onRoomStatusChanged?: () => void;
+    onRoomStatusChanged?: (code: number) => void;
   }) {
     return this.controller.registerRoomEvent(events);
   }
@@ -181,15 +181,22 @@ export class QNWhiteBoardRoom {
    * 设置白板的背景色
    * @param theme 16进制颜色
    */
-  setWhiteboardBack(theme: string) {
+  setWhiteBoardBack(theme: string) {
     return this.controller.set_whiteboard_back(theme);
+  }
+
+  /**
+   * 新建文档
+   */
+  newDocument() {
+    return this.controller.new_document();
   }
 
   /**
    * 切换文档
    * @param widgetId 文档 ID
    */
-  newDocument(widgetId: string) {
+  cutDocument(widgetId: string) {
     return this.controller.new_document(widgetId);
   }
 

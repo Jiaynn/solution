@@ -2,7 +2,6 @@ import typescript from 'rollup-plugin-typescript2';
 import { uglify } from 'rollup-plugin-uglify';
 import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
-// import { terser } from 'rollup-plugin-terser';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 const pkg = require('./package.json');
@@ -29,11 +28,6 @@ export default {
       SDK_VERSION: JSON.stringify(pkg.version)
     }),
     nodeResolve(),
-    // terser({
-    //   compress: {
-    //     pure_funcs: ['console.log'] // 去掉 console.log 函数
-    //   }
-    // })
   ],
   output: [
     {
