@@ -1,10 +1,10 @@
-import { AuthUrlParams } from '../types/qn-whiteboard';
+import { QNAuthUrlParams } from '../types/qn-whiteboard';
 
 /**
  * 生成 auth/cbauth 接口 URL 请求地址
  * @param params
  */
-export function buildAuthURL(params: AuthUrlParams): string {
+export function buildAuthURL(params: QNAuthUrlParams): string {
   const { baseURL, appId, roomName, suffix } = params;
   return `${baseURL}/v3/apps/${appId}/rooms/${roomName}/${suffix}`;
 }
