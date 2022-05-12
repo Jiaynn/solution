@@ -896,14 +896,11 @@ importers:
       ahooks: ^3.1.9
       antd: ^4.20.4
       classnames: ^2.3.1
-<<<<<<< HEAD
-=======
       cross-env: ^7.0.3
       customize-cra: ^1.0.0
       electron: '13.0'
       eruda: ^2.4.1
       qnweb-whiteboard: ^2.0.0
->>>>>>> 9c6421c (feat(qnweb-whiteboard-demo): v2升级)
       react: ^17.0.2
       react-dom: ^17.0.2
       react-router-dom: ^5.0.0

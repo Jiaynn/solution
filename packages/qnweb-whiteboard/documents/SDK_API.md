@@ -87,6 +87,10 @@ const client = QNWhiteBoard.create()
 
 主要包含 ppt/pdf 事件的一个实例，主要是对 ppt/pdf 状态的管理
 
+```ts
+client.createInstance(bucketId: string)
+```
+
 | 参数     | 类型   | 描述  |
 | -------- | ------ | ----- |
 | bucketId | string | 桶 ID |
