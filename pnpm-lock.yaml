@@ -174,7 +174,7 @@ importers:
       lodash: 4.17.21
       qnweb-high-level-rtc: link:../qnweb-high-level-rtc
       qnweb-rtc: 4.1.0
-      qnweb-whiteboard: link:../qnweb-whiteboard
+      qnweb-whiteboard: 1.1.1
       qs: 6.10.3
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -810,7 +810,7 @@ importers:
       lodash: 4.17.21
       qnweb-high-level-rtc: link:../qnweb-high-level-rtc
       qnweb-rtc: 4.1.0
-      qnweb-whiteboard: link:../qnweb-whiteboard
+      qnweb-whiteboard: 1.1.1
       qrcode.react: 1.0.1_react@17.0.2
       rc-bullets: 1.5.16_sfoxds7t5ydpegc3knd667wn6m
       react: 17.0.2
@@ -896,6 +896,14 @@ importers:
       ahooks: ^3.1.9
       antd: ^4.20.4
       classnames: ^2.3.1
+<<<<<<< HEAD
+=======
+      cross-env: ^7.0.3
+      customize-cra: ^1.0.0
+      electron: '13.0'
+      eruda: ^2.4.1
+      qnweb-whiteboard: ^2.0.0
+>>>>>>> 9c6421c (feat(qnweb-whiteboard-demo): v2升级)
       react: ^17.0.2
       react-dom: ^17.0.2
       react-router-dom: ^5.0.0
@@ -4915,7 +4923,7 @@ packages:
       minipass-pipeline: 1.2.4
       mkdirp: 1.0.4
       p-map: 4.0.0
-      promise-inflight: 1.0.1_bluebird@3.7.2
+      promise-inflight: 1.0.1
       rimraf: 3.0.2
       ssri: 8.0.1
       tar: 6.1.11
@@ -10739,6 +10747,15 @@ packages:
     dev: true
 =======
 
+  /promise-inflight/1.0.1:
+    resolution: {integrity: sha1-mEcocL8igTL8vdhoEputEsPAKeM=}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dev: false
+
   /promise-inflight/1.0.1_bluebird@3.7.2:
     resolution: {integrity: sha1-mEcocL8igTL8vdhoEputEsPAKeM=}
     peerDependencies:
@@ -10916,6 +10933,17 @@ packages:
       semver: 5.7.1
       webrtc-adapter: 8.1.1
       wolfy87-eventemitter: 5.2.9
+
+  /qnweb-whiteboard/1.1.1:
+    resolution: {integrity: sha512-75a9Ka0Gsk0kIxNZrJYJVqeo5IULOioTBMmJxNEB8VLbk/4r3n0fCcoGMT5avRg760iScVQFFCvOXBbDyFMdiQ==}
+    peerDependencies:
+      whiteboard: workspace:^1.0.0
+    dependencies:
+      inquirer: 8.2.0
+      ora: 5.4.1
+      resolve-url: 0.2.1
+      shelljs: 0.8.5
+    dev: false
 
   /qr.js/0.0.0:
     resolution: {integrity: sha1-ys6GOG9ZoNuAUPqQ2baw6IoeNk8=}
