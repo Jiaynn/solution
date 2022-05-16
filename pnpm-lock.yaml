@@ -898,6 +898,7 @@ importers:
       ahooks: ^3.1.9
       antd: ^4.20.4
       classnames: ^2.3.1
+      qnweb-whiteboard: workspace:^2.0.0
       react: ^17.0.2
       react-dom: ^17.0.2
       react-router-dom: ^5.0.0
@@ -908,6 +909,7 @@ importers:
       ahooks: 3.1.9_react@17.0.2
       antd: 4.20.4_sfoxds7t5ydpegc3knd667wn6m
       classnames: 2.3.1
+      qnweb-whiteboard: link:../qnweb-whiteboard
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-router-dom: 5.3.0_react@17.0.2

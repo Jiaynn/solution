@@ -7,8 +7,7 @@
   "files": [
     "build",
     "package.json",
-    "README.md",
-    "wasm"
+    "README.md"
   ],
   "scripts": {
     "build:prod": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:prod",

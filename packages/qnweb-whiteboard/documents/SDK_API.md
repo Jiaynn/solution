@@ -193,17 +193,17 @@ client.clearRecovery()
 
 ```ts
 client.setPenStyle(params: {
-  type: number;
-  color: string;
-  size: number;
+  type?: number;
+  color?: string;
+  size?: number;
 })
 ```
 
-| 参数  | 类型   | 描述                  |
-| ----- | ------ | --------------------- |
-| type  | number | 0: 铅笔 <br>1: 马克笔 |
-| color | string | 16 进制颜色           |
-| size  | number | 尺寸                  |
+| 参数  | 类型   | 描述                                                         |
+| ----- | ------ | ------------------------------------------------------------ |
+| type  | number | 0: 铅笔<br>1: 马克笔<br>2: 点<br>3: 手<br>4: 空心箭头<br>5: 实心箭头 |
+| color | string | 16 进制颜色(只在0和1类型下生效，都不能为空)                  |
+| size  | number | 尺寸(只在0和1类型下生效，都不能为空)                         |
 
 ### setInputMode
 
@@ -326,6 +326,18 @@ instance.openWhiteBoard()
 ```ts
 instance.closeWhiteBoard()
 ```
+
+### changeWhiteBoard
+
+切换白板
+
+```ts
+instance.changeWhiteBoard(bucketId)
+```
+
+| 参数     | 描述             |
+| -------- | ---------------- |
+| bucketId | 新白板的bucketId |
 
 ### registerWhiteBoardEvent
 

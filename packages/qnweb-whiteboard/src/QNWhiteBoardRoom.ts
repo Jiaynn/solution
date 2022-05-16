@@ -145,9 +145,9 @@ class QNWhiteBoardRoom {
    * size 尺寸
    */
   setPenStyle(params: {
-    type: number;
-    color: string;
-    size: number;
+    type?: number;
+    color?: string;
+    size?: number;
   }) {
     return this.controller.set_pen_style(params);
   }
