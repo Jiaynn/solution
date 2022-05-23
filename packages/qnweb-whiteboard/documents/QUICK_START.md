@@ -81,7 +81,7 @@ client.joinRoom(appId, meetingId, userId, token);
 # 5. 关闭房间
 
 ```javascript
-client.leave_room()
+client.leaveRoom()
 ```
 
 # 以下流程确保在房间加入成功后使用，比如在 3 中 onJoinSuccess 回调中使用
