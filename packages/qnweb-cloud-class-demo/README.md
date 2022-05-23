@@ -17,7 +17,7 @@
 * [React](https://github.com/facebook/react)
 * [TypeScript](https://github.com/microsoft/TypeScript)
 * [Vite](https://github.com/vitejs/vite)
-* [qnweb-high-level-rtc](../qnweb-high-level-rtc)
+* [qnweb-high-level-rtc](./qnweb-high-level-rtc)
 * [qnweb-whiteboard](https://www.npmjs.com/package/qnweb-whiteboard)
 
 ## 快速启动

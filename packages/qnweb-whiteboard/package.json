@@ -1,6 +1,6 @@
 {
   "name": "qnweb-whiteboard",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "main": "build/qnweb-whiteboard.umd.js",
   "module": "build/qnweb-whiteboard.esm.js",
   "types": "build/types/index.d.ts",
@@ -8,7 +8,8 @@
     "build",
     "package.json",
     "README.md",
-    "wasm"
+    "documents",
+    "webassembly"
   ],
   "scripts": {
     "build:prod": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:prod",
@@ -31,16 +32,12 @@
     "rollup-plugin-typescript2": "^0.30.0",
     "rollup-plugin-uglify": "^6.0.4",
     "tslib": "^2.2.0",
-    "typescript": "^4.3.2",
-    "whiteboard": "workspace:^1.0.0"
+    "typescript": "^4.3.2"
   },
   "dependencies": {
     "inquirer": "^8.1.1",
     "ora": "^5.4.1",
     "resolve-url": "^0.2.1",
     "shelljs": "^0.8.4"
-  },
-  "peerDependencies": {
-    "whiteboard": "workspace:^1.0.0"
   }
 }

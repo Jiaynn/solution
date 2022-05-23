@@ -1,5 +1,5 @@
-import QNWhiteboard from './core';
+import QNWhiteBoard from './QNWhiteBoard';
 
-export default QNWhiteboard;
+export default QNWhiteBoard;
 
 export * from './types';

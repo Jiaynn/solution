@@ -73,10 +73,8 @@ const preRunTask = {
   'qnweb-whiteboard-demo': {
     title: '白板 demo',
     async run() {
-      await buildSDK('whiteboard');
       await buildSDK('qnweb-whiteboard');
-      await runShell('copy_whiteboard_sdk');
-      await runShell('copy_whiteboard_wasm');
+      await runShell('copy_whiteboard');
     }
   }
 };
