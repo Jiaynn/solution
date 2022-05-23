@@ -13,7 +13,7 @@ const buildEnvironment = process.env.NODE_ENV;
 console.log(`白板 SDK 打包中，当前环境：${buildEnvironment}`);
 
 export default {
-  input: './src/QNWhiteBoard.ts',
+  input: './src/index.ts',
   plugins: [
     commonjs(),
     typescript({

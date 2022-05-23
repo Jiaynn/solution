@@ -1,7 +1,7 @@
 export interface QNAuthUrlParams {
-  baseURL: string;
-  appId: string;
-  roomName: string;
+  baseURL?: string;
+  appId?: string;
+  roomName?: string;
   suffix: 'auth' | 'cbauth';
 }
 

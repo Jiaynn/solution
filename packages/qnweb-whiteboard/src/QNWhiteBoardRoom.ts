@@ -1,11 +1,11 @@
 import * as whiteboard from './whiteboard_sdk';
-import { QNJoinRoomParams } from './types';
-import { buildAuthURL, buildUrl, makeToStringString, parseRoomToken } from './utils';
-import { baseURL } from './config';
+import { QNJoinRoomParams, QNRoomEvent } from './types';
+import { buildAuthURL, buildUrl, makeToStringString, QNRtcRoomInfo } from './utils';
+import { baseURL, joinURL } from './config';
 
 class QNWhiteBoardRoom {
-  protected controller = whiteboard.controller;
-  protected roomTokenJson: ReturnType<typeof parseRoomToken> = {
+  controller = whiteboard.controller;
+  protected roomTokenJson: QNRtcRoomInfo = {
     appId: '',
     expireAt: 0,
     permission: '',
@@ -18,7 +18,7 @@ class QNWhiteBoardRoom {
    * @param roomToken
    * @private
    */
-  private makeAuthUrl(roomToken: string) {
+  private buildBaseAuthUrl(roomToken: string) {
     return buildUrl(buildAuthURL({
       baseURL,
       appId: this.roomTokenJson.appId,
@@ -37,7 +37,7 @@ class QNWhiteBoardRoom {
    * @param params
    * @private
    */
-  private makeCbAuthUrl(roomToken: string, params?: QNJoinRoomParams) {
+  private buildCbAuthUrl(roomToken: string, params?: QNJoinRoomParams) {
     return buildUrl(buildAuthURL({
       baseURL,
       appId: this.roomTokenJson.appId,
@@ -57,29 +57,13 @@ class QNWhiteBoardRoom {
 
   /**
    * 加入房间
-   * @param roomToken string 房间token
-   * @param params JoinRoomParams 加入房间的参数
-   * bgColor  [可选] 表示白板(meeting)的颜色。也有三个值可选: 1,2,3 1 代表白色，2 代表黑色，3 代表绿色。
-   * limitNumber  0代表不限制：如果 >0，代表白板内最多limitNumber个人，只要白板内人数超过limitNumber数量时，就会进不去。
-   * aspectRatio 宽高比，0.5 ～ 2.5之间，非必填
-   * zoomScale 扩展比 1～5之间 非必填
-   * title 白板标题(长度 1 ~ 20 支持数字、字符、下划线_)，相同的RTC房间，如果title相同，则进相同的房间，一个RTC房间可以有多个白板房间，标题不同就会生成新的，该字段非必填
+   * @param appId {string} 应用id
+   * @param meetingId {string} 房间id
+   * @param userId {string} 用户id
+   * @param meetingToken {string} 认证信息
    */
-  joinRoom(
-    roomToken: string,
-    params?: QNJoinRoomParams
-  ) {
-    const roomTokenJson = parseRoomToken(roomToken);
-    this.roomTokenJson = roomTokenJson;
-    const authUrl = this.makeAuthUrl(roomToken);
-    const cbAuthUrl = this.makeCbAuthUrl(roomToken, params);
-    return fetch(authUrl).then(() => {
-      return fetch(cbAuthUrl).then(res => res.json());
-    }).then(res => {
-      return this.controller.join_room(
-        res.appId, res.meetingId, roomTokenJson.userId, res.meetingToken,
-      );
-    });
+  joinRoom(appId: string, meetingId: string, userId: string, meetingToken: string) {
+    return this.controller.join_room(joinURL, appId, meetingId, userId, meetingToken);
   }
 
   /**
@@ -91,17 +75,12 @@ class QNWhiteBoardRoom {
 
   /**
    * 注册事件回调
-   * @param events
-   * onJoinSuccess 加入房间成功
-   * onJoinFailed 加入房间失败
-   * onRoomStatusChanged 房间连接状态改变
+   * @param event {QNRoomEvent & { [key: string]: (...args: any[]) => void }}
    */
-  registerRoomEvent(events: {
-    onJoinSuccess?: () => void;
-    onJoinFailed?: () => void;
-    onRoomStatusChanged?: (code: number) => void;
+  registerRoomEvent(event: QNRoomEvent & {
+    [key: string]: (...args: any[]) => void
   }) {
-    return this.controller.registerRoomEvent(events);
+    return this.controller.registerRoomEvent(event);
   }
 
   /**
@@ -140,9 +119,9 @@ class QNWhiteBoardRoom {
   /**
    * 设置白板输入模式样式
    * @param params
-   * type 1-铅笔，2-马克笔
-   * color 16进制颜色
-   * size 尺寸
+   * type 0:铅笔 1:马克笔 2:点 3:手 4:空心箭头 5:实心箭头
+   * color 16 进制颜色(只在0和1类型下生效，都不能为空)
+   * size 尺寸(只在0和1类型下生效，都不能为空)
    */
   setPenStyle(params: {
     type?: number;
@@ -171,7 +150,7 @@ class QNWhiteBoardRoom {
   /**
    * 设置图形模式
    * @param mode
-   * 0-矩形，1-圆，3-实线，6-空心箭头，8-虚线，9-椭圆，10-实心箭头
+   * 0-矩形，1-圆，3-线条，6-箭头
    */
   setGeometryMode(mode: number) {
     return this.controller.set_geometry_mode(mode);
@@ -186,42 +165,67 @@ class QNWhiteBoardRoom {
   }
 
   /**
-   * 新建文档
+   * 获取当前白板页列表
+   */
+  getDocuments() {
+    return this.controller.get_documents();
+  }
+
+  /**
+   * 新建白板页
    */
   newDocument() {
     return this.controller.new_document();
   }
 
   /**
-   * 切换文档
-   * @param widgetId 文档 ID
+   * 切换白板页，ppt/pdf 模式下不可用
+   * @param documentId 文档 ID
    */
-  cutDocument(widgetId: string) {
-    return this.controller.new_document(widgetId);
+  cutDocument(documentId: string) {
+    return this.controller.new_document(documentId);
   }
 
   /**
-   * 插入文档
-   * @param widgetId 文档 ID
+   * 插入白板页
+   * @param documentId 文档 ID
    */
-  insertDocument(widgetId: string) {
-    return this.controller.insert_document(widgetId);
+  insertDocument(documentId: string) {
+    return this.controller.insert_document(documentId);
   }
 
   /**
-   * 删除文档
-   * @param widgetId 文档 ID
+   * 删除白板页
+   * @param documentId 文档 ID
    */
-  deleteDocument(widgetId: string) {
-    return this.controller.delete_document(widgetId);
+  deleteDocument(documentId: string) {
+    return this.controller.delete_document(documentId);
   }
 
   /**
-   * 清空文档
+   * 清空白板页，pdf模式下不用传 documentId
    * @param widgetId 文档 ID
    */
-  cleanDocument(widgetId: string) {
-    return this.controller.clean_document(widgetId);
+  cleanDocument(documentId?: string) {
+    return this.controller.clean_document(documentId);
+  }
+
+  /**
+   * 白板内上传文件
+   * @param params
+   * file {File} 文件,
+   * left {number} 文件在白板内距离左侧的距离,
+   * top {number} 文件在白板内距离顶部的距离,
+   * width {number} 文件在白板内的宽度, height {number} 文件在白板内的高度
+   */
+  uploadFile(params: {
+    file: File,
+    left?: number,
+    top?: number,
+    width?: number,
+    height?: number
+  }) {
+    return this.controller.upload_file(params);
   }
 }
 
