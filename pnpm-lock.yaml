@@ -903,6 +903,7 @@ importers:
       react-dom: ^17.0.2
       react-router-dom: ^5.0.0
       react-transition-group: ^4.4.2
+      sass: ^1.52.1
       typescript: ^4.4.4
       vite: ^2.7.2
     dependencies:
@@ -919,8 +920,9 @@ importers:
       '@types/react-dom': 17.0.11
       '@types/react-transition-group': 4.4.4
       '@vitejs/plugin-react': 1.2.0
+      sass: 1.52.1
       typescript: 4.5.5
-      vite: 2.9.5
+      vite: 2.9.5_sass@1.52.1
 
 packages:
 
@@ -11271,6 +11273,16 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
+  /sass/1.52.1:
+    resolution: {integrity: sha512-fSzYTbr7z8oQnVJ3Acp9hV80dM1fkMN7mSD/25mpcct9F7FPBMOI8krEYALgU1aZoqGhQNhTPsuSmxjnIvAm4Q==}
+    engines: {node: '>=12.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.0.0
+      source-map-js: 1.0.2
+    dev: true
+
   /saxes/5.0.1:
     resolution: {integrity: sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==}
     engines: {node: '>=10'}
@@ -12549,6 +12561,31 @@ packages:
       resolve: 1.22.0
       rollup: 2.67.3
       sass: 1.50.0
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
+  /vite/2.9.5_sass@1.52.1:
+    resolution: {integrity: sha512-dvMN64X2YEQgSXF1lYabKXw3BbN6e+BL67+P3Vy4MacnY+UzT1AfkHiioFSi9+uiDUiaDy7Ax/LQqivk6orilg==}
+    engines: {node: '>=12.2.0'}
+    hasBin: true
+    peerDependencies:
+      less: '*'
+      sass: '*'
+      stylus: '*'
+    peerDependenciesMeta:
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+    dependencies:
+      esbuild: 0.14.36
+      postcss: 8.4.12
+      resolve: 1.22.0
+      rollup: 2.67.3
+      sass: 1.52.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
