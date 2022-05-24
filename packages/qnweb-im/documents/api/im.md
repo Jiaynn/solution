@@ -1,16 +1,16 @@
 ## im
 
 - QNIM
-  - [.init(config)](#QNIM.init(config) ⇒ im) ⇒ im
+  - [.init(config)](#QNIM.init(config))
 
 - im
   - [.login(opt)](#im.login(opt))
   - [.qrlogin(opt)](#im.qrlogin(opt))
   - [.tokenLogin(opt)](#im.tokenLogin(opt))
   - [.idLogin(opt)](#im.idLogin(opt))
-  - [.isLogin()](#im.isLogin() ⇒ `boolean`) ⇒ `boolean`
-  - [.on(options, ext)](#im.on(options, ext))
-  - [.off(options, ext)](#im.off(options, ext))
+  - [.isLogin()](#im.isLogin())
+  - [.on](#im.on)
+  - [.off](#im.off)
   - [.logout()](#im.logout())
 
 ### QNIM.init(config) ⇒ im
