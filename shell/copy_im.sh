@@ -1,5 +1,6 @@
-source_dir=packages/qnweb-im
-target_dir=packages/qnweb-im-demo
+sdk_dir=packages/qnweb-im
+demo_dir=packages/qnweb-im-demo
 
-cp ${source_dir}/build/qnweb-im.*.js ${target_dir}/src/sdk &&
+cp ${sdk_dir}/build/qnweb-im.*.js ${demo_dir}/src/sdk &&
+cp -r ${sdk_dir}/documents ${demo_dir} &&
 echo "copy_im success"
