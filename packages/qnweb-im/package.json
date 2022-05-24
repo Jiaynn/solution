@@ -1,6 +1,6 @@
 {
   "name": "qnweb-im",
-  "version": "1.0.4-beta.5",
+  "version": "1.0.5",
   "main": "build/qnweb-im.umd.js",
   "module": "build/qnweb-im.esm.js",
   "types": "build/types/index.d.ts",
