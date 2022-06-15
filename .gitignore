@@ -118,3 +118,7 @@ dist
 
 # .idea
 .idea
+
+# uniapp
+uni_modules
+unpackage

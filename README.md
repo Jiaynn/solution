@@ -56,3 +56,4 @@ $ pnpm start
   * [qnweb-rtc-ai-demo](./packages/qnweb-rtc-ai-demo/README.md) 
   * [qnweb-video-together-demo](./packages/qnweb-video-together-demo/README.md) 
   * [qnweb-whiteboard-demo](./packages/qnweb-whiteboard-demo/README.md) 
+  * [qnuniapp-voice-chat](./packages/qnuniapp-voice-chat/README.md) 

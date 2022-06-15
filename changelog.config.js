@@ -19,6 +19,7 @@ const packages = [
   'qnweb-rtc-ai',
   'qnweb-whiteboard',
   'whiteboard',
+  'qnuniapp-voice-chat'
 ];
 
 module.exports = {
@@ -28,7 +29,7 @@ module.exports = {
   maxMessageLength: 64,
   minMessageLength: 3,
   questions: ['type', 'scope', 'subject', 'body', 'breaking', 'issues', 'lerna'],
-  scopes: packages.concat(''),
+  scopes: packages.concat('*'),
   types: {
     chore: {
       description: 'Build process or auxiliary tool changes',
