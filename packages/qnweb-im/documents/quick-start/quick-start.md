@@ -73,11 +73,11 @@ const im = QNIM.init(config);
 
 ### 二、注册用户
 
-通过 im 的 userManager的 asyncRegister 来注册用户
+通过 im 的 rosterManage asyncRegester 来注册用户
 
 ```ts
-im.userManage.asyncRegister(this.user).then(() => {
-  console.log("注册成功");
+im.rosterManage.asyncRegester(this.user).then((response) => {
+  console.log("注册成功", response);
 }).catch(ex => {
   console.log(ex.message);
 });
