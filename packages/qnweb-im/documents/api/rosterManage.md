@@ -51,7 +51,7 @@
 | roster_id | `number`  | 好友ID                                                       |
 | force     | `boolean` | 是否强制从服务器拉取： true - 从服务器拉取， false - 优先从本地存储获取 |
 
-### rosterManage.asyncRegester(opt) ⇒ Promise.<UserSettings>
+### rosterManage.asyncRegester(opt) ⇒ `Promise.<UserSettings>`
 
 用户注册
 
