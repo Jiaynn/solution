@@ -11,13 +11,14 @@ const instance = client.createInstance(bucketId);
 
 以下方法均为 `client` 暴露的方法
 
-| 方法名称                                    | 方法描述                                         |
-|-----------------------------------------|----------------------------------------------|
-| [setBasePath](#setBasePath)             | 设置白板iframe的src                               |
-| [joinRoom](#joinRoom)                   | 进入房间                                         |
-| [leaveRoom](#leaveRoom)                 | 离开房间                                         |
-| [registerRoomEvent](#registerRoomEvent) | 注册房间事件回调                                     |
+| 方法名称                                | 方法描述                                                     |
+| --------------------------------------- | ------------------------------------------------------------ |
+| [setBasePath](#setBasePath)             | 设置白板iframe的src                                          |
+| [joinRoom](#joinRoom)                   | 进入房间                                                     |
+| [leaveRoom](#leaveRoom)                 | 离开房间                                                     |
+| [registerRoomEvent](#registerRoomEvent) | 注册房间事件回调                                             |
 | [createInstance](#createInstance)       | 创建实例，主要包含 ppt/pdf 事件的一个实例，主要是对 ppt/pdf 状态的管理 |
+| [getRecord](#getRecord)                 | 获取回放数据并初始化回放模块                                 |
 
 ## 房间内主动控制的方法
 
@@ -91,7 +92,7 @@ const client = QNWhiteBoard.create()
 之后调用均会返回该实例 bucketId 从服务端获取
 
 ```ts
-client.createInstance(bucketId: string, el: string | HTMLElement)
+client.createInstance(bucketId?: string, el?: string | HTMLElement)
 ```
 
 | 参数     | 类型                  | 描述            |
@@ -99,12 +100,26 @@ client.createInstance(bucketId: string, el: string | HTMLElement)
 | bucketId | string                | 桶 ID          |
 | el       | string \| HTMLElement   | 承载白板的容器 id，或者传入 DOM 元素 |
 
-### setBasePath
+### initConfig
 
-设置白板 iframe 的 src 地址， 该设置必须在 [joinRoom](#joinRoom) 前调用
+初始化打开白板所需的参数，params 包含以下属性
 
 ```ts
-client.setBasePath(path: string)
+client.initConfig(params)
+```
+
+| 参数        | 类型                      | 描述                                                         |
+| ----------- |-------------------------| ------------------------------------------------------------ |
+| path        | string                  | 白板 iframe 的 src                                           |
+| el          | string <br> HTMLElement | 承载白板 iframe 的容器，传 DOM 元素 id 或元素本身，默认传递'iframeBox' |
+| playbackUrl | string                  | 回放模块请求地址                                             |
+
+### getRecord
+
+获取回放数据并初始化回放模块，必须在房间关闭的状态下调用
+
+```ts
+whiteboard.controller.getRecord(recordId)
 ```
 
 ### joinRoom
@@ -117,10 +132,10 @@ client.joinRoom(appId: string, meetingId: string, userId: string, token: string)
 
 | 参数 | 类型|描述 |
 |- | -|- |
-|appId|String|应用的 id|
-|meetingId|String|房间 id|
-|userId|String|用户 id|
-|token|String|认证信息|
+|appId|string|应用的 id|
+|meetingId|string|房间 id|
+|userId|string|用户 id|
+|token|string|认证信息|
 
 ### leaveRoom
 
@@ -386,6 +401,18 @@ client.uploadFile({
 
 ## instance 方法
 
+### switchBucket
+
+切换白板
+
+```ts
+instance.switchBucket(bucketId)
+```
+
+| 参数     | 描述              |
+| -------- | ----------------- |
+| bucketId | 新白板的 bucketId |
+
 ### openWhiteBoard
 
 打开白板
@@ -577,10 +604,167 @@ instance.getBoardMode()
 设置pdf操作模式
 
 ```ts
-client.setPDFOperationMode(mode: boolean)
+instance.setPDFOperationMode(mode: boolean)
 ```
 
 | 参数 | 类型    | 描述                                                         |
 | ---- | ------- | ------------------------------------------------------------ |
 | mode | boolean | true 开启 pdf 操作模式, false 关闭。 <br>pdf 操作模式下： <br>pc：↑↓箭头和滚轮 控制上下滚动，ctrl+滚轮控制缩放 <br>h5：双指缩放，单指滑动滚动 |
+
+### registerPlaybackEvent
+
+注册回放事件回调
+
+```ts
+ instance.registerPlaybackEvent({
+	onInitFinished: (totalTime) => console.log('onInitFinished', totalTime),
+	onError: (code) => console.log('onError', code),
+	onStatusChanged: (status) => console.log('onStatusChanged', status),
+	onProgress: (data) => console.log('onProgress', data),
+	onBoardSizeChanged: (size) => console.log('onBoardSizeChanged', size),
+  onFileLoadingFailed: (error) => console.log(error)
+})
+```
+
+onInitFinished 回放模式初始化完成回调
+
+| 参数      | 类型     | 描述             |
+| --------- |--------| ---------------- |
+| totalTime | number | 回放总时长，毫秒 |
+
+onError 回放模式错误回调，code对应以下描述
+
+| 错误码 | 描述                       |
+| ------ | -------------------------- |
+| 100    | 网络不可用                 |
+| 101    | 服务器错误或繁忙           |
+| 500    | 未关闭房间，不可初始化回放 |
+| 501    | 下载回放记录文件失败       |
+| 502    | 回放记录不存在             |
+| 503    | 录制未结束                 |
+
+onStatusChanged 回放状态改变回调 status为当前状态
+
+| 参数   | 类型     | 描述                                                         |
+| ------ |--------| ------------------------------------------------------------ |
+| status | string | `IDLE`空闲状态 <br> `LOADING`正在初始化数据 <br> `PREPARED` 已就绪<br> `PLAYING`播放中 <br> `PAUSED`已暂停 <br> `STOPPED`已停止 <br>`ERROR` 错误 <br> `DESTROYED`对象已销毁 |
+
+onProgress 回放进度通知回调，播放中200毫秒触发一次，data包含参数如下
+
+| 参数     | 类型     | 描述             |
+| -------- |--------| ---------------- |
+| position | number | 当前进度，毫秒   |
+| duration | number | 回放总时长，毫秒 |
+
+onBoardSizeChanged 白板尺寸改变回调，size包含参数如下
+
+| 参数   | 类型     | 描述       |
+| ------ |--------| ---------- |
+| width  | number | 白板虚拟宽 |
+| height | number | 白板虚拟高 |
+
+onFileLoadingFailed 回放中的文件加载失败回调， error包含参数如下
+
+| 参数      | 类型     | 描述                                  |
+| --------- |--------| ------------------------------------- |
+| bucketId  | string | 白板id                                |
+| mode      | string | 白板类型`ppt_play pdf_scroll`两者之一 |
+| extra     | string | 文件对应的描述信息                    |
+| errorCode | number | 文件加载失败的错误码                  |
+
+### play
+
+播放回放
+
+```ts
+instance.play()
+```
+
+### stop
+
+停止回放
+
+```ts
+instance.stop()
+```
+
+### pause
+
+暂停回放
+
+```ts
+instance.pause()
+```
+
+### seek
+
+跳转回放
+
+```ts
+instance.pause(position)
+```
+
+| 参数     | 类型   | 描述                                          |
+| -------- | ------ | --------------------------------------------- |
+| position | number | 跳转回放的目标位置时间，[0,总时长] 区间，毫秒 |
+
+### calibrate
+
+校准回放
+
+```ts
+instance.calibrate(offset)
+```
+
+| 参数   | 类型   | 描述                                    |
+| ------ | ------ | --------------------------------------- |
+| offset | number | 校准的时间长度，[-5000,5000] 区间，毫秒 |
+
+### release
+
+关闭回放
+
+```ts
+instance.release()
+```
+
+### getPosition
+
+获取当前回放进度，毫秒
+
+```ts
+instance.getPosition()
+```
+
+### getDuration
+
+获取回放总时长，毫秒
+
+```ts
+instance.getDuration()
+```
+
+### getStatus
+
+获取当前回放状态，值参考 registerPlaybackEvent 中 onStatusChanged 回调参数
+
+```ts
+instance.getStatus()
+```
+
+### getRecordId
+
+获取当前回放id
+
+```ts
+instance.getRecordId()
+```
+
+### getWhiteBoardSize
+
+获取当前回放白板虚拟尺寸，值参考 registerPlaybackEvent 中 onBoardSizeChanged 回调参数
+
+```ts
+instance.getWhiteBoardSize()
+```
 

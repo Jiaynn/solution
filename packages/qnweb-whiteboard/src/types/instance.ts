@@ -78,6 +78,69 @@ export interface QNPDFEvent {
   onFileStateChanged?: (data: QNPDFEventOnFileStateChanged) => void;
 }
 
+export interface QNPlaybackEvent {
+  /**
+   * 回放模式初始化完成回调
+   * @param totalTime 回放总时长，毫秒
+   */
+  onInitFinished?: (totalTime: number) => void,
+  /**
+   * 回放模式错误回调
+   * code对应以下描述
+   * | 错误码 | 描述                       |
+   * | ------ | -------------------------- |
+   * | 100    | 网络不可用                 |
+   * | 101    | 服务器错误或繁忙           |
+   * | 500    | 未关闭房间，不可初始化回放 |
+   * | 501    | 下载回放记录文件失败       |
+   * | 502    | 回放记录不存在             |
+   * | 503    | 录制未结束                 |
+   * @param code
+   */
+  onError?: (code: number) => void,
+  /**
+   * 回放进度通知回调，播放中200毫秒触发一次
+   * data包含参数如下
+   * | 参数   | 类型   | 描述                                                         |
+   * | ------ | ------ | ------------------------------------------------------------ |
+   * | status | String | `IDLE`空闲状态 <br> `LOADING`正在初始化数据 <br> `PREPARED` 已就绪<br> `PLAYING`播放中 <br> `PAUSED`已暂停 <br> `STOPPED`已停止 <br>`ERROR` 错误 <br> `DESTROYED`对象已销毁 |
+   * @param status
+   */
+  onStatusChanged?: (status: string) => void,
+  /**
+   * 回放进度通知回调，播放中200毫秒触发一次
+   * size包含参数如下
+   * | 参数   | 类型   | 描述       |
+   * | ------ | ------ | ---------- |
+   * | width  | Number | 白板虚拟宽 |
+   * | height | Number | 白板虚拟高 |
+   * @param data
+   */
+  onProgress?: (data: { position: number; duration: number }) => void,
+  /**
+   * 白板尺寸改变回调
+   * size包含参数如下
+   * | 参数   | 类型   | 描述       |
+   * | ------ | ------ | ---------- |
+   * | width  | Number | 白板虚拟宽 |
+   * | height | Number | 白板虚拟高 |
+   * @param size
+   */
+  onBoardSizeChanged?: (size: { width: number, height: number }) => void,
+  /**
+   * 回放中的文件加载失败回调
+   * error包含参数如下
+   * | 参数      | 类型   | 描述                                  |
+   * | --------- | ------ | ------------------------------------- |
+   * | bucketId  | String | 白板id                                |
+   * | mode      | String | 白板类型`ppt_play pdf_scroll`两者之一 |
+   * | extra     | String | 文件对应的描述信息                    |
+   * | errorCode | Number | 文件加载失败的错误码                  |
+   * @param error
+   */
+  onFileLoadingFailed?: (error: { bucketId: string, mode: string, extra: string, errorCode: number }) => void,
+}
+
 export interface QNCreateInstanceResult {
   /**
    * 打开白板
@@ -152,5 +215,56 @@ export interface QNCreateInstanceResult {
    * @param mode
    */
   setPDFOperationMode: (mode: boolean) => void;
+  /**
+   * 注册回放事件回调
+   * @param event
+   */
+  registerPlaybackEvent: (event: QNPlaybackEvent) => void;
+  /**
+   * 播放回放
+   */
+  play: () => void;
+  /**
+   * 停止回放
+   */
+  stop: () => void;
+  /**
+   * 暂停回放
+   */
+  pause: () => void;
+  /**
+   * 跳转回放
+   * @param position 跳转回放的目标位置时间，[0,总时长] 区间，毫秒
+   */
+  seek: (position: number) => void;
+  /**
+   * 校准回放
+   * @param offset 校准的时间长度，[-5000,5000] 区间，毫秒
+   */
+  calibrate: (offset: number) => void;
+  /**
+   * 关闭回放
+   */
+  release: () => void;
+  /**
+   * 获取当前回放进度，毫秒
+   */
+  getPosition: () => number;
+  /**
+   * 获取回放总时长，毫秒
+   */
+  getDuration: () => number;
+  /**
+   * 获取当前回放状态，值参考 registerPlaybackEvent 中 onStatusChanged 回调参数
+   */
+  getStatus: () => string;
+  /**
+   * 获取当前回放id
+   */
+  getRecordId: () => string;
+  /**
+   * 获取当前回放白板虚拟尺寸，值参考 registerPlaybackEvent 中 onBoardSizeChanged 回调参数
+   */
+  getWhiteBoardSize: () => { width: number; height: number };
 }
 
