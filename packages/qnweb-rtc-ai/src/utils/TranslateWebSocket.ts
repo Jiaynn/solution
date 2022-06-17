@@ -58,7 +58,7 @@ class TranslateWebSocket {
   public listeners: Array<IEvent>;
 
   constructor(config: Config, initOkCallback?: () => void) {
-    const { query = defaultQuery, baseUrl = 'wss://ap-open-ws.service-z0.qiniuapp.com/asr' } = config;
+    const { query = defaultQuery, baseUrl = 'wss://wz-rt-asr.service-z0.qiniuapp.com/asr' } = config;
     const queryStr = Object.entries({
       ...defaultQuery,
       ...query,
