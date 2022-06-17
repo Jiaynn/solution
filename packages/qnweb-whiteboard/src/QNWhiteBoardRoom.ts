@@ -5,13 +5,14 @@ import { baseURL, joinURL } from './config';
 
 class QNWhiteBoardRoom {
   controller = whiteboard.controller;
-  protected roomTokenJson: QNRtcRoomInfo = {
+  roomTokenJson: QNRtcRoomInfo = {
     appId: '',
     expireAt: 0,
     permission: '',
     roomName: '',
     userId: ''
   };
+  joinRoomUrl: string = joinURL;
 
   /**
    * 生成cbauth
@@ -56,6 +57,14 @@ class QNWhiteBoardRoom {
   }
 
   /**
+   * 获取回放数据并初始化回放模块
+   * 必须在房间关闭的状态下调用
+   */
+  getRecord(recordId: string) {
+    return this.controller.getRecord(recordId);
+  }
+
+  /**
    * 加入房间
    * @param appId {string} 应用id
    * @param meetingId {string} 房间id
@@ -63,7 +72,10 @@ class QNWhiteBoardRoom {
    * @param meetingToken {string} 认证信息
    */
   joinRoom(appId: string, meetingId: string, userId: string, meetingToken: string) {
-    return this.controller.join_room(joinURL, appId, meetingId, userId, meetingToken);
+    return this.controller.join_room(
+      this.joinRoomUrl,
+      appId, meetingId, userId, meetingToken
+    );
   }
 
   /**
