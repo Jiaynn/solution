@@ -1,6 +1,6 @@
 {
   "name": "qnweb-interview-demo",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build --mode prod",
@@ -18,7 +18,7 @@
     "dayjs": "^1.10.4",
     "lodash": "^4.17.21",
     "pili-rtc-web": "^2.5.0",
-    "qnweb-high-level-rtc": "^4.0.0-beta.4",
+    "qnweb-high-level-rtc": "4.0.0",
     "qnweb-im": "workspace:^1.0.4-beta.5",
     "qnweb-rtc": "^4.1.0",
     "react": "^17.0.2",
