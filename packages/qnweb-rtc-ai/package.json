@@ -1,6 +1,6 @@
 {
   "name": "qnweb-rtc-ai",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "build/qnweb-rtc-ai.umd.js",
   "module": "build/qnweb-rtc-ai.esm.js",
   "types": "build/types/index.d.ts",
