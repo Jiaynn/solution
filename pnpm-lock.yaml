@@ -167,7 +167,6 @@ importers:
       react: ^17.0.0
       react-dom: ^17.0.0
       react-router-dom: ^5.3.0
-      recoil: ^0.3.1
       sass: ^1.42.0
       typescript: ^4.4.4
       vite: ^2.6.4
@@ -185,7 +184,6 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-router-dom: 5.3.0_react@17.0.2
-      recoil: 0.3.1_sfoxds7t5ydpegc3knd667wn6m
     devDependencies:
       '@types/lodash': 4.14.178
       '@types/node': 16.11.25
@@ -330,7 +328,6 @@ importers:
       react: ^17.0.2
       react-dom: ^17.0.2
       react-router-dom: ^5.3.0
-      recoil: ^0.3.1
       typescript: ^4.4.4
       vconsole: ^3.7.0
       vite: ^2.7.2
@@ -354,7 +351,6 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-router-dom: 5.3.0_react@17.0.2
-      recoil: 0.3.1_sfoxds7t5ydpegc3knd667wn6m
       vconsole: 3.12.0
     devDependencies:
       '@types/react': 17.0.39
@@ -614,7 +610,6 @@ importers:
       react: ^17.0.0
       react-dom: ^17.0.0
       react-router-dom: ^5.3.0
-      recoil: ^0.3.1
       sass: ^1.42.0
       typescript: ^4.4.4
       vite: ^2.5.4
@@ -634,7 +629,6 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-router-dom: 5.3.0_react@17.0.2
-      recoil: 0.3.1_sfoxds7t5ydpegc3knd667wn6m
     devDependencies:
       '@types/node': 16.11.25
       '@types/qs': 6.9.7
@@ -801,7 +795,6 @@ importers:
       react-dom: ^17.0.0
       react-error-boundary: ^3.1.4
       react-router-dom: ^5.3.0
-      recoil: ^0.3.1
       sass: ^1.42.0
       typescript: ^4.3.2
       vite: ^2.6.4
@@ -825,7 +818,6 @@ importers:
       react-dom: 17.0.2_react@17.0.2
       react-error-boundary: 3.1.4_react@17.0.2
       react-router-dom: 5.3.0_react@17.0.2
-      recoil: 0.3.1_sfoxds7t5ydpegc3knd667wn6m
     devDependencies:
       '@cypress/code-coverage': 3.9.12_cypress@9.5.0
       '@hon2a/cypress-antd': 0.3.14
@@ -7045,10 +7037,6 @@ packages:
       crc32: 0.2.2
       deflate-js: 0.2.3
 
-  /hamt_plus/1.0.2:
-    resolution: {integrity: sha1-4hwlKWjH4zsg9qGwlM2FeHomVgE=}
-    dev: false
-
   /happy-dom/2.55.0:
     resolution: {integrity: sha512-CHDMBRau+l/yKQL+ANmexRAC8FRCuYbXRSpu/GbLVyfqkrlBzV7OSNd5C5HZ+pVFtFv1bFJYC5r+xrqgGQuq5w==}
     dependencies:
@@ -11255,23 +11243,6 @@ packages:
     dependencies:
       resolve: 1.22.0
 
-  /recoil/0.3.1_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-KNA3DRqgxX4rRC8E7fc6uIw7BACmMPuraIYy+ejhE8tsw7w32CetMm8w7AMZa34wzanKKkev3vl3H7Z4s0QSiA==}
-    peerDependencies:
-      react: '>=16.13.1'
-      react-dom: '*'
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-    dependencies:
-      hamt_plus: 1.0.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
   /redent/3.0.0:
     resolution: {integrity: sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==}
     engines: {node: '>=8'}
@@ -12965,7 +12936,7 @@ packages:
       chalk: 4.1.2
       param-case: 3.0.4
       pascal-case: 3.1.2
-      vite: 2.9.5
+      vite: 2.9.5_sass@1.50.0
     transitivePeerDependencies:
       - supports-color
     dev: true
