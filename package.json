@@ -24,6 +24,8 @@
     "ar-changelog": "ar-changelog"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.4.5",
+    "@changesets/cli": "^2.23.0",
     "@commitlint/config-conventional": "^16.2.1",
     "@manypkg/get-packages": "^1.1.3",
     "ar-changelog": "^1.0.4",
