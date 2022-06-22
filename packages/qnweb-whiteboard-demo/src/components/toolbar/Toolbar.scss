@@ -1,0 +1,55 @@
+.toolbar {
+  background-color: #fff;
+  box-shadow: 0 8px 24px 0 rgb(0 0 0 / 10%);
+  border-radius: 4px;
+  position: relative;
+
+  &-fixed-top {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -40px);
+    transition: transform 500ms;
+
+    &-visible {
+      transform: translate(-50%, 0);
+    }
+  }
+
+  .tools {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+
+    .tool {
+      margin: 5px;
+      position: relative;
+
+      &-checked {
+        border: 2px solid #256fea;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 4px;
+          height: 4px;
+          background-color: #FF0000FF;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  .button {
+    padding: 5px;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+  }
+}

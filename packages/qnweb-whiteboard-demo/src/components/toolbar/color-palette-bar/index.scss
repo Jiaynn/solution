@@ -1,0 +1,33 @@
+.color-palette-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    margin: 0 5px;
+    box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    display: inline-block;
+
+    &-checked {
+      border: 2px solid #256fea;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 4px;
+        height: 4px;
+        background-color: #FF0000FF;
+        border-radius: 50%;
+      }
+    }
+  }
+}

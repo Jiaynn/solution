@@ -1,0 +1,45 @@
+.toolbarMenu {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottomLeft {
+  display: inline-flex;
+  align-items: center;
+}
+
+.bottomLeftBar {
+  margin: 0 5px;
+}
+
+.PDFAction {
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #fff;
+  user-select: none;
+}
+
+.box {
+  width: 800px;
+  height: 800px;
+  margin: auto;
+}
+
+.record {
+  .button {
+    margin: 0 5px 5px 0;
+  }
+}
