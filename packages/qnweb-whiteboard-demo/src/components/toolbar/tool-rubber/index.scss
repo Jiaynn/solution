@@ -1,0 +1,12 @@
+.tool-rubber {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  display: inline-block;
+
+  > img {
+    width: 100%;
+    height: 100%;
+  }
+}

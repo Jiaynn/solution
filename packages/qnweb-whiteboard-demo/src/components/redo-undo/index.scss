@@ -1,0 +1,35 @@
+.qn-whiteboard {
+  &-redo-undo {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 4px;
+    backdrop-filter: blur(5px);
+    border: 1px solid #e5e8f0;
+    background-color: #fff;
+
+    .button {
+      outline: none;
+      cursor: pointer;
+      margin: 0;
+      border: 0;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      background-color: transparent;
+      border-radius: 4px;
+      font-size: 24px;
+      line-height: 1;
+
+      &:hover {
+        background-color: #ebf3ff;
+      }
+
+      &:disabled {
+        opacity: .5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
