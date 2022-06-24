@@ -14,6 +14,9 @@
 					<view class="control-button" @click="onFlipCamera">
 						<uni-icons type="camera" size="30" style="color:white"></uni-icons>
 					</view>
+					<view class="control-button" @click="onMirror">
+						<image class="control-button-image" :src="require(`./icon-mirror.png`)" mode="aspectFill"></image>
+					</view>
 					<view class="control-button" @click="onToggleMic">
 						<uni-icons :type="isMicOn ? 'mic' : 'micoff'" size="30" style="color:white"></uni-icons>
 					</view>
@@ -69,6 +72,7 @@
 				localMicTrack: null,
 				isLiving: false, // 是否直播中
 				isLiveStreamDirect: true, // true: 单路转推, false: 合流转推
+				isMirror: true, // 是否是镜像
 			}
 		},
 		computed: {
@@ -208,6 +212,19 @@
 			}
 		},
 		methods: {
+			/**
+			 * 镜像
+			 */
+			onMirror() {
+				const isMirror = !this.isMirror;
+				this.isMirror = isMirror;
+				if (this.cameraFacing === 'front') { // 前置摄像头
+					this.localCameraTrack.encodeMirrorFrontFacing(!this.isMirror)
+				}
+				if (this.cameraFacing === 'back') { // 前置摄像头
+					this.localCameraTrack.encodeMirrorRearFacing(!this.isMirror)
+				}
+			},
 			/**
 			 * 开启心跳
 			 */
@@ -616,6 +633,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+	
+	.control-button-image {
+		width: 50rpx;
+		height: 50rpx;
 	}
 
 	.control-button-text {
