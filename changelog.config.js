@@ -19,7 +19,8 @@ const packages = [
   'qnweb-rtc-ai',
   'qnweb-whiteboard',
   'whiteboard',
-  'qnuniapp-voice-chat'
+  'qnuniapp-voice-chat',
+  'qnuniapp-live'
 ];
 
 module.exports = {
