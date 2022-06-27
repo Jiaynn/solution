@@ -34,9 +34,9 @@
 
 ### 如何体验 Demo？
 
-* **安卓端**：
+* **安卓端**：http://fir.qnsdk.com/mpve
 
-* **iOS**：
+* **iOS**：http://fir.qnsdk.com/7u6v
 
 ### 无法正常使用rtc通话？
 
