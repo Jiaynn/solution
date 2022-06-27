@@ -279,6 +279,7 @@
 			 * 切换清晰度
 			 */
 			onToggleClarity() {
+				this.localCameraTrack.stopCapture();
 				this.localCameraTrack.destroy();
 				const nextClarityMap = {
 					SD: "HD",
