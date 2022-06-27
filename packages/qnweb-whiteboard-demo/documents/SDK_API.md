@@ -47,9 +47,6 @@ const instance = client.createInstance(bucketId);
 
 | 方法名称                                                   | 方法描述         |
 |--------------------------------------------------------|--------------|
-| [openWhiteBoard](#openWhiteBoard)                      | 打开白板         |
-| [closeWhiteBoard](#closeWhiteBoard)                    | 关闭白板         |
-| [changeWhiteBoard](#changeWhiteBoard)                  | 切换白板         |
 | [registerWhiteBoardEvent](#registerWhiteBoardEvent)    | 注册白板事件回调     |
 | [registerPPTEvent](#registerPPTEvent)                  | 注册 PPT 事件回调  |
 | [registerPDFEvent](#registerPDFEvent)                  | 注册 pdf 事件回调  |
@@ -412,34 +409,6 @@ instance.switchBucket(bucketId)
 | 参数     | 描述              |
 | -------- | ----------------- |
 | bucketId | 新白板的 bucketId |
-
-### openWhiteBoard
-
-打开白板
-
-```ts
-instance.openWhiteBoard()
-```
-
-### closeWhiteBoard
-
-关闭白板
-
-```ts
-instance.closeWhiteBoard()
-```
-
-### changeWhiteBoard
-
-切换白板
-
-```ts
-instance.changeWhiteBoard(bucketId)
-```
-
-| 参数     | 描述             |
-| -------- | ---------------- |
-| bucketId | 新白板的bucketId |
 
 ### registerWhiteBoardEvent
 
