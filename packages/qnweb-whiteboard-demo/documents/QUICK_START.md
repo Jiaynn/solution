@@ -132,14 +132,3 @@ instance.registerPDFEvent({
 |currentPage|number|当前 pdf 页号|
 |pageCount|number|pdf 总页数|
 
-# 8. 打开白板
-
-```javascript
-client.openWhiteBoard()
-```
-
-# 9. 关闭白板
-
-```javascript
-client.closeWhiteBoard()
-```
