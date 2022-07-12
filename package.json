@@ -18,31 +18,24 @@
     "cloud-class-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-cloud-class-demo",
     "video-together-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-video-together-demo",
     "exam-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-exam-system-demo",
-    "commit": "git-cz",
+    "cz": "git-cz",
     "cube": "sh shell/cube.sh",
     "start": "ts-node scripts/start.ts",
-    "ar-changelog": "ar-changelog"
+    "changelog": "ar-changelog",
+    "changeset": "changeset"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.4.5",
     "@changesets/cli": "^2.23.0",
-    "@commitlint/config-conventional": "^16.2.1",
     "@manypkg/get-packages": "^1.1.3",
-    "ar-changelog": "^1.0.4",
-    "commitlint": "^16.2.3",
+    "ar-changelog": "^1.0.18",
+    "conventional-changelog-cli": "^2.2.2",
     "eslint": "^7.32.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "execa": "^5.1.1",
     "git-cz": "^4.8.0",
-    "husky": "^7.0.4",
     "kolorist": "^1.5.1",
     "prompts": "^2.4.2",
     "ts-node": "^10.7.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "git-cz"
-    }
   }
 }
