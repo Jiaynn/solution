@@ -253,6 +253,7 @@
 			 */
 			onFlipCamera() {
 				const cameraFacing = this.cameraFacing === 'front' ? 'back' : 'front';
+				this.cameraFacing = cameraFacing;
 				if (this.localCameraTrack) {
 					this.localCameraTrack.switchCamera();
 				}
