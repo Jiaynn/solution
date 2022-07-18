@@ -1,27 +1,9 @@
-const packages = [
-  'qnuniapp-im-demo',
-  'qnweapp-im-demo',
-  'qnweapp-interview-demo',
-  'qnweb-cloud-class-demo',
-  'qnweb-cube-ui',
-  'qnweb-exam-system-demo',
-  'qnweb-im-demo',
-  'qnweb-interview-demo',
-  'qnweb-overhaul-demo',
-  'qnweb-rtc-ai-demo',
-  'qnweb-video-together-demo',
-  'qnweb-whiteboard-demo',
-  'qnuniapp-im',
-  'qnweapp-im',
-  'qnweb-exam-sdk',
-  'qnweb-high-level-rtc',
-  'qnweb-im',
-  'qnweb-rtc-ai',
-  'qnweb-whiteboard',
-  'whiteboard',
-  'qnuniapp-voice-chat',
-  'qnuniapp-live'
-];
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const fs = require('fs');
+
+const projects = fs.readdirSync('./packages').filter(projectName => {
+  return fs.statSync(`./packages/${projectName}`).isDirectory();
+});
 
 module.exports = {
   disableEmoji: true,
@@ -30,7 +12,7 @@ module.exports = {
   maxMessageLength: 64,
   minMessageLength: 3,
   questions: ['type', 'scope', 'subject', 'body', 'breaking', 'issues', 'lerna'],
-  scopes: packages.concat(''),
+  scopes: projects.concat(''),
   types: {
     chore: {
       description: 'Build process or auxiliary tool changes',
