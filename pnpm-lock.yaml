@@ -130,6 +130,29 @@ importers:
       tslib: 2.3.1
       typescript: 4.5.5
 
+  packages/qnweapp-im-demo:
+    specifiers:
+      '@vant/weapp': ^1.8.0
+    dependencies:
+      '@vant/weapp': 1.10.3
+
+  packages/qnweapp-interview-demo:
+    specifiers:
+      '@rongcloud/imlib-v4': ^4.3.4
+      '@vant/weapp': ^1.6.8
+      dayjs: ^1.10.4
+      pili-rtc-wxapp: ^1.2.1
+      qiniu-wx-player: ^0.1.1
+      qs: ^6.10.1
+    dependencies:
+      '@rongcloud/imlib-v4': 4.6.0
+      '@vant/weapp': 1.10.3
+      dayjs: 1.10.7
+      pili-rtc-wxapp: 1.2.3
+      qiniu-wx-player: 0.1.1
+    devDependencies:
+      qs: 6.10.3
+
   packages/qnweb-cloud-class-demo:
     specifiers:
       '@ant-design/icons': ^4.7.0
@@ -3579,6 +3602,10 @@ packages:
       eslint-visitor-keys: 2.1.0
     dev: true
 
+  /@vant/weapp/1.10.3:
+    resolution: {integrity: sha512-CcG5umI+zlJRN6hQXPeknOenPkVm6WBEgBaB6Y94kOmKLx9NHtHBdURwxuJEA4q4mxhUdOuf6sV7I8tZBnCVxw==}
+    dev: false
+
   /@vitejs/plugin-react-refresh/1.3.6:
     resolution: {integrity: sha512-iNR/UqhUOmFFxiezt0em9CgmiJBdWR+5jGxB2FihaoJfqGt76kiwaKoVOJVU5NYcDWMdN06LbyN2VIGIoYdsEA==}
     engines: {node: '>=12.0.0'}
@@ -5128,7 +5155,7 @@ packages:
     dev: true
 
   /crc32/0.2.2:
-    resolution: {integrity: sha1-etIg1v/c0Rn5/BJ6d3LKzqOQpLo=}
+    resolution: {integrity: sha512-PFZEGbDUeoNbL2GHIEpJRQGheXReDody/9axKTxhXtQqIL443wnNigtVZO9iuCIMPApKZRv7k2xr8euXHqNxQQ==}
     engines: {node: '>= 0.4.0'}
     hasBin: true
 
@@ -5572,7 +5599,7 @@ packages:
     dev: true
 
   /deflate-js/0.2.3:
-    resolution: {integrity: sha1-+Fq7WOvFFRowYUdHPVfD5PfkQms=}
+    resolution: {integrity: sha512-r5KgHJ/yTiWQs23nVeQz5dSL/kmW0MBszsssNyEqDCjjFDj4XG/c6QUN/I0JtY3ZHwwcaNBtGE8s+oV33acTfQ==}
     engines: {node: '>= 0.4.0'}
     hasBin: true
 
@@ -6431,7 +6458,6 @@ packages:
   /events/3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
-    dev: true
 
   /evp_bytestokey/1.0.3:
     resolution: {integrity: sha512-/f2Go4TognH/KvCISP7OUsHn85hT9nUkxxA9BEWxFn+Oj9o8ZNLm/40hdlgSLyuOimsrTKLUMEorQexp/aPQeA==}
@@ -6957,7 +6983,7 @@ packages:
     dev: true
 
   /gzip-js/0.3.2:
-    resolution: {integrity: sha1-IxF+/usozzhSSN7/Df+tiUg22Ws=}
+    resolution: {integrity: sha512-BFTiwtEN12koJsnhVo77SzW+u6VANzhaK0HEtdwFwgFzFOq1WQJ8eSPEyGAueUfs1C/WqdgtuYnUwCRuRm1A5Q==}
     engines: {node: '>= 0.4.0'}
     hasBin: true
     dependencies:
@@ -8335,6 +8361,10 @@ packages:
     resolution: {integrity: sha512-JiDODCElVHGrFyjGYwYyNi7zCbKk9va9C77w+zCPMmi4C6ix7zsX2h3ddHugmo4dOTOTCym9++b/wVW9nC0IaA==}
     dev: false
 
+  /js-base64/2.6.4:
+    resolution: {integrity: sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ==}
+    dev: false
+
   /js-cookie/2.2.1:
     resolution: {integrity: sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==}
 
@@ -9617,6 +9647,19 @@ packages:
       wolfy87-eventemitter: 5.2.9
     dev: false
 
+  /pili-rtc-wxapp/1.2.3:
+    resolution: {integrity: sha512-Dn3BNKvOQsMCEa0ICtyozDieKGXbzqWt9MU+O8K9OyE3VItj2p563egglV/1REXnq4LT4KSmF7F0osnfDlg+6w==}
+    dependencies:
+      blueimp-md5: 2.19.0
+      crc32: 0.2.2
+      deflate-js: 0.2.3
+      events: 3.3.0
+      fingerprintjs2: 2.1.4
+      gzip-js: 0.3.2
+      js-base64: 2.6.4
+      wolfy87-eventemitter: 5.2.9
+    dev: false
+
   /pirates/4.0.5:
     resolution: {integrity: sha512-8V9+HQPupnaXMA23c5hvl69zXvTwTzyAYasnkb0Tts4XvO4CliqONMOnvlq26rkhLC3nWDFBJf73LU1e1VZLaQ==}
     engines: {node: '>= 6'}
@@ -10137,6 +10180,10 @@ packages:
     resolution: {integrity: sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==}
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     dev: true
+
+  /qiniu-wx-player/0.1.1:
+    resolution: {integrity: sha512-bi5xIGeKVLeQLSC3Ix13XyqEllM2i6ogQ0e3UkOvg1myrnh3BjAXfs9KO1/0GbJuSKbYQLCXiURYOALRY5Retw==}
+    dev: false
 
   /qn-rtplayer-web/1.0.3:
     resolution: {integrity: sha512-EKTVWO0jF2LHlArYjnApWdoD3GJNfb/FR3Py/1fIuQTU+k+SjrrOGQ6qJXhG9cHKoWkD8O/smEXgQwcaP4o6XQ==}

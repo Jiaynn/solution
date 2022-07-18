@@ -1,5 +1,2 @@
 packages:
-  - 'packages/qnweb-*'
-  - 'packages/whiteboard'
-  - 'packages/qnuniapp-im'
-  - 'packages/qnweapp-im'
+  - 'packages/*'
