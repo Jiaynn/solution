@@ -185,7 +185,7 @@ const Room = () => {
    */
   const speakToText = () => {
     const audioTrack = localTracks.find(t => t.tag === 'microphone');
-    console.log('audioTrack', audioTrack);
+    console.log('speakToText audioTrack', audioTrack);
     if (saying) { // 关闭
       audioAnalyzer.current.stopAudioToText();
     } else { // 开启
