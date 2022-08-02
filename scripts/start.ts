@@ -98,6 +98,10 @@ async function main() {
     message: '选择要运行的demo',
     choices: packages
       .filter(pkg => pkg.packageJson.name.endsWith('-demo'))
+      .filter(pkg => {
+        const packageName = pkg.packageJson.name as PackageName;
+        return !!preRunTask[packageName];
+      })
       .map(pkg => {
         const packageName = pkg.packageJson.name as PackageName;
         return {
