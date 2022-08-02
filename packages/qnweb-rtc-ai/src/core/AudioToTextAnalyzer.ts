@@ -207,6 +207,7 @@ class AudioToTextAnalyzer {
     const analyzer = new AudioToTextAnalyzer();
     analyzer.startTime = Date.now();
     const handler = (audioBuffer: AudioBuffer) => {
+      console.log('audioBuffer', audioBuffer);
       if (!analyzer.ws) {
         /**
          * 连接空闲, 开始建立连接
