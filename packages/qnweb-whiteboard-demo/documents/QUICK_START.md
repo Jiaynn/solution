@@ -50,7 +50,7 @@ window.onload = () => {
 # 1. 准备
 
 * 引入 SDK
-* 引入 webassembly 资源，并通过 ```client.setBasePath([path]/whiteboardcanvas.html)``` 来设置白板 iframe 的 src 地址，\[path\] 为 webassembly 资源部署的路径。
+* 引入 webassembly 资源，并通过 ```initConfig({ path: 'path/whiteboardcanvas.html' });``` 来设置白板 iframe 的 src 地址，`path` 为 webassembly 资源部署的路径。
 * 准备一个 div 容器，id 为 `iframeBox`
 
 # 2. 创建实例
