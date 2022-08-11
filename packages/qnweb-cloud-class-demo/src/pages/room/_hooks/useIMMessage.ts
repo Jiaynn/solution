@@ -4,7 +4,7 @@ import { BaseMessageJson, QNRTMAdapter, RtmManager } from 'qnweb-high-level-rtc'
 import { IChatMessage } from '@/components';
 import { UserStoreContext } from '@/store';
 
-const useIMMessage = (adapter?: QNRTMAdapter | null) => {
+export const useIMMessage = (adapter?: QNRTMAdapter | null) => {
   const { state: userStoreState } = useContext(UserStoreContext);
   const [messages, setMessages] = useState<BaseMessageJson[]>([]);
   const [chatMessages, setChatMessages] = useState<IChatMessage[]>([]);
@@ -51,4 +51,3 @@ const useIMMessage = (adapter?: QNRTMAdapter | null) => {
   };
 };
 
-export default useIMMessage;
