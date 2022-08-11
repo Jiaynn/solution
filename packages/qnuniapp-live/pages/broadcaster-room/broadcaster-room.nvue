@@ -524,11 +524,12 @@
 			 * 采集摄像头
 			 */
 			enableCamera() {
-				this.localCameraTrack = this.localCameraTrack || QNRTC.createCameraVideoTrack(this.cameraConfig);
-				this.localCameraTrack.setBeauty(this.beautySetting);
-				if (!this.isAndroid) {
-					this.localCameraTrack.setSessionPreset(this.sessionPreset);
+				if (this.isAndroid) { // android
+					this.localCameraTrack = this.localCameraTrack || QNRTC.createCameraVideoTrack(this.cameraConfig);
+				} else { // ios
+					this.localCameraTrack = this.localCameraTrack || QNRTC.createCameraVideoTrack();
 				}
+				this.localCameraTrack.setBeauty(this.beautySetting);
 				this.toggleMirror(this.isMirror);
 				this.isCameraOn = true;
 			},
