@@ -1,6 +1,6 @@
 {
   "name": "qnweb-cloud-class-demo",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "scripts": {
     "dev": "vite",
     "build:test": "tsc && vite build --mode test",
