@@ -80,6 +80,15 @@ importers:
       tslib: 2.3.1
       typescript: 4.5.5
 
+  packages/qnuniapp-im-demo:
+    specifiers: {}
+
+  packages/qnuniapp-live:
+    specifiers: {}
+
+  packages/qnuniapp-voice-chat:
+    specifiers: {}
+
   packages/qnweapp-im:
     specifiers:
       '@rollup/plugin-commonjs': ^19.0.0
@@ -560,7 +569,7 @@ importers:
       lodash: ^4.17.21
       pili-rtc-web: ^2.5.0
       qnweb-high-level-rtc: 4.0.0
-      qnweb-im: workspace:^1.0.4-beta.5
+      qnweb-im: ^1.0.5
       qnweb-rtc: ^4.1.0
       react: ^17.0.2
       react-copy-to-clipboard: ^5.0.3
@@ -12997,7 +13006,7 @@ packages:
       chalk: 4.1.2
       param-case: 3.0.4
       pascal-case: 3.1.2
-      vite: 2.9.5_sass@1.50.0
+      vite: 2.9.5
     transitivePeerDependencies:
       - supports-color
     dev: true

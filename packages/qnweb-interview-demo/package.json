@@ -19,7 +19,7 @@
     "lodash": "^4.17.21",
     "pili-rtc-web": "^2.5.0",
     "qnweb-high-level-rtc": "4.0.0",
-    "qnweb-im": "workspace:^1.0.4-beta.5",
+    "qnweb-im": "^1.0.5",
     "qnweb-rtc": "^4.1.0",
     "react": "^17.0.2",
     "react-copy-to-clipboard": "^5.0.3",
