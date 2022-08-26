@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Input, InputRef, message, Modal, Switch } from 'antd';
 import QNWhiteBoard, { QNCreateInstanceResult } from 'qnweb-whiteboard';
 
-import { Toolbar, ToolbarProps, RedoUndo } from '../../components';
-import { getRouteQuery } from '../../utils';
+import { Toolbar, ToolbarProps, RedoUndo } from '@/components';
+import { getRouteQuery } from '@/utils';
 
 import styles from './index.module.scss';
 import { useUnmount } from 'ahooks';

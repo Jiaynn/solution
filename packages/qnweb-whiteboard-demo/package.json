@@ -2,8 +2,10 @@
   "name": "qnweb-whiteboard-demo",
   "version": "2.1.2",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "vite --mode prod",
+    "build:staging": "tsc --skipLibCheck && vite build --mode staging",
+    "build:prod": "tsc --skipLibCheck && vite build --mode prod",
+    "build": "tsc --skipLibCheck && vite build --mode prod",
     "preview": "vite preview"
   },
   "dependencies": {

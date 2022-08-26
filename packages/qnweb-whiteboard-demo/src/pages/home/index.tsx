@@ -1,89 +1,96 @@
 import React, { useState } from 'react';
-import { Button, Input } from 'antd';
 import { useHistory } from 'react-router-dom';
-import QNWhiteBoard from 'qnweb-whiteboard';
+import { Modal } from 'antd';
 
-import { MockResult } from '../../api';
+import { ServerApi } from '@/api';
+import {
+  IconBegin,
+  IconJoin,
+  JoinRoomFormData,
+  JoinRoomModal,
+  QuickStartFormData,
+  QuickStartModal,
+} from '@/components';
 
 import styles from './index.module.scss';
+
+const MAIN_VERSION = mainVersion;
 
 const Home: React.FC = () => {
   const history = useHistory();
 
-  const [appId, setAppId] = useState<string>(MockResult.appId);
-  const [meetingId, setMeetingId] = useState<string>(MockResult.meetingId);
-  const [userId, setUserId] = useState<string>(MockResult.userId);
-  const [token, setToken] = useState<string>(MockResult.token);
-  const [bucketId, setBucketId] = useState<string>(MockResult.bucketId);
-  const [recordId, setRecordId] = useState<string>(MockResult.recordId);
+  const [quickStartVisible, setQuickStartVisible] = useState(false);
+  const [joinVisible, setJoinVisible] = useState(false);
+  const [joinRoomFormData, setJoinRoomFromData] = useState<JoinRoomFormData>();
 
-  const onJoin = () => {
-    history.push(`/room?appId=${appId}&meetingId=${meetingId}&userId=${userId}&token=${token}&bucketId=${bucketId}&recordId=${recordId}`);
+  /**
+   * 跳转到房间页
+   * @param params
+   */
+  const onJoin = (
+    params: JoinRoomFormData
+  ) => {
+    const query = Object.entries(params).map(([key, value]) => {
+      return `${key}=${value}`;
+    }).join('&');
+    history.push(`/room?${query}`);
+  };
+
+  /**
+   * 快速开始
+   * 提交表单
+   * @param value
+   */
+  const onFinish = (value: QuickStartFormData) => {
+    ServerApi.createMeeting({
+      type: Number(value.type),
+      aspectRatio: value.aspectRatio,
+      url: value.url || '',
+      zoomScale: value.zoomScale,
+      userIds: [value.userId]
+    }).then(result => {
+      onJoin({
+        appId: result.data.appId,
+        meetingId: result.data.meetingId,
+        userId: value.userId,
+        token: (result.data.userTokens || {})[value.userId],
+        bucketId: result.data.bucketId,
+      });
+    }).catch(error => {
+      Modal.error({
+        title: '创建房间失败',
+        content: error.message
+      });
+    });
   };
 
   return <div className={styles.container}>
+    <QuickStartModal
+      visible={quickStartVisible}
+      onFinish={onFinish}
+      onCancel={() => setQuickStartVisible(false)}
+    />
+
+    <JoinRoomModal
+      visible={joinVisible}
+      onCancel={() => setJoinVisible(false)}
+      data={joinRoomFormData}
+      onChange={result => setJoinRoomFromData(result)}
+      onOk={() => onJoin(joinRoomFormData || {})}
+    />
+
     <div className={styles.box}>
-      <h1 className={styles.title}>七牛白板Demo体验{QNWhiteBoard.version}</h1>
-      <div className={styles.context}>
-        <div className={styles.label}>appId：</div>
-        <Input
-          className={styles.input}
-          placeholder="请输入appId"
-          value={appId}
-          onChange={event => setAppId(event.target.value)}
-        />
+      <h1 className={styles.title}>七牛白板Demo体验{MAIN_VERSION}</h1>
+      <div className={styles.buttons}>
+        <div className={styles.button} onClick={() => setJoinVisible(true)}>
+          <IconJoin className={styles.buttonIcon}/>
+          <div className={styles.buttonText}>加入房间</div>
+        </div>
+        <div className={styles.button} onClick={() => setQuickStartVisible(true)}>
+          <IconBegin className={styles.buttonIcon}/>
+          <div className={styles.buttonText}>快速开始</div>
+        </div>
       </div>
-      <div className={styles.context}>
-        <div className={styles.label}>meetingId：</div>
-        <Input
-          className={styles.input}
-          placeholder="请输入meetingId"
-          value={meetingId}
-          onChange={event => setMeetingId(event.target.value)}
-        />
-      </div>
-      <div className={styles.context}>
-        <div className={styles.label}>userId：</div>
-        <Input
-          className={styles.input}
-          placeholder="请输入userId"
-          value={userId}
-          onChange={event => setUserId(event.target.value)}
-        />
-      </div>
-      <div className={styles.context}>
-        <div className={styles.label}>token：</div>
-        <Input
-          className={styles.input}
-          placeholder="请输入token"
-          value={token}
-          onChange={event => setToken(event.target.value)}
-        />
-      </div>
-      <div className={styles.context}>
-        <div className={styles.label}>bucketId：</div>
-        <Input
-          className={styles.input}
-          placeholder="请输入bucketId"
-          value={bucketId}
-          onChange={event => setBucketId(event.target.value)}
-        />
-      </div>
-      <div className={styles.context}>
-        <div className={styles.label}>recordId：</div>
-        <Input
-          className={styles.input}
-          placeholder="请输入recordId"
-          value={recordId}
-          onChange={event => setRecordId(event.target.value)}
-        />
-      </div>
-      <Button
-        className={styles.button}
-        type="primary"
-        block
-        onClick={onJoin}
-      >加入房间</Button>
     </div>
   </div>;
 };

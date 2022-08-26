@@ -1,0 +1,21 @@
+.join-room-modal {
+  .ant-modal-body {
+    padding: 50px;
+  }
+
+  .context {
+    display: flex;
+
+    .label {
+      display: flex;
+      flex-direction: column;
+      width: 110px;
+      text-align: right;
+      line-height: 32px;
+    }
+
+    .input {
+      margin-bottom: 10px;
+    }
+  }
+}
