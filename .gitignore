@@ -120,3 +120,5 @@ dist
 # uniapp
 uni_modules
 unpackage
+
+ytt.config.ts

@@ -1,0 +1,36 @@
+.page-container {
+  width: 100%;
+  height: 100%;
+
+  &-header.ant-layout-header, &-sider.ant-layout-sider, &-main .content {
+    background-color: #fff;
+  }
+
+  &-header {
+    box-shadow: 0 4px 8px rgba(51, 51, 51, 0.08);
+  }
+
+  &-sider {
+    box-shadow: 0 2px 4px rgba(51, 51, 51, 0.08);
+
+    .title {
+      font-size: 18px;
+      padding: 12px 24px;
+      font-weight: 500;
+    }
+  }
+
+  &-main {
+    margin: 20px;
+
+    .title {
+      font-weight: 400;
+    }
+
+    .content {
+      padding: 20px;
+      overflow-y: scroll;
+      box-shadow: 0 2px 4px rgba(51, 51, 51, 0.08);
+    }
+  }
+}

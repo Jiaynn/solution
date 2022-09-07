@@ -1,0 +1,21 @@
+.people-list {
+  .list {
+    max-width: 350px;
+    overflow-x: scroll;
+
+    &-item {
+      display: inline-block;
+      cursor: pointer;
+
+      .text {
+        text-align: center;
+      }
+
+      &--active {
+        .ant-avatar {
+          border: 2px solid #00AAE7;
+        }
+      }
+    }
+  }
+}

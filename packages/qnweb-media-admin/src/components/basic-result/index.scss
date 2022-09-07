@@ -1,0 +1,13 @@
+.basic-result {
+  .col {
+    display: flex;
+
+    .label {
+      flex-shrink: 0;
+    }
+
+    .value {
+      word-break: break-all;
+    }
+  }
+}
