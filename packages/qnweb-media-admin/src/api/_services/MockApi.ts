@@ -26,7 +26,8 @@ export class MockApi {
     return mockRequest({
       token: 'Sj2l3BjGqs47X7fxS_JtrBIsyn2StiV1RI8dppqR:kgdr632isv-UIGe77jSoiesZW_g=:eyJzY29wZSI6ImRvcmEtYWkiLCJkZWFkbGluZSI6MTY2MjYyMjA4MH0=',
       bucket: 'dora-ai',
-      prefix: 'mam'
+      prefix: 'mam',
+      host: 'http://r3dg6y3l0.hd-bkt.clouddn.com'
     });
   }
 

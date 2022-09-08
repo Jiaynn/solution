@@ -1,5 +1,6 @@
 export * from './_utils';
 
+export * from './audio-player';
 export * from './basic-result';
 export * from './basic-search-form';
 export * from './basic-table';

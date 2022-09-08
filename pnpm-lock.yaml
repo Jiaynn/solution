@@ -614,6 +614,7 @@ importers:
       '@types/react': ^17.0.33
       '@types/react-dom': ^17.0.10
       '@types/react-router-dom': 5.3.3
+      '@types/wavesurfer.js': ^6.0.3
       '@vitejs/plugin-react': ^1.0.7
       ahooks: ^3.1.9
       antd: ^4.22.8
@@ -628,6 +629,7 @@ importers:
       react-router-dom: 5.3.3
       typescript: ^4.4.4
       vite: ^2.7.0
+      wavesurfer.js: ^6.2.0
       xgplayer: ^2.31.7
       yapi-to-typescript: ^3.34.1
     dependencies:
@@ -643,11 +645,13 @@ importers:
       react-dom: 17.0.2_react@17.0.2
       react-icecream: 2.6.0_sfoxds7t5ydpegc3knd667wn6m
       react-router-dom: 5.3.3_react@17.0.2
+      wavesurfer.js: 6.2.0
       xgplayer: 2.31.7
     devDependencies:
       '@types/react': 17.0.39
       '@types/react-dom': 17.0.11
       '@types/react-router-dom': 5.3.3
+      '@types/wavesurfer.js': 6.0.3
       '@vitejs/plugin-react': 1.2.0
       typescript: 4.5.5
       vite: 2.9.5
@@ -3333,6 +3337,10 @@ packages:
     resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
     dev: true
 
+  /@types/debounce/1.2.1:
+    resolution: {integrity: sha512-epMsEE85fi4lfmJUH/89/iV/LI+F5CvNIvmgs5g5jYFPfhO2S/ae8WSsLOKWdwtoaZw9Q2IhJ4tQ5tFCcS/4HA==}
+    dev: true
+
   /@types/detect-browser/2.0.1:
     resolution: {integrity: sha512-n9jH0zq0DGOlu/B9tSpK+DKwaW9uozF96hy3zYibvxVqQDX5KOJJn6qns/G+k3UwfEQVYZuV3Rz+Z2fXMQ0ang==}
 
@@ -3587,6 +3595,12 @@ packages:
   /@types/ua-parser-js/0.7.36:
     resolution: {integrity: sha512-N1rW+njavs70y2cApeIw1vLMYXRwfBy+7trgavGuuTfOd7j1Yh7QTRc/yqsPl6ncokt72ZXuxEU0PiCp9bSwNQ==}
     dev: false
+
+  /@types/wavesurfer.js/6.0.3:
+    resolution: {integrity: sha512-5Sb5s3pEkOmDosaaP1DWp1Unnx8HhVorm5608TIVdT5jCMvJ6eqM19UD8n7DEbJ7rzreS9RqHmzR8TlcdQBvbA==}
+    dependencies:
+      '@types/debounce': 1.2.1
+    dev: true
 
   /@types/yargs-parser/20.2.1:
     resolution: {integrity: sha512-7tFImggNeNBVMsn0vLrpn1H1uPrUBdnARPTpZoitY37ZrdJREzf7I16tMrlK3hen349gr1NYh8CmZQa7CTG6Aw==}
@@ -14695,6 +14709,10 @@ packages:
       through2: 4.0.2
       xtend: 4.0.2
     dev: true
+
+  /wavesurfer.js/6.2.0:
+    resolution: {integrity: sha512-yuOteX+RKgJl4p5V+YNflm79QRNFWpNo0UHtKaGf1G05qMNChfbcJU0MZYL7+OJTHgYszYqN3dgUXjugYd/Iew==}
+    dev: false
 
   /wcwidth/1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}
