@@ -65,6 +65,31 @@ class QNWhiteBoardRoom {
   }
 
   /**
+   * 用于配置房间中发生断网后的离线支持，必须在加入房间前调用，否则只会在下次加入房间生效
+   * @param params
+   */
+  offlineConfig(params: {
+    offline?: boolean;
+    offlineFile?: boolean;
+  }) {
+    return this.controller.offlineConfig(params);
+  }
+
+  /**
+   * 进入离线模式。离线模式与房间模式和回放模式互斥，如过已经打开了房间或开始了回放，必须首先退出房间或关闭回放后才能进入离线模式
+   */
+  enterOffline() {
+    return this.controller.enterOffline();
+  }
+
+  /**
+   * 退出离线模式
+   */
+  exitOffline() {
+    return this.controller.exitOffline();
+  }
+
+  /**
    * 加入房间
    * @param appId {string} 应用id
    * @param meetingId {string} 房间id
@@ -216,7 +241,7 @@ class QNWhiteBoardRoom {
 
   /**
    * 清空白板页，pdf模式下不用传 documentId
-   * @param widgetId 文档 ID
+   * @param documentId
    */
   cleanDocument(documentId?: string) {
     return this.controller.clean_document(documentId);

@@ -266,5 +266,11 @@ export interface QNCreateInstanceResult {
    * 获取当前回放白板虚拟尺寸，值参考 registerPlaybackEvent 中 onBoardSizeChanged 回调参数
    */
   getWhiteBoardSize: () => { width: number; height: number };
+  /**
+   * 设置白板canvas元素的width和height属性
+   * @param width
+   * @param height
+   */
+  resize: (width: number, height: number) => void;
 }
 
