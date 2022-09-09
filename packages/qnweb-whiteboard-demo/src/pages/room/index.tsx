@@ -6,6 +6,7 @@ import { Toolbar, ToolbarProps, RedoUndo } from '../../components';
 import { getRouteQuery } from '../../utils';
 
 import styles from './index.module.scss';
+import { useUnmount } from 'ahooks';
 
 const gestureMap = { 1: 3, 2: 2, 3: 4, 4: 5 };
 const geometryMap = { 1: 6, 2: 1, 3: 0, 4: 3 };
@@ -124,6 +125,14 @@ const Room: React.FC = () => {
       onRoomStatusChanged: (code) => console.log('onRoomStatusChanged', code),
       onUserJoin: () => console.log('onUserJoin'),
       onUserLeave: () => console.log('onUserLeave'),
+      webAssemblyOnReady: () => {
+        client.joinRoom(
+          queryRef.current.appId,
+          queryRef.current.meetingId,
+          queryRef.current.userId,
+          queryRef.current.token
+        );
+      }
     });
   };
 
@@ -153,27 +162,13 @@ const Room: React.FC = () => {
   }, [client, instance]);
 
   /**
-   * 加入房间
+   * 离开页面
    */
-  useEffect(() => {
+  useUnmount(() => {
     if (client) {
-      message.loading({
-        content: '加入房间中...',
-        key: 'joinRoom',
-        duration: 0
-      });
-      client.joinRoom(
-        queryRef.current.appId,
-        queryRef.current.meetingId,
-        queryRef.current.userId,
-        queryRef.current.token
-      );
-      return () => {
-        message.destroy('joinRoom');
-        client.leaveRoom();
-      };
+      client.leaveRoom();
     }
-  }, [client]);
+  });
 
   /**
    * 加入房间

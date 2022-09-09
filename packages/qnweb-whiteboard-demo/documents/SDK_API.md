@@ -89,7 +89,7 @@ const client = QNWhiteBoard.create()
 之后调用均会返回该实例 bucketId 从服务端获取
 
 ```ts
-client.createInstance(bucketId?: string, el?: string | HTMLElement)
+client.createInstance(bucketId ? : string, el ? : string | HTMLElement)
 ```
 
 | 参数     | 类型                  | 描述            |
@@ -116,7 +116,36 @@ client.initConfig(params)
 获取回放数据并初始化回放模块，必须在房间关闭的状态下调用
 
 ```ts
-whiteboard.controller.getRecord(recordId)
+client.controller.getRecord(recordId)
+```
+
+### offlineConfig
+
+用于配置房间中发生断网后的离线支持，必须在加入房间前调用，否则只会在下次加入房间生效
+
+```ts
+client.controller.offlineConfig(params)
+```
+
+| 参数     | 类型      | 描述                                                |
+| -------- |---------| --------------------------------------------------- |
+| supportOffline | boolean | 是否支持离线状态。默认为false。如果设为true，则房间模式中如果发生网络中断并在自动重连超出指定次数后进入到房间离线状态。离线状态时房间状态处于OFFLINE。此时可以继续使用白板的基础功能，但是不能插入文件。 |
+| onlineAutoSync | boolean | 当房间从离线状态恢复到在线状态后是否自动同步离线状态时的操作记录到服务器。默认为false。 |
+
+### enterOffline
+
+进入离线模式。离线模式与房间模式和回放模式互斥，如过已经打开了房间或开始了回放，必须首先退出房间或关闭回放后才能进入离线模式
+
+```ts
+client.controller.enterOffline()
+```
+
+### exitOffline
+
+退出离线模式
+
+```ts
+client.controller.exitOffline()
 ```
 
 ### joinRoom
@@ -136,7 +165,7 @@ client.joinRoom(appId: string, meetingId: string, userId: string, token: string)
 
 ### leaveRoom
 
-离开房间 
+离开房间
 
 ```ts
 client.leaveRoom()
@@ -148,13 +177,18 @@ client.leaveRoom()
 
 ```ts
 client.registerRoomEvent({
-	onJoinSuccess: (userlist) => console.log('onJoinSuccess', userlist),
-	onJoinFailed: () => console.log('onJoinFailed'),
-	onRoomStatusChanged: (code) => console.log('onRoomStatusChanged', code),
+  onJoinSuccess: (userlist) => console.log('onJoinSuccess', userlist),
+  onJoinFailed: () => console.log('onJoinFailed'),
+  onRoomStatusChanged: (code) => console.log('onRoomStatusChanged', code),
   onUserJoin: (user) => console.log('onUserJoin', user),
   onUserLeave: (user) => console.log('onUserLeave', user),
-  onDocumentListChanged: (documentList) => console.log('onDocumentListChanged', documentList),
-  onDocumentPageChanged: (documentId) => console.log('onDocumentPageChanged', documentId)
+  onDocumentListChanged: (documentList) =>
+    console.log('onDocumentListChanged', documentList),
+  onDocumentPageChanged: (documentId) =>
+    console.log('onDocumentPageChanged', documentId),
+  onEnterOffline: () => console.log('onEnterOffline'),
+  onWidgetActivity: (widget) => console.log('onWidgetActivity', widget),
+  webAssemblyOnReady: () => console.log('webAssemblyOnReady')
 })
 ```
 
@@ -167,6 +201,8 @@ client.registerRoomEvent({
 | onUserLeave           | 有人离开房间         |
 | onDocumentListChanged | 白板页列表发生了变化 |
 | onDocumentPageChanged | 白板页翻页           |
+| onEnterOffline        | offlineConfig设置supportOffline为true后，重连超时自动进入离线模式         |
+| onWidgetActivity     | 点击白板时触发，返回被点击的资源信息  |
 
 其中 `onRoomStatusChanged` 回调为房间状态改变时触发，参数 `code` 对应以下状态
 
@@ -198,15 +234,32 @@ client.registerRoomEvent({
 
 其中 `onDocumentPageChanged`  回调为加入房间时以及白板翻页时触发，参数 `documentId` 为当前白板页 Id
 
+其中 `onWidgetActivity` 回调点击白板时触发，参数widget为被点击的资源，包含以下参数`
+|属性| 描述|
+|-|-|
+|isDelete|是否被删除|
+|md5|资源加密md5值|
+|name|上传时的资源名称|
+|objectName|服务器保存的资源名|
+|pageCount|资源总页数|
+|pageNo|资源当前页|
+|path|加密路径|
+|resourceId|资源id|
+|type|类型 0白板  1文档  2图片|
+|userId|上传用户的userId|
+|widgetId|控件id，删除文件等操作时使用|
+
+其中 `webAssemblyOnReady` 回调为白板wasm资源准备就绪时触发
+
 ### scaleWidget
 
 widget 缩放，ppt/pdf 模式下不可用
 
 ```ts
-client.scaleWidget(params: {
-  widgetId: string,
-  scale: number
-})
+client.scaleWidget(params: { 
+  widgetId: string;
+  scale:number;
+});
 ```
 
 | 参数     | 类型   | 描述                                                |
@@ -219,7 +272,7 @@ client.scaleWidget(params: {
 删除白板内选择的文件，ppt/pdf 模式下不可用
 
 ```ts
-client.deleteWidget(widgetId: string)
+client.deleteWidget(widgetId: string);
 ```
 
 | 参数     | 类型   | 描述                                               |
@@ -247,11 +300,11 @@ client.clearRecovery()
 设置白板输入模式样式，setInputMode 设置为 0 时有效
 
 ```ts
-client.setPenStyle(params: {
+client.setPenStyle(params:{
   type?: number;
   color?: string;
   size?: number;
-})
+});
 ```
 
 | 参数  | 类型   | 描述                                                         |
@@ -380,10 +433,10 @@ client.cleanDocument(documentId?: string)
 
 ```ts
 client.uploadFile({
-  file: File, 
+  file: File,
   left: number,
   top: number,
-  width: number, 
+  width: number,
   height: number
 })
 ```
@@ -416,9 +469,9 @@ instance.switchBucket(bucketId)
 
 ```ts
 instantce.registerWhiteBoardEvent({
-	onWhiteBoardOpened: (size: { width: number; height: number }) => console.log("onWhiteBoardOpened", size),
-	onWhiteBoardOpenFailed: () => console.log('onWhiteBoardOpenFailed'),
-	onWhiteBoardClosed: () => console.log('onWhiteBoardClosed'),
+  onWhiteBoardOpened: (size: { width: number; height: number }) => console.log("onWhiteBoardOpened", size),
+  onWhiteBoardOpenFailed: () => console.log('onWhiteBoardOpenFailed'),
+  onWhiteBoardClosed: () => console.log('onWhiteBoardClosed'),
 })
 ```
 
@@ -441,9 +494,9 @@ instantce.registerWhiteBoardEvent({
 
 ```ts
 instance.registerPPTEvent({
-	onFileLoadedSuccessful: () => console.log('onFileLoadedSuccessful'),
-	onFileLoadingFailed: (code) => console.log('onFileLoadingFailed', code),
-	onFileStateChanged: (data) => console.log('onFileStateChanged', data),
+  onFileLoadedSuccessful: () => console.log('onFileLoadedSuccessful'),
+  onFileLoadingFailed: (code) => console.log('onFileLoadingFailed', code),
+  onFileStateChanged: (data) => console.log('onFileStateChanged', data),
 })
 ```
 
@@ -473,9 +526,9 @@ instance.registerPPTEvent({
 
 ```javascript
 instance.registerPDFEvent({
-	onFileLoadedSuccessful: () => console.log('onFileLoadedSuccessful'),
-	onFileLoadingFailed: (code) => console.log('onFileLoadingFailed', code),
-	onFileStateChanged: (data) => console.log('onFileStateChanged', data),
+  onFileLoadedSuccessful: () => console.log('onFileLoadedSuccessful'),
+  onFileLoadingFailed: (code) => console.log('onFileLoadingFailed', code),
+  onFileStateChanged: (data) => console.log('onFileStateChanged', data),
 })
 ```
 
@@ -499,9 +552,10 @@ instance.registerPDFEvent({
 |503| 文件丢失 |
 |504| 意外的错误 |
 
-###  nextStep
+### nextStep
 
 ppt 下一步，当该页没有动画或者当前已经是该页最后一步动画时调用，ppt会翻到下一页
+
 ```ts
 instance.nextStep()
 ````
@@ -509,6 +563,7 @@ instance.nextStep()
 ### preStep
 
 ppt 上一步，如果当前页动画全部未执行时调用翻到上一页，否则状态变更为当前页未执行动画的状态
+
 ```ts
 instance.preStep()
 ```
@@ -516,33 +571,39 @@ instance.preStep()
 ### jumpStep
 
 ppt 跳到指定步
+
 ```ts
 instance.jumpStep(step: number)
 ```
+
 |参数|类型|描述|
 |-|-|-|
 |step|number|ppt 目标步|
 
-###  nextPage
+### nextPage
 
 ppt / pdf 下一页
+
 ```ts
 instance.nextPage()
 ```
 
-###  prePage
+### prePage
 
 ppt / pdf 上一页
+
 ```ts
 instance.prePage()
 ```
 
-###  jumpPage
+### jumpPage
 
 ppt / pdf 跳到指定页
+
 ```ts
 instance.jumpPage(page: number)
 ```
+
 |参数|类型|描述|
 |-|-|-|
 |page|number|ppt 目标页|
@@ -550,6 +611,7 @@ instance.jumpPage(page: number)
 ### getFileState
 
 获取当前文件状态，返回值参考下方 ppt/pdf 事件回调 `onFileStateChanged` 参数
+
 ```ts
 instance.getFileState()
 ```
@@ -557,6 +619,7 @@ instance.getFileState()
 ### getBucketId
 
 获取白板 bucketId
+
 ```ts
 instance.getBucketId()
 ```
@@ -564,6 +627,7 @@ instance.getBucketId()
 ### getBoardMode
 
 获取白板模式
+
 ```ts
 instance.getBoardMode()
 ```
@@ -573,7 +637,10 @@ instance.getBoardMode()
 设置pdf操作模式
 
 ```ts
-instance.setPDFOperationMode(mode: boolean)
+instance.setPDFOperationMode(mode
+:
+boolean
+)
 ```
 
 | 参数 | 类型    | 描述                                                         |
@@ -586,11 +653,11 @@ instance.setPDFOperationMode(mode: boolean)
 
 ```ts
  instance.registerPlaybackEvent({
-	onInitFinished: (totalTime) => console.log('onInitFinished', totalTime),
-	onError: (code) => console.log('onError', code),
-	onStatusChanged: (status) => console.log('onStatusChanged', status),
-	onProgress: (data) => console.log('onProgress', data),
-	onBoardSizeChanged: (size) => console.log('onBoardSizeChanged', size),
+  onInitFinished: (totalTime) => console.log('onInitFinished', totalTime),
+  onError: (code) => console.log('onError', code),
+  onStatusChanged: (status) => console.log('onStatusChanged', status),
+  onProgress: (data) => console.log('onProgress', data),
+  onBoardSizeChanged: (size) => console.log('onBoardSizeChanged', size),
   onFileLoadingFailed: (error) => console.log(error)
 })
 ```
@@ -735,5 +802,13 @@ instance.getRecordId()
 
 ```ts
 instance.getWhiteBoardSize()
+```
+
+### resize
+
+设置白板canvas元素的width和height属性，参数`number`类型无单位
+
+```ts
+instance.resize(width, height)
 ```
 
