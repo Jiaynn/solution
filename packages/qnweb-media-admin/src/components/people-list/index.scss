@@ -1,11 +1,13 @@
 .people-list {
-  .list {
-    max-width: 350px;
-    overflow-x: scroll;
+  .title {
+    margin-bottom: 20px;
+  }
 
+  .list {
     &-item {
       display: inline-block;
       cursor: pointer;
+      margin-right: 50px;
 
       .text {
         text-align: center;

@@ -1,12 +1,10 @@
-.videoDetail {
+.detail {
   overflow: hidden;
 
   .main {
-    display: flex;
-
     .left {
       flex-shrink: 0;
-      max-width: 500px;
+      width: 592px;
       margin-right: 20px;
     }
 

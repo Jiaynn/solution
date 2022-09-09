@@ -1,6 +1,11 @@
 .timeline-result {
-  overflow-y: scroll;
-  max-height: 520px;
+  width: 288px;
+
+  .list {
+    overflow-y: scroll;
+    height: 480px;
+    padding: 20px 0;
+  }
 
   .highlight {
     color: #00AAE7;

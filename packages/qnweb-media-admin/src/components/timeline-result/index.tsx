@@ -46,7 +46,7 @@ export const TimelineResult: React.FC<TimelineResultProps> = (props) => {
       onChange={event => setInputValue(event.target.value)}
     />
 
-    <Timeline>
+    <Timeline className="list">
       {
         list.map((item, index) => {
           return <Timeline.Item key={index}>

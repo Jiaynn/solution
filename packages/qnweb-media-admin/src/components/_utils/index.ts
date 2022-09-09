@@ -4,42 +4,44 @@ import moment from 'moment';
  * 格式化文件大小
  * @param value
  */
-export const formatFileSize = (value: number) => {
+export const formatFileSize = (value?: number) => {
   const num = 1024;
-  if (value < num) {
-    return `${value}B`;
+  const _value = value || 0;
+  if (_value < num) {
+    return `${_value}B`;
   }
-  if (value < Math.pow(num, 2)) {
-    return `${(value / 1024).toFixed(2)}KB`;
+  if (_value < Math.pow(num, 2)) {
+    return `${(_value / Math.pow(num, 1)).toFixed(2)}KB`;
   }
-  if (value < Math.pow(num, 3)) {
-    return `${(value / Math.pow(num, 2)).toFixed(2)}MB`;
+  if (_value < Math.pow(num, 3)) {
+    return `${(_value / Math.pow(num, 2)).toFixed(2)}MB`;
   }
-  if (value < Math.pow(num, 4)) {
-    return `${(value / Math.pow(num, 3)).toFixed(2)}GB`;
+  if (_value < Math.pow(num, 4)) {
+    return `${(_value / Math.pow(num, 3)).toFixed(2)}GB`;
   }
-  return `${(value / Math.pow(num, 4)).toFixed(2)}TB`;
+  return `${(_value / Math.pow(num, 4)).toFixed(2)}TB`;
 };
 
 /**
  * 格式化码率
  * @param value
  */
-export const formatBitRate = (value: number) => {
+export const formatBitRate = (value?: number) => {
   const num = 1024;
-  if (value < num) {
-    return `${value}bps`;
+  const _value = value || 0;
+  if (_value < num) {
+    return `${_value}bps`;
   }
-  if (value < Math.pow(num, 2)) {
-    return `${(value / 1024).toFixed(2)}kbps`;
+  if (_value < Math.pow(num, 2)) {
+    return `${(_value / Math.pow(num, 1)).toFixed(2)}kbps`;
   }
-  if (value < Math.pow(num, 3)) {
-    return `${(value / Math.pow(num, 2)).toFixed(2)}mbps`;
+  if (_value < Math.pow(num, 3)) {
+    return `${(_value / Math.pow(num, 2)).toFixed(2)}mbps`;
   }
-  if (value < Math.pow(num, 4)) {
-    return `${(value / Math.pow(num, 3)).toFixed(2)}gbps`;
+  if (_value < Math.pow(num, 4)) {
+    return `${(_value / Math.pow(num, 3)).toFixed(2)}gbps`;
   }
-  return `${(value / Math.pow(num, 4)).toFixed(2)}tbps`;
+  return `${(_value / Math.pow(num, 4)).toFixed(2)}tbps`;
 };
 
 /**

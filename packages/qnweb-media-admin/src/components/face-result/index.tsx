@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { Avatar, Space, Table, TableProps } from 'antd';
+import { Avatar, Table, TableProps } from 'antd';
 import classNames from 'classnames';
 
 import { formatDuration } from '../_utils';
@@ -41,6 +41,10 @@ export interface FaceResultProps {
    */
   loading?: boolean;
   /**
+   * 是否显示当前的用户信息
+   */
+  currentVisible?: boolean;
+  /**
    * 数据
    */
   data?: {
@@ -81,7 +85,7 @@ export interface FaceResultProps {
 }
 
 export const FaceResult: React.FC<FaceResultProps> = (props) => {
-  const { className, style, loading, data, onTableRowChange, onCurrentUserIdChange } = props;
+  const { className, style, loading, currentVisible, data, onTableRowChange, onCurrentUserIdChange } = props;
 
   const {
     currentUserId, tableList, sensitiveList,
@@ -97,14 +101,12 @@ export const FaceResult: React.FC<FaceResultProps> = (props) => {
     left: `${currentTime / duration * 100}%`,
   };
 
-  return <Space
+  return <div
     className={classNames('face-result', className)}
-    direction="vertical"
-    size={20}
     style={style}
   >
     {
-      current && <div className="main">
+      currentVisible && current ? <div className="main">
         <Avatar className="avatar" src={current.avatar} size={80} gap={100}/>
         <div className="context">
           <div className="title">{current.username}</div>
@@ -126,7 +128,7 @@ export const FaceResult: React.FC<FaceResultProps> = (props) => {
             <span className="active" style={activeStyle}/>
           </div>
         </div>
-      </div>
+      </div> : null
     }
 
     {
@@ -145,24 +147,22 @@ export const FaceResult: React.FC<FaceResultProps> = (props) => {
       />
     }
 
-    <Space direction="vertical" size={20}>
-      {
-        sensitiveList && <PeopleList
-          title="政治与敏感人物"
-          list={sensitiveList}
-          value={currentUserId}
-          onChange={onCurrentUserIdChange}
-        />
-      }
+    {
+      sensitiveList && <PeopleList
+        title="政治与敏感人物"
+        list={sensitiveList}
+        value={currentUserId}
+        onChange={onCurrentUserIdChange}
+      />
+    }
 
-      {
-        unknownList && <PeopleList
-          title="未知人物"
-          list={unknownList}
-          value={currentUserId}
-          onChange={onCurrentUserIdChange}
-        />
-      }
-    </Space>
-  </Space>;
+    {
+      unknownList && <PeopleList
+        title="未知人物"
+        list={unknownList}
+        value={currentUserId}
+        onChange={onCurrentUserIdChange}
+      />
+    }
+  </div>;
 };

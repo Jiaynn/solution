@@ -24,7 +24,7 @@ export class MockApi {
    */
   static getUploadInfo(params?: GetMamUploadInfoParams): Promise<GetMamUploadInfoResult> {
     return mockRequest({
-      token: 'Sj2l3BjGqs47X7fxS_JtrBIsyn2StiV1RI8dppqR:kgdr632isv-UIGe77jSoiesZW_g=:eyJzY29wZSI6ImRvcmEtYWkiLCJkZWFkbGluZSI6MTY2MjYyMjA4MH0=',
+      token: 'Sj2l3BjGqs47X7fxS_JtrBIsyn2StiV1RI8dppqR:Hw45vw9sV4anSNhChjRgXXp6jbs=:eyJzY29wZSI6ImRvcmEtYWkiLCJkZWFkbGluZSI6MTY2MzA0MzQxOH0=',
       bucket: 'dora-ai',
       prefix: 'mam',
       host: 'http://r3dg6y3l0.hd-bkt.clouddn.com'
@@ -62,7 +62,7 @@ export class MockApi {
         key: '@word(10)',
         algos: ['facerec', 'ocr', 'asr'],
         filename: '@word(10)',
-        filetype: 'video',
+        filetype: params.filetype,
         'file_format|1': ['video/mp4', 'video/avi', 'video/mkv'],
         uploader: '@name',
         'filesize|1024-10000': 1024,

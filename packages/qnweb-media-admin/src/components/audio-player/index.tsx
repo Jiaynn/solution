@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useRef, useState } from 'react';
+import React, { CSSProperties, useEffect, useRef } from 'react';
 import WaveSurfer from 'wavesurfer.js';
 import Icon, {
   PauseOutlined,

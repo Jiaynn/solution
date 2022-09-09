@@ -1,5 +1,5 @@
-import React from 'react';
-import { Avatar, Space, Typography } from 'antd';
+import React, { CSSProperties } from 'react';
+import { Avatar, Typography } from 'antd';
 import classNames from 'classnames';
 
 import './index.scss';
@@ -17,7 +17,21 @@ interface User {
 }
 
 export interface PeopleListProps {
+  /**
+   * className
+   */
+  className?: string;
+  /**
+   * style
+   */
+  style?: CSSProperties;
+  /**
+   * 标题
+   */
   title?: string;
+  /**
+   * 用户列表
+   */
   list?: User[];
   /**
    * 当前展示的用户id
@@ -33,11 +47,11 @@ export interface PeopleListProps {
 const { Title } = Typography;
 
 export const PeopleList: React.FC<PeopleListProps> = (props) => {
-  const { title, list, value, onChange } = props;
+  const { className, style, title, list, value, onChange } = props;
 
-  return <Typography className="people-list">
-    <Title level={5}>{title}</Title>
-    <Space className="list" size={20}>
+  return <Typography className={classNames('people-list', className)} style={style}>
+    <Title className="title" level={5}>{title}</Title>
+    <div className="list">
       {
         list?.map((item) => {
           return <div
@@ -53,6 +67,6 @@ export const PeopleList: React.FC<PeopleListProps> = (props) => {
           </div>;
         })
       }
-    </Space>
+    </div>
   </Typography>;
 };

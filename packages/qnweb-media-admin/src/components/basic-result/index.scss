@@ -1,13 +1,19 @@
 .basic-result {
-  .col {
+  .content {
     display: flex;
+    align-items: center;
+    justify-content: center;
 
-    .label {
-      flex-shrink: 0;
-    }
+    .col {
+      display: flex;
 
-    .value {
-      word-break: break-all;
+      .label {
+        flex-shrink: 0;
+      }
+
+      .value {
+        word-break: break-all;
+      }
     }
   }
 }

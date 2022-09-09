@@ -35,7 +35,7 @@ request.interceptors.response.use((response) => {
   }
   Modal.error({
     title: '接口请求出错',
-    content: `接口：${url}，错误信息：${response.data.message}`,
+    content: `url: ${url}，message：${response.data.message}`,
   });
   return Promise.reject(response.data);
 }, (error) => {

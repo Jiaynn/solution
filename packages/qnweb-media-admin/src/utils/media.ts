@@ -24,7 +24,7 @@ interface VideoInfo {
    */
   filesize: number,
   /**
-   * 视频码率，单位bps
+   * 码率，单位bps
    */
   bitRate: number,
   /**
@@ -43,12 +43,12 @@ interface VideoInfo {
  */
 export const getVideoInfo = (file: File): Promise<VideoInfo> => {
   return new Promise((resolve, reject) => {
-    const videoElement = document.createElement('video');
-    videoElement.src = URL.createObjectURL(file);
-    videoElement.addEventListener('loadedmetadata', () => {
-      const width = videoElement.videoWidth;
-      const height = videoElement.videoHeight;
-      const duration = videoElement.duration;
+    const element = document.createElement('video');
+    element.src = URL.createObjectURL(file);
+    element.addEventListener('loadedmetadata', () => {
+      const width = element.videoWidth;
+      const height = element.videoHeight;
+      const duration = element.duration;
       resolve({
         duration: duration * 1000,
         width,
@@ -61,7 +61,31 @@ export const getVideoInfo = (file: File): Promise<VideoInfo> => {
         resolution: `${width}x${height}`,
       });
     });
-    videoElement.addEventListener('error', error => {
+    element.addEventListener('error', error => {
+      reject(error);
+    });
+  });
+};
+
+/**
+ * 获取视频文件信息
+ * @param file
+ */
+export const getAudioInfo = (file: File): Promise<Omit<VideoInfo, 'width' | 'height' | 'aspectRatio' | 'resolution'>> => {
+  return new Promise((resolve, reject) => {
+    const element = document.createElement('audio');
+    element.src = URL.createObjectURL(file);
+    element.addEventListener('loadedmetadata', () => {
+      const duration = element.duration;
+      resolve({
+        duration: duration * 1000,
+        filename: file.name,
+        fileFormat: file.type,
+        filesize: file.size,
+        bitRate: file.size / duration,
+      });
+    });
+    element.addEventListener('error', error => {
       reject(error);
     });
   });
@@ -80,24 +104,24 @@ export const getVideoUrlBase64 = (config: {
 }): Promise<string> => {
   const { url, width = 400, height = 240, type = 'image/jpeg' } = config;
   return new Promise(function (resolve, reject) {
-    const videoElement = document.createElement('video');
-    videoElement.setAttribute('crossOrigin', 'anonymous');//处理跨域
-    videoElement.setAttribute('src', url);
-    videoElement.setAttribute('width', `${width}`);
-    videoElement.setAttribute('height', `${height}`);
-    videoElement.setAttribute('preload', 'auto');
-    videoElement.addEventListener('loadeddata', function () {
+    const element = document.createElement('video');
+    element.crossOrigin = 'anonymous';
+    element.src = url;
+    element.width = width;
+    element.height = height;
+    element.preload = 'auto';
+    element.addEventListener('loadeddata', function () {
       const canvas = document.createElement('canvas');
-      const width = videoElement.width; //canvas的尺寸和图片一样
-      const height = videoElement.height;
+      const width = element.width; // canvas的尺寸和图片一样
+      const height = element.height;
       canvas.width = width;
       canvas.height = height;
       const ctx = canvas.getContext('2d');
-      ctx?.drawImage(videoElement, 0, 0, width, height); // 绘制canvas
+      ctx?.drawImage(element, 0, 0, width, height); // 绘制canvas
       const dataURL = canvas.toDataURL(type); // 转换为base64
       resolve(dataURL);
     });
-    videoElement.addEventListener('error', function (error) {
+    element.addEventListener('error', function (error) {
       reject(error);
     });
   });

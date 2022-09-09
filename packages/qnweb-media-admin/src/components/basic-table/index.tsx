@@ -93,7 +93,7 @@ const basicColumns: Required<BasicTableProps>['tableProps']['columns'] = [
     key: 'filename',
     render: (_, row) => {
       return <Space>
-        <Image src={row.cover_url} alt={row.filename} width={64}/>
+        <Image preview={false} src={row.cover_url} alt={row.filename} width={64}/>
         <span>{row.filename}</span>
       </Space>;
     }
