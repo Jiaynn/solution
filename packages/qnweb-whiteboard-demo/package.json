@@ -1,6 +1,6 @@
 {
   "name": "qnweb-whiteboard-demo",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -10,7 +10,7 @@
     "ahooks": "^3.1.9",
     "antd": "^4.20.4",
     "classnames": "^2.3.1",
-    "qnweb-whiteboard": "2.1.0",
+    "qnweb-whiteboard": "^2.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.0.0",
