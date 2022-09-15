@@ -1,3 +1,12 @@
+## [2.1.2](https://github.com/qbox/QNSolutions_Web/compare/qnweb-whiteboard-demo@2.1.1...qnweb-whiteboard-demo@2.1.2) (2022-09-15)
+
+
+### Bug Fixes
+
+* **qnweb-whiteboard-demo:** 修复赋值错误引发的跨域问题 ([00075ac](https://github.com/qbox/QNSolutions_Web/commit/00075acb5b81d5eb1a790b0f5b9f6b1d5cb8fee6))
+
+
+
 ## 2.1.1 (2022-09-09)
 
 ### Bug Fixes
