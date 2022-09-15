@@ -15,6 +15,8 @@ export interface TimelineResultProps {
   }[];
 }
 
+const prefixCls = 'timeline-result';
+
 export const TimelineResult: React.FC<TimelineResultProps> = (props) => {
   const {
     className, style,
@@ -30,12 +32,12 @@ export const TimelineResult: React.FC<TimelineResultProps> = (props) => {
     if (!inputValue) return content;
     const reg = new RegExp(inputValue, 'ig');
     return content.replace(reg, function (match) {
-      return `<span class="highlight">${match}</span>`;
+      return `<span class='${prefixCls}-list-highlight'>${match}</span>`;
     });
   };
 
   return <Space
-    className={classNames('timeline-result', className)}
+    className={classNames(prefixCls, className)}
     size={20}
     direction="vertical"
     style={style}
@@ -46,7 +48,7 @@ export const TimelineResult: React.FC<TimelineResultProps> = (props) => {
       onChange={event => setInputValue(event.target.value)}
     />
 
-    <Timeline className="list">
+    <Timeline className={`${prefixCls}-list`}>
       {
         list.map((item, index) => {
           return <Timeline.Item key={index}>

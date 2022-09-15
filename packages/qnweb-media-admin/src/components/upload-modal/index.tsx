@@ -37,6 +37,13 @@ interface CompleteResult {
 export type UploadModalProps =
   Pick<ModalProps, 'title' | 'visible' | 'footer' | 'maskClosable' | 'onCancel' | 'className' | 'style'>
   & {
+  /**
+   * 可以上传的文件类型，参考：https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept
+   */
+  accept?: string;
+  /**
+   * 上传配置
+   */
   config: UploadConfig,
   /**
    * 自定义上传完成回调
@@ -55,9 +62,10 @@ function beforeUpload(before: UploadData[], after: UploadData[]): boolean {
 
 const DragContent = ({
   title,
+  tip = '',
   dragStatus = '',
-  disabled = false
-}: { title: string, dragStatus?: string, disabled?: boolean }) => (
+  disabled = false,
+}: { title: string, tip?: string, dragStatus?: string, disabled?: boolean }) => (
   <div className={classNames('upload-drag-wrapper', 'upload-drag-' + dragStatus, disabled && 'upload-drag-disabled')}>
     <AddThinIcon/>
     {
@@ -65,12 +73,14 @@ const DragContent = ({
         <div className="upload-drag-text"><span className="upload-drag-click">{title}</span>，或拖拽文件到此处上传</div>
         : <div className="upload-drag-text">释放文件并开始上传</div>
     }
-    <div className="upload-drag-tip">视频大小控制在100Mb以内</div>
+    <div className="upload-drag-tip">{tip}</div>
   </div>
 );
 
+const prefixCls = 'upload-modal';
+
 export const UploadModal: React.FC<UploadModalProps> = (props) => {
-  const { className, config, onComplete, ...restProps } = props;
+  const { className, config, accept, onComplete, ...restProps } = props;
   const [list, setList] = useState<UploadData[]>([]);
 
   const onChange = (data: UploadData[]) => {
@@ -113,18 +123,21 @@ export const UploadModal: React.FC<UploadModalProps> = (props) => {
   };
 
   return <Modal
-    className={classNames('upload-modal', className)}
+    className={classNames(prefixCls, className)}
     title="上传文件"
     footer={null}
     {...restProps}
   >
-    <div className="upload-wrapper">
+    <div className={`${prefixCls}-body`}>
       <DragUpload
         onUpload={doUpload}
         value={list}
         onChange={onChange}
         multiple
-        renderContent={dragStatus => <DragContent title="点击上传" dragStatus={dragStatus}/>}
+        accept={accept}
+        renderContent={
+          dragStatus => <DragContent title="点击上传" dragStatus={dragStatus}/>
+        }
       />
     </div>
   </Modal>;

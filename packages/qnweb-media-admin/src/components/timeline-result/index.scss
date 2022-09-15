@@ -1,13 +1,13 @@
 .timeline-result {
   width: 288px;
 
-  .list {
+  &-list {
     overflow-y: scroll;
     height: 480px;
     padding: 20px 0;
-  }
 
-  .highlight {
-    color: #00AAE7;
+    &-highlight {
+      color: #00AAE7;
+    }
   }
 }

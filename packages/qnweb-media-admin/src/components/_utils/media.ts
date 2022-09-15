@@ -141,6 +141,8 @@ export const getVideoFileBase64 = (file: File): Promise<string> => {
         return getVideoUrlBase64({ url, width: result.width, height: result.height });
       }).then(result => {
         resolve(result);
+      }).catch(err => {
+        reject(err);
       });
     };
     reader.onerror = function (error) {

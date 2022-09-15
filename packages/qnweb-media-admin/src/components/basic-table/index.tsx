@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import {
   Image,
   Space,
   Table,
   TableProps
 } from 'antd';
+import classNames from 'classnames';
 
+import { formatDatetime, formatFileSize } from '@/components/_utils';
 import {
   BasicSearchForm,
   BasicSearchFormProps,
-  formatFileSize
-} from '@/components';
-import { formatDatetime } from '@/utils';
+} from '../basic-search-form';
 
 import './index.scss';
 
@@ -83,7 +83,21 @@ export interface BasicTableDataType {
 }
 
 export interface BasicTableProps {
+  /**
+   * className
+   */
+  className?: string;
+  /**
+   * style
+   */
+  style?: CSSProperties;
+  /**
+   * 搜索表单props
+   */
   searchFormProps?: BasicSearchFormProps;
+  /**
+   * table props
+   */
   tableProps?: TableProps<BasicTableDataType>;
 }
 
@@ -128,13 +142,13 @@ const basicColumns: Required<BasicTableProps>['tableProps']['columns'] = [
   },
 ];
 
+const prefixCls = 'basic-table';
+
 export const BasicTable: React.FC<BasicTableProps> = (props) => {
-  const { searchFormProps, tableProps } = props;
+  const { searchFormProps, tableProps, className, style } = props;
   const { columns, pagination, ...restTableProps } = tableProps || {};
-  return <Space className="basic-table" direction="vertical" size={[0, 40]}>
-    <BasicSearchForm
-      {...searchFormProps}
-    />
+  return <Space className={classNames(prefixCls, className)} style={style} direction="vertical" size={[0, 40]}>
+    <BasicSearchForm {...searchFormProps}/>
 
     <Table
       rowKey="_id"

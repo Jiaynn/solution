@@ -2,12 +2,13 @@ import React, { CSSProperties } from 'react';
 import { Avatar, Table, TableProps } from 'antd';
 import classNames from 'classnames';
 
-import { formatDuration } from '../_utils';
+import { formatDuration } from '@/components/_utils';
 import { PeopleList, PeopleListProps } from '../people-list';
+
 
 import './index.scss';
 
-interface DataType {
+export interface FaceResultTableDataType {
   id: string;
   /**
    * 开始时间，时间戳，单位毫秒(ms)
@@ -19,7 +20,7 @@ interface DataType {
   endTime: number;
 }
 
-const columns: TableProps<DataType>['columns'] = [
+const columns: TableProps<FaceResultTableDataType>['columns'] = [
   { title: '出入点', dataIndex: 'id' },
   {
     title: '开始时间',
@@ -63,7 +64,7 @@ export interface FaceResultProps {
     /**
      * table数据
      */
-    tableList?: TableProps<DataType>['dataSource'];
+    tableList?: TableProps<FaceResultTableDataType>['dataSource'];
     /**
      * 敏感人员列表
      */
@@ -81,8 +82,10 @@ export interface FaceResultProps {
   /**
    * table行选择操作
    */
-  onTableRowChange?: Required<TableProps<DataType>>['rowSelection']['onChange'];
+  onTableRowChange?: Required<TableProps<FaceResultTableDataType>>['rowSelection']['onChange'];
 }
+
+const prefixCls = 'face-result';
 
 export const FaceResult: React.FC<FaceResultProps> = (props) => {
   const { className, style, loading, currentVisible, data, onTableRowChange, onCurrentUserIdChange } = props;
@@ -102,15 +105,15 @@ export const FaceResult: React.FC<FaceResultProps> = (props) => {
   };
 
   return <div
-    className={classNames('face-result', className)}
+    className={classNames(prefixCls, className)}
     style={style}
   >
     {
-      currentVisible && current ? <div className="main">
-        <Avatar className="avatar" src={current.avatar} size={80} gap={100}/>
-        <div className="context">
-          <div className="title">{current.username}</div>
-          <div className="video-progress">
+      currentVisible && current ? <div className={`${prefixCls}-main`}>
+        <Avatar className={`${prefixCls}-main-avatar`} src={current.avatar} size={80} gap={100}/>
+        <div className={`${prefixCls}-main-context`}>
+          <div className={`${prefixCls}-main-context-title`}>{current.username}</div>
+          <div className={`${prefixCls}-main-context-video-progress`}>
             {
               (tableList || []).map((item, index) => {
                 const width = (item.endTime - item.startTime) / duration * 100;
@@ -119,13 +122,13 @@ export const FaceResult: React.FC<FaceResultProps> = (props) => {
                   left: `${item.startTime / duration * 100}%`,
                 };
                 return <span
-                  className="video-progress-item"
+                  className={`${prefixCls}-main-context-video-progress-item`}
                   style={style}
                   key={index}
                 />;
               })
             }
-            <span className="active" style={activeStyle}/>
+            <span className={`${prefixCls}-main-context-video-progress-item-active`} style={activeStyle}/>
           </div>
         </div>
       </div> : null
@@ -133,7 +136,7 @@ export const FaceResult: React.FC<FaceResultProps> = (props) => {
 
     {
       tableList && <Table
-        className="table"
+        className={`${prefixCls}-table`}
         loading={loading}
         dataSource={tableList}
         rowSelection={{
@@ -149,6 +152,7 @@ export const FaceResult: React.FC<FaceResultProps> = (props) => {
 
     {
       sensitiveList && <PeopleList
+        className={`${prefixCls}-people-list`}
         title="政治与敏感人物"
         list={sensitiveList}
         value={currentUserId}
@@ -158,6 +162,7 @@ export const FaceResult: React.FC<FaceResultProps> = (props) => {
 
     {
       unknownList && <PeopleList
+        className={`${prefixCls}-people-list`}
         title="未知人物"
         list={unknownList}
         value={currentUserId}

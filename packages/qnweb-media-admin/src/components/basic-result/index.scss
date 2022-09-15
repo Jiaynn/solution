@@ -1,17 +1,17 @@
 .basic-result {
-  .content {
+  &-content {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    .col {
+    &-col {
       display: flex;
 
-      .label {
+      &-label {
         flex-shrink: 0;
       }
 
-      .value {
+      &-value {
         word-break: break-all;
       }
     }

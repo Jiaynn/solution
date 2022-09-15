@@ -29,10 +29,12 @@ export interface BasicSearchFormProps {
   onUploadClick?: ButtonProps['onClick'];
 }
 
+const prefixCls = 'basic-search-form';
+
 export const BasicSearchForm: React.FC<BasicSearchFormProps> = (props) => {
   const { className, style, form, onOk, onUploadClick } = props;
   return <Row
-    className={classNames('header-search', className)}
+    className={classNames(prefixCls, className)}
     justify="space-between"
     gutter={[0, 20]}
     style={style}

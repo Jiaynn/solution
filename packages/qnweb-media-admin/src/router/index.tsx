@@ -24,6 +24,8 @@ const mapPathToComponent: {
   '/picture': PicturePage,
 };
 
+const MAIN_VERSION = mainVersion;
+
 const BaseRoute = () => {
   const history = useHistory();
   const location = useLocation();
@@ -41,6 +43,7 @@ const BaseRoute = () => {
   };
 
   return <PageContainer
+    version={<span style={{ fontSize: 12, marginLeft: 5 }}>{MAIN_VERSION}</span>}
     title={title}
     menuConfig={menuConfig}
     selectedKeys={[location.pathname]}

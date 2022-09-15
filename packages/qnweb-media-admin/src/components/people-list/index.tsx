@@ -46,24 +46,26 @@ export interface PeopleListProps {
 
 const { Title } = Typography;
 
+const prefixCls = 'people-list';
+
 export const PeopleList: React.FC<PeopleListProps> = (props) => {
   const { className, style, title, list, value, onChange } = props;
 
-  return <Typography className={classNames('people-list', className)} style={style}>
-    <Title className="title" level={5}>{title}</Title>
-    <div className="list">
+  return <Typography className={classNames(prefixCls, className)} style={style}>
+    <Title className={`${prefixCls}-title`} level={5}>{title}</Title>
+    <div className={`${prefixCls}-list`}>
       {
         list?.map((item) => {
           return <div
-            className={classNames('list-item', { 'list-item--active': item.id === value })}
+            className={classNames(`${prefixCls}-list-item`, { [`${prefixCls}-list-item-active`]: item.id === value })}
             key={item.id}
             onClick={() => {
               if (item.id === value) return;
               onChange?.(item.id);
             }}
           >
-            <Avatar size={60} gap={100} src={item.avatar}/>
-            <div className="text">{item.username}</div>
+            <Avatar className={`${prefixCls}-list-item-avatar`} size={60} gap={100} src={item.avatar}/>
+            <div className={`${prefixCls}-list-item-text`}>{item.username}</div>
           </div>;
         })
       }

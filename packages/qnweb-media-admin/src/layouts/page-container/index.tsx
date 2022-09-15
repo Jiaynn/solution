@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Image, Layout, Menu, MenuProps, Space } from 'antd';
 
 import logo from './logo.png';
@@ -7,6 +7,7 @@ import logoText from './logo-text.png';
 import './index.scss';
 
 export type PageContainerProps = {
+  version?: ReactNode;
   title?: string;
   menuConfig?: MenuProps['items'];
   selectedKeys?: string[];
@@ -17,7 +18,10 @@ export type PageContainerProps = {
 const { Header, Content, Sider } = Layout;
 
 export const PageContainer: React.FC<PageContainerProps> = (props) => {
-  const { title, children, menuConfig, selectedKeys, defaultSelectedKeys, onSelect } = props;
+  const {
+    version, title, children, menuConfig, selectedKeys, defaultSelectedKeys,
+    onSelect
+  } = props;
 
   return (
     <Layout className="page-container">
@@ -40,7 +44,7 @@ export const PageContainer: React.FC<PageContainerProps> = (props) => {
 
       <Layout>
         <Sider className="page-container-sider" trigger={null} collapsible>
-          <div className="title">媒资系统</div>
+          <div className="title">媒资系统{version}</div>
           <Menu
             theme="light"
             mode="inline"

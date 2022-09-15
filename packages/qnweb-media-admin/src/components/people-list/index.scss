@@ -1,20 +1,20 @@
 .people-list {
-  .title {
+  &-title {
     margin-bottom: 20px;
   }
 
-  .list {
+  &-list {
     &-item {
       display: inline-block;
       cursor: pointer;
       margin-right: 50px;
 
-      .text {
+      &-text {
         text-align: center;
       }
 
-      &--active {
-        .ant-avatar {
+      &-active {
+        .people-list-list-item-avatar {
           border: 2px solid #00AAE7;
         }
       }

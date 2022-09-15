@@ -14,15 +14,14 @@ import {
   BasicTable,
   BasicTableProps,
   FaceResult,
-  FaceResultProps,
-  formatDuration,
+  FaceResultProps, FaceResultTableDataType,
   TimelineResult,
   TimelineResultProps,
   UploadModal,
-  UploadModalProps
+  UploadModalProps,
 } from '@/components';
-import { GetMamAssetsListResult, GetMamUploadInfoResult, MockApi } from '@/api';
-import { formatDatetime, getVideoFileBase64, getVideoInfo } from '@/utils';
+import { formatDuration, getVideoInfo } from '@/components/_utils';
+import { GetMamAssetsListResult, GetMamUploadInfoResult, MamApi } from '@/api';
 
 import styles from './index.module.scss';
 
@@ -38,29 +37,33 @@ type Tab = typeof tabOpts[number]['value'];
 
 export const VideoPage: React.FC = () => {
   const [form] = Form.useForm<BasicSearchFormValues>();
+  const playerRef = useRef<Player | null>();
+  const playRangeTimeRef = useRef<FaceResultTableDataType | null>(null);
 
   const [uploadModalVisible, setUploadModalVisible] = useState(false);
-  const [detailVisible, setDetailVisible] = useState(false);
+  const [detailModalVisible, setDetailModalVisible] = useState(false);
   const [tab, setTab] = useState<Tab>('face');
   const [uploadConfig, setUploadConfig] = useState<GetMamUploadInfoResult['data']>();
   const [curRow, setCurRow] = useState<DataType>();
   const [currentUserId, setCurrentUserId] = useState('');
-  const [currentTime, setCurrentTime] = useState(0);
+  const [currentTimeOfMs, setCurrentTimeOfMs] = useState(0);
   const [tabLoading, setTabLoading] = useState(false);
 
   /**
    * 人脸识别
    */
   const { data: faceResultDataList, runAsync: runFaceResultAsync } = useRequest(() => {
-    return MockApi.getFace({
+    return MamApi.getFace({
       _id: curRow?._id || '',
     }).then(result => {
-      return (result.data?.list || []).map(item => {
+      const list = (result.data?.politics || []).map(item => {
         return {
           ...item,
           id: _.uniqueId(),
         };
       });
+      setCurrentUserId(list[0]?.id || '');
+      return list;
     });
   }, {
     manual: true,
@@ -69,7 +72,7 @@ export const VideoPage: React.FC = () => {
    * 语音识别
    */
   const { data: asrResultData, runAsync: runAsrResultAsync } = useRequest(() => {
-    return MockApi.getAsr({
+    return MamApi.getAsr({
       _id: curRow?._id || '',
     }).then(result => result.data);
   }, {
@@ -79,7 +82,7 @@ export const VideoPage: React.FC = () => {
    * OCR
    */
   const { data: ocrResultData, runAsync: runOcrResultAsync } = useRequest(() => {
-    return MockApi.getOcr({
+    return MamApi.getOcr({
       _id: curRow?._id || '',
     }).then(result => result.data);
   }, {
@@ -88,18 +91,22 @@ export const VideoPage: React.FC = () => {
   /**
    * 资源列表
    */
-  const { loading, run, data: tableData, pagination } = useAntdTable((params) => {
-    const reqParams = {
+  const {
+    loading,
+    run: runAssetsList,
+    refresh: refreshAssetsList,
+    data: tableData,
+    pagination
+  } = useAntdTable((params) => {
+    return MamApi.getAssetsList({
       page_num: `${params.current}`,
       page_size: `${params.pageSize}`,
       title: form.getFieldValue('title') || '',
-      time_range: (form.getFieldValue('timeRange') || []).map((item: moment.MomentInput) => {
+      date_time_range: (form.getFieldValue('timeRange') || []).map((item: moment.MomentInput) => {
         return moment(item).valueOf();
       }),
       filetype: 'video',
-    };
-    return MockApi.getAssetsList(reqParams).then(result => {
-      console.log('reqParams', reqParams);
+    }).then(result => {
       console.log('result', result);
       return {
         total: result.data?.total || 0,
@@ -110,25 +117,52 @@ export const VideoPage: React.FC = () => {
     defaultPageSize: 10,
   });
 
-  const playerRef = useRef<Player>();
-
   /**
    * 实例化播放器
    */
   useEffect(() => {
-    if (!detailVisible) return;
-    playerRef.current = new Player({
+    const url = curRow?.url || '';
+    if (!url) return;
+    if (!detailModalVisible) return;
+    const handleTimeUpdate = (event: HTMLMediaElement) => {
+      const currentTimeOfMs = event.currentTime * 1000;
+      setCurrentTimeOfMs(currentTimeOfMs);
+
+      const player = playerRef.current;
+      if (!player) return;
+      const endTime = playRangeTimeRef.current?.endTime;
+      if (endTime && currentTimeOfMs >= endTime) {
+        player.pause();
+      }
+    };
+    const handleError = (error: Error) => {
+      Modal.error({
+        title: '播放出错',
+        content: error.message
+      });
+    };
+    const player = new Player({
       width: 592,
       id: 'player',
-      url: 'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo.mp4'
+      url
     });
-  }, [detailVisible]);
+    playerRef.current = player;
+    player.start(url);
+    player.on('timeupdate', handleTimeUpdate);
+    player.on('error', handleError);
+    return () => {
+      player.off('timeupdate', handleTimeUpdate);
+      player.off('error', handleError);
+      player.destroy();
+      playerRef.current = null;
+    };
+  }, [curRow?.url, detailModalVisible]);
 
   /**
    * 获取上传配置
    */
   useMount(() => {
-    MockApi.getUploadInfo().then(result => {
+    MamApi.getUploadInfo().then(result => {
       setUploadConfig(result.data);
     });
   });
@@ -138,36 +172,34 @@ export const VideoPage: React.FC = () => {
    */
   useEffect(() => {
     if (tab !== 'face') return;
-    if (!detailVisible) return;
+    if (!detailModalVisible) return;
     setTabLoading(true);
-    runFaceResultAsync().then((result) => {
-      setCurrentUserId(result[0]?.id || '');
-    }).finally(() => {
+    runFaceResultAsync().finally(() => {
       setTabLoading(false);
     });
-  }, [runFaceResultAsync, tab, detailVisible]);
+  }, [runFaceResultAsync, tab, detailModalVisible]);
   /**
    * 语音识别结果
    */
   useEffect(() => {
     if (tab !== 'asr') return;
-    if (!detailVisible) return;
+    if (!detailModalVisible) return;
     setTabLoading(true);
     runAsrResultAsync().finally(() => {
       setTabLoading(false);
     });
-  }, [runAsrResultAsync, tab, detailVisible]);
+  }, [runAsrResultAsync, tab, detailModalVisible]);
   /**
    * ocr识别结果
    */
   useEffect(() => {
     if (tab !== 'ocr') return;
-    if (!detailVisible) return;
+    if (!detailModalVisible) return;
     setTabLoading(true);
     runOcrResultAsync().finally(() => {
       setTabLoading(false);
     });
-  }, [runOcrResultAsync, tab, detailVisible]);
+  }, [runOcrResultAsync, tab, detailModalVisible]);
 
   /**
    * 点击操作列中的删除按钮
@@ -178,11 +210,11 @@ export const VideoPage: React.FC = () => {
       title: '确认删除',
       onOk() {
         console.log('已删除', record);
-        MockApi.deleteAssetsById({
+        MamApi.deleteAssetsById({
           _id: record._id || '',
         }).then(() => {
           const filename = (tableData?.list || []).find(item => item._id === record._id)?.filename;
-          run(pagination);
+          refreshAssetsList();
           return message.success(`${filename}删除成功`);
         });
       }
@@ -191,17 +223,11 @@ export const VideoPage: React.FC = () => {
 
   /**
    * 点击搜索按钮
-   * @param values
    */
-  const onSearch: BasicSearchFormProps['onOk'] = (values) => {
-    const timeRange = (values.timeRange || []).map(item => {
-      return formatDatetime(item);
-    });
-    run({
+  const onSearch: BasicSearchFormProps['onOk'] = () => {
+    runAssetsList({
       ...pagination,
-      current: 1,
-      title: values.title,
-      timeRange,
+      current: 1
     });
   };
 
@@ -210,7 +236,7 @@ export const VideoPage: React.FC = () => {
    * @param row
    */
   const onDiscern = (row: DataType) => {
-    return MockApi.aiRetry({
+    return MamApi.aiRetry({
       _id: row._id || '',
     }).then(() => {
       return message.success('识别成功');
@@ -225,11 +251,8 @@ export const VideoPage: React.FC = () => {
    */
   const onUploadComplete: UploadModalProps['onComplete'] = ({ file, data, callbacks }) => {
     console.log('onUploadComplete', file, data);
-    return Promise.all([
-      getVideoFileBase64(file),
-      getVideoInfo(file),
-    ]).then(([base64, info]) => {
-      return MockApi.uploadSync({
+    return getVideoInfo(file).then(info => {
+      return MamApi.uploadSync({
         bucket: uploadConfig?.bucket || '',
         key: data.key,
         algos: 'audio,politics,ocr',
@@ -241,9 +264,12 @@ export const VideoPage: React.FC = () => {
         bit_rate: info.bitRate,
         aspect_ratio: info.aspectRatio,
         resolution: info.resolution,
-        cover_url: base64 || ''
       });
     }).then(() => {
+      runAssetsList({
+        ...pagination,
+        current: 1
+      });
       callbacks.onComplete();
     }).catch(err => {
       if (err instanceof Error) {
@@ -256,10 +282,21 @@ export const VideoPage: React.FC = () => {
   /**
    * 人脸识别table选择切换
    */
-  const onFaceResultTableRowChange: FaceResultProps['onTableRowChange'] = (selectedRowKeys, selectedRows, info) => {
-    console.log('onFaceResultTableRowChange selectedRowKeys', selectedRowKeys);
-    console.log('onFaceResultTableRowChange selectedRows', selectedRows);
-    console.log('onFaceResultTableRowChange info', info);
+  const onFaceResultTableRowChange: FaceResultProps['onTableRowChange'] = (_, selectedRows) => {
+    const playRangeTime = selectedRows[0];
+    const player = playerRef.current;
+    playRangeTimeRef.current = playRangeTime;
+    if (!player) return;
+    player.currentTime = playRangeTime.startTime / 1000;
+    player.play().catch((error) => {
+      console.error(error);
+      Modal.confirm({
+        content: '播放出错，是否重试？',
+        onOk() {
+          player.replay();
+        }
+      });
+    });
   };
 
   /**
@@ -344,7 +381,8 @@ export const VideoPage: React.FC = () => {
         <Button
           type="link"
           onClick={() => {
-            setDetailVisible(true);
+            setTab('face');
+            setDetailModalVisible(true);
             setCurRow(row);
           }}
         >查看详情</Button>
@@ -369,7 +407,7 @@ export const VideoPage: React.FC = () => {
           currentUserId,
           sensitiveList,
           duration: curRow?.duration,
-          currentTime,
+          currentTime: currentTimeOfMs,
           tableList: faceResultTableList,
         }}
         onCurrentUserIdChange={setCurrentUserId}
@@ -395,6 +433,7 @@ export const VideoPage: React.FC = () => {
         fileType: 'video',
         token: uploadConfig?.token || ''
       }}
+      accept="video/*"
       visible={uploadModalVisible}
       onCancel={() => setUploadModalVisible(false)}
       onComplete={onUploadComplete}
@@ -402,17 +441,18 @@ export const VideoPage: React.FC = () => {
 
     <Drawer
       className={styles.detail}
-      visible={detailVisible}
+      visible={detailModalVisible}
       width={1060}
       title="视频详情"
       footer={null}
-      onClose={() => setDetailVisible(false)}
+      onClose={() => setDetailModalVisible(false)}
     >
       <Space className={styles.main} align="start" size={24}>
         <Space className={styles.left} direction="vertical" size={20}>
-          <div id="player"/>
+          {curRow?.url && <div id="player"/>}
           <BasicResult
             data={basicResultData}
+            filters={['创建时间', '文件大小', '时长', '视频格式', '码率', '分辨率', '画幅比']}
           />
         </Space>
         <Spin spinning={tabLoading}>

@@ -2,8 +2,10 @@
   "name": "qnweb-media-admin",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "vite --mode dev",
+    "build:test": "tsc && vite build --mode test",
+    "build:prod": "tsc && vite build --mode prod",
+    "build": "tsc && vite build --mode prod",
     "preview": "vite preview"
   },
   "dependencies": {

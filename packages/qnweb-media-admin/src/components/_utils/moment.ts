@@ -1,6 +1,14 @@
 import moment from 'moment';
 
 /**
+ * 格式化duration
+ * @param duration 时长，单位毫秒(ms)
+ */
+export const formatDuration = (duration?: number) => {
+  return moment.utc(duration).format('HH:mm:ss');
+};
+
+/**
  * 格式化时间
  * @param datetime
  * @param format

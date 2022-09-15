@@ -321,7 +321,7 @@ export interface GetMamAssetsIdResultFacerecResult {
   code?: number
   message?: string
   data?: {
-    list?: {
+    politics?: {
       /**
        * 人物名称
        */

@@ -1,5 +1,5 @@
 .upload-modal {
-  .upload-wrapper {
+  &-body {
     display: flex;
     justify-content: space-between;
 
@@ -35,6 +35,7 @@
 
     .upload-drag-text {
       margin: 26px 0 4px 0;
+      user-select: none;
 
       .upload-drag-click {
         color: #00AAE7;

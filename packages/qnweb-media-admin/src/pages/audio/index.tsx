@@ -12,14 +12,13 @@ import {
   BasicSearchFormValues,
   BasicTable,
   BasicTableProps,
-  formatDuration,
   TimelineResult,
   TimelineResultProps,
   UploadModal,
-  UploadModalProps
+  UploadModalProps,
 } from '@/components';
-import { GetMamAssetsListResult, GetMamUploadInfoResult, MockApi } from '@/api';
-import { formatDatetime, getAudioInfo } from '@/utils';
+import { formatDuration, getAudioInfo } from '@/components/_utils';
+import { GetMamAssetsListResult, GetMamUploadInfoResult, MamApi } from '@/api';
 
 import styles from './index.module.scss';
 
@@ -29,7 +28,7 @@ export const AudioPage: React.FC = () => {
   const [form] = Form.useForm<BasicSearchFormValues>();
 
   const [uploadModalVisible, setUploadModalVisible] = useState(false);
-  const [detailVisible, setDetailVisible] = useState(false);
+  const [detailModalVisible, setDetailModalVisible] = useState(false);
   const [uploadConfig, setUploadConfig] = useState<GetMamUploadInfoResult['data']>();
   const [curRow, setCurRow] = useState<DataType>();
   const [tabLoading, setTabLoading] = useState(false);
@@ -37,7 +36,7 @@ export const AudioPage: React.FC = () => {
    * 语音识别
    */
   const { data: asrResultData, runAsync: runAsrResultAsync } = useRequest(() => {
-    return MockApi.getAsr({
+    return MamApi.getAsr({
       _id: curRow?._id || '',
     }).then(result => result.data);
   }, {
@@ -46,18 +45,22 @@ export const AudioPage: React.FC = () => {
   /**
    * 资源列表
    */
-  const { loading, run, data: tableData, pagination } = useAntdTable((params) => {
-    const reqParams = {
+  const {
+    loading,
+    run: runAssetsList,
+    refresh: refreshAssetsList,
+    data: tableData,
+    pagination
+  } = useAntdTable((params) => {
+    return MamApi.getAssetsList({
       page_num: `${params.current}`,
       page_size: `${params.pageSize}`,
       title: form.getFieldValue('title') || '',
-      time_range: (form.getFieldValue('timeRange') || []).map((item: moment.MomentInput) => {
+      date_time_range: (form.getFieldValue('timeRange') || []).map((item: moment.MomentInput) => {
         return moment(item).valueOf();
       }),
       filetype: 'audio',
-    };
-    return MockApi.getAssetsList(reqParams).then(result => {
-      console.log('reqParams', reqParams);
+    }).then(result => {
       console.log('result', result);
       return {
         total: result.data?.total || 0,
@@ -72,7 +75,7 @@ export const AudioPage: React.FC = () => {
    * 获取上传配置
    */
   useMount(() => {
-    MockApi.getUploadInfo().then(result => {
+    MamApi.getUploadInfo().then(result => {
       setUploadConfig(result.data);
     });
   });
@@ -81,12 +84,12 @@ export const AudioPage: React.FC = () => {
    * 语音识别结果
    */
   useEffect(() => {
-    if (!detailVisible) return;
+    if (!detailModalVisible) return;
     setTabLoading(true);
     runAsrResultAsync().finally(() => {
       setTabLoading(false);
     });
-  }, [runAsrResultAsync, detailVisible]);
+  }, [runAsrResultAsync, detailModalVisible]);
 
   /**
    * 点击操作列中的删除按钮
@@ -97,11 +100,11 @@ export const AudioPage: React.FC = () => {
       title: '确认删除',
       onOk() {
         console.log('已删除', record);
-        MockApi.deleteAssetsById({
+        MamApi.deleteAssetsById({
           _id: record._id || '',
         }).then(() => {
           const filename = (tableData?.list || []).find(item => item._id === record._id)?.filename;
-          run(pagination);
+          refreshAssetsList();
           return message.success(`${filename}删除成功`);
         });
       }
@@ -110,17 +113,11 @@ export const AudioPage: React.FC = () => {
 
   /**
    * 点击搜索按钮
-   * @param values
    */
-  const onSearch: BasicSearchFormProps['onOk'] = (values) => {
-    const timeRange = (values.timeRange || []).map(item => {
-      return formatDatetime(item);
-    });
-    run({
+  const onSearch: BasicSearchFormProps['onOk'] = () => {
+    runAssetsList({
       ...pagination,
-      current: 1,
-      title: values.title,
-      timeRange,
+      current: 1
     });
   };
 
@@ -129,7 +126,7 @@ export const AudioPage: React.FC = () => {
    * @param row
    */
   const onDiscern = (row: DataType) => {
-    return MockApi.aiRetry({
+    return MamApi.aiRetry({
       _id: row._id || '',
     }).then(() => {
       return message.success('识别成功');
@@ -145,7 +142,7 @@ export const AudioPage: React.FC = () => {
   const onUploadComplete: UploadModalProps['onComplete'] = ({ file, data, callbacks }) => {
     console.log('onUploadComplete', file, data);
     return getAudioInfo(file).then(info => {
-      return MockApi.uploadSync({
+      return MamApi.uploadSync({
         bucket: uploadConfig?.bucket || '',
         key: data.key,
         algos: 'audio',
@@ -153,8 +150,14 @@ export const AudioPage: React.FC = () => {
         filetype: 'audio',
         file_format: info.fileFormat,
         filesize: info.filesize,
+        duration: info.duration,
+        bit_rate: info.bitRate,
       });
     }).then(() => {
+      runAssetsList({
+        ...pagination,
+        current: 1
+      });
       callbacks.onComplete();
     }).catch(err => {
       if (err instanceof Error) {
@@ -206,7 +209,7 @@ export const AudioPage: React.FC = () => {
         <Button
           type="link"
           onClick={() => {
-            setDetailVisible(true);
+            setDetailModalVisible(true);
             setCurRow(row);
           }}
         >查看详情</Button>
@@ -236,6 +239,7 @@ export const AudioPage: React.FC = () => {
         fileType: 'audio',
         token: uploadConfig?.token || ''
       }}
+      accept=".wav,.MP3,.wma,.flac,.amr,.opus,.m4a,.aac"
       visible={uploadModalVisible}
       onCancel={() => setUploadModalVisible(false)}
       onComplete={onUploadComplete}
@@ -243,17 +247,23 @@ export const AudioPage: React.FC = () => {
 
     <Drawer
       className={styles.detail}
-      visible={detailVisible}
+      visible={detailModalVisible}
       width={1060}
       title="音频详情"
       footer={null}
-      onClose={() => setDetailVisible(false)}
+      destroyOnClose={true}
+      onClose={() => setDetailModalVisible(false)}
     >
       <Space className={styles.main} align="start" size={24}>
         <Space className={styles.left} direction="vertical" size={20}>
-          <AudioPlayer url="http://r3dg6y3l0.hd-bkt.clouddn.com/mam/audio/demo.mp3"/>
+          {
+            curRow && <AudioPlayer
+              url={curRow.url}
+            />
+          }
           <BasicResult
             data={basicResultData}
+            filters={['创建时间', '文件大小', '时长', '音频格式', '码率']}
           />
         </Space>
         <Spin spinning={tabLoading}>

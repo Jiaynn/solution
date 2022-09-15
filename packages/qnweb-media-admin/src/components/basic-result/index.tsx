@@ -23,7 +23,7 @@ type Label =
   | '分辨率'
   | '画幅比';
 
-interface Data {
+interface BasicResultData {
   /**
    * 创建时间，时间戳，单位毫秒
    */
@@ -66,7 +66,7 @@ export interface BasicResultProps {
   /**
    * 数据
    */
-  data?: Data;
+  data?: BasicResultData;
   /**
    * 过滤出需要展示的label
    */
@@ -80,7 +80,7 @@ const { Title } = Typography;
  * @param data
  * @param filters
  */
-const renderRow = (data: Data, filters?: BasicResultProps['filters']) => {
+const renderRow = (data: BasicResultData, filters?: BasicResultProps['filters']) => {
   const columns: Array<{
     label: Label;
     value?: string | number;
@@ -96,21 +96,23 @@ const renderRow = (data: Data, filters?: BasicResultProps['filters']) => {
     { label: '分辨率', value: data.resolution },
     { label: '画幅比', value: data.aspectRatio },
   ];
-  return <Row className="row" gutter={[20, 24]}>
+  return <Row className={`${prefixCls}-content-row`} gutter={[20, 24]}>
     {
       (
         filters ?
           columns.filter(item => filters.includes(item.label)) :
           columns
       ).map((item, index) => {
-        return <Col className="col" span={12} key={index}>
-          <span className="label">{item.label}：</span>
-          <span className="value">{item.value}</span>
+        return <Col className={`${prefixCls}-content-col`} span={12} key={index}>
+          <span className={`${prefixCls}-content-col-label`}>{item.label}：</span>
+          <span className={`${prefixCls}-content-col-value`}>{item.value}</span>
         </Col>;
       })
     }
   </Row>;
 };
+
+const prefixCls = 'basic-result';
 
 export const BasicResult: React.FC<BasicResultProps> = (props) => {
   const {
@@ -118,10 +120,10 @@ export const BasicResult: React.FC<BasicResultProps> = (props) => {
   } = props;
 
   return <Typography
-    className={classNames('basic-result', className)}
+    className={classNames(prefixCls, className)}
     style={style}
   >
     <Title level={5}>基本信息</Title>
-    <Card className="content">{data ? renderRow(data, filters) : '暂无数据'}</Card>
+    <Card className={`${prefixCls}-content`}>{data ? renderRow(data, filters) : '暂无数据'}</Card>
   </Typography>;
 };
