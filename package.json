@@ -7,6 +7,7 @@
     "node": ">=v14.16.1"
   },
   "scripts": {
+    "interview-demo:jenkins-test": "pnpm install && ts-node scripts/start.ts qnweb-interview-demo",
     "interview-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-interview-demo",
     "whiteboard-demo:jenkins-test": "pnpm install && ts-node scripts/start.ts qnweb-whiteboard-demo",
     "whiteboard-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-whiteboard-demo",
