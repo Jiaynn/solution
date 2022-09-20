@@ -9,11 +9,11 @@ const requestConfig = {
     timeout: 3000,
   },
   test: {
-    baseURL: 'http://10.200.20.28:5080',
+    baseURL: 'http://10.200.20.73:8080',
     timeout: 3000,
   },
   prod: {
-    baseURL: 'https://niucube-api.qiniu.com',
+    baseURL: '/',
     timeout: 3000,
   },
 };
