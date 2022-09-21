@@ -13,7 +13,7 @@ const requestConfig = {
     timeout: 3000,
   },
   prod: {
-    baseURL: '/',
+    baseURL: 'https://mam.atlab.ai',
     timeout: 3000,
   },
 };
