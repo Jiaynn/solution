@@ -72,11 +72,14 @@ const Empty = () => {
 export const PeopleList: React.FC<PeopleListProps> = (props) => {
   const { className, style, title, list, value, onChange } = props;
 
+  const isNotEmpty = list && !!list.length;
   return <Typography className={classNames(prefixCls, className)} style={style}>
     <Title className={`${prefixCls}-title`} level={5}>{title}</Title>
-    <div className={`${prefixCls}-list`}>
+    <div className={classNames(`${prefixCls}-list`, {
+      [`${prefixCls}-list-empty`]: !isNotEmpty,
+    })}>
       {
-        list && !!list.length ? list?.map((item) => {
+        isNotEmpty ? list?.map((item) => {
           return <div
             className={classNames(`${prefixCls}-list-item`, { [`${prefixCls}-list-item-active`]: item.id === value })}
             key={item.id}

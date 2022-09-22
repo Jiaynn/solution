@@ -14,7 +14,8 @@ type FileData = File
  * @请求头 `GET /v1/mam/upload/info`
  * @更新时间 `2022-09-08 11:46:19`
  */
-export interface GetMamUploadInfoParams {}
+export interface GetMamUploadInfoParams {
+}
 
 /**
  * 接口 [获取上传文件信息↗](http://pili-yapi.aslan.qa.qiniu.io/project/70/interface/api/3111) 的 **返回类型**
@@ -24,8 +25,8 @@ export interface GetMamUploadInfoParams {}
  * @更新时间 `2022-09-08 11:46:19`
  */
 export interface GetMamUploadInfoResult {
-  code?: number
-  message?: string
+  code?: number;
+  message?: string;
   data?: {
     /**
      * kodo上传token
@@ -43,7 +44,7 @@ export interface GetMamUploadInfoResult {
      * kodo上传的域名
      */
     host?: string
-  }
+  };
 }
 
 /**
@@ -57,51 +58,51 @@ export interface PostMamUploadSyncParams {
   /**
    * 桶
    */
-  bucket: string
+  bucket: string;
   /**
    * 上传的key
    */
-  key: string
+  key: string;
   /**
    * 算法，英文逗号分割
    */
-  algos: string
+  algos: string;
   /**
    * 文件名称
    */
-  filename: string
+  filename: string;
   /**
    * 文件类型
    */
-  filetype: string
+  filetype: string;
   /**
    * 文件大小
    */
-  filesize: number
+  filesize: number;
   /**
    * 文件封装格式
    */
-  file_format?: string
+  file_format?: string;
   /**
    * 文件时长，单位毫秒
    */
-  duration?: number
+  duration?: number;
   /**
    * 码率
    */
-  bit_rate?: number
+  bit_rate?: number;
   /**
    * 画幅比
    */
-  aspect_ratio?: string
+  aspect_ratio?: string;
   /**
    * 分辨率
    */
-  resolution?: string
+  resolution?: string;
   /**
    * 视频封面
    */
-  cover_url?: string
+  cover_url?: string;
 }
 
 /**
@@ -112,8 +113,8 @@ export interface PostMamUploadSyncParams {
  * @更新时间 `2022-09-08 11:41:49`
  */
 export interface PostMamUploadSyncResult {
-  code?: number
-  message?: string
+  code?: number;
+  message?: string;
   data?: {
     /**
      * mongo id
@@ -179,7 +180,7 @@ export interface PostMamUploadSyncResult {
      * 视频封面
      */
     cover_url?: string
-  }
+  };
 }
 
 /**
@@ -193,23 +194,23 @@ export interface GetMamAssetsListParams {
   /**
    * 分页
    */
-  page_num?: string
+  page_num?: string;
   /**
    * 每页显示的最大数目
    */
-  page_size?: string
+  page_size?: string;
   /**
    * 时间范围，毫秒
    */
-  date_time_range?: string
+  date_time_range?: string;
   /**
    * 过滤的标题
    */
-  title?: string
+  title?: string;
   /**
    * 默认值为video，省略时默认为video，可选择的值：video、audio、image
    */
-  filetype?: string
+  filetype?: string;
 }
 
 /**
@@ -220,8 +221,8 @@ export interface GetMamAssetsListParams {
  * @更新时间 `2022-09-08 11:42:18`
  */
 export interface GetMamAssetsListResult {
-  code?: number
-  message?: string
+  code?: number;
+  message?: string;
   data?: {
     total?: number
     current_page_num?: number
@@ -293,7 +294,7 @@ export interface GetMamAssetsListResult {
        */
       cover_url?: string
     }[]
-  }
+  };
 }
 
 /**
@@ -307,7 +308,7 @@ export interface GetMamAssetsIdResultFacerecParams {
   /**
    * 文件ID
    */
-  _id: string
+  _id: string;
 }
 
 /**
@@ -318,8 +319,8 @@ export interface GetMamAssetsIdResultFacerecParams {
  * @更新时间 `2022-09-08 11:18:12`
  */
 export interface GetMamAssetsIdResultFacerecResult {
-  code?: number
-  message?: string
+  code?: number;
+  message?: string;
   data?: {
     politics?: {
       /**
@@ -334,8 +335,22 @@ export interface GetMamAssetsIdResultFacerecResult {
        * 时间范围
        */
       duration_range_list?: number[][]
+    }[],
+    others?: {
+      /**
+       * 人物名称
+       */
+      name?: string
+      /**
+       * 人脸url
+       */
+      avatar_url?: string
+      /**
+       * 时间范围
+       */
+      duration_range_list?: number[][]
     }[]
-  }
+  };
 }
 
 /**
@@ -349,7 +364,7 @@ export interface GetMamAssetsIdResultOcrParams {
   /**
    * 文件ID
    */
-  _id: string
+  _id: string;
 }
 
 /**
@@ -360,8 +375,8 @@ export interface GetMamAssetsIdResultOcrParams {
  * @更新时间 `2022-09-07 14:15:42`
  */
 export interface GetMamAssetsIdResultOcrResult {
-  code?: number
-  message?: string
+  code?: number;
+  message?: string;
   data?: {
     list?: {
       /**
@@ -373,7 +388,7 @@ export interface GetMamAssetsIdResultOcrResult {
        */
       text: string
     }[]
-  }
+  };
 }
 
 /**
@@ -387,7 +402,7 @@ export interface GetMamAssetsIdResultAsrParams {
   /**
    * 文件ID
    */
-  _id: string
+  _id: string;
 }
 
 /**
@@ -398,7 +413,7 @@ export interface GetMamAssetsIdResultAsrParams {
  * @更新时间 `2022-09-07 14:15:27`
  */
 export interface GetMamAssetsIdResultAsrResult {
-  code?: number
+  code?: number;
   data?: {
     list?: {
       /**
@@ -410,8 +425,8 @@ export interface GetMamAssetsIdResultAsrResult {
        */
       text: string
     }[]
-  }
-  message?: string
+  };
+  message?: string;
 }
 
 /**
@@ -425,7 +440,7 @@ export interface DeleteMamAssetsIdParams {
   /**
    * 文件ID
    */
-  _id: string
+  _id: string;
 }
 
 /**
@@ -436,9 +451,9 @@ export interface DeleteMamAssetsIdParams {
  * @更新时间 `2022-08-25 10:40:05`
  */
 export interface DeleteMamAssetsIdResult {
-  code?: number
-  message?: string
-  data?: null
+  code?: number;
+  message?: string;
+  data?: null;
 }
 
 /**
@@ -452,7 +467,7 @@ export interface PostMamAssetsIdAiRetryParams {
   /**
    * 文件ID
    */
-  _id: string
+  _id: string;
 }
 
 /**
@@ -463,9 +478,9 @@ export interface PostMamAssetsIdAiRetryParams {
  * @更新时间 `2022-08-25 10:40:32`
  */
 export interface PostMamAssetsIdAiRetryResult {
-  code?: number
-  message?: string
-  data?: null
+  code?: number;
+  message?: string;
+  data?: null;
 }
 
 /**
@@ -476,13 +491,13 @@ export interface PostMamAssetsIdAiRetryResult {
  * @更新时间 `2022-08-24 14:33:12`
  */
 export interface PostMamUploadNotifyParams {
-  id?: string
-  pipeline?: string
-  code?: number
-  desc?: string
-  reqid?: string
-  inputBucket?: string
-  inputKey?: string
+  id?: string;
+  pipeline?: string;
+  code?: number;
+  desc?: string;
+  reqid?: string;
+  inputBucket?: string;
+  inputKey?: string;
   items?: {
     cmd: string
     code: number
@@ -491,7 +506,7 @@ export interface PostMamUploadNotifyParams {
     key?: string
     returnOld: number
     keys?: string[]
-  }[]
+  }[];
 }
 
 /**
@@ -502,9 +517,9 @@ export interface PostMamUploadNotifyParams {
  * @更新时间 `2022-08-24 14:33:12`
  */
 export interface PostMamUploadNotifyResult {
-  code?: number
-  message?: string
-  data?: null
+  code?: number;
+  message?: string;
+  data?: null;
 }
 
 /* prettier-ignore-end */

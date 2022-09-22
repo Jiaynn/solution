@@ -128,7 +128,7 @@ export const FaceResult: React.FC<FaceResultProps> = (props) => {
                 />;
               })
             }
-            <span className={`${prefixCls}-main-context-video-progress-item-active`} style={activeStyle}/>
+            <span className={`${prefixCls}-main-context-video-progress-pointer`} style={activeStyle}/>
           </div>
         </div>
       </div> : null

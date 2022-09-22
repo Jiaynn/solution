@@ -1,4 +1,6 @@
-.face-result {
+$face-result: 'face-result';
+
+.#{$face-result} {
   width: 340px;
 
   &-main {
@@ -36,12 +38,12 @@
         }
 
         &:hover {
-          &-active {
+          .#{$face-result}-main-context-video-progress-pointer {
             opacity: 1;
           }
         }
 
-        &-active {
+        &-pointer {
           display: inline-block;
           opacity: 0;
           width: 12px;
@@ -65,7 +67,9 @@
   }
 
   &-people-list {
-    &-list {
+    margin-bottom: 32px;
+
+    .people-list-list {
       margin-bottom: 32px;
       display: flex;
       flex-wrap: nowrap;

@@ -44,18 +44,27 @@ export const PicturePage: React.FC = () => {
   /**
    * 人脸识别
    */
-  const { data: faceResultDataList, runAsync: runFaceResultAsync } = useRequest(() => {
+  const { data: faceResult, runAsync: runFaceResultAsync } = useRequest(() => {
     return MamApi.getFace({
       _id: curRow?._id || '',
     }).then(result => {
-      const list = (result.data?.politics || []).map(item => {
+      const politics = (result.data?.politics || []).map(item => {
         return {
           ...item,
           id: _.uniqueId(),
         };
       });
-      setCurrentUserId(list[0]?.id || '');
-      return list;
+      const others = (result.data?.others || []).map(item => {
+        return {
+          ...item,
+          id: _.uniqueId(),
+        };
+      });
+      setCurrentUserId(politics.concat(others)[0]?.id || '');
+      return {
+        politics,
+        others,
+      };
     });
   }, {
     manual: true,
@@ -225,7 +234,17 @@ export const PicturePage: React.FC = () => {
   /**
    * 敏感人物
    */
-  const sensitiveList = (faceResultDataList || []).map((item) => {
+  const sensitiveList = (faceResult?.politics || []).map((item) => {
+    return {
+      id: item.id,
+      username: item.name || '',
+      avatar: item.avatar_url || '',
+    };
+  });
+  /**
+   * 未知人物
+   */
+  const unknownList = (faceResult?.others || []).map((item) => {
     return {
       id: item.id,
       username: item.name || '',
@@ -269,6 +288,7 @@ export const PicturePage: React.FC = () => {
         data={{
           currentUserId,
           sensitiveList,
+          unknownList
         }}
         onCurrentUserIdChange={setCurrentUserId}
       />;

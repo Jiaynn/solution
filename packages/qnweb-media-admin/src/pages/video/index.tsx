@@ -52,18 +52,27 @@ export const VideoPage: React.FC = () => {
   /**
    * 人脸识别
    */
-  const { data: faceResultDataList, runAsync: runFaceResultAsync } = useRequest(() => {
+  const { data: faceResult, runAsync: runFaceResultAsync } = useRequest(() => {
     return MamApi.getFace({
       _id: curRow?._id || '',
     }).then(result => {
-      const list = (result.data?.politics || []).map(item => {
+      const politics = (result.data?.politics || []).map(item => {
         return {
           ...item,
           id: _.uniqueId(),
         };
       });
-      setCurrentUserId(list[0]?.id || '');
-      return list;
+      const others = (result.data?.others || []).map(item => {
+        return {
+          ...item,
+          id: _.uniqueId(),
+        };
+      });
+      setCurrentUserId(politics.concat(others)[0]?.id || '');
+      return {
+        politics,
+        others,
+      };
     });
   }, {
     manual: true,
@@ -315,7 +324,17 @@ export const VideoPage: React.FC = () => {
   /**
    * 敏感人物
    */
-  const sensitiveList = (faceResultDataList || []).map((item) => {
+  const sensitiveList = (faceResult?.politics || []).map((item) => {
+    return {
+      id: item.id,
+      username: item.name || '',
+      avatar: item.avatar_url || '',
+    };
+  });
+  /**
+   * 未知人物
+   */
+  const unknownList = (faceResult?.others || []).map((item) => {
     return {
       id: item.id,
       username: item.name || '',
@@ -327,7 +346,9 @@ export const VideoPage: React.FC = () => {
    * 人脸识别table数据
    */
   const faceResultTableList = useMemo<Required<FaceResultProps>['data']['tableList']>(() => {
-    const user = (faceResultDataList || []).find(item => item.id === currentUserId);
+    const { politics = [], others = [] } = faceResult || {};
+    const list = [...politics, ...others];
+    const user = (list || []).find(item => item.id === currentUserId);
     const timeRange = user?.duration_range_list || [];
     return timeRange.map(([startTime, endTime], index) => {
       return {
@@ -336,7 +357,7 @@ export const VideoPage: React.FC = () => {
         endTime
       };
     });
-  }, [currentUserId, faceResultDataList]);
+  }, [currentUserId, faceResult]);
 
   /**
    * 语音识别timeline
@@ -403,6 +424,7 @@ export const VideoPage: React.FC = () => {
         data={{
           currentUserId,
           sensitiveList,
+          unknownList,
           duration: curRow?.duration,
           currentTime: currentTimeOfMs,
           tableList: faceResultTableList,
