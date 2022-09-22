@@ -25,6 +25,8 @@ export interface BasicSearchFormProps {
   className?: string;
   style?: React.CSSProperties;
   form?: FormProps<BasicSearchFormValues>['form'];
+  uploadButtonLoading?: boolean;
+  okButtonLoading?: boolean;
   onOk?: FormProps<BasicSearchFormValues>['onFinish'];
   onUploadClick?: ButtonProps['onClick'];
 }
@@ -32,7 +34,7 @@ export interface BasicSearchFormProps {
 const prefixCls = 'basic-search-form';
 
 export const BasicSearchForm: React.FC<BasicSearchFormProps> = (props) => {
-  const { className, style, form, onOk, onUploadClick } = props;
+  const { className, style, form, uploadButtonLoading, okButtonLoading, onOk, onUploadClick } = props;
   return <Row
     className={classNames(prefixCls, className)}
     justify="space-between"
@@ -42,6 +44,7 @@ export const BasicSearchForm: React.FC<BasicSearchFormProps> = (props) => {
     <Button
       type="primary"
       icon={<PlusOutlined/>}
+      loading={uploadButtonLoading}
       onClick={onUploadClick}
     >上传文件</Button>
     <Form
@@ -60,7 +63,7 @@ export const BasicSearchForm: React.FC<BasicSearchFormProps> = (props) => {
           />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">搜索</Button>
+          <Button type="primary" htmlType="submit" loading={okButtonLoading}>搜索</Button>
         </Form.Item>
       </Space>
     </Form>

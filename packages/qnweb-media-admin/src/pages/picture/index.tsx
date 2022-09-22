@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Button, Drawer, Form, Image, message, Modal, Radio, Space, Spin, Table, } from 'antd';
 import moment from 'moment';
-import { useAntdTable, useMount, useRequest } from 'ahooks';
+import { useAntdTable, useRequest } from 'ahooks';
 import _ from 'lodash';
 import { QiniuError, QiniuErrorName } from 'qiniu-js';
 
@@ -13,7 +13,6 @@ import {
   BasicTable,
   BasicTableProps,
   FaceResult,
-  FaceResultProps,
   UploadModal,
   UploadModalProps,
 } from '@/components';
@@ -72,6 +71,12 @@ export const PicturePage: React.FC = () => {
     manual: true,
   });
   /**
+   * 获取上传配置
+   */
+  const { runAsync: runUploadInfo, loading: uploadButtonLoading } = useRequest(MamApi.getUploadInfo, {
+    manual: true
+  });
+  /**
    * 资源列表
    */
   const {
@@ -100,15 +105,6 @@ export const PicturePage: React.FC = () => {
     });
   }, {
     defaultPageSize: 10,
-  });
-
-  /**
-   * 获取上传配置
-   */
-  useMount(() => {
-    MamApi.getUploadInfo().then(result => {
-      setUploadConfig(result.data);
-    });
   });
 
   /**
@@ -290,6 +286,17 @@ export const PicturePage: React.FC = () => {
     }
   };
 
+  /**
+   * 点击上传文件按钮
+   */
+  const onUploadClick = async () => {
+    if (!uploadConfig) {
+      const result = await runUploadInfo();
+      setUploadConfig(result.data);
+    }
+    setUploadModalVisible(true);
+  };
+
   return <Space style={{ width: '100%' }} direction="vertical" size={[0, 40]}>
     <UploadModal
       config={{
@@ -347,17 +354,8 @@ export const PicturePage: React.FC = () => {
     </Drawer>
 
     <BasicTable
-      searchFormProps={{
-        form,
-        onUploadClick: () => setUploadModalVisible(true),
-        onOk: onSearch,
-      }}
-      tableProps={{
-        loading,
-        dataSource: tableData?.list,
-        pagination,
-        columns
-      }}
+      searchFormProps={{ form, onUploadClick, onOk: onSearch, okButtonLoading: loading, uploadButtonLoading }}
+      tableProps={{ loading, dataSource: tableData?.list, pagination, columns }}
     />
   </Space>;
 };
