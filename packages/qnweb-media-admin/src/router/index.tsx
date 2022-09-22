@@ -7,12 +7,14 @@ import {
   useHistory,
   useLocation
 } from 'react-router-dom';
+import { useMount } from 'ahooks';
 
 import { PageContainer, PageContainerProps } from '@/layouts';
 import { menuConfig } from '@/config';
 import { VideoPage } from '@/pages/video';
 import { AudioPage } from '@/pages/audio';
 import { PicturePage } from '@/pages/picture';
+import { useStore } from '@/store';
 
 type RoutePath = typeof menuConfig[number]['key'];
 
@@ -29,10 +31,21 @@ const MAIN_VERSION = mainVersion;
 const BaseRoute = () => {
   const history = useHistory();
   const location = useLocation();
+  const store = useStore();
 
   const title = menuConfig.find(
     item => item.key === location.pathname
   )?.label;
+
+  useMount(() => {
+    const query = new URLSearchParams(location.search);
+    const token = query.get('token') || '';
+    if (!token) return;
+    store.dispatch({
+      type: 'SET_TOKEN',
+      payload: token
+    });
+  });
 
   /**
    * 菜单栏切换路由跳转

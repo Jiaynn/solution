@@ -7,6 +7,7 @@ import zhCN from 'antd/lib/locale/zh_CN';
 import moment from 'moment';
 import 'moment/dist/locale/zh-cn';
 
+import { Store } from '@/store';
 import { Router } from './router';
 
 import './styles/index.scss';
@@ -15,7 +16,9 @@ moment.locale('zh-cn');
 
 ReactDOM.render(
   <ConfigProvider locale={zhCN}>
-    <Router/>
+    <Store>
+      <Router/>
+    </Store>
   </ConfigProvider>,
   document.getElementById('root')
 );

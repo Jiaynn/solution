@@ -21,7 +21,13 @@ const requestConfig = {
 const request = axios.create(requestConfig[curEnv]);
 
 request.interceptors.request.use((config) => {
-  return config;
+  return {
+    ...config,
+    headers: {
+      ...config.headers,
+      Authorization: localStorage.getItem('token'),
+    }
+  };
 }, (error) => Promise.reject(error));
 
 // Add a response interceptor
@@ -37,6 +43,17 @@ request.interceptors.response.use((response) => {
   });
   return Promise.reject(response.data);
 }, (error) => {
+  if (error.response.status === 401) {
+    Modal.error({
+      content: error.response.data.message,
+      okText: '确认',
+      onOk: () => {
+        Modal.destroyAll();
+        window.location.href = `https://sso-dev.qiniu.io/?client_id=media-admin.qiniu.com&redirect_url=${encodeURIComponent(window.location.href)}`;
+      }
+    });
+    return Promise.reject(error);
+  }
   Modal.error({
     title: '接口请求出错',
     content: error.message,
