@@ -35,9 +35,9 @@ request.interceptors.response.use((response) => {
       onOk: () => {
         Modal.destroyAll();
         const { url: ssoUrl } = ssoConfig;
-        const redirectUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-        console.log('redirectUrl', redirectUrl)
-        window.location.href = `${ssoUrl}/?client_id=media-admin.qiniu.com&redirect_url=${encodeURIComponent(redirectUrl)}`;
+        const redirectUrl = window.location.href;
+        console.log('redirectUrl', redirectUrl);
+        window.location.href = `${ssoUrl}/?client_id=media-admin.qiniu.com&redirect_url=${redirectUrl}`;
       }
     });
     return Promise.reject(error);
