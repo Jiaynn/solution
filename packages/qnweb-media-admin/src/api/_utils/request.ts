@@ -1,24 +1,9 @@
 import axios from 'axios';
 import { Modal } from 'antd';
 
-import { curEnv } from '@/config';
+import { axiosRequestConfig, ssoConfig } from '@/config';
 
-const requestConfig = {
-  dev: {
-    baseURL: 'http://10.200.20.73:8080',
-    timeout: 3000,
-  },
-  test: {
-    baseURL: 'http://10.200.20.73:8080',
-    timeout: 3000,
-  },
-  prod: {
-    baseURL: 'https://mam.atlab.ai',
-    timeout: 3000,
-  },
-};
-
-const request = axios.create(requestConfig[curEnv]);
+const request = axios.create(axiosRequestConfig);
 
 request.interceptors.request.use((config) => {
   return {
@@ -49,7 +34,8 @@ request.interceptors.response.use((response) => {
       okText: '确认',
       onOk: () => {
         Modal.destroyAll();
-        window.location.href = `https://sso-dev.qiniu.io/?client_id=media-admin.qiniu.com&redirect_url=${encodeURIComponent(window.location.href)}`;
+        const { url: ssoUrl } = ssoConfig;
+        window.location.href = `${ssoUrl}/?client_id=media-admin.qiniu.com&redirect_url=${encodeURIComponent(window.location.href)}`;
       }
     });
     return Promise.reject(error);
