@@ -5,7 +5,7 @@ export const axiosRequestConfigMap: Record<ImportMetaEnv['VITE_NODE_ENV'], Axios
     baseURL: 'http://10.200.20.73:8080',
     timeout: 3000,
   },
-  test: {
+  staging: {
     baseURL: 'http://10.200.20.73:8080',
     timeout: 3000,
   },
@@ -22,7 +22,7 @@ export const ssoConfigMap: Record<ImportMetaEnv['VITE_NODE_ENV'], {
   dev: {
     url: 'https://sso-dev.qiniu.io'
   },
-  test: {
+  staging: {
     url: 'https://sso-dev.qiniu.io'
   },
   prod: {
