@@ -29,12 +29,12 @@ $ pnpm dev
 ### 测试环境
 
 ```shell
-$ pnpm build:test
+$ pnpm build:staging
 ```
 
 ### 线上环境
 
 ```shell
-$ pnpm build:prod
+$ pnpm build
 ```
 
