@@ -5,81 +5,8 @@ import prompts from 'prompts';
 import { getPackages } from '@manypkg/get-packages';
 import { cyan, red } from 'kolorist';
 
-import { buildDemo, buildSDK, devProject, runShell } from './utils';
-
-const preRunTask = {
-  // Cube
-  'qnweb-cloud-class-demo': {
-    title: '云课堂场景',
-    async run() {
-      await buildSDK('whiteboard');
-      await buildSDK('qnweb-whiteboard');
-      await buildSDK('qnweb-im');
-      await buildSDK('qnweb-high-level-rtc');
-      await buildSDK('qnweb-cube-ui');
-    }
-  },
-  'qnweb-exam-system-demo': {
-    title: '监考系统场景',
-    async run() {
-      await buildSDK('qnweb-im');
-      await buildSDK('qnweb-high-level-rtc');
-      await buildSDK('qnweb-exam-sdk');
-      await buildSDK('qnweb-cube-ui');
-    }
-  },
-  'qnweb-interview-demo': {
-    title: '面试场景',
-    async run() {
-      await buildSDK('qnweb-im');
-      await buildSDK('qnweb-high-level-rtc');
-      await buildSDK('qnweb-cube-ui');
-    }
-  },
-  'qnweb-overhaul-demo': {
-    title: '检修场景',
-    async run() {
-      await buildSDK('whiteboard');
-      await buildSDK('qnweb-whiteboard');
-      await buildSDK('qnweb-im');
-      await buildSDK('qnweb-high-level-rtc');
-      await buildSDK('qnweb-cube-ui');
-    }
-  },
-  'qnweb-video-together-demo': {
-    title: '一起看视频场景',
-    async run() {
-      await buildSDK('qnweb-im');
-      await buildSDK('qnweb-high-level-rtc');
-      await buildSDK('qnweb-cube-ui');
-    }
-  },
-
-  // Other
-  'qnweb-im-demo': {
-    title: 'im demo',
-    async run() {
-      await buildSDK('qnweb-im');
-      await runShell('copy_im');
-    }
-  },
-  'qnweb-rtc-ai-demo': {
-    title: 'rtc ai demo',
-    async run() {
-      await buildSDK('qnweb-rtc-ai');
-      await runShell('copy_rtc_ai');
-    }
-  },
-  'qnweb-whiteboard-demo': {
-    title: '白板 demo',
-    async run() {
-      await buildSDK('qnweb-whiteboard');
-      await runShell('copy_whiteboard');
-    }
-  }
-};
-
-type PackageName = keyof typeof preRunTask;
+import { buildDemo, devProject } from './utils';
+import { preRunTask, TPackageName } from './task';
 
 async function main() {
   const { packages } = await getPackages(process.cwd());
@@ -88,7 +15,7 @@ async function main() {
   const answerFromArgs = packageFromArgs && {
     demo: {
       ...packageFromArgs,
-      preRun: preRunTask[packageFromArgs.packageJson.name as PackageName].run
+      preRun: preRunTask[packageFromArgs.packageJson.name as TPackageName].run
     }
   };
 
@@ -99,11 +26,11 @@ async function main() {
     choices: packages
       .filter(pkg => pkg.packageJson.name.endsWith('-demo'))
       .filter(pkg => {
-        const packageName = pkg.packageJson.name as PackageName;
+        const packageName = pkg.packageJson.name as TPackageName;
         return !!preRunTask[packageName];
       })
       .map(pkg => {
-        const packageName = pkg.packageJson.name as PackageName;
+        const packageName = pkg.packageJson.name as TPackageName;
         return {
           title: `${packageName}(${preRunTask[packageName].title})`,
           value: {
@@ -122,11 +49,7 @@ async function main() {
   await answer.demo.preRun();
   console.log(cyan('preRun ok'));
 
-  if (answerFromArgs) {
-    console.log(cyan('buildDemo...'));
-    await buildDemo(answer.demo.packageJson.name);
-    console.log(cyan('buildDemo ok'));
-  } else {
+  if (!answerFromArgs) {
     console.log(cyan('devProject...'));
     await devProject(answer.demo.packageJson.name);
     console.log(cyan('devProject ok'));
