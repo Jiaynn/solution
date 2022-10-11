@@ -11,7 +11,7 @@ const MAIN_VERSION = mainVersion;
 
 export const Router: React.FC = () => {
   const basename = env === 'dev' ? '/' : MAIN_VERSION;
-  return <BrowserRouter>
+  return <BrowserRouter basename={basename}>
     <Suspense fallback={<RouterLoading/>}>
       <Switch>
         <Route path="/home" exact component={Home}/>
