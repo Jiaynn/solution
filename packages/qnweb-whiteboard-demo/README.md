@@ -46,4 +46,6 @@ https://niucube-whiteboard.qiniu.com
 
 或者
 
-https://niucube-whiteboard.qiniu.com/<version>
+https://niucube-whiteboard.qiniu.com/[version]
+
+注：[version] 为具体的版本号，如 2.1.2
