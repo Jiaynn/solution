@@ -4,17 +4,28 @@
   }
 
   &-list {
-    &-item {
-      display: inline-block;
-      cursor: pointer;
-      margin-right: 50px;
+    display: grid;
+    flex-wrap: wrap;
+    max-height: 276px;
+    grid-template-columns: repeat(3, 33.33%);
+    overflow-y: scroll;
 
-      &:last-child {
-        margin-right: 0;
-      }
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 2px;
+    }
+
+    &-item {
+      max-width: 60px;
+      cursor: pointer;
 
       &-text {
         text-align: center;
+        padding: 5px 0;
       }
 
       &-active {

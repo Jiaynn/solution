@@ -83,6 +83,7 @@ export const PeopleList: React.FC<PeopleListProps> = (props) => {
           return <div
             className={classNames(`${prefixCls}-list-item`, { [`${prefixCls}-list-item-active`]: item.id === value })}
             key={item.id}
+            title={item.username}
             onClick={() => {
               if (item.id === value) return;
               onChange?.(item.id);
