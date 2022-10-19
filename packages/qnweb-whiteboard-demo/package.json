@@ -3,9 +3,11 @@
   "version": "2.2.2",
   "scripts": {
     "dev": "vite --mode dev",
-    "build:staging": "tsc --skipLibCheck && vite build --mode staging",
-    "build:prod": "tsc --skipLibCheck && vite build --mode prod",
-    "build": "tsc --skipLibCheck && vite build --mode prod",
+    "build:staging": "tsc --skipLibCheck && vite build --mode staging && npm run build:staging:version",
+    "build:prod": "tsc --skipLibCheck && vite build --mode prod && npm run build:prod:version",
+    "build": "npm run build:prod",
+    "build:staging:version": "tsc --skipLibCheck && vite build --mode staging --config build-version.config.ts",
+    "build:prod:version": "tsc --skipLibCheck && vite build --mode prod --config build-version.config.ts",
     "preview": "vite preview"
   },
   "dependencies": {
