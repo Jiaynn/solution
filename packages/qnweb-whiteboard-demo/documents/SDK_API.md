@@ -279,6 +279,34 @@ client.deleteWidget(widgetId: string);
 | -------- | ------ | -------------------------------------------------- |
 | widgetId | string | 选择的文件widgetId，默认点击文件时会存储，可以不传 |
 
+### preUpload
+
+预上传文件
+`client.controller.preUpload(file, meetingId): Promise`
+| 参数 | 类型 | 描述 |
+| -------- | ------ | --------------------------------------------------- |
+| file | File | 需要上传的文件 |
+| meetingId | string | 房间 Id |
+
+### loadPreUploadFile
+
+加载预上传的文件，参数除 top,left,width,height 外均从`preUpload`获取
+`client.controller.loadPreUploadFile(params: Object): Promise`
+| 参数 | 类型 | 描述 |
+| -------- | ------ | --------------------------------------------------- |
+| fileGroupId | string | 文件组 ID |
+| resourceId | string | 资源 ID |
+| fileName | string | 文件名称 |
+| objectName | string | 文件对象名称 |
+| md5 | string | 文件 MD5 |
+| fileSize | number | 文件大小 |
+| fileType | number | 文件类型 |
+| extension | string | 文件扩展名 |
+| top | number | 文件渲染位置（左上角为原点） |
+| left | number | 文件渲染位置（左上角为原点） |
+| width | number | 文件渲染宽 |
+| height | number | 文件渲染高 |
+
 ### rubberUndo
 
 还原笔迹

@@ -29,3 +29,8 @@
 
 
 
+## 2.2.2 (2022-10-18)
+
+### Features
+
+* 新增[preUpload](#preUpload)和[loadPreUploadFile](#loadPreUploadFile)方法，预上传文件与渲染预上传文件

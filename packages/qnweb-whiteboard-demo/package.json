@@ -1,6 +1,6 @@
 {
   "name": "qnweb-whiteboard-demo",
-  "version": "2.1.2",
+  "version": "2.2.2",
   "scripts": {
     "dev": "vite --mode dev",
     "build:staging": "tsc --skipLibCheck && vite build --mode staging",
