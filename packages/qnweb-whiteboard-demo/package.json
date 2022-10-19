@@ -3,12 +3,11 @@
   "version": "2.2.2",
   "scripts": {
     "dev": "vite --mode dev",
-    "build:staging": "tsc --skipLibCheck && vite build --mode staging && npm run build:staging:version",
-    "build:prod": "tsc --skipLibCheck && vite build --mode prod && npm run build:prod:version",
+    "build:staging": "npm run clean && vite build --mode staging && node scripts/dist-version.js",
+    "build:prod": "npm run clean && vite build --mode prod && node scripts/dist-version.js",
     "build": "npm run build:prod",
-    "build:staging:version": "tsc --skipLibCheck && vite build --mode staging --config build-version.config.ts",
-    "build:prod:version": "tsc --skipLibCheck && vite build --mode prod --config build-version.config.ts",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "tsc --skipLibCheck && rimraf dist"
   },
   "dependencies": {
     "ahooks": "^3.1.9",
@@ -25,6 +24,7 @@
     "@types/react-dom": "^17.0.10",
     "@types/react-transition-group": "^4.4.4",
     "@vitejs/plugin-react": "^1.0.7",
+    "rimraf": "^3.0.2",
     "sass": "^1.52.1",
     "typescript": "^4.4.4",
     "vite": "^2.7.2"

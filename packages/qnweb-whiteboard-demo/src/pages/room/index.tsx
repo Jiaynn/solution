@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Input, InputRef, message, Modal, Switch } from 'antd';
 import QNWhiteBoard, { QNCreateInstanceResult } from 'qnweb-whiteboard';
+import { useUnmount } from 'ahooks';
 
 import { Toolbar, ToolbarProps, RedoUndo } from '@/components';
 import { getRouteQuery } from '@/utils';
 
 import styles from './index.module.scss';
-import { useUnmount } from 'ahooks';
 
 const gestureMap = { 1: 3, 2: 2, 3: 4, 4: 5 };
 const geometryMap = { 1: 6, 2: 1, 3: 0, 4: 3 };

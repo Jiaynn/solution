@@ -978,6 +978,7 @@ importers:
       react-dom: ^17.0.2
       react-router-dom: ^5.0.0
       react-transition-group: ^4.4.2
+      rimraf: ^3.0.2
       sass: ^1.52.1
       typescript: ^4.4.4
       vite: ^2.7.2
@@ -995,6 +996,7 @@ importers:
       '@types/react-dom': 17.0.11
       '@types/react-transition-group': 4.4.4
       '@vitejs/plugin-react': 1.2.0
+      rimraf: 3.0.2
       sass: 1.52.1
       typescript: 4.5.5
       vite: 2.9.5_sass@1.52.1
@@ -14504,7 +14506,7 @@ packages:
       chalk: 4.1.2
       param-case: 3.0.4
       pascal-case: 3.1.2
-      vite: 2.9.5_sass@1.50.0
+      vite: 2.9.5
     transitivePeerDependencies:
       - supports-color
     dev: true
