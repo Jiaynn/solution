@@ -140,6 +140,24 @@ class QNWhiteBoardRoom {
   }
 
   /**
+   * 预上传文件
+   * @param file
+   * @param meetingId
+   */
+  preUpload(file: File, meetingId: string) {
+    return this.controller.pre_upload(file, meetingId);
+  }
+
+  /**
+   * 加载预上传的文件
+   * @param params
+   */
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  loadPreUploadFile(params: Object) {
+    return this.controller.load_pre_upload_file(params);
+  }
+
+  /**
    * 还原笔迹
    */
   rubberUndo() {
