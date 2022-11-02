@@ -8,6 +8,7 @@
 
 ### Features
 
+* **qnweb-whiteboard:** SDK 文档更新 ([280300d](https://github.com/qbox/QNSolutions_Web/commit/280300d6473cf5970f383277a9225a229cf19916))
 * 实例新增白板内上传与加载文件相关回调
   * onFileBeginUpload
   * onFileUploaded
@@ -19,11 +20,6 @@
   * onFileRenderFail
 * 实例新增白板内文件翻页回调：onFileFlipped
 * 优化预上传文件 preUpload 与加载预上传文件 loadPreUploadFile 流程，转码服务在预上传中完成，提高加载文件时的速度
-
-
-### Features
-
-* **qnweb-whiteboard:** SDK 文档更新 ([280300d](https://github.com/qbox/QNSolutions_Web/commit/280300d6473cf5970f383277a9225a229cf19916))
 
 
 
