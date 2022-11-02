@@ -1,6 +1,6 @@
 {
   "name": "qnweb-whiteboard-demo",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "scripts": {
     "dev": "vite --mode dev",
     "build:staging": "npm run clean && vite build --mode staging && node scripts/dist-version.js",

@@ -1,3 +1,21 @@
+## [2.2.3](https://github.com/qbox/QNSolutions_Web/compare/qnweb-whiteboard-demo@2.2.2...qnweb-whiteboard-demo@2.2.3) (2022-11-02)
+
+
+### Bug Fixes
+
+* **qnweb-whiteboard-demo:** 补充-2.2.2版本wasm资源更新 ([a08adab](https://github.com/qbox/QNSolutions_Web/commit/a08adab4bbe96389f4fcdee5b79d90f8c8cf9204))
+* **qnweb-whiteboard-demo:** 更新wasm，修复回放模块的问题 ([00bb109](https://github.com/qbox/QNSolutions_Web/commit/00bb109a076c831a3deaeba57c6884ccf60e7d1b))
+* **qnweb-whiteboard-demo:** 添加@types/react-router-dom ([74eff2f](https://github.com/qbox/QNSolutions_Web/commit/74eff2f7ebcd16c4af1fa6ea5c0f641d16bbdd22))
+* **qnweb-whiteboard-demo:** 修复打包之后带版本的包丢失静态资源 ([039f607](https://github.com/qbox/QNSolutions_Web/commit/039f60735dbc7ebc8641e3c99bd50fbe82cff7ea))
+
+
+### Features
+
+* **qnweb-whiteboard-demo:** 创建dist-version脚本来优化打包方式 ([5574592](https://github.com/qbox/QNSolutions_Web/commit/5574592c51d91e3cf47c1fd7dfad0e1448d9a0d6))
+* **qnweb-whiteboard-demo:** qnweb-whiteboard 升级到 2.2.3 ([5b584f4](https://github.com/qbox/QNSolutions_Web/commit/5b584f418fdb9b4337810d2cf00f12d1d63d2d79))
+
+
+
 ## [2.1.2](https://github.com/qbox/QNSolutions_Web/compare/qnweb-whiteboard-demo@2.1.1...qnweb-whiteboard-demo@2.1.2) (2022-09-15)
 
 
