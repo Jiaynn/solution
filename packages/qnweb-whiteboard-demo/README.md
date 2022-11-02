@@ -35,7 +35,7 @@ $ pnpm build:staging
 ### 线上环境
 
 ```shell
-$ pnpm build:prod
+$ pnpm build
 ```
 
 ## FAQ(常见问题)

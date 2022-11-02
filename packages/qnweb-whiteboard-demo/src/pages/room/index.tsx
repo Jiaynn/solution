@@ -113,7 +113,7 @@ const Room: React.FC = () => {
    * @param client
    */
   const registerRoomEvent = (client: QNWhiteBoard) => {
-    client.registerRoomEvent({
+    client.controller.registerRoomEvent({
       onJoinSuccess: () => {
         message.destroy('joinRoom');
         message.success('加入房间成功');
@@ -122,11 +122,11 @@ const Room: React.FC = () => {
         message.destroy('joinRoom');
         message.error('加入房间失败');
       },
-      onRoomStatusChanged: (code) => console.log('onRoomStatusChanged', code),
+      onRoomStatusChanged: (code: unknown) => console.log('onRoomStatusChanged', code),
       onUserJoin: () => console.log('onUserJoin'),
       onUserLeave: () => console.log('onUserLeave'),
       webAssemblyOnReady: () => {
-        client.joinRoom(
+        client.controller.join_room(
           queryRef.current.appId,
           queryRef.current.meetingId,
           queryRef.current.userId,
@@ -141,11 +141,11 @@ const Room: React.FC = () => {
    */
   useEffect(() => {
     const client = QNWhiteBoard.create();
-    client.initConfig({
+    client.controller.initConfig({
       path: './webassembly/whiteboardcanvas.html',
     });
     setClient(client);
-    setInstance(client.createInstance(queryRef.current.bucketId));
+    setInstance(client.controller.createInstance(queryRef.current.bucketId));
   }, []);
 
   /**
@@ -166,7 +166,7 @@ const Room: React.FC = () => {
    */
   useUnmount(() => {
     if (client) {
-      client.leaveRoom();
+      client.controller.leave_room();
     }
   });
 
@@ -174,7 +174,7 @@ const Room: React.FC = () => {
    * 加入房间
    */
   const onJoinRoom = () => {
-    client?.joinRoom(
+    client?.controller.join_room(
       queryRef.current.appId,
       queryRef.current.meetingId,
       queryRef.current.userId,
@@ -196,7 +196,7 @@ const Room: React.FC = () => {
     if (!client) return;
     const penStyle = { type: 0, color: `#FF${value?.color?.slice(1)}`, size: value?.size };
     console.log('onToolPenPencilChange', value, penStyle);
-    client.setPenStyle(penStyle);
+    client.controller.set_pen_style(penStyle);
     setToolPenPencilValue(value);
   };
 
@@ -208,7 +208,7 @@ const Room: React.FC = () => {
     if (!client) return;
     const penStyle = { type: 1, color: `#7F${value?.color?.slice(1)}`, size: value?.size };
     console.log('onToolPenMarkChange', value, penStyle);
-    client.setPenStyle(penStyle);
+    client.controller.set_pen_style(penStyle);
     setToolPenMarkValue(value);
   };
 
@@ -224,7 +224,7 @@ const Room: React.FC = () => {
       size: 10
     };
     console.log('onToolGestureChange', penStyle);
-    client.setPenStyle(penStyle);
+    client.controller.set_pen_style(penStyle);
     setToolGestureValue(value);
   };
 
@@ -234,7 +234,7 @@ const Room: React.FC = () => {
    */
   const onToolRubberChange: ToolbarProps['onToolRubberChange'] = (value) => {
     if (!client) return;
-    client.setEraseSize(value);
+    client.controller.set_erase_size(value);
     console.log('onToolGestureChange', value);
     setToolRubberValue(value);
   };
@@ -252,10 +252,10 @@ const Room: React.FC = () => {
       size: value?.size
     };
     if (geometryMode) {
-      client.setGeometryMode(geometryMap[geometryMode]);
+      client.controller.set_geometry_mode(geometryMap[geometryMode]);
     }
     console.log('onToolGeometryChange', penStyle);
-    client.setPenStyle(penStyle);
+    client.controller.set_pen_style(penStyle);
     setToolGeometryValue(value);
   };
 
@@ -270,8 +270,8 @@ const Room: React.FC = () => {
       color: `#FF${toolPenPencilValue?.color?.slice(1)}`,
     };
     console.log('onModeChange', mode, penStyle);
-    client.setInputMode(0);
-    client.setPenStyle(penStyle);
+    client.controller.set_input_mode(0);
+    client.controller.set_pen_style(penStyle);
   };
 
   /**
@@ -285,8 +285,8 @@ const Room: React.FC = () => {
       color: `#7F${toolPenMarkValue?.color?.slice(1)}`
     };
     console.log('onModeChange', mode, penStyle);
-    client.setInputMode(0);
-    client.setPenStyle(penStyle);
+    client.controller.set_input_mode(0);
+    client.controller.set_pen_style(penStyle);
   };
 
   /**
@@ -300,8 +300,8 @@ const Room: React.FC = () => {
       size: 10
     };
     console.log('onModeChange', mode, penStyle);
-    client.setInputMode(0);
-    client.setPenStyle(penStyle);
+    client.controller.set_input_mode(0);
+    client.controller.set_pen_style(penStyle);
   };
 
   /**
@@ -310,11 +310,11 @@ const Room: React.FC = () => {
   const onModeChangeGeometry = () => {
     if (!client) return;
     const geometryMode = toolGeometryValue?.geometryMode;
-    client.setInputMode(3);
+    client.controller.set_input_mode(3);
     if (geometryMode) {
-      client.setGeometryMode(geometryMap[geometryMode]);
+      client.controller.set_geometry_mode(geometryMap[geometryMode]);
     }
-    client.setPenStyle({
+    client.controller.set_pen_style({
       type: 0,
       color: `#FF${toolGeometryValue?.color?.slice(1)}`,
       size: toolGeometryValue?.size
@@ -337,7 +337,7 @@ const Room: React.FC = () => {
     if (!client) return;
     console.log('onModeChange', mode);
     if (mode === 'mouse') { // 选择模式
-      client.setInputMode(2);
+      client.controller.set_input_mode(2);
     }
     if (mode === 'penPencil') { // 铅笔
       onModeChangePenPencil();
@@ -349,7 +349,7 @@ const Room: React.FC = () => {
       onModeChangeGesture();
     }
     if (mode === 'rubber') { // 橡皮
-      client.setInputMode(1);
+      client.controller.set_input_mode(1);
     }
     if (mode === 'geometry') { // 几何图形
       onModeChangeGeometry();
@@ -368,7 +368,7 @@ const Room: React.FC = () => {
     const file = event.target.files?.[0];
     if (!file) return;
     if (!client) return;
-    client.uploadFile({
+    client.controller.upload_file({
       file: file,
       left: 100,
       top: 200,
@@ -381,7 +381,7 @@ const Room: React.FC = () => {
    * 加载回放
    */
   const onLoadReplay = () => {
-    client?.getRecord(queryRef.current.recordId);
+    client?.controller.getRecord(queryRef.current.recordId);
   };
   /**
    * 播放
