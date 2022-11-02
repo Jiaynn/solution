@@ -1,3 +1,11 @@
+## 2.2.2 (2022-10-18)
+
+### Features
+
+* 新增 preUpload 和 loadPreUploadFile 方法，预上传文件与渲染预上传文件
+
+
+
 ## 2.1.2 (2022-09-15)
 
 
@@ -39,11 +47,3 @@
 * 新增房间回调`onWidgetActivity`，点击白板时触发，返回点击区域资源的widgetId
 * 新增房间回调`webAssemblyOnReady`,白板wasm资源准备就绪
 * 白板实例新增resize方法，设置白板大小
-
-
-
-## 2.2.2 (2022-10-18)
-
-### Features
-
-* 新增[preUpload](#preUpload)和[loadPreUploadFile](#loadPreUploadFile)方法，预上传文件与渲染预上传文件
