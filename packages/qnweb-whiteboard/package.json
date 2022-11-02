@@ -1,6 +1,6 @@
 {
   "name": "qnweb-whiteboard",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "main": "build/qnweb-whiteboard.umd.js",
   "module": "build/qnweb-whiteboard.esm.js",
   "types": "build/types/index.d.ts",

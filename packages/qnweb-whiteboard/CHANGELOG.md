@@ -1,3 +1,32 @@
+## [2.2.3](https://github.com/qbox/QNSolutions_Web/compare/qnweb-whiteboard@2.2.2...qnweb-whiteboard@2.2.3) (2022-11-02)
+
+
+### Bug Fixes
+
+* **qnweb-whiteboard:** 补充-2.2.2版本wasm资源更新 ([5cb2ec3](https://github.com/qbox/QNSolutions_Web/commit/5cb2ec357d5be1777deafb862aee49a7ca0bb741))
+* **qnweb-whiteboard:** 更新wasm，修复回放模块的问题 ([85c2757](https://github.com/qbox/QNSolutions_Web/commit/85c2757687f00c19318b1b86f4c98e86f02089e5))
+
+### Features
+
+* 实例新增白板内上传与加载文件相关回调
+  * onFileBeginUpload
+  * onFileUploaded
+  * onFileUploadFail
+  * onFileBeginDownload
+  * onFileDownloaded
+  * onFileDownloadFail
+  * onFileRendered
+  * onFileRenderFail
+* 实例新增白板内文件翻页回调：onFileFlipped
+* 优化预上传文件 preUpload 与加载预上传文件 loadPreUploadFile 流程，转码服务在预上传中完成，提高加载文件时的速度
+
+
+### Features
+
+* **qnweb-whiteboard:** SDK 文档更新 ([280300d](https://github.com/qbox/QNSolutions_Web/commit/280300d6473cf5970f383277a9225a229cf19916))
+
+
+
 ## 2.2.2 (2022-10-18)
 
 ### Features
