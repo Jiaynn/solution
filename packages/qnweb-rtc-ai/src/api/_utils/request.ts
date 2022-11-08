@@ -8,7 +8,7 @@ const request = axios.create({
 });
 
 request.interceptors.request.use(function (config) {
-  return {
+  const basicConfig = {
     ...config,
     headers: {
       ...config.headers,
@@ -16,6 +16,15 @@ request.interceptors.request.use(function (config) {
       'Content-Type': 'application/json'
     }
   };
+  if (config.method.toLowerCase() === 'post') {
+    return {
+      ...basicConfig,
+      data: {
+        request: config.data
+      }
+    };
+  }
+  return basicConfig;
 }, error => {
   return Promise.reject(error);
 });
