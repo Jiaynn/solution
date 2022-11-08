@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 
 import IRouter from './IRouter';
-import './style/common.scss';
+
+import './styles/index.scss';
 
 ReactDOM.render(
-  <IRouter />,
+  <IRouter/>,
   document.getElementById('root')
 );

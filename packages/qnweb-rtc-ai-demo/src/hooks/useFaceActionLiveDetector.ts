@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-const useFaceActionLiveDetector = () => {
+export const useFaceActionLiveDetector = () => {
   const defaultCountdown = 3;
   const mapFaceActionLiveDetectorText = {
     nod: '点头',
@@ -45,5 +45,3 @@ const useFaceActionLiveDetector = () => {
     faceActionLiveDetectorText: mapFaceActionLiveDetectorText[faceActionLiveDetectorType]
   };
 };
-
-export default useFaceActionLiveDetector;

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
  * 加入 RTC 房间
  * @param roomToken
  */
-const useRTCJoinRoom = (roomToken: string) => {
+export const useRTCJoinRoom = (roomToken: string) => {
   const [isRTCRoomJoined, setIsRTCRoomJoined] = useState(false);
   const [RTCClient, setRTCClient] = useState<any>();
   const [RTCRoomUsers, setRTCRoomUsers] = useState<any[]>([]);
@@ -28,5 +28,3 @@ const useRTCJoinRoom = (roomToken: string) => {
     RTCClient
   };
 };
-
-export default useRTCJoinRoom;

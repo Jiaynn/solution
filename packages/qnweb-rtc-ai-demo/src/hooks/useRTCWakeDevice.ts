@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
  * @param client
  * @param cameraRecordConfig
  */
-const useRTCWakeDevice = (client: any, cameraRecordConfig: any) => {
+export const useRTCWakeDevice = (client: any, cameraRecordConfig: any) => {
   const [localTracks, setLocalTracks] = useState<any[]>([]);
   const [facingMode, setFacingMode] = useState<string>('environment');
 
@@ -37,5 +37,3 @@ const useRTCWakeDevice = (client: any, cameraRecordConfig: any) => {
     setFacingMode
   };
 };
-
-export default useRTCWakeDevice;

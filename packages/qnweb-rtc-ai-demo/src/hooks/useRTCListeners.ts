@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const useRTCListeners = (client: any) => {
+export const useRTCListeners = (client: any) => {
   const [remoteTracks, setRemoteTracks] = useState([]);
   useEffect(() => {
     function handleUserPublished(userID, tracks) {
@@ -44,5 +44,3 @@ const useRTCListeners = (client: any) => {
     remoteTracks
   };
 };
-
-export default useRTCListeners;
