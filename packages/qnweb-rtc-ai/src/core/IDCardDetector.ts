@@ -1,5 +1,5 @@
 import { QNRTCTrack } from '../types';
-import { post } from '../utils';
+import { post } from '../api/_utils';
 
 export interface IDCardDetectorRunParams {
   image: string, // base64编码的图片数据

@@ -1,4 +1,4 @@
-import { post } from '../utils';
+import { post } from '../api/_utils';
 
 // 文字转语音声效枚举
 export enum Speaker {

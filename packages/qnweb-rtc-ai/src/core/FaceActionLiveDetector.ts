@@ -1,7 +1,8 @@
 import './qnweb-rtc-4.0.1-beta.7.umd';
 
 import { QNRTCTrack } from '../types';
-import { post, blobToDataURI } from '../utils';
+import { blobToDataURI } from '../utils';
+import { post } from '../api/_utils';
 
 /**
  * 动作的标示字符串

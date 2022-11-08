@@ -1,5 +1,5 @@
 import { QNRTCTrack } from '../types';
-import { post } from '../utils';
+import { post } from '../api/_utils';
 
 /**
  * 光线活体检测请求参数

@@ -1,5 +1,5 @@
 import { QNRTCTrack } from '../types';
-import { post } from '../utils';
+import { post } from '../api/_utils';
 
 /**
  * 人脸检测参数

@@ -1,6 +1,7 @@
 import { compressAccurately } from 'image-conversion';
 
-import { post, blobToBase64, dataURLToFile } from '../utils';
+import { post } from '../api/_utils';
+import { blobToBase64, dataURLToFile } from '../utils';
 import { QNRTCTrack } from '../types';
 
 /**
