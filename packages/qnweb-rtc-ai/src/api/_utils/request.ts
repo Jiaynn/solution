@@ -1,5 +1,5 @@
-import { doraSDKApiURL } from '../../config';
-import { store } from '../../store';
+import { doraSDKApiURL } from '@/config';
+import { store } from '@/store';
 
 /**
  * post 请求封装
