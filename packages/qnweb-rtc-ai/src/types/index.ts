@@ -1,1 +1,1 @@
-export * from './QNRTC';
+export * from './qnweb-rtc';
