@@ -1,8 +1,8 @@
 import './qnweb-rtc-4.0.1-beta.7.umd';
 
-import { QNRTCTrack } from '../types';
-import { blobToDataURI } from '../utils';
-import { post } from '../api/_utils';
+import { QNRTCTrack } from '@/types';
+import { blobToDataURI } from '@/utils';
+import { request } from '@/api/_utils';
 
 /**
  * 动作的标示字符串
@@ -41,7 +41,7 @@ export type FaceActionLiveDetectorReqParams = {
 /**
  * 动作活体检测响应体
  */
-export interface FaceActionLiveDetectorRes {
+export interface FaceActionLiveDetectorResult {
   request_id: string;
   response: FaceActionLiveResData;
 }
@@ -97,13 +97,13 @@ export class FaceActionLiveDetector {
   /**
    * 提交录制
    */
-  async commit(): Promise<FaceActionLiveDetectorRes> {
+  async commit(): Promise<FaceActionLiveDetectorResult> {
     const recordBlob = this.recorder.stop();
     const videoB64 = await blobToDataURI(recordBlob);
     const word = 'base64,';
     const index = videoB64.indexOf(word) + word.length;
     const video_b64 = videoB64.slice(index);
-    return post<FaceActionLiveDetectorReqParams, FaceActionLiveDetectorRes>('/face-actlive', {
+    return request.post<FaceActionLiveDetectorResult, FaceActionLiveDetectorResult>('/face-actlive', {
       video_b64,
       ...this.params
     });

@@ -1,5 +1,5 @@
-import { QNRTCTrack } from '../types';
-import { post } from '../api/_utils';
+import { QNRTCTrack } from '@/types';
+import { request } from '@/api/_utils';
 
 /**
  * dora接口请求体
@@ -38,7 +38,7 @@ export class QNOCRDetector {
   public static run(
     videoTrack: QNRTCTrack
   ): Promise<QNOCRDetectorResult> {
-    return post<RequestBody, ResponseBody>(
+    return request.post<QNOCRDetectorResult, QNOCRDetectorResult>(
       '/general-ocr',
       {
         "data.uri": 'data:application/octet-stream;base64,' + videoTrack._track.getCurrentFrameDataURL().split(',')[1]

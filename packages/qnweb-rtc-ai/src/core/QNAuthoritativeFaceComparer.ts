@@ -1,8 +1,8 @@
 import { compressAccurately } from 'image-conversion';
 
-import { post } from '../api/_utils';
-import { blobToBase64, dataURLToFile } from '../utils';
-import { QNRTCTrack } from '../types';
+import { request } from '@/api/_utils';
+import { blobToBase64, dataURLToFile } from '@/utils';
+import { QNRTCTrack } from '@/types';
 
 /**
  * dora接口请求体
@@ -35,7 +35,7 @@ export interface QNAuthoritativeFaceParams {
 /**
  * 对外响应
  */
-export type QNAuthoritativeFaceResult = ResponseBody
+export type QNAuthoritativeFaceComparerResult = ResponseBody
 
 /**
  * 权威人脸对比
@@ -45,7 +45,7 @@ export class QNAuthoritativeFaceComparer {
   public static run(
     videoTrack: QNRTCTrack,
     params: QNAuthoritativeFaceParams,
-  ): Promise<QNAuthoritativeFaceResult> {
+  ): Promise<QNAuthoritativeFaceComparerResult> {
     const file = dataURLToFile(
       videoTrack._track.getCurrentFrameDataURL(),
       'photo',
@@ -53,7 +53,7 @@ export class QNAuthoritativeFaceComparer {
     return compressAccurately(file, 24).then(blob => {
       return blobToBase64(blob)
     }).then(base64 => {
-      return post<RequestBody, ResponseBody>(
+      return request.post<QNAuthoritativeFaceComparerResult, QNAuthoritativeFaceComparerResult>(
         '/face-hdphotoauth',
         {
           photo_b64: base64.split(',')[1],

@@ -1,4 +1,4 @@
-import { store, StoreCache } from '../store';
+import { store, StoreCache } from '@/store';
 
 /**
  * 全局配置-init初始化

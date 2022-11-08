@@ -1,5 +1,5 @@
-import { QNRTCTrack } from '../types';
-import { TranslateWebSocket, ConnectStatus } from '../utils';
+import { QNRTCTrack } from '@/types';
+import { TranslateWebSocket, ConnectStatus } from '@/utils';
 
 export enum Status {
   AVAILABLE, // 未开始可用

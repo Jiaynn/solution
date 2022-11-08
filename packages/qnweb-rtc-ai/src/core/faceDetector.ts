@@ -1,5 +1,5 @@
-import { QNRTCTrack } from '../types';
-import { post } from '../api/_utils';
+import { QNRTCTrack } from '@/types';
+import { request } from '@/api/_utils';
 
 /**
  * 人脸检测参数
@@ -20,7 +20,7 @@ export type FaceDetectorReqParams = FaceDetectorParams & {
 /**
  * 人脸检测响应体
  */
-export interface FaceDetectorRes {
+export interface FaceDetectorResult {
   request_id: string;
   response: FaceDetectorResData;
 }
@@ -117,7 +117,7 @@ export interface FaceProfile {
  */
 export function faceDetector({ _track: videoTrack }: QNRTCTrack, params?: FaceDetectorParams) {
   const base64 = videoTrack.getCurrentFrameDataURL();
-  return post<FaceDetectorReqParams, FaceDetectorRes>('/face-detect', {
+  return request.post<FaceDetectorResult, FaceDetectorResult>('/face-detect', {
     image_b64: base64.replace('data:image/png;base64,', ''),
     ...params
   });

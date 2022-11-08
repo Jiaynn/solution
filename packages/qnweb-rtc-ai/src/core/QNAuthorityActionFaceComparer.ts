@@ -1,13 +1,13 @@
-import { QNRTCTrack } from '../types';
+import { QNRTCTrack } from '@/types';
 import {
   FaceActionLiveDetector,
   FaceActionLiveDetectorParams,
-  FaceActionLiveDetectorRes
+  FaceActionLiveDetectorResult
 } from './FaceActionLiveDetector';
 import {
   QNAuthoritativeFaceComparer,
   QNAuthoritativeFaceParams,
-  QNAuthoritativeFaceResult
+  QNAuthoritativeFaceComparerResult
 } from './QNAuthoritativeFaceComparer';
 
 export type QNFaceActionLiveParams = FaceActionLiveDetectorParams;
@@ -42,8 +42,8 @@ export class QNAuthorityActionFaceComparer {
    * 结束检测
    */
   public commit(): Promise<{
-    faceActionResult: FaceActionLiveDetectorRes;
-    authoritativeFaceResult: QNAuthoritativeFaceResult;
+    faceActionResult: FaceActionLiveDetectorResult;
+    authoritativeFaceResult: QNAuthoritativeFaceComparerResult;
   }> {
     return Promise.all([
       this.faceActionLiveDetector.commit(),

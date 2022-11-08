@@ -1,5 +1,5 @@
-import { QNRTCTrack } from '../types';
-import { post } from '../api/_utils';
+import { QNRTCTrack } from '@/types';
+import { request } from '@/api/_utils';
 
 /**
  * 光线活体检测请求参数
@@ -11,7 +11,7 @@ export interface FaceFlashLiveDetectorReqPrams {
 /**
  * 光线活体检测响应体
  */
-export interface FaceFlashLiveDetectorRes {
+export interface FaceFlashLiveDetectorResult {
   request_id: string;
   response: FaceFlashLiveDetectorResData;
 }
@@ -62,7 +62,7 @@ export class FaceFlashLiveDetector {
    */
   async commit() {
     clearInterval(this.timer);
-    return post<FaceFlashLiveDetectorReqPrams, FaceFlashLiveDetectorRes>('/face-flashlive', {
+    return request.post<FaceFlashLiveDetectorResult, FaceFlashLiveDetectorResult>('/face-flashlive', {
       video_data: this.videoData
     });
   }

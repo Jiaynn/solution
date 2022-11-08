@@ -1,5 +1,5 @@
-import { QNRTCTrack } from '../types';
-import { post } from '../api/_utils';
+import { QNRTCTrack } from '@/types';
+import { request } from '@/api/_utils';
 
 export interface IDCardDetectorRunParams {
   image: string, // base64编码的图片数据
@@ -11,7 +11,7 @@ export interface IDCardDetectorRunParams {
   enable_detect_copy?: string, // 复印件、翻拍件检测开关，如果输入图片中的身份证卡片是复印件，则返回告警
 }
 
-export interface IDCardDetectorRunRes {
+export interface IDCardDetectorRunResult {
   request_id?: string,
   response: {
     session_id: string, // 唯一会话 id
@@ -46,9 +46,9 @@ export interface ImageResult {
  * 身份证识别
  */
 export class IDCardDetector {
-  static run({ _track: videoTrack }: QNRTCTrack, params?: Omit<IDCardDetectorRunParams, 'image'>): Promise<IDCardDetectorRunRes> {
+  static run({ _track: videoTrack }: QNRTCTrack, params?: Omit<IDCardDetectorRunParams, 'image'>): Promise<IDCardDetectorRunResult> {
     const base64 = videoTrack.getCurrentFrameDataURL();
-    return post<IDCardDetectorRunParams, IDCardDetectorRunRes>(
+    return request.post<IDCardDetectorRunResult, IDCardDetectorRunResult>(
       '/ocr-idcard',
       {
         image: base64.replace('data:image/png;base64,', ''),

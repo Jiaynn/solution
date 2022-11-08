@@ -1,5 +1,5 @@
-import { QNRTCTrack } from '../types';
-import { post } from '../api/_utils';
+import { QNRTCTrack } from '@/types';
+import { request } from '@/api/_utils';
 
 /**
  * 人脸对比参数
@@ -28,7 +28,7 @@ export type FaceComparerReqParams = FaceComparerParams & {
 /**
  * 人脸对比响应体
  */
-export interface FaceComparerRes {
+export interface FaceComparerResult {
   request_id: string;
   response: FaceComparerResData;
 }
@@ -51,7 +51,7 @@ export interface FaceComparerResData {
  */
 export async function faceComparer({ _track: videoTrack }: QNRTCTrack, targetImg: string, params?: FaceComparerParams) {
   const trackImg = videoTrack.getCurrentFrameDataURL();
-  return post<FaceComparerReqParams, FaceComparerRes>('/face-compare', {
+  return request.post<FaceComparerResult, FaceComparerResult>('/face-compare', {
     data_uri_a: trackImg,
     data_uri_b: targetImg,
     ...params
