@@ -20,7 +20,6 @@ export enum ActionType {
 export interface FaceActionLiveDetectorParams {
   action_types: ActionType[];
   video_type?: VideoType; // 选择录制的格式
-  debug?: boolean; // 是否开启 debug，开启 debug 的记录目前会在数据库里面保存 12 小时
 }
 
 /**
