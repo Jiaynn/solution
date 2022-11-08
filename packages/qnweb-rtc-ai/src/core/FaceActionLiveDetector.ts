@@ -1,6 +1,7 @@
-import { QNRTCTrack } from '../types/QNRTC';
-import { post } from '../utils/request';
-import { blobToDataURI } from '../utils/transferData';
+import './qnweb-rtc-4.0.1-beta.7.umd';
+
+import { QNRTCTrack } from '../types';
+import { post, blobToDataURI } from '../utils';
 
 /**
  * 动作的标示字符串
@@ -67,24 +68,23 @@ export interface BestFrame {
 /**
  * 动作活体检测
  */
-class FaceActionLiveDetector {
+export class FaceActionLiveDetector {
   private recorder: any;
   private params: FaceActionLiveDetectorParams;
   private video_type: VideoType;
 
   /**
    * 开始录制
-   * @param QNRTC
    * @param videoTrack
    * @param params
    */
-  static start(QNRTC, videoTrack: QNRTCTrack, params: FaceActionLiveDetectorParams) {
+  static start(videoTrack: QNRTCTrack, params: FaceActionLiveDetectorParams) {
     const detector = new FaceActionLiveDetector();
-    const recorder = QNRTC.createMediaRecorder();
+    const recorder = QNRTC.default.createMediaRecorder();
     const mimeTypeMap = {
       [VideoType.Mp4]: 'video/mp4',
       [VideoType.H264]: 'video/webm;codecs=h264'
-    }
+    };
     recorder.constructor.recorderTimeslice = 200;
     recorder.setMimeType(mimeTypeMap[detector.video_type]);
     detector.recorder = recorder;
@@ -108,5 +108,3 @@ class FaceActionLiveDetector {
     });
   }
 }
-
-export default FaceActionLiveDetector;

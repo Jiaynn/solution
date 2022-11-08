@@ -10,7 +10,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "declarationDir": "build/types",
-    "outDir": "build"
+    "outDir": "build",
+    "allowJs": true
   },
   "include": [
     "src"

@@ -1,6 +1,5 @@
-import { QNRTCTrack } from '../types/QNRTC';
-import { post } from '../utils/request';
-
+import { QNRTCTrack } from '../types';
+import { post } from '../utils';
 
 /**
  * dora接口请求体
@@ -35,7 +34,7 @@ export type QNOCRDetectorResult = ResponseBody;
 /**
  * ocr识别
  */
-class QNOCRDetector {
+export class QNOCRDetector {
   public static run(
     videoTrack: QNRTCTrack
   ): Promise<QNOCRDetectorResult> {
@@ -47,5 +46,3 @@ class QNOCRDetector {
     )
   }
 }
-
-export default QNOCRDetector;

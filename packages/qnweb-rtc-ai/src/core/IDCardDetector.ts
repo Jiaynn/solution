@@ -1,5 +1,5 @@
-import { QNRTCTrack } from '../types/QNRTC';
-import { post } from '../utils/request';
+import { QNRTCTrack } from '../types';
+import { post } from '../utils';
 
 export interface IDCardDetectorRunParams {
   image: string, // base64编码的图片数据
@@ -45,7 +45,7 @@ export interface ImageResult {
 /**
  * 身份证识别
  */
-class IDCardDetector {
+export class IDCardDetector {
   static run({ _track: videoTrack }: QNRTCTrack, params?: Omit<IDCardDetectorRunParams, 'image'>): Promise<IDCardDetectorRunRes> {
     const base64 = videoTrack.getCurrentFrameDataURL();
     return post<IDCardDetectorRunParams, IDCardDetectorRunRes>(
@@ -57,5 +57,3 @@ class IDCardDetector {
     );
   }
 }
-
-export default IDCardDetector;

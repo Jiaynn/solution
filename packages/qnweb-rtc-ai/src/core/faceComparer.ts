@@ -1,5 +1,5 @@
-import { QNRTCTrack } from '../types/QNRTC';
-import { post } from '../utils/request';
+import { QNRTCTrack } from '../types';
+import { post } from '../utils';
 
 /**
  * 人脸对比参数

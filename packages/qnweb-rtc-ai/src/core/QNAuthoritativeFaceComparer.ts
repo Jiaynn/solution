@@ -1,7 +1,7 @@
-import { QNRTCTrack } from '../types/QNRTC';
-import { post } from '../utils/request';
 import { compressAccurately } from 'image-conversion';
-import { blobToBase64, dataURLToFile } from '../utils/image';
+
+import { post, blobToBase64, dataURLToFile } from '../utils';
+import { QNRTCTrack } from '../types';
 
 /**
  * dora接口请求体
@@ -40,7 +40,7 @@ export type QNAuthoritativeFaceResult = ResponseBody
  * 权威人脸对比
  * @link https://developer.qiniu.com/dora/6857/face-hdphotoauth
  */
-class QNAuthoritativeFaceComparer {
+export class QNAuthoritativeFaceComparer {
   public static run(
     videoTrack: QNRTCTrack,
     params: QNAuthoritativeFaceParams,
@@ -63,4 +63,3 @@ class QNAuthoritativeFaceComparer {
   }
 }
 
-export default QNAuthoritativeFaceComparer;

@@ -1,9 +1,11 @@
-import { QNRTCTrack } from '../types/QNRTC';
-import FaceActionLiveDetector, {
+import { QNRTCTrack } from '../types';
+import {
+  FaceActionLiveDetector,
   FaceActionLiveDetectorParams,
   FaceActionLiveDetectorRes
 } from './FaceActionLiveDetector';
-import QNAuthoritativeFaceComparer, {
+import {
+  QNAuthoritativeFaceComparer,
   QNAuthoritativeFaceParams,
   QNAuthoritativeFaceResult
 } from './QNAuthoritativeFaceComparer';
@@ -13,7 +15,7 @@ export type QNFaceActionLiveParams = FaceActionLiveDetectorParams;
 /**
  * 活体动作识别加权威人脸对比
  */
-class QNAuthorityActionFaceComparer {
+export class QNAuthorityActionFaceComparer {
   private faceActionLiveDetector: FaceActionLiveDetector;
   private authoritativeFaceParams: QNAuthoritativeFaceParams;
   private videoTrack: QNRTCTrack;
@@ -22,14 +24,12 @@ class QNAuthorityActionFaceComparer {
    * 开始检测
    */
   public static start(
-    QNRTC,
     videoTrack: QNRTCTrack,
     faceActionParams: QNFaceActionLiveParams,
     authoritativeFaceParams: QNAuthoritativeFaceParams
   ) {
     const instance = new this();
     instance.faceActionLiveDetector = FaceActionLiveDetector.start(
-      QNRTC,
       videoTrack,
       faceActionParams
     );
@@ -59,5 +59,3 @@ class QNAuthorityActionFaceComparer {
     });
   }
 }
-
-export default QNAuthorityActionFaceComparer;

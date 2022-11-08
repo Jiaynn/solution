@@ -1,4 +1,4 @@
-import { post } from '../utils/request';
+import { post } from '../utils';
 
 // 文字转语音声效枚举
 export enum Speaker {
@@ -49,7 +49,7 @@ export interface TextToSpeakRes {
  * @param params
  * @constructor
  */
-export default function textToSpeak(params: TextToSpeakParams): Promise<TextToSpeakRes> {
+export function textToSpeak(params: TextToSpeakParams): Promise<TextToSpeakRes> {
   return post<TextToSpeakParams, TextToSpeakRes>('/voice-tts', {
     speaker: Speaker.Kefu1,
     audio_encoding: AudioEncoding.Wav,

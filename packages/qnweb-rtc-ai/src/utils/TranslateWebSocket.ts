@@ -1,4 +1,4 @@
-import store from '../store';
+import { store } from '../store';
 
 interface Query {
   voice_type: number;
@@ -52,7 +52,7 @@ export enum ConnectStatus {
 /**
  * 语音识别WebSocket类
  */
-class TranslateWebSocket {
+export class TranslateWebSocket {
   public status: ConnectStatus = ConnectStatus.CLOSED;
   public ws?: WebSocket;
   public listeners: Array<IEvent>;
@@ -151,5 +151,3 @@ class TranslateWebSocket {
     });
   }
 }
-
-export default TranslateWebSocket;

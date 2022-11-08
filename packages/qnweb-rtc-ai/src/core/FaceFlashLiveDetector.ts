@@ -1,5 +1,5 @@
-import { QNRTCTrack } from '../types/QNRTC';
-import { post } from '../utils/request';
+import { QNRTCTrack } from '../types';
+import { post } from '../utils';
 
 /**
  * 光线活体检测请求参数
@@ -31,7 +31,7 @@ export interface FaceFlashLiveDetectorResData {
 /**
  * 光线活体检测
  */
-class FaceFlashLiveDetector {
+export class FaceFlashLiveDetector {
 
   private frameRate: number;// 帧率
   private videoData: { image: string }[];
@@ -67,5 +67,3 @@ class FaceFlashLiveDetector {
     });
   }
 }
-
-export default FaceFlashLiveDetector;

@@ -1,5 +1,5 @@
-import { QNRTCTrack } from '../types/QNRTC';
-import TranslateWebSocket, { ConnectStatus } from '../utils/TranslateWebSocket';
+import { QNRTCTrack } from '../types';
+import { TranslateWebSocket, ConnectStatus } from '../utils';
 
 export enum Status {
   AVAILABLE, // 未开始可用
@@ -79,15 +79,15 @@ export const defaultAudioToTextParams = {
   vad_sil_thres: 0.5 // vad断句的累积时间，大于等于0， 如果设置为0，或者没设置，系统默认
 };
 
-class AudioToTextAnalyzer {
-  public status: Status = Status.AVAILABLE;
+export class AudioToTextAnalyzer {
+  public status = Status.AVAILABLE;
   public ws?: TranslateWebSocket; // WebSocket
-  public isRecording: boolean = false; // 是否正在识别中
+  public isRecording = false; // 是否正在识别中
   private audioBufferHandler?: (audioBuffer: AudioBuffer) => void; // audioBuffer监听的回调
   private audioTrack?: QNRTCTrack['_track']; // 音频 Track
-  private startTime: number = Date.now(); // 定义一个初始化的时间
-  private leftDataList: Float32Array[] = [];
-  private rightDataList: Float32Array[] = [];
+  private startTime = Date.now(); // 定义一个初始化的时间
+  private leftDataList = [];
+  private rightDataList = [];
   private timeoutWebSocketCloseJob?: NodeJS.Timer;
 
   /**
@@ -172,8 +172,8 @@ class AudioToTextAnalyzer {
    */
   mergeArray(list: Float32Array[]) {
     const length = list.length * list[0].length;
-    let data = new Float32Array(length),
-      offset = 0;
+    const data = new Float32Array(length);
+    let offset = 0;
     for (let i = 0; i < list.length; i++) {
       data.set(list[i], offset);
       offset += list[i].length;
@@ -263,5 +263,3 @@ class AudioToTextAnalyzer {
     }, ms || 500);
   }
 }
-
-export default AudioToTextAnalyzer;

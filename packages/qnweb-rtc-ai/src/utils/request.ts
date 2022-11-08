@@ -1,5 +1,5 @@
-import { doraSDKApiURL } from '../config/request';
-import store from '../store';
+import { doraSDKApiURL } from '../config';
+import { store } from '../store';
 
 /**
  * post 请求封装
@@ -13,7 +13,7 @@ export function post<T = any, R = any>(url: string, body?: T & { debug?: boolean
     debug
   } : {
     request: requestBody || {},
-  }
+  };
   return fetch(doraSDKApiURL + url, {
     headers: {
       Authorization: store.get('token'),
