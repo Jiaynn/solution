@@ -430,22 +430,25 @@ export interface QNFaceActliveSessionParams {
 }
 
 export interface QNFaceActliveSessionResult {
-  /**
-   * 错误码
-   */
-  error_code?: number;
-  /**
-   * 错误信息
-   */
-  error_msg?: string;
-  /**
-   * 请求ID
-   */
-  serverlogid?: number;
-  /**
-   * 请求结果
-   */
-  result?: QNSessionResult;
+  request_id?: string;
+  response?: {
+    /**
+     * 错误码
+     */
+    error_code?: number;
+    /**
+     * 错误信息
+     */
+    error_msg?: string;
+    /**
+     * 请求ID
+     */
+    serverlogid?: number;
+    /**
+     * 请求结果
+     */
+    result?: QNSessionResult;
+  };
 }
 
 /**
@@ -474,10 +477,25 @@ export interface QNFaceActliveParams {
 }
 
 export interface QNFaceActliveResult {
-  error_code?: number;
-  error_msg?: string;
-  serverlogid?: number;
-  result?: QNVerifyResult;
+  request_id?: string;
+  response?: {
+    /**
+     * 错误码
+     */
+    error_code?: number;
+    /**
+     * 错误信息
+     */
+    error_msg?: string;
+    /**
+     * 请求ID
+     */
+    serverlogid?: number;
+    /**
+     * 请求结果
+     */
+    result?: QNVerifyResult;
+  };
 }
 
 /**
@@ -545,22 +563,25 @@ export interface QNFaceCompareParams {
 }
 
 export interface QNFaceCompareResult {
-  /**
-   * 错误码
-   */
-  error_code: number;
-  /**
-   * 错误信息
-   */
-  error_msg: string;
-  /**
-   * 请求ID
-   */
-  log_id: number;
-  /**
-   * 请求结果
-   */
-  result: QNCompareResult;
+  request_id?: string;
+  response?: {
+    /**
+     * 错误码
+     */
+    error_code?: number;
+    /**
+     * 错误信息
+     */
+    error_msg?: string;
+    /**
+     * 请求ID
+     */
+    log_id?: number;
+    /**
+     * 请求结果
+     */
+    result?: QNCompareResult;
+  };
 }
 
 /**
@@ -624,22 +645,25 @@ export interface QNFaceDetectParams {
 }
 
 export interface QNFaceDetectResult {
-  /**
-   * 错误码
-   */
-  error_code?: number;
-  /**
-   * 错误信息
-   */
-  error_msg?: string;
-  /**
-   * 请求ID
-   */
-  log_id?: number;
-  /**
-   * 请求结果
-   */
-  result?: QNDetectResult;
+  request_id?: string;
+  response?: {
+    /**
+     * 错误码
+     */
+    error_code?: number;
+    /**
+     * 错误信息
+     */
+    error_msg?: string;
+    /**
+     * 请求ID
+     */
+    log_id?: number;
+    /**
+     * 请求结果
+     */
+    result?: QNDetectResult;
+  };
 }
 
 /**
@@ -730,21 +754,24 @@ export interface QNVoiceTtsParams {
 }
 
 export interface QNVoiceTtsResult {
-  /**
-   * 错误信息
-   */
-  msg: string;
-  /**
-   * 错误码
-   * | code | 说明 |
-   * | :--- | :--- |
-   * | 0    | 成功 |
-   */
-  code: string;
-  result: {
+  request_id?: string;
+  response?: {
     /**
-     * 合成音频的下载地址
+     * 错误信息
      */
-    audioUrl: string;
-  }
+    msg: string;
+    /**
+     * 错误码
+     * | code | 说明 |
+     * | :--- | :--- |
+     * | 0    | 成功 |
+     */
+    code: string;
+    result: {
+      /**
+       * 合成音频的下载地址
+       */
+      audioUrl: string;
+    };
+  };
 }

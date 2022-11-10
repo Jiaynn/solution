@@ -50,6 +50,7 @@
     "axios": "^0.21.4",
     "crypto-js": "^4.0.0",
     "image-conversion": "^2.1.1",
-    "pili-rtc-web": "^2.4.1"
+    "pili-rtc-web": "^2.4.1",
+    "recordrtc": "^5.6.2"
   }
 }

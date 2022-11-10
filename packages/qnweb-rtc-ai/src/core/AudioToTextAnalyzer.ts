@@ -1,7 +1,7 @@
-import { QNRTCTrack } from '@/types';
+import { QNAsrParams, QNAsrResult, QNRTCTrack } from '@/types';
 import { TranslateWebSocket, ConnectStatus } from '@/utils';
 
-export enum Status {
+export enum AudioToTextAnalyzerStatus {
   AVAILABLE, // 未开始可用
   DESTROY, // 已经销毁不可用
   ERROR, // 连接异常断线
@@ -9,79 +9,19 @@ export enum Status {
 }
 
 /**
- * 语音识别的内容
- */
-export interface AudioToText {
-  end_seq: number; // 为该文本所在的切片的终点(包含)，否则为-1
-  end_time: number; // 该片段的终止时间，毫秒
-  ended: number; // 是否是websocket最后一条数据,0:非最后一条数据,1: 最后一条数据。
-  finalX: number; // 分片结束,当前消息的transcript为该片段最终结果，否则为partial结果
-  long_sil: number; // 是否长时间静音，0:否;1:是
-  partial_transcript: string; // partial结果文本, 开启needpartial后返回
-  seg_begin: number; // 是否分段开始: 1:是; 0:不是。
-  seg_index: number; // 是否是vad分段开始说话的开始1:是分段开始说话; 0:不是。
-  spk_begin: number; // 是否是vad分段开始说话的开始1:是分段开始说话; 0:不是。
-  start_seq: number; // 该文本所在的切片的起点(包含), 否则为-1
-  start_time: number; // 该片段的起始时间，毫秒
-  transcript: string; // 语音的文本, 如果final=0, 则为partinal结果 (后面可能会更改),final=1为该片段最终结果
-  uuid: string;
-  words: WordsDTO; // 返回词语的对齐信息, 参数need_words=1时返回详细内存见下表。
-}
-
-export interface WordsDTO {
-  seg_end: number; // 该词语相对整个数据流的起始时间, 毫秒
-  seg_start: number; // 该词语相对当前分段的起始时间, 毫秒
-  voice_end: number; // 该词语相对整个数据流的终止时间, 毫秒
-  voice_start: number; // 该词语相对当前分段的终止时间, 毫秒
-  word: string; // 词语本身，包括标点符号
-}
-
-/**
- * 开启语音识别所需的参数
- */
-export interface AudioToTextParams {
-  force_final: number; // 是否在text为空的时候返回final信息, 1->强制返回;0->不强制返回。
-  maxsil: number; // 最长静音间隔，单位秒，默认10s
-  model_type: number; // 0->cn; 默认0
-  need_partial: number; // 是否返回partial文本，1->返回，0-> 不返回;默认1
-  need_words: number; // 是否返回词语的对齐信息，1->返回， 0->不返回;默认0。
-  needvad: number; // 是否需要vad;0->关闭;1->开启; 默认1
-  vad_sil_thres: number; // vad断句的累积时间，大于等于0， 如果设置为0，或者没设置，系统默认
-  /**
-   * 提供热词，格式为: hot_words=热词1,因子1;热词2,因子2，
-   * 每个热词由热词本身和方法因子以英文逗号隔开，不同热词通过;隔开，
-   * 最多100个热词，每个热词40字节以内。由于潜在的http服务对url大小的限制，以实际支持的热词个数为准
-   * 因子范围[-10,10], 正数代表权重权重越高，权重越高越容易识别成这个词，建议设置1 ，负数代表不想识别
-   */
-  hot_words: string;
-}
-
-/**
  * 语音识别的回调
  */
-export interface Callback {
-  onStatusChange?: (status: Status, msg: string) => void,
-  onAudioToText?: (audioToText: AudioToText) => void
+export interface AudioToTextAnalyzerCallback {
+  onStatusChange?: (status: AudioToTextAnalyzerStatus, msg: string) => void,
+  onAudioToText?: (result: AudioToTextAnalyzerResult) => void
 }
 
-export const defaultAudioToTextParams = {
-  voice_type: 1, // 数据格式，1->pcm(wav);默认1
-  voice_encode: 1, // 数据编码格式，1->s16le; 默认1
-  voice_sample: 16000, // 数据采样率;默认16000
-  needvad: 1, // 是否需要vad;0->关闭;1->开启; 默认1
-  need_partial: 1, // 是否返回partial文本，1->返回，0-> 不返回;默认1
-  maxsil: 10, // 最长静音间隔，单位秒，默认10s
-  need_words: 0, // 是否返回词语的对齐信息，1->返回， 0->不返回;默认0。 以字段words返回，列表格式。
-  // 以下为非必选参数
-  model_type: 0, // 0->cn; 默认0
-  voice_id: undefined, // 数据流id，不同流不同
-  force_final: 0, // 是否在text为空的时候返回final信息, 1->强制返回;0->不强制返回。 默认情况下，如果text为空， 不会返回final信息。
-  vad_sil_thres: 0.5 // vad断句的累积时间，大于等于0， 如果设置为0，或者没设置，系统默认
-};
+export type AudioToTextAnalyzerParams = Partial<QNAsrParams> | null;
+export type AudioToTextAnalyzerResult = QNAsrResult;
 
 export class AudioToTextAnalyzer {
-  public status = Status.AVAILABLE;
-  public ws?: TranslateWebSocket; // WebSocket
+  public status = AudioToTextAnalyzerStatus.AVAILABLE;
+  public translateWebSocket?: TranslateWebSocket; // WebSocket
   public isRecording = false; // 是否正在识别中
   private audioBufferHandler?: (audioBuffer: AudioBuffer) => void; // audioBuffer监听的回调
   private audioTrack?: QNRTCTrack['_track']; // 音频 Track
@@ -95,49 +35,58 @@ export class AudioToTextAnalyzer {
    * @param analyzer
    * @param config
    */
-  startConnectWebSocket(analyzer: AudioToTextAnalyzer, config: {
-    params: Partial<AudioToTextParams>,
-    audioBuffer: AudioBuffer,
-    callback?: Callback
-  }) {
+  startConnectWebSocket(
+    analyzer: AudioToTextAnalyzer,
+    config: {
+      params: AudioToTextAnalyzerParams,
+      audioBuffer: AudioBuffer,
+      callback?: AudioToTextAnalyzerCallback
+    }
+  ) {
     const { params, callback, audioBuffer } = config;
     const query = {
-      ...defaultAudioToTextParams,
-      voice_sample: audioBuffer.sampleRate,
+      aue: 1,
+      e: Math.floor(Date.now() / 1000),
+      voice_sample: audioBuffer.sampleRate || 16000,
       ...params
-    };
-    analyzer.ws = new TranslateWebSocket({
+    } as QNAsrParams;
+    analyzer.translateWebSocket = new TranslateWebSocket({
       query
     }, () => {
       analyzer.isRecording = true;
-      analyzer.status = Status.DETECTING;
-      analyzer.ws?.on('message', message => {
-        const msgData = JSON.parse(message.data);
-        callback?.onAudioToText && callback.onAudioToText(msgData);
-        if (msgData.ended === 1) {
+      analyzer.status = AudioToTextAnalyzerStatus.DETECTING;
+      analyzer.translateWebSocket?.on('message', ev => {
+        const decoder = new TextDecoder('utf-8');
+        const text = decoder.decode(ev.data);
+        const result = JSON.parse(text) as AudioToTextAnalyzerResult;
+        if (callback?.onAudioToText) {
+          callback.onAudioToText(result);
+        }
+
+        if (result.isFinal) {
           if (this.timeoutWebSocketCloseJob) {
             clearTimeout(this.timeoutWebSocketCloseJob);
           }
-          analyzer.ws?.close();
+          analyzer.translateWebSocket.close();
         }
       });
       callback?.onStatusChange && callback.onStatusChange(analyzer.status, '正在实时转化');
-      analyzer.ws?.on('error', () => {
+      analyzer.translateWebSocket?.on('error', () => {
         analyzer.isRecording = false;
-        analyzer.status = Status.ERROR;
+        analyzer.status = AudioToTextAnalyzerStatus.ERROR;
         callback?.onStatusChange && callback.onStatusChange(analyzer.status, '连接异常断线');
       });
-      analyzer.ws?.on('close', () => {
+      analyzer.translateWebSocket?.on('close', () => {
         analyzer.isRecording = false;
-        analyzer.status = Status.DESTROY;
+        analyzer.status = AudioToTextAnalyzerStatus.DESTROY;
         callback?.onStatusChange && callback.onStatusChange(analyzer.status, '已经销毁不可用');
       });
     });
-    analyzer.ws.on('open', () => {
+    analyzer.translateWebSocket.on('open', () => {
       console.log('on open');
       analyzer.isRecording = true;
-      analyzer.status = Status.DETECTING;
-      analyzer.ws?.on('message', message => {
+      analyzer.status = AudioToTextAnalyzerStatus.DETECTING;
+      analyzer.translateWebSocket?.on('message', message => {
         callback?.onAudioToText && callback.onAudioToText(JSON.parse(message.data));
       });
       callback?.onStatusChange && callback.onStatusChange(analyzer.status, '正在实时转化');
@@ -159,7 +108,7 @@ export class AudioToTextAnalyzer {
       const buffer = Int16Array.from(leftData.map(
         x => (x > 0 ? x * 0x7fff : x * 0x8000)
       )).buffer;
-      analyzer.ws?.send(buffer);
+      analyzer.translateWebSocket?.send(buffer);
       analyzer.startTime = Date.now();
       analyzer.leftDataList = [];
       analyzer.rightDataList = [];
@@ -203,12 +152,15 @@ export class AudioToTextAnalyzer {
    * @param params
    * @param callback
    */
-  static startAudioToText({ _track: audioTrack }: QNRTCTrack, params: Partial<AudioToTextParams>, callback?: Callback): AudioToTextAnalyzer {
+  static startAudioToText(
+    { _track: audioTrack }: QNRTCTrack,
+    params: AudioToTextAnalyzerParams,
+    callback?: AudioToTextAnalyzerCallback
+  ): AudioToTextAnalyzer {
     const analyzer = new AudioToTextAnalyzer();
     analyzer.startTime = Date.now();
     const handler = (audioBuffer: AudioBuffer) => {
-      console.log('audioBuffer', audioBuffer);
-      if (!analyzer.ws) {
+      if (!analyzer.translateWebSocket) {
         /**
          * 连接空闲, 开始建立连接
          */
@@ -216,7 +168,7 @@ export class AudioToTextAnalyzer {
           params, callback, audioBuffer
         });
       }
-      if (analyzer.ws?.status === ConnectStatus.OPENED) {
+      if (analyzer.translateWebSocket?.status === ConnectStatus.OPENED) {
         /**
          * 连接成功开始发送
          */
@@ -248,7 +200,7 @@ export class AudioToTextAnalyzer {
     if (this.audioTrack && this.audioBufferHandler) {
       this.audioTrack.off('audioBuffer', this.audioBufferHandler);
     }
-    this.ws?.sendEOS();
+    this.translateWebSocket?.sendEOS();
     this.timeoutJob();
   }
 
@@ -259,7 +211,7 @@ export class AudioToTextAnalyzer {
    */
   timeoutJob(ms?: number) {
     this.timeoutWebSocketCloseJob = setTimeout(() => {
-      this.ws?.close();
+      this.translateWebSocket?.close();
     }, ms || 500);
   }
 }
