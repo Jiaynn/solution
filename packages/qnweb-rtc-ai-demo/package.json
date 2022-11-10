@@ -10,9 +10,11 @@
   "dependencies": {
     "@ffmpeg/core": "^0.10.0",
     "@ffmpeg/ffmpeg": "^0.10.1",
+    "ahooks": "^3.1.9",
     "antd": "^4.16.9",
     "crypto-js": "^4.1.1",
     "eruda": "^2.4.1",
+    "qnweb-rtc-ai": "workspace:*",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "^5.2.0"

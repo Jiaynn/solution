@@ -3,7 +3,7 @@
   height: 100vh;
 }
 
-.cameraTrack {
+.localCamera {
   width: 100%;
   //height: 200px;
   margin-top: 20px;
@@ -34,10 +34,6 @@
   color: #fff;
   padding: 10px;
   z-index: 10;
-}
-
-.targetFileInput {
-  display: none;
 }
 
 .liveAction {

@@ -2,6 +2,7 @@ import { Button, Input } from 'antd';
 import React, { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as eruda from 'eruda';
+import * as QNRTCAI from 'qnweb-rtc-ai';
 
 import styles from './index.module.scss';
 
@@ -47,17 +48,17 @@ const Home = () => {
     <Input
       value={roomToken}
       onChange={e => setRoomToken(e.target.value)}
-      placeholder='请输入roomToken'
+      placeholder="请输入roomToken"
       style={{ marginBottom: 10 }}
     />
     <Button
-      type='primary'
+      type="primary"
       block
       style={{ marginBottom: 10 }}
       onClick={joinRoom}
     >点击进入房间</Button>
     <Button
-      type='primary'
+      type="primary"
       block
       onClick={generateRoomToken}
     >点击随机生成 roomToken</Button>

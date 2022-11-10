@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
  */
 export const useRTCWakeDevice = (client: any, cameraRecordConfig: any) => {
   const [localTracks, setLocalTracks] = useState<any[]>([]);
+  const [localCameraTrack, setLocalCameraTrack] = useState(null);
+  const [localMicrophoneTrack, setLocalMicrophoneTrack] = useState(null);
   const [facingMode, setFacingMode] = useState<string>('environment');
 
   useEffect(() => {
@@ -25,15 +27,21 @@ export const useRTCWakeDevice = (client: any, cameraRecordConfig: any) => {
       return localTracks;
     }
 
-    if (client && cameraRecordConfig) {
-      const QNRTC = window.QNRTC.default;
-      wakeDevice(QNRTC, facingMode, cameraRecordConfig).then(localTracks => setLocalTracks(localTracks));
+    if (cameraRecordConfig) {
+      wakeDevice(QNRTC.default, facingMode, cameraRecordConfig).then(localTracks => setLocalTracks(localTracks));
     }
-  }, [client, facingMode, cameraRecordConfig]);
+  }, [facingMode, cameraRecordConfig]);
+
+  useEffect(() => {
+    setLocalCameraTrack(localTracks.find(track => track.tag === 'camera'));
+    setLocalMicrophoneTrack(localTracks.find(track => track.tag === 'microphone'));
+  }, [localTracks]);
 
   return {
     localTracks,
     facingMode,
-    setFacingMode
+    setFacingMode,
+    localCameraTrack,
+    localMicrophoneTrack
   };
 };
