@@ -11,7 +11,7 @@ export type FaceComparerParams = QNFaceCompareParams & {
 export type FaceComparerResult = QNFaceCompareResult;
 
 /**
- * 人脸识别
+ * 人脸比对
  * @param videoTrack
  * @param params
  */
