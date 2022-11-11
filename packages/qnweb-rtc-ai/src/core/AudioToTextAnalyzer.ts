@@ -17,7 +17,7 @@ export interface AudioToTextAnalyzerCallback {
   onAudioToText?: (result: AudioToTextAnalyzerResult) => void
 }
 
-export type AudioToTextAnalyzerParams = Partial<QNAsrParams> | null;
+export type AudioToTextAnalyzerParams = Partial<Omit<QNAsrParams, 'token'>> | null;
 export type AudioToTextAnalyzerResult = QNAsrResult;
 
 export class AudioToTextAnalyzer {
