@@ -13,7 +13,16 @@ export enum AudioToTextAnalyzerStatus {
  * 语音识别的回调
  */
 export interface AudioToTextAnalyzerCallback {
+  /**
+   * 连接状态变化
+   * @param status
+   * @param msg
+   */
   onStatusChange?: (status: AudioToTextAnalyzerStatus, msg: string) => void,
+  /**
+   * 实时转化文字数据
+   * @param result
+   */
   onAudioToText?: (result: AudioToTextAnalyzerResult) => void
 }
 
