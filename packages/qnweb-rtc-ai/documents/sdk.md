@@ -1,5 +1,40 @@
 # 开发准备
 
+  ## 引入 sdk
+
+我们提供了两种方式引入方式，您可以直接下载 JS 文件，也可以通过 npm 完成引入
+
+  ### NPM 安装
+
+运行下方的命令即可通过 npm 引入我们的 SDK
+
+```shell
+$ npm install qnweb-rtc-ai
+```
+如果想要更新到最新版本或者指定版本，运行下列命令
+
+```shell
+$ npm install qnweb-rtc-ai@latest
+$ npm install qnweb-rtc-ai@2.0.0   # 指定版本
+```
+
+  ### 直接导入 JS 文件
+
+每次发布版本，我们都会将最新的 SDK JS 文件放在我们的 [Github](https://github.com/pili-engineering/QNWebRTCAISDK) 上，点击链接即可获取当前最新的 SDK JS 文件。 所以，每次想要升级版本时，只需要访问我们的 [Github](https://github.com/pili-engineering/QNWebRTCAISDK) 页面，然后替换一下自己的 js 文件即可。
+
+SDK 的 JS 文件在导入页面后，会自动创建一个全局对象 QNRTCAI，这个对象的成员包括了 SDK 所导出的所有模块和对象。
+
+```ts
+// 当页面资源加载完成后
+window.onload = () => {
+  console.log("current version is", QNRTCAI.version);
+}
+```
+
+运行时看到打印的 current version 表示引入成功。
+
+# 开发准备
+
 1. 引入 sdk
 
 可以直接使用 script 标签方式引入。
