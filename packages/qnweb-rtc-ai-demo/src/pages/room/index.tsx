@@ -184,9 +184,7 @@ const Room = () => {
       audioToTextClientRef.current = QNRTCAI.AudioToTextAnalyzer.startAudioToText(localMicrophoneTrack, null, {
         onAudioToText: (result) => {
           const text = result.bestTranscription.transcribedText;
-          if (text) {
-            setCaptionText(text);
-          }
+          setCaptionText(text);
         }
       });
     }
