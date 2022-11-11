@@ -179,6 +179,7 @@ const Room = () => {
   const speakToText = () => {
     if (saying) { // 关闭
       audioToTextClientRef.current?.stopAudioToText();
+      setCaptionText('');
     } else { // 开启
       audioToTextClientRef.current = QNRTCAI.AudioToTextAnalyzer.startAudioToText(localMicrophoneTrack, null, {
         onAudioToText: (result) => {
