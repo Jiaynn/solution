@@ -76,6 +76,7 @@ export class AudioToTextAnalyzer {
     ).then(tokenResult => {
       this.ws = new WebSocket(`${url}&token=${tokenResult || null}`);
       this.ws.binaryType = 'arraybuffer';
+
       this.ws.addEventListener('open', (event) => {
         console.log('AudioToTextAnalyzer open', event);
         this.isRecording = true;
@@ -83,31 +84,30 @@ export class AudioToTextAnalyzer {
         if (callback?.onStatusChange) {
           callback.onStatusChange(this.status, '正在实时转化');
         }
-
-        this.ws.addEventListener('message', event => {
-          const decoder = new TextDecoder('utf-8');
-          const text = decoder.decode(event.data);
-          const result = JSON.parse(text) as AudioToTextAnalyzerResult;
-          if (callback?.onAudioToText) {
-            callback.onAudioToText(result);
-          }
-        });
-        this.ws.addEventListener('error', (event) => {
-          console.log('AudioToTextAnalyzer error', event);
-          this.isRecording = false;
-          this.status = AudioToTextAnalyzerStatus.ERROR;
-          if (callback?.onStatusChange) {
-            callback.onStatusChange(this.status, '连接异常断线');
-          }
-        });
-        this.ws.addEventListener('close', (event) => {
-          console.log('AudioToTextAnalyzer close', event);
-          this.isRecording = false;
-          this.status = AudioToTextAnalyzerStatus.DESTROY;
-          if (callback?.onStatusChange) {
-            callback.onStatusChange(this.status, '已经销毁不可用');
-          }
-        });
+      });
+      this.ws.addEventListener('message', event => {
+        const decoder = new TextDecoder('utf-8');
+        const text = decoder.decode(event.data);
+        const result = JSON.parse(text) as AudioToTextAnalyzerResult;
+        if (callback?.onAudioToText) {
+          callback.onAudioToText(result);
+        }
+      });
+      this.ws.addEventListener('error', (event) => {
+        console.log('AudioToTextAnalyzer error', event);
+        this.isRecording = false;
+        this.status = AudioToTextAnalyzerStatus.ERROR;
+        if (callback?.onStatusChange) {
+          callback.onStatusChange(this.status, '连接异常断线');
+        }
+      });
+      this.ws.addEventListener('close', (event) => {
+        console.log('AudioToTextAnalyzer close', event);
+        this.isRecording = false;
+        this.status = AudioToTextAnalyzerStatus.DESTROY;
+        if (callback?.onStatusChange) {
+          callback.onStatusChange(this.status, '已经销毁不可用');
+        }
       });
     });
   }
