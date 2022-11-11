@@ -39,20 +39,19 @@ const filterBigData = (result: unknown): string => {
 };
 
 const Room = () => {
-  const clientRef = useRef(null);
+  const rtcClientRef = useRef(null);
   const localCameraTrackElementRef = useRef<HTMLDivElement>(null);
   const targetFileInputRef = useRef<HTMLInputElement>(null);
   const recorderRef = useRef(null);
   const faceActionLiveDetectorIntervalRef = useRef(null);
   const faceActionLiveDetectorTimeoutRef = useRef(null);
+  const audioToTextClientRef = useRef<QNRTCAI.AudioToTextAnalyzer>(null);
 
   /**
    * 初始化
    */
   useMount(() => {
-    clientRef.current = QNRTC.default.createClient();
-
-    QNRTCAI.QNAuthorityActionFaceComparer.create();
+    rtcClientRef.current = QNRTC.default.createClient();
   });
 
   /**
@@ -78,7 +77,7 @@ const Room = () => {
     localMicrophoneTrack,
     facingMode,
     setFacingMode
-  } = useRTCWakeDevice(clientRef.current, cameraRecordConfig);
+  } = useRTCWakeDevice(rtcClientRef.current, cameraRecordConfig);
   const [loading, setLoading] = useState(false);
 
   const [faceActionLiveDetectorCount, setFaceActionLiveDetectorCount] = useState<number>(3);
@@ -178,15 +177,14 @@ const Room = () => {
    * 语音转文字
    */
   const speakToText = () => {
-    let client: QNRTCAI.AudioToTextAnalyzer | null = null;
     if (saying) { // 关闭
-      client?.stopAudioToText();
+      audioToTextClientRef.current?.stopAudioToText();
     } else { // 开启
-      client = QNRTCAI.AudioToTextAnalyzer.startAudioToText(localMicrophoneTrack, null, {
+      audioToTextClientRef.current = QNRTCAI.AudioToTextAnalyzer.startAudioToText(localMicrophoneTrack, null, {
         onAudioToText: (result) => {
-          const captionText = result.bestTranscription.transcribedText;
-          if (captionText) {
-            setCaptionText(captionText);
+          const text = result.bestTranscription.transcribedText;
+          if (text) {
+            setCaptionText(text);
           }
         }
       });
