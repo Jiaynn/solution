@@ -1,5 +1,6 @@
 import { QNAsrParams, QNAsrResult, QNRTCTrack } from '@/types';
-import { TranslateWebSocket, ConnectStatus } from '@/utils';
+import { WS_URL } from '@/config';
+import { store } from '@/store';
 
 export enum AudioToTextAnalyzerStatus {
   AVAILABLE, // 未开始可用
@@ -21,28 +22,46 @@ export type AudioToTextAnalyzerResult = QNAsrResult;
 
 export class AudioToTextAnalyzer {
   public status = AudioToTextAnalyzerStatus.AVAILABLE;
-  public translateWebSocket?: TranslateWebSocket; // WebSocket
   public isRecording = false; // 是否正在识别中
-  private audioBufferHandler?: (audioBuffer: AudioBuffer) => void; // audioBuffer监听的回调
-  private audioTrack?: QNRTCTrack['_track']; // 音频 Track
-  private startTime = Date.now(); // 定义一个初始化的时间
-  private leftDataList = [];
-  private rightDataList = [];
-  private timeoutWebSocketCloseJob?: NodeJS.Timer;
+  public ws?: WebSocket | null;
+  public audioBufferHandler?: (audioBuffer: AudioBuffer) => void; // audioBuffer监听的回调
+  public audioTrack?: QNRTCTrack['_track']; // 音频 Track
+  public startTime = Date.now(); // 定义一个初始化的时间
+  public leftDataList = [];
+  public rightDataList = [];
+
+  /**
+   * 发送 EOS close message 到后台；
+   * client 保持继续接受消息，所有结果发送完毕后服务端会主动断开连接
+   * 主动关闭 WebSocket
+   */
+  private close() {
+    if (!this.ws) {
+      throw new Error(`WebSocket is not initialized: ${this.ws}`);
+    }
+    if (this.status === AudioToTextAnalyzerStatus.DETECTING) {
+      this.status = AudioToTextAnalyzerStatus.DESTROY;
+      this.ws.close(1000, 'eos');
+      setTimeout(() => {
+        this.ws.close();
+        this.ws = null;
+      }, 500);
+    }
+  }
 
   /**
    * 建立WebSocket连接
-   * @param analyzer
    * @param config
    */
-  startConnectWebSocket(
-    analyzer: AudioToTextAnalyzer,
+  private initWebSocket(
     config: {
       params: AudioToTextAnalyzerParams,
       audioBuffer: AudioBuffer,
       callback?: AudioToTextAnalyzerCallback
     }
   ) {
+    console.log('AudioToTextAnalyzer initWebSocket');
+
     const { params, callback, audioBuffer } = config;
     const query = {
       aue: 1,
@@ -50,68 +69,64 @@ export class AudioToTextAnalyzer {
       voice_sample: audioBuffer.sampleRate || 16000,
       ...params
     } as QNAsrParams;
-    analyzer.translateWebSocket = new TranslateWebSocket({
-      query
-    }, () => {
-      analyzer.isRecording = true;
-      analyzer.status = AudioToTextAnalyzerStatus.DETECTING;
-      analyzer.translateWebSocket?.on('message', ev => {
-        const decoder = new TextDecoder('utf-8');
-        const text = decoder.decode(ev.data);
-        const result = JSON.parse(text) as AudioToTextAnalyzerResult;
-        if (callback?.onAudioToText) {
-          callback.onAudioToText(result);
+    const url = `${WS_URL}?${Object.keys(query).map(key => `${key}=${query[key]}`).join('&')}`;
+
+    Promise.resolve(
+      store.cache.signCallback(url)
+    ).then(tokenResult => {
+      this.ws = new WebSocket(`${url}&token=${tokenResult || null}`);
+      this.ws.binaryType = 'arraybuffer';
+      this.ws.addEventListener('open', (event) => {
+        console.log('AudioToTextAnalyzer open', event);
+        this.isRecording = true;
+        this.status = AudioToTextAnalyzerStatus.DETECTING;
+        if (callback?.onStatusChange) {
+          callback.onStatusChange(this.status, '正在实时转化');
         }
 
-        if (result.isFinal) {
-          if (this.timeoutWebSocketCloseJob) {
-            clearTimeout(this.timeoutWebSocketCloseJob);
+        this.ws.addEventListener('message', event => {
+          const decoder = new TextDecoder('utf-8');
+          const text = decoder.decode(event.data);
+          const result = JSON.parse(text) as AudioToTextAnalyzerResult;
+          if (callback?.onAudioToText) {
+            callback.onAudioToText(result);
           }
-          analyzer.translateWebSocket.close();
-        }
+        });
+        this.ws.addEventListener('error', (event) => {
+          console.log('AudioToTextAnalyzer error', event);
+          this.isRecording = false;
+          this.status = AudioToTextAnalyzerStatus.ERROR;
+          if (callback?.onStatusChange) {
+            callback.onStatusChange(this.status, '连接异常断线');
+          }
+        });
+        this.ws.addEventListener('close', (event) => {
+          console.log('AudioToTextAnalyzer close', event);
+          this.isRecording = false;
+          this.status = AudioToTextAnalyzerStatus.DESTROY;
+          if (callback?.onStatusChange) {
+            callback.onStatusChange(this.status, '已经销毁不可用');
+          }
+        });
       });
-      callback?.onStatusChange && callback.onStatusChange(analyzer.status, '正在实时转化');
-      analyzer.translateWebSocket?.on('error', () => {
-        analyzer.isRecording = false;
-        analyzer.status = AudioToTextAnalyzerStatus.ERROR;
-        callback?.onStatusChange && callback.onStatusChange(analyzer.status, '连接异常断线');
-      });
-      analyzer.translateWebSocket?.on('close', () => {
-        analyzer.isRecording = false;
-        analyzer.status = AudioToTextAnalyzerStatus.DESTROY;
-        callback?.onStatusChange && callback.onStatusChange(analyzer.status, '已经销毁不可用');
-      });
-    });
-    analyzer.translateWebSocket.on('open', () => {
-      console.log('on open');
-      analyzer.isRecording = true;
-      analyzer.status = AudioToTextAnalyzerStatus.DETECTING;
-      analyzer.translateWebSocket?.on('message', message => {
-        callback?.onAudioToText && callback.onAudioToText(JSON.parse(message.data));
-      });
-      callback?.onStatusChange && callback.onStatusChange(analyzer.status, '正在实时转化');
     });
   }
 
   /**
    * 开始发送消息
-   * @param analyzer
-   * @param config
+   * @param audioBuffer
    */
-  sendMessageToWebSocket(analyzer: AudioToTextAnalyzer, config: {
-    audioBuffer: AudioBuffer
-  }) {
-    const { audioBuffer } = config;
-    analyzer.leftDataList.push(audioBuffer.getChannelData(0).slice(0));
-    if (Date.now() - analyzer.startTime >= 200) {
-      const leftData = this.mergeArray(analyzer.leftDataList); // 左通道数据
+  private sendMessageToWebSocket(audioBuffer: AudioBuffer) {
+    this.leftDataList.push(audioBuffer.getChannelData(0).slice(0));
+    if (Date.now() - this.startTime >= 200) {
+      const leftData = this.mergeArray(this.leftDataList); // 左通道数据
       const buffer = Int16Array.from(leftData.map(
         x => (x > 0 ? x * 0x7fff : x * 0x8000)
       )).buffer;
-      analyzer.translateWebSocket?.send(buffer);
-      analyzer.startTime = Date.now();
-      analyzer.leftDataList = [];
-      analyzer.rightDataList = [];
+      this.ws.send(buffer);
+      this.startTime = Date.now();
+      this.leftDataList = [];
+      this.rightDataList = [];
     }
   }
 
@@ -119,7 +134,7 @@ export class AudioToTextAnalyzer {
    * 合成一个单个Float32Array
    * @param list
    */
-  mergeArray(list: Float32Array[]) {
+  private mergeArray(list: Float32Array[]) {
     const length = list.length * list[0].length;
     const data = new Float32Array(length);
     let offset = 0;
@@ -135,7 +150,7 @@ export class AudioToTextAnalyzer {
    * @param left
    * @param right
    */
-  interleaveLeftAndRight(left: Float32Array, right: Float32Array) {
+  private interleaveLeftAndRight(left: Float32Array, right: Float32Array) {
     const totalLength = left.length + right.length;
     const data = new Float32Array(totalLength);
     for (let i = 0; i < left.length; i++) {
@@ -157,33 +172,31 @@ export class AudioToTextAnalyzer {
     params: AudioToTextAnalyzerParams,
     callback?: AudioToTextAnalyzerCallback
   ): AudioToTextAnalyzer {
-    const analyzer = new AudioToTextAnalyzer();
-    analyzer.startTime = Date.now();
+    const client = new this();
+    client.startTime = Date.now();
     const handler = (audioBuffer: AudioBuffer) => {
-      if (!analyzer.translateWebSocket) {
+      if (!client.ws) {
         /**
          * 连接空闲, 开始建立连接
          */
-        analyzer.startConnectWebSocket(analyzer, {
+        client.initWebSocket({
           params, callback, audioBuffer
         });
       }
-      if (analyzer.translateWebSocket?.status === ConnectStatus.OPENED) {
+      if (client.status === AudioToTextAnalyzerStatus.DETECTING) {
         /**
          * 连接成功开始发送
          */
-        analyzer.sendMessageToWebSocket(analyzer, {
-          audioBuffer
-        });
+        client.sendMessageToWebSocket(audioBuffer);
       }
     };
     /**
      * handler回调触发时机为每帧调用一次
      */
     audioTrack.on('audioBuffer', handler);
-    analyzer.audioBufferHandler = handler;
-    analyzer.audioTrack = audioTrack;
-    return analyzer;
+    client.audioBufferHandler = handler;
+    client.audioTrack = audioTrack;
+    return client;
   }
 
   /**
@@ -200,18 +213,9 @@ export class AudioToTextAnalyzer {
     if (this.audioTrack && this.audioBufferHandler) {
       this.audioTrack.off('audioBuffer', this.audioBufferHandler);
     }
-    this.translateWebSocket?.sendEOS();
-    this.timeoutJob();
-  }
-
-  /**
-   * 超时任务
-   * 默认 500 ms 延迟关闭
-   * @param ms
-   */
-  timeoutJob(ms?: number) {
-    this.timeoutWebSocketCloseJob = setTimeout(() => {
-      this.translateWebSocket?.close();
-    }, ms || 500);
+    if (!this.ws) {
+      throw new Error(`ws is ${this.ws}`);
+    }
+    this.close();
   }
 }
