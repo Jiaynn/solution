@@ -169,24 +169,34 @@ QNRTCAI.textToSpeak({ content: text }).then(result => {
 #### 如何使用
 
 ```ts
-// 需通过 QNRTC 创建 recorder
-const QNRTC = window.QNRTC.default;
-// 开始检测
-const detector = QNRTCAI.FaceActionLiveDetector.start(QNRTC, videoTrack, {
-  action_types: ['shake'] // 传入动作活体动作的标示字符串
-});
-// 结束检测并响应数据
-detector.commit().then(response => {
-  console.log('response', response)
-});
+const client = QNRTCAI.FaceActionLiveDetector.create(); // 创建检测器实例
+
+client.getRequestCode().then(result => {
+  // 先获取动作识别的验证码
+  // 然后根据验证码调用 start 开始检测，并做出相应的动作
+  const { code, session_id } = result.response.result;
+  client.start(localCameraTrack, {
+    session_id
+  });
+  
+	// ...
+  
+}).then(() => {
+  // 结束检测
+  return client.commit();
+}).then(result => {
+  console.log('result', result);
+})
 ```
 
 #### 方法
 
-| 方法                   | 类型                                                         | 说明                                                         |
-| ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| static start(静态方法) | (QNRTC, videoTrack: [Track](https://doc.qnsdk.com/rtn/web/docs/api_track), params: [FaceActionLiveDetectorParams](#faceactionlivedetectorparams)) => FaceActionLiveDetector | video_type 表示选择录制的格式，默认为 1(1 为 mp4，2 为 h264)。调用 start 开始录制。 |
-| commit                 | () => Promise\<[FaceActionLiveDetectorRes](#faceactionlivedetectorres)\> | 结束检测并响应数据                                           |
+| 方法           | 类型                                                         | 说明                   |
+| -------------- | ------------------------------------------------------------ | ---------------------- |
+| static create  | () => [FaceActionLiveDetector](#FaceActionLiveDetector)      | 创建检测器（创建实例） |
+| getRequestCode | (params?: [QNFaceActliveSessionParams](#QNFaceActliveSessionParams)) => Promise\<[QNFaceActliveSessionResult](#QNFaceActliveSessionResult)\> | 获取检测校验码         |
+| start          | (videoTrack: [Track](https://doc.qnsdk.com/rtn/web/docs/api_track), params?: [FaceActionLiveDetectorParams](#faceactionlivedetectorparams)) => [FaceActionLiveDetector](#FaceActionLiveDetector) | 开始检测               |
+| commit         | () => Promise\<[FaceActionLiveDetectorResult](#FaceActionLiveDetectorResult)\> | 结束检测并响应数据     |
 
 ### FaceFlashLiveDetector
 
@@ -352,69 +362,6 @@ interface ImageResult {
   idcard: string, //	身份证区域图片，使用Base64 编码后的字符串， 是否返回由请求参数ret_image 决定
   portrait: string, //	身份证人像照片，使用Base64 编码后的字符串， 是否返回由请求参数ret_portrait 决定
   idcard_bbox: Array<Array<number>>, //	框坐标，格式为 [[x0, y0], [x1, y1], [x2, y2], [x3, y3]]
-}
-```
-
-### FaceActionLiveDetectorParams
-
-```ts
-/**
- * 动作的标示字符串
- */
-enum ActionType {
-  Nod = 'nod',
-  Shake = 'shake',
-  Blink = 'blink',
-  Mouth = 'mouth'
-}
-
-/**
- * 视频格式，1 表示 mp4, 2 表示 h264，默认值为 1
- */
-export enum VideoType {
-  Mp4 = 1,
-  H264
-}
-
-/**
- * 动作活体检测参数
- */
-interface FaceActionLiveDetectorParams {
-  action_types: ActionType[];
-  video_type?: VideoType; // 选择录制的格式
-  debug?: boolean; // 是否开启 debug，开启 debug 的记录目前会在数据库里面保存 12 小时
-}
-```
-
-### FaceActionLiveDetectorRes
-
-```ts
-/**
- * 动作活体检测响应体
- */
-interface FaceActionLiveDetectorRes {
-  request_id: string;
-  response: FaceActionLiveResData;
-}
-
-/**
- * 动作活体检测响应值
- */
-interface FaceActionLiveResData {
-  best_frames: BestFrame[]; // 最优帧列表，列表中每个元素格式是 json，包括 base64 编码的二进制图片数据和图像质量分数
-  errorcode: number;
-  errormsg: string;
-  live_status: number; // 返回动作活体状态码，1 表示通过，0 表示不通过
-  session_id: string; // 唯一会话 id
-}
-
-/**
- * 最优帧列表，列表中每个元素格式是 json，
- * 包括 base64 编码的二进制图片数据和图像质量分数
- */
-interface BestFrame {
-  image_b64: string; // base64 编码的二进制图像数据
-  quality: number; // 图像质量分数, 取值范围是[0,100]
 }
 ```
 
@@ -846,6 +793,266 @@ interface QNVoiceTtsResult {
       audioUrl: string;
     };
   };
+}
+```
+
+### QNFaceActliveSessionParams
+
+```ts
+interface QNFaceActliveSessionParams {
+  /**
+   * 视频动作活体的验证码最小长度：最大3 最小1 默认1
+   */
+  min_code_length?: number;
+  /**
+   * 视频动作活体的验证码最大长度：最大3 最小1 默认3
+   */
+  max_code_length?: number;
+}
+```
+
+### QNFaceActliveSessionResult
+
+```ts
+interface QNFaceActliveSessionResult {
+  request_id?: string;
+  response?: {
+    /**
+     * 错误码
+     */
+    error_code?: number;
+    /**
+     * 错误信息
+     */
+    error_msg?: string;
+    /**
+     * 请求ID
+     */
+    serverlogid?: number;
+    /**
+     * 请求结果
+     */
+    result?: QNSessionResult;
+  };
+}
+```
+
+### QNSessionResult
+
+```ts
+interface QNSessionResult {
+  /**
+   * 随机校验码会话id，有效期5分钟
+   * 请提示用户在五分钟内完成全部操作验证码使用过即失效
+   * 每次使用视频活体前请重新拉取验证码
+   */
+  session_id?: string;
+  /**
+   * 随机验证码，数字形式，1~6位数字；
+   * 若为动作活体时，返回数字表示的动作对应关系为：
+   * 0:眨眼 4:抬头 5:低头 7:左右转头(不区分先后顺序，分别向左和向右转头)
+   */
+  code?: string;
+}
+```
+
+### FaceActionLiveDetectorParams
+
+```ts
+interface FaceActionLiveDetectorParams {
+  /**
+   * 会话ID, 获取方式参考随机校验码接口
+   */
+  session_id?: string;
+  /**
+   * base64 编码的视频数据（编码前建议先将视频进行转码，h.264编码，mp4封装）
+   * 需要注意的是，视频的base64编码是不包含视频头的，如 data:video/mp4;base64,；
+   * 建议视频长度控制在01s-10s之间，
+   * 视频大小建议在2M以内（视频大小强制要求在20M以内，推荐使用等分辨率压缩，压缩分辨率建议不小于640*480）
+   * 视频大小分辨率建议限制在16~2032之间
+   */
+  face_field?: string;
+  /**
+   * 采集质量控制 - 视频宽
+   */
+  encodeWidth?: number;
+  /**
+   * 采集质量控制 - 视频高
+   */
+  encodeHeight?: number;
+  /**
+   * 采集质量控制 - 码率 码率越高识别结果越准确同时请求相应时间变长
+   */
+  encodeBitRate?: number;
+  /**
+   * 采集质量控制 - 帧率
+   */
+  encodeFPS?: number;
+}
+```
+
+### FaceActionLiveDetectorResult
+
+```ts
+interface FaceActionLiveDetectorResult {
+  request_id?: string;
+  response?: {
+    /**
+     * 错误码
+     */
+    error_code?: number;
+    /**
+     * 错误信息
+     */
+    error_msg?: string;
+    /**
+     * 请求ID
+     */
+    serverlogid?: number;
+    /**
+     * 请求结果
+     */
+    result?: QNVerifyResult;
+  };
+}
+```
+
+### QNVerifyResult
+
+```ts
+interface QNVerifyResult {
+  /**
+   * 活体检测的总体打分 范围[0,1]，分数越高则活体的概率越大
+   */
+  score?: number;
+  /**
+   * 返回的1-8张图片中合成图检测得分的最大值 范围[0,1]，分数越高则概率越大
+   */
+  maxspoofing?: number;
+  /**
+   * 返回的1-8张图片中合成图检测得分的中位数 范围[0,1]，分数越高则概率越大
+   */
+  spoofing_score?: number;
+  /**
+   * 阈值 按活体检测分数>阈值来判定活体检测是否通过(阈值视产品需求选择其中一个)
+   */
+  thresholds?: QNThresholds;
+  /**
+   * 动作识别结果 pass代表动作验证通过，fail代表动作验证未通过
+   */
+  action_verify?: string;
+  /**
+   * 图片信息
+   */
+  best_image?: QNImage;
+  /**
+   * 返回1-8张抽取出来的图片信息
+   */
+  pic_list?: QNImage[];
+}
+```
+
+### QNThresholds
+
+```ts
+interface QNThresholds {
+  /**
+   * 万分之一误拒率的阈值
+   */
+  'frr_1e-4'?: number;
+  /**
+   * 千分之一误拒率的阈值
+   */
+  'frr_1e-3'?: number;
+  /**
+   * 百分之一误拒率的阈值
+   */
+  'frr_1e-2'?: number;
+}
+```
+
+### QNImage
+
+```ts
+interface QNImage {
+  /**
+   * base64编码后的图片信息
+   */
+  pic?: string;
+  /**
+   * 此图片的活体分数，范围[0,1]
+   */
+  liveness_score?: number;
+  /**
+   * 人脸图片的唯一标识
+   */
+  face_token?: string;
+  /**
+   * 此图片的合成图分数，范围[0,1]
+   */
+  spoofing?: number;
+  /**
+   * 人脸质量信息。face_field包含quality时返回
+   */
+  quality?: QNFaceQuality;
+}
+```
+
+### QNFaceQuality
+
+```ts
+interface QNFaceQuality {
+  /**
+   * 人脸各部分遮挡的概率，范围[0~1]，0表示完整，1表示不完整
+   */
+  occlusion?: QNFaceQualityOcclusion;
+  /**
+   * 人脸模糊程度，范围[0~1]，0表示清晰，1表示模糊
+   */
+  blur?: number;
+  /**
+   * 取值范围在[0~255], 表示脸部区域的光照程度 越大表示光照越好
+   */
+  illumination?: number;
+  /**
+   * 人脸完整度，0或1, 0为人脸溢出图像边界，1为人脸都在图像边界内
+   */
+  completeness?: number;
+}
+```
+
+### QNFaceQualityOcclusion
+
+```ts
+interface QNFaceQualityOcclusion {
+  /**
+   * 左眼遮挡比例，[0-1] ，1表示完全遮挡
+   */
+  left_eye?: number;
+  /**
+   * 右眼遮挡比例，[0-1] ，1表示完全遮挡
+   */
+  right_eye?: number;
+  /**
+   * 鼻子遮挡比例，[0-1] ，1表示完全遮挡
+   */
+  nose?: number;
+  /**
+   * 嘴遮挡比例，[0-1] ，1表示完全遮挡
+   */
+  mouth?: number;
+  /**
+   * 左脸颊遮挡比例，[0-1] ，1表示完全遮挡
+   */
+  left_cheek?: number;
+  /**
+   * 右脸颊遮挡比例，[0-1] ，1表示完全遮挡
+   */
+  right_cheek?: number;
+  /**
+   * 下巴遮挡比例，[0-1] ，1表示完全遮挡
+   */
+  chin?: number;
 }
 ```
 
