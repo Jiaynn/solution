@@ -121,18 +121,19 @@ audioAnalyzer.stopAudioToText(); // 结束语音识别
 
 #### 方法
 
-| 方法                              | 类型                                                         | 说明             |
-| --------------------------------- | ------------------------------------------------------------ | ---------------- |
-| static startAudioToText(静态方法) | (audioTrack: [Track](https://doc.qnsdk.com/rtn/web/docs/api_track), params: [AudioToTextParams](#audiototextparams), callback: [Callback](#callback)) => QNAudioToTextAnalyzer | 开始语音实时识别 |
-| getStatus                         | () => [Status](#status)                                      | 获取当前状态     |
-| stopAudioToText                   | () => void                                                   | 停止语音实时识别 |
+| 方法                    | 类型                                                         | 说明             |
+| ----------------------- | ------------------------------------------------------------ | ---------------- |
+| static startAudioToText | (audioTrack: [Track](https://doc.qnsdk.com/rtn/web/docs/api_track), params: [AudioToTextAnalyzerParams](#AudioToTextAnalyzerParams), callback: [AudioToTextAnalyzerCallback](#AudioToTextAnalyzerCallback)) => [AudioToTextAnalyzer](#AudioToTextAnalyzer) | 开始语音实时识别 |
+| getStatus               | () => [AudioToTextAnalyzerStatus](#AudioToTextAnalyzerStatus) | 获取当前状态     |
+| stopAudioToText         | () => void                                                   | 停止语音实时识别 |
 
 ### IDCardDetector
 
 #### 如何使用
 
 ```ts
-QNRTCAI.IDCardDetector.run(videoTrack)
+QNRTCAI.IDCardDetector
+  .run(videoTrack)
   .then(res => console.log(res))
 ```
 
@@ -302,92 +303,6 @@ QNRTCAI.QNOCRDetector.run(videoTrack).then(result => {
 | static run(静态方法) | (videoTrack: [Track](https://doc.qnsdk.com/rtn/web/docs/api_track)) => Promise\<[qnocrdetectorresult](#qnocrdetectorresult)\> | 执行ocr识别 |
 
 ## 类型说明
-
-### AudioToTextParams
-
-```ts
-// 开启语音识别所需的参数
-interface AudioToTextParams {
-  force_final: number; // 是否在text为空的时候返回final信息, 1->强制返回;0->不强制返回。
-  maxsil: number; // 最长静音间隔，单位秒，默认10s
-  model_type: number; // 0->cn; 默认0
-  need_partial: number; // 是否返回partial文本，1->返回，0-> 不返回;默认1
-  need_words: number; // 是否返回词语的对齐信息，1->返回， 0->不返回;默认0。
-  needvad: number; // 是否需要vad;0->关闭;1->开启; 默认1
-  vad_sil_thres: number; // vad断句的累积时间，大于等于0， 如果设置为0，或者没设置，系统默认
-  /**
-   * 提供热词，格式为: hot_words=热词1,因子1;热词2,因子2，
-   * 每个热词由热词本身和方法因子以英文逗号隔开，不同热词通过;隔开，
-   * 最多100个热词，每个热词40字节以内。由于潜在的http服务对url大小的限制，以实际支持的热词个数为准
-   * 因子范围[-10,10], 正数代表权重权重越高，权重越高越容易识别成这个词，建议设置1 ，负数代表不想识别
-   */
-  hot_words: string;
-}
-```
-
-### Callback
-
-```ts
-/**
- * 连接状态变化
- * 参数:status-当前状态; msg-提示消息
- */
-type StatusChangeCallback = (status: Status, msg: string) => void
-
-/**
- * 实时转化文字数据
- * 参数:audioToText - 当前片段的结果文字数据
- */
-type AudioToTextCallback = (audioToText: AudioToText) => void;
-
-// 语音识别的回调
-interface Callback {
-  onStatusChange: StatusChangeCallback;
-  onAudioToText: AudioToTextCallback;
-}
-```
-
-### Status
-
-```ts
-// 当前的状态
-enum Status {
-  AVAILABLE, // 未开始可用 
-  DESTROY, // 已经销毁不可用
-  ERROR, // 连接异常断线
-  DETECTING // 正在实时转化
-}
-```
-
-### AudioToText
-
-```ts
-// 语音识别的内容
-interface AudioToText {
-  end_seq: number; // 为该文本所在的切片的终点(包含)，否则为-1
-  end_time: number; // 该片段的终止时间，毫秒
-  ended: number; // 是否是websocket最后一条数据,0:非最后一条数据,1: 最后一条数据。
-  finalX: number; // 分片结束,当前消息的transcript为该片段最终结果，否则为partial结果
-  long_sil: number; // 是否长时间静音，0:否;1:是
-  partial_transcript: string; // partial结果文本, 开启needpartial后返回
-  seg_begin: number; // 是否分段开始: 1:是; 0:不是。
-  seg_index: number; // 是否是vad分段开始说话的开始1:是分段开始说话; 0:不是。
-  spk_begin: number; // 是否是vad分段开始说话的开始1:是分段开始说话; 0:不是。
-  start_seq: number; // 该文本所在的切片的起点(包含), 否则为-1
-  start_time: number; // 该片段的起始时间，毫秒
-  transcript: string; // 语音的文本, 如果final=0, 则为partinal结果 (后面可能会更改),final=1为该片段最终结果
-  uuid: string;
-  words: WordsDTO; // 返回词语的对齐信息, 参数need_words=1时返回详细内存见下表。
-}
-
-interface WordsDTO {
-  seg_end: number; // 该词语相对整个数据流的起始时间, 毫秒
-  seg_start: number; // 该词语相对当前分段的起始时间, 毫秒
-  voice_end: number; // 该词语相对整个数据流的终止时间, 毫秒
-  voice_start: number; // 该词语相对当前分段的终止时间, 毫秒
-  word: string; // 词语本身，包括标点符号
-}
-```
 
 ### IDCardDetectorRunParams
 
@@ -767,6 +682,157 @@ interface QNOCRDetectorResult {
       score: number; // 识别置信度
     }>
   }
+}
+```
+
+### AudioToTextAnalyzerParams
+
+```ts
+interface AudioToTextAnalyzerParams { 
+  /**
+   * 数据格式，1: pcm，2: AAC，3: MPEG2;默认1
+   */
+  aue?: number,
+  /**
+   * 数据采样率，取值: 48000, 44100, 32000, 16000, 8000;默认16000
+   */
+  voice_sample?: number,
+  /**
+   * 识别语言，中文: 1, 英文: 2, 中英混合: 0; 默认 1
+   */
+  model_type?: number,
+  /**
+   * 数据流id，不同流不同
+   */
+  voice_id?: string,
+  /**
+   * 识别关键字; 相同读音时优先识别为关键字。每个词 2-4 个字, 不同词用 `,` 分割
+   */
+  key_words?: string[],
+  /**
+   * 请求时间戳, 单位秒
+   */
+  e?: number 
+}
+```
+
+### AudioToTextAnalyzerCallback
+
+```ts
+/**
+ * 语音识别的回调
+ */
+interface AudioToTextAnalyzerCallback {
+  /**
+   * 连接状态变化
+   * @param status
+   * @param msg
+   */
+  onStatusChange?: (status: AudioToTextAnalyzerStatus, msg: string) => void,
+  /**
+   * 实时转化文字数据
+   * @param result
+   */
+  onAudioToText?: (result: AudioToTextAnalyzerResult) => void
+}
+```
+
+### AudioToTextAnalyzerStatus
+
+```ts
+enum AudioToTextAnalyzerStatus {
+  AVAILABLE, // 未开始可用
+  DESTROY, // 已经销毁不可用
+  ERROR, // 连接异常断线
+  DETECTING // 正在实时转化
+}
+```
+
+### AudioToTextAnalyzerResult
+
+```ts
+interface AudioToTextAnalyzerResult {
+  /**
+   * 此识别结果是否为最终结果
+   */
+  isFinal: boolean;
+  /**
+   * 此识别结果是否为第一片
+   */
+  isBegin: boolean;
+  /**
+   * 最好的转写候选
+   */
+  bestTranscription: QNStreamingTranscription;
+}
+```
+
+### QNStreamingTranscription
+
+```ts
+interface QNStreamingTranscription {
+  /**
+   * 转写结果
+   */
+  transcribedText: string;
+  /**
+   * 句子的开始时间, 单位毫秒
+   */
+  beginTimestamp: number;
+  /**
+   * 句子的结束时间, 单位毫秒
+   */
+  endTimestamp: number;
+  /**
+   * 转写结果中包含KeyWords内容
+   */
+  keyWordsType: QNKeyWordsType[];
+  /**
+   * 转写结果的分解（只对final状态结果有效，返回每个字及标点的详细信息）
+   */
+  piece: QNPiece[];
+}
+```
+
+### QNKeyWordsType
+
+```ts
+interface QNKeyWordsType {
+  /**
+   * 命中的关键词KeyWords。返回不多于10个。
+   */
+  keyWords: string;
+  /**
+   * 命中的关键词KeyWords相应的分数。分数越高表示和关键词越相似，对应kws中的分数。
+   */
+  keyWordsScore: number;
+  /**
+   * 关键词结束时间, 单位毫秒
+   */
+  endTimestamp: number;
+  /**
+   * 关键词开始时间, 单位毫秒
+   */
+  beginTimestamp: number;
+}
+```
+
+### QNPiece
+
+```ts
+interface QNPiece {
+  /**
+   * 转写分解结果。
+   */
+  transcribedText: string;
+  /**
+   * 分解结束时间(音频开始时间为0), 单位毫秒
+   */
+  endTimestamp: number;
+  /**
+   * 分解开始时间(音频开始时间为0), 单位毫秒
+   */
+  beginTimestamp: number;
 }
 ```
 
