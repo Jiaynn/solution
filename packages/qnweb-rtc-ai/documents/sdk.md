@@ -33,32 +33,6 @@ window.onload = () => {
 
 运行时看到打印的 current version 表示引入成功。
 
-# 开发准备
-
-1. 引入 sdk
-
-可以直接使用 script 标签方式引入。
-
-```html
-<script src='./qnweb-rtc-ai.umd.js'></script>
-```
-
-也可以通过 import 方式引入。
-
-```js
-import * as QNRTCAI from './qnweb-rtc-ai.umd.js'
-```
-
-2. 验证
-
-用如下代码获取主类，验证是否正常引入成功。
-
-```html
-<script>
-  console.log(QNRTCAI.version);
-</script>
-```
-
 # 快速开始
 
 ```ts
@@ -89,8 +63,8 @@ const analyzer = QNRTCAI.AudioToTextAnalyzer.startAudioToText(
   params,
   {
     // 语音识别转文字的结果
-    onAudioToText: (message: Message) => {
-      console.log(message)
+    onAudioToText: (result) => {
+      console.log('result', result)
     }
   }
 )
@@ -104,8 +78,8 @@ analyzer.stopAudioToText();
  * 身份证识别
  * videoTrack 为视频 Track 对象
  */
-QNRTCAI.IDCardDetector.run(videoTrack).then(res => {
-  console.log(res);
+QNRTCAI.IDCardDetector.run(videoTrack).then(result => {
+  console.log('result', result);
 })
 ```
 
@@ -136,13 +110,11 @@ const audioAnalyzer = QNRTCAI.AudioToTextAnalyzer.startAudioToText(
   audioTrack, 
   null, 
   {
-    onAudioToText: message => {
-    console.log('message', message);
-    if (message.transcript) {
-      localAudioText.innerText = message.transcript
+    onAudioToText: result => {
+    	console.log('result', result);
     }
   }
-});
+);
 audioAnalyzer.getStatus(); // 获取当前状态
 audioAnalyzer.stopAudioToText(); // 结束语音识别
 ```
