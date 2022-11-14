@@ -242,8 +242,8 @@ QNRTCAI.faceComparer(localCameraTrack, {
 #### 如何使用
 
 ```ts
-QNRTCAI.faceDetector(videoTrack).then(response => {
-  console.log('response', response);
+QNRTCAI.faceDetector(videoTrack).then(result => {
+  console.log('result', result);
 });
 ```
 
@@ -251,7 +251,7 @@ QNRTCAI.faceDetector(videoTrack).then(response => {
 
 | 方法         | 类型                                                         | 说明     |
 | ------------ | ------------------------------------------------------------ | -------- |
-| faceDetector | (videoTrack: [Track](https://doc.qnsdk.com/rtn/web/docs/api_track), params: [FaceDetectorParams](#facedetectorparams) => Promise\<[FaceDetectorRes](#facedetectorres)\> | 人脸检测 |
+| faceDetector | (videoTrack: [Track](https://doc.qnsdk.com/rtn/web/docs/api_track), params: [FaceDetectorParams](#facedetectorparams) => Promise\<[FaceDetectorResult](#FaceDetectorResult)\> | 人脸检测 |
 
 ### QNAuthoritativeFaceComparer
 
@@ -394,108 +394,302 @@ interface FaceFlashLiveDetectorResData {
 ### FaceDetectorParams
 
 ```ts
-/**
- * 人脸检测参数
- * @param rotate-人脸检测失败时，是否对图像 A 做旋转再检测，旋转角包 括 90、180、270 三个角度，默认值为false
- */
 interface FaceDetectorParams {
-  rotate?: boolean;
+  /**
+   * 包括`age,expression,face_shape,gender,glasses,landmark,landmark150,quality,eye_status,emotion,face_type,mask,spoofing`信息逗号分隔.
+   * 默认只返回`face_token、人脸框、概率和旋转角度`
+   */
+  face_field?: string;
+  /**
+   * 最多处理人脸的数目，默认值为1，根据人脸检测排序类型检测图片中排序第一的人脸（默认为人脸面积最大的人脸），最大值120
+   */
+  max_face_num?: number;
+  /**
+   * 活体检测控制
+   * **NONE**: 不进行控制
+   * **LOW**:较低的活体要求(高通过率 低攻击拒绝率)
+   * **NORMAL**: 一般的活体要求(平衡的攻击拒绝率, 通过率)
+   * **HIGH**: 较高的活体要求(高攻击拒绝率 低通过率)
+   * 默认 `NONE`
+   * 若活体检测结果不满足要求，则返回结果中会提示活体检测失败
+   */
+  liveness_control?: string;
+  /**
+   * 人脸检测排序类型
+   * **0**:代表检测出的人脸按照人脸面积从大到小排列
+   * **1**:代表检测出的人脸按照距离图片中心从近到远排列
+   * 默认为0
+   */
+  face_sort_type?: number;
+  /**
+   * 是否显示检测人脸的裁剪图base64值
+   * 0：不显示（默认）
+   * 1：显示
+   */
+  display_corp_image?: number;
+  /**
+   * 压缩的宽
+   */
+  captureWidth?: number;
+  /**
+   * 压缩的高
+   */
+  captureHeight?: number;
+  /**
+   * 压缩质量
+   */
+  captureQuality?: number;
 }
 ```
 
-### FaceDetectorRes
+### FaceDetectorResult
 
 ```ts
-/**
- * 人脸检测响应体
- */
-interface FaceDetectorRes {
-  request_id: string;
-  response: FaceDetectorResData;
+interface FaceDetectorResult {
+  request_id?: string;
+  response?: {
+    /**
+     * 错误码
+     */
+    error_code?: number;
+    /**
+     * 错误信息
+     */
+    error_msg?: string;
+    /**
+     * 请求ID
+     */
+    log_id?: number;
+    /**
+     * 请求结果
+     */
+    result?: QNDetectResult;
+  };
 }
+```
 
-/**
- * 人脸检测响应值
- * @param num_face int 图像中人脸数量
- * @param rotangle float 图像旋转角度
- * @param face []faceItem [face1,face2,…]，其中 face1,face2,…等为 json 格式，具体格式见下表
- * @param errorcode  int  返回状态码
- * @param errormsg  string  返回错误消息
- */
-export interface FaceDetectorResData {
-  errorcode: number;
-  errormsg: string;
-  face: FaceItem[];
-  num_face: number;
-  rotate_angle: number;
-  session_id: string;
+### QNDetectResult
+
+```ts
+interface QNDetectResult {
+  /**
+   * 检测到的图片中的人脸数量
+   */
+  face_num?: number;
+  /**
+   * 人脸信息列表，具体包含的参数参考下面的列表。
+   */
+  face_list?: QNFaces[];
 }
+```
 
-/**
- * faceItem
- * @param blur  float  人脸模糊度，取值范围[0,1]，越大越清晰
- * @param gender  string  性别，’M’代表男，’F’代表女
- * @param age  int  年龄，区间 1-107 岁
- * @param illumination  float  人脸光照范围，取值范围[0,100]，越大光照质量越好
- * @param facesize  float  人脸尺寸分数，取值分数[0,100]， 越大人脸尺寸越大
- * @param quality  float  人脸综合质量分数，取值范围[0,100], 越大质量越好
- * @param eye  flaot  闭眼概率,取值范围[0,100]
- * @param mouth  float  闭嘴概率,取值范围[0,100]
- * @param pitch  float  三维旋转之俯仰角，[-180,180]
- * @param roll  float  三维旋转之旋转角，[-180,180]
- * @param yaw  float  三维旋转之左右旋转角, [-180,180]
- * @param completeness  int  取值0到100；0表示人脸不完整，溢出了图像边界，100 表示人脸是完整的，在图像边界内
- * @param area  int  人脸区域的大小
- * @param face_aligned_b64  string  使用 base64 编码的对齐后人脸图片数据
- * @param score  float  人脸分数 取值范围 [0,100]
- * @param x  int  人脸框的左上角 x 坐标
- * @param y  int  人脸框的左上角 y 坐标
- * @param width  int  人脸框的宽度
- * @param height  int  人脸框的高度
- * @param face_shape  json  人脸 106 个关键点坐标，包含 face_profile，left_eye, left_eyebrow，right_eye，right_eyebrow，mouth，nose，pupil 等组件，每个组件都是一个 json
- */
-interface FaceItem {
-  score: number;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  pitch: number;
-  yaw: number;
-  roll: number;
-  eye: number;
-  mouth: number;
-  blur: number;
-  gender: string;
-  age: number;
-  illumination: number;
-  face_shape: FaceShape;
-  completeness: number;
-  area: number;
-  facesize: number;
-  quality: number;
-  face_aligned_b64: string;
+### QNFaces
+
+```ts
+interface QNFaces {
+  /**
+   * 人脸图片的唯一标识
+   */
+  face_token?: string;
+  /**
+   * 人脸在图片中的位置
+   */
+  location?: QNFaceLocation;
+  /**
+   * 检测人脸框的人脸图片base64值
+   */
+  corp_image_base64?: string;
+  /**
+   * 人脸置信度，范围【0~1】，代表这是一张人脸的概率，0最小、1最大。其中返回0或1时，数据类型为Integer
+   */
+  face_probability?: number;
+  /**
+   * 人脸旋转角度参数
+   */
+  angle?: QNFaceAngle;
+  /**
+   * 年龄 ，当face_field包含age时返回
+   */
+  age?: number;
+  /**
+   * 表情，当 face_field包含expression时返回
+   */
+  expression?: {
+    /**
+     * none:不笑；smile:微笑；laugh:大笑
+     */
+    type?: string;
+    /**
+     * 表情置信度，范围【0~1】，0最小、1最大。
+     */
+    probability?: number;
+  };
+  /**
+   * 脸型，当face_field包含face_shape时返回
+   */
+  face_shape?: {
+    /**
+     * square: 正方形 triangle:三角形 oval: 椭圆 heart: 心形 round: 圆形
+     */
+    type?: string;
+    /**
+     * 置信度，范围【0~1】，0最小、1最大。
+     */
+    probability?: number;
+  };
+  /**
+   * 性别，face_field包含gender时返回
+   */
+  gender?: {
+    /**
+     * male:男性 female:女性
+     */
+    type?: string;
+    /**
+     * 置信度，范围【0~1】，0最小、1最大。
+     */
+    probability?: number;
+  };
+  /**
+   * 是否带眼镜，face_field包含glasses时返回
+   */
+  glasses?: {
+    /**
+     * none:无眼镜，common:普通眼镜，sun:墨镜
+     */
+    type?: string;
+    /**
+     * 置信度，范围【0~1】，0最小、1最大。
+     */
+    probability?: number;
+  };
+  /**
+   * 双眼状态（睁开/闭合） face_field包含eye_status时返回
+   */
+  eye_status?: {
+    /**
+     * 左眼状态 [0,1]取值，越接近0闭合的可能性越大
+     */
+    left_eye?: number;
+    /**
+     * 右眼状态 [0,1]取值，越接近0闭合的可能性越大
+     */
+    right_eye?: number;
+  };
+  /**
+   * 情绪 face_field包含emotion时返回
+   */
+  emotion?: {
+    /**
+     * angry:愤怒 disgust:厌恶 fear:恐惧 happy:高兴 sad:伤心 surprise:惊讶 neutral:无表情 pouty: 撅嘴 grimace:鬼脸
+     */
+    type?: string;
+    /**
+     * 置信度，范围【0~1】，0最小、1最大。
+     */
+    probability?: number;
+  };
+  /**
+   * 真实人脸/卡通人脸 face_field包含face_type时返回
+   */
+  face_type?: {
+    /**
+     * human: 真实人脸 cartoon: 卡通人脸
+     */
+    type?: string;
+    /**
+     * 置信度，范围【0~1】，0最小、1最大。
+     */
+    probability?: number;
+  };
+  /**
+   * 口罩识别 face_field包含mask时返回
+   */
+  mask?: {
+    /**
+     * 没戴口罩/戴口罩 取值0或1 0代表没戴口罩 1 代表戴口罩
+     */
+    type?: string;
+    /**
+     * 置信度，范围【0~1】，0最小、1最大。
+     */
+    probability?: number;
+  };
+  /**
+   * 4个关键点位置，左眼中心、右眼中心、鼻尖、嘴中心。face_field包含landmark时返回
+   */
+  landmark?: Array<{
+    x?: number;
+    y?: number
+  }>;
+  /**
+   * 72个特征点位置 face_field包含landmark时返回
+   */
+  landmark72?: Array<{
+    x?: number;
+    y?: number
+  }>;
+  /**
+   * 150个特征点位置 face_field包含landmark150时返回
+   */
+  landmark150?: Array<{
+    x?: number;
+    y?: number
+  }>;
+  /**
+   * 人脸质量信息。face_field包含quality时返回
+   */
+  quality?: QNFaceQuality;
+  /**
+   * 判断图片是否为合成图
+   */
+  spoofing?: number;
 }
+```
 
-/**
- * @param face_shape  json
- * 人脸 106 个关键点坐标，
- * 包含 face_profile，left_eye, left_eyebrow，right_eye，right_eyebrow，mouth，nose，pupil 等组件
- */
-interface FaceShape {
-  face_profile: FaceProfile[];
-  left_eye: FaceProfile[];
-  left_eyebrow: FaceProfile[];
-  right_eye: FaceProfile[];
-  right_eyebrow: FaceProfile[];
-  mouth: FaceProfile[];
-  nose: FaceProfile[];
-  pupil: FaceProfile[];
+### QNFaceLocation
+
+```ts
+interface QNFaceLocation {
+  /**
+   * 人脸区域离左边界的距离
+   */
+  left?: number;
+  /**
+   * 人脸区域离上边界的距离
+   */
+  top?: number;
+  /**
+   * 人脸区域的宽度
+   */
+  width?: number;
+  /**
+   * 人脸区域的高度
+   */
+  height?: number;
+  /**
+   * 人脸框相对于竖直方向的顺时针旋转角，[-180,180]
+   */
+  rotate?: number;
 }
+```
 
-interface FaceProfile {
-  x: number;
-  y: number;
+### QNFaceAngle
+
+```ts
+interface QNFaceAngle {
+  /**
+   * 三维旋转之左右旋转角[-90(左), 90(右)]
+   */
+  yaw?: number;
+  /**
+   * 三维旋转之俯仰角度[-90(上), 90(下)]
+   */
+  pitch?: number;
+  /**
+   * 平面内旋转角[-180(逆时针), 180(顺时针)]
+   */
+  roll?: number;
 }
 ```
 
