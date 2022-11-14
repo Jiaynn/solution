@@ -221,11 +221,13 @@ faceFlashLiveDetector.commit().then(response => console.log('response', response
 #### 如何使用
 
 ```ts
-/**
- * targetImgBase64 为需要对比的图片 base64 编码
- */
-QNRTCAI.faceComparer(videoTrack, targetImgBase64).then(response => {
-  console.log('response', response);
+QNRTCAI.faceComparer(localCameraTrack, {
+  image: '...',
+  image_type: 'BASE64',
+}).then(result => {
+  console.log('result', result);
+}).catch(error => {
+  console.log('error', error);
 });
 ```
 
@@ -233,7 +235,7 @@ QNRTCAI.faceComparer(videoTrack, targetImgBase64).then(response => {
 
 | 方法         | 类型                                                         | 说明     |
 | ------------ | ------------------------------------------------------------ | -------- |
-| faceComparer | (videoTrack: [Track](https://doc.qnsdk.com/rtn/web/docs/api_track), targetImg: string, params: [FaceComparerParams](#facecomparerparams) => Promise\<[FaceComparerRes](#facecomparerres)\> | 人脸对比 |
+| faceComparer | (videoTrack: [Track](https://doc.qnsdk.com/rtn/web/docs/api_track), params: [FaceComparerParams](#FaceComparerParams)) => Promise\<[FaceComparerResult](#FaceComparerResult)\> | 人脸对比 |
 
 ### faceDetector
 
@@ -386,46 +388,6 @@ interface FaceFlashLiveDetectorResData {
   pass_num: number; // 视频中通过的人脸帧数
   score: number; // 活体分数 [0,100]
   session_id: string; // 唯一会话 id
-}
-```
-
-### FaceComparerParams
-
-```ts
-/**
- * 人脸对比参数
- * @param rotate_A  否  bool  人脸检测失败时，是否对图像 A 做旋转再检测，旋转角包括 90、180、270 三个角度，默认值为 False
- * @param rotate_B  否  bool  人脸检测失败时，是否对图像 B 做旋转再检测，旋转角包括 90、180、270 三个角度，默认值为 False
- * @param maxface_A  否  bool  图像 A 中检测到多张人脸时是否取最大区域的人脸作为输出，默认值为 True
- * @param maxface_B  否  bool  图像 B 中检测到多张人脸时是否取最大区域的人脸作为输出，默认值为 True
- */
-interface FaceComparerParams {
-  rotate_A?: boolean;
-  rotate_B?: boolean;
-  maxface_A?: boolean;
-  maxface_B?: boolean;
-}
-```
-
-### FaceComparerRes
-
-```ts
-/**
- * 人脸对比响应体
- */
-interface FaceComparerRes {
-  request_id: string;
-  response: FaceComparerResData;
-}
-
-/**
- * 人脸对比响应体数据
- */
-interface FaceComparerResData {
-  errorcode: number;
-  errormsg: string;
-  session_id: string; // 唯一会话 id
-  similarity: number; // 两个 face 的相似度, 取值范围为[0,100]
 }
 ```
 
@@ -1053,6 +1015,128 @@ interface QNFaceQualityOcclusion {
    * 下巴遮挡比例，[0-1] ，1表示完全遮挡
    */
   chin?: number;
+}
+```
+
+### FaceComparerParams
+
+```ts
+interface FaceComparerParams {
+  /**
+   * 图片信息(总数据大小应小于10M，图片尺寸在1920x1080以下)
+   */
+  image?: string;
+  /**
+   * 图片类型
+   * **BASE64**:图片的base64值，base64编码后的图片数据，编码后的图片大小不超过2M
+   * **URL**:图片的 URL地址( 可能由于网络等原因导致下载图片时间过长)
+   */
+  image_type?: string;
+  /**
+   * 人脸的类型
+   * **LIVE**：表示生活照：通常为手机、相机拍摄的人像图片、或从网络获取的人像图片等，
+   * **IDCARD**：表示身份证芯片照：二代身份证内置芯片中的人像照片，
+   * **WATERMARK**：表示带水印证件照：一般为带水印的小图，如公安网小图
+   * **CERT**：表示证件照片：如拍摄的身份证、工卡、护照、学生证等证件图片
+   * **INFRARED**：表示红外照片,使用红外相机拍摄的照片
+   * **HYBRID**：表示混合类型，如果传递此值时会先对图片进行检测判断所属类型(生活照 or 证件照)（仅针对请求参数 image_type 为 BASE64 或 URL 时有效）
+   * 默认`LIVE`
+   */
+  face_type?: string;
+  /**
+   * 图片质量控制
+   * **NONE**: 不进行控制
+   * **LOW**:较低的质量要求
+   * **NORMAL**: 一般的质量要求
+   * **HIGH**: 较高的质量要求
+   * 默认 `NONE`
+   * 若图片质量不满足要求，则返回结果中会提示质量检测失败
+   */
+  quality_control?: string;
+  /**
+   * 活体检测控制
+   * **NONE**: 不进行控制
+   * **LOW**:较低的活体要求(高通过率 低攻击拒绝率)
+   * **NORMAL**: 一般的活体要求(平衡的攻击拒绝率, 通过率)
+   * **HIGH**: 较高的活体要求(高攻击拒绝率 低通过率)
+   * 默认 `NONE`
+   * 若活体检测结果不满足要求，则返回结果中会提示活体检测失败
+   */
+  liveness_control?: string;
+  /**
+   * 人脸检测排序类型
+   * **0**:代表检测出的人脸按照人脸面积从大到小排列
+   * **1**:代表检测出的人脸按照距离图片中心从近到远排列
+   * 默认为`0`
+   */
+  face_sort_type?: number;
+  /**
+   * 合成图控制参数
+   * **NONE**: 不进行控制
+   * **LOW**:较低的合成图阈值数值，由于合成图判定逻辑为大于阈值视为合成图攻击，该项代表低通过率、高攻击拒绝率
+   * **NORMAL**: 一般的合成图阈值数值，由于合成图判定逻辑为大于阈值视为合成图攻击，该项代表平衡的攻击拒绝率, 通过率
+   * **HIGH**: 较高的合成图阈值数值，由于合成图判定逻辑为大于阈值视为合成图攻击，该项代表高通过率、低攻击拒绝率
+   * 默认为`NONE`
+   */
+  spoofing_control?: string;
+   /**
+   * 压缩的宽
+   */
+  captureWidth?: number;
+  /**
+   * 压缩的高
+   */
+  captureHeight?: number;
+   /**
+   * 压缩质量
+   */
+  captureQuality?: number;
+}
+```
+
+### FaceComparerResult
+
+```ts
+interface FaceComparerResult {
+  request_id?: string;
+  response?: {
+    /**
+     * 错误码
+     */
+    error_code?: number;
+    /**
+     * 错误信息
+     */
+    error_msg?: string;
+    /**
+     * 请求ID
+     */
+    log_id?: number;
+    /**
+     * 请求结果
+     */
+    result?: QNCompareResult;
+  };
+}
+```
+
+### QNCompareResult
+
+```ts
+interface QNCompareResult {
+  /**
+   * 人脸相似度得分，推荐阈值80分
+   */
+  score?: number;
+  /**
+   * 人脸信息列表
+   */
+  face_list?: Array<{
+    /**
+     * 人脸的唯一标志
+     */
+    face_token?: string;
+  }>;
 }
 ```
 
