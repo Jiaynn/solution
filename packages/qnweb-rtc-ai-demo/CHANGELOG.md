@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/qbox/QNSolutions_Web/compare/qnweb-rtc-ai-demo@1.1.2...qnweb-rtc-ai-demo@2.0.0) (2022-11-14)
+
+
+### Bug Fixes
+
+* **qnweb-rtc-ai-demo:** 修复类型错误 ([5b2f07e](https://github.com/qbox/QNSolutions_Web/commit/5b2f07e469672181c4cf56cf341e341d6f5a1a4c))
+
+
+### Features
+
+* **qnweb-rtc-ai-demo:** v2升级 ([d0fb3ce](https://github.com/qbox/QNSolutions_Web/commit/d0fb3ce6bc87bcb3f87b8f1d9850beb892ded1dd))
+
+
+
 ## 1.1.2 (2022-08-12)
 
 
