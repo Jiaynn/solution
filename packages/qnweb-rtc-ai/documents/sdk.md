@@ -479,24 +479,18 @@ interface FaceDetectorResult {
     /**
      * 请求结果
      */
-    result?: QNDetectResult;
+    result?: {
+      /**
+       * 检测到的图片中的人脸数量
+       */
+      face_num?: number;
+      /**
+       * 人脸信息列表，具体包含的参数参考下面的列表。
+       */
+      face_list?: QNFaces[];
+    };
   };
-}
-```
-
-### QNDetectResult
-
-```ts
-interface QNDetectResult {
-  /**
-   * 检测到的图片中的人脸数量
-   */
-  face_num?: number;
-  /**
-   * 人脸信息列表，具体包含的参数参考下面的列表。
-   */
-  face_list?: QNFaces[];
-}
+} 
 ```
 
 ### QNFaces
@@ -1004,27 +998,21 @@ interface QNFaceActliveSessionResult {
     /**
      * 请求结果
      */
-    result?: QNSessionResult;
+    result?: {
+      /**
+       * 随机校验码会话id，有效期5分钟
+       * 请提示用户在五分钟内完成全部操作验证码使用过即失效
+       * 每次使用视频活体前请重新拉取验证码
+       */
+      session_id?: string;
+      /**
+       * 随机验证码，数字形式，1~6位数字；
+       * 若为动作活体时，返回数字表示的动作对应关系为：
+       * 0:眨眼 4:抬头 5:低头 7:左右转头(不区分先后顺序，分别向左和向右转头)
+       */
+      code?: string;
+    };
   };
-}
-```
-
-### QNSessionResult
-
-```ts
-interface QNSessionResult {
-  /**
-   * 随机校验码会话id，有效期5分钟
-   * 请提示用户在五分钟内完成全部操作验证码使用过即失效
-   * 每次使用视频活体前请重新拉取验证码
-   */
-  session_id?: string;
-  /**
-   * 随机验证码，数字形式，1~6位数字；
-   * 若为动作活体时，返回数字表示的动作对应关系为：
-   * 0:眨眼 4:抬头 5:低头 7:左右转头(不区分先后顺序，分别向左和向右转头)
-   */
-  code?: string;
 }
 ```
 
@@ -1084,43 +1072,37 @@ interface FaceActionLiveDetectorResult {
     /**
      * 请求结果
      */
-    result?: QNVerifyResult;
+    result?: {
+      /**
+       * 活体检测的总体打分 范围[0,1]，分数越高则活体的概率越大
+       */
+      score?: number;
+      /**
+       * 返回的1-8张图片中合成图检测得分的最大值 范围[0,1]，分数越高则概率越大
+       */
+      maxspoofing?: number;
+      /**
+       * 返回的1-8张图片中合成图检测得分的中位数 范围[0,1]，分数越高则概率越大
+       */
+      spoofing_score?: number;
+      /**
+       * 阈值 按活体检测分数>阈值来判定活体检测是否通过(阈值视产品需求选择其中一个)
+       */
+      thresholds?: QNThresholds;
+      /**
+       * 动作识别结果 pass代表动作验证通过，fail代表动作验证未通过
+       */
+      action_verify?: string;
+      /**
+       * 图片信息
+       */
+      best_image?: QNImage;
+      /**
+       * 返回1-8张抽取出来的图片信息
+       */
+      pic_list?: QNImage[];
+    };
   };
-}
-```
-
-### QNVerifyResult
-
-```ts
-interface QNVerifyResult {
-  /**
-   * 活体检测的总体打分 范围[0,1]，分数越高则活体的概率越大
-   */
-  score?: number;
-  /**
-   * 返回的1-8张图片中合成图检测得分的最大值 范围[0,1]，分数越高则概率越大
-   */
-  maxspoofing?: number;
-  /**
-   * 返回的1-8张图片中合成图检测得分的中位数 范围[0,1]，分数越高则概率越大
-   */
-  spoofing_score?: number;
-  /**
-   * 阈值 按活体检测分数>阈值来判定活体检测是否通过(阈值视产品需求选择其中一个)
-   */
-  thresholds?: QNThresholds;
-  /**
-   * 动作识别结果 pass代表动作验证通过，fail代表动作验证未通过
-   */
-  action_verify?: string;
-  /**
-   * 图片信息
-   */
-  best_image?: QNImage;
-  /**
-   * 返回1-8张抽取出来的图片信息
-   */
-  pic_list?: QNImage[];
 }
 ```
 
@@ -1325,28 +1307,22 @@ interface FaceComparerResult {
     /**
      * 请求结果
      */
-    result?: QNCompareResult;
+    result?: {
+      /**
+       * 人脸相似度得分，推荐阈值80分
+       */
+      score?: number;
+      /**
+       * 人脸信息列表
+       */
+      face_list?: Array<{
+        /**
+         * 人脸的唯一标志
+         */
+        face_token?: string;
+      }>;
+    };
   };
-}
-```
-
-### QNCompareResult
-
-```ts
-interface QNCompareResult {
-  /**
-   * 人脸相似度得分，推荐阈值80分
-   */
-  score?: number;
-  /**
-   * 人脸信息列表
-   */
-  face_list?: Array<{
-    /**
-     * 人脸的唯一标志
-     */
-    face_token?: string;
-  }>;
 }
 ```
 
