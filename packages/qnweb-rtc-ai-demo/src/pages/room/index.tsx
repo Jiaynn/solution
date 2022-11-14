@@ -157,7 +157,7 @@ const Room = () => {
     run: runTextToAudio
   } = useRequest(() => {
     return QNRTCAI.textToSpeak({ content: text }).then(result => {
-      if (result.response.code === 0) {
+      if (result.response.code === '0') {
         const snd = new Audio(result.response.result.audioUrl);
         return snd.play().catch(error => {
           Modal.error({
