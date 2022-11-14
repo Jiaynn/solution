@@ -15,10 +15,10 @@
     "package.json"
   ],
   "scripts": {
-    "build:prod": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:prod",
-    "build:test": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:test",
-    "build:dev": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:dev",
-    "build": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:prod",
+    "build:prod": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:prod && tsc-alias",
+    "build:test": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:test && tsc-alias",
+    "build:dev": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:dev && tsc-alias",
+    "build": "npm run build:prod",
     "prepublishOnly": "npm run build",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx, \"src/**/*\""
   },
@@ -43,6 +43,7 @@
     "rollup-plugin-uglify": "^6.0.4",
     "shelljs": "0.8.4",
     "ts-node": "^10.0.0",
+    "tsc-alias": "^1.7.1",
     "tslib": "^2.2.0",
     "typescript": "^4.3.2"
   },
