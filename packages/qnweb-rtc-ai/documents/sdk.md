@@ -148,12 +148,13 @@ QNRTCAI.IDCardDetector
 #### 如何使用
 
 ```ts
-QNRTCAI.textToSpeak({ text }).then(response => {
-  const base64String = response.response.audio;
-  console.log('response', response)
-  console.log('base64String', base64String);
-  const snd = new Audio('data:audio/wav;base64,' + base64String);
-  snd.play();
+QNRTCAI.textToSpeak({ content: text }).then(result => {
+  if (result.response.code === 0) {
+    const snd = new Audio(result.response.result.audioUrl);
+    return snd.play().catch(error => {
+      console.log('error', error)
+    });
+  }
 });
 ```
 
@@ -161,7 +162,7 @@ QNRTCAI.textToSpeak({ text }).then(response => {
 
 | 方法        | 类型                                                         | 说明       |
 | ----------- | ------------------------------------------------------------ | ---------- |
-| textToSpeak | (params: [TextToSpeakParams](#texttospeakparams))) => Promise<[TextToSpeakRes](#texttospeakres)> | 文字转语音 |
+| textToSpeak | (params: [QNVoiceTtsParams](#QNVoiceTtsParams))) => Promise<[QNVoiceTtsResult](#QNVoiceTtsResult)> | 文字转语音 |
 
 ### FaceActionLiveDetector
 
@@ -351,58 +352,6 @@ interface ImageResult {
   idcard: string, //	身份证区域图片，使用Base64 编码后的字符串， 是否返回由请求参数ret_image 决定
   portrait: string, //	身份证人像照片，使用Base64 编码后的字符串， 是否返回由请求参数ret_portrait 决定
   idcard_bbox: Array<Array<number>>, //	框坐标，格式为 [[x0, y0], [x1, y1], [x2, y2], [x3, y3]]
-}
-```
-
-### TextToSpeakParams
-
-```ts
-// 文字转语音声效枚举
-enum Speaker {
-  Male1 = 'male1', // 男声1
-  Male2 = 'male2', // 男声2
-  Female3 = 'female3', // 女声3
-  Male4 = 'male4', // 男声4
-  Female5 = 'female5', // 女声5
-  Female6 = 'female6', // 女声6
-  Kefu1 = 'kefu1', // 客服1
-  Girl1 = 'girl1', // 女孩1
-}
-
-// tts 音频编码格式枚举
-enum AudioEncoding {
-  Wav = 'wav',
-  Pcm = 'pcm',
-  Mp3 = 'mp3',
-}
-
-/**
- * 文字转语音参数
- */
-interface TextToSpeakParams {
-  text: string; // 需要进⾏语⾳合成的⽂本内容，最短1个字，最⻓200字
-  speaker?: Speaker; // 发⾳⼈id，⽤于选择不同⻛格的⼈声，⽬前默认为kefu1， 可选的包括female3，female5，female6，male1，male2， male4，kefu1，girl1
-  audio_encoding?: AudioEncoding; // 合成⾳频格式，⽬前默认为wav，可选的包括wav，pcm，mp3
-  sample_rate?: number; // 合成⾳频的采样率，默认为16000，可选的包括8000，16000， 24000，48000
-  volume?: number; // ⾳量⼤⼩，取值范围为0~100，默认为50
-  speed?: number; // 语速，取值范围为-100~100，默认为0
-}
-```
-
-### TextToSpeakRes
-
-```ts
-/**
- * 文字转语音响应值
- */
-interface TextToSpeakRes {
-  request_id?: string; // 请求唯一 id
-  response: {
-    voice_id?: string; // 声音唯一 id
-    error_code?: number; // 返回状态码，详见状态码表格
-    err_msg?: number; // 状态码对应错误信息
-    audio?: string; // 合成的音频，采用 base64 编码
-  }
 }
 ```
 
@@ -833,6 +782,70 @@ interface QNPiece {
    * 分解开始时间(音频开始时间为0), 单位毫秒
    */
   beginTimestamp: number;
+}
+```
+
+### QNVoiceTtsParams
+
+```ts
+interface QNVoiceTtsParams {
+  /**
+   * TTS 发音人标识音源 id 0-6,实际可用范围根据情况, 可以不设置,默认是 0;
+   * 其中0：女声（柔和）；1，女声（正式）；2，女生（柔和带正式）；3：男声（柔和），4：男声（柔和带正式）；5：男声（闽南话）；6：女生（闽南话）。
+   */
+  spkid?: number;
+  /**
+   * 需要进行语音合成的文本内容，最短1个字，最长200字
+   */
+  content: string;
+  /**
+   * 可不填，不填时默认为 3。
+   * audioType=3 返回 16K 采样率的 mp3
+   * audioType=4 返回 8K 采样率的 mp3
+   * audioType=5 返回 24K 采样率的 mp3
+   * audioType=6 返回 48k采样率的mp3
+   * audioType=7 返回 16K 采样率的 pcm 格式
+   * audioType=8 返回 8K 采样率的 pcm 格式
+   * audioType=9 返回 24k 采样率的pcm格式
+   * audioType=10 返回  8K 采样率的 wav 格式
+   * audioType=11 返回 16K 采样率的 wav 格式
+   */
+  audioType?: number;
+  /**
+   * 音量大小，取值范围为 0.75 - 1.25，默认为1
+   */
+  volume?: number;
+  /**
+   * 语速，取值范围为 0.75 - 1.25，默认为1
+   */
+  speed?: number;
+}
+```
+
+### QNVoiceTtsResult
+
+```ts
+interface QNVoiceTtsResult {
+  request_id?: string;
+  response?: {
+    /**
+     * 错误信息
+     */
+    msg: string;
+    /**
+     * 错误码
+     * | code | 说明 |
+     * | :--- | :--- |
+     * | 0    | 成功 |
+     */
+    code: string;
+    result: {
+      /**
+       * 合成音频的下载地址
+       */
+      audioUrl: string;
+    };
+  };
 }
 ```
 
