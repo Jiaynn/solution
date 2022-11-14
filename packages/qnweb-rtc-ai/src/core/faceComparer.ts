@@ -4,8 +4,17 @@ import { QNFaceCompareParams, QNFaceCompareResult, QNRTCTrack } from '@/types';
 import { request } from '@/api/_utils';
 
 export type FaceComparerParams = QNFaceCompareParams & {
+  /**
+   * 压缩的宽
+   */
   captureWidth?: number;
+  /**
+   * 压缩的高
+   */
   captureHeight?: number;
+  /**
+   * 压缩质量
+   */
   captureQuality?: number;
 }
 export type FaceComparerResult = QNFaceCompareResult;

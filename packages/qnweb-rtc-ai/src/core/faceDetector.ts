@@ -3,8 +3,17 @@ import { compress, dataURLtoFile, filetoDataURL } from 'image-conversion';
 import { request } from '@/api/_utils';
 
 type FaceDetectorParams = Omit<QNFaceDetectParams, 'image' | 'image_type' | 'face_type'> & {
+  /**
+   * 压缩的宽
+   */
   captureWidth?: number;
+  /**
+   * 压缩的高
+   */
   captureHeight?: number;
+  /**
+   * 压缩质量
+   */
   captureQuality?: number;
 }
 type FaceDetectorResult = QNFaceDetectResult;
