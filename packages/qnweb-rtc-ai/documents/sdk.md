@@ -171,22 +171,24 @@ QNRTCAI.textToSpeak({ content: text }).then(result => {
 ```ts
 const client = QNRTCAI.FaceActionLiveDetector.create(); // 创建检测器实例
 
-client.getRequestCode().then(result => {
-  // 先获取动作识别的验证码
-  // 然后根据验证码调用 start 开始检测，并做出相应的动作
-  const { code, session_id } = result.response.result;
-  client.start(localCameraTrack, {
-    session_id
-  });
+client.getRequestCode()
+  .then(result => {
+    // 先获取动作识别的验证码
+    // 然后根据验证码调用 start 开始检测，并做出相应的动作
+    const { code, session_id } = result.response.result;
+    client.start(localCameraTrack, {
+      session_id
+    });
   
-	// ...
-  
-}).then(() => {
-  // 结束检测
-  return client.commit();
-}).then(result => {
-  console.log('result', result);
-})
+    // ...
+  })
+  .then(() => {
+    // 结束检测
+    return client.commit();
+  })
+  .then(result => {
+    console.log('result', result);
+  })
 ```
 
 #### 方法
@@ -279,25 +281,39 @@ QNRTCAI.QNAuthoritativeFaceComparer.run(videoTrack, {
 #### 如何使用
 
 ```ts
-// 开始权威人脸比对和动作活体检测
-const detector = QNRTCAI.QNAuthorityActionFaceComparer.start(
-  QNRTC, 
-  videoTrack, 
-  faceActionParams,
-  authoritativeFaceParams
-);
-// 结束权威人脸比对和动作活体检测, 得到响应值
-detector.commit().then(result => {
-  console.log('result', result)
-})
+const client = QNRTCAI.QNAuthorityActionFaceComparer.create(); // 创建实例
+
+client.getRequestCode()
+  .then(result => {
+    // 先获取动作识别的验证码
+    // 然后根据传入身份证、姓名、以及验证码调用 start 开始检测，并做出相应的动作
+    const { code, session_id } = result.response.result;
+    client.start(localCameraTrack, {
+      session_id
+    }, {
+      realname: '...',
+      idcard: '...'
+    });
+  
+    // ...
+  })
+  .then(() => {
+    // 结束检测
+    return client.commit();
+  })
+  .then(result => {
+    console.log('result', result);
+  })
 ```
 
 #### 方法
 
-| 方法                   | 类型                                                         | 说明               |
-| ---------------------- | ------------------------------------------------------------ | ------------------ |
-| static start(静态方法) | (QNRTC, videoTrack: [Track](https://doc.qnsdk.com/rtn/web/docs/api_track), faceActionParams: [FaceActionLiveDetectorParams](#faceactionlivedetectorparams), authoritativeFaceParams: [QNAuthoritativeFaceParams](#qnauthoritativefaceparams)) => QNAuthorityActionFaceComparer | 开始检测           |
-| commit                 | () => Promise<{   faceActionResult: [FaceActionLiveDetectorRes](#faceactionlivedetectorres);   authoritativeFaceResult: [QNAuthoritativeFaceResult](#qnauthoritativefaceresult); } | 结束检测并响应数据 |
+| 方法           | 类型                                                         | 说明                   |
+| -------------- | ------------------------------------------------------------ | ---------------------- |
+| static create  | () => [QNAuthorityActionFaceComparer](#QNAuthorityActionFaceComparer) | 创建检测器（创建实例） |
+| getRequestCode | () => Promise\<[QNFaceActliveSessionResult](#QNFaceActliveSessionResult)\> | 获取校验码             |
+| start          | (videoTrack: [Track](https://doc.qnsdk.com/rtn/web/docs/api_track), faceActionParams: [FaceActionLiveDetectorParams](#faceactionlivedetectorparams), authoritativeFaceParams: [QNAuthoritativeFaceParams](#qnauthoritativefaceparams)) => [QNAuthorityActionFaceComparer](#QNAuthorityActionFaceComparer) | 开始检测               |
+| commit         | () => Promise<{   faceActionResult: [FaceActionLiveDetectorResult](#FaceActionLiveDetectorResult);   authoritativeFaceResult: [QNAuthoritativeFaceResult](#qnauthoritativefaceresult); } | 结束检测并响应数据     |
 
 ### QNOCRDetector
 
