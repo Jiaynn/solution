@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>vr box example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+        body {
+            margin: 0px;
+            overflow: hidden;
+        }
+
+        #example {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <label>纹理布局</label>
+        -----------------------------
+        | 左 | 右 | 上 | 下 | 后 | 前 |
+        -----------------------------
+    </div>
+    <div id="example"></div>
+
+    <script src="../js/three.js"></script>
+    <script src="../js/mxreality.js"></script>
+
+    <script>
+        var scene, renderer;
+        var container;
+        var vr = null;
+        function init() {
+            renderer = new THREE.WebGLRenderer();
+            container = document.getElementById('example');
+            container.appendChild(renderer.domElement);
+
+
+            scene = new THREE.Scene();
+            //AVR.develop=true;
+            vr = new VR(scene, renderer, container, { 'fov': 80 });
+            vr.vrbox.width = 50;
+            vr.vrbox.height = 50;
+            vr.vrbox.depth = 50;
+            vr.loadProgressManager.onLoad = function () {
+            }
+            vr.init(function () {
+
+            });
+            vr.playPanorama("textures/sun_temple_stripe1.jpg", vr.resType.box);
+            //vr.playPanorama("textures/aaa.png",vr.resType.box);
+
+            console.log('纹理布局')
+            console.log('-----------------------------');
+            console.log('| 左 | 右 | 上 | 下 | 后 | 前 |');
+            console.log('-----------------------------');
+
+        }
+        init();
+
+    </script>
+</body>
+
+</html>

@@ -21,6 +21,8 @@
     "exam-demo:jenkins-prod": "pnpm install && ts-node scripts/start.ts qnweb-exam-system-demo && pnpm -F qnweb-exam-system-demo build",
     "qnweb-media-admin:jenkins-test": "pnpm install && pnpm --filter qnweb-media-admin build:staging",
     "qnweb-media-admin:jenkins-prod": "pnpm install && pnpm --filter qnweb-media-admin build",
+    "qnweb-vr-player-demo:jenkins-test": "pnpm install && pnpm --filter qnweb-vr-player-demo build",
+    "qnweb-vr-player-demo:jenkins-prod": "pnpm install && pnpm --filter qnweb-vr-player-demo build",
     "cz": "git-cz",
     "start": "ts-node scripts/start.ts",
     "release": "ar-changelog release",
