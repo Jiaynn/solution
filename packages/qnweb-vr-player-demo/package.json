@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
-    "dev": "gulp dev && http-server dist"
+    "dev": "npm run build && concurrently \"gulp dev\" \"http-server dist\""
   },
   "keywords": [
     "VR视频、全景图片，视频直播，720图片视频"
   ],
   "devDependencies": {
     "babel-loader": "^8.1.0",
+    "concurrently": "^7.5.0",
     "cryptiles": ">=4.1.2",
     "growl": ">=1.10.0",
     "gulp": "^4.0.2",
