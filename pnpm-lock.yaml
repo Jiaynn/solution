@@ -956,7 +956,6 @@ importers:
       gulp-replace: ^0.5.4
       gulp-rev: ^7.0.0
       gulp-rev-replace: ^0.4.3
-      gulp-sequence: ^0.4.5
       gulp-uglify: ^1.5.2
       hls.js: ^0.13.2
       hoek: '>=4.2.1'
@@ -988,7 +987,6 @@ importers:
       gulp-replace: 0.5.4
       gulp-rev: 7.1.2
       gulp-rev-replace: 0.4.4
-      gulp-sequence: 0.4.6
       hoek: 6.1.3
       http-server: 13.1.0
       jshint: 2.13.6
@@ -9531,13 +9529,6 @@ packages:
       sort-keys: 1.1.2
       through2: 2.0.5
       vinyl-file: 1.3.0
-    dev: true
-
-  /gulp-sequence/0.4.6:
-    resolution: {integrity: sha512-mFQ6wNf84IAg7w/kN3t1qd6Y/Jj3L9Q0qEJmg6A8jOCdsTagXeyZMlSLkqayZxtylGM5hLRMhrtf7/VCe9Y01w==}
-    dependencies:
-      gulp-util: 3.0.8
-      thunks: 4.9.6
     dev: true
 
   /gulp-uglify/1.5.4:
@@ -18502,10 +18493,6 @@ packages:
     resolution: {integrity: sha512-iOqSav00cVxEEICeD7TjLB1sueEL+81Wpzp2bY17uZjZN0pWZPuo4suZ/61VujxmqSGFfgOcNuTZ85QJwNZQpw==}
     dependencies:
       readable-stream: 3.6.0
-    dev: true
-
-  /thunks/4.9.6:
-    resolution: {integrity: sha512-ulXG17ZokTO8j0rTx/23YHsBuz6KAK1xdBPLH4zB1FRDUkttCQeli3DxGhhYtrrsRwzacSG+ZIebjSgLseluMw==}
     dev: true
 
   /time-stamp/1.1.0:
