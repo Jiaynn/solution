@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
-    "dev": "npm run build && concurrently \"gulp dev\" \"http-server dist\""
+    "dev": "http-server",
+    "build:libs": "gulp libs"
   },
   "keywords": [
     "VR视频、全景图片，视频直播，720图片视频"

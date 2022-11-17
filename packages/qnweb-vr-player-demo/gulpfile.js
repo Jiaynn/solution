@@ -5,16 +5,18 @@ const rimraf = require('rimraf');
 const execSync = require('child_process').execSync;
 
 const SRC = 'src/';
-const DEST = 'dist/js';
+const DEST = 'libs';
 
 gulp.task('build', cb => {
-  gulp.series('clean', 'libs', 'examples', 'html')(cb);
+  gulp.series('clean', 'dist')(cb);
 });
 
-gulp.task('dev', () => {
-  gulp.watch(['examples', 'index.html'], cb => {
-    gulp.series('examples', 'html')(cb);
-  });
+gulp.task('dist', (cb) => {
+  execSync('mkdir dist', { stdio: 'inherit' });
+  execSync('cp -r examples dist', { stdio: 'inherit' });
+  execSync('cp -r index.html dist', { stdio: 'inherit' });
+  execSync('cp -r libs dist', { stdio: 'inherit' });
+  cb();
 });
 
 gulp.task('libs', () => {
@@ -32,14 +34,4 @@ gulp.task('libs', () => {
 
 gulp.task('clean', cb => {
   rimraf('dist', cb);
-});
-
-gulp.task('examples', cb => {
-  execSync('cp -r examples dist', { stdio: 'inherit' });
-  cb();
-});
-
-gulp.task('html', cb => {
-  execSync('cp -r index.html dist', { stdio: 'inherit' });
-  cb();
 });
