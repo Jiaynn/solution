@@ -65,20 +65,19 @@
             vr.init(function () {
 
             });
-
-            var options = { 'muted': true, 'autoplay': true };
-            var url = new URLSearchParams(location.search).get('url');
-            vr.play(url, vr.resType.sliceVideo, options);
-            vr.video.setAttribute("loop", "loop");
-            vr.video.crossOrigin = "Anonymous";
-
-            document.getElementById('switch').addEventListener('click', function (e) {
-                vr.play(url,
-                    vr.resType.sliceVideo, options)
-            }, false);
-
-            vr.video.onended = function () {
-            }
+  
+          var options = { 'muted': true, 'autoplay': true };
+          vr.play('http://ivi.bupt.edu.cn/hls/cctv5phd.m3u8', vr.resType.sliceVideo, options);
+          vr.video.setAttribute("loop", "loop");
+          vr.video.crossOrigin = "Anonymous";
+  
+          document.getElementById('switch').addEventListener('click', function (e) {
+            vr.play('http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8',
+              vr.resType.sliceVideo, options)
+          }, false);
+  
+          vr.video.onended = function () {
+          }
 
         }
 
