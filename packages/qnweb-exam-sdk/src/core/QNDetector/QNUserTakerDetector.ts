@@ -23,8 +23,7 @@ export class QNUserTakerDetector extends QNVideoDetector {
 
   private config: QNUserTakerDetectorConfig;
   private timer?: NodeJS.Timer;
-  private onCallback: (result: number) => void = () => {
-  };
+  private onCallback: ((result: number) => void) | null = null;
 
   /**
    * 注册回调
@@ -47,7 +46,7 @@ export class QNUserTakerDetector extends QNVideoDetector {
         realname: this.config.realName,
         idcard: this.config.idCard
       }).then(result => {
-        this.onCallback(result.response.similarity);
+        this.onCallback?.(result.response.similarity);
       });
     }, this.config?.interval || 1000);
   }

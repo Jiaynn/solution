@@ -1,4 +1,4 @@
-import { QNCamera, QNMicrophone, QNScreen } from '../../core';
+import { QNCamera, QNMicrophone, QNScreen } from '@/core';
 
 /**
  * 设备

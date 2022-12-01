@@ -18,8 +18,7 @@ export class QNMultiplePeopleDetector extends QNVideoDetector {
 
   private config?: QNMediaDetectorConfig;
   private timer?: NodeJS.Timer;
-  private onCallback: (result: number) => void = () => {
-  };
+  private onCallback: ((result: number) => void) | null = null;
 
   /**
    * 注册回调
@@ -39,7 +38,7 @@ export class QNMultiplePeopleDetector extends QNVideoDetector {
     }
     this.timer = setInterval(() => {
       QNFaceDetector.run(track).then(result => {
-        this.onCallback(result.response.num_face);
+        this.onCallback?.(result?.response?.result?.face_num || 0);
       });
     }, this.config?.interval || 1000);
   }

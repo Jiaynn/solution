@@ -4,6 +4,8 @@ import json from '@rollup/plugin-json';
 import commonjs from '@rollup/plugin-commonjs';
 import { uglify } from 'rollup-plugin-uglify';
 import replace from '@rollup/plugin-replace';
+import alias from '@rollup/plugin-alias';
+import * as path from 'path';
 
 const pkg = require('./package.json');
 
@@ -36,13 +38,21 @@ export default {
     }
   ],
   external: [
-    'qnweb-rtc',
-    'qnweb-rtc-ai',
+    "qnweb-rtc",
+    "qnweb-rtc-ai",
   ],
   watch: {
     include: 'src/**'
   },
   plugins: [
+    alias({
+      entries: [
+        {
+          find: '@',
+          replacement: path.resolve(__dirname, 'src')
+        }
+      ],
+    }),
     replace({
       VERSION: JSON.stringify(pkg.version)
     }),

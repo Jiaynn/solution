@@ -12,6 +12,7 @@ export class QNAbnormalSoundDetector extends QNAudioDetector {
   }
 
   on() {
+    console.log('TODO: on');
   }
 
   /**
@@ -19,13 +20,13 @@ export class QNAbnormalSoundDetector extends QNAudioDetector {
    * @param track
    */
   enable(track: QNLocalAudioTrack | QNRemoteAudioTrack) {
-
+    console.log('TODO: enable', track);
   }
 
   /**
    * 关闭检测
    */
   disable() {
-
+    console.log('TODO: disable');
   }
 }

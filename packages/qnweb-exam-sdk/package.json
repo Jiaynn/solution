@@ -17,10 +17,10 @@
   "scripts": {
     "doc:preview": "npm run doc:build && http-server doc",
     "doc:build": "rimraf doc && typedoc --out doc src/index.ts",
-    "build:prod": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:prod",
-    "build:test": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:test",
-    "build:dev": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:dev",
-    "build": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:prod",
+    "build:prod": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:prod && tsc-alias",
+    "build:test": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:test && tsc-alias",
+    "build:dev": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:dev && tsc-alias",
+    "build": "npm run build:prod",
     "dev": "rimraf build && rollup -c rollup.config.ts --silent --watch --environment NODE_ENV:dev",
     "test": "jest -c jest.config.ts",
     "coverage": "jest -c jest.config.ts --coverage",
@@ -29,6 +29,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx, \"src/**/*\""
   },
   "devDependencies": {
+    "@rollup/plugin-alias": "^4.0.2",
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
@@ -41,8 +42,6 @@
     "jest": "^27.0.4",
     "lodash.camelcase": "^4.3.0",
     "prompt": "^1.1.0",
-    "qnweb-rtc": "^4.1.0",
-    "qnweb-rtc-ai": "^4.0.0-beta.4",
     "replace-in-file": "^6.2.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.51.1",
@@ -51,12 +50,17 @@
     "shelljs": "^0.8.4",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
+    "tsc-alias": "^1.7.1",
     "tslib": "^2.2.0",
     "typedoc": "^0.22.11",
     "typescript": "^4.3.2"
   },
+  "dependencies": {
+    "qnweb-rtc": "4.1.0",
+    "qnweb-rtc-ai": "4.1.0"
+  },
   "peerDependencies": {
-    "qnweb-rtc": "^4.1.0",
-    "qnweb-rtc-ai": "^4.0.0-beta.4"
+    "qnweb-rtc": "4.1.0",
+    "qnweb-rtc-ai": "4.1.0"
   }
 }

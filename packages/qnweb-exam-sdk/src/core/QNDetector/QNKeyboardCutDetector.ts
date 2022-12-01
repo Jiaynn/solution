@@ -13,8 +13,7 @@ export class QNKeyboardCutDetector extends QNBrowserDetector {
     this.handleCut = this.handleCut.bind(this);
   }
 
-  private onCallback: (result: ClipboardEvent) => void = () => {
-  };
+  private onCallback: ((result: ClipboardEvent) => void) | null = null;
 
   /**
    * 注册回调
@@ -39,6 +38,6 @@ export class QNKeyboardCutDetector extends QNBrowserDetector {
   }
 
   handleCut(event: ClipboardEvent) {
-    this.onCallback(event);
+    this.onCallback?.(event);
   }
 }

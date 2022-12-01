@@ -16,8 +16,8 @@ import {
   QNCamera, QNInternalDevice, QNMicrophone, QNScreen,
   QNAudioDetector, QNBrowserDetector, QNDetector, QNVideoDetector
 } from './index';
-import { log, parseStringToObject } from '../utils';
-import { QNTestResult } from '../types';
+import { log, parseStringToObject } from '@/utils';
+import { QNTestResult } from '@/types';
 
 export type QNDeviceId = 'camera' | 'microphone' | 'screen';
 
@@ -138,7 +138,7 @@ export class QNExamClient {
    * @param headImgPath
    */
   identify(headImgPath: string) {
-
+    console.log('TODO:identify', headImgPath);
   }
 
   /**

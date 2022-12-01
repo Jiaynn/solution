@@ -1,3 +1,4 @@
+import { InternalFunction } from '@/types';
 import { QNBrowserDetector } from './QNDetector';
 
 /**
@@ -13,8 +14,7 @@ export class QNKeyboardCopyDetector extends QNBrowserDetector {
     this.handleCopy = this.handleCopy.bind(this);
   }
 
-  private onCallback: Function = () => {
-  };
+  private onCallback: InternalFunction | null = null;
 
   /**
    * 注册回调
@@ -39,6 +39,6 @@ export class QNKeyboardCopyDetector extends QNBrowserDetector {
   }
 
   handleCopy(event: ClipboardEvent) {
-    this.onCallback(event);
+    this.onCallback?.(event);
   }
 }

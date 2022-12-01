@@ -18,8 +18,7 @@ export class QNOutOfScreenDetector extends QNVideoDetector {
 
   private config?: QNMediaDetectorConfig;
   private timer?: NodeJS.Timer;
-  private onCallback: (result: boolean) => void = () => {
-  };
+  private onCallback: ((result: boolean) => void) | null = null;
 
   /**
    * 注册回调
@@ -39,7 +38,8 @@ export class QNOutOfScreenDetector extends QNVideoDetector {
     }
     this.timer = setInterval(() => {
       QNFaceDetector.run(track).then(result => {
-        this.onCallback(result.response.num_face <= 0);
+        const num = result?.response?.result?.face_num || 0;
+        this.onCallback?.(num <= 0);
       });
     }, this.config?.interval || 1000);
   }

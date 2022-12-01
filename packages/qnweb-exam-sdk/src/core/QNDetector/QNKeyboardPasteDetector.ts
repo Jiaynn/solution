@@ -13,8 +13,7 @@ export class QNKeyboardPasteDetector extends QNBrowserDetector {
     this.handlePaste = this.handlePaste.bind(this);
   }
 
-  private onCallback: (result: ClipboardEvent) => void = () => {
-  };
+  private onCallback: ((result: ClipboardEvent) => void) | null = null;
 
   /**
    * 注册回调
@@ -39,6 +38,6 @@ export class QNKeyboardPasteDetector extends QNBrowserDetector {
   }
 
   handlePaste(event: ClipboardEvent) {
-    this.onCallback(event);
+    this.onCallback?.(event);
   }
 }

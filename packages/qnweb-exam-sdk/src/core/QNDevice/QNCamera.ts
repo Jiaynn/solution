@@ -1,7 +1,7 @@
 import QNRTC, { QNCameraVideoTrack } from 'qnweb-rtc';
 
-import { QNDevice } from '../../core';
-import { QNCameraConfig } from '../../types';
+import { QNDevice } from '@/core';
+import { QNCameraConfig } from '@/types';
 
 export class QNCamera extends QNDevice {
   static create(config?: QNCameraConfig): QNCamera {

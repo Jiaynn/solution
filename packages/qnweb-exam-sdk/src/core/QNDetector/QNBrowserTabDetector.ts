@@ -14,8 +14,7 @@ export class QNBrowserTabDetector extends QNBrowserDetector {
     this.handleVisibilityChange = this.handleVisibilityChange.bind(this);
   }
 
-  private onCallback: (result: VisibilityState) => void = () => {
-  };
+  private onCallback: ((result: VisibilityState) => void) | null = null;
 
   /**
    * 注册回调
@@ -40,6 +39,6 @@ export class QNBrowserTabDetector extends QNBrowserDetector {
   }
 
   handleVisibilityChange() {
-    this.onCallback(document.visibilityState);
+    this.onCallback?.(document.visibilityState);
   }
 }

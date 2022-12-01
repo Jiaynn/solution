@@ -1,5 +1,7 @@
 import { QNLocalAudioTrack, QNLocalVideoTrack, QNRemoteAudioTrack, QNRemoteVideoTrack } from 'qnweb-rtc';
 
+import { InternalFunction } from '@/types';
+
 /**
  * 视频检测器
  */
@@ -8,7 +10,7 @@ export abstract class QNVideoDetector {
    * 事件回调监听
    * @param callback
    */
-  abstract on(callback: Function): void;
+  abstract on(callback: InternalFunction): void;
 
   /**
    * 开启检测
@@ -30,7 +32,7 @@ export abstract class QNAudioDetector {
    * 事件回调监听
    * @param callback
    */
-  abstract on(callback: Function): void;
+  abstract on(callback: InternalFunction): void;
 
   /**
    * 开启检测
@@ -52,7 +54,7 @@ export abstract class QNBrowserDetector {
    * 事件回调监听
    * @param callback
    */
-  abstract on(callback: Function): void;
+  abstract on(callback: InternalFunction): void;
 
   /**
    * 开启检测
