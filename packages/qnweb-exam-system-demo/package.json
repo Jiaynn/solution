@@ -1,6 +1,6 @@
 {
   "name": "qnweb-exam-system-demo",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build --mode prod",
