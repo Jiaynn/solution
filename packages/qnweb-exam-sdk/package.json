@@ -1,6 +1,6 @@
 {
   "name": "qnweb-exam-sdk",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "build/qnweb-exam-sdk.umd.js",
   "module": "build/qnweb-exam-sdk.esm.js",
   "types": "build/types/index.d.ts",
