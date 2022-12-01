@@ -342,6 +342,7 @@ importers:
       '@ant-design/icons': ^4.7.0
       '@types/react': ^17.0.33
       '@types/react-dom': ^17.0.10
+      '@types/recordrtc': ^5.6.10
       '@vitejs/plugin-react': ^1.0.7
       ahooks: ^3.1.9
       antd: ^4.16.13
@@ -353,14 +354,15 @@ importers:
       moment: ^2.29.1
       qn-rtplayer-web: ^1.0.3
       qnweb-cube-ui: workspace:^0.0.0
-      qnweb-exam-sdk: ^0.0.2
+      qnweb-exam-sdk: 0.0.3
       qnweb-high-level-rtc: 4.0.0
-      qnweb-rtc: ^4.1.0
-      qnweb-rtc-ai: ^4.0.0-beta.1
+      qnweb-rtc: 4.1.0
+      qnweb-rtc-ai: 4.1.0
       qrcode.react: ^1.0.1
       react: ^17.0.2
       react-dom: ^17.0.2
       react-router-dom: ^5.3.0
+      recordrtc: ^5.6.2
       typescript: ^4.4.4
       vconsole: ^3.7.0
       vite: ^2.7.2
@@ -379,15 +381,17 @@ importers:
       qnweb-exam-sdk: link:../qnweb-exam-sdk
       qnweb-high-level-rtc: link:../qnweb-high-level-rtc
       qnweb-rtc: 4.1.0
-      qnweb-rtc-ai: 4.0.0-beta.4
+      qnweb-rtc-ai: 4.1.0
       qrcode.react: 1.0.1_react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-router-dom: 5.3.0_react@17.0.2
+      recordrtc: 5.6.2
       vconsole: 3.12.0
     devDependencies:
       '@types/react': 17.0.39
       '@types/react-dom': 17.0.11
+      '@types/recordrtc': 5.6.10
       '@vitejs/plugin-react': 1.2.0
       eslint: 7.32.0
       typescript: 4.5.5
@@ -3693,6 +3697,10 @@ packages:
       '@types/prop-types': 15.7.4
       '@types/scheduler': 0.16.2
       csstype: 3.0.10
+    dev: true
+
+  /@types/recordrtc/5.6.10:
+    resolution: {integrity: sha512-IuJZgrnlsLgtD1mmGPM4v8HnqLuYZGt+YKUbJPhtDcI9DyOMNFSb4xeYn/Uwc2rJwoeHZ1YX4jpWCDnhoAbMPg==}
     dev: true
 
   /@types/resolve/1.17.1:
@@ -14612,14 +14620,6 @@ packages:
       ua-parser-js: 0.7.31
       webrtc-adapter: 7.7.1
       wolfy87-eventemitter: 5.2.9
-    dev: false
-
-  /qnweb-rtc-ai/4.0.0-beta.4:
-    resolution: {integrity: sha512-e/6MIvL/AXSuyXgXeE5U9BelR80R75Ln0QC4dg6mM6MZ4UXBrX9J49LD2vApQc9T1UPd8EIDXjLatSUZTg/uWA==}
-    dependencies:
-      crypto-js: 4.1.1
-      image-conversion: 2.1.1
-      qnweb-rtc: 4.1.0
     dev: false
 
   /qnweb-rtc-ai/4.1.0:
