@@ -81,7 +81,7 @@ export class FaceActionLiveDetector {
         height: encodeHeight,
       },
       bitrate: encodeBitRate,
-      framerate: encodeFPS
+      frameRate: encodeFPS
     });
     this.recorder.startRecording();
     return this;
