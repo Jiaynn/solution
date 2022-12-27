@@ -1,7 +1,5 @@
 import RecordRTC from 'recordrtc';
 
-import './qnweb-rtc-4.0.1-beta.7.umd';
-
 import {
   QNFaceActliveParams,
   QNFaceActliveResult,
