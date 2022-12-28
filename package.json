@@ -27,7 +27,11 @@
     "cz": "git-cz",
     "start": "ts-node scripts/start.ts",
     "release": "ar-changelog release",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "lint": "eslint 'packages/**/src/**/*.{ts,tsx}'",
+    "lint-fix": "eslint --fix 'packages/**/src/**/*.{ts,tsx}'",
+    "pretty": "prettier --write 'packages/**/src/**/*.{ts,tsx}'",
+    "pretty-check": "prettier --check 'packages/**/src/**/*.{ts,tsx}'"
   },
   "devDependencies": {
     "@changesets/cli": "^2.23.0",
@@ -35,11 +39,14 @@
     "ar-changelog": "^4.0.0",
     "conventional-changelog-cli": "^2.2.2",
     "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "execa": "^5.1.1",
     "git-cz": "^4.8.0",
     "kolorist": "^1.5.1",
+    "prettier": "^2.8.1",
     "prompts": "^2.4.2",
     "ts-node": "^10.7.0"
   }
