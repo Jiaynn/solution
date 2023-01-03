@@ -24,6 +24,8 @@
     "qnweb-media-admin:jenkins-prod": "pnpm install && pnpm --filter qnweb-media-admin build",
     "qnweb-vr-player-demo:jenkins-test": "pnpm install && pnpm --filter qnweb-vr-player-demo build",
     "qnweb-vr-player-demo:jenkins-prod": "pnpm install && pnpm --filter qnweb-vr-player-demo build",
+    "qnweb-scheme-h5-demo:jenkins-test": "pnpm install && pnpm --filter qnweb-scheme-h5-demo build",
+    "qnweb-scheme-h5-demo:jenkins-prod": "pnpm install && pnpm --filter qnweb-scheme-h5-demo build",
     "cz": "git-cz",
     "start": "ts-node scripts/start.ts",
     "release": "ar-changelog release",

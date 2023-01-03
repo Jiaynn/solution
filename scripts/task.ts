@@ -1,4 +1,4 @@
-import { buildSDK, runShell } from './utils';
+import { buildDemo, buildSDK, runShell } from './utils';
 
 export const preRunTask = {
   // Cube
@@ -68,6 +68,12 @@ export const preRunTask = {
     async run() {
       await buildSDK('qnweb-whiteboard');
       await runShell('copy_whiteboard');
+    }
+  },
+  'qnweb-scheme-h5-demo':{
+    title:'牛魔方方案h5 demo',
+    async run(){
+      await buildSDK('qnweb-scheme-h5-demo')
     }
   }
 };
