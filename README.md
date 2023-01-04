@@ -2,13 +2,25 @@
 
 一个基于pnpm，集合了牛魔方、白板、IM等项目的monorepo
 
-## 安装依赖
+## 分支
+
+* main：生产环境分支
+* develop：测试环境分支
+* insex-rtc-ai-v2：新致客户 rtc-ai 项目分支
+* rtc-ai-v4：基于 [qnweb-rtc](https://developer.qiniu.com/rtc/9478/an-overview-of-the-web-sd) sdk 的 rtc-ai 项目分支
+* vr-player：VR 播放器项目分支
+* whiteboard-v1：白板项目 v1 版本分支
+* whiteboard-v2：白板项目 v2 版本分支
+
+## 如何运行/打包
+
+### 安装依赖
 
 ```shell
 $ pnpm install
 ```
 
-## 运行
+### 运行
 
 [packageName] 为项目名称，如 qnweb-interview-demo
 
@@ -18,7 +30,7 @@ $ pnpm install
 $ pnpm --filter [packageName] dev
 ```
 
-## 打包
+### 打包
 
 [packageName] 为项目名称，如 qnweb-interview-demo
 
