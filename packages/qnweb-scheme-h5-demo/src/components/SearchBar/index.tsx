@@ -1,30 +1,29 @@
-import React, { FC, useRef, useState } from "react";
-import "./index.scss";
-import { useNavigate } from "react-router-dom";
-import { SearchBarProps } from "@/types";
+import React, { FC, memo, useRef, useState } from 'react';
 
-export const SearchBar: FC<SearchBarProps> = (props) => {
-  const { iptValue } = props;
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const [searchValue, setSearchValue] = useState(iptValue);
-  const navigate = useNavigate();
+import { SearchBarProps } from '@/types';
 
-  function handleSearch(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    inputRef.current?.blur();
-    navigate("/search", { state: { search: searchValue }, replace: true });
-  }
-  return (
-    <div className="search">
-      <form onSubmit={(e) => handleSearch(e)} action="">
-        <input
-          ref={inputRef}
-          type="search"
-          placeholder="搜索应用名称"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-        />
-      </form>
-    </div>
-  );
-};
+import './index.scss';
+
+export const SearchBar: FC<SearchBarProps> = memo(function SearchBar(props) {
+	const { iptValue, goSearch } = props;
+	const inputRef = useRef<HTMLInputElement | null>(null);
+	const [searchValue, setSearchValue] = useState(iptValue);
+	function handleSearch(e: React.FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+		inputRef.current?.blur();
+		goSearch(searchValue);
+	}
+	return (
+		<div className="search">
+			<form onSubmit={(e) => handleSearch(e)}>
+				<input
+					ref={inputRef}
+					type="search"
+					placeholder="搜索应用名称"
+					value={searchValue}
+					onChange={(e) => setSearchValue(e.target.value)}
+				/>
+			</form>
+		</div>
+	);
+});

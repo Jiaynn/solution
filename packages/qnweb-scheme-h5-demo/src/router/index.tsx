@@ -1,24 +1,25 @@
-import { Navigate } from "react-router-dom";
-import React from "react";
-import { Home } from "@/pages/Home";
-import { ShowDetail } from "@/pages/ShowDetail";
-import { Search } from "@/pages/Search";
+import React, { lazy } from 'react';
 
+import AppInfo from '@/pages/AppInfo';
+
+const Home = lazy(() => import('@/pages/Home'));
+const ShowDetail = lazy(() => import('@/pages/ShowDetail'));
+const Search = lazy(() => import('@/pages/Search'));
 export default [
-  {
-    path: "/",
-    element: <Navigate to="/list"></Navigate>,
-  },
-  {
-    path: "list",
-    element: <Home></Home>,
-  },
-  {
-    path: "detail",
-    element: <ShowDetail></ShowDetail>,
-  },
-  {
-    path: "search",
-    element: <Search></Search>,
-  },
+	{
+		path: '/',
+		element: <Home></Home>
+	},
+	{
+		path: '/detail',
+		element: <ShowDetail></ShowDetail>
+	},
+	{
+		path: '/search',
+		element: <Search></Search>
+	},
+	{
+		path: '/appInfo',
+		element: <AppInfo></AppInfo>
+	}
 ];

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^3.0.2",
     "pdfjs-dist": "^3.1.81",
     "postcss-px-to-viewport": "^1.1.1",
     "react": "^18.2.0",
