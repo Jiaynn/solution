@@ -30,7 +30,7 @@ module.exports = {
 		'issues',
 		'lerna'
 	],
-	scopes: projects.concat('*'),
+	scopes: ['*'].concat(projects),
 	types: {
 		chore: {
 			description: 'Build process or auxiliary tool changes',
