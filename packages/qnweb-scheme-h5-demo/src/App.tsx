@@ -5,6 +5,10 @@ import routes from './router';
 
 function App() {
 	const element = useRoutes(routes);
-	return <Suspense>{element}</Suspense>;
+	return (
+		<Suspense>
+			<>{element}</>
+		</Suspense>
+	);
 }
 export default App;
