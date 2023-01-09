@@ -18,7 +18,6 @@ export const list = [
 		isHot: false,
 		content: '53',
 		folder: 'LiveBroadCast'
-		// 'https://demo-qnrtc-files.qnsdk.com/qnweb-scheme-h5-demo/documents/Qiniu-Event-Cloud-Annual-Meeting-Solution.pdf'
 	},
 	{
 		id: 2,

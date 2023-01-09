@@ -13,10 +13,10 @@ export function getImageUrl(
 		const image = document.createElement('img');
 		const judgeUrl =
 			i < 9
-				? `../static/${folder}/Qiniu-Event-Cloud-Annual-Meeting-Solution_page-000${
+				? `https://demo-qnrtc-files.qnsdk.com/qnweb-scheme-h5-demo/static/${folder}/Qiniu-Event-Cloud-Annual-Meeting-Solution_page-000${
 						i + 1
 				  }.jpg`
-				: `../static/${folder}/Qiniu-Event-Cloud-Annual-Meeting-Solution_page-00${
+				: `https://demo-qnrtc-files.qnsdk.com/qnweb-scheme-h5-demo/static/${folder}/Qiniu-Event-Cloud-Annual-Meeting-Solution_page-00${
 						i + 1
 				  }.jpg`;
 		const url = new URL(judgeUrl, import.meta.url).href;
