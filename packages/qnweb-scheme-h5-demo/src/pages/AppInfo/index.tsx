@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { getImageUrl } from '@/utils';
+import { renderImageUrl } from '@/utils';
 
 import './index.scss';
 
@@ -20,9 +20,9 @@ export default function AppInfo() {
 			: alert('请在app上运行哦～');
 	};
 	useEffect(() => {
-		content.includes('http')
-			? null
-			: getImageUrl(content, folder, contentRef.current);
+		if (!content.includes('http')) {
+			renderImageUrl(content, folder, contentRef.current);
+		}
 	}, [content, folder]);
 
 	return (

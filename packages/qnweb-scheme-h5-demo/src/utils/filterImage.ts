@@ -4,7 +4,7 @@
  * @param folder
  * @param contentDom
  */
-export function getImageUrl(
+export function renderImageUrl(
 	content: string,
 	folder: string,
 	contentDom: HTMLDivElement | null
