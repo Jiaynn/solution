@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - '6'
+cache:
+  yarn: true
+branches:
+  only:
+    - master
+    - develop
+script:
+  - npm test
+  - ./aone.sh

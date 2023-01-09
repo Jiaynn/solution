@@ -8,3 +8,5 @@ coverage
 
 .gitignore
 .prettierignore
+
+packages/portal-solution

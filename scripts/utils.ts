@@ -5,11 +5,11 @@ import execa from 'execa';
 
 // https://github.com/vitejs/vite/blob/main/scripts/releaseUtils.ts#L77-L83
 export async function run(
-  bin: string,
-  args: string[],
-  opts: ExecaOptions<string> = {}
+	bin: string,
+	args: string[],
+	opts: ExecaOptions<string> = {}
 ) {
-  return execa(bin, args, { stdio: 'inherit', ...opts });
+	return execa(bin, args, { stdio: 'inherit', ...opts });
 }
 
 /**
@@ -18,10 +18,7 @@ export async function run(
  * @param command
  */
 export async function pnpmFilter(name: string, command: string) {
-  return run(
-    'pnpm',
-    ['--filter', name, command]
-  );
+	return run('pnpm', ['--filter', name, command]);
 }
 
 /**
@@ -29,23 +26,15 @@ export async function pnpmFilter(name: string, command: string) {
  * @param name
  */
 export async function devProject(name: string) {
-  return pnpmFilter(name, 'dev');
+	return pnpmFilter(name, 'dev');
 }
 
 /**
- * build demo
+ * build
  * @param name
  */
-export async function buildDemo(name: string) {
-  return pnpmFilter(name, 'build');
-}
-
-/**
- * build sdk
- * @param name
- */
-export async function buildSDK(name: string) {
-  return pnpmFilter(name, 'build');
+export async function runBuild(name: string) {
+	return pnpmFilter(name, 'build');
 }
 
 /**
@@ -53,10 +42,7 @@ export async function buildSDK(name: string) {
  * @param name
  */
 export async function runShell(name: string) {
-  return run(
-    'sh',
-    [`shell/${name}.sh`],
-  );
+	return run('sh', [`shell/${name}.sh`]);
 }
 
 /**
@@ -64,9 +50,5 @@ export async function runShell(name: string) {
  * @param packageManager
  */
 export async function installDependencies(packageManager?: string) {
-  return run(
-    packageManager || 'pnpm',
-    ['install'],
-  )
+	return run(packageManager || 'pnpm', ['install']);
 }
-
