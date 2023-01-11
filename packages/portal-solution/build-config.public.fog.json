@@ -1,0 +1,32 @@
+{
+  "extends": "./build-config.json",
+  "publicUrl": "https://qiniu.staticfile.org",
+  "envVariables": {
+    "process.env.TRACK_ANALYTICS": true,
+    "process.env.ROUTE_BASE_NAME_MAP": "built-in",
+    "process.env.SITE_CONFIG": {
+      "pageTitle": "七牛云 - 雾存储",
+      "loadingText": "平步云端，数据为先",
+      "favicon": "https://qiniu.staticfile.org/static/favicon.ico",
+      "loadingImg": "https://qiniu.staticfile.org/static/loading.gif"
+    }
+  },
+  "deploy": {
+    "config": {
+      "accessKey": "tkabCgtBh5OiAbZ32-BC3KbLpWO274oY4nL6e5hr",
+      "secretKey": "1oUlrJlpJprkl4sLZQYdJLsGoVTCZaZXEbmiZTNh",
+      "bucket": "portal-v4-static"
+    }
+  },
+  "devProxy": {
+    "/api/proxy": "http://portalv4.dev.qiniu.io",
+    "/api/kodov2": "http://portalv4.dev.qiniu.io",
+    "/api/gaea": "http://portalv4.dev.qiniu.io",
+    "/api/fusion": "http://portalv4.dev.qiniu.io",
+    "/api/kodo": "http://portalv4.dev.qiniu.io",
+    "/api/pili": "http://portalv4.dev.qiniu.io",
+    "/api/dora": "http://portalv4.dev.qiniu.io",
+    "/dynamic": "http://portalv4.dev.qiniu.io",
+    "/signin": "http://portalv4.dev.qiniu.io"
+  }
+}

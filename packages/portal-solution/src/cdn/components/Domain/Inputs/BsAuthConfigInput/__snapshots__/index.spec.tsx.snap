@@ -1,0 +1,2446 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="domain-bs-auth-config-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      aria-checked={true}
+      checked={true}
+      className="ant-switch ant-switch-checked"
+      defaultChecked={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      role="switch"
+      type="button"
+    >
+      <span
+        className="ant-switch-inner"
+      >
+        开启
+      </span>
+    </button>
+  </div>
+  <div>
+    <div
+      className="help"
+    >
+      <p
+        className="line"
+      >
+        注意：
+      </p>
+      <ul
+        className="tips"
+      >
+        <li>
+          使用回源鉴权功能，每次请求都要鉴权，访问量大时，需考虑鉴权服务器的压力和访问性能。
+        </li>
+        <li>
+          <span
+            className="text-warning"
+          >
+            回源鉴权与时间戳防盗链功能不能同时开启。
+          </span>
+        </li>
+      </ul>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权服务器地址
+      </h4>
+      <p
+        className="line"
+      >
+        格式： https://auth.example.com/cdnauth 或者 http://127.0.0.1:8080/cdnauth
+      </p>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper"
+        >
+          <input
+            className="ant-input"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="请输入鉴权服务器地址"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        请求方法
+      </h4>
+      <div
+        className="line"
+      >
+        <div
+          className="ant-radio-group ant-radio-group-outline"
+        >
+          <label
+            className="ant-radio-wrapper ant-radio-wrapper-checked"
+          >
+            <span
+              className="ant-radio ant-radio-checked"
+              style={Object {}}
+            >
+              <input
+                checked={true}
+                className="ant-radio-input"
+                disabled={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="HEAD"
+              />
+              <span
+                className="ant-radio-inner"
+              />
+            </span>
+            <span>
+              HEAD
+            </span>
+          </label>
+          <label
+            className="ant-radio-wrapper"
+          >
+            <span
+              className="ant-radio"
+              style={Object {}}
+            >
+              <input
+                checked={false}
+                className="ant-radio-input"
+                disabled={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="GET"
+              />
+              <span
+                className="ant-radio-inner"
+              />
+            </span>
+            <span>
+              GET
+            </span>
+          </label>
+          <label
+            className="ant-radio-wrapper"
+          >
+            <span
+              className="ant-radio"
+              style={Object {}}
+            >
+              <input
+                checked={false}
+                className="ant-radio-input"
+                disabled={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="POST"
+              />
+              <span
+                className="ant-radio-inner"
+              />
+            </span>
+            <span>
+              POST
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权参数
+      </h4>
+      <p
+        className="line"
+      >
+        约定需要传递的 URL 参数，每行输入一个，用回车分隔，最多支持输入 20 条。
+      </p>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper"
+        >
+          <textarea
+            className="ant-input"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="请输入鉴权参数，例如
+param1
+param2"
+            style={Object {}}
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line req-conf-title"
+      >
+        更多参数
+      </h4>
+      <p
+        className="line"
+      >
+        你可以添加更多需要传递的参数，这些参数不参与鉴权。
+      </p>
+      <div
+        className="req-conf-content-wrapper"
+      >
+        <div
+          className="title-wrapper"
+        >
+          <span
+            className="second-level-title"
+          >
+            Header
+          </span>
+          <i
+            aria-label="icon: plus-circle"
+            className="anticon anticon-plus-circle icon-add"
+            onClick={[Function]}
+            tabIndex={-1}
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="plus-circle"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+              />
+              <path
+                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+              />
+            </svg>
+          </i>
+        </div>
+      </div>
+      <div
+        className="req-conf-content-wrapper"
+      >
+        <div
+          className="title-wrapper"
+        >
+          <span
+            className="second-level-title"
+          >
+            Url Query
+          </span>
+          <i
+            aria-label="icon: plus-circle"
+            className="anticon anticon-plus-circle icon-add"
+            onClick={[Function]}
+            tabIndex={-1}
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="plus-circle"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+              />
+              <path
+                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+              />
+            </svg>
+          </i>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        完整 URL 回源鉴权
+      </h4>
+      <p
+        className="line"
+      >
+        是否将用户请求的完整资源路径拼接在鉴权服务地址后回源鉴权，默认关闭 - 不拼接
+      </p>
+      <div
+        className="line"
+      >
+        <button
+          aria-checked={false}
+          checked={false}
+          className="ant-switch"
+          defaultChecked={false}
+          onChange={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseUp={[Function]}
+          role="switch"
+          type="button"
+        >
+          <span
+            className="ant-switch-inner"
+          >
+            关闭
+          </span>
+        </button>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权返回状态码
+      </h4>
+      <p
+        className="line"
+      >
+        约定合法请求鉴权返回内容，三位数字，建议不使用 5XX
+      </p>
+      <p
+        className="line"
+      >
+        建议鉴权成功返回状态码: 2XX，鉴权失败返回状态码: 4XX
+      </p>
+      <div
+        className="line status-code-input-line"
+      >
+        <label
+          className="status-code-input-label"
+        >
+          鉴权成功
+        </label>
+        <div
+          className="text-input-wrapper status-code-input-wrapper"
+        >
+          <input
+            className="ant-input"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="2XX"
+            type="number"
+            value={200}
+          />
+        </div>
+      </div>
+      <div
+        className="line status-code-input-line"
+      >
+        <label
+          className="status-code-input-label"
+        >
+          鉴权失败
+        </label>
+        <div
+          className="text-input-wrapper status-code-input-wrapper"
+        >
+          <input
+            className="ant-input"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="4XX"
+            type="number"
+            value={401}
+          />
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        超时等待时间
+      </h4>
+      <p
+        className="line"
+      >
+        范围：最小 0.1s，最大 10s
+      </p>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper time-limit-input-wrapper"
+        >
+          <span
+            className="ant-input-group-wrapper"
+          >
+            <span
+              className="ant-input-wrapper ant-input-group"
+            >
+              <input
+                className="ant-input"
+                disabled={false}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                style={null}
+                type="number"
+                value=""
+              />
+              <span
+                className="ant-input-group-addon"
+              >
+                <span
+                  className="time-limit-unit"
+                >
+                  秒
+                </span>
+              </span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权超时
+      </h4>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper strict-input-wrapper"
+        >
+          <div
+            className="ant-select ant-select-enabled"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onMouseDown={[Function]}
+            onMouseOut={[Function]}
+            onMouseUp={[Function]}
+            onTouchStart={[Function]}
+          >
+            <div
+              aria-autocomplete="list"
+              aria-controls="test-uuid"
+              aria-expanded={false}
+              aria-haspopup="true"
+              className="ant-select-selection
+            ant-select-selection--single"
+              onKeyDown={[Function]}
+              role="combobox"
+              tabIndex={0}
+            >
+              <div
+                className="ant-select-selection__rendered"
+              >
+                <div
+                  className="ant-select-selection-selected-value"
+                  style={
+                    Object {
+                      "display": "block",
+                      "opacity": 1,
+                    }
+                  }
+                  title="鉴权通过"
+                >
+                  鉴权通过
+                </div>
+              </div>
+              <span
+                className="ant-select-arrow"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "WebkitUserSelect": "none",
+                    "userSelect": "none",
+                  }
+                }
+                unselectable="on"
+              >
+                <i
+                  aria-label="icon: down"
+                  className="anticon anticon-down ant-select-arrow-icon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    data-icon="down"
+                    fill="currentColor"
+                    focusable="false"
+                    height="1em"
+                    viewBox="64 64 896 896"
+                    width="1em"
+                  >
+                    <path
+                      d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                    />
+                  </svg>
+                </i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权结果缓存
+      </h4>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper cache-input-wrapper"
+        >
+          <button
+            aria-checked={false}
+            checked={false}
+            className="ant-switch"
+            defaultChecked={false}
+            onChange={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onMouseUp={[Function]}
+            role="switch"
+            type="button"
+          >
+            <span
+              className="ant-switch-inner"
+            >
+              关闭
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with disabled 1`] = `
+<div
+  className="domain-bs-auth-config-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      aria-checked={true}
+      checked={true}
+      className="ant-switch ant-switch-checked"
+      defaultChecked={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      role="switch"
+      type="button"
+    >
+      <span
+        className="ant-switch-inner"
+      >
+        开启
+      </span>
+    </button>
+  </div>
+  <div>
+    <div
+      className="help"
+    >
+      <p
+        className="line"
+      >
+        注意：
+      </p>
+      <ul
+        className="tips"
+      >
+        <li>
+          使用回源鉴权功能，每次请求都要鉴权，访问量大时，需考虑鉴权服务器的压力和访问性能。
+        </li>
+        <li>
+          <span
+            className="text-warning"
+          >
+            回源鉴权与时间戳防盗链功能不能同时开启。
+          </span>
+        </li>
+      </ul>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权服务器地址
+      </h4>
+      <p
+        className="line"
+      >
+        格式： https://auth.example.com/cdnauth 或者 http://127.0.0.1:8080/cdnauth
+      </p>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper"
+        >
+          <input
+            className="ant-input"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="请输入鉴权服务器地址"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        请求方法
+      </h4>
+      <div
+        className="line"
+      >
+        <div
+          className="ant-radio-group ant-radio-group-outline"
+        >
+          <label
+            className="ant-radio-wrapper ant-radio-wrapper-checked"
+          >
+            <span
+              className="ant-radio ant-radio-checked"
+              style={Object {}}
+            >
+              <input
+                checked={true}
+                className="ant-radio-input"
+                disabled={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="HEAD"
+              />
+              <span
+                className="ant-radio-inner"
+              />
+            </span>
+            <span>
+              HEAD
+            </span>
+          </label>
+          <label
+            className="ant-radio-wrapper"
+          >
+            <span
+              className="ant-radio"
+              style={Object {}}
+            >
+              <input
+                checked={false}
+                className="ant-radio-input"
+                disabled={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="GET"
+              />
+              <span
+                className="ant-radio-inner"
+              />
+            </span>
+            <span>
+              GET
+            </span>
+          </label>
+          <label
+            className="ant-radio-wrapper"
+          >
+            <span
+              className="ant-radio"
+              style={Object {}}
+            >
+              <input
+                checked={false}
+                className="ant-radio-input"
+                disabled={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="POST"
+              />
+              <span
+                className="ant-radio-inner"
+              />
+            </span>
+            <span>
+              POST
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权参数
+      </h4>
+      <p
+        className="line"
+      >
+        约定需要传递的 URL 参数，每行输入一个，用回车分隔，最多支持输入 20 条。
+      </p>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper"
+        >
+          <textarea
+            className="ant-input"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="请输入鉴权参数，例如
+param1
+param2"
+            style={Object {}}
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line req-conf-title"
+      >
+        更多参数
+      </h4>
+      <p
+        className="line"
+      >
+        你可以添加更多需要传递的参数，这些参数不参与鉴权。
+      </p>
+      <div
+        className="req-conf-content-wrapper"
+      >
+        <div
+          className="title-wrapper"
+        >
+          <span
+            className="second-level-title"
+          >
+            Header
+          </span>
+          <i
+            aria-label="icon: plus-circle"
+            className="anticon anticon-plus-circle icon-add"
+            onClick={[Function]}
+            tabIndex={-1}
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="plus-circle"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+              />
+              <path
+                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+              />
+            </svg>
+          </i>
+        </div>
+      </div>
+      <div
+        className="req-conf-content-wrapper"
+      >
+        <div
+          className="title-wrapper"
+        >
+          <span
+            className="second-level-title"
+          >
+            Url Query
+          </span>
+          <i
+            aria-label="icon: plus-circle"
+            className="anticon anticon-plus-circle icon-add"
+            onClick={[Function]}
+            tabIndex={-1}
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="plus-circle"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+              />
+              <path
+                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+              />
+            </svg>
+          </i>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        完整 URL 回源鉴权
+      </h4>
+      <p
+        className="line"
+      >
+        是否将用户请求的完整资源路径拼接在鉴权服务地址后回源鉴权，默认关闭 - 不拼接
+      </p>
+      <div
+        className="line"
+      >
+        <button
+          aria-checked={false}
+          checked={false}
+          className="ant-switch"
+          defaultChecked={false}
+          onChange={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseUp={[Function]}
+          role="switch"
+          type="button"
+        >
+          <span
+            className="ant-switch-inner"
+          >
+            关闭
+          </span>
+        </button>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权返回状态码
+      </h4>
+      <p
+        className="line"
+      >
+        约定合法请求鉴权返回内容，三位数字，建议不使用 5XX
+      </p>
+      <p
+        className="line"
+      >
+        建议鉴权成功返回状态码: 2XX，鉴权失败返回状态码: 4XX
+      </p>
+      <div
+        className="line status-code-input-line"
+      >
+        <label
+          className="status-code-input-label"
+        >
+          鉴权成功
+        </label>
+        <div
+          className="text-input-wrapper status-code-input-wrapper"
+        >
+          <input
+            className="ant-input"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="2XX"
+            type="number"
+            value={200}
+          />
+        </div>
+      </div>
+      <div
+        className="line status-code-input-line"
+      >
+        <label
+          className="status-code-input-label"
+        >
+          鉴权失败
+        </label>
+        <div
+          className="text-input-wrapper status-code-input-wrapper"
+        >
+          <input
+            className="ant-input"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="4XX"
+            type="number"
+            value={401}
+          />
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        超时等待时间
+      </h4>
+      <p
+        className="line"
+      >
+        范围：最小 0.1s，最大 10s
+      </p>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper time-limit-input-wrapper"
+        >
+          <span
+            className="ant-input-group-wrapper"
+          >
+            <span
+              className="ant-input-wrapper ant-input-group"
+            >
+              <input
+                className="ant-input"
+                disabled={false}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                style={null}
+                type="number"
+                value=""
+              />
+              <span
+                className="ant-input-group-addon"
+              >
+                <span
+                  className="time-limit-unit"
+                >
+                  秒
+                </span>
+              </span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权超时
+      </h4>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper strict-input-wrapper"
+        >
+          <div
+            className="ant-select ant-select-enabled"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onMouseDown={[Function]}
+            onMouseOut={[Function]}
+            onMouseUp={[Function]}
+            onTouchStart={[Function]}
+          >
+            <div
+              aria-autocomplete="list"
+              aria-controls="test-uuid"
+              aria-expanded={false}
+              aria-haspopup="true"
+              className="ant-select-selection
+            ant-select-selection--single"
+              onKeyDown={[Function]}
+              role="combobox"
+              tabIndex={0}
+            >
+              <div
+                className="ant-select-selection__rendered"
+              >
+                <div
+                  className="ant-select-selection-selected-value"
+                  style={
+                    Object {
+                      "display": "block",
+                      "opacity": 1,
+                    }
+                  }
+                  title="鉴权通过"
+                >
+                  鉴权通过
+                </div>
+              </div>
+              <span
+                className="ant-select-arrow"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "WebkitUserSelect": "none",
+                    "userSelect": "none",
+                  }
+                }
+                unselectable="on"
+              >
+                <i
+                  aria-label="icon: down"
+                  className="anticon anticon-down ant-select-arrow-icon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    data-icon="down"
+                    fill="currentColor"
+                    focusable="false"
+                    height="1em"
+                    viewBox="64 64 896 896"
+                    width="1em"
+                  >
+                    <path
+                      d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                    />
+                  </svg>
+                </i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权结果缓存
+      </h4>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper cache-input-wrapper"
+        >
+          <button
+            aria-checked={false}
+            checked={false}
+            className="ant-switch"
+            defaultChecked={false}
+            onChange={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onMouseUp={[Function]}
+            role="switch"
+            type="button"
+          >
+            <span
+              className="ant-switch-inner"
+            >
+              关闭
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with error 1`] = `
+<div
+  className="domain-bs-auth-config-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      aria-checked={true}
+      checked={true}
+      className="ant-switch ant-switch-checked"
+      defaultChecked={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      role="switch"
+      type="button"
+    >
+      <span
+        className="ant-switch-inner"
+      >
+        开启
+      </span>
+    </button>
+  </div>
+  <div>
+    <div
+      className="help"
+    >
+      <p
+        className="line"
+      >
+        注意：
+      </p>
+      <ul
+        className="tips"
+      >
+        <li>
+          使用回源鉴权功能，每次请求都要鉴权，访问量大时，需考虑鉴权服务器的压力和访问性能。
+        </li>
+        <li>
+          <span
+            className="text-warning"
+          >
+            回源鉴权与时间戳防盗链功能不能同时开启。
+          </span>
+        </li>
+      </ul>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权服务器地址
+      </h4>
+      <p
+        className="line"
+      >
+        格式： https://auth.example.com/cdnauth 或者 http://127.0.0.1:8080/cdnauth
+      </p>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper"
+        >
+          <input
+            className="ant-input"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="请输入鉴权服务器地址"
+            type="text"
+            value=""
+          />
+        </div>
+        <span
+          className="error-wrapper"
+          style={
+            Object {
+              "color": "#e55c5c",
+              "display": "block",
+              "lineHeight": "20px",
+              "marginTop": "8px",
+              "verticalAlign": "middle",
+            }
+          }
+        >
+          error of userAuthUrl
+        </span>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        请求方法
+      </h4>
+      <div
+        className="line"
+      >
+        <div
+          className="ant-radio-group ant-radio-group-outline"
+        >
+          <label
+            className="ant-radio-wrapper ant-radio-wrapper-checked"
+          >
+            <span
+              className="ant-radio ant-radio-checked"
+              style={Object {}}
+            >
+              <input
+                checked={true}
+                className="ant-radio-input"
+                disabled={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="HEAD"
+              />
+              <span
+                className="ant-radio-inner"
+              />
+            </span>
+            <span>
+              HEAD
+            </span>
+          </label>
+          <label
+            className="ant-radio-wrapper"
+          >
+            <span
+              className="ant-radio"
+              style={Object {}}
+            >
+              <input
+                checked={false}
+                className="ant-radio-input"
+                disabled={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="GET"
+              />
+              <span
+                className="ant-radio-inner"
+              />
+            </span>
+            <span>
+              GET
+            </span>
+          </label>
+          <label
+            className="ant-radio-wrapper"
+          >
+            <span
+              className="ant-radio"
+              style={Object {}}
+            >
+              <input
+                checked={false}
+                className="ant-radio-input"
+                disabled={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="POST"
+              />
+              <span
+                className="ant-radio-inner"
+              />
+            </span>
+            <span>
+              POST
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权参数
+      </h4>
+      <p
+        className="line"
+      >
+        约定需要传递的 URL 参数，每行输入一个，用回车分隔，最多支持输入 20 条。
+      </p>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper"
+        >
+          <textarea
+            className="ant-input"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="请输入鉴权参数，例如
+param1
+param2"
+            style={Object {}}
+            value=""
+          />
+        </div>
+        <span
+          className="error-wrapper"
+          style={
+            Object {
+              "color": "#e55c5c",
+              "display": "block",
+              "lineHeight": "20px",
+              "marginTop": "8px",
+              "verticalAlign": "middle",
+            }
+          }
+        >
+          error of userAuthUrl
+        </span>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line req-conf-title"
+      >
+        更多参数
+      </h4>
+      <p
+        className="line"
+      >
+        你可以添加更多需要传递的参数，这些参数不参与鉴权。
+      </p>
+      <div
+        className="req-conf-content-wrapper"
+      >
+        <div
+          className="title-wrapper"
+        >
+          <span
+            className="second-level-title"
+          >
+            Header
+          </span>
+          <i
+            aria-label="icon: plus-circle"
+            className="anticon anticon-plus-circle icon-add"
+            onClick={[Function]}
+            tabIndex={-1}
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="plus-circle"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+              />
+              <path
+                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+              />
+            </svg>
+          </i>
+        </div>
+      </div>
+      <div
+        className="req-conf-content-wrapper"
+      >
+        <div
+          className="title-wrapper"
+        >
+          <span
+            className="second-level-title"
+          >
+            Url Query
+          </span>
+          <i
+            aria-label="icon: plus-circle"
+            className="anticon anticon-plus-circle icon-add"
+            onClick={[Function]}
+            tabIndex={-1}
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="plus-circle"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+              />
+              <path
+                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+              />
+            </svg>
+          </i>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        完整 URL 回源鉴权
+      </h4>
+      <p
+        className="line"
+      >
+        是否将用户请求的完整资源路径拼接在鉴权服务地址后回源鉴权，默认关闭 - 不拼接
+      </p>
+      <div
+        className="line"
+      >
+        <button
+          aria-checked={false}
+          checked={false}
+          className="ant-switch"
+          defaultChecked={false}
+          onChange={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseUp={[Function]}
+          role="switch"
+          type="button"
+        >
+          <span
+            className="ant-switch-inner"
+          >
+            关闭
+          </span>
+        </button>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权返回状态码
+      </h4>
+      <p
+        className="line"
+      >
+        约定合法请求鉴权返回内容，三位数字，建议不使用 5XX
+      </p>
+      <p
+        className="line"
+      >
+        建议鉴权成功返回状态码: 2XX，鉴权失败返回状态码: 4XX
+      </p>
+      <div
+        className="line status-code-input-line"
+      >
+        <label
+          className="status-code-input-label"
+        >
+          鉴权成功
+        </label>
+        <div
+          className="text-input-wrapper status-code-input-wrapper"
+        >
+          <input
+            className="ant-input"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="2XX"
+            type="number"
+            value={200}
+          />
+        </div>
+        <span
+          className="error-wrapper"
+          style={
+            Object {
+              "color": "#e55c5c",
+              "display": "block",
+              "lineHeight": "20px",
+              "marginTop": "8px",
+              "verticalAlign": "middle",
+            }
+          }
+        >
+          error of userAuthUrl
+        </span>
+      </div>
+      <div
+        className="line status-code-input-line"
+      >
+        <label
+          className="status-code-input-label"
+        >
+          鉴权失败
+        </label>
+        <div
+          className="text-input-wrapper status-code-input-wrapper"
+        >
+          <input
+            className="ant-input"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="4XX"
+            type="number"
+            value={401}
+          />
+        </div>
+        <span
+          className="error-wrapper"
+          style={
+            Object {
+              "color": "#e55c5c",
+              "display": "block",
+              "lineHeight": "20px",
+              "marginTop": "8px",
+              "verticalAlign": "middle",
+            }
+          }
+        >
+          error of userAuthUrl
+        </span>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        超时等待时间
+      </h4>
+      <p
+        className="line"
+      >
+        范围：最小 0.1s，最大 10s
+      </p>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper time-limit-input-wrapper"
+        >
+          <span
+            className="ant-input-group-wrapper"
+          >
+            <span
+              className="ant-input-wrapper ant-input-group"
+            >
+              <input
+                className="ant-input"
+                disabled={false}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                style={null}
+                type="number"
+                value=""
+              />
+              <span
+                className="ant-input-group-addon"
+              >
+                <span
+                  className="time-limit-unit"
+                >
+                  秒
+                </span>
+              </span>
+            </span>
+          </span>
+        </div>
+        <span
+          className="error-wrapper"
+          style={
+            Object {
+              "color": "#e55c5c",
+              "display": "block",
+              "lineHeight": "20px",
+              "marginTop": "8px",
+              "verticalAlign": "middle",
+            }
+          }
+        >
+          error of userAuthUrl
+        </span>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权超时
+      </h4>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper strict-input-wrapper"
+        >
+          <div
+            className="ant-select ant-select-enabled"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onMouseDown={[Function]}
+            onMouseOut={[Function]}
+            onMouseUp={[Function]}
+            onTouchStart={[Function]}
+          >
+            <div
+              aria-autocomplete="list"
+              aria-controls="test-uuid"
+              aria-expanded={false}
+              aria-haspopup="true"
+              className="ant-select-selection
+            ant-select-selection--single"
+              onKeyDown={[Function]}
+              role="combobox"
+              tabIndex={0}
+            >
+              <div
+                className="ant-select-selection__rendered"
+              >
+                <div
+                  className="ant-select-selection-selected-value"
+                  style={
+                    Object {
+                      "display": "block",
+                      "opacity": 1,
+                    }
+                  }
+                  title="鉴权通过"
+                >
+                  鉴权通过
+                </div>
+              </div>
+              <span
+                className="ant-select-arrow"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "WebkitUserSelect": "none",
+                    "userSelect": "none",
+                  }
+                }
+                unselectable="on"
+              >
+                <i
+                  aria-label="icon: down"
+                  className="anticon anticon-down ant-select-arrow-icon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    data-icon="down"
+                    fill="currentColor"
+                    focusable="false"
+                    height="1em"
+                    viewBox="64 64 896 896"
+                    width="1em"
+                  >
+                    <path
+                      d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                    />
+                  </svg>
+                </i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权结果缓存
+      </h4>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper cache-input-wrapper"
+        >
+          <button
+            aria-checked={false}
+            checked={false}
+            className="ant-switch"
+            defaultChecked={false}
+            onChange={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onMouseUp={[Function]}
+            role="switch"
+            type="button"
+          >
+            <span
+              className="ant-switch-inner"
+            >
+              关闭
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with isQiniuPrivate: true 1`] = `
+<div
+  className="domain-bs-auth-config-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      aria-checked={true}
+      checked={true}
+      className="ant-switch ant-switch-checked"
+      defaultChecked={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      role="switch"
+      type="button"
+    >
+      <span
+        className="ant-switch-inner"
+      >
+        开启
+      </span>
+    </button>
+    <span
+      className="text-warning"
+      style={
+        Object {
+          "marginLeft": "1em",
+          "verticalAlign": "middle",
+        }
+      }
+    >
+      源站在七牛私有 BUCKET，建议打开回源鉴权功能。
+    </span>
+  </div>
+  <div>
+    <div
+      className="help"
+    >
+      <p
+        className="line"
+      >
+        注意：
+      </p>
+      <ul
+        className="tips"
+      >
+        <li>
+          使用回源鉴权功能，每次请求都要鉴权，访问量大时，需考虑鉴权服务器的压力和访问性能。
+        </li>
+        <li>
+          <span
+            className="text-warning"
+          >
+            回源鉴权与时间戳防盗链功能不能同时开启。
+          </span>
+        </li>
+        <li>
+          <span
+            className="text-warning"
+          >
+            私有空间绑定的域名开启回源鉴权，建议将 .m3u8 设置为不缓存。
+          </span>
+        </li>
+        <li>
+          七牛私有空间一键开启即可，无需填写配置。
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with modify: true 1`] = `
+<div
+  className="domain-bs-auth-config-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      aria-checked={true}
+      checked={true}
+      className="ant-switch ant-switch-checked"
+      defaultChecked={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      role="switch"
+      type="button"
+    >
+      <span
+        className="ant-switch-inner"
+      >
+        开启
+      </span>
+    </button>
+  </div>
+  <div>
+    <div
+      className="help"
+    >
+      <p
+        className="line"
+      >
+        注意：
+      </p>
+      <ul
+        className="tips"
+      >
+        <li>
+          使用回源鉴权功能，每次请求都要鉴权，访问量大时，需考虑鉴权服务器的压力和访问性能。
+        </li>
+        <li>
+          <span
+            className="text-warning"
+          >
+            回源鉴权与时间戳防盗链功能不能同时开启。
+          </span>
+        </li>
+      </ul>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权服务器地址
+      </h4>
+      <p
+        className="line"
+      >
+        格式： https://auth.example.com/cdnauth 或者 http://127.0.0.1:8080/cdnauth
+      </p>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper"
+        >
+          <input
+            className="ant-input"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="请输入鉴权服务器地址"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        请求方法
+      </h4>
+      <div
+        className="line"
+      >
+        <div
+          className="ant-radio-group ant-radio-group-outline"
+        >
+          <label
+            className="ant-radio-wrapper ant-radio-wrapper-checked"
+          >
+            <span
+              className="ant-radio ant-radio-checked"
+              style={Object {}}
+            >
+              <input
+                checked={true}
+                className="ant-radio-input"
+                disabled={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="HEAD"
+              />
+              <span
+                className="ant-radio-inner"
+              />
+            </span>
+            <span>
+              HEAD
+            </span>
+          </label>
+          <label
+            className="ant-radio-wrapper"
+          >
+            <span
+              className="ant-radio"
+              style={Object {}}
+            >
+              <input
+                checked={false}
+                className="ant-radio-input"
+                disabled={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="GET"
+              />
+              <span
+                className="ant-radio-inner"
+              />
+            </span>
+            <span>
+              GET
+            </span>
+          </label>
+          <label
+            className="ant-radio-wrapper"
+          >
+            <span
+              className="ant-radio"
+              style={Object {}}
+            >
+              <input
+                checked={false}
+                className="ant-radio-input"
+                disabled={false}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="POST"
+              />
+              <span
+                className="ant-radio-inner"
+              />
+            </span>
+            <span>
+              POST
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权参数
+      </h4>
+      <p
+        className="line"
+      >
+        约定需要传递的 URL 参数，每行输入一个，用回车分隔，最多支持输入 20 条。
+      </p>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper"
+        >
+          <textarea
+            className="ant-input"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="请输入鉴权参数，例如
+param1
+param2"
+            style={Object {}}
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line req-conf-title"
+      >
+        更多参数
+      </h4>
+      <p
+        className="line"
+      >
+        你可以添加更多需要传递的参数，这些参数不参与鉴权。
+      </p>
+      <div
+        className="req-conf-content-wrapper"
+      >
+        <div
+          className="title-wrapper"
+        >
+          <span
+            className="second-level-title"
+          >
+            Header
+          </span>
+          <i
+            aria-label="icon: plus-circle"
+            className="anticon anticon-plus-circle icon-add"
+            onClick={[Function]}
+            tabIndex={-1}
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="plus-circle"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+              />
+              <path
+                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+              />
+            </svg>
+          </i>
+        </div>
+      </div>
+      <div
+        className="req-conf-content-wrapper"
+      >
+        <div
+          className="title-wrapper"
+        >
+          <span
+            className="second-level-title"
+          >
+            Url Query
+          </span>
+          <i
+            aria-label="icon: plus-circle"
+            className="anticon anticon-plus-circle icon-add"
+            onClick={[Function]}
+            tabIndex={-1}
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="plus-circle"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+              />
+              <path
+                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+              />
+            </svg>
+          </i>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        完整 URL 回源鉴权
+      </h4>
+      <p
+        className="line"
+      >
+        是否将用户请求的完整资源路径拼接在鉴权服务地址后回源鉴权，默认关闭 - 不拼接
+      </p>
+      <div
+        className="line"
+      >
+        <button
+          aria-checked={false}
+          checked={false}
+          className="ant-switch"
+          defaultChecked={false}
+          onChange={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseUp={[Function]}
+          role="switch"
+          type="button"
+        >
+          <span
+            className="ant-switch-inner"
+          >
+            关闭
+          </span>
+        </button>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权返回状态码
+      </h4>
+      <p
+        className="line"
+      >
+        约定合法请求鉴权返回内容，三位数字，建议不使用 5XX
+      </p>
+      <p
+        className="line"
+      >
+        建议鉴权成功返回状态码: 2XX，鉴权失败返回状态码: 4XX
+      </p>
+      <div
+        className="line status-code-input-line"
+      >
+        <label
+          className="status-code-input-label"
+        >
+          鉴权成功
+        </label>
+        <div
+          className="text-input-wrapper status-code-input-wrapper"
+        >
+          <input
+            className="ant-input"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="2XX"
+            type="number"
+            value={200}
+          />
+        </div>
+      </div>
+      <div
+        className="line status-code-input-line"
+      >
+        <label
+          className="status-code-input-label"
+        >
+          鉴权失败
+        </label>
+        <div
+          className="text-input-wrapper status-code-input-wrapper"
+        >
+          <input
+            className="ant-input"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="4XX"
+            type="number"
+            value={401}
+          />
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        超时等待时间
+      </h4>
+      <p
+        className="line"
+      >
+        范围：最小 0.1s，最大 10s
+      </p>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper time-limit-input-wrapper"
+        >
+          <span
+            className="ant-input-group-wrapper"
+          >
+            <span
+              className="ant-input-wrapper ant-input-group"
+            >
+              <input
+                className="ant-input"
+                disabled={false}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                style={null}
+                type="number"
+                value=""
+              />
+              <span
+                className="ant-input-group-addon"
+              >
+                <span
+                  className="time-limit-unit"
+                >
+                  秒
+                </span>
+              </span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权超时
+      </h4>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper strict-input-wrapper"
+        >
+          <div
+            className="ant-select ant-select-enabled"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onMouseDown={[Function]}
+            onMouseOut={[Function]}
+            onMouseUp={[Function]}
+            onTouchStart={[Function]}
+          >
+            <div
+              aria-autocomplete="list"
+              aria-controls="test-uuid"
+              aria-expanded={false}
+              aria-haspopup="true"
+              className="ant-select-selection
+            ant-select-selection--single"
+              onKeyDown={[Function]}
+              role="combobox"
+              tabIndex={0}
+            >
+              <div
+                className="ant-select-selection__rendered"
+              >
+                <div
+                  className="ant-select-selection-selected-value"
+                  style={
+                    Object {
+                      "display": "block",
+                      "opacity": 1,
+                    }
+                  }
+                  title="鉴权通过"
+                >
+                  鉴权通过
+                </div>
+              </div>
+              <span
+                className="ant-select-arrow"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "WebkitUserSelect": "none",
+                    "userSelect": "none",
+                  }
+                }
+                unselectable="on"
+              >
+                <i
+                  aria-label="icon: down"
+                  className="anticon anticon-down ant-select-arrow-icon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    data-icon="down"
+                    fill="currentColor"
+                    focusable="false"
+                    height="1em"
+                    viewBox="64 64 896 896"
+                    width="1em"
+                  >
+                    <path
+                      d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                    />
+                  </svg>
+                </i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr
+      className="sep-line"
+    />
+    <div>
+      <h4
+        className="line"
+      >
+        鉴权结果缓存
+      </h4>
+      <div
+        className="line"
+      >
+        <div
+          className="text-input-wrapper cache-input-wrapper"
+        >
+          <button
+            aria-checked={false}
+            checked={false}
+            className="ant-switch"
+            defaultChecked={false}
+            onChange={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            onMouseUp={[Function]}
+            role="switch"
+            type="button"
+          >
+            <span
+              className="ant-switch-inner"
+            >
+              关闭
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

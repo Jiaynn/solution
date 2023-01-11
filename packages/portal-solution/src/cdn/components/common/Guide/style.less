@@ -1,0 +1,74 @@
+@import '~cdn/utils/style/legacy-variable.less';
+
+.comp-guide-wrapper {
+  position: relative;
+
+  .guide-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom:0;
+    z-index: 100;
+
+    @mask-color: rgba(234, 234, 234, .8);
+    border-color: @mask-color;
+    border-style: solid;
+    opacity: 1;
+  }
+
+  .guide-mask-popover-anchor {
+    position: fixed;
+  }
+}
+
+.comp-guide-step {
+  padding: 10px 0;
+  min-width: 180px;
+  max-width: 300px;
+  text-align: center;
+
+  &.only-one-step {
+    .step-bar {
+      display: none;
+    }
+
+    .step-directions {
+      justify-content: flex-end;
+    }
+
+    .prev-step {
+      display: none;
+    }
+  }
+
+  .step-content {
+    text-align: left;
+    line-height: 1.5;
+  }
+
+  .step-bar {
+    text-align: center;
+    margin: 10px auto;
+
+    .step-icon {
+      display: inline-block;
+
+      @size: 6px;
+      width: @size;
+      height: @size;
+      border-radius: @size / 2;
+      background-color: @text-level-4-color;
+      margin: 0 4px;
+
+      &.current {
+        background-color: @text-level-2-color;
+      }
+    }
+  }
+
+  .step-directions {
+    display: flex;
+    justify-content: space-between;
+  }
+}

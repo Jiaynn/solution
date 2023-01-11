@@ -1,0 +1,965 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="side-modal-wrapper side-modal-wrapper-visible"
+  style={
+    Object {
+      "opacity": 1,
+      "top": "0px",
+      "transition": "opacity 300ms ease-in-out",
+      "zIndex": 10,
+    }
+  }
+>
+  <div
+    className="side-modal-mask"
+    onClick={[Function]}
+  />
+  <div
+    className="side-modal-container"
+    style={
+      Object {
+        "transform": "translateX(0%)",
+        "transition": "transform 300ms ease-in-out",
+        "width": "50%",
+      }
+    }
+  >
+    <div
+      className="side-modal-header"
+    >
+      添加瘦身文件
+      <span
+        className="side-modal-close"
+        onClick={[MockFunction]}
+      >
+        <i
+          aria-label="icon: close"
+          className="anticon anticon-close"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="close"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
+            />
+          </svg>
+        </i>
+      </span>
+    </div>
+    <div
+      className="side-modal-body"
+    >
+      <div
+        style={
+          Object {
+            "position": "relative",
+          }
+        }
+      >
+        <form
+          className="ant-form ant-form-horizontal create-task-form"
+          onSubmit={[Function]}
+        >
+          <div
+            className="ant-row ant-form-item"
+          >
+            <div
+              className="ant-col ant-form-item-control-wrapper"
+            >
+              <div
+                className="ant-form-item-control"
+              >
+                <span
+                  className="ant-form-item-children"
+                >
+                  <div
+                    className="ant-radio-group ant-radio-group-outline"
+                  >
+                    <label
+                      className="ant-radio-button-wrapper ant-radio-button-wrapper-checked"
+                    >
+                      <span
+                        className="ant-radio-button ant-radio-button-checked"
+                        style={Object {}}
+                      >
+                        <input
+                          checked={true}
+                          className="ant-radio-button-input"
+                          disabled={false}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          type="radio"
+                          value={0}
+                        />
+                        <span
+                          className="ant-radio-button-inner"
+                        />
+                      </span>
+                      <span>
+                        添加热点视频
+                      </span>
+                    </label>
+                    <label
+                      className="ant-radio-button-wrapper"
+                    >
+                      <span
+                        className="ant-radio-button"
+                        style={Object {}}
+                      >
+                        <input
+                          checked={false}
+                          className="ant-radio-button-input"
+                          disabled={false}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          type="radio"
+                          value={1}
+                        />
+                        <span
+                          className="ant-radio-button-inner"
+                        />
+                      </span>
+                      <span>
+                        添加指定文件
+                      </span>
+                    </label>
+                  </div>
+                </span>
+                <div
+                  className="ant-form-extra"
+                >
+                  热点视频：过去两天访问流量在域名 TOP 100 以内的视频资源
+                </div>
+              </div>
+            </div>
+          </div>
+          <p
+            className="form-item-tip"
+          >
+            开启视频瘦身，将授予服务（
+            fusion@qiniu.com
+            ）以域名所在空间的只读权限。如需进行授权管理，请至
+            <a
+              className="comp-router-link"
+              href="/bucket/undefined/share"
+              onClick={[Function]}
+              rel="noopener"
+              target="_blank"
+            >
+              对象存储 - 空间授权
+            </a>
+            。
+            <br />
+            视频文件将去除 URL「?」后的全部参数进行识别、执行瘦身；瘦身后的文件将统一输出为 MP4 格式。
+          </p>
+          <div
+            className="hotest-files-wrapper"
+          >
+            <h3>
+              热点视频文件列表 (
+              0
+              )
+            </h3>
+            <div
+              className="ant-table-wrapper"
+            >
+              <div
+                className="ant-spin-nested-loading"
+              >
+                <div>
+                  <div
+                    className="ant-spin ant-spin-spinning ant-table-without-pagination ant-table-spin-holder"
+                  >
+                    <span
+                      className="ant-spin-dot ant-spin-dot-spin"
+                    >
+                      <i
+                        className="ant-spin-dot-item"
+                      />
+                      <i
+                        className="ant-spin-dot-item"
+                      />
+                      <i
+                        className="ant-spin-dot-item"
+                      />
+                      <i
+                        className="ant-spin-dot-item"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="ant-spin-container ant-spin-blur"
+                >
+                  <div
+                    className="ant-table ant-table-middle ant-table-empty ant-table-scroll-position-left"
+                    style={Object {}}
+                  >
+                    <div
+                      className="ant-table-content"
+                    >
+                      <div
+                        className="ant-table-body"
+                        onScroll={[Function]}
+                        onWheel={[Function]}
+                        style={Object {}}
+                      >
+                        <table
+                          className=""
+                          style={Object {}}
+                        >
+                          <colgroup>
+                            <col
+                              className="ant-table-selection-col"
+                              style={
+                                Object {
+                                  "minWidth": undefined,
+                                  "width": undefined,
+                                }
+                              }
+                            />
+                            <col
+                              style={
+                                Object {
+                                  "minWidth": undefined,
+                                  "width": undefined,
+                                }
+                              }
+                            />
+                            <col
+                              style={
+                                Object {
+                                  "minWidth": "200px",
+                                  "width": "200px",
+                                }
+                              }
+                            />
+                            <col
+                              style={
+                                Object {
+                                  "minWidth": "80px",
+                                  "width": "80px",
+                                }
+                              }
+                            />
+                          </colgroup>
+                          <thead
+                            className="ant-table-thead"
+                          >
+                            <tr
+                              style={
+                                Object {
+                                  "height": null,
+                                }
+                              }
+                            >
+                              <th
+                                className="ant-table-selection-column"
+                              >
+                                <span
+                                  className="ant-table-header-column"
+                                >
+                                  <div>
+                                    <span
+                                      className="ant-table-column-title"
+                                    >
+                                      <div
+                                        className="ant-table-selection"
+                                      >
+                                        <label
+                                          className="ant-checkbox-wrapper ant-checkbox-wrapper-disabled"
+                                        >
+                                          <span
+                                            className="ant-checkbox ant-checkbox-disabled"
+                                            style={Object {}}
+                                          >
+                                            <input
+                                              checked={false}
+                                              className="ant-checkbox-input"
+                                              disabled={true}
+                                              onBlur={[Function]}
+                                              onChange={[Function]}
+                                              onFocus={[Function]}
+                                              type="checkbox"
+                                            />
+                                            <span
+                                              className="ant-checkbox-inner"
+                                            />
+                                          </span>
+                                        </label>
+                                      </div>
+                                    </span>
+                                    <span
+                                      className="ant-table-column-sorter"
+                                    />
+                                  </div>
+                                </span>
+                              </th>
+                              <th
+                                className=""
+                              >
+                                <span
+                                  className="ant-table-header-column"
+                                >
+                                  <div>
+                                    <span
+                                      className="ant-table-column-title"
+                                    >
+                                      URL
+                                    </span>
+                                    <span
+                                      className="ant-table-column-sorter"
+                                    />
+                                  </div>
+                                </span>
+                              </th>
+                              <th
+                                className=""
+                              >
+                                <span
+                                  className="ant-table-header-column"
+                                >
+                                  <div>
+                                    <span
+                                      className="ant-table-column-title"
+                                    >
+                                      近 2 日流量
+                                    </span>
+                                    <span
+                                      className="ant-table-column-sorter"
+                                    />
+                                  </div>
+                                </span>
+                              </th>
+                              <th
+                                className=""
+                              >
+                                <span
+                                  className="ant-table-header-column"
+                                >
+                                  <div>
+                                    <span
+                                      className="ant-table-column-title"
+                                    >
+                                      瘦身
+                                    </span>
+                                    <span
+                                      className="ant-table-column-sorter"
+                                    />
+                                  </div>
+                                </span>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            className="ant-table-tbody"
+                          />
+                        </table>
+                      </div>
+                      <div
+                        className="ant-table-placeholder"
+                      >
+                        <div
+                          className="ant-empty ant-empty-normal"
+                        >
+                          <div
+                            className="ant-empty-image"
+                          >
+                            <img
+                              alt="No Data"
+                              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCA2NCA0MSIgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxKSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxlbGxpcHNlIGZpbGw9IiNGNUY1RjUiIGN4PSIzMiIgY3k9IjMzIiByeD0iMzIiIHJ5PSI3Ii8+CiAgICA8ZyBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0iI0Q5RDlEOSI+CiAgICAgIDxwYXRoIGQ9Ik01NSAxMi43Nkw0NC44NTQgMS4yNThDNDQuMzY3LjQ3NCA0My42NTYgMCA0Mi45MDcgMEgyMS4wOTNjLS43NDkgMC0xLjQ2LjQ3NC0xLjk0NyAxLjI1N0w5IDEyLjc2MVYyMmg0NnYtOS4yNHoiLz4KICAgICAgPHBhdGggZD0iTTQxLjYxMyAxNS45MzFjMC0xLjYwNS45OTQtMi45MyAyLjIyNy0yLjkzMUg1NXYxOC4xMzdDNTUgMzMuMjYgNTMuNjggMzUgNTIuMDUgMzVoLTQwLjFDMTAuMzIgMzUgOSAzMy4yNTkgOSAzMS4xMzdWMTNoMTEuMTZjMS4yMzMgMCAyLjIyNyAxLjMyMyAyLjIyNyAyLjkyOHYuMDIyYzAgMS42MDUgMS4wMDUgMi45MDEgMi4yMzcgMi45MDFoMTQuNzUyYzEuMjMyIDAgMi4yMzctMS4zMDggMi4yMzctMi45MTN2LS4wMDd6IiBmaWxsPSIjRkFGQUZBIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K"
+                            />
+                          </div>
+                          <p
+                            className="ant-empty-description"
+                          >
+                            No Data
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-row ant-form-item"
+          >
+            <div
+              className="ant-col ant-col-6 ant-form-item-label"
+            >
+              <label
+                className=""
+                htmlFor={null}
+                onClick={[Function]}
+                title="自动启用 CDN 分发"
+              >
+                自动启用 CDN 分发
+              </label>
+            </div>
+            <div
+              className="ant-col ant-col-16 ant-form-item-control-wrapper"
+            >
+              <div
+                className="ant-form-item-control"
+              >
+                <span
+                  className="ant-form-item-children"
+                >
+                  <button
+                    aria-checked={false}
+                    checked={false}
+                    className="ant-switch"
+                    defaultChecked={false}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    onMouseUp={[Function]}
+                    role="switch"
+                    type="button"
+                  >
+                    <span
+                      className="ant-switch-inner"
+                    >
+                      关闭
+                    </span>
+                  </button>
+                </span>
+                <div
+                  className="ant-form-extra"
+                >
+                  <ol>
+                    <li>
+                      1. 开启后，当视频文件瘦身成功时会自动启用 CDN 分发，将瘦身后的视频文件预取到各 CDN 节点；
+                    </li>
+                    <li>
+                      2. 通过本配置「已启用」CDN 分发的文件，可在「视频瘦身列表」的「操作」中单独停用。
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div
+      className="side-modal-footer"
+    >
+      <button
+        className="ant-btn"
+        onClick={[Function]}
+        type="button"
+      >
+        <span>
+          取消
+        </span>
+      </button>
+      <button
+        className="ant-btn ant-btn-primary"
+        disabled={true}
+        onClick={[Function]}
+        type="button"
+      >
+        <span>
+          添加
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with given store 1`] = `
+<div
+  className="side-modal-wrapper side-modal-wrapper-visible"
+  style={
+    Object {
+      "opacity": 1,
+      "top": "0px",
+      "transition": "opacity 300ms ease-in-out",
+      "zIndex": 10,
+    }
+  }
+>
+  <div
+    className="side-modal-mask"
+    onClick={[Function]}
+  />
+  <div
+    className="side-modal-container"
+    style={
+      Object {
+        "transform": "translateX(0%)",
+        "transition": "transform 300ms ease-in-out",
+        "width": "50%",
+      }
+    }
+  >
+    <div
+      className="side-modal-header"
+    >
+      添加瘦身文件
+      <span
+        className="side-modal-close"
+        onClick={[MockFunction]}
+      >
+        <i
+          aria-label="icon: close"
+          className="anticon anticon-close"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="close"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
+            />
+          </svg>
+        </i>
+      </span>
+    </div>
+    <div
+      className="side-modal-body"
+    >
+      <div
+        style={
+          Object {
+            "position": "relative",
+          }
+        }
+      >
+        <form
+          className="ant-form ant-form-horizontal create-task-form"
+          onSubmit={[Function]}
+        >
+          <div
+            className="ant-row ant-form-item"
+          >
+            <div
+              className="ant-col ant-form-item-control-wrapper"
+            >
+              <div
+                className="ant-form-item-control"
+              >
+                <span
+                  className="ant-form-item-children"
+                >
+                  <div
+                    className="ant-radio-group ant-radio-group-outline"
+                  >
+                    <label
+                      className="ant-radio-button-wrapper"
+                    >
+                      <span
+                        className="ant-radio-button"
+                        style={Object {}}
+                      >
+                        <input
+                          checked={false}
+                          className="ant-radio-button-input"
+                          disabled={false}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          type="radio"
+                          value={0}
+                        />
+                        <span
+                          className="ant-radio-button-inner"
+                        />
+                      </span>
+                      <span>
+                        添加热点视频
+                      </span>
+                    </label>
+                    <label
+                      className="ant-radio-button-wrapper ant-radio-button-wrapper-checked"
+                    >
+                      <span
+                        className="ant-radio-button ant-radio-button-checked"
+                        style={Object {}}
+                      >
+                        <input
+                          checked={true}
+                          className="ant-radio-button-input"
+                          disabled={false}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          type="radio"
+                          value={1}
+                        />
+                        <span
+                          className="ant-radio-button-inner"
+                        />
+                      </span>
+                      <span>
+                        添加指定文件
+                      </span>
+                    </label>
+                  </div>
+                </span>
+                <div
+                  className="ant-form-extra"
+                >
+                  热点视频：过去两天访问流量在域名 TOP 100 以内的视频资源
+                </div>
+              </div>
+            </div>
+          </div>
+          <p
+            className="form-item-tip"
+          >
+            开启视频瘦身，将授予服务（
+            fusion@qiniu.com
+            ）以域名所在空间的只读权限。如需进行授权管理，请至
+            <a
+              className="comp-router-link"
+              href="/bucket/undefined/share"
+              onClick={[Function]}
+              rel="noopener"
+              target="_blank"
+            >
+              对象存储 - 空间授权
+            </a>
+            。
+            <br />
+            视频文件将去除 URL「?」后的全部参数进行识别、执行瘦身；瘦身后的文件将统一输出为 MP4 格式。
+          </p>
+          <div
+            className="hotest-files-wrapper"
+          >
+            <h3>
+              热点视频文件列表 (
+              0
+              )
+            </h3>
+            <div
+              className="ant-table-wrapper"
+            >
+              <div
+                className="ant-spin-nested-loading"
+              >
+                <div>
+                  <div
+                    className="ant-spin ant-spin-spinning ant-table-without-pagination ant-table-spin-holder"
+                  >
+                    <span
+                      className="ant-spin-dot ant-spin-dot-spin"
+                    >
+                      <i
+                        className="ant-spin-dot-item"
+                      />
+                      <i
+                        className="ant-spin-dot-item"
+                      />
+                      <i
+                        className="ant-spin-dot-item"
+                      />
+                      <i
+                        className="ant-spin-dot-item"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="ant-spin-container ant-spin-blur"
+                >
+                  <div
+                    className="ant-table ant-table-middle ant-table-empty ant-table-scroll-position-left"
+                    style={Object {}}
+                  >
+                    <div
+                      className="ant-table-content"
+                    >
+                      <div
+                        className="ant-table-body"
+                        onScroll={[Function]}
+                        onWheel={[Function]}
+                        style={Object {}}
+                      >
+                        <table
+                          className=""
+                          style={Object {}}
+                        >
+                          <colgroup>
+                            <col
+                              className="ant-table-selection-col"
+                              style={
+                                Object {
+                                  "minWidth": undefined,
+                                  "width": undefined,
+                                }
+                              }
+                            />
+                            <col
+                              style={
+                                Object {
+                                  "minWidth": undefined,
+                                  "width": undefined,
+                                }
+                              }
+                            />
+                            <col
+                              style={
+                                Object {
+                                  "minWidth": "200px",
+                                  "width": "200px",
+                                }
+                              }
+                            />
+                            <col
+                              style={
+                                Object {
+                                  "minWidth": "80px",
+                                  "width": "80px",
+                                }
+                              }
+                            />
+                          </colgroup>
+                          <thead
+                            className="ant-table-thead"
+                          >
+                            <tr
+                              style={
+                                Object {
+                                  "height": null,
+                                }
+                              }
+                            >
+                              <th
+                                className="ant-table-selection-column"
+                              >
+                                <span
+                                  className="ant-table-header-column"
+                                >
+                                  <div>
+                                    <span
+                                      className="ant-table-column-title"
+                                    >
+                                      <div
+                                        className="ant-table-selection"
+                                      >
+                                        <label
+                                          className="ant-checkbox-wrapper ant-checkbox-wrapper-disabled"
+                                        >
+                                          <span
+                                            className="ant-checkbox ant-checkbox-disabled"
+                                            style={Object {}}
+                                          >
+                                            <input
+                                              checked={false}
+                                              className="ant-checkbox-input"
+                                              disabled={true}
+                                              onBlur={[Function]}
+                                              onChange={[Function]}
+                                              onFocus={[Function]}
+                                              type="checkbox"
+                                            />
+                                            <span
+                                              className="ant-checkbox-inner"
+                                            />
+                                          </span>
+                                        </label>
+                                      </div>
+                                    </span>
+                                    <span
+                                      className="ant-table-column-sorter"
+                                    />
+                                  </div>
+                                </span>
+                              </th>
+                              <th
+                                className=""
+                              >
+                                <span
+                                  className="ant-table-header-column"
+                                >
+                                  <div>
+                                    <span
+                                      className="ant-table-column-title"
+                                    >
+                                      URL
+                                    </span>
+                                    <span
+                                      className="ant-table-column-sorter"
+                                    />
+                                  </div>
+                                </span>
+                              </th>
+                              <th
+                                className=""
+                              >
+                                <span
+                                  className="ant-table-header-column"
+                                >
+                                  <div>
+                                    <span
+                                      className="ant-table-column-title"
+                                    >
+                                      近 2 日流量
+                                    </span>
+                                    <span
+                                      className="ant-table-column-sorter"
+                                    />
+                                  </div>
+                                </span>
+                              </th>
+                              <th
+                                className=""
+                              >
+                                <span
+                                  className="ant-table-header-column"
+                                >
+                                  <div>
+                                    <span
+                                      className="ant-table-column-title"
+                                    >
+                                      瘦身
+                                    </span>
+                                    <span
+                                      className="ant-table-column-sorter"
+                                    />
+                                  </div>
+                                </span>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            className="ant-table-tbody"
+                          />
+                        </table>
+                      </div>
+                      <div
+                        className="ant-table-placeholder"
+                      >
+                        <div
+                          className="ant-empty ant-empty-normal"
+                        >
+                          <div
+                            className="ant-empty-image"
+                          >
+                            <img
+                              alt="No Data"
+                              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCA2NCA0MSIgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxKSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxlbGxpcHNlIGZpbGw9IiNGNUY1RjUiIGN4PSIzMiIgY3k9IjMzIiByeD0iMzIiIHJ5PSI3Ii8+CiAgICA8ZyBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0iI0Q5RDlEOSI+CiAgICAgIDxwYXRoIGQ9Ik01NSAxMi43Nkw0NC44NTQgMS4yNThDNDQuMzY3LjQ3NCA0My42NTYgMCA0Mi45MDcgMEgyMS4wOTNjLS43NDkgMC0xLjQ2LjQ3NC0xLjk0NyAxLjI1N0w5IDEyLjc2MVYyMmg0NnYtOS4yNHoiLz4KICAgICAgPHBhdGggZD0iTTQxLjYxMyAxNS45MzFjMC0xLjYwNS45OTQtMi45MyAyLjIyNy0yLjkzMUg1NXYxOC4xMzdDNTUgMzMuMjYgNTMuNjggMzUgNTIuMDUgMzVoLTQwLjFDMTAuMzIgMzUgOSAzMy4yNTkgOSAzMS4xMzdWMTNoMTEuMTZjMS4yMzMgMCAyLjIyNyAxLjMyMyAyLjIyNyAyLjkyOHYuMDIyYzAgMS42MDUgMS4wMDUgMi45MDEgMi4yMzcgMi45MDFoMTQuNzUyYzEuMjMyIDAgMi4yMzctMS4zMDggMi4yMzctMi45MTN2LS4wMDd6IiBmaWxsPSIjRkFGQUZBIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K"
+                            />
+                          </div>
+                          <p
+                            className="ant-empty-description"
+                          >
+                            No Data
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-row ant-form-item"
+          >
+            <div
+              className="ant-col ant-col-6 ant-form-item-label"
+            >
+              <label
+                className=""
+                htmlFor={null}
+                onClick={[Function]}
+                title="自动启用 CDN 分发"
+              >
+                自动启用 CDN 分发
+              </label>
+            </div>
+            <div
+              className="ant-col ant-col-16 ant-form-item-control-wrapper"
+            >
+              <div
+                className="ant-form-item-control"
+              >
+                <span
+                  className="ant-form-item-children"
+                >
+                  <button
+                    aria-checked={false}
+                    checked={false}
+                    className="ant-switch"
+                    defaultChecked={false}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    onMouseUp={[Function]}
+                    role="switch"
+                    type="button"
+                  >
+                    <span
+                      className="ant-switch-inner"
+                    >
+                      关闭
+                    </span>
+                  </button>
+                </span>
+                <div
+                  className="ant-form-extra"
+                >
+                  <ol>
+                    <li>
+                      1. 开启后，当视频文件瘦身成功时会自动启用 CDN 分发，将瘦身后的视频文件预取到各 CDN 节点；
+                    </li>
+                    <li>
+                      2. 通过本配置「已启用」CDN 分发的文件，可在「视频瘦身列表」的「操作」中单独停用。
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div
+      className="side-modal-footer"
+    >
+      <button
+        className="ant-btn"
+        onClick={[Function]}
+        type="button"
+      >
+        <span>
+          取消
+        </span>
+      </button>
+      <button
+        className="ant-btn ant-btn-primary"
+        disabled={true}
+        onClick={[Function]}
+        type="button"
+      >
+        <span>
+          添加
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

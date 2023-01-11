@@ -1,0 +1,41 @@
+/**
+ * @file DomainList style
+ * @description 源站域名列表样式
+ * @author yinxulai <me@yinxulai.com>
+ */
+
+@import "~kodo/styles/variables.less";
+
+.effectiveTime {
+  margin-bottom: 1rem;
+
+  color: #fa8c16; // TODO：升级到 icecream-2 后换成 2 的 alert 组件去掉
+  background: #fef3e7; // TODO：升级到 icecream-2 后换成 2 的 alert 组件去掉
+  font-size: @icecream-font-size-1; // TODO: @huangbinjie 统一支持 alert 的不同尺寸
+}
+
+.customSelect {
+  :global(.ant-select-selection--single) {
+    height: 60px;
+    padding: 3px 0;
+  }
+
+  :global(.ant-select-selection__placeholder) {
+    margin-top: 1px;
+  }
+}
+
+.certTitle {
+  line-height: 14px;
+  margin: 8px auto;
+}
+
+.certUsefulTime {
+  color: #979a9b;
+  line-height: 14px;
+  margin: 8px auto;
+}
+
+.domain {
+  margin-right: 8px;
+}

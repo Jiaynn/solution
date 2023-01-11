@@ -1,0 +1,117 @@
+@import "~cdn/utils/style/legacy-variable.less";
+
+.apm-wrapper {
+  .ant-select {
+    .ant-select-selection {
+      padding: 0 10px;
+    }
+  }
+
+  .chart {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .summary-table {
+    tr > th, tr > td {
+      text-align: center;
+    }
+  }
+
+  .ant-table.ant-table-middle {
+    .ant-table-thead > tr > th {
+      line-height: 46px;
+    }
+    .ant-table-tbody > tr > td {
+      padding: 12px 8px;
+    }
+  }
+  .title {
+    font-weight: @font-weight-title;
+    color: @text-level-1-color;
+    font-size: 16px;
+    line-height: 2.5;
+  }
+  .apm-introduce-wrapper {
+    padding: 15px;
+    line-height: 1.5;
+  }
+
+  .apm-content-wrapper {
+    padding: 0 15px;
+    .display-control {
+      padding: 10px 0;
+      .title {
+        font-weight: @font-weight-title;
+        color: @text-level-1-color;
+        font-size: 16px;
+        line-height: 2.5;
+      }
+      > div:last-of-type {
+        text-align: right;
+      }
+      .ant-radio-button-wrapper {
+        background-color: @white;
+        color: rgba(0,0,0,.65);
+        &.ant-radio-button-wrapper-checked {
+          border-color:@primary-color;
+          color: @primary-color;
+          box-shadow: -1px 0 0 0 @primary-color;
+        }
+        &.ant-radio-button-wrapper-disabled {
+          background-color: #f7f7f7;
+          color: rgba(0,0,0,.25);
+        }
+        &.ant-radio-button-wrapper-checked.ant-radio-button-wrapper-disabled {
+          border-color: @border-level-1-color;
+        }
+      }
+
+      .comp-summary-item {
+        text-align: left;
+        line-height: 1.6;
+        .summary-item-title {
+          color: @describe-info-bg;
+        }
+        .summary-item-value {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .top-table {
+      text-align: left;
+      .column-value {
+        width: 20%;
+      }
+    }
+  }
+}
+
+.ant-popover-title {
+  text-align: center;
+  height: 60px;
+  line-height: 50px;
+  font-weight: @font-weight-title;
+  font-size: 16px;
+}
+
+.apm-calc-rule {
+  display: block;
+  margin: 20px;
+  width: 400px;
+  padding: 20px;
+  line-height: 1.5;
+  background-color: @background-color-level-2;
+
+  li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .title {
+    font-weight: @font-weight-title;
+    color: @text-level-1-color;
+    font-size: 14px;
+  }
+}

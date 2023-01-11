@@ -1,0 +1,163 @@
+/**
+ * @file style for Overview Component
+ * @author zhangheng <zhangheng01@qiniu.com>
+ */
+
+@import "~kodo/styles/variables.less";
+
+.overview {
+  .topAd {
+    margin-bottom: @page-content-gap-regular;
+  }
+
+  .bucketCard {
+    border-radius: @icecream-border-radius-base;
+
+    :global(.ant-card-body) {
+      padding: 5px 0;
+    }
+  }
+
+  .bucketsChart {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    position: relative;
+    height: 228px;
+
+    .divider {
+      width: 1px;
+      height: 192px;
+      margin: 0 30px;
+      background: #E5E5E5;
+    }
+
+    .bucketDistribution {
+      flex: 1;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: visible;
+
+      .title {
+        font-size: @icecream-font-size-3;
+        font-weight: 500;
+      }
+    }
+
+    .top3Chart {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-width: 0;
+
+      .title {
+        font-size: @icecream-font-size-3;
+        font-weight: 500;
+      }
+
+      .content {
+        flex: 1;
+        display: flex;
+        justify-content: space-around;
+        min-width: 0;
+        min-height: 0;
+
+        .emptyWrapper {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .chartWrapper {
+          margin-top: 20px;
+          margin-left: 38px;
+
+          &.loading {
+            margin: 0;
+          }
+        }
+
+        .legend {
+          align-self: center;
+          margin-top: 20px;
+          margin-right: 67px;
+          margin-left: 36px;
+        }
+
+        .legendItem {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px;
+          font-size: 12px;
+          color: #b2b2b2;
+          cursor: pointer;
+
+          .legendItemIcon {
+            width: 12px;
+            height: 12px;
+            min-width: 12px;
+            margin-right: 10px;
+            border-radius: 50%;
+            background: #819ff7;
+          }
+          .legendItemName {
+            max-width: 207px;
+            word-break: break-all;
+            font-weight: 500;
+          }
+          .legendItemNum {
+            margin-left: 10px;
+            color: #303030;
+            font-weight: 500;
+            white-space: nowrap;
+          }
+
+          &.grey {
+            &:hover {
+              .legendItemNum {
+                color: #303030;
+              }
+            }
+            .legendItemIcon {
+              background: #cccccc !important;
+            }
+            .legendItemNum {
+              color: rgb(204, 204, 204);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .storageCard {
+    margin-top: 40px;
+    border-radius: @icecream-border-radius-base;
+  }
+
+  .trendBox {
+    margin-top: 50px;
+    .chartHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 40px 0 20px 0;
+
+      .datePicker {
+        margin-left: @page-content-gap-small;
+      }
+
+      .title {
+        font-size: @icecream-font-size-2;
+        font-weight: 500;
+        color: #000;
+      }
+    }
+  }
+
+  :global(.highcharts-title) {
+    left: 72px !important;
+  }
+}

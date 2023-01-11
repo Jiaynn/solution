@@ -1,0 +1,84 @@
+@import "~react-icecream-2/dist/utils.less";
+@import "~kodo/styles/mixins.less";
+
+.baseInfoCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 4px 10px;
+  background-color: @icecream-color-grey-2;
+  border: 1px solid @icecream-color-grey-3;
+  transition: @icecream-transitions;
+
+  &:hover {
+    border: 1px solid @icecream-color-grey-3;
+  }
+
+  .left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    // icecream 没有这个变量
+    color: #595959;
+
+    // 紧凑模式换行
+    &.compact {
+      .infoItem {
+        flex-direction: column;
+      }
+    }
+
+    .spin {
+      min-width: 0;
+      flex-shrink: 0;
+    }
+
+    .infoItem {
+      display: flex;
+      padding: 6px 10px;
+      margin-right: 40px;
+      border-radius: @icecream-border-radius;
+      transition: @icecream-transitions;
+
+      &:hover {
+        cursor: default;
+        background-color: @icecream-color-grey-3;
+      }
+
+      .label {
+        font-size: inherit;
+        font-weight: @icecream-bold;
+        margin-right: 6px;
+        white-space: nowrap;
+      }
+
+      .value {
+        font-size: inherit;
+        white-space: pre !important;
+      }
+    }
+
+    .spin.canEllipsis {
+      // 默认 1，帮助 js 那边检测是否出省略
+      flex: 1;
+
+      .value {
+        font-size: inherit;
+
+        .line-ellipsis();
+      }
+    }
+
+    .spin.noEllipsis {
+      flex: unset;
+    }
+  }
+}
+
+:global(.ant-tooltip-inner) {
+  white-space: pre-wrap;
+}

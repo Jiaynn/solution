@@ -1,0 +1,29 @@
+/**
+ * @file BoundDomain style
+ * @author yinxulai <me@yinxulai.com>
+ */
+
+@import "~kodo/styles/font.less";
+@import "~kodo/styles/mixins.less";
+@import "~kodo/styles/variables.less";
+
+.formValue {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  .ellipsis {
+    .line-ellipsis()
+  }
+}
+
+.copyBtn {
+  .line-nowrap();
+  margin-left: @icecream-gap-xs;
+}
+
+.fromItem {
+  :global(.ant-form-item) {
+    margin-bottom: 0;
+  }
+}

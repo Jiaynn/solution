@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="swiper-container"
+>
+  <div
+    className="swiper-button-prev"
+    onClick={[Function]}
+  />
+  <div
+    className="swiper-wrapper"
+    style={
+      Object {
+        "height": "auto",
+      }
+    }
+  />
+  <div
+    className="swiper-button-next"
+    onClick={[Function]}
+  />
+</div>
+`;

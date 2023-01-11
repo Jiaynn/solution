@@ -1,0 +1,749 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section
+  className="content-block"
+>
+  <h4
+    className="content-block-title"
+  >
+    HTTPS 配置
+  </h4>
+  <div
+    className="ant-table-wrapper content-config-table"
+  >
+    <div
+      className="ant-spin-nested-loading"
+    >
+      <div
+        className="ant-spin-container"
+      >
+        <div
+          className="ant-table ant-table-default ant-table-scroll-position-left"
+          style={Object {}}
+        >
+          <div
+            className="ant-table-content"
+          >
+            <div
+              className="ant-table-body"
+              onScroll={[Function]}
+              onWheel={[Function]}
+              style={Object {}}
+            >
+              <table
+                className=""
+                style={Object {}}
+              >
+                <colgroup>
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "120px",
+                        "width": "120px",
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": undefined,
+                        "width": undefined,
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "240px",
+                        "width": "240px",
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "180px",
+                        "width": "180px",
+                      }
+                    }
+                  />
+                </colgroup>
+                <thead
+                  className="ant-table-thead"
+                >
+                  <tr
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            配置项
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            描述
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            当前配置
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            操作
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  className="ant-table-tbody"
+                >
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="开启 HTTPS"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      开启 HTTPS
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      开启 HTTPS 安全加速，支持 SSL 证书绑定及 HTTPS 状态管理
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-success"
+                      >
+                        已开启
+                      </span>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                      rowSpan={4}
+                    >
+                      <button
+                        className="ant-btn"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span>
+                          修改配置
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="更换证书"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      更换证书
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      更换即将过期或泄漏的证书
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      *.qiniu.com-20180227
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="强制 HTTPS"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      强制 HTTPS
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <p>
+                        开启后 HTTP 请求会强制跳转到 HTTPS 进行访问。
+                        <br />
+                        关闭时默认兼容用户的 HTTP/HTTPS 请求
+                      </p>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-warning"
+                      >
+                        未开启
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="HTTP/2 访问"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      HTTP/2 访问
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      HTTP/2 是最新的 HTTP 协议，用以最小化网络延迟，提升网络速度，优化用户的网络使用体验；
+如需使用请您先配置 HTTPS 证书
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-warning"
+                      >
+                        未开启
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`renders correctly with loading: true 1`] = `
+<section
+  className="content-block"
+>
+  <h4
+    className="content-block-title"
+  >
+    HTTPS 配置
+  </h4>
+  <div
+    className="ant-table-wrapper content-config-table"
+  >
+    <div
+      className="ant-spin-nested-loading"
+    >
+      <div>
+        <div
+          className="ant-spin ant-spin-spinning ant-table-without-pagination ant-table-spin-holder"
+        >
+          <span
+            className="ant-spin-dot ant-spin-dot-spin"
+          >
+            <i
+              className="ant-spin-dot-item"
+            />
+            <i
+              className="ant-spin-dot-item"
+            />
+            <i
+              className="ant-spin-dot-item"
+            />
+            <i
+              className="ant-spin-dot-item"
+            />
+          </span>
+        </div>
+      </div>
+      <div
+        className="ant-spin-container ant-spin-blur"
+      >
+        <div
+          className="ant-table ant-table-default ant-table-scroll-position-left"
+          style={Object {}}
+        >
+          <div
+            className="ant-table-content"
+          >
+            <div
+              className="ant-table-body"
+              onScroll={[Function]}
+              onWheel={[Function]}
+              style={Object {}}
+            >
+              <table
+                className=""
+                style={Object {}}
+              >
+                <colgroup>
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "120px",
+                        "width": "120px",
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": undefined,
+                        "width": undefined,
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "240px",
+                        "width": "240px",
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "180px",
+                        "width": "180px",
+                      }
+                    }
+                  />
+                </colgroup>
+                <thead
+                  className="ant-table-thead"
+                >
+                  <tr
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            配置项
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            描述
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            当前配置
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            操作
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  className="ant-table-tbody"
+                >
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="开启 HTTPS"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      开启 HTTPS
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      开启 HTTPS 安全加速，支持 SSL 证书绑定及 HTTPS 状态管理
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-success"
+                      >
+                        已开启
+                      </span>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                      rowSpan={4}
+                    >
+                      <button
+                        className="ant-btn"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span>
+                          修改配置
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="更换证书"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      更换证书
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      更换即将过期或泄漏的证书
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      *.qiniu.com-20180227
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="强制 HTTPS"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      强制 HTTPS
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <p>
+                        开启后 HTTP 请求会强制跳转到 HTTPS 进行访问。
+                        <br />
+                        关闭时默认兼容用户的 HTTP/HTTPS 请求
+                      </p>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-warning"
+                      >
+                        未开启
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="HTTP/2 访问"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      HTTP/2 访问
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      HTTP/2 是最新的 HTTP 协议，用以最小化网络延迟，提升网络速度，优化用户的网络使用体验；
+如需使用请您先配置 HTTPS 证书
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-warning"
+                      >
+                        未开启
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;

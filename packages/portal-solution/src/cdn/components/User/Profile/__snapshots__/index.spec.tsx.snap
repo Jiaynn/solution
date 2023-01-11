@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="ant-card comp-profile"
+>
+  <div
+    className="ant-card-body"
+    style={Object {}}
+  >
+    <div
+      className="ant-spin-nested-loading"
+    >
+      <div
+        className="ant-spin-container"
+      >
+        <form
+          className="ant-form ant-form-horizontal"
+          onSubmit={[Function]}
+        >
+          <div
+            className="ant-row ant-form-item"
+          >
+            <div
+              className="ant-col ant-col-2 ant-form-item-label"
+            >
+              <label
+                className=""
+                htmlFor={null}
+                onClick={[Function]}
+                title="昵称"
+              >
+                昵称
+              </label>
+            </div>
+            <div
+              className="ant-col ant-col-8 ant-form-item-control-wrapper"
+            >
+              <div
+                className="ant-form-item-control"
+              >
+                <span
+                  className="ant-form-item-children"
+                >
+                  <input
+                    className="ant-input"
+                    disabled={false}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    type="text"
+                    value=""
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-row ant-form-item"
+          >
+            <div
+              className="ant-col ant-col-2 ant-form-item-label"
+            >
+              <label
+                className=""
+                htmlFor={null}
+                onClick={[Function]}
+                title="联系地址"
+              >
+                联系地址
+              </label>
+            </div>
+            <div
+              className="ant-col ant-col-8 ant-form-item-control-wrapper"
+            >
+              <div
+                className="ant-form-item-control"
+              >
+                <span
+                  className="ant-form-item-children"
+                >
+                  <input
+                    className="ant-input"
+                    disabled={false}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    type="text"
+                    value=""
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-row ant-form-item"
+          >
+            <div
+              className="ant-col ant-col-2 ant-form-item-label"
+            >
+              <label
+                className=""
+                htmlFor={null}
+                onClick={[Function]}
+                title="QQ"
+              >
+                QQ
+              </label>
+            </div>
+            <div
+              className="ant-col ant-col-8 ant-form-item-control-wrapper"
+            >
+              <div
+                className="ant-form-item-control"
+              >
+                <span
+                  className="ant-form-item-children"
+                >
+                  <input
+                    className="ant-input"
+                    disabled={false}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    type="text"
+                    value=""
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-row ant-form-item"
+          >
+            <div
+              className="ant-col ant-col-offset-2 ant-form-item-control-wrapper"
+            >
+              <div
+                className="ant-form-item-control"
+              >
+                <span
+                  className="ant-form-item-children"
+                >
+                  <button
+                    className="ant-btn ant-btn-primary"
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    <span>
+                      确定
+                    </span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

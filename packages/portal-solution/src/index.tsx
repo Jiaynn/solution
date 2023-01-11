@@ -3,10 +3,15 @@
  * @author nighca <nighca@live.cn>
  */
 
+import 'kodo/polyfills/fetch'
+import 'kodo/global'
+
+import 'react-icecream/style/index.less' // antd css inside
+import 'portal-base/common/utils/style/global.less'
+import './style.less'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-import './style.less'
 
 import App from 'components/App'
 

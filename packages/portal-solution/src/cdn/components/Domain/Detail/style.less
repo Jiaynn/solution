@@ -1,0 +1,255 @@
+@import "~cdn/utils/style/index.less";
+@import "~cdn/utils/style/legacy-variable.less";
+
+.domain-detail-wrapper {
+  .detail-content {
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+  }
+
+  .top-btn-line {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+    z-index: 1;
+
+    .disable-tip-icon {
+      margin-right: .5em;
+    }
+  }
+
+  .messages-block {
+    .info-message,
+    .warning-message,
+    .error-message {
+      display: block;
+      width: fit-content;
+      margin: 20px 0;
+      line-height: 1.2em;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &.info-message {
+        .info-message-block();
+      }
+
+      &.warning-message {
+        .warning-message-block();
+      }
+
+      &.error-message {
+        .error-message-block();
+      }
+    }
+
+    .cname-help-link {
+      margin-left: 1em;
+    }
+  }
+
+  .content-block {
+    padding: 30px 0;
+    margin: 0;
+    border-bottom: 1px solid @border-level-2-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .content-btn {
+      margin-bottom: @icecream-gap-sm;
+    }
+
+    .basic-block-btn {
+      height: 18px;
+      line-height: 18px;
+      margin-left: 8px;
+    }
+
+    .basic-block-tip {
+      margin-left: 4px;
+    }
+  }
+
+  .content-block-title {
+    font-size: @font-size-h5;
+    font-weight: @font-weight-title;
+    margin-bottom: 1em;
+
+    .content-block-title-tip-icon {
+      margin-left: 5px;
+    }
+  }
+
+  .content-line {
+    line-height: 1.4em;
+    margin: 1.1em 0;
+
+    .text-danger {
+      color: @danger-color;
+    }
+
+    .value {
+      word-break: break-all;
+      &.state-success {
+        color: @success-color;
+      }
+      &.state-processing {
+        color: @warning-color;
+      }
+      &.state-offlined {
+        color: @text-level-4-color;
+      }
+      &.state-failed,
+      &.state-frozen {
+        color: @danger-color;
+      }
+    }
+
+    .cname-help-link {
+      margin-left: .5em;
+    }
+  }
+
+  // hack, 覆盖默认样式，这里样式有 bug，不知道为什么
+  .pandomain-block .ant-table-scroll .ant-table-header {
+    overflow: hidden;
+  }
+
+  .pandomain-block .tip-icon {
+    margin-left: .5em;
+  }
+
+  .content-config-table .ant-table-tbody{
+    & > tr:hover {
+      background: initial;
+      & > td {
+        background: initial;
+      }
+    }
+
+    & > tr > td {
+      border-bottom: none;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .ant-table-item-content {
+      line-height: 28px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .text-danger {
+      color: #e55c5c;
+    }
+
+    .text-success {
+      color: #67c23a;
+    }
+
+    .text-warning {
+      color: #cca352;
+    }
+
+    .configure-tip {
+      margin-left: .5em;
+    }
+  }
+
+  .load-more-pandomains {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .remove-btn {
+    display: inline-block;
+    width: 2em;
+    text-align: center;
+    cursor: pointer;
+    color: #e55c5c;
+  }
+
+  .add-pan {
+    float: right;
+    line-height: 30px;
+    font-weight: 400;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .ant-table-placeholder {
+    border-bottom-width: 0;
+  }
+}
+
+.domain-detail-loading-wrapper {
+  padding: 180px 0;
+  margin: 0 20px;
+  text-align: center;
+}
+
+.comp-domain-process {
+  margin-top: 20px;
+  .messages-block {
+    margin-bottom: 20px;
+    .warning-message {
+      margin: 0;
+    }
+  }
+
+  .domain-process-title {
+    margin-right: 10px;
+  }
+
+  .domain-process-bar {
+    width: 250px;
+    margin-right: 20px;
+  }
+
+  .domain-process-time {
+    margin-right: 20px;
+  }
+
+  .icon-tip {
+    margin-left: 10px;
+    color: #e8e8e8;
+  }
+}
+
+.http-header-modal {
+  .ant-modal-body {
+    padding-bottom: 0;
+    padding-top: 32px;
+  }
+}
+
+.basic-block-modal {
+  .ant-modal-body {
+    padding-bottom: 0;
+  }
+
+  .basic-block-content {
+    margin-top: 15px;
+  }
+}
+
+.domain-detail-alert {
+  padding: 9px 16px;
+  font-size: 14px;
+  color: #333;
+  line-height: 22px;
+  background-color: #f5f5f5;
+  margin-top: 15px;
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="11px" viewBox="0 0 11 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>add</title>
+    <desc>Created with Sketch.</desc>
+    <g id="预览页面" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-173.000000, -110.000000)">
+            <g id="add" transform="translate(170.000000, 107.000000)">
+                <rect id="Rectangle" fill="#D8D8D8" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                <g id="加号-copy" transform="translate(2.000000, 2.000000)">
+                    <rect id="Rectangle" fill="#000000" opacity="0" x="0" y="0" width="12" height="12"></rect>
+                    <path d="M10.9679897,5.72165472 L6.77099126,5.72165472 L6.77099126,1.52466828 C6.77099126,1.23504065 6.53595062,1 6.24633498,1 C5.95669536,1 5.72165472,1.23504064 5.72165472,1.52466828 L5.72165472,5.72165472 L1.52466828,5.72165472 C1.23502865,5.72165472 1,5.95669536 1,6.246323 C1,6.53595064 1.23504064,6.77100326 1.52466828,6.77100326 L5.72165472,6.77100326 L5.72165472,10.9680017 C5.72165472,11.2581809 5.95669536,11.492658 6.24633498,11.492658 C6.53595062,11.492658 6.77099126,11.2581809 6.77099126,10.9680017 L6.77099126,6.77100326 L10.9679897,6.77100326 C11.2581809,6.77100326 11.492658,6.53595062 11.492658,6.246323 C11.492658,5.95669537 11.2581809,5.72165472 10.9679897,5.72165472 Z" id="Path" fill="#00A7E1"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,40 @@
+/**
+ * @file Bucket setting main style
+ * @description Bucket 设置页面及子 card 公用样式
+ * @author Surmon <i@surmon.me>
+ */
+
+@import "~kodo/styles/variables.less";
+
+.contentBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.cardColumn {
+  @card-gap: @page-content-gap-small;
+  margin-bottom: @card-gap * 2;
+  width: ~"calc(50% - @{card-gap})";
+
+  :global {
+    .icecream-btn {
+      min-width: 92px;
+    }
+    .ant-btn-primary {
+      min-width: 92px;
+    }
+  }
+}
+
+.cardWithEntry {
+  height: 140px;
+}
+
+.cardWithForm {
+  height: 330px;
+}
+
+.cardOpBtn {
+  width: 92px;
+}

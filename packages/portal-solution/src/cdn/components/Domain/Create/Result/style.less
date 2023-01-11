@@ -1,0 +1,85 @@
+/**
+ * @file styles for DomainCreateResult
+ * @author gakiclin@gmail.com
+ */
+
+@import "~cdn/utils/style/index.less";
+@import "~cdn/utils/style/legacy-variable.less";
+
+.comp-domain-create-result {
+  .create-result-content {
+    display: flex;
+  }
+
+  .result-summary {
+    border: 1px solid #E8E8E8;
+    padding: @icecream-gap-md @icecream-gap-lg;
+    margin-right: 30px;
+
+    @item-gap: 32px;
+
+    &-header {
+      &-title {
+        margin-left: 2px;
+        font-weight: bold;
+      }
+
+      .summary-icon {
+        margin-right: 4px;
+        font-size: 14px;
+      }
+
+      .failure,
+      .partial-failure {
+        color: #EB3B2A;
+      }
+
+      .success {
+        color: #3BBE00
+      }
+    }
+
+    &-tip {
+      margin-top: @item-gap;
+      line-height: 20px;
+      color: #595959;
+
+      &::before {
+        content: "\2022"; //bullet
+        font-size: 40px;
+        vertical-align: middle;
+        color: @icecream-color-grey-7;
+        margin-right: 6px;
+      }
+    }
+
+    &-actions {
+      margin-top: @item-gap;
+
+      .actions-btn {
+        margin-left: @icecream-gap-xs;
+      }
+    }
+  }
+
+  .result-list {
+    flex-grow: 1;
+
+    .copy-cname {
+      margin-left: 4px;
+    }
+
+    .status-error {
+      color: #EB3B2A;
+    }
+
+    .status-success {
+      color: #29AD00;
+    }
+
+    &-retry {
+      text-align: right;
+      color: #8C8C8C;
+    }
+  }
+}

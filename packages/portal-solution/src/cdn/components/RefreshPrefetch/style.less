@@ -1,0 +1,39 @@
+@import "~cdn/utils/style/legacy-variable.less";
+
+.comp-refresh-prefetch-wrapper {
+  .notes {
+    background-color: #F5F5F5;
+    padding: 20px;
+    margin-bottom: 20px;
+    list-style-position: inside;
+    list-style-type: decimal;
+    p {
+      margin: 0;
+      margin-bottom: 0 !important;
+      line-height: 20px;
+    }
+    p + p {
+      margin-top: 10px;
+    }
+  }
+
+  p {
+    margin: 5px 0;
+    &:last-of-type {
+      margin-bottom: 15px;
+    }
+    &.text-warning {
+      color: @warning-color;
+    }
+  }
+
+  .alert {
+    margin-bottom: 15px;
+    .svg-icon {
+      display: block;
+      width: 14px;
+      height: 14px;
+      cursor: none;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+/**
+ * @file style for OverviewStatistics Component
+ * @author zhangheng <zhangheng01@qiniu.com>
+ */
+
+@import "~kodo/styles/font.less";
+
+.statisticsCard {
+  .currentData {
+    font-size: 20px;
+    color: @icecream-grey-8;
+  }
+
+  .currentText {
+    .pingfangRegular();
+    color: @icecream-grey-8;
+    i {
+      margin-left: 37px;
+      &.arrowUp {
+        color: @icecream-blue-4;
+      }
+
+      &.arrowDown {
+        color: @icecream-red-4;
+      }
+    }
+  }
+
+  .lastText {
+    margin-top: @page-content-gap-small;
+    color: rgba(0, 0, 0, 0.45);
+  }
+}
+
+.statisticsBox {
+  display: flex;
+  justify-content: space-between;
+  margin: @page-content-gap-medium 0;
+}

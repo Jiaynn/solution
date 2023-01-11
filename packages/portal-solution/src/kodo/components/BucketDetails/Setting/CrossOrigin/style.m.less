@@ -1,0 +1,55 @@
+/**
+ * @file CrossDomain style
+ * @description CrossDomain 组件样式
+ * @author yinxulai <me@yinxulai.com>
+ */
+
+@import "~kodo/styles/variables.less";
+
+.delBtn {
+  margin-left: 4px;
+  color: #f5222d !important;
+}
+
+.listItem {
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin: 4px 0;
+    font-size: @icecream-font-size-2;
+    line-height: 14px;
+    list-style: none;
+
+    .textColor {
+      color: @icecream-grey-7;
+    }
+  }
+
+  .textColor {
+    color: @icecream-grey-7;
+  }
+}
+
+.topBar {
+  margin-bottom: @page-content-gap-regular;
+}
+
+.operationButton {
+  // padding: 0 10px 0 0; // TODO: react-icecream
+}
+
+.helpDocument {
+  margin-left: 1rem;
+}
+
+.method {
+  :global(.ant-checkbox-group-item) {
+    padding: @page-content-gap-half 0;
+  }
+}
+
+.pageTip {
+  font-size: @icecream-font-size-1;
+  margin-bottom: @page-content-gap;
+}

@@ -1,0 +1,96 @@
+@import '~portal-base/common/utils/style/index.less';
+
+.color-default() {
+  background-color: #F8FAFC;
+}
+
+.color-info() {
+  background-color: #F4F9FF;
+  border-color: #cee1f5;
+  color: #528fcc;
+}
+
+.color-success() {
+  background-color: #F4FBF6;
+  border-color: #c0ebd0;
+  color: #47b36f;
+}
+
+.color-warning() {
+  background-color: #FFFBF2;
+  border-color: #f0e0c0;
+  color: #cca352;
+
+  .badge {
+    background-color: #FFA600;
+    border-color: #e68900;
+  }
+}
+
+.color-danger() {
+  background-color: #FEF7F7;
+  border-color: #f0d8d8;
+  color: #e65c5c;
+}
+
+.message-block() {
+  padding: 10px 15px;
+  max-width: 640px;
+  line-height: 26px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+
+.default-message-block() {
+  .message-block();
+  .color-default();
+}
+
+.info-message-block() {
+  .message-block();
+  .color-info();
+}
+
+.success-message-block() {
+  .message-block();
+  .color-success();
+}
+
+.warning-message-block() {
+  .message-block();
+  .color-warning();
+}
+
+.error-message-block() {
+  .message-block();
+  .color-danger();
+}
+
+// 清除浮动
+.clearfix() {
+  &::after {
+    content: " ";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+  }
+}
+
+// 等宽字体
+.monospaced() {
+  font-family: monospace, Courier New, Courier;
+}
+
+.table-head-no-bgcolor() {
+  .ant-table-thead > tr, .ant-table-thead > tr > th {
+    background-color: transparent;
+  }
+}
+
+// 临时覆盖 tabs 的样式，等升级 icecream 2.0 的时候移除
+.tabs-width-padding() {
+  .ant-tabs-nav-wrap {
+    padding: 0 20px;
+  }
+}

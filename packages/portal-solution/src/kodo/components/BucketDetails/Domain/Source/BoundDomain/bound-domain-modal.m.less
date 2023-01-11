@@ -1,0 +1,33 @@
+/**
+ * @file BoundDomainModal style
+ * @author yinxulai <me@yinxulai.com>
+ */
+
+@import "~kodo/styles/variables.less";
+
+.warnText {
+  color: @icecream-yellow-3;
+}
+
+.ownerVerified {
+  margin: @icecream-gap-sm @icecream-gap-xs;
+  color: @icecream-grey-9;
+
+  .field {
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    margin: @icecream-gap-xs 0;
+
+    .label {
+      width: 60px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .value {
+      flex: 1;
+      word-break: break-all;
+    }
+  }
+}

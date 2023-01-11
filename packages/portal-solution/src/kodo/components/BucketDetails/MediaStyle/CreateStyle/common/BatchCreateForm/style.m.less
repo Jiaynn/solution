@@ -1,0 +1,95 @@
+@import 'react-icecream-2/dist/utils.less';
+
+.root {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  :global(.icecream-select) {
+    width: 100%;
+  }
+
+  :global(.icecream-input-group) {
+    width: 100%;
+  }
+
+  :global(.icecream-table) {
+    td {
+      vertical-align: top;
+    }
+
+    colgroup col:last-child {
+      width: 30px !important;
+    }
+  }
+
+  :global(.icecream-table-header-tr) {
+    background-color: transparent;
+    th {
+      padding-left: @icecream-gap-xs;
+
+      * {
+        font-weight: initial !important;
+        color: @icecream-color-grey-10;
+      }
+    }
+  }
+
+  :global {
+    .icecream-table-body {
+      border: 1px solid @icecream-color-grey-4;
+      border-right: 0;
+      border-left: 0;
+
+      &::before, &::after {
+        content: '';
+        display: block;
+        height: @icecream-gap-md / 2;
+      }
+    }   
+  }
+
+  :global(.icecream-table-body-td) {
+    padding: @icecream-gap-xs;
+  }
+
+  :global(.icecream-table-placeholder) {
+    td {
+      padding: @icecream-gap-lg;
+    }
+  }
+}
+
+.prompt {
+  margin-top: @icecream-gap-md-x;
+}
+
+.table {
+  width: 100%;
+}
+
+.empty {
+  text-align: center;
+  color: @icecream-color-grey-9;
+}
+
+.removeIcon {
+  cursor: pointer;
+  height: 30px;
+  color: @icecream-color-red-6;
+}
+
+.nameSuffix {
+  width: 80px !important;
+  text-align: center;
+}
+
+.createButton {
+  margin: @icecream-gap-md @icecream-gap-xs;
+}
+
+.prompt {
+  width: 100%;
+}

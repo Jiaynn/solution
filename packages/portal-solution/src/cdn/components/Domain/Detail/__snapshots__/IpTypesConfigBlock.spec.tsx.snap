@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<button
+  className="ant-btn basic-block-btn ant-btn-link"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+>
+  <span>
+    修改
+  </span>
+</button>
+`;
+
+exports[`renders correctly with geoCover is foreign 1`] = `null`;
+
+exports[`renders correctly with update ipv6 processing 1`] = `
+Array [
+  <button
+    className="ant-btn basic-block-btn ant-btn-link"
+    disabled={true}
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      处理中
+    </span>
+  </button>,
+  <i
+    aria-label="icon: info-circle"
+    className="anticon anticon-info-circle basic-block-tip"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    style={
+      Object {
+        "color": "#999",
+        "cursor": "pointer",
+        "fontSize": "14px",
+        "fontWeight": "normal",
+        "marginLeft": "4px",
+        "verticalAlign": "-0.125em",
+      }
+    }
+  >
+    <svg
+      aria-hidden="true"
+      className=""
+      data-icon="info-circle"
+      fill="currentColor"
+      focusable="false"
+      height="1em"
+      viewBox="64 64 896 896"
+      width="1em"
+    >
+      <path
+        d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+      />
+      <path
+        d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+      />
+    </svg>
+  </i>,
+]
+`;

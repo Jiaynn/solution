@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly for actionNames or resources allow ActionA + Resource1 1`] = `
+<a
+  className=""
+  onClick={[Function]}
+>
+  <p>
+    foo
+  </p>
+</a>
+`;
+
+exports[`renders correctly for actionNames or resources allow ActionA 1`] = `
+<a
+  className=""
+  onClick={[Function]}
+>
+  <p>
+    foo
+  </p>
+</a>
+`;
+
+exports[`renders correctly for actionNames or resources deny ActionA + Resource2 1`] = `
+<a
+  className=""
+  onClick={[Function]}
+>
+  <p>
+    foo
+  </p>
+</a>
+`;
+
+exports[`renders correctly for actionNames or resources deny ActionB 1`] = `
+<a
+  className=""
+  onClick={[Function]}
+>
+  <p>
+    foo
+  </p>
+</a>
+`;

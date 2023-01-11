@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with correct value 1`] = `
+<div
+  className="domain-selector-wrapper"
+>
+  <button
+    className="ant-btn domain-selector-btn"
+    onClick={[Function]}
+    onMouseDown={[Function]}
+    onTouchStart={[Function]}
+    type="button"
+  >
+    <span>
+      已选 1/3 个运营商
+    </span>
+  </button>
+</div>
+`;
+
+exports[`renders correctly with empty value 1`] = `
+<div
+  className="domain-selector-wrapper"
+>
+  <button
+    className="ant-btn domain-selector-btn"
+    onClick={[Function]}
+    onMouseDown={[Function]}
+    onTouchStart={[Function]}
+    type="button"
+  >
+    <span>
+      已选 0/3 个运营商
+    </span>
+  </button>
+</div>
+`;
+
+exports[`renders correctly with incorrect value 1`] = `
+<div
+  className="domain-selector-wrapper"
+>
+  <button
+    className="ant-btn domain-selector-btn"
+    onClick={[Function]}
+    onMouseDown={[Function]}
+    onTouchStart={[Function]}
+    type="button"
+  >
+    <span>
+      已选 1/3 个运营商
+    </span>
+  </button>
+</div>
+`;

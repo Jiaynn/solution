@@ -1,0 +1,62 @@
+/**
+ * @description style of common used modal component
+ * @author duli <duli@qiniu.com>
+ */
+
+@import "~react-icecream-2/dist/utils.less";
+
+.drawer {
+  // 后面升级会修复，这个样式就可以删除了
+  :global(.icecream-drawer-content-footer) {
+    display: none;
+  }
+}
+
+.head {
+  margin-bottom: @icecream-gap-md-x;
+}
+
+
+.content {
+  padding: 0 @icecream-gap-md;  
+}
+
+.scenario {
+  position: relative;
+  padding: @icecream-gap-lg @icecream-gap-xs;
+  border-bottom: 1px solid @icecream-color-grey-5;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .image {
+    width: 90px;
+    height: 58px;
+    flex-shrink: 0;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    margin-left: @icecream-gap-md;
+
+    .title {
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: @icecream-color-grey-9;
+      font-size: @icecream-font-size-3;
+    }
+
+    .desc {
+      font-weight: 400;
+      color: @icecream-color-grey-8;
+      font-size: @icecream-font-size-3;
+    }
+  }
+
+  &:hover {
+    background-color: @icecream-color-grey-2;
+  }
+}

@@ -1,0 +1,31 @@
+@import "~cdn/utils/style/index.less";
+@import "~cdn/utils/style/legacy-variable.less";
+
+.comp-layout-full-screen.ant-layout {
+  @background-color-dark: #404040;
+
+  background: @background-color-dark;
+  color: @white;
+  height: 100%;
+
+  .layout-full-screen-header {
+    background: @background-color-dark;
+    display: flex;
+    align-items: center;
+
+    .logo-wrapper {
+      width: 60px;
+
+      .logo-img {
+        display: block;
+        width: 60px;
+        height: 40px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .layout-full-screen-content {
+    overflow-y: auto;
+  }
+}

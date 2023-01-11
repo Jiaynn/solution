@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="13px" viewBox="0 0 12 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>delete</title>
+    <desc>Created with Sketch.</desc>
+    <g id="预览页面" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-422.000000, -105.000000)">
+            <g id="delete" transform="translate(419.996000, 103.000000)">
+                <rect id="Rectangle" fill="#000000" fill-rule="nonzero" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                <path d="M5.625,3.125 L5.5,3.125 C5.56875,3.125 5.625,3.06875 5.625,3 L5.625,3.125 L10.375,3.125 L10.375,3 C10.375,3.06875 10.43125,3.125 10.5,3.125 L10.375,3.125 L10.375,4.25 L11.5,4.25 L11.5,3 C11.5,2.4484375 11.0515625,2 10.5,2 L5.5,2 C4.9484375,2 4.5,2.4484375 4.5,3 L4.5,4.25 L5.625,4.25 L5.625,3.125 Z M13.5,4.25 L2.5,4.25 C2.2234375,4.25 2,4.4734375 2,4.75 L2,5.25 C2,5.31875 2.05625,5.375 2.125,5.375 L3.06875,5.375 L3.4546875,13.546875 C3.4796875,14.0796875 3.9203125,14.5 4.453125,14.5 L11.546875,14.5 C12.08125,14.5 12.5203125,14.08125 12.5453125,13.546875 L12.93125,5.375 L13.875,5.375 C13.94375,5.375 14,5.31875 14,5.25 L14,4.75 C14,4.4734375 13.7765625,4.25 13.5,4.25 Z M11.4265625,13.375 L4.5734375,13.375 L4.1953125,5.375 L11.8046875,5.375 L11.4265625,13.375 Z" id="Shape" fill="#595959" fill-rule="nonzero"></path>
+                <path d="M8,7 L8,11.6075835" id="Path-2" stroke="#595959" stroke-linecap="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

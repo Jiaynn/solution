@@ -1,0 +1,47 @@
+/**
+ * @file bucket list
+ * @description bucket list 样式
+ * @author yinxulai <me@yinxulai.com>
+ */
+
+@import "~kodo/styles/mixins.less";
+@import "~kodo/styles/variables.less";
+
+.icons {
+  .icon {
+    color: #1989FA;
+    margin-right: 8px;
+  }
+}
+
+.bucketTable {
+  padding: @page-content-gap-small 0;
+  box-sizing: border-box;
+
+  :global(.ant-table-column-title) {
+    .line-ellipsis();
+  }
+
+  .filterIcon {
+    margin-left: 10px;
+    right: unset !important;
+
+    .icon {
+      position: static;
+    }
+  }
+}
+
+.bucketName {
+  word-wrap: break-word;
+  word-break: break-all;
+
+  a {
+    display: block;
+  }
+}
+
+.operationButton {
+  .line-nowrap();
+  padding-right: @page-content-gap-half;
+}

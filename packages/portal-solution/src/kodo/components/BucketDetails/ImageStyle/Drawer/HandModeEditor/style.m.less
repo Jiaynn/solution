@@ -1,0 +1,24 @@
+/**
+ * @description style of hand mode editor
+ * @author duli <duli@qiniu.com>
+ */
+
+@import '~kodo/styles/variables.less';
+@import '~kodo/styles/font.less';
+@import '~kodo/styles/mixins.less';
+
+.card {
+  :global(.ant-card-body) {
+    padding: @page-content-gap * 1.5 !important;
+  }
+
+  .link {
+    font-size: @icecream-font-size-1;
+    margin-left: @page-content-gap;
+  }
+
+  textarea {
+    padding: 0 !important;
+    border: 0;
+  }
+}

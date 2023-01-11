@@ -1,0 +1,212 @@
+/**
+ * @file style for ResourceManage
+ * @author zhangheng <zhangheng01@qiniu.com>
+ */
+
+@import "~kodo/styles/font.less";
+@import "~kodo/styles/variables.less";
+@import "~kodo/styles/mixins.less";
+
+.defaultDomain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .name {
+    width: 200px;
+    .ellipsis();
+  }
+
+  .defaultTag {
+    font-size: @icecream-font-size-1;
+    color: #8C8C8C;
+    margin-left: 5px;
+    margin-top: 1px;
+  }
+}
+
+.header {
+  margin-bottom: @page-content-gap;
+
+  .featureInfo, .sensitiveInfo, .httpSafeWarning {
+    margin-top: @page-content-gap;
+    margin-bottom: @page-content-gap;
+
+    :global(.ant-alert-warning) {
+      color: #fa8c16; // TODO：升级到 icecream-2 后换成 2 的 alert 组件去掉
+      background: #fef3e7; // TODO：升级到 icecream-2 后换成 2 的 alert 组件去掉
+      font-size: @icecream-font-size-1; // TODO: @huangbinjie 统一改 alert 字体大小
+    }
+  }
+
+  .storageData {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: @page-content-gap;
+    font-size: @icecream-font-size-1;
+
+    .content > i {
+      color: rgba(47, 48, 51, 0.65);
+    }
+  }
+
+  .defaultDomain {
+    label {
+      .pingfangRegular();
+    }
+  }
+
+  span.gapSpan {
+    margin: 0 @page-content-gap-half;
+  }
+
+  :global(.ant-select-selection__rendered) {
+    line-height: 29px;
+  }
+
+  .domainSelect {
+    width: 270px;
+
+    .defaultDomain();
+    :global(.ant-select-dropdown-menu-item) {
+      .defaultDomain();
+    }
+  }
+}
+
+.storageName {
+  .pingfangRegular();
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.storageName:not(:first-child) {
+  margin-left: @page-content-gap-half;
+}
+
+.saveButton {
+  margin-left: @page-content-gap-half;
+}
+
+.controller {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .searchInput {
+    width: 320px;
+  }
+
+  .versionControl {
+    margin-left: 20px;
+    i {
+      margin-right: 5px;
+      color: @icecream-grey-6;
+
+      &:hover {
+        color: @icecream-grey-7;
+      }
+    }
+  }
+}
+
+.table {
+  margin-top: @page-content-gap-regular;
+
+  .formatted {
+    display: inline;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .notAvailableFile {
+    color: #BFBFBF;
+  }
+
+  .newFile {
+    background: #DEF7FF;
+  }
+
+  .editIcon {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  td {
+    min-height: 59px;
+
+    &:nth-child(2) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  td:hover .editIcon {
+    display: inline-block;
+    margin-left: 10px;
+    color: #5F9BF9;
+  }
+
+  .more {
+    // padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .expandedRow {
+    background: #EEEEEE;
+  }
+
+  .tableAction {
+    padding: 0 (@page-content-gap / 4);
+  }
+
+  :global(.ant-btn) {
+    margin-right: 0 !important;
+  }
+}
+
+.icon {
+  padding: 0 5px;
+  cursor: pointer;
+  color: #5F9BF9;
+}
+
+.editCell {
+  display: inline-block;
+  .content {
+    position: relative;
+  }
+
+  .editIcon {
+    display: none;
+  }
+}
+
+.assistIcon {
+  color: #5F9BF9;
+  display: inline-block;
+  i:first-child {
+    margin-right: 5px;
+    color: red;
+  }
+}
+
+.editInput {
+  :global {
+    input.ant-input:not(:last-child) {
+      padding-right: 50px;
+      height: 25px;
+    }
+  }
+}
+
+.hide {
+  display: none !important;
+}
+
+.dropdown {
+  font-size: @icecream-font-size-3 !important;
+}
+
+.downloadIcon {
+  margin-left: @icecream-gap-md * 2;
+}

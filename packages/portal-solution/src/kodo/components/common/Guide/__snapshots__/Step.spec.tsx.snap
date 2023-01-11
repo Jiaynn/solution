@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className=""
+>
+  <div>
+    <div>
+      foo
+    </div>
+  </div>
+  <div>
+    <button
+      className="ant-btn ant-btn-link"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="anticon"
+      >
+        <svg>
+          <use
+            xlinkHref="file-path"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+          />
+        </svg>
+      </i>
+    </button>
+    <ul>
+      <li
+        className=""
+      />
+      <li
+        className=""
+      />
+      <li
+        className=""
+      />
+      <li
+        className=""
+      />
+    </ul>
+    <button
+      className="ant-btn ant-btn-link"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="anticon"
+      >
+        <svg>
+          <use
+            xlinkHref="file-path"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+          />
+        </svg>
+      </i>
+    </button>
+  </div>
+</div>
+`;

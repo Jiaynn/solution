@@ -1,0 +1,35 @@
+@import "~react-icecream-2/dist/utils.less";
+
+.presetSelect {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > *:first-child {
+    flex: 1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.refresh {
+  cursor: pointer;
+  margin-left: @icecream-gap-xs;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: @icecream-gap-xs / 2;
+}
+
+.spin {
+  transform-origin: center;
+  animation: spin 1s linear infinite;
+}

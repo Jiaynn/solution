@@ -1,0 +1,16 @@
+/**
+ * @file common style entry
+ * @author lizhifeng <lizhifeng@qiniu.com>
+ */
+
+// 注意：
+// 这目录原本在 utils 内（参看 portal-base），并且功能更接近于 utils
+// 未来在新版 icecream 稳定之后，这里的内容应该会很少，有可能重新挪回 utils
+// 因此应尽量减少在这一层面的抽象
+// 更好的做法是通过 ts 和组件而不是 less 来封装、抽象和复用
+// 并且尽量封装在 portal-base + icecream 这一层
+
+// 注意：用这些个，而不是直接用 portal-base 或 icecream
+
+@import "./variables.less";
+@import "./mixins.less";

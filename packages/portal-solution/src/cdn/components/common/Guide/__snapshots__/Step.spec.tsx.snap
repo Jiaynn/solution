@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="comp-guide-step"
+>
+  <div
+    className="step-content"
+  >
+    <div>
+      foo
+    </div>
+  </div>
+  <div
+    className="step-bar"
+  >
+    <span
+      className="step-icon "
+    />
+    <span
+      className="step-icon current"
+    />
+    <span
+      className="step-icon "
+    />
+    <span
+      className="step-icon "
+    />
+  </div>
+  <div
+    className="step-directions"
+  >
+    <button
+      className="ant-btn prev-step ant-btn-primary ant-btn-sm"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <span>
+        上一步
+      </span>
+    </button>
+    <button
+      className="ant-btn ant-btn-primary ant-btn-sm"
+      onClick={[Function]}
+      type="button"
+    >
+      <span>
+        下一步
+      </span>
+    </button>
+  </div>
+</div>
+`;

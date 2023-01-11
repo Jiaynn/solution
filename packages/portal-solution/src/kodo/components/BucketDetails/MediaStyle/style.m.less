@@ -1,0 +1,145 @@
+@import "react-icecream-2/dist/utils.less";
+
+.head {
+  margin-bottom: @icecream-gap-lg;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: @icecream-gap-lg;
+  text-align: right;
+  border-top: 1px solid #e8e8e8;
+}
+
+.actionsGroup {
+  > button + button {
+    margin-left: @icecream-gap-sm;
+  }
+}
+
+.imageStyle {
+  flex: 1;
+  .head {
+    .title {
+      margin-right: @icecream-gap-lg;
+    }
+  }
+}
+
+.columnText {
+  display: inline-block;
+  word-break: break-all;
+  min-width: 160px;
+}
+
+.functionGuideToggleButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: @icecream-font-size-1;
+  cursor: pointer;
+
+  > * + * {
+    margin-left: @icecream-gap-sm / 2;
+  }
+}
+
+.functionGuideCard {
+  margin-bottom: @icecream-gap-md-x;
+  padding-bottom: @icecream-gap-lg / 4;
+
+  :global(.icecream-card-content) {
+    padding-bottom: @icecream-gap-lg / 4 !important;
+  }
+}
+
+.functionGuideCardTitle {
+  font-size: @icecream-font-size-3;
+}
+
+.functionGuide {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  transition: 0.3s;
+
+  .guideItem {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .guideItem + .guideItem {
+    margin-left: @icecream-gap-md-x + @icecream-gap-sm;
+  }
+
+  &.expand {
+    .guideItem + .guideItem {
+      margin-left: @icecream-gap-sm;
+    }
+  }
+
+  &.expand {
+    .guideItem:nth-child(1) {
+      width: (7/24) * 100%;
+    }
+    .guideItem:nth-child(2) {
+      width: (8/24) * 100%;
+    }
+    .guideItem:nth-child(3) {
+      width: (9/24) * 100%;
+    }
+  }
+
+  @iconSize: 18px;
+
+  .guideItemIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: @iconSize;
+    height: @iconSize;
+    border-radius: 12px;
+    font-size: @icecream-font-size-1;
+    border: @icecream-border-width solid @icecream-color-blue-6;
+    color: @icecream-color-blue-6;
+  }
+
+  .guideItemContent {
+    margin-left: @icecream-gap-xs;
+
+    h4 {
+      color: @icecream-color-grey-10;
+      font-size: @icecream-font-size-1;
+      line-height: @iconSize;
+    }
+
+    ul {
+      list-style: disc;
+      margin-left: @icecream-gap-md;
+      color: @icecream-color-grey-9;
+
+      li {
+        font-size: @icecream-font-size-1;
+        line-height: @icecream-font-size-4 + 2;
+        word-break: break-all;
+
+        strong {
+          color: @icecream-color-grey-10;
+        }
+      }
+    }
+  }
+}
+
+.buttonGap {
+  margin-right: @icecream-gap-md;
+}

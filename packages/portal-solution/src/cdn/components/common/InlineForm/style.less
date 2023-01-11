@@ -1,0 +1,20 @@
+@import '~cdn/utils/style/index.less';
+
+@padding: 16px;
+@lineMargin: 10px;
+
+.ant-form-inline.comp-inline-form {
+  position: relative;
+  padding: @padding @padding (@padding - @lineMargin) @padding;
+  line-height: 40px;
+  background-color: hsl(216, 33%, 97%);
+
+  .ant-form-item {
+    margin-bottom: @lineMargin;
+    margin-right: 1em;
+  }
+
+  .ant-form-item-control {
+    max-width: 240px;
+  }
+}

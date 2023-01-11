@@ -1,0 +1,79 @@
+/**
+ * @description style of watermark component
+ * @author duli <duli@qiniu.com>
+ */
+
+@import "~react-icecream-2/dist/utils.less";
+
+.urlOrWord {
+  width: 390px;
+}
+
+.slider {
+  width: 240px;
+}
+
+.rowInputWrap {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  :global(.icecream-form-item) {
+    margin-bottom: 0 !important;
+  }
+
+  > * + * {
+    margin-left: @icecream-gap-md;
+  }
+}
+
+.fontFamily {
+  width: 140px;
+}
+
+.originWrap {
+  display: flex;
+  flex-wrap: wrap;
+  width: 150px;
+  margin-bottom: @icecream-gap-lg;
+
+  .origin {
+    position: relative;
+    width: 50px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #bfbfbf;
+    cursor: pointer;
+
+    &:not(:nth-child(3n + 1)) {
+      margin-left: -1px;
+    }
+
+    &:nth-child(n + 4) {
+      margin-top: -1px;
+    }
+
+    &:nth-child(1) {
+      border-top-left-radius: 5px;
+    }
+
+    &:nth-child(3) {
+      border-top-right-radius: 5px;
+    }
+
+    &:nth-child(7) {
+      border-bottom-left-radius: 5px;
+    }
+
+    &:nth-child(9) {
+      border-bottom-right-radius: 5px;
+    }
+  }
+
+  .selected {
+    z-index: 10;
+    font-weight: bold;
+    color: @icecream-color-blue-6;
+    border-color: @icecream-color-blue-6 !important;
+  }
+}

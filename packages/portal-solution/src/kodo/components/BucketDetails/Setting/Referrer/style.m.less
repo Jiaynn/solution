@@ -1,0 +1,55 @@
+/**
+ * @file bucket referrer style
+ * @description Bucket setting referrer style
+ * @author Surmon <i@surmon.me>
+ */
+
+@import "~kodo/styles/variables.less";
+
+.formButtons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: @page-content-gap;
+}
+
+.prompt {
+  margin-bottom: @page-content-gap;
+}
+
+.formLoading {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formReferrer {
+
+  .addReferrerAction {
+    margin-bottom: @page-content-gap;
+  }
+
+  .referrerBox {
+
+    :global(.ant-form-item) {
+      margin-bottom: @page-content-gap;
+    }
+
+    .referrer {
+      display: flex;
+
+      .deleteButton {
+        width: 40px;
+        padding: 0;
+        text-align: center;
+        color: @icecream-red-3;
+        :global(.svg-icon) {
+          position: initial;
+          height: 1em;
+        }
+      }
+    }
+  }
+}

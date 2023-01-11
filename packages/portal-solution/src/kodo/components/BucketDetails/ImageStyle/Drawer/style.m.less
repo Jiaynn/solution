@@ -1,0 +1,78 @@
+/**
+ * @description style of image style drawer
+ * @author duli <duli@qiniu.com>
+ */
+
+@import "~kodo/styles/variables.less";
+@import "~kodo/styles/font.less";
+@import "~kodo/styles/mixins.less";
+@import "~react-icecream-2/dist/utils.less";
+
+@border-color: #e5e5e5;
+
+.drawer {
+  display: flex;
+  position: relative;
+}
+
+.collapseGroup {
+  > * + * {
+    margin-top: @icecream-gap-lg;
+  }
+}
+
+.docIcon {
+  font-size: 14px;
+  margin-left: @page-content-gap / 2;
+}
+
+.form {
+  width: 880px;
+  padding-right: @page-content-gap-regular;
+  margin-right: @page-content-gap-regular;
+  border-right: 1px solid @border-color;
+
+  .name {
+    display: flex;
+    justify-content: space-between;
+
+    input {
+      width: 400px;
+    }
+  }
+}
+
+.suffixBorder {
+  border-left: 0;
+  border-radius: 2px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.colorPickerWrap {
+  .color {
+    width: 37px;
+    cursor: pointer;
+    border-left: 1px solid #bfbfbf !important;
+    padding: 0;
+    .suffixBorder();
+  }
+}
+
+.picker {
+  :global {
+    .icecream-popover-inner {
+      padding: 0 !important;
+    }
+  }
+}
+
+.footer {
+  margin-top: @page-content-gap * 2;
+  display: flex;
+  justify-content: flex-end;
+
+  > * + * {
+    margin-left: @icecream-gap-md;
+  }
+}

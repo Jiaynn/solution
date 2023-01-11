@@ -1,0 +1,78 @@
+/**
+ * @file bucket style
+ * @description bucket 样式
+ * @author yinxulai <me@yinxulai.com>
+ */
+
+@import "~kodo/styles/variables.less";
+@import "~kodo/styles/font.less";
+
+.bucketName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: @icecream-grey-8;
+  font-weight: 500;
+  font-size: @icecream-font-size-3;
+  margin-bottom: @page-content-gap;
+
+  .block {
+    width: 6px;
+    height: 20px;
+    margin-right: 8px;
+    background-color: @icecream-blue-5;
+  }
+}
+
+.topBar {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs {
+  margin-top: @page-content-gap;
+  margin-bottom: @page-content-gap-regular;
+
+  .switch {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .switchTxt {
+      margin-left: @page-content-gap / 3;
+    }
+  }
+
+  :global(.ant-tabs-bar) {
+    margin: 0;
+  }
+
+  // TODO: 实现一个增强版的自带 link 的 tab，就不需要 hack css 了
+  :global(.ant-tabs-tab) {
+    padding: 0;
+
+    a.tabLink {
+      color: inherit;
+      display: inline-block;
+      padding: @page-content-gap-small @page-content-gap;
+      transition: none;
+    }
+
+    :global(.link-disabled) {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.warning {
+  font-weight: 500;
+}
+
+.deleteBucket {
+  color: @icecream-yellow-2;
+}
+
+.deleteDomainInfo {
+  margin-top: @page-content-gap;
+  color: @icecream-red-3;
+}

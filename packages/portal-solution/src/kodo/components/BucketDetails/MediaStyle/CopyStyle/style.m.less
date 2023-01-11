@@ -1,0 +1,45 @@
+@import "react-icecream-2/dist/utils.less";
+
+.bucketSelectForm {
+  margin-top: @icecream-gap-lg;
+
+  .bucketSelect {
+    width: 100%;
+  }
+}
+
+.todoDeleteList {
+  max-height: 234px;
+  overflow-y: auto;
+  padding: 0 @icecream-gap-sm;
+  margin-top: @icecream-gap-sm;
+
+  :global(.icecream-table-header) {
+    display: none;
+  }
+
+  :global(.icecream-table-body-td) {
+    padding: 4px 0;
+  }
+}
+
+.operateIcon + .operateIcon {
+  margin-left: @icecream-gap-xs;
+}
+
+.safeStatus {
+  color: @icecream-color-green-6;
+}
+
+.warnStatus {
+  color: @icecream-color-orange-6;
+}
+
+.dangerStatus {
+  color: @icecream-color-red-6;
+}
+
+.contentText {
+  display: flex;
+  align-items: center;
+}

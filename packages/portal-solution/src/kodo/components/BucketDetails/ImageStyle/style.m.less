@@ -1,0 +1,172 @@
+/**
+ * @file style for ImageStyle
+ * @author zhangheng <zhangheng01@qiniu.com>
+ */
+
+@import "~kodo/styles/variables.less";
+@import "~kodo/styles/font.less";
+@import "~kodo/styles/mixins.less";
+
+.cardGap {
+  margin-right: 22px;
+}
+
+.gap {
+  margin-right: @page-content-gap-half;
+}
+
+.head {
+  margin-bottom: @page-content-gap-regular;
+}
+
+.styleContent {
+  display: flex;
+}
+
+.styleSeparator, .styleImage {
+  flex: 1;
+}
+
+.separatorTip {
+  color: @icecream-yellow-3;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: @page-content-gap-regular;
+  text-align: right;
+  border-top: 1px solid #E8E8E8;
+}
+
+.createStyleButton {
+  margin-right: 0 !important;
+}
+
+.separatorButton {
+  margin-left: @page-content-gap;
+}
+
+.separatorContent {
+  padding-right: 22px;
+  padding-bottom: 22px;
+
+  .separatorSelect {
+    width: 270px;
+  }
+
+  .addButton {
+    margin-left: @page-content-gap;
+  }
+
+  .separatorControl {
+    margin: @page-content-gap-medium 0;
+  }
+
+  .separators {
+    display: flex;
+    flex-wrap: wrap;
+
+    .separatorBox {
+      padding: 10px;
+
+      .separator {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        border-radius: @icecream-border-radius-base;
+        border: 1px solid #e8e8e8;
+        text-align: center;
+        padding-top: @page-content-gap;
+
+        p {
+          margin-top: 5px;
+        }
+
+        .closeIcon {
+          position: absolute;
+          top: 3px;
+          right: 3px;
+          display: none;
+        }
+
+        &:hover {
+          .closeIcon {
+            display: inline-block;
+            color: @icecream-red-3;
+          }
+        }
+      }
+    }
+  }
+}
+
+.imageStyle {
+  flex: 1;
+  .head {
+    .title {
+      margin-right: @page-content-gap-medium;
+    }
+
+    button {
+      margin-right: 0 !important;
+    }
+  }
+
+  .tdBreak {
+    .line-wrap();
+  }
+}
+
+.viewModal {
+  &:global(.ant-modal) {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding-bottom: 0;
+    width: 100% !important;
+  }
+
+  :global(.ant-modal-body) {
+    height: 100%;
+    overflow: auto;
+  }
+
+  :global(.ant-modal-content) {
+    height: 100%;
+  }
+
+  :global(.ant-modal-close-x) {
+    font-size: 24px;
+  }
+
+  .previewImage {
+    max-width: 100%;
+  }
+
+  .modalContent {
+    text-align: center;
+    .modalTitle {
+      .pingfangMedium();
+      margin-bottom: @page-content-gap-medium;
+      margin-top: 50px;
+    }
+
+    .imageDesc {
+      display: flex;
+      justify-content: center;
+      margin-bottom: @page-content-gap-medium;
+      span {
+        font-weight: 500;
+        color: @icecream-text-color-weight;
+      }
+    }
+
+    .gap {
+      margin-right: @page-content-gap-medium;
+    }
+  }
+}

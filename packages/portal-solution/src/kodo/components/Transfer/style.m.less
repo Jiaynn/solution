@@ -1,0 +1,31 @@
+/**
+ * @file bucket transfer style
+ * @description bucket 跨区域同步样式
+ * @author Surmon <i@surmon.me>
+ */
+
+@import "~kodo/styles/mixins.less";
+@import "~kodo/styles/variables.less";
+
+.pageTip {
+  margin: 0 0 @page-content-gap 0 !important;
+}
+
+.toolbar {
+  margin-bottom: @page-content-gap-regular;
+}
+
+.bucketName {
+  .line-wrap();
+}
+
+.taskDetailBox {
+
+  li {
+    margin-bottom: @page-content-gap;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}

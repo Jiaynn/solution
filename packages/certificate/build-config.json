@@ -1,0 +1,38 @@
+{
+  "extends": "@qiniu/build-config/portal",
+  "srcDir": "src",
+  "publicUrl": "https://qiniu.staticfile.org/",
+  "entries": {
+    "index": "src/index.tsx"
+  },
+  "pages": {
+    "index": {
+      "template": "src/index.ejs",
+      "entries": "index",
+      "path": "^\\/certificate\\/"
+    }
+  },
+  "envVariables": {
+    "BUILD_TARGET": "qiniu",
+    "OEM_CONFIG": null,
+    "APP_VERSION": "<BUILD_AT>-<COMMIT_ID>"
+  },
+  "devProxy": {
+    "/api/certificate": "http://portalv4.dev.qiniu.io",
+    "/dynamic-entry": "http://portalv4.dev.qiniu.io",
+    "/api": "http://portalv4.dev.qiniu.io",
+    "/signin": "http://portalv4.dev.qiniu.io",
+    "/cdn": "http://portalv4.dev.qiniu.io",
+    "/financial": "http://portalv4.dev.qiniu.io"
+  },
+  "deploy": {
+    "config": {
+      "accessKey": "tkabCgtBh5OiAbZ32-BC3KbLpWO274oY4nL6e5hr",
+      "secretKey": "1oUlrJlpJprkl4sLZQYdJLsGoVTCZaZXEbmiZTNh",
+      "bucket": "portal-v4-static"
+    }
+  },
+  "engines": {
+    "builder": "^2.1.0"
+  }
+}

@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="comp-alarm-callback"
+>
+  <div
+    className="ant-spin-nested-loading"
+  >
+    <div>
+      <div
+        className="ant-spin ant-spin-spinning"
+      >
+        <span
+          className="ant-spin-dot ant-spin-dot-spin"
+        >
+          <i
+            className="ant-spin-dot-item"
+          />
+          <i
+            className="ant-spin-dot-item"
+          />
+          <i
+            className="ant-spin-dot-item"
+          />
+          <i
+            className="ant-spin-dot-item"
+          />
+        </span>
+      </div>
+    </div>
+    <div
+      className="ant-spin-container ant-spin-blur"
+    >
+      <div
+        className="callback-config"
+      >
+        <span
+          className="callback-config-label"
+        >
+          告警回调地址
+          <i
+            aria-label="icon: info-circle"
+            className="anticon anticon-info-circle"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            style={
+              Object {
+                "color": "#999",
+                "cursor": "pointer",
+                "fontSize": "14px",
+                "fontWeight": "normal",
+                "marginLeft": "4px",
+                "verticalAlign": "-0.125em",
+              }
+            }
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="info-circle"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+              />
+              <path
+                d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+              />
+            </svg>
+          </i>
+        </span>
+        <span
+          className="callback-config-uri"
+        >
+          暂无配置
+        </span>
+        <button
+          className="ant-btn callback-config-btn ant-btn-link"
+          onClick={[Function]}
+          type="button"
+        >
+          <span>
+            添加
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

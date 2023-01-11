@@ -1,0 +1,71 @@
+/**
+ * @file 镜像回源 (image / mirror / source)
+ * @author lizhifeng <lizhifeng@qiniu.com>
+ */
+
+@import "~kodo/styles/variables.less";
+@import "~kodo/styles/font.less";
+// @import "../style.less";
+
+.wrapper {
+
+  .hidden {
+    display: none;
+  }
+
+  .deleteBtn {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .select {
+    width: 250px;
+  }
+
+  .linesWrapper {
+    // border-bottom: 1px solid @icecream-grey-3;
+  }
+
+  // the same as table
+  .linesHeader {
+    padding: @page-content-gap 0;
+    font-weight: 500;
+    color: @icecream-grey-7;
+    background: @icecream-grey-1;
+    // border-bottom: 1px solid @icecream-grey-3;
+  }
+
+  .lineWrapper {
+    //
+  }
+
+  .lineItem {
+    margin: 0;
+
+    .lineItemInput {
+      margin-top: @page-content-gap-small;
+      width: 100%;
+    }
+  }
+
+  .addLine {
+    margin-top: @page-content-gap * 1.25;
+  }
+
+  .formItemBase {
+    :global(.ant-form-item-label) {
+      padding: 0;
+    }
+  }
+
+  .headerRow {
+    margin-bottom: @page-content-gap-half;
+  }
+
+  .httpHeader {
+    display: inline-block;
+    line-height: 2;
+  }
+
+}

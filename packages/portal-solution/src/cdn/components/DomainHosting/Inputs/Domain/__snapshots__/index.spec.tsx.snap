@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<input
+  className="ant-input"
+  disabled={false}
+  onChange={[Function]}
+  onKeyDown={[Function]}
+  placeholder="请输入已经备案的二级域名"
+  type="text"
+  value=""
+/>
+`;

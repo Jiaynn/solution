@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>down-circle</title>
+    <desc>Created with Sketch.</desc>
+    <g id="预览页面" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-509.000000, -104.000000)">
+            <g id="down-circle" transform="translate(507.996000, 103.000000)">
+                <rect id="Rectangle" fill="#000000" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                <path d="M8,1.04 C4.15616,1.04 1.04,4.15608 1.04,8 C1.04,11.84392 4.15616,14.96 8,14.96 C11.84384,14.96 14.96,11.84392 14.96,8 C14.96,4.15608 11.84384,1.04 8,1.04 Z M8,14.01088 C4.6856,14.01088 1.9892,11.3144 1.9892,8 C1.9892,4.6856 4.6856,1.98912 8,1.98912 C11.31456,1.98912 14.01104,4.68568 14.01104,8 C14.01104,11.31432 11.31456,14.01088 8,14.01088 Z" id="Shape" fill="#00A7E1" fill-rule="nonzero"></path>
+                <path d="M9.81672,6.59088 L7.9976,8.55152 L6.17384,6.63248 C5.98592,6.47648 5.68544,6.48152 5.5028,6.64344 C5.32016,6.80536 5.32424,7.06296 5.51224,7.2188 L7.67608,9.42016 C7.86416,9.57608 8.16456,9.57112 8.3472,9.4092 L10.4972,7.15528 C10.67976,6.99336 10.67576,6.73584 10.48784,6.57984 C10.29976,6.42392 9.99928,6.42888 9.81672,6.59088 Z" id="Path" fill="#00A7E1"></path>
+            </g>
+        </g>
+    </g>
+</svg>

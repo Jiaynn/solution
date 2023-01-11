@@ -16,3 +16,5 @@ coverage/*
 /src/types/
 
 packages/portal-solution
+packages/certificate
+

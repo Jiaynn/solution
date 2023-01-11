@@ -1,0 +1,161 @@
+/**
+ * @file style for Dashboard
+ * @author zhangheng <zhangheng01@qiniu.com>
+ */
+
+@import "~kodo/styles/variables.less";
+@import "~kodo/styles/font.less";
+
+.content {
+  margin-top: @page-content-gap;
+}
+
+.regionSelect, .bucketSelect, .ftypeSelect {
+  width: 240px;
+}
+
+.regionSelect, .ftypeSelect {
+  margin-right: @page-content-gap-medium;
+}
+
+label.title {
+  .pingfangRegular();
+}
+
+.headerBox {
+  .ftypeBox {
+    margin-bottom: @page-content-gap-medium;
+  }
+
+  .bucketLabel {
+    margin-left: 20px;
+  }
+}
+
+.tabBox {
+  position: relative;
+  margin-top: @page-content-gap-regular;
+
+  .dateBox {
+    position: absolute;
+    right: 0;
+    top: 5px;
+
+    .datePicker {
+      margin-left: 20px;
+    }
+  }
+}
+
+.contentHeaderBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tipInfo {
+  display: flex;
+  margin-top: 48px;
+  margin-bottom: -18px;
+
+  .left {
+    flex: 1;
+  }
+
+  .right {
+    width: 450px;
+
+    p {
+      margin: 0;
+      color: #2f3033;
+      line-height: 20px;
+      text-align: right;
+    }
+  }
+
+  .flowTipBox {
+    display: flex;
+  }
+
+  .calculateData {
+    font-size: 20px;
+    color: #2F3033;
+  }
+
+  p.primary {
+    font-size: @icecream-font-size-2;
+    color: rgba(47, 48, 51, 0.85);
+    margin-top: 0;
+    margin-bottom: 4px;
+  }
+
+  span.next {
+    color: rgba(47, 48, 51, 0.65);
+  }
+}
+
+.tabLeftGap {
+  margin-left: @page-content-gap;
+}
+
+.leftGap {
+  margin-left: @page-content-gap-large;
+}
+
+// 该样式结合 tooltip 的 useHTML 以触发 tooltip 的滚动条
+.reactChart {
+  margin-top: 48px;
+  padding-bottom: 20px;
+
+  :global(.highcharts-tooltip) {
+    pointer-events: all !important;
+
+    span {
+      max-height: 200px !important;
+      overflow-y: auto !important;
+    }
+
+    div {
+      overflow-y: auto !important;
+    }
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.statistical {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-top: 48px;
+  margin-bottom: 30px;
+
+  .item {
+    display: flex;
+    flex-direction: column;
+
+    .name {
+      font-size: @icecream-font-size-2;
+      color: @icecream-grey-7;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    .value {
+      font-size: 20px;
+      color: @icecream-grey-9;
+    }
+
+    .label {
+      margin-top: 0;
+      margin-bottom: 4px;
+      color: @icecream-grey-6;
+    }
+  }
+
+  .item + .item {
+    margin-left: 48px;
+  }
+}

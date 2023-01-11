@@ -1,0 +1,27 @@
+/**
+ * @file Domain card container style
+ * @description Domain card container 样式
+ * @author yinxulai <me@yinxulai.com>
+ */
+
+@import "~kodo/styles/variables.less";
+
+.card {
+  border-radius: 2px;
+  padding: @icecream-gap-md;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  .header {
+    margin-bottom: @icecream-gap-sm;
+    font-size: @icecream-font-size-2;
+    font-weight: bold;
+  }
+
+  .prompt {
+    margin-bottom: @icecream-gap-sm;
+  }
+}
+
+.card + .card {
+  margin-top: @icecream-gap-md;
+}

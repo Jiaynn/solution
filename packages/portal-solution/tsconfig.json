@@ -2,35 +2,50 @@
   "compilerOptions": {
     "target": "es6",
     "module": "es2020",
-    "moduleResolution": "node",
-    "importHelpers": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true,
-    "skipLibCheck": false,
-    "strict": true,
-    "strictFunctionTypes": false, // TODO
     "useDefineForClassFields": true,
-    "downlevelIteration": true,
-    "resolveJsonModule": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
     "baseUrl": "./src",
-    "lib": ["dom", "es2015", "es2016", "es2017"],
+    "lib": [
+      "dom",
+      "es2015",
+      "es2016",
+      "es2017",
+      "es2018"
+    ],
     "jsx": "react",
     "outDir": ".tmp",
     "typeRoots": [
       "./types",
       "./node_modules/@types"
-    ]
+    ],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "strictFunctionTypes": false, // TODO
+    "resolveJsonModule": true
   },
   "exclude": [
+    "e2e",
     "node_modules",
-    "bower_components"
+    "bower_components",
+    "src/**/*.tmp",
+    "src/**/*.tmp.ts",
+    "src/**/*.tmp.tsx",
+    "src/**/*.tmp.less",
+    "src/**/*.tmp.plainless",
+    "secondary"
   ],
+  "atom": {
+    "rewriteTsconfig": false
+  },
   "compileOnSave": false,
-  "buildOnSave": false,
-  "atom": { "rewriteTsconfig": false }
+  "buildOnSave": false
 }

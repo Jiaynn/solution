@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="9px" height="12px" viewBox="0 0 9 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>left</title>
+    <desc>Created with Sketch.</desc>
+    <g id="预览页面" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-201.000000, -106.000000)" fill="#000000">
+            <g id="left" transform="translate(198.000000, 104.000000)">
+                <rect id="Rectangle" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                <path d="M11.3125,3.4109375 L11.3125,2.203125 C11.3125,2.0984375 11.1921875,2.040625 11.1109375,2.1046875 L4.0671875,7.60625 C3.8109375,7.80625 3.8109375,8.1921875 4.0671875,8.3921875 L11.1109375,13.89375 C11.19375,13.9578125 11.3125,13.9 11.3125,13.7953125 L11.3125,12.5875 C11.3125,12.5109375 11.2765625,12.4375 11.2171875,12.390625 L5.5921875,8 L11.2171875,3.6078125 C11.2765625,3.5609375 11.3125,3.4875 11.3125,3.4109375 Z" id="Path" fill-opacity="0.65"></path>
+            </g>
+        </g>
+    </g>
+</svg>

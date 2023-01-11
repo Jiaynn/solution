@@ -1,0 +1,62 @@
+@import "~cdn/utils/style/index.less";
+@import "~cdn/utils/style/legacy-variable.less";
+
+.comp-rp-log-wrapper {
+  .filter-containter {
+    .clearfix();
+    padding-bottom: 16px;
+    display: flex;
+    align-items: center;
+
+    .log-type {
+      margin-left: 24px;
+    }
+
+    .search-input-wrapper {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: flex-end;
+
+      .reload-form-item {
+        margin-right: 0;
+      }
+
+      .btn-reload {
+        padding: 0;
+        vertical-align: middle;
+        .btn-icon {
+          width: 16px;
+          height: 16px;
+          color: rgba(0, 0, 0, 0.65)
+        }
+      }
+    }
+    .url-input {
+      input {
+        width: 300px;
+      }
+    }
+  }
+
+  .log-container {
+    .url-column {
+      word-break: break-all;
+      min-width: 560px;
+    }
+    .create-at {
+      .ant-table-item-content {
+        .monospaced()
+      }
+    }
+    .success {
+      color: #4bc310;
+    }
+    .processing {
+      color: #fa8c16;
+    }
+    .failure {
+      color: #ef4149;
+    }
+  }
+}

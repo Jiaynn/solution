@@ -1,0 +1,43 @@
+/**
+ * @file style for manual form
+ * @author yinxulai <yinxulai@qiniu.com>
+ */
+
+@import "~react-icecream-2/src/style/index.less";
+@import "~kodo/styles/mixins.less";
+
+.title {
+  font-weight: @icecream-bold;
+  font-size: @icecream-font-size-4;
+  line-height: @icecream-line-height;
+  margin-bottom: @icecream-gap-md;
+}
+
+.persistenceTip {
+  display: block;
+  box-sizing: border-box;
+  word-break: break-all;
+
+  color: #8c8c8c;
+  line-height: @icecream-line-height;
+  font-size: @icecream-font-size-1;
+}
+
+.descriptionLink {
+  font-size: @icecream-font-size-2;
+}
+
+.textAreaCard {
+  :global(.icecream-card-content) {
+    padding: 0px;
+    padding-top: 1px;
+  }
+
+  :global(textarea) {
+    min-height: 410px;
+    max-height: 800px;
+    border: none;
+    margin-bottom: 0px;
+    .line-wrap
+  }
+}

@@ -1,0 +1,47 @@
+/**
+ * @desc Bucket tags styles.
+ * @author hovenjay <hovenjay@outlook.com>
+ */
+
+@import "~kodo/styles/variables.less";
+@import "~kodo/styles/mixins.less";
+
+.emptyTag {
+  color: #797979;
+  margin: 4px 8px 4px 0;
+  border: 1px dashed #d9d9d9;
+  background-color: #fff;
+}
+
+.tagList {
+  max-width: 500px;
+}
+
+.tag {
+  display: flex;
+  height: 22px;
+  margin: 4px 8px 4px 0;
+  line-height: 20px;
+}
+
+.childTag {
+  .line-ellipsis();
+
+  height: 22px;
+  max-width: 230px;
+  padding: 0 12px;
+  line-height: 20px;
+  cursor: pointer;
+  white-space: pre;
+  border: 1px solid @icecream-grey-3;
+  border-collapse: collapse;
+  background-color: @icecream-grey-2;
+
+  &:first-child {
+    border-radius: 2px 0 0 2px;
+  }
+
+  &:last-child {
+    border-radius: 0 2px 2px 0;
+  }
+}

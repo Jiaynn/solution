@@ -1,0 +1,154 @@
+/*
+ * @file common style definitions for domain inputs
+ * @author nighca <nighca@live.cn>
+ */
+
+@import "~cdn/utils/style/index.less";
+@import "~cdn/utils/style/legacy-variable.less";
+
+.help-content() {
+  display: inline-block;
+  padding: 12px 16px;
+  color: #333;
+  line-height: 22px;
+  background-color: #f5f5f5;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 0;
+}
+
+.input-wrapper() {
+  .line {
+    margin: 16px 0;
+    line-height: 22px;
+    color: #262626;
+    font-size: 14px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .sub-input-label {
+    display: inline-block;
+    min-width: 100px;
+    margin-right: 20px;
+    color: #333;
+  }
+
+  h4.line {
+    font-weight: 500;
+  }
+
+  .sep-line {
+    margin: 30px 0;
+    border: none;
+    border-top: 1px solid @border-level-2-color;
+  }
+
+  .help {
+    .help-content();
+  }
+
+  .select-input-wrapper,
+  .text-input-wrapper {
+    display: inline-block;
+    width: 260px;
+    vertical-align: middle;
+
+    textarea.ant-input {
+      padding: 10px 15px;
+    }
+  }
+
+  .warning-wrapper {
+    color: #FFC138;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .text-danger {
+    color: #e55c5c;
+  }
+
+  .text-success {
+    color: #67c23a;
+  }
+
+  .text-warning {
+    color: #cca352;
+  }
+
+  .block-warning {
+    .warning-message-block();
+  }
+}
+
+.input-table-tr() {
+  border-bottom: 1px solid @border-level-2-color;
+  th, td {
+    text-align: left;
+    padding: 10px 10px 10px 0;
+  }
+}
+
+.input-table() {
+  border-collapse: collapse;
+  tr {
+    .input-table-tr();
+  }
+}
+
+.tip-list() {
+  padding: 0 0 0 1.5em;
+  margin: 0;
+  list-style: disc;
+  line-height: 22px;
+  font-size: 12px;
+
+  .highlight {
+    background: #8F9BB4;
+    color: #fff;
+  }
+}
+
+.single-name-input() {
+  .comp-single-name-input {
+    .text-input-wrapper {
+      display: block;
+    }
+    .error-wrapper {
+      margin-left: 0;
+    }
+  }
+}
+
+.comp-no-icp-warning {
+  line-height: 18px;
+  font-size: 14px;
+  margin-top: 8px;
+
+  .icp-text {
+    color: @icecream-yellow-3;
+  }
+
+  .icp-desc {
+    color: #999;
+  }
+}
+
+.comp-source-bucket-warning {
+  line-height: 24px;
+
+  .warning-text {
+    color: @icecream-yellow-3;
+  }
+
+  .warning-desc {
+    color: #8C8C8C;
+  }
+}

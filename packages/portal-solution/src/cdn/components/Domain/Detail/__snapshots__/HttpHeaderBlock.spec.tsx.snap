@@ -1,0 +1,535 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section
+  className="content-block"
+>
+  <h4
+    className="content-block-title"
+  >
+    HTTP 响应头配置
+    <i
+      aria-label="icon: info-circle"
+      className="anticon anticon-info-circle content-block-title-tip-icon"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        Object {
+          "color": "#999",
+          "cursor": "pointer",
+          "fontSize": "14px",
+          "fontWeight": "normal",
+          "marginLeft": "4px",
+          "verticalAlign": "-0.125em",
+        }
+      }
+    >
+      <svg
+        aria-hidden="true"
+        className=""
+        data-icon="info-circle"
+        fill="currentColor"
+        focusable="false"
+        height="1em"
+        viewBox="64 64 896 896"
+        width="1em"
+      >
+        <path
+          d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+        />
+        <path
+          d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+        />
+      </svg>
+    </i>
+  </h4>
+  <div
+    className="ant-table-wrapper content-config-table"
+  >
+    <div
+      className="ant-spin-nested-loading"
+    >
+      <div
+        className="ant-spin-container"
+      >
+        <div
+          className="ant-table ant-table-default ant-table-scroll-position-left"
+          style={Object {}}
+        >
+          <div
+            className="ant-table-content"
+          >
+            <div
+              className="ant-table-body"
+              onScroll={[Function]}
+              onWheel={[Function]}
+              style={Object {}}
+            >
+              <table
+                className=""
+                style={Object {}}
+              >
+                <colgroup>
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "120px",
+                        "width": "120px",
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": undefined,
+                        "width": undefined,
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "240px",
+                        "width": "240px",
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "180px",
+                        "width": "180px",
+                      }
+                    }
+                  />
+                </colgroup>
+                <thead
+                  className="ant-table-thead"
+                >
+                  <tr
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            配置项
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            描述
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            当前配置
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            操作
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  className="ant-table-tbody"
+                >
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="HTTP 响应头"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      HTTP 响应头
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      支持常见的 HTTP 请求响应头配置，可向客户端提供额外信息
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      0 条配置
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="ant-btn"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span>
+                          修改配置
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`renders correctly with loading: true 1`] = `
+<section
+  className="content-block"
+>
+  <h4
+    className="content-block-title"
+  >
+    HTTP 响应头配置
+    <i
+      aria-label="icon: info-circle"
+      className="anticon anticon-info-circle content-block-title-tip-icon"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        Object {
+          "color": "#999",
+          "cursor": "pointer",
+          "fontSize": "14px",
+          "fontWeight": "normal",
+          "marginLeft": "4px",
+          "verticalAlign": "-0.125em",
+        }
+      }
+    >
+      <svg
+        aria-hidden="true"
+        className=""
+        data-icon="info-circle"
+        fill="currentColor"
+        focusable="false"
+        height="1em"
+        viewBox="64 64 896 896"
+        width="1em"
+      >
+        <path
+          d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+        />
+        <path
+          d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+        />
+      </svg>
+    </i>
+  </h4>
+  <div
+    className="ant-table-wrapper content-config-table"
+  >
+    <div
+      className="ant-spin-nested-loading"
+    >
+      <div>
+        <div
+          className="ant-spin ant-spin-spinning ant-table-without-pagination ant-table-spin-holder"
+        >
+          <span
+            className="ant-spin-dot ant-spin-dot-spin"
+          >
+            <i
+              className="ant-spin-dot-item"
+            />
+            <i
+              className="ant-spin-dot-item"
+            />
+            <i
+              className="ant-spin-dot-item"
+            />
+            <i
+              className="ant-spin-dot-item"
+            />
+          </span>
+        </div>
+      </div>
+      <div
+        className="ant-spin-container ant-spin-blur"
+      >
+        <div
+          className="ant-table ant-table-default ant-table-scroll-position-left"
+          style={Object {}}
+        >
+          <div
+            className="ant-table-content"
+          >
+            <div
+              className="ant-table-body"
+              onScroll={[Function]}
+              onWheel={[Function]}
+              style={Object {}}
+            >
+              <table
+                className=""
+                style={Object {}}
+              >
+                <colgroup>
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "120px",
+                        "width": "120px",
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": undefined,
+                        "width": undefined,
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "240px",
+                        "width": "240px",
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "180px",
+                        "width": "180px",
+                      }
+                    }
+                  />
+                </colgroup>
+                <thead
+                  className="ant-table-thead"
+                >
+                  <tr
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            配置项
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            描述
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            当前配置
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            操作
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  className="ant-table-tbody"
+                >
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="HTTP 响应头"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      HTTP 响应头
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      支持常见的 HTTP 请求响应头配置，可向客户端提供额外信息
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      0 条配置
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="ant-btn"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span>
+                          修改配置
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;

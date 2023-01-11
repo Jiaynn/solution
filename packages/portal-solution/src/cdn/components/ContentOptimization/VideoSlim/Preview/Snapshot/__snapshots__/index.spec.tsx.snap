@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Snapshot correctly for after 1`] = `
+<div
+  className="comp-snapshot"
+>
+  <p
+    className="snapshot-title snapshot-title-after"
+  >
+    瘦身
+    后
+    视频截帧 - 
+    00:02:00.123
+  </p>
+  <img
+    className="snapshot-image"
+    src=""
+  />
+</div>
+`;
+
+exports[`renders Snapshot correctly for before 1`] = `
+<div
+  className="comp-snapshot"
+>
+  <p
+    className="snapshot-title snapshot-title-before"
+  >
+    瘦身
+    前
+    视频截帧 - 
+    00:02:00.123
+  </p>
+  <img
+    className="snapshot-image"
+    src=""
+  />
+</div>
+`;
+
+exports[`renders SnapshotThumb correctly for after 1`] = `
+<div
+  className="comp-snapshot-thumb"
+>
+  <img
+    className="snapshot-image"
+    src=""
+  />
+  <p
+    className="snapshot-title snapshot-title-after"
+  >
+    瘦身
+    后
+    视频截帧 - 
+    00:02:00
+  </p>
+</div>
+`;
+
+exports[`renders SnapshotThumb correctly for before 1`] = `
+<div
+  className="comp-snapshot-thumb"
+>
+  <img
+    className="snapshot-image"
+    src=""
+  />
+  <p
+    className="snapshot-title snapshot-title-before"
+  >
+    瘦身
+    前
+    视频截帧 - 
+    00:02:00
+  </p>
+</div>
+`;

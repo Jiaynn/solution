@@ -1,0 +1,49 @@
+/**
+ * @file radio of icecream
+ * @author zhangheng <zhangheng01@qiniu.com>
+ */
+
+.radio() {
+  :global(.ant-radio-button-wrapper) {
+    background: #fff;
+  }
+  :global(.ant-radio-button-wrapper) {
+    span:last-child {
+      color: #575252;
+    }
+  }
+  :global(.ant-radio-button-wrapper-checked) {
+    span:last-child {
+      color: #1989fa;
+    }
+  }
+}
+
+.solid-radio() {
+  .radio();
+  :global(.ant-radio-button-wrapper-checked) {
+    background: #1989fa;
+    span:last-child {
+      color: #fff;
+    }
+  }
+}
+
+.borderless-radio() {
+  .solid-radio();
+  :global(.ant-radio-button-wrapper) {
+    border: none !important;
+    background: none !important;
+  }
+
+  :global(.ant-radio-button-wrapper:not(:first-child)::before) {
+    background-color: #fff !important;
+  }
+
+  :global(.ant-radio-button-wrapper-checked) {
+    box-shadow: none;
+    span:last-child {
+      color: #00A7E1 !important;
+    }
+  }
+}

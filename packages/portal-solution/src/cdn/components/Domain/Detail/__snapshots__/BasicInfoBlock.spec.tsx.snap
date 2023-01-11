@@ -1,0 +1,222 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section
+  className="content-block"
+>
+  <h4
+    className="content-block-title"
+  >
+    基本信息
+  </h4>
+  <div
+    className="ant-row content-line"
+    style={
+      Object {
+        "marginLeft": -4,
+        "marginRight": -4,
+      }
+    }
+  >
+    <div
+      className="ant-col ant-col-8"
+      style={
+        Object {
+          "paddingLeft": 4,
+          "paddingRight": 4,
+        }
+      }
+    >
+      <span
+        className="key"
+      >
+        CNAME：
+      </span>
+      <span
+        className="value"
+      >
+        10rduchl.qiniudns.com
+        <a
+          className="cname-help-link"
+          href="https://developer.qiniu.com/fusion/kb/1322/how-to-configure-cname-domain-name"
+          rel="noopener"
+          target="_blank"
+        >
+          帮助
+        </a>
+      </span>
+    </div>
+    <div
+      className="ant-col ant-col-5"
+      style={
+        Object {
+          "paddingLeft": 4,
+          "paddingRight": 4,
+        }
+      }
+    >
+      <span
+        className="key"
+      >
+        域名状态：
+      </span>
+      <span
+        className="value state-success"
+      >
+        成功
+      </span>
+    </div>
+    <div
+      className="ant-col ant-col-5"
+      style={
+        Object {
+          "paddingLeft": 4,
+          "paddingRight": 4,
+        }
+      }
+    >
+      <span
+        className="key"
+      >
+        协议：
+      </span>
+      <span
+        className="value"
+      >
+        HTTPS
+      </span>
+    </div>
+    <div
+      className="ant-col ant-col-5"
+      style={
+        Object {
+          "paddingLeft": 4,
+          "paddingRight": 4,
+        }
+      }
+    >
+      <span
+        className="key"
+      >
+        覆盖：
+      </span>
+      <span
+        className="value"
+      >
+        中国大陆
+      </span>
+      <button
+        className="ant-btn basic-block-btn ant-btn-link"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <span>
+          修改
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
+    className="ant-row content-line"
+    style={
+      Object {
+        "marginLeft": -4,
+        "marginRight": -4,
+      }
+    }
+  >
+    <div
+      className="ant-col ant-col-8"
+      style={
+        Object {
+          "paddingLeft": 4,
+          "paddingRight": 4,
+        }
+      }
+    >
+      <span
+        className="key"
+      >
+        创建时间：
+      </span>
+      <span
+        className="value"
+      >
+        2016-03-19 15:26:15
+      </span>
+    </div>
+    <div
+      className="ant-col ant-col-5"
+      style={
+        Object {
+          "paddingLeft": 4,
+          "paddingRight": 4,
+        }
+      }
+    >
+      <span
+        className="key"
+      >
+        域名类型：
+      </span>
+      <span
+        className="value"
+      >
+        普通域名
+      </span>
+    </div>
+    <div
+      className="ant-col ant-col-5"
+      style={
+        Object {
+          "paddingLeft": 4,
+          "paddingRight": 4,
+        }
+      }
+    >
+      <span
+        className="key"
+      >
+        使用场景：
+      </span>
+      <span
+        className="value"
+      >
+        图片小文件
+      </span>
+    </div>
+    <div
+      className="ant-col ant-col-5"
+      style={
+        Object {
+          "paddingLeft": 4,
+          "paddingRight": 4,
+        }
+      }
+    >
+      <span
+        className="key"
+      >
+        IP 协议
+        ：
+      </span>
+      <span
+        className="value"
+      >
+        IPv4 / IPv6
+      </span>
+      <button
+        className="ant-btn basic-block-btn ant-btn-link"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <span>
+          修改
+        </span>
+      </button>
+    </div>
+  </div>
+</section>
+`;

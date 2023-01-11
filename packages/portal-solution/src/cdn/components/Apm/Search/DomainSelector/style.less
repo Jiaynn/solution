@@ -1,0 +1,71 @@
+@import "~cdn/utils/style/index.less";
+@import "~cdn/utils/style/legacy-variable.less";
+
+.domain-list-wrapper {
+  line-height: 1.5;
+  padding: 10px 0;
+  .no-data {
+    text-align: center;
+    line-height: 2.5;
+    color: @text-level-2-color;
+  }
+  .domain-list-content {
+    padding: 6px 0;
+    max-height: 232px;
+    overflow: scroll;
+    li {
+      line-height: 2;
+      .ant-checkbox-wrapper {
+        max-width: 320px;
+        .ellipsis();
+      }
+    }
+  }
+}
+
+.domain-list-tip {
+  color: @text-level-4-color;
+  font-size: @icecream-font-size-sm;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.domain-selector-wrapper {
+  .domain-selector-btn {
+    font-weight: normal;
+    color: #595959;
+  }
+}
+
+.domain-protocol-filter-wrapper {
+  border-bottom: 1px dashed @border-level-2-color;
+  line-height: 30px;
+  > div {
+    display: inline-block;
+  }
+  .domain-protocol-filter-label {
+    margin-right: 6px;
+    + .ant-checkbox-group {
+      font-weight: normal;
+    }
+  }
+}
+
+.domain-selector {
+  .ant-popover-title {
+    height: auto;
+    line-height: 2;
+    padding: 10px 16px;
+    width: 100%;
+    .ant-input {
+      height: 32px;
+    }
+    .reset-btn {
+      float: right;
+    }
+  }
+  // TODO 调整 popover 组件的 arrow 位置 (https://github.com/qbox/horn/issues/99#issuecomment-358890666)
+  &.ant-popover-placement-bottomLeft > .ant-popover-content > .ant-popover-arrow {
+    top: 2px !important;
+  }
+}

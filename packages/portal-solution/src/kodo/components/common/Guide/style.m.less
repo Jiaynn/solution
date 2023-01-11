@@ -1,0 +1,127 @@
+/**
+ * @desc component for Guide
+ * @author yaojingtian <yaojingtian@qiniu.com>
+ * @author Surmon <i@surmon.me>
+ */
+
+@import "~kodo/styles/index.less";
+
+.guidePopover {
+
+  :global(.ant-popover-inner-content) {
+    padding: 24px 20px 20px 20px;
+  }
+  :global(.ant-popover-inner) {
+    border-radius: 2px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 12px;
+  }
+
+  .closeButton {
+    position: absolute;
+    right: @page-content-gap;
+    top: @page-content-gap;
+    margin: 0;
+    color: @icecream-text-color;
+
+    &:hover {
+      color: @icecream-text-color-weight;
+    }
+  }
+}
+
+.guideWrapper {
+  position: relative;
+
+  .guideMaskCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    // 100: 不盖住边栏、Header
+    // 1000: 盖住
+    // >1021: 盖住任务中心
+    z-index: 1022;
+  }
+
+  .guideMaskPopoverAnchor {
+    position: fixed;
+  }
+}
+
+.guideStep {
+  min-width: 180px;
+  max-width: 300px;
+  text-align: center;
+
+  &.onlyOneStep {
+    .stepBar {
+      display: none;
+    }
+  }
+
+  .stepContent {
+    text-align: left;
+    line-height: 1.5;
+    margin-right: 34px;
+    color: @icecream-text-color-weight;
+  }
+
+  .stepBar {
+    margin-top: @page-content-gap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+
+    .prevStep,
+    .nextStep {
+
+      .svgIcon {
+        width: 18px;
+        height: 10px;
+        color: @icecream-text-color;
+      }
+
+      &:hover {
+        .svgIcon {
+          color: @icecream-text-color-weight;
+        }
+      }
+
+      &[disabled] {
+        .svgIcon {
+          color: @icecream-grey-5;
+        }
+      }
+    }
+
+    .prevStep {
+      margin-right: @page-content-gap;
+    }
+
+    .nextStep {
+      margin-left: @page-content-gap;
+    }
+
+    .stepProgress {
+      .stepIcon {
+        @size: 6px;
+        display: inline-block;
+        width: @size;
+        height: @size;
+        margin: 0 4px;
+        border-radius: @size / 2;
+        border: 1px solid @icecream-grey-5;
+
+        &.current {
+          border: none;
+          background-color: @icecream-primary-color;
+        }
+      }
+    }
+  }
+}

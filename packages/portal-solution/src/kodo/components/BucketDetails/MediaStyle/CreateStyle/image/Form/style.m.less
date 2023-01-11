@@ -1,0 +1,55 @@
+/**
+ * @description style of image style drawer
+ * @author duli <duli@qiniu.com>
+ */
+
+@import "~react-icecream-2/dist/utils.less";
+
+.collapseGroup {
+  > * + * {
+    margin-top: @icecream-gap-lg;
+  }
+}
+
+.autoSaveTip {
+  display: block;
+  box-sizing: border-box;
+
+  margin: 4px 0;
+  color: #8c8c8c;
+  font-size: @icecream-font-size-1;
+  line-height: @icecream-line-height;
+}
+
+.advanced {
+  margin-top: @icecream-gap-lg;
+
+  &Content {
+    position: relative;
+    
+    .commonUsedBtn {
+      position: absolute;
+      right: 0;
+      color: @icecream-primary-color;
+
+      &:hover {
+        color: #36D2F6;
+      }
+    }
+  }
+}
+
+.persistence {
+  margin-top: @icecream-gap-lg;
+  margin-bottom: 0 !important;
+}
+
+.persistenceTip {
+  display: block;
+  box-sizing: border-box;
+  word-break: break-all;
+
+  color: #8c8c8c;
+  line-height: @icecream-line-height;
+  font-size: @icecream-font-size-1;
+}

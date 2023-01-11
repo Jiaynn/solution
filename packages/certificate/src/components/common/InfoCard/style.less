@@ -1,0 +1,44 @@
+@import "~portal-base/common/utils/style/index.less";
+
+.comp-info-card {
+  width: 536px;
+  border-radius: 3px;
+  border: 1px solid @icecream-color-grey-6;
+  display: flex;
+  flex-direction: column;
+
+  .info-title {
+    font-size: 16px;
+    color: #333;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+
+  .info-body {
+    flex: auto;
+    padding: 24px
+  }
+
+  .info-footer {
+    height: 48px;
+    background: @icecream-color-grey-3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid @icecream-color-grey-6;
+  }
+}
+
+.comp-add-info-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 536px;
+  height: 212px;
+  border-radius: 3px;
+  border: 1px dashed @icecream-color-grey-6;
+
+  button {
+    font-size: 16px;
+  }
+}

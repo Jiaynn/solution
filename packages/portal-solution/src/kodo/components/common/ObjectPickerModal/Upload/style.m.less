@@ -1,0 +1,126 @@
+/**
+ * @description upload style
+ * @author yinxulai <yinxulai@yinxulai.com>
+ */
+
+@import "~react-icecream-2/dist/utils.less";
+
+.uploadCard {
+  display: flex;
+  flex-direction: column;
+
+  width: 830px;
+  height: 414px;
+  position: relative;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: @icecream-border-width solid @icecream-color-grey-5;
+}
+
+.icon, .errorIcon, .successIcon {
+  margin-bottom: @icecream-gap-lg;
+}
+
+.errorIcon {
+  color: @icecream-color-red-6;
+}
+
+.successIcon {
+  color: @icecream-color-green-6;
+}
+
+.statusTitle {
+  font-weight: @icecream-bold;
+}
+
+.statusText {
+  color: @icecream-color-grey-8;
+  word-break: break-all;
+  max-width: 600px;
+  max-height: 80px;
+  overflow-y: auto;
+}
+
+.progress {
+  width: 200px;
+}
+
+.uploadButton {
+  margin-top: @icecream-gap-md;
+}
+
+.dragger {
+  height: 100%;
+  position: relative;
+  border-radius: @icecream-border-radius;
+  border: @icecream-border-width dashed @icecream-color-grey-6;
+
+  .draggerContent {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: @icecream-color-grey-3;
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: rgb(232, 237, 243);
+    }
+
+    &:active {
+      background-color: rgb(203, 212, 223);
+    }
+
+    input {
+      position: absolute;
+      overflow: hidden;
+      height: 0;
+      width: 0;
+    }
+
+    .content {
+      border: none;
+    }
+  }
+}
+
+.pathInputGroupWrap {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .pathInputGroup {
+    flex: 1;
+  }
+
+  .prefix { 
+    width: 75px;
+  }
+
+  .button {
+    margin-left: @icecream-gap-sm;
+  }
+}
+
+.paragraph {
+  height: 32px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.uploadPathDesc {
+  > span {
+    color: @icecream-color-orange-6;
+  }
+}

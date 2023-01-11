@@ -1,22 +1,21 @@
-### Portal Boilerplate
+# portal-solution
 
-基于新技术栈的 portal 站点样板文件
+解决方案portal后台
 
-#### 安装依赖
-
-```shell
-yarn
-```
-
-#### 开发
+## 安装依赖
 
 ```shell
-npm i fec-builder -g
-fec-builder -p 8080
-open http://localhost:8080/kodo
+$ yarn
 ```
 
-### 参考资料
+## 开发
+
+```shell
+$ yarn dev
+$ open http://localhost:8080/kodo
+```
+
+## 参考资料
 
 - builder 文档 https://github.com/Front-End-Engineering-Cloud/builder
 - portal-boilerplate https://gitlab.qiniu.io/qbox/portal-boilerplate

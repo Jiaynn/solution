@@ -1,0 +1,42 @@
+@import '~cdn/utils/style/index.less';
+@import '~cdn/utils/style/legacy-variable.less';
+
+.comp-snapshot-thumb {
+  text-align: center;
+  cursor: pointer;
+  .snapshot-image {
+    width: 150px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  .snapshot-title {
+    margin: 0;
+    line-height: 1;
+    &-after {
+      color: orange;
+    }
+  }
+}
+
+.comp-snapshot {
+  text-align: center;
+  padding: 10px 15px;
+  background-color: @white;
+  .snapshot-image {
+    display: block;
+    max-width: 100%;
+    max-height: 500px;
+    margin: 0 auto;
+  }
+
+  .snapshot-title {
+    margin: 0;
+    line-height: 2;
+    color: @primary-color;
+    text-align: left;
+    &-after {
+      color: orange;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+/**
+ * @author: corol
+ * @github: github.com/huangbinjie
+ * @created: Wed Jun 12 2019
+ *
+ * Copyright (c) 2019 Qiniu
+ */
+
+@import "~kodo/styles/variables.less";
+
+.drawer {
+  :global(.icecream-drawer-body) {
+    height: 100%;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.form {
+  padding: 10px 0;
+
+  :global(.ant-alert-warning) {
+    color: #fa8c16; // TODO：升级到 icecream-2 后换成 2 的 alert 组件去掉
+    background: #fef3e7; // TODO：升级到 icecream-2 后换成 2 的 alert 组件去掉
+
+    font-size: 12px; // TODO: @huangbinjie 统一改 alert 字体大小
+  }
+}
+
+.promptText {
+  margin-bottom: 13px;
+  font-size: @icecream-font-size-1;
+  line-height: 1;
+  color: @icecream-grey-7;
+}
+
+.drawerTip {
+  margin-bottom: @page-content-gap;
+
+  span {
+    color: @icecream-yellow-3;
+  }
+}
+
+.promptInput:global(.ant-input) {
+  width: 96px;
+}
+
+.hide {
+  display: none !important;
+}
+
+.formItemWithPrompt:global(.ant-form-item) {
+  margin: 0;
+}

@@ -1,0 +1,21 @@
+@import "~cdn/utils/style/index.less";
+
+@margin: 20px;
+
+.comp-layout-with-tabs {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .content-tabs {
+    flex: 0 0 auto;
+    .tabs-width-padding();
+  }
+
+  .content-without-tabs {
+    flex: 1 1 auto;
+    margin: 0 @margin;
+    overflow-y: auto;
+  }
+}

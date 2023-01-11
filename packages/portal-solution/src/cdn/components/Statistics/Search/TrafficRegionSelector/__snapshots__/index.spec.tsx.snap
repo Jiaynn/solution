@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="comp-traffic-region-selector"
+>
+  <button
+    className="ant-btn region-selector-btn"
+    onClick={[Function]}
+    onMouseDown={[Function]}
+    onTouchStart={[Function]}
+    type="button"
+  >
+    <span>
+      已选 0/6 个区域
+    </span>
+  </button>
+</div>
+`;

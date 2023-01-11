@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="28px" viewBox="0 0 26 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>事件属性维护</title>
+    <desc>Created with Sketch.</desc>
+    <g id="预览页面" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-222.000000, -277.000000)">
+            <g id="事件属性维护" transform="translate(218.000000, 275.000000)">
+                <rect id="Rectangle" fill="#BADBFD" opacity="0" x="0" y="0" width="32" height="32"></rect>
+                <path d="M30,22 C30,17.581875 26.4184375,14 22,14 C17.5815625,14 14,17.581875 14,22 C14,26.418125 17.581875,30 22,30 C26.418125,30 30,26.418125 30,22 Z" id="Path" fill="#00A7E1" fill-rule="nonzero"></path>
+                <polygon id="Path" fill="#FFFFFF" fill-rule="nonzero" points="23 27 21 27 21 20 23 20"></polygon>
+                <polygon id="Path" fill="#FFFFFF" fill-rule="nonzero" points="23 19 21 19 21 17 23 17"></polygon>
+                <polygon id="Path" fill-opacity="0.45" fill="#00A7E1" fill-rule="nonzero" points="8 13 24 13 24 11 8 11"></polygon>
+                <path d="M26,4 L22,4 L22,2 L20,2 L20,4 L12,4 L12,2 L10,2 L10,4 L6,4 C4.89678394,4.00326067 4.00326067,4.89678394 4,6 L4,26 C4.00326067,27.1032161 4.89678394,27.9967393 6,28 L15.2925,28 C14.7531586,27.3971371 14.2974017,26.7244332 13.9375,26 L6.0034375,26 L6,25.9965625 L6,8 L26,8 L26,13.9375 C26.7245034,14.2977923 27.3972105,14.7539717 28,15.29375 L28,6 C27.9967393,4.89678394 27.1032161,4.00326067 26,4 Z" id="Path" fill-opacity="0.45" fill="#00A7E1" fill-rule="nonzero"></path>
+                <path d="M8,17 L14.5159375,17 C15.0213895,16.2453853 15.637565,15.5711636 16.34375,15 L8,15 L8,17 Z" id="Path" fill-opacity="0.45" fill="#00A7E1" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,1923 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="comp-video-slim"
+>
+  <form
+    className="ant-form ant-form-inline comp-inline-form domain-form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ant-row ant-form-item form-item-domain"
+    >
+      <div
+        className="ant-col ant-form-item-label"
+      >
+        <label
+          className=""
+          htmlFor={null}
+          onClick={[Function]}
+          title="域名"
+        >
+          域名
+        </label>
+      </div>
+      <div
+        className="ant-col ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <div
+              className="comp-domain-select ant-select ant-select-enabled ant-select-loading"
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseDown={[Function]}
+              onMouseOut={[Function]}
+              onMouseUp={[Function]}
+              onTouchStart={[Function]}
+            >
+              <div
+                aria-autocomplete="list"
+                aria-controls="test-uuid"
+                aria-expanded={false}
+                aria-haspopup="true"
+                className="ant-select-selection
+            ant-select-selection--single"
+                onKeyDown={[Function]}
+                role="combobox"
+                tabIndex={0}
+              >
+                <div
+                  className="ant-select-selection__rendered"
+                >
+                  <div
+                    className="ant-select-selection__placeholder"
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                    style={
+                      Object {
+                        "WebkitUserSelect": "none",
+                        "display": "block",
+                        "userSelect": "none",
+                      }
+                    }
+                    unselectable="on"
+                  >
+                    请选择域名
+                  </div>
+                  <div
+                    className="ant-select-search ant-select-search--inline"
+                    style={
+                      Object {
+                        "display": "none",
+                      }
+                    }
+                  >
+                    <div
+                      className="ant-select-search__field__wrap"
+                    >
+                      <input
+                        autoComplete="off"
+                        className="ant-select-search__field"
+                        disabled={false}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        value=""
+                      />
+                      <span
+                        className="ant-select-search__field__mirror"
+                      >
+                        
+                         
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <span
+                  className="ant-select-arrow"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "WebkitUserSelect": "none",
+                      "userSelect": "none",
+                    }
+                  }
+                  unselectable="on"
+                >
+                  <i
+                    aria-label="icon: loading"
+                    className="anticon anticon-loading"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="anticon-spin"
+                      data-icon="loading"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="0 0 1024 1024"
+                      width="1em"
+                    >
+                      <path
+                        d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 0 0-94.3-139.9 437.71 437.71 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"
+                      />
+                    </svg>
+                  </i>
+                </span>
+              </div>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <i
+      aria-label="icon: info-circle"
+      className="anticon anticon-info-circle"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        Object {
+          "color": "#999",
+          "cursor": "pointer",
+          "fontSize": "14px",
+          "fontWeight": "normal",
+          "marginLeft": "4px",
+          "verticalAlign": "-0.125em",
+        }
+      }
+    >
+      <svg
+        aria-hidden="true"
+        className=""
+        data-icon="info-circle"
+        fill="currentColor"
+        focusable="false"
+        height="1em"
+        viewBox="64 64 896 896"
+        width="1em"
+      >
+        <path
+          d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+        />
+        <path
+          d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+        />
+      </svg>
+    </i>
+  </form>
+  <p>
+    建议为您的热点视频瘦身，可大幅减少视频体积，画质肉眼感知无变化，预览确认瘦身效果后启用分发（也可配置瘦身成功后自动启用分发），节省 CDN 流量；
+    <a
+      className="comp-router-link"
+      href="/preview/demo"
+      onClick={[Function]}
+      target="_blank"
+    >
+      Demo 体验视频瘦身效果
+    </a>
+  </p>
+  <div
+    className="comp-video-slim-list"
+  >
+    <div
+      className="list-header-wrapper"
+    >
+      <h3>
+        视频瘦身列表
+      </h3>
+      <a
+        className="comp-router-link chart-link"
+        href="/cdn/statistics/log/videoslim"
+        onClick={[Function]}
+      >
+        <i
+          aria-label="icon: line-chart"
+          className="anticon anticon-line-chart"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="line-chart"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M888 792H200V168c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h752c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM305.8 637.7c3.1 3.1 8.1 3.1 11.3 0l138.3-137.6L583 628.5c3.1 3.1 8.2 3.1 11.3 0l275.4-275.3c3.1-3.1 3.1-8.2 0-11.3l-39.6-39.6a8.03 8.03 0 0 0-11.3 0l-230 229.9L461.4 404a8.03 8.03 0 0 0-11.3 0L266.3 586.7a8.03 8.03 0 0 0 0 11.3l39.5 39.7z"
+            />
+          </svg>
+        </i>
+        查看节省流量统计
+      </a>
+    </div>
+    <div
+      className="operations-wrapper"
+    >
+      <div>
+        <button
+          className="ant-btn ant-btn-primary"
+          onClick={[Function]}
+          type="button"
+        >
+          <i
+            aria-label="icon: plus"
+            className="anticon anticon-plus"
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="plus"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+              />
+              <path
+                d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+              />
+            </svg>
+          </i>
+          <span>
+            添 加
+          </span>
+        </button>
+        <button
+          className="ant-btn"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          type="button"
+        >
+          <i
+            aria-label="icon: ellipsis"
+            className="anticon anticon-ellipsis"
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="ellipsis"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M176 511a56 56 0 1 0 112 0 56 56 0 1 0-112 0zm280 0a56 56 0 1 0 112 0 56 56 0 1 0-112 0zm280 0a56 56 0 1 0 112 0 56 56 0 1 0-112 0z"
+              />
+            </svg>
+          </i>
+          <span>
+            批量操作
+          </span>
+        </button>
+      </div>
+      <div
+        className="video-slim-task-filter"
+      >
+        <button
+          className="ant-btn"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          <i
+            aria-label="icon: reload"
+            className="anticon anticon-reload"
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="reload"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M909.1 209.3l-56.4 44.1C775.8 155.1 656.2 92 521.9 92 290 92 102.3 279.5 102 511.5 101.7 743.7 289.8 932 521.9 932c181.3 0 335.8-115 394.6-276.1 1.5-4.2-.7-8.9-4.9-10.3l-56.7-19.5a8 8 0 0 0-10.1 4.8c-1.8 5-3.8 10-5.9 14.9-17.3 41-42.1 77.8-73.7 109.4A344.77 344.77 0 0 1 655.9 829c-42.3 17.9-87.4 27-133.8 27-46.5 0-91.5-9.1-133.8-27A341.5 341.5 0 0 1 279 755.2a342.16 342.16 0 0 1-73.7-109.4c-17.9-42.4-27-87.4-27-133.9s9.1-91.5 27-133.9c17.3-41 42.1-77.8 73.7-109.4 31.6-31.6 68.4-56.4 109.3-73.8 42.3-17.9 87.4-27 133.8-27 46.5 0 91.5 9.1 133.8 27a341.5 341.5 0 0 1 109.3 73.8c9.9 9.9 19.2 20.4 27.8 31.4l-60.2 47a8 8 0 0 0 3 14.1l175.6 43c5 1.2 9.9-2.6 9.9-7.7l.8-180.9c-.1-6.6-7.8-10.3-13-6.2z"
+              />
+            </svg>
+          </i>
+          <span>
+            刷新状态
+          </span>
+        </button>
+        <span
+          className="ant-input-search url-input ant-input-affix-wrapper ant-input-affix-wrapper-sm"
+        >
+          <input
+            className="ant-input ant-input-sm"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            size="small"
+            style={null}
+            type="text"
+            value=""
+          />
+          <span
+            className="ant-input-suffix"
+          >
+            <i
+              aria-label="icon: search"
+              className="anticon anticon-search ant-input-search-icon"
+              onClick={[Function]}
+              tabIndex={-1}
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="search"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
+                />
+              </svg>
+            </i>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div
+      className="ant-table-wrapper"
+    >
+      <div
+        className="ant-spin-nested-loading"
+      >
+        <div
+          className="ant-spin-container"
+        >
+          <div
+            className="ant-table ant-table-default ant-table-empty ant-table-scroll-position-left"
+            style={Object {}}
+          >
+            <div
+              className="ant-table-content"
+            >
+              <div
+                className="ant-table-body"
+                onScroll={[Function]}
+                onWheel={[Function]}
+                style={Object {}}
+              >
+                <table
+                  className=""
+                  style={Object {}}
+                >
+                  <colgroup>
+                    <col
+                      className="ant-table-selection-col"
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                  </colgroup>
+                  <thead
+                    className="ant-table-thead"
+                  >
+                    <tr
+                      style={
+                        Object {
+                          "height": null,
+                        }
+                      }
+                    >
+                      <th
+                        className="ant-table-selection-column"
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              <div
+                                className="ant-table-selection"
+                              >
+                                <label
+                                  className="ant-checkbox-wrapper ant-checkbox-wrapper-disabled"
+                                >
+                                  <span
+                                    className="ant-checkbox ant-checkbox-disabled"
+                                    style={Object {}}
+                                  >
+                                    <input
+                                      checked={false}
+                                      className="ant-checkbox-input"
+                                      disabled={true}
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      type="checkbox"
+                                    />
+                                    <span
+                                      className="ant-checkbox-inner"
+                                    />
+                                  </span>
+                                </label>
+                              </div>
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              瘦身资源
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              源文件格式
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              文件大小(MB)
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              瘦身率
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className="ant-table-column-has-actions ant-table-column-has-filters"
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              状态
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                        <i
+                          aria-label="icon: filter"
+                          className="anticon anticon-filter ant-dropdown-trigger"
+                          onClick={[Function]}
+                          onMouseDown={[Function]}
+                          onTouchStart={[Function]}
+                          tabIndex={-1}
+                          title="Filter menu"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className=""
+                            data-icon="filter"
+                            fill="currentColor"
+                            focusable="false"
+                            height="1em"
+                            viewBox="64 64 896 896"
+                            width="1em"
+                          >
+                            <path
+                              d="M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z"
+                            />
+                          </svg>
+                        </i>
+                        <div
+                          data-role="portal"
+                        >
+                          <div>
+                            <div
+                              className="ant-dropdown  ant-dropdown-placement-bottomRight  ant-dropdown-hidden"
+                              onMouseDown={[Function]}
+                              onTouchStart={[Function]}
+                              style={Object {}}
+                            >
+                              <div
+                                className="ant-table-filter-dropdown"
+                                onClick={[Function]}
+                              >
+                                <ul
+                                  className="ant-dropdown-menu ant-dropdown-menu-without-submenu ant-dropdown-menu-root ant-dropdown-menu-vertical"
+                                  onKeyDown={[Function]}
+                                  role="menu"
+                                  style={Object {}}
+                                  tabIndex={0}
+                                >
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      等待瘦身
+                                    </span>
+                                  </li>
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      瘦身中
+                                    </span>
+                                  </li>
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      瘦身成功
+                                    </span>
+                                  </li>
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      瘦身失败
+                                    </span>
+                                  </li>
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      已启用
+                                    </span>
+                                  </li>
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      停用中
+                                    </span>
+                                  </li>
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      启用中
+                                    </span>
+                                  </li>
+                                </ul>
+                                <div
+                                  className="ant-table-filter-dropdown-btns"
+                                >
+                                  <a
+                                    className="ant-table-filter-dropdown-link confirm"
+                                    onClick={[Function]}
+                                  >
+                                    OK
+                                  </a>
+                                  <a
+                                    className="ant-table-filter-dropdown-link clear"
+                                    onClick={[Function]}
+                                  >
+                                    Reset
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              自动启动
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              操作
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    className="ant-table-tbody"
+                  />
+                </table>
+              </div>
+              <div
+                className="ant-table-placeholder"
+              >
+                <div
+                  className="ant-empty ant-empty-normal"
+                >
+                  <div
+                    className="ant-empty-image"
+                  >
+                    <img
+                      alt="No Data"
+                      src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCA2NCA0MSIgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxKSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxlbGxpcHNlIGZpbGw9IiNGNUY1RjUiIGN4PSIzMiIgY3k9IjMzIiByeD0iMzIiIHJ5PSI3Ii8+CiAgICA8ZyBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0iI0Q5RDlEOSI+CiAgICAgIDxwYXRoIGQ9Ik01NSAxMi43Nkw0NC44NTQgMS4yNThDNDQuMzY3LjQ3NCA0My42NTYgMCA0Mi45MDcgMEgyMS4wOTNjLS43NDkgMC0xLjQ2LjQ3NC0xLjk0NyAxLjI1N0w5IDEyLjc2MVYyMmg0NnYtOS4yNHoiLz4KICAgICAgPHBhdGggZD0iTTQxLjYxMyAxNS45MzFjMC0xLjYwNS45OTQtMi45MyAyLjIyNy0yLjkzMUg1NXYxOC4xMzdDNTUgMzMuMjYgNTMuNjggMzUgNTIuMDUgMzVoLTQwLjFDMTAuMzIgMzUgOSAzMy4yNTkgOSAzMS4xMzdWMTNoMTEuMTZjMS4yMzMgMCAyLjIyNyAxLjMyMyAyLjIyNyAyLjkyOHYuMDIyYzAgMS42MDUgMS4wMDUgMi45MDEgMi4yMzcgMi45MDFoMTQuNzUyYzEuMjMyIDAgMi4yMzctMS4zMDggMi4yMzctMi45MTN2LS4wMDd6IiBmaWxsPSIjRkFGQUZBIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K"
+                    />
+                  </div>
+                  <p
+                    className="ant-empty-description"
+                  >
+                    No Data
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with domain 1`] = `
+<div
+  className="comp-video-slim"
+>
+  <form
+    className="ant-form ant-form-inline comp-inline-form domain-form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ant-row ant-form-item form-item-domain"
+    >
+      <div
+        className="ant-col ant-form-item-label"
+      >
+        <label
+          className=""
+          htmlFor={null}
+          onClick={[Function]}
+          title="域名"
+        >
+          域名
+        </label>
+      </div>
+      <div
+        className="ant-col ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <div
+              className="comp-domain-select ant-select ant-select-enabled ant-select-loading"
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseDown={[Function]}
+              onMouseOut={[Function]}
+              onMouseUp={[Function]}
+              onTouchStart={[Function]}
+            >
+              <div
+                aria-autocomplete="list"
+                aria-controls="test-uuid"
+                aria-expanded={false}
+                aria-haspopup="true"
+                className="ant-select-selection
+            ant-select-selection--single"
+                onKeyDown={[Function]}
+                role="combobox"
+                tabIndex={0}
+              >
+                <div
+                  className="ant-select-selection__rendered"
+                >
+                  <div
+                    className="ant-select-selection__placeholder"
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                    style={
+                      Object {
+                        "WebkitUserSelect": "none",
+                        "display": "none",
+                        "userSelect": "none",
+                      }
+                    }
+                    unselectable="on"
+                  >
+                    请选择域名
+                  </div>
+                  <div
+                    className="ant-select-selection-selected-value"
+                    style={
+                      Object {
+                        "display": "block",
+                        "opacity": 1,
+                      }
+                    }
+                    title="foo.com"
+                  >
+                    foo.com
+                  </div>
+                  <div
+                    className="ant-select-search ant-select-search--inline"
+                    style={
+                      Object {
+                        "display": "none",
+                      }
+                    }
+                  >
+                    <div
+                      className="ant-select-search__field__wrap"
+                    >
+                      <input
+                        autoComplete="off"
+                        className="ant-select-search__field"
+                        disabled={false}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        value=""
+                      />
+                      <span
+                        className="ant-select-search__field__mirror"
+                      >
+                        
+                         
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <span
+                  className="ant-select-arrow"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "WebkitUserSelect": "none",
+                      "userSelect": "none",
+                    }
+                  }
+                  unselectable="on"
+                >
+                  <i
+                    aria-label="icon: loading"
+                    className="anticon anticon-loading"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="anticon-spin"
+                      data-icon="loading"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="0 0 1024 1024"
+                      width="1em"
+                    >
+                      <path
+                        d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 0 0-94.3-139.9 437.71 437.71 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"
+                      />
+                    </svg>
+                  </i>
+                </span>
+              </div>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <i
+      aria-label="icon: info-circle"
+      className="anticon anticon-info-circle"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        Object {
+          "color": "#999",
+          "cursor": "pointer",
+          "fontSize": "14px",
+          "fontWeight": "normal",
+          "marginLeft": "4px",
+          "verticalAlign": "-0.125em",
+        }
+      }
+    >
+      <svg
+        aria-hidden="true"
+        className=""
+        data-icon="info-circle"
+        fill="currentColor"
+        focusable="false"
+        height="1em"
+        viewBox="64 64 896 896"
+        width="1em"
+      >
+        <path
+          d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+        />
+        <path
+          d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+        />
+      </svg>
+    </i>
+  </form>
+  <p>
+    建议为您的热点视频瘦身，可大幅减少视频体积，画质肉眼感知无变化，预览确认瘦身效果后启用分发（也可配置瘦身成功后自动启用分发），节省 CDN 流量；
+    <a
+      className="comp-router-link"
+      href="/preview/demo"
+      onClick={[Function]}
+      target="_blank"
+    >
+      Demo 体验视频瘦身效果
+    </a>
+  </p>
+  <div
+    className="comp-video-slim-list"
+  >
+    <div
+      className="list-header-wrapper"
+    >
+      <h3>
+        视频瘦身列表
+      </h3>
+      <a
+        className="comp-router-link chart-link"
+        href="/cdn/statistics/log/videoslim"
+        onClick={[Function]}
+      >
+        <i
+          aria-label="icon: line-chart"
+          className="anticon anticon-line-chart"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="line-chart"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M888 792H200V168c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h752c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM305.8 637.7c3.1 3.1 8.1 3.1 11.3 0l138.3-137.6L583 628.5c3.1 3.1 8.2 3.1 11.3 0l275.4-275.3c3.1-3.1 3.1-8.2 0-11.3l-39.6-39.6a8.03 8.03 0 0 0-11.3 0l-230 229.9L461.4 404a8.03 8.03 0 0 0-11.3 0L266.3 586.7a8.03 8.03 0 0 0 0 11.3l39.5 39.7z"
+            />
+          </svg>
+        </i>
+        查看节省流量统计
+      </a>
+    </div>
+    <div
+      className="operations-wrapper"
+    >
+      <div>
+        <button
+          className="ant-btn ant-btn-primary"
+          onClick={[Function]}
+          type="button"
+        >
+          <i
+            aria-label="icon: plus"
+            className="anticon anticon-plus"
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="plus"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+              />
+              <path
+                d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+              />
+            </svg>
+          </i>
+          <span>
+            添 加
+          </span>
+        </button>
+        <button
+          className="ant-btn"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          type="button"
+        >
+          <i
+            aria-label="icon: ellipsis"
+            className="anticon anticon-ellipsis"
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="ellipsis"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M176 511a56 56 0 1 0 112 0 56 56 0 1 0-112 0zm280 0a56 56 0 1 0 112 0 56 56 0 1 0-112 0zm280 0a56 56 0 1 0 112 0 56 56 0 1 0-112 0z"
+              />
+            </svg>
+          </i>
+          <span>
+            批量操作
+          </span>
+        </button>
+      </div>
+      <div
+        className="video-slim-task-filter"
+      >
+        <button
+          className="ant-btn"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          <i
+            aria-label="icon: reload"
+            className="anticon anticon-reload"
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="reload"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M909.1 209.3l-56.4 44.1C775.8 155.1 656.2 92 521.9 92 290 92 102.3 279.5 102 511.5 101.7 743.7 289.8 932 521.9 932c181.3 0 335.8-115 394.6-276.1 1.5-4.2-.7-8.9-4.9-10.3l-56.7-19.5a8 8 0 0 0-10.1 4.8c-1.8 5-3.8 10-5.9 14.9-17.3 41-42.1 77.8-73.7 109.4A344.77 344.77 0 0 1 655.9 829c-42.3 17.9-87.4 27-133.8 27-46.5 0-91.5-9.1-133.8-27A341.5 341.5 0 0 1 279 755.2a342.16 342.16 0 0 1-73.7-109.4c-17.9-42.4-27-87.4-27-133.9s9.1-91.5 27-133.9c17.3-41 42.1-77.8 73.7-109.4 31.6-31.6 68.4-56.4 109.3-73.8 42.3-17.9 87.4-27 133.8-27 46.5 0 91.5 9.1 133.8 27a341.5 341.5 0 0 1 109.3 73.8c9.9 9.9 19.2 20.4 27.8 31.4l-60.2 47a8 8 0 0 0 3 14.1l175.6 43c5 1.2 9.9-2.6 9.9-7.7l.8-180.9c-.1-6.6-7.8-10.3-13-6.2z"
+              />
+            </svg>
+          </i>
+          <span>
+            刷新状态
+          </span>
+        </button>
+        <span
+          className="ant-input-search url-input ant-input-affix-wrapper ant-input-affix-wrapper-sm"
+        >
+          <input
+            className="ant-input ant-input-sm"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            size="small"
+            style={null}
+            type="text"
+            value=""
+          />
+          <span
+            className="ant-input-suffix"
+          >
+            <i
+              aria-label="icon: search"
+              className="anticon anticon-search ant-input-search-icon"
+              onClick={[Function]}
+              tabIndex={-1}
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="search"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
+                />
+              </svg>
+            </i>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div
+      className="ant-table-wrapper"
+    >
+      <div
+        className="ant-spin-nested-loading"
+      >
+        <div
+          className="ant-spin-container"
+        >
+          <div
+            className="ant-table ant-table-default ant-table-empty ant-table-scroll-position-left"
+            style={Object {}}
+          >
+            <div
+              className="ant-table-content"
+            >
+              <div
+                className="ant-table-body"
+                onScroll={[Function]}
+                onWheel={[Function]}
+                style={Object {}}
+              >
+                <table
+                  className=""
+                  style={Object {}}
+                >
+                  <colgroup>
+                    <col
+                      className="ant-table-selection-col"
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                    <col
+                      style={
+                        Object {
+                          "minWidth": undefined,
+                          "width": undefined,
+                        }
+                      }
+                    />
+                  </colgroup>
+                  <thead
+                    className="ant-table-thead"
+                  >
+                    <tr
+                      style={
+                        Object {
+                          "height": null,
+                        }
+                      }
+                    >
+                      <th
+                        className="ant-table-selection-column"
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              <div
+                                className="ant-table-selection"
+                              >
+                                <label
+                                  className="ant-checkbox-wrapper ant-checkbox-wrapper-disabled"
+                                >
+                                  <span
+                                    className="ant-checkbox ant-checkbox-disabled"
+                                    style={Object {}}
+                                  >
+                                    <input
+                                      checked={false}
+                                      className="ant-checkbox-input"
+                                      disabled={true}
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      type="checkbox"
+                                    />
+                                    <span
+                                      className="ant-checkbox-inner"
+                                    />
+                                  </span>
+                                </label>
+                              </div>
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              瘦身资源
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              源文件格式
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              文件大小(MB)
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              瘦身率
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className="ant-table-column-has-actions ant-table-column-has-filters"
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              状态
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                        <i
+                          aria-label="icon: filter"
+                          className="anticon anticon-filter ant-dropdown-trigger"
+                          onClick={[Function]}
+                          onMouseDown={[Function]}
+                          onTouchStart={[Function]}
+                          tabIndex={-1}
+                          title="Filter menu"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className=""
+                            data-icon="filter"
+                            fill="currentColor"
+                            focusable="false"
+                            height="1em"
+                            viewBox="64 64 896 896"
+                            width="1em"
+                          >
+                            <path
+                              d="M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z"
+                            />
+                          </svg>
+                        </i>
+                        <div
+                          data-role="portal"
+                        >
+                          <div>
+                            <div
+                              className="ant-dropdown  ant-dropdown-placement-bottomRight  ant-dropdown-hidden"
+                              onMouseDown={[Function]}
+                              onTouchStart={[Function]}
+                              style={Object {}}
+                            >
+                              <div
+                                className="ant-table-filter-dropdown"
+                                onClick={[Function]}
+                              >
+                                <ul
+                                  className="ant-dropdown-menu ant-dropdown-menu-without-submenu ant-dropdown-menu-root ant-dropdown-menu-vertical"
+                                  onKeyDown={[Function]}
+                                  role="menu"
+                                  style={Object {}}
+                                  tabIndex={0}
+                                >
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      等待瘦身
+                                    </span>
+                                  </li>
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      瘦身中
+                                    </span>
+                                  </li>
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      瘦身成功
+                                    </span>
+                                  </li>
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      瘦身失败
+                                    </span>
+                                  </li>
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      已启用
+                                    </span>
+                                  </li>
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      停用中
+                                    </span>
+                                  </li>
+                                  <li
+                                    className="ant-dropdown-menu-item"
+                                    onClick={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    role="menuitem"
+                                    style={Object {}}
+                                  >
+                                    <label
+                                      className="ant-checkbox-wrapper"
+                                    >
+                                      <span
+                                        className="ant-checkbox"
+                                        style={Object {}}
+                                      >
+                                        <input
+                                          checked={false}
+                                          className="ant-checkbox-input"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          type="checkbox"
+                                        />
+                                        <span
+                                          className="ant-checkbox-inner"
+                                        />
+                                      </span>
+                                    </label>
+                                    <span>
+                                      启用中
+                                    </span>
+                                  </li>
+                                </ul>
+                                <div
+                                  className="ant-table-filter-dropdown-btns"
+                                >
+                                  <a
+                                    className="ant-table-filter-dropdown-link confirm"
+                                    onClick={[Function]}
+                                  >
+                                    OK
+                                  </a>
+                                  <a
+                                    className="ant-table-filter-dropdown-link clear"
+                                    onClick={[Function]}
+                                  >
+                                    Reset
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              自动启动
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                      <th
+                        className=""
+                      >
+                        <span
+                          className="ant-table-header-column"
+                        >
+                          <div>
+                            <span
+                              className="ant-table-column-title"
+                            >
+                              操作
+                            </span>
+                            <span
+                              className="ant-table-column-sorter"
+                            />
+                          </div>
+                        </span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    className="ant-table-tbody"
+                  />
+                </table>
+              </div>
+              <div
+                className="ant-table-placeholder"
+              >
+                <div
+                  className="ant-empty ant-empty-normal"
+                >
+                  <div
+                    className="ant-empty-image"
+                  >
+                    <img
+                      alt="No Data"
+                      src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCA2NCA0MSIgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxKSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxlbGxpcHNlIGZpbGw9IiNGNUY1RjUiIGN4PSIzMiIgY3k9IjMzIiByeD0iMzIiIHJ5PSI3Ii8+CiAgICA8ZyBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0iI0Q5RDlEOSI+CiAgICAgIDxwYXRoIGQ9Ik01NSAxMi43Nkw0NC44NTQgMS4yNThDNDQuMzY3LjQ3NCA0My42NTYgMCA0Mi45MDcgMEgyMS4wOTNjLS43NDkgMC0xLjQ2LjQ3NC0xLjk0NyAxLjI1N0w5IDEyLjc2MVYyMmg0NnYtOS4yNHoiLz4KICAgICAgPHBhdGggZD0iTTQxLjYxMyAxNS45MzFjMC0xLjYwNS45OTQtMi45MyAyLjIyNy0yLjkzMUg1NXYxOC4xMzdDNTUgMzMuMjYgNTMuNjggMzUgNTIuMDUgMzVoLTQwLjFDMTAuMzIgMzUgOSAzMy4yNTkgOSAzMS4xMzdWMTNoMTEuMTZjMS4yMzMgMCAyLjIyNyAxLjMyMyAyLjIyNyAyLjkyOHYuMDIyYzAgMS42MDUgMS4wMDUgMi45MDEgMi4yMzcgMi45MDFoMTQuNzUyYzEuMjMyIDAgMi4yMzctMS4zMDggMi4yMzctMi45MTN2LS4wMDd6IiBmaWxsPSIjRkFGQUZBIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K"
+                    />
+                  </div>
+                  <p
+                    className="ant-empty-description"
+                  >
+                    No Data
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

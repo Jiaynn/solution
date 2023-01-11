@@ -1,0 +1,64 @@
+@import "~cdn/utils/style/index.less";
+@import "~cdn/utils/style/legacy-variable.less";
+
+.label() {
+  line-height: 28px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.domain-conflict-wrapper {
+  .domain-conflict-content {
+    .conflict-validate-section {
+      border-bottom: 1px solid @border-level-2-color;
+      padding: 30px 0;
+
+      &:first-child {
+        padding-top: 0;
+      }
+
+      .validate-label {
+        padding: 0 10px;
+        label {
+          .label()
+        }
+      }
+
+      .validate-content {
+        padding: 0 10px;
+        .validate-describe {
+          margin: 0;
+          line-height: 2;
+          .highlight {
+            color: @danger-color;
+          }
+        }
+        .validate-info {
+          background-color: @background-color-level-2;
+          margin: 16px 0;
+          padding: 10px 20px;
+          line-height: 2;
+          .validate-info-label {
+            font-weight: @icecream-bold;
+          }
+        }
+      }
+    }
+
+    .domain-conflict-footer {
+      padding-top: 30px;
+      margin: 0 20px;
+      text-align: right;
+      .hint {
+        line-height: 2;
+        margin: 15px 0;
+        &.error {
+          color: @danger-color;
+        }
+        &.success {
+          color: @success-color;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@import "../common/style.less";
+
+.domain-advanced-sources-input-wrapper {
+  .input-wrapper();
+
+  .sources-table {
+    .input-table();
+
+    tr {
+      th, td {
+        padding: 10px 10px 0 0;
+      }
+    }
+
+    tr {
+      border-bottom: 0;
+    }
+
+    .port-tip {
+      margin-left: .5em;
+    }
+
+    .sources-table-grid-error {
+      padding: 0;
+    }
+    .sources-table-grid-role {
+      width: 83px;
+    }
+    .sources-table-grid-host {
+      width: 200px;
+    }
+    .sources-table-grid-port {
+      width: 100px;
+    }
+    .sources-table-grid-weight {
+      width: 100px;
+    }
+    .sources-table-grid-operation {
+      width: 60px;
+      text-align: center;
+
+      .icon-remove {
+        color: #e55c5c;
+        cursor: pointer;
+      }
+    }
+  }
+}

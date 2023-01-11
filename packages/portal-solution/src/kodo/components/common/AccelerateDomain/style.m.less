@@ -1,0 +1,42 @@
+/**
+ * @file style for domains
+ * @author zhangheng <zhangheng01@qiniu.com>
+ */
+
+@import "~kodo/styles/font.less";
+@import "~kodo/styles/variables.less";
+@import "~kodo/styles/mixins.less";
+
+.micro {
+  td {
+    padding: 8px 10px !important;
+  }
+}
+
+.acceleratTable {
+
+  .textGap {
+    margin-right: @page-content-gap-half;
+  }
+
+  .tdBreak {
+    .line-wrap();
+    .gap {
+      margin-left: 6px;
+    }
+
+    .danger {
+      color: #F26450;
+    }
+
+    .lightIcon {
+      color: #00A7E1;
+    }
+
+    .lightTag {
+      background-color: #fff;
+      color: #00A7E1;
+      border: 1px solid #00A7E1;
+    }
+  }
+}

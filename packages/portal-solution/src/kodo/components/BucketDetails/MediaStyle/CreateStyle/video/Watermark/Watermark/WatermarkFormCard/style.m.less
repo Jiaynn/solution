@@ -1,0 +1,120 @@
+/**
+* @description style of watermark component
+* @author duli <duli@qiniu.com>
+*/
+
+@import 'react-icecream-2/dist/utils.less';
+
+.urlOrWord {
+  width: 390px;
+}
+
+.importBtn {
+  color: @icecream-primary-color;
+}
+
+.rowInputWrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  :global(.icecream-form-item) {
+    margin-bottom: 0 !important;
+  }
+
+  > * + * {
+    margin-left: @icecream-gap-md;
+  }
+}
+
+.inputWrap {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+}
+
+.urlInputFormItem {
+  .urlInput {
+    display: flex;
+    align-items: center;
+
+    > div:first-child {
+      display: inline-block;
+      max-width: 410px;
+      margin-right: @icecream-gap-sm;
+    }
+  }
+}
+
+.slider {
+  width: 240px;
+  margin: 10px 0;
+  margin-right: @icecream-gap-lg;
+}
+
+.fontFamily {
+  width: 160px;
+}
+
+.colorPicker {
+  align-self: flex-start;
+}
+
+.originWrap {
+  display: flex;
+  flex-wrap: wrap;
+  width: 150px;
+  margin-bottom: @icecream-gap-md;
+
+  .origin {
+    position: relative;
+    width: 50px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #bfbfbf;
+    cursor: pointer;
+
+    &:not(:nth-child(3n + 1)) {
+      margin-left: -1px;
+    }
+
+    &:nth-child(n + 4) {
+      margin-top: -1px;
+    }
+
+    &:nth-child(1) {
+      border-top-left-radius: 5px;
+    }
+
+    &:nth-child(3) {
+      border-top-right-radius: 5px;
+    }
+
+    &:nth-child(7) {
+      border-bottom-left-radius: 5px;
+    }
+
+    &:nth-child(9) {
+      border-bottom-right-radius: 5px;
+    }
+  }
+
+  .selected {
+    z-index: 10;
+    font-weight: bold;
+    color: @icecream-primary-color;
+    border-color: @icecream-primary-color !important;
+  }
+}
+
+.timelineType {
+  width: 210px;
+}
+
+.duration {
+  margin-top: @icecream-gap-lg;
+}
+
+.shortest {
+  margin-bottom: 0;
+}

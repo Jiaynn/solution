@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="comp-page-wrapper"
+>
+  <div
+    className="comp-breadcrumb-wrapper"
+  >
+    <div
+      className="icecream-breadcrumb"
+    />
+  </div>
+  <div
+    className=""
+  >
+    <div
+      className="comp-page-content"
+    >
+      <div
+        className="comp-cert-apply"
+      >
+        <div
+          className="apply-content-wrapper"
+        >
+          <hr
+            className="split-line"
+          />
+          <div
+            className="result-info query-info"
+          >
+            支付结果查询中...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders success correctly 1`] = `
+<div
+  className="comp-page-wrapper"
+>
+  <div
+    className="comp-breadcrumb-wrapper"
+  >
+    <div
+      className="icecream-breadcrumb"
+    />
+  </div>
+  <div
+    className=""
+  >
+    <div
+      className="comp-page-content"
+    >
+      <div
+        className="comp-cert-apply"
+      >
+        <div
+          className="apply-content-wrapper"
+        >
+          <hr
+            className="split-line"
+          />
+          <div>
+            <div
+              className="result-info success-info"
+            >
+              <div
+                className="result-icon"
+              >
+                <i
+                  aria-label="icon: check-circle"
+                  className="anticon anticon-check-circle"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    data-icon="check-circle"
+                    fill="currentColor"
+                    focusable="false"
+                    height="1em"
+                    viewBox="64 64 896 896"
+                    width="1em"
+                  >
+                    <path
+                      d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"
+                    />
+                    <path
+                      d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                    />
+                  </svg>
+                </i>
+              </div>
+              <div
+                className="success-text"
+              >
+                <span>
+                  恭喜您，购买的证书已支付成功
+                </span>
+              </div>
+              <div
+                className="more-info"
+              >
+                为了您可以快速通过审核，请尽快补全信息
+              </div>
+            </div>
+            <div
+              className="button-wrap"
+            >
+              <button
+                className="ant-btn ant-btn-primary"
+                onClick={[Function]}
+                type="button"
+              >
+                <span>
+                  补全信息
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders warn correctly 1`] = `
+<div
+  className="comp-page-wrapper"
+>
+  <div
+    className="comp-breadcrumb-wrapper"
+  >
+    <div
+      className="icecream-breadcrumb"
+    />
+  </div>
+  <div
+    className=""
+  >
+    <div
+      className="comp-page-content"
+    >
+      <div
+        className="comp-cert-apply"
+      >
+        <div
+          className="apply-content-wrapper"
+        >
+          <hr
+            className="split-line"
+          />
+          <div>
+            <div
+              className="result-info warn-info"
+            >
+              <div
+                className="result-icon"
+              >
+                <i
+                  aria-label="icon: exclamation-circle"
+                  className="anticon anticon-exclamation-circle"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    data-icon="exclamation-circle"
+                    fill="currentColor"
+                    focusable="false"
+                    height="1em"
+                    viewBox="64 64 896 896"
+                    width="1em"
+                  >
+                    <path
+                      d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                    />
+                    <path
+                      d="M464 688a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm24-112h48c4.4 0 8-3.6 8-8V296c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8z"
+                    />
+                  </svg>
+                </i>
+              </div>
+              <div
+                className="warn-text"
+              >
+                <span>
+                  您须先完成未支付账单，否则无法完成此订单
+                </span>
+              </div>
+            </div>
+            <div
+              className="button-wrap"
+            >
+              <button
+                className="ant-btn ant-btn-primary"
+                onClick={[Function]}
+                type="button"
+              >
+                <span>
+                  查看账单
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

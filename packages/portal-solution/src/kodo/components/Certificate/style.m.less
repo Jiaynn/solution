@@ -1,0 +1,36 @@
+/**
+ * @file certificate style
+ * @description certificate 样式
+ * @author yinxulai <me@yinxulai.com>
+ */
+
+@import "~kodo/styles/variables.less";
+
+.toolbar {
+  margin-bottom: @page-content-gap-regular;
+}
+
+.prompt {
+  margin-bottom: @page-content-gap;
+}
+
+.dnsNames {
+  > li {
+    margin-bottom: @page-content-gap;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    ul {
+      li::before {
+        content: '\2022';
+        margin: auto 0.5em auto 1em;
+      }
+    }
+  }
+}
+
+.space {
+  white-space: pre-wrap;
+}

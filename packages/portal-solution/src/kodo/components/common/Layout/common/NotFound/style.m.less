@@ -1,0 +1,40 @@
+/**
+ * @file 404
+ * @author lizhifeng <lizhifeng@qiniu.com>
+ */
+
+@import "~kodo/styles/variables.less";
+
+.main {
+  flex: auto;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  @keyframes error-item {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, -30%, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  > .title,
+  > .content,
+  > .link {
+    color: @icecream-grey-7;
+    animation: error-item ease-out both .5s .3s;
+  }
+
+  .title {
+    font-size: @icecream-font-size-large * 10;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+}

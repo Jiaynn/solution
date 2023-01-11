@@ -1,0 +1,49 @@
+/**
+ * @file style for ResourceManage/BatchDeleteModal
+ * @author zhangheng <zhangheng01@qiniu.com>
+ */
+
+@import "~kodo/styles/variables.less";
+@import "~kodo/styles/mixins.less";
+
+.modalTitle {
+  display: flex;
+  align-items: center;
+  span {
+    margin-left: 10px;
+  }
+
+  .warningIcon {
+    font-size: @icecream-font-size-3;
+    color: #EB3B2A;
+  }
+}
+
+.deleteBox {
+  max-height: 200px;
+  overflow: auto;
+  .leftGap {
+    margin-left: @page-content-gap;
+  }
+
+  .taskTitle {
+    .line-wrap();
+  }
+
+  .error {
+    color: red;
+  }
+
+  .success {
+    color: #26ad58;
+  }
+
+  .deleting {
+    color: #F37B2B;
+  }
+}
+
+.iconSize {
+  width: 24px;
+  height: 24px;
+}

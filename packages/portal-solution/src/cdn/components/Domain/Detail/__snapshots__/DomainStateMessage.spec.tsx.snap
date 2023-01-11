@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `null`;
+
+exports[`renders correctly with abandon workflow task 1`] = `
+<p
+  className="warning-message"
+  style={
+    Object {
+      "maxWidth": "100%",
+    }
+  }
+>
+  由于同一主域名绑定的免费 DV 证书不能超过 20 个，目前额度已达上限，处理无法继续，您可以选择以下处理方案：
+  <br />
+  1. 点击 
+  <a
+    onClick={[Function]}
+  >
+    回滚
+  </a>
+  ，成功后域名即恢复可操作状态。
+  <br />
+  2. 可 
+  <a
+    className="comp-router-link"
+    href="/certificate/apply"
+    onClick={[Function]}
+    target="_blank"
+  >
+    购买 DV 通配符证书
+  </a>
+  ，或使用新的主域名后再绑定免费证书。
+  <br />
+  3. 配置好证书后，重新提交域名配置修改。
+</p>
+`;
+
+exports[`renders correctly with https cert process failed 1`] = `
+<p
+  className="error-message"
+>
+  HTTPS 证书有误
+</p>
+`;
+
+exports[`renders correctly with https conf processing 1`] = `
+<p
+  className="warning-message"
+>
+  修改 HTTPS 配置处理中，通常情况下 8-15 分钟完成，期间域名访问不受影响，部分配置不可修改，若较长时间未配置完成，请提交工单反馈
+</p>
+`;
+
+exports[`renders correctly with redo workflow task 1`] = `
+<p
+  className="warning-message"
+>
+  由于处理 QPS 限制，处理无法继续，您可以选择以下处理方案：
+  <br />
+  1. 点击 
+  <a
+    onClick={[Function]}
+  >
+    重试
+  </a>
+   尝试重新提交任务。
+  <br />
+  2. 如果失败，可稍后再尝试，多次尝试后仍然失败，可 
+  <a
+    href="https://support.qiniu.com/tickets/new/form?category=%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98&space=CDN"
+    rel="noopener"
+    target="_blank"
+  >
+    联系技术支持
+  </a>
+   处理。
+</p>
+`;

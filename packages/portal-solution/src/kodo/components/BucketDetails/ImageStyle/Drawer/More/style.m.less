@@ -1,0 +1,61 @@
+/**
+ * @description style of more config component
+ * @author duli <duli@qiniu.com>
+ */
+
+@import "~react-icecream-2/dist/utils.less";
+
+.slim div {
+  line-height: 2;
+}
+
+.formItem + .formItem {
+  margin-left: @icecream-gap-lg;
+}
+
+.formItem {
+  display: flex;
+  margin-bottom: 0 !important;
+
+  &.sliderWrapper {
+    height: 32px;
+  }
+}
+
+.inputWrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.slider {
+  width: 200px;
+  margin: 10px 0 10px 0;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.icon {
+  margin-right: @icecream-gap-xs;
+  transition: all 0.3s ease;
+  transform: rotate(0deg);
+  cursor: pointer;
+}
+
+.expandedIcon {
+  transform: rotate(90deg);
+}
+
+.blur {
+  margin-bottom: @icecream-gap-lg;
+}
+
+.blurSigma {
+  margin-top: @icecream-gap-lg;
+}
+
+.expandedInputWrapper {
+  margin-top: @icecream-gap-lg;
+}

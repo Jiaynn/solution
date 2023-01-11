@@ -1,0 +1,84 @@
+@import "react-icecream-2/dist/utils.less";
+
+.alignCenter {
+  display: flex;
+  align-items: center;
+}
+
+.autoSaveFilename {
+  color: @icecream-color-orange-6;
+}
+
+.baseFormGap {
+  margin-top: @icecream-gap-lg;
+}
+
+.helpIcon {
+  &:hover {
+    color: #262626;
+  }
+  vertical-align: -0.125em;
+  cursor: pointer;
+}
+
+.scaleHelpContent {
+  p {
+    margin: 0;
+  }
+  ul {
+    margin: 0 0 0 @icecream-gap-lg;
+    li {
+      list-style: disc;
+      line-height: 28px;
+    }
+  }
+}
+
+.expandedInput {
+  width: 100%;
+}
+
+.cutTimeSeconds {
+  margin-left: @icecream-gap-md;
+}
+
+.cutPartStartTime {
+  display: flex;
+  align-items: center;
+}
+
+.cutPicMinutes, .cutPartStartTimeMinutes {
+  margin-right: @icecream-gap-md;
+}
+
+.cutPartStartTimeDuration {
+  .alignCenter();
+  margin-top: @icecream-gap-sm;
+}
+
+.inputLabel {
+  margin-right: 1rem;
+}
+
+.coverScaleTypeSubFormItem {
+  display: inline-block;
+  margin-bottom: 0 !important;
+  margin-right: @icecream-gap-md;
+
+  &Content {
+    .alignCenter();
+  }
+}
+
+.persistence {
+  margin-bottom: 0 !important;
+}
+
+.persistenceTip {
+  display: block;
+  box-sizing: border-box;
+
+  color: #8c8c8c;
+  line-height: @icecream-line-height;
+  font-size: @icecream-font-size-1;
+}

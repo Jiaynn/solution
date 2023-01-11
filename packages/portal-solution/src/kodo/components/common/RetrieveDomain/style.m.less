@@ -1,0 +1,40 @@
+/**
+ * @desc Bucket tags popover.
+ * @author hovenjay <hovenjay@outlook.com>
+ */
+
+@import "~kodo/styles/variables.less";
+
+.description {
+  :global {
+    div.ant-typography, .ant-typography p {
+      margin-bottom: 0;
+    }
+  }
+
+  margin: @icecream-gap-md 0;
+
+  .item {
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    margin: @icecream-gap-xs 0;
+
+    .label {
+      width: 60px;
+      color: @icecream-grey-9;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .value {
+      flex: 1;
+      word-break: break-all;
+    }
+  }
+}
+
+.warning {
+  color: @icecream-yellow-3;
+  font-size: @icecream-font-size-1;
+}

@@ -1,0 +1,997 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="line domain-bucket-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <div
+      className="text-input-wrapper"
+    >
+      <div
+        className="ant-select ant-select-enabled"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseDown={[Function]}
+        onMouseOut={[Function]}
+        onMouseUp={[Function]}
+        onTouchStart={[Function]}
+      >
+        <div
+          aria-autocomplete="list"
+          aria-controls="test-uuid"
+          aria-expanded={false}
+          aria-haspopup="true"
+          className="ant-select-selection
+            ant-select-selection--single"
+          onKeyDown={[Function]}
+          role="combobox"
+          tabIndex={0}
+        >
+          <div
+            className="ant-select-selection__rendered"
+          >
+            <div
+              className="ant-select-selection__placeholder"
+              onClick={[Function]}
+              onMouseDown={[Function]}
+              style={
+                Object {
+                  "WebkitUserSelect": "none",
+                  "display": "none",
+                  "userSelect": "none",
+                }
+              }
+              unselectable="on"
+            >
+              请选择一个 bucket
+            </div>
+            <div
+              className="ant-select-selection-selected-value"
+              style={
+                Object {
+                  "display": "block",
+                  "opacity": 1,
+                }
+              }
+              title="abcd"
+            >
+              abcd
+            </div>
+            <div
+              className="ant-select-search ant-select-search--inline"
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+            >
+              <div
+                className="ant-select-search__field__wrap"
+              >
+                <input
+                  autoComplete="off"
+                  className="ant-select-search__field"
+                  disabled={false}
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  value=""
+                />
+                <span
+                  className="ant-select-search__field__mirror"
+                >
+                  
+                   
+                </span>
+              </div>
+            </div>
+          </div>
+          <span
+            className="ant-select-arrow"
+            onClick={[Function]}
+            style={
+              Object {
+                "WebkitUserSelect": "none",
+                "userSelect": "none",
+              }
+            }
+            unselectable="on"
+          >
+            <i
+              aria-label="icon: down"
+              className="anticon anticon-down ant-select-arrow-icon"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="down"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                />
+              </svg>
+            </i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="comp-no-icp-warning"
+    >
+      <span
+        className="icp-text"
+      >
+        域名未备案，
+      </span>
+      <span
+        className="icp-desc"
+      >
+        <span>
+          只能选择海外存储，您可以点击 
+          <a
+            className="comp-router-link"
+            href="/kodo/bucket?shouldCreateBucket=true"
+            onClick={[Function]}
+            rel="noopener"
+            target="_blank"
+          >
+            创建海外存储
+          </a>
+        </span>
+      </span>
+    </div>
+    <span
+      className="warning-wrapper extra-tip"
+    >
+      当源站选择存储时，若发生回源请求将会由存储产生 
+      <a
+        href="https://www.qiniu.com/prices"
+        rel="noopener"
+        target="_blank"
+      >
+        CDN 回源流量费
+      </a>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with disabled: true 1`] = `
+<div
+  className="line domain-bucket-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <div
+      className="text-input-wrapper"
+    >
+      <div
+        className="ant-select ant-select-disabled"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseDown={[Function]}
+        onMouseOut={[Function]}
+        onMouseUp={[Function]}
+      >
+        <div
+          aria-autocomplete="list"
+          aria-controls="test-uuid"
+          aria-expanded={false}
+          aria-haspopup="true"
+          className="ant-select-selection
+            ant-select-selection--single"
+          onKeyDown={[Function]}
+          role="combobox"
+          tabIndex={-1}
+        >
+          <div
+            className="ant-select-selection__rendered"
+          >
+            <div
+              className="ant-select-selection__placeholder"
+              onClick={[Function]}
+              onMouseDown={[Function]}
+              style={
+                Object {
+                  "WebkitUserSelect": "none",
+                  "display": "none",
+                  "userSelect": "none",
+                }
+              }
+              unselectable="on"
+            >
+              请选择一个 bucket
+            </div>
+            <div
+              className="ant-select-selection-selected-value"
+              style={
+                Object {
+                  "display": "block",
+                  "opacity": 1,
+                }
+              }
+              title=""
+            >
+              
+            </div>
+            <div
+              className="ant-select-search ant-select-search--inline"
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+            >
+              <div
+                className="ant-select-search__field__wrap"
+              >
+                <input
+                  autoComplete="off"
+                  className="ant-select-search__field"
+                  disabled={true}
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  value=""
+                />
+                <span
+                  className="ant-select-search__field__mirror"
+                >
+                  
+                   
+                </span>
+              </div>
+            </div>
+          </div>
+          <span
+            className="ant-select-arrow"
+            onClick={[Function]}
+            style={
+              Object {
+                "WebkitUserSelect": "none",
+                "userSelect": "none",
+              }
+            }
+            unselectable="on"
+          >
+            <i
+              aria-label="icon: down"
+              className="anticon anticon-down ant-select-arrow-icon"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="down"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                />
+              </svg>
+            </i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="comp-no-icp-warning"
+    >
+      <span
+        className="icp-text"
+      >
+        域名未备案，
+      </span>
+      <span
+        className="icp-desc"
+      >
+        <span>
+          只能选择海外存储，您可以点击 
+          <a
+            className="comp-router-link"
+            href="/kodo/bucket?shouldCreateBucket=true"
+            onClick={[Function]}
+            rel="noopener"
+            target="_blank"
+          >
+            创建海外存储
+          </a>
+        </span>
+      </span>
+    </div>
+    <span
+      className="warning-wrapper extra-tip"
+    >
+      当源站选择存储时，若发生回源请求将会由存储产生 
+      <a
+        href="https://www.qiniu.com/prices"
+        rel="noopener"
+        target="_blank"
+      >
+        CDN 回源流量费
+      </a>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with error 1`] = `
+<div
+  className="line domain-bucket-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <div
+      className="text-input-wrapper"
+    >
+      <div
+        className="ant-select ant-select-enabled"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseDown={[Function]}
+        onMouseOut={[Function]}
+        onMouseUp={[Function]}
+        onTouchStart={[Function]}
+      >
+        <div
+          aria-autocomplete="list"
+          aria-controls="test-uuid"
+          aria-expanded={false}
+          aria-haspopup="true"
+          className="ant-select-selection
+            ant-select-selection--single"
+          onKeyDown={[Function]}
+          role="combobox"
+          tabIndex={0}
+        >
+          <div
+            className="ant-select-selection__rendered"
+          >
+            <div
+              className="ant-select-selection__placeholder"
+              onClick={[Function]}
+              onMouseDown={[Function]}
+              style={
+                Object {
+                  "WebkitUserSelect": "none",
+                  "display": "none",
+                  "userSelect": "none",
+                }
+              }
+              unselectable="on"
+            >
+              请选择一个 bucket
+            </div>
+            <div
+              className="ant-select-selection-selected-value"
+              style={
+                Object {
+                  "display": "block",
+                  "opacity": 1,
+                }
+              }
+              title="abcd"
+            >
+              abcd
+            </div>
+            <div
+              className="ant-select-search ant-select-search--inline"
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+            >
+              <div
+                className="ant-select-search__field__wrap"
+              >
+                <input
+                  autoComplete="off"
+                  className="ant-select-search__field"
+                  disabled={false}
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  value=""
+                />
+                <span
+                  className="ant-select-search__field__mirror"
+                >
+                  
+                   
+                </span>
+              </div>
+            </div>
+          </div>
+          <span
+            className="ant-select-arrow"
+            onClick={[Function]}
+            style={
+              Object {
+                "WebkitUserSelect": "none",
+                "userSelect": "none",
+              }
+            }
+            unselectable="on"
+          >
+            <i
+              aria-label="icon: down"
+              className="anticon anticon-down ant-select-arrow-icon"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="down"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                />
+              </svg>
+            </i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <span
+      className="error-wrapper"
+      style={
+        Object {
+          "color": "#e55c5c",
+          "display": "block",
+          "lineHeight": "20px",
+          "marginTop": "8px",
+          "verticalAlign": "middle",
+        }
+      }
+    >
+      bucket 不可为空
+    </span>
+    <div
+      className="comp-no-icp-warning"
+    >
+      <span
+        className="icp-text"
+      >
+        域名未备案，
+      </span>
+      <span
+        className="icp-desc"
+      >
+        <span>
+          只能选择海外存储，您可以点击 
+          <a
+            className="comp-router-link"
+            href="/kodo/bucket?shouldCreateBucket=true"
+            onClick={[Function]}
+            rel="noopener"
+            target="_blank"
+          >
+            创建海外存储
+          </a>
+        </span>
+      </span>
+    </div>
+    <span
+      className="warning-wrapper extra-tip"
+    >
+      当源站选择存储时，若发生回源请求将会由存储产生 
+      <a
+        href="https://www.qiniu.com/prices"
+        rel="noopener"
+        target="_blank"
+      >
+        CDN 回源流量费
+      </a>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with invalid value 1`] = `
+<div
+  className="line domain-bucket-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <div
+      className="text-input-wrapper"
+    >
+      <div
+        className="ant-select ant-select-enabled"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseDown={[Function]}
+        onMouseOut={[Function]}
+        onMouseUp={[Function]}
+        onTouchStart={[Function]}
+      >
+        <div
+          aria-autocomplete="list"
+          aria-controls="test-uuid"
+          aria-expanded={false}
+          aria-haspopup="true"
+          className="ant-select-selection
+            ant-select-selection--single"
+          onKeyDown={[Function]}
+          role="combobox"
+          tabIndex={0}
+        >
+          <div
+            className="ant-select-selection__rendered"
+          >
+            <div
+              className="ant-select-selection__placeholder"
+              onClick={[Function]}
+              onMouseDown={[Function]}
+              style={
+                Object {
+                  "WebkitUserSelect": "none",
+                  "display": "none",
+                  "userSelect": "none",
+                }
+              }
+              unselectable="on"
+            >
+              请选择一个 bucket
+            </div>
+            <div
+              className="ant-select-selection-selected-value"
+              style={
+                Object {
+                  "display": "block",
+                  "opacity": 1,
+                }
+              }
+              title="abcd"
+            >
+              abcd
+            </div>
+            <div
+              className="ant-select-search ant-select-search--inline"
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+            >
+              <div
+                className="ant-select-search__field__wrap"
+              >
+                <input
+                  autoComplete="off"
+                  className="ant-select-search__field"
+                  disabled={false}
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  value=""
+                />
+                <span
+                  className="ant-select-search__field__mirror"
+                >
+                  
+                   
+                </span>
+              </div>
+            </div>
+          </div>
+          <span
+            className="ant-select-arrow"
+            onClick={[Function]}
+            style={
+              Object {
+                "WebkitUserSelect": "none",
+                "userSelect": "none",
+              }
+            }
+            unselectable="on"
+          >
+            <i
+              aria-label="icon: down"
+              className="anticon anticon-down ant-select-arrow-icon"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="down"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                />
+              </svg>
+            </i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="comp-no-icp-warning"
+    >
+      <span
+        className="icp-text"
+      >
+        域名未备案，
+      </span>
+      <span
+        className="icp-desc"
+      >
+        <span>
+          只能选择海外存储，您可以点击 
+          <a
+            className="comp-router-link"
+            href="/kodo/bucket?shouldCreateBucket=true"
+            onClick={[Function]}
+            rel="noopener"
+            target="_blank"
+          >
+            创建海外存储
+          </a>
+        </span>
+      </span>
+    </div>
+    <span
+      className="warning-wrapper extra-tip"
+    >
+      当源站选择存储时，若发生回源请求将会由存储产生 
+      <a
+        href="https://www.qiniu.com/prices"
+        rel="noopener"
+        target="_blank"
+      >
+        CDN 回源流量费
+      </a>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with sort 1`] = `
+<div
+  className="line domain-bucket-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <div
+      className="text-input-wrapper"
+    >
+      <div
+        className="ant-select ant-select-enabled"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseDown={[Function]}
+        onMouseOut={[Function]}
+        onMouseUp={[Function]}
+        onTouchStart={[Function]}
+      >
+        <div
+          aria-autocomplete="list"
+          aria-controls="test-uuid"
+          aria-expanded={false}
+          aria-haspopup="true"
+          className="ant-select-selection
+            ant-select-selection--single"
+          onKeyDown={[Function]}
+          role="combobox"
+          tabIndex={0}
+        >
+          <div
+            className="ant-select-selection__rendered"
+          >
+            <div
+              className="ant-select-selection__placeholder"
+              onClick={[Function]}
+              onMouseDown={[Function]}
+              style={
+                Object {
+                  "WebkitUserSelect": "none",
+                  "display": "none",
+                  "userSelect": "none",
+                }
+              }
+              unselectable="on"
+            >
+              请选择一个 bucket
+            </div>
+            <div
+              className="ant-select-selection-selected-value"
+              style={
+                Object {
+                  "display": "block",
+                  "opacity": 1,
+                }
+              }
+              title="abcd"
+            >
+              abcd
+            </div>
+            <div
+              className="ant-select-search ant-select-search--inline"
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+            >
+              <div
+                className="ant-select-search__field__wrap"
+              >
+                <input
+                  autoComplete="off"
+                  className="ant-select-search__field"
+                  disabled={false}
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  value=""
+                />
+                <span
+                  className="ant-select-search__field__mirror"
+                >
+                  
+                   
+                </span>
+              </div>
+            </div>
+          </div>
+          <span
+            className="ant-select-arrow"
+            onClick={[Function]}
+            style={
+              Object {
+                "WebkitUserSelect": "none",
+                "userSelect": "none",
+              }
+            }
+            unselectable="on"
+          >
+            <i
+              aria-label="icon: down"
+              className="anticon anticon-down ant-select-arrow-icon"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="down"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                />
+              </svg>
+            </i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="comp-no-icp-warning"
+    >
+      <span
+        className="icp-text"
+      >
+        域名未备案，
+      </span>
+      <span
+        className="icp-desc"
+      >
+        <span>
+          只能选择海外存储，您可以点击 
+          <a
+            className="comp-router-link"
+            href="/kodo/bucket?shouldCreateBucket=true"
+            onClick={[Function]}
+            rel="noopener"
+            target="_blank"
+          >
+            创建海外存储
+          </a>
+        </span>
+      </span>
+    </div>
+    <span
+      className="warning-wrapper extra-tip"
+    >
+      当源站选择存储时，若发生回源请求将会由存储产生 
+      <a
+        href="https://www.qiniu.com/prices"
+        rel="noopener"
+        target="_blank"
+      >
+        CDN 回源流量费
+      </a>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with value 1`] = `
+<div
+  className="line domain-bucket-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <div
+      className="text-input-wrapper"
+    >
+      <div
+        className="ant-select ant-select-enabled"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseDown={[Function]}
+        onMouseOut={[Function]}
+        onMouseUp={[Function]}
+        onTouchStart={[Function]}
+      >
+        <div
+          aria-autocomplete="list"
+          aria-controls="test-uuid"
+          aria-expanded={false}
+          aria-haspopup="true"
+          className="ant-select-selection
+            ant-select-selection--single"
+          onKeyDown={[Function]}
+          role="combobox"
+          tabIndex={0}
+        >
+          <div
+            className="ant-select-selection__rendered"
+          >
+            <div
+              className="ant-select-selection__placeholder"
+              onClick={[Function]}
+              onMouseDown={[Function]}
+              style={
+                Object {
+                  "WebkitUserSelect": "none",
+                  "display": "none",
+                  "userSelect": "none",
+                }
+              }
+              unselectable="on"
+            >
+              请选择一个 bucket
+            </div>
+            <div
+              className="ant-select-selection-selected-value"
+              style={
+                Object {
+                  "display": "block",
+                  "opacity": 1,
+                }
+              }
+              title="nao-1"
+            >
+              nao-1
+            </div>
+            <div
+              className="ant-select-search ant-select-search--inline"
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+            >
+              <div
+                className="ant-select-search__field__wrap"
+              >
+                <input
+                  autoComplete="off"
+                  className="ant-select-search__field"
+                  disabled={false}
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  value=""
+                />
+                <span
+                  className="ant-select-search__field__mirror"
+                >
+                  
+                   
+                </span>
+              </div>
+            </div>
+          </div>
+          <span
+            className="ant-select-arrow"
+            onClick={[Function]}
+            style={
+              Object {
+                "WebkitUserSelect": "none",
+                "userSelect": "none",
+              }
+            }
+            unselectable="on"
+          >
+            <i
+              aria-label="icon: down"
+              className="anticon anticon-down ant-select-arrow-icon"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="down"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                />
+              </svg>
+            </i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="comp-no-icp-warning"
+    >
+      <span
+        className="icp-text"
+      >
+        域名未备案，
+      </span>
+      <span
+        className="icp-desc"
+      >
+        <span>
+          只能选择海外存储，您可以点击 
+          <a
+            className="comp-router-link"
+            href="/kodo/bucket?shouldCreateBucket=true"
+            onClick={[Function]}
+            rel="noopener"
+            target="_blank"
+          >
+            创建海外存储
+          </a>
+        </span>
+      </span>
+    </div>
+    <span
+      className="warning-wrapper extra-tip"
+    >
+      当源站选择存储时，若发生回源请求将会由存储产生 
+      <a
+        href="https://www.qiniu.com/prices"
+        rel="noopener"
+        target="_blank"
+      >
+        CDN 回源流量费
+      </a>
+    </span>
+  </div>
+</div>
+`;

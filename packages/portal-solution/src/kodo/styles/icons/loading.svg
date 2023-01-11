@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>loading</title>
+    <desc>Created with Sketch.</desc>
+    <g id="预览页面" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-338.000000, -162.000000)">
+            <g id="loading" transform="translate(337.000000, 162.000000)">
+                <circle id="Oval" fill="#F3F9FF" cx="28" cy="4" r="4"></circle>
+                <circle id="Oval" fill="#E8F3FE" transform="translate(38.688633, 6.634511) rotate(28.000000) translate(-38.688633, -6.634511) " cx="38.688633" cy="6.63451141" r="4"></circle>
+                <circle id="Oval" fill="#DDEEFF" transform="translate(46.928629, 13.934511) rotate(55.000000) translate(-46.928629, -13.934511) " cx="46.9286289" cy="13.9345108" r="4"></circle>
+                <circle id="Oval" fill="#D1E7FE" transform="translate(50.832304, 24.227656) rotate(83.000000) translate(-50.832304, -24.227656) " cx="50.8323041" cy="24.2276564" r="4"></circle>
+                <circle id="Oval" fill="#C5E1FE" transform="translate(49.505374, 35.155912) rotate(111.000000) translate(-49.505374, -35.155912) " cx="49.5053736" cy="35.1559124" r="4"></circle>
+                <circle id="Oval" fill="#B1D2F4" transform="translate(43.251821, 44.215747) rotate(138.000000) translate(-43.251821, -44.215747) " cx="43.2518211" cy="44.2157472" r="4"></circle>
+                <circle id="Oval" fill="#A3D0FD" transform="translate(33.504260, 49.331662) rotate(166.000000) translate(-33.504260, -49.331662) " cx="33.5042603" cy="49.3316618" r="4"></circle>
+                <circle id="Oval" fill="#8CC4FC" transform="translate(22.495740, 49.331662) rotate(194.000000) translate(-22.495740, -49.331662) " cx="22.4957397" cy="49.3316618" r="4"></circle>
+                <circle id="Oval" fill="#75B8FC" transform="translate(12.748179, 44.215747) rotate(222.000000) translate(-12.748179, -44.215747) " cx="12.7481789" cy="44.2157472" r="4"></circle>
+                <circle id="Oval" fill="#5EACFB" transform="translate(6.494626, 35.155912) rotate(249.000000) translate(-6.494626, -35.155912) " cx="6.49462642" cy="35.1559124" r="4"></circle>
+                <circle id="Oval" fill="#47A1FB" transform="translate(5.167696, 24.227656) rotate(277.000000) translate(-5.167696, -24.227656) " cx="5.1676959" cy="24.2276564" r="4"></circle>
+                <circle id="Oval" fill="#3094FA" transform="translate(9.071371, 13.934511) rotate(305.000000) translate(-9.071371, -13.934511) " cx="9.07137108" cy="13.9345108" r="4"></circle>
+                <circle id="Oval" fill="#1989FA" transform="translate(17.311367, 6.634511) rotate(332.000000) translate(-17.311367, -6.634511) " cx="17.311367" cy="6.63451141" r="4"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

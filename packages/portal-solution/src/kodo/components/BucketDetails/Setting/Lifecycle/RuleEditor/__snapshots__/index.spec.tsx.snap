@@ -1,0 +1,745 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render with versioning false 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "overflow": "auto",
+        "padding": 24,
+      }
+    }
+  >
+    <div
+      className="undefined undefined "
+      type="assist"
+    >
+      文件删除是不可逆的，请根据需求合理配置文件生命周期时间计划。
+      <br />
+      策略配置完成后即时生效，且将对规则存续期间新建的文件
+      
+      执行，请谨慎选择。
+      <br />
+      天数设置必须满足：转为低频存储 &lt; 转为归档存储 &lt; 转为深度归档存储 &lt; 删除文件。
+      <br />
+      文件转为低频存储类型后需要
+      <span>
+        至少保存 30 天
+      </span>
+      ， 若
+      <span>
+        （转为其它类型或删除文件 - 转为低频）的时间 &lt; 30 天
+      </span>
+      ， 则会产生低频存储提前删除费用。
+      <br />
+      文件转为归档存储类型后需要
+      <span>
+        至少保存 60 天
+      </span>
+      ， 若
+      <span>
+        （
+        转为其它类型或
+        删除文件 - 转为归档）的时间 &lt; 60天
+      </span>
+      ， 则会产生归档存储的提前删除费用。
+      <br />
+      文件转为深度归档存储后需要
+      <span>
+        至少保存 180 天
+      </span>
+      ， 若
+      <span>
+        （删除文件 - 转为深度归档）的时间 &lt; 180天
+      </span>
+      ， 则会产生深度归档存储的提前删除费用。
+    </div>
+    <form
+      className="ant-form ant-form-horizontal"
+      onSubmit={[Function]}
+    >
+      <input
+        style={
+          Object {
+            "left": "-9999px",
+            "position": "absolute",
+          }
+        }
+        type="submit"
+      />
+      <div
+        className="ant-row ant-form-item"
+      >
+        <div
+          className="ant-col ant-col-5 ant-form-item-label"
+        >
+          <label
+            className=""
+            htmlFor={null}
+            onClick={[Function]}
+            title="规则名称"
+          >
+            规则名称
+          </label>
+        </div>
+        <div
+          className="ant-col ant-col-17 ant-form-item-control-wrapper"
+        >
+          <div
+            className="ant-form-item-control"
+          >
+            <span
+              className="ant-form-item-children"
+            >
+              <input
+                className="ant-input"
+                disabled={false}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                placeholder="给规则起个名字"
+                type="text"
+                value=""
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-row ant-form-item"
+      >
+        <div
+          className="ant-col ant-col-5 ant-form-item-label"
+        >
+          <label
+            className=""
+            htmlFor={null}
+            onClick={[Function]}
+            title="规则策略"
+          >
+            规则策略
+          </label>
+        </div>
+        <div
+          className="ant-col ant-col-17 ant-form-item-control-wrapper"
+        >
+          <div
+            className="ant-form-item-control"
+          >
+            <span
+              className="ant-form-item-children"
+            >
+              <div
+                className="ant-row"
+              >
+                <div
+                  className="ant-radio-group ant-radio-group-outline"
+                >
+                  <label
+                    className="ant-radio-wrapper ant-radio-wrapper-checked"
+                  >
+                    <span
+                      className="ant-radio ant-radio-checked"
+                      style={Object {}}
+                    >
+                      <input
+                        checked={true}
+                        className="ant-radio-input"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        type="radio"
+                        value="global"
+                      />
+                      <span
+                        className="ant-radio-inner"
+                      />
+                    </span>
+                    <span>
+                      对整个空间生效
+                    </span>
+                  </label>
+                  <label
+                    className="ant-radio-wrapper"
+                  >
+                    <span
+                      className="ant-radio"
+                      style={Object {}}
+                    >
+                      <input
+                        checked={false}
+                        className="ant-radio-input"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        type="radio"
+                        value="prefix"
+                      />
+                      <span
+                        className="ant-radio-inner"
+                      />
+                    </span>
+                    <span>
+                      对前缀生效
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <input
+                className="ant-input"
+                disabled={false}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                placeholder="给前缀起个名字"
+                type="text"
+                value=""
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-row ant-form-item"
+      >
+        <div
+          className="ant-col ant-col-5 ant-form-item-label"
+        >
+          <label
+            className=""
+            htmlFor={null}
+            onClick={[Function]}
+            title="转为深度归档存储"
+          >
+            转为深度归档存储
+          </label>
+        </div>
+        <div
+          className="ant-col ant-col-17 ant-form-item-control-wrapper"
+        >
+          <div
+            className="ant-form-item-control"
+          >
+            <span
+              className="ant-form-item-children"
+            >
+              <div>
+                当前文件
+              </div>
+              <button
+                aria-checked={false}
+                checked={false}
+                className="ant-switch"
+                defaultChecked={false}
+                onChange={[Function]}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                role="switch"
+                type="button"
+              >
+                <span
+                  className="ant-switch-inner"
+                >
+                  关
+                </span>
+              </button>
+              <div
+                className="undefined undefined "
+                type="normal"
+              >
+                <div>
+                  请设定时间 (天)，用户新创建的文件将在您设定的时间之后自动转为深度归档存储
+                </div>
+                <div
+                  className="ant-row ant-form-item"
+                >
+                  <div
+                    className="ant-col ant-form-item-control-wrapper"
+                  >
+                    <div
+                      className="ant-form-item-control"
+                    >
+                      <span
+                        className="ant-form-item-children"
+                      >
+                        <input
+                          className="ant-input ant-input-sm"
+                          disabled={false}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onKeyDown={[Function]}
+                          size="small"
+                          type="text"
+                          value="180"
+                        />
+                         天
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-row ant-form-item"
+      >
+        <div
+          className="ant-col ant-col-5 ant-form-item-label"
+        >
+          <label
+            className=""
+            htmlFor={null}
+            onClick={[Function]}
+            title="删除文件"
+          >
+            删除文件
+          </label>
+        </div>
+        <div
+          className="ant-col ant-col-17 ant-form-item-control-wrapper"
+        >
+          <div
+            className="ant-form-item-control"
+          >
+            <span
+              className="ant-form-item-children"
+            >
+              <div>
+                当前文件
+              </div>
+              <button
+                aria-checked={false}
+                checked={false}
+                className="ant-switch"
+                defaultChecked={false}
+                onChange={[Function]}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                role="switch"
+                type="button"
+              >
+                <span
+                  className="ant-switch-inner"
+                >
+                  关
+                </span>
+              </button>
+              <div
+                className="undefined undefined "
+                type="normal"
+              >
+                <div>
+                  请设定时间 (天)，用户新创建的文件将在您设定的时间之后自动删除
+                </div>
+                <div
+                  className="ant-row ant-form-item"
+                >
+                  <div
+                    className="ant-col ant-form-item-control-wrapper"
+                  >
+                    <div
+                      className="ant-form-item-control"
+                    >
+                      <span
+                        className="ant-form-item-children"
+                      >
+                        <input
+                          className="ant-input ant-input-sm"
+                          disabled={false}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onKeyDown={[Function]}
+                          size="small"
+                          type="text"
+                          value="360"
+                        />
+                         天
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`render with versioning true 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "overflow": "auto",
+        "padding": 24,
+      }
+    }
+  >
+    <div
+      className="undefined undefined "
+      type="assist"
+    >
+      文件删除是不可逆的，请根据需求合理配置文件生命周期时间计划。
+      <br />
+      策略配置完成后即时生效，且将对规则存续期间新建的文件
+      
+      执行，请谨慎选择。
+      <br />
+      天数设置必须满足：转为低频存储 &lt; 转为归档存储 &lt; 转为深度归档存储 &lt; 删除文件。
+      <br />
+      文件转为低频存储类型后需要
+      <span>
+        至少保存 30 天
+      </span>
+      ， 若
+      <span>
+        （转为其它类型或删除文件 - 转为低频）的时间 &lt; 30 天
+      </span>
+      ， 则会产生低频存储提前删除费用。
+      <br />
+      文件转为归档存储类型后需要
+      <span>
+        至少保存 60 天
+      </span>
+      ， 若
+      <span>
+        （
+        转为其它类型或
+        删除文件 - 转为归档）的时间 &lt; 60天
+      </span>
+      ， 则会产生归档存储的提前删除费用。
+      <br />
+      文件转为深度归档存储后需要
+      <span>
+        至少保存 180 天
+      </span>
+      ， 若
+      <span>
+        （删除文件 - 转为深度归档）的时间 &lt; 180天
+      </span>
+      ， 则会产生深度归档存储的提前删除费用。
+    </div>
+    <form
+      className="ant-form ant-form-horizontal"
+      onSubmit={[Function]}
+    >
+      <input
+        style={
+          Object {
+            "left": "-9999px",
+            "position": "absolute",
+          }
+        }
+        type="submit"
+      />
+      <div
+        className="ant-row ant-form-item"
+      >
+        <div
+          className="ant-col ant-col-5 ant-form-item-label"
+        >
+          <label
+            className=""
+            htmlFor={null}
+            onClick={[Function]}
+            title="规则名称"
+          >
+            规则名称
+          </label>
+        </div>
+        <div
+          className="ant-col ant-col-17 ant-form-item-control-wrapper"
+        >
+          <div
+            className="ant-form-item-control"
+          >
+            <span
+              className="ant-form-item-children"
+            >
+              <input
+                className="ant-input"
+                disabled={false}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                placeholder="给规则起个名字"
+                type="text"
+                value=""
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-row ant-form-item"
+      >
+        <div
+          className="ant-col ant-col-5 ant-form-item-label"
+        >
+          <label
+            className=""
+            htmlFor={null}
+            onClick={[Function]}
+            title="规则策略"
+          >
+            规则策略
+          </label>
+        </div>
+        <div
+          className="ant-col ant-col-17 ant-form-item-control-wrapper"
+        >
+          <div
+            className="ant-form-item-control"
+          >
+            <span
+              className="ant-form-item-children"
+            >
+              <div
+                className="ant-row"
+              >
+                <div
+                  className="ant-radio-group ant-radio-group-outline"
+                >
+                  <label
+                    className="ant-radio-wrapper ant-radio-wrapper-checked"
+                  >
+                    <span
+                      className="ant-radio ant-radio-checked"
+                      style={Object {}}
+                    >
+                      <input
+                        checked={true}
+                        className="ant-radio-input"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        type="radio"
+                        value="global"
+                      />
+                      <span
+                        className="ant-radio-inner"
+                      />
+                    </span>
+                    <span>
+                      对整个空间生效
+                    </span>
+                  </label>
+                  <label
+                    className="ant-radio-wrapper"
+                  >
+                    <span
+                      className="ant-radio"
+                      style={Object {}}
+                    >
+                      <input
+                        checked={false}
+                        className="ant-radio-input"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        type="radio"
+                        value="prefix"
+                      />
+                      <span
+                        className="ant-radio-inner"
+                      />
+                    </span>
+                    <span>
+                      对前缀生效
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <input
+                className="ant-input"
+                disabled={false}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                placeholder="给前缀起个名字"
+                type="text"
+                value=""
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-row ant-form-item"
+      >
+        <div
+          className="ant-col ant-col-5 ant-form-item-label"
+        >
+          <label
+            className=""
+            htmlFor={null}
+            onClick={[Function]}
+            title="转为深度归档存储"
+          >
+            转为深度归档存储
+          </label>
+        </div>
+        <div
+          className="ant-col ant-col-17 ant-form-item-control-wrapper"
+        >
+          <div
+            className="ant-form-item-control"
+          >
+            <span
+              className="ant-form-item-children"
+            >
+              <div>
+                当前文件
+              </div>
+              <button
+                aria-checked={false}
+                checked={false}
+                className="ant-switch"
+                defaultChecked={false}
+                onChange={[Function]}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                role="switch"
+                type="button"
+              >
+                <span
+                  className="ant-switch-inner"
+                >
+                  关
+                </span>
+              </button>
+              <div
+                className="undefined undefined "
+                type="normal"
+              >
+                <div>
+                  请设定时间 (天)，用户新创建的文件将在您设定的时间之后自动转为深度归档存储
+                </div>
+                <div
+                  className="ant-row ant-form-item"
+                >
+                  <div
+                    className="ant-col ant-form-item-control-wrapper"
+                  >
+                    <div
+                      className="ant-form-item-control"
+                    >
+                      <span
+                        className="ant-form-item-children"
+                      >
+                        <input
+                          className="ant-input ant-input-sm"
+                          disabled={false}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onKeyDown={[Function]}
+                          size="small"
+                          type="text"
+                          value="180"
+                        />
+                         天
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-row ant-form-item"
+      >
+        <div
+          className="ant-col ant-col-5 ant-form-item-label"
+        >
+          <label
+            className=""
+            htmlFor={null}
+            onClick={[Function]}
+            title="删除文件"
+          >
+            删除文件
+          </label>
+        </div>
+        <div
+          className="ant-col ant-col-17 ant-form-item-control-wrapper"
+        >
+          <div
+            className="ant-form-item-control"
+          >
+            <span
+              className="ant-form-item-children"
+            >
+              <div>
+                当前文件
+              </div>
+              <button
+                aria-checked={false}
+                checked={false}
+                className="ant-switch"
+                defaultChecked={false}
+                onChange={[Function]}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                role="switch"
+                type="button"
+              >
+                <span
+                  className="ant-switch-inner"
+                >
+                  关
+                </span>
+              </button>
+              <div
+                className="undefined undefined "
+                type="normal"
+              >
+                <div>
+                  请设定时间 (天)，用户新创建的文件将在您设定的时间之后自动删除
+                </div>
+                <div
+                  className="ant-row ant-form-item"
+                >
+                  <div
+                    className="ant-col ant-form-item-control-wrapper"
+                  >
+                    <div
+                      className="ant-form-item-control"
+                    >
+                      <span
+                        className="ant-form-item-children"
+                      >
+                        <input
+                          className="ant-input ant-input-sm"
+                          disabled={false}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onKeyDown={[Function]}
+                          size="small"
+                          type="text"
+                          value="360"
+                        />
+                         天
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;

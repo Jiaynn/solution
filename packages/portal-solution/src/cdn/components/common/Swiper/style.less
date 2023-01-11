@@ -1,0 +1,17 @@
+.swiper-container {
+  overflow: hidden;
+  position: relative;
+
+  .swiper-wrapper {
+    position: relative;
+    white-space: nowrap;
+    transition: transform .8s cubic-bezier(0.645, 0.045, 0.355, 1); // easeInOutCubic
+
+    .swiper-slide {
+      display: inline-block;
+      width: auto;
+      position: relative;
+      transition-property: transform;
+    }
+  }
+}

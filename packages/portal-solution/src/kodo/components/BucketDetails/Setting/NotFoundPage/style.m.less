@@ -1,0 +1,42 @@
+/**
+ * @description Bucket setting 404 page form style
+ * @author Surmon <i@surmon.me>
+ */
+
+@upload-btn-height: 100px;
+
+.pageUploader {
+  :global {
+    .ant-upload.ant-upload-select-picture-card {
+      width: 100%;
+      height: auto;
+      min-height: @upload-btn-height;
+      position: relative;
+      margin: 0;
+
+      .ant-upload {
+
+        img {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .uploadBtnWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .previewImg {
+    max-width: 320px;
+    max-height: 80px;
+  }
+}
+
+.textarea {
+  min-height: @upload-btn-height !important;
+  resize: none;
+}

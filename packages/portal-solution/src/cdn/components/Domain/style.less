@@ -1,0 +1,35 @@
+@import "~cdn/utils/style/index.less";
+
+.comp-domain-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  .ant-form-item-control {
+    line-height: 32px;
+  }
+
+  .ant-form-inline .ant-form-item {
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .domain-nav-search {
+    display: flex;
+    align-items: center;
+
+    .search-input-wrapper {
+      width: 320px;
+      display: flex;
+
+      .search-icon {
+        color: @icecream-color-grey-7;
+      }
+    }
+
+    .refresh {
+      margin-left: 12px;
+    }
+  }
+}

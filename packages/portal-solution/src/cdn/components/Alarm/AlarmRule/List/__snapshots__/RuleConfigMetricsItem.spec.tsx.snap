@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders RuleConfigMetricsItem correctly 1`] = `
+<div
+  className="alarm-field-input-wrapper"
+>
+  <div
+    className="alarm-field-input-desc"
+  >
+    <span
+      className="alarm-type"
+    >
+      状态码2xx
+      :
+    </span>
+    <span
+      className="alarm-field-input-value"
+    >
+      持续 1 个数据点
+      高于
+       8000%
+    </span>
+  </div>
+</div>
+`;
+
+exports[`renders RuleConfigMetricsItem correctly 2`] = `
+<div
+  className="alarm-field-input-wrapper"
+>
+  <div
+    className="alarm-field-input-desc"
+  >
+    <span
+      className="alarm-type"
+    >
+      流量
+      :
+    </span>
+    <span
+      className="alarm-field-input-value"
+    >
+      持续 1 个数据点
+      高于
+       0 GB
+    </span>
+  </div>
+</div>
+`;

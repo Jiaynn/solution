@@ -1,0 +1,338 @@
+/**
+ * @description style of crop and scale component
+ * @author duli <duli@qiniu.com>
+ */
+
+@import "~react-icecream-2/dist/utils.less";
+
+.scale {
+
+  .scaleSelect {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: @icecream-gap-md;
+  }
+
+  .selectItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    width: 30%;
+    max-width: 200px;
+    padding: 20px 10px 10px;
+    text-align: center;
+    margin: 0 10px 10px 0;
+    border: 1px solid #dcdfe5;
+    border-radius: 5px;
+  }
+
+  .selectImage {
+    display: inline-block;
+    width: 90px;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .scaleDesc {
+    line-height: 1.5;
+    font-size: @icecream-font-size-1;
+  }
+}
+
+.selected {
+  border-color: #1989fa !important;
+}
+
+.rowInputWrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-top: @icecream-gap-md;
+
+  :global(.icecream-form-item) {
+    margin-bottom: 0 !important;
+  }
+
+  > * + * {
+    margin-left: @icecream-gap-md;
+  }
+}
+
+.inputWrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: @icecream-gap-md;
+}
+
+.offsetInputWrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: @icecream-gap-md-x;
+}
+
+.crop {
+  &Origin {
+    position: relative;
+    width: 160px;
+    height: 100px;
+    margin-top: @icecream-gap-md;
+
+    .origin {
+      width: 160px;
+      height: 100px;
+    }
+
+    .point {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      opacity: 0;
+    }
+
+    .selectedPoint {
+      .point();
+      opacity: 1;
+    }
+
+    svg:nth-child(n + 2) {
+      position: absolute;
+    }
+
+    :global {
+      .NorthWest,
+      .North,
+      .NorthEast {
+        top: -5px;
+      }
+
+      .SouthWest,
+      .South,
+      .SouthEast {
+        bottom: -5px;
+      }
+
+      .NorthWest,
+      .West,
+      .SouthWest {
+        left: 0px;
+      }
+
+      .NorthEast,
+      .East,
+      .SouthEast {
+        right: 0px;
+      }
+
+      .West,
+      .Center,
+      .East {
+        top: 50%;
+        margin-top: -10px;
+      }
+
+      .North,
+      .Center,
+      .South {
+        left: 50%;
+        margin-left: -10px;
+      }
+    }
+  }
+
+  &RegionWrap {
+    display: flex;
+    margin-bottom: @icecream-gap-md;
+
+    .region {
+      margin-right: @icecream-gap-md;
+      padding: @icecream-gap-xs;
+      border: 1px solid #e5e5e5;
+      border-radius: 5px;
+
+      svg {
+        display: block;
+        margin: auto;
+      }
+    }
+  }
+
+  &Offset {
+    @offsetPointWidth: 10px;
+
+    width: 160px;
+    height: 100px;
+    position: relative;
+    margin-top: @icecream-gap-md;
+    margin-left: @offsetPointWidth / 2;
+
+    .offsetPoint {
+      position: absolute;
+      width: @offsetPointWidth;
+      height: @offsetPointWidth;
+      z-index: 7;
+    }
+
+    .back {
+      position: absolute;
+      opacity: .7;
+      z-index: 1;
+    }
+
+    .front {
+      position: absolute;
+      z-index: 2;
+    }
+
+    .overlapWrap {
+      position: relative;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .overlap {
+      position: absolute;
+      z-index: 6;
+      background-color: #1989fa;
+      opacity: 0.25;
+      line-height: 0;
+
+      img {
+        opacity: 0;
+      }
+    }
+
+    :global {
+      .NorthWest,
+      .North,
+      .NorthEast {
+        top: -5px;
+      }
+
+      .SouthWest,
+      .South,
+      .SouthEast {
+        bottom: -5px;
+      }
+
+      .NorthWest,
+      .West,
+      .SouthWest {
+        left: -5px;
+      }
+
+      .NorthEast,
+      .East,
+      .SouthEast {
+        right: -5px;
+      }
+
+      .West,
+      .Center,
+      .East {
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+      }
+
+      .North,
+      .Center,
+      .South {
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+      }
+
+      .Center {
+        transform: translateY(-50%) translateX(-50%);
+      }
+    }
+
+    .offsetWrap {
+      width: 100%;
+
+      :global {
+        .NorthWest,
+        .North,
+        .NorthEast {
+          top: 0px;
+        }
+
+        .SouthWest,
+        .South,
+        .SouthEast {
+          bottom: 0px;
+        }
+
+        .NorthWest,
+        .West,
+        .SouthWest {
+          left: 0px;
+        }
+
+        .NorthEast,
+        .East,
+        .SouthEast {
+          right: 0px;
+        }
+
+        .West,
+        .Center,
+        .East {
+          top: 50%;
+          transform: translateY(-50%);
+          margin: 0;
+        }
+
+        .North,
+        .Center,
+        .South {
+          left: 50%;
+          transform: translateX(-50%);
+          margin: 0;
+        }
+
+        .Center {
+          transform: translateY(-50%) translateX(-50%);
+        }
+
+        .LeftTop {
+          margin-left: -10px;
+          margin-top: -10px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+        }
+
+        .LeftBottom {
+          margin-left: -10px;
+          margin-top: 10px;
+          margin-right: 10px;
+          margin-bottom: -10px;
+        }
+
+        .RightTop {
+          margin-left: 10px;
+          margin-top: -10px;
+          margin-right: -10px;
+          margin-bottom: 10px;
+        }
+
+        .RightBottom {
+          margin-left: 10px;
+          margin-top: 10px;
+          margin-right: -10px;
+          margin-bottom: -10px;
+        }
+      }
+    }
+  }
+
+  .directionGroup {
+    :global(.icecream-radio + .icecream-radio) {
+      margin-left: @icecream-gap-md;
+    }
+  }
+}

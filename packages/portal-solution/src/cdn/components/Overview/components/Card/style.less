@@ -1,0 +1,67 @@
+@import "~cdn/utils/style/legacy-variable.less";
+
+.comp-overview-card {
+  box-shadow: 0 2px 8px 0 rgba(51, 51, 51, 0.08);
+  margin-top: 20px;
+  padding: 20px;
+  background-color: @white;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+
+    .card-title {
+      font-size: 16px;
+      font-weight: @font-weight-title;
+      flex: 1;
+    }
+
+    .card-title-extra {
+      .extra-svg {
+        width: 12px;
+        height: 12px;
+        margin-right: 4px;
+        vertical-align: middle;
+      }
+
+      .extra-link {
+        font-size: 12px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .extra-label {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .card-row {
+    display: flex;
+  }
+
+  .card-item {
+    width: 50%;
+    border-left: 1px solid #e5e5e5;
+    padding-left: 20px;
+    position: relative;
+
+    &:first-child {
+      border-left: none;
+      padding-left: 0;
+    }
+  }
+
+  .item-count {
+    font-size: 24px;
+  }
+
+  .item-desc {
+    color: #999;
+    margin-top: 4px;
+  }
+}

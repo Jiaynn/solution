@@ -1,0 +1,67 @@
+.comp-snapshots {
+  .swiper-snapshots {
+    min-height: 124px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    // 定制化左右按钮
+    @direction-button-width: 26px;
+    padding: 0 @direction-button-width + 6px;
+
+    .swiper-button-prev, .swiper-button-next {
+      //reset default swiper css
+      background: none;
+      margin: 0;
+      height: auto;
+      opacity: 1;
+      // custom styles
+      border: 1px solid #aaaaaa;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      cursor: pointer;
+      width: @direction-button-width;
+      background-color: #444;
+
+      &::before {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: ~"calc(50% - 7px)";
+        z-index: 10;
+      }
+    }
+
+    .swiper-button-prev {
+      left: 0;
+      &::before {
+        content: '<';
+      }
+    }
+
+    .swiper-button-next {
+      right: 0;
+      &::before {
+        content: '>';
+      }
+    }
+  }
+}
+
+.ant-modal.detail-swiper-modal {
+  top: 64px; // equal to navbar height
+  padding-bottom: 0;
+  &, .ant-modal-content {
+    background-color: #ccc;
+  }
+  .detail-content {
+    text-align: center;
+    padding-top: 60px;
+    .swiper-detail {
+      .comp-snapshot {
+        max-width: 500px;
+        margin: auto;
+      }
+    }
+  }
+}

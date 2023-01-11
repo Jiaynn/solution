@@ -1,0 +1,214 @@
+/**
+ * @file style for Upload
+ * @author zhangheng <zhangheng01@qiniu.com>
+ */
+
+@import "~kodo/styles/font.less";
+@import "react-icecream-2/dist/utils.less";
+
+
+.mainContent {
+  width: 1100px;
+  .info {
+    margin-bottom: @icecream-gap-lg;
+    .link {
+      text-decoration: underline;
+    }
+  }
+  table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  .uploadBox {
+    height: 440px;
+    overflow-y: auto;
+    :global(.ant-card-body) {
+      padding: 0;
+    }
+
+    .uploadBar {
+      height: 45px;
+      width: 100%;
+      border-bottom: 1px solid #f5f7fa;
+      border-top: 1px solid #f5f7fa;
+
+      td.fileName {
+        .pingfangRegular();
+
+        overflow : hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding: 0 10px;
+        width: 40%;
+
+        &:hover {
+          text-overflow: inherit;
+          overflow: visible;
+        }
+      }
+
+      td.fileSize {
+        width: 20%;
+        color: #8f9bb3;
+        font-weight: 400;
+      }
+
+      td.errorInfo, td.percent {
+        font-weight: 400;
+        width: 20%;
+      }
+
+      td.operation {
+        text-align: right;
+        padding-right: 10px;
+        width: 20%;
+
+        .delete, .cancel {
+          color: red;
+          margin-right: 10px;
+        }
+
+        .upload, .success {
+          color: #26ad58;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .optBox {
+    background: rgb(240, 242, 245);
+    height: 35px;
+    text-align: center;
+
+    .selectFileBox {
+      position: relative;
+
+      .selectInput {
+        opacity: .01;
+        cursor: pointer;
+      }
+
+      .selectText {
+        position: absolute;
+        display: inline-block;
+        width: 100%;
+        left: 0;
+        line-height: 35px;
+        color: #40a9ff;
+        text-align: center
+      }
+    }
+
+    .backoutCol {
+      padding: 5px 0;
+      a {
+        color: #8f9bb3;
+        display: inline-block;
+        border-right: 1px solid #c5ccda;
+        line-height: 25px;
+        width: 100%;
+        height: 100%
+      }
+    }
+  }
+
+  .uploadSelect {
+    :global(.ant-upload) {
+      color: #40a9ff;
+    }
+    cursor: pointer;
+    line-height: 35px
+  }
+
+  .assistArea {
+    .textLabel {
+      margin: 0 0 10px 0;
+    }
+
+    :global(.anticon-question-circle) {
+      margin-right: 5px;
+    }
+
+    .transcodeStyle {
+      margin-bottom: 30px;
+
+      .transcodeSelect {
+        width: 100%;
+      }
+
+      .transcodeWarning {
+        font-size: @icecream-font-size-1;
+        margin-top: 10px;
+      }
+    }
+
+
+    .ftypeRadio {
+      height: 50px;
+      border: 1px solid #c5ccda;
+      border-radius: 5px;
+      line-height: 50px;
+      padding: 0 15px;
+      &:hover {
+        border-color: #40a9ff;
+      }
+      &.activeRadio {
+        border-color: #40a9ff;
+      }
+    }
+
+    .prefixSetting {
+      margin: 30px 0;
+      :global(.ant-input-affix-wrapper){
+        width: 75%
+      }
+
+      .assistIcon {
+        i:first-child {
+          color: #26ad58
+        }
+        i:last-child {
+          margin-left: 5px;
+          color: red;
+        }
+      }
+    }
+
+    .switch {
+      margin-left: 10px;
+    }
+
+    .outerChain {
+      color: #40a9ff
+    }
+
+    .textWarning {
+      margin-top: 40px;
+      span {
+        color: #cca352
+      }
+      p {
+        color: #8f9bb3;
+        font-size: @icecream-font-size-1;
+        line-height: 24px;
+      }
+      p:last-child {
+        margin-top: 18px
+      }
+    }
+  }
+}
+
+:global(.anticon-close-circle) {
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s;
+  font-size: @icecream-font-size-1;
+  &:hover {
+    color: #999;
+  }
+  &:active {
+    color: #666;
+  }
+}

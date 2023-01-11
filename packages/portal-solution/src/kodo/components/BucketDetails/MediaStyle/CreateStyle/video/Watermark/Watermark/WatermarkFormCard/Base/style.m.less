@@ -1,0 +1,83 @@
+/**
+ * @description style of watermark base
+ * @author duli <duli@qiniu.com>
+ */
+
+@import 'react-icecream-2/dist/utils.less';
+
+.base {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: @icecream-gap-lg;
+  height: 270px;
+}
+
+.tabs {
+  align-self: stretch;
+  margin-right: @icecream-gap-sm;
+  overflow-y: auto;
+
+  > ul {
+    min-height: 100% !important;
+  }
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  color: @icecream-primary-color;
+
+  .addIcon {
+    margin-right: @icecream-gap-sm / 2;
+  }
+}
+
+.nameWrapper {
+  display: flex;
+  align-items: center;
+
+  .name {
+    width: 70px;
+    word-break: break-all;
+  }
+  
+  .deleteIcon {
+    margin-left: @icecream-gap-xs;
+  }
+}
+
+.canvasWrapper {
+  display: flex;
+  align-items: center;
+  width: 440px;
+  height: 247.5px;
+
+  .canvas {
+    flex: 0 0 auto;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: #f5f5f5;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: @icecream-gap-sm / 2;
+  font-size: @icecream-font-size-1;
+  color: #8c8c8c;
+
+  .editIcon {
+    margin-left: @icecream-gap-sm / 2;
+    cursor: pointer;
+  }
+}
+
+.dimensionModal {
+  display: flex;
+
+  .input {
+    margin-right: @icecream-gap-lg * 1.5;
+  }
+}

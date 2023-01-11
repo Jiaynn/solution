@@ -1,0 +1,862 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with follow 1`] = `
+<div
+  className="line domain-advanced-sources-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      className="ant-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        aria-label="icon: plus"
+        className="anticon anticon-plus"
+      >
+        <svg
+          aria-hidden="true"
+          className=""
+          data-icon="plus"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+          />
+          <path
+            d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+          />
+        </svg>
+      </i>
+      <span>
+        主线路
+      </span>
+    </button>
+    <button
+      className="ant-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        aria-label="icon: plus"
+        className="anticon anticon-plus"
+      >
+        <svg
+          aria-hidden="true"
+          className=""
+          data-icon="plus"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+          />
+          <path
+            d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+          />
+        </svg>
+      </i>
+      <span>
+        备线路
+      </span>
+    </button>
+  </div>
+  <div
+    className="line"
+  >
+    <table
+      className="sources-table"
+    >
+      <thead>
+        <tr>
+          <th>
+            主/备
+            <i
+              aria-label="icon: info-circle"
+              className="anticon anticon-info-circle"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "color": "#999",
+                  "cursor": "pointer",
+                  "fontSize": "14px",
+                  "fontWeight": "normal",
+                  "marginLeft": "4px",
+                  "verticalAlign": "-0.125em",
+                }
+              }
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="info-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+                <path
+                  d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+                />
+              </svg>
+            </i>
+          </th>
+          <th>
+            回源地址
+            <i
+              aria-label="icon: info-circle"
+              className="anticon anticon-info-circle"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "color": "#999",
+                  "cursor": "pointer",
+                  "fontSize": "14px",
+                  "fontWeight": "normal",
+                  "marginLeft": "4px",
+                  "verticalAlign": "-0.125em",
+                }
+              }
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="info-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+                <path
+                  d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+                />
+              </svg>
+            </i>
+          </th>
+          <th>
+            端口号
+            <i
+              aria-label="icon: info-circle"
+              className="anticon anticon-info-circle"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "color": "#999",
+                  "cursor": "pointer",
+                  "fontSize": "14px",
+                  "fontWeight": "normal",
+                  "marginLeft": "4px",
+                  "verticalAlign": "-0.125em",
+                }
+              }
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="info-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+                <path
+                  d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+                />
+              </svg>
+            </i>
+          </th>
+          <th>
+            权重
+            <i
+              aria-label="icon: info-circle"
+              className="anticon anticon-info-circle"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "color": "#999",
+                  "cursor": "pointer",
+                  "fontSize": "14px",
+                  "fontWeight": "normal",
+                  "marginLeft": "4px",
+                  "verticalAlign": "-0.125em",
+                }
+              }
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="info-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+                <path
+                  d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+                />
+              </svg>
+            </i>
+          </th>
+          <th />
+          <th />
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className="sources-table-line"
+        >
+          <td
+            className="sources-table-grid-role"
+          >
+            <span>
+              主线路
+            </span>
+          </td>
+          <td
+            className="sources-table-grid-host"
+          >
+            <input
+              className="ant-input"
+              disabled={false}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="text"
+              value=""
+            />
+          </td>
+          <td
+            className="sources-table-grid-port"
+          >
+            <input
+              className="ant-input"
+              disabled={false}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="number"
+              value=""
+            />
+          </td>
+          <td
+            className="sources-table-grid-weight"
+          >
+            <input
+              className="ant-input"
+              disabled={false}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="number"
+              value="1"
+            />
+          </td>
+          <td
+            className="sources-table-grid-operation"
+          />
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with http 1`] = `
+<div
+  className="line domain-advanced-sources-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      className="ant-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        aria-label="icon: plus"
+        className="anticon anticon-plus"
+      >
+        <svg
+          aria-hidden="true"
+          className=""
+          data-icon="plus"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+          />
+          <path
+            d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+          />
+        </svg>
+      </i>
+      <span>
+        主线路
+      </span>
+    </button>
+    <button
+      className="ant-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        aria-label="icon: plus"
+        className="anticon anticon-plus"
+      >
+        <svg
+          aria-hidden="true"
+          className=""
+          data-icon="plus"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+          />
+          <path
+            d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+          />
+        </svg>
+      </i>
+      <span>
+        备线路
+      </span>
+    </button>
+  </div>
+  <div
+    className="line"
+  >
+    <table
+      className="sources-table"
+    >
+      <thead>
+        <tr>
+          <th>
+            主/备
+            <i
+              aria-label="icon: info-circle"
+              className="anticon anticon-info-circle"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "color": "#999",
+                  "cursor": "pointer",
+                  "fontSize": "14px",
+                  "fontWeight": "normal",
+                  "marginLeft": "4px",
+                  "verticalAlign": "-0.125em",
+                }
+              }
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="info-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+                <path
+                  d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+                />
+              </svg>
+            </i>
+          </th>
+          <th>
+            回源地址
+            <i
+              aria-label="icon: info-circle"
+              className="anticon anticon-info-circle"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "color": "#999",
+                  "cursor": "pointer",
+                  "fontSize": "14px",
+                  "fontWeight": "normal",
+                  "marginLeft": "4px",
+                  "verticalAlign": "-0.125em",
+                }
+              }
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="info-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+                <path
+                  d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+                />
+              </svg>
+            </i>
+          </th>
+          <th>
+            端口号
+            <i
+              aria-label="icon: info-circle"
+              className="anticon anticon-info-circle"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "color": "#999",
+                  "cursor": "pointer",
+                  "fontSize": "14px",
+                  "fontWeight": "normal",
+                  "marginLeft": "4px",
+                  "verticalAlign": "-0.125em",
+                }
+              }
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="info-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+                <path
+                  d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+                />
+              </svg>
+            </i>
+          </th>
+          <th>
+            权重
+            <i
+              aria-label="icon: info-circle"
+              className="anticon anticon-info-circle"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "color": "#999",
+                  "cursor": "pointer",
+                  "fontSize": "14px",
+                  "fontWeight": "normal",
+                  "marginLeft": "4px",
+                  "verticalAlign": "-0.125em",
+                }
+              }
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="info-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+                <path
+                  d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+                />
+              </svg>
+            </i>
+          </th>
+          <th />
+          <th />
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className="sources-table-line"
+        >
+          <td
+            className="sources-table-grid-role"
+          >
+            <span>
+              主线路
+            </span>
+          </td>
+          <td
+            className="sources-table-grid-host"
+          >
+            <input
+              className="ant-input"
+              disabled={false}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="text"
+              value=""
+            />
+          </td>
+          <td
+            className="sources-table-grid-port"
+          >
+            <input
+              className="ant-input"
+              disabled={false}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="number"
+              value=""
+            />
+          </td>
+          <td
+            className="sources-table-grid-weight"
+          >
+            <input
+              className="ant-input"
+              disabled={false}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="number"
+              value="1"
+            />
+          </td>
+          <td
+            className="sources-table-grid-operation"
+          />
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with https 1`] = `
+<div
+  className="line domain-advanced-sources-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      className="ant-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        aria-label="icon: plus"
+        className="anticon anticon-plus"
+      >
+        <svg
+          aria-hidden="true"
+          className=""
+          data-icon="plus"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+          />
+          <path
+            d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+          />
+        </svg>
+      </i>
+      <span>
+        主线路
+      </span>
+    </button>
+    <button
+      className="ant-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        aria-label="icon: plus"
+        className="anticon anticon-plus"
+      >
+        <svg
+          aria-hidden="true"
+          className=""
+          data-icon="plus"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+          />
+          <path
+            d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+          />
+        </svg>
+      </i>
+      <span>
+        备线路
+      </span>
+    </button>
+  </div>
+  <div
+    className="line"
+  >
+    <table
+      className="sources-table"
+    >
+      <thead>
+        <tr>
+          <th>
+            主/备
+            <i
+              aria-label="icon: info-circle"
+              className="anticon anticon-info-circle"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "color": "#999",
+                  "cursor": "pointer",
+                  "fontSize": "14px",
+                  "fontWeight": "normal",
+                  "marginLeft": "4px",
+                  "verticalAlign": "-0.125em",
+                }
+              }
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="info-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+                <path
+                  d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+                />
+              </svg>
+            </i>
+          </th>
+          <th>
+            回源地址
+            <i
+              aria-label="icon: info-circle"
+              className="anticon anticon-info-circle"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "color": "#999",
+                  "cursor": "pointer",
+                  "fontSize": "14px",
+                  "fontWeight": "normal",
+                  "marginLeft": "4px",
+                  "verticalAlign": "-0.125em",
+                }
+              }
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="info-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+                <path
+                  d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+                />
+              </svg>
+            </i>
+          </th>
+          <th>
+            端口号
+            <i
+              aria-label="icon: info-circle"
+              className="anticon anticon-info-circle"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "color": "#999",
+                  "cursor": "pointer",
+                  "fontSize": "14px",
+                  "fontWeight": "normal",
+                  "marginLeft": "4px",
+                  "verticalAlign": "-0.125em",
+                }
+              }
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="info-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+                <path
+                  d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+                />
+              </svg>
+            </i>
+          </th>
+          <th>
+            权重
+            <i
+              aria-label="icon: info-circle"
+              className="anticon anticon-info-circle"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "color": "#999",
+                  "cursor": "pointer",
+                  "fontSize": "14px",
+                  "fontWeight": "normal",
+                  "marginLeft": "4px",
+                  "verticalAlign": "-0.125em",
+                }
+              }
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="info-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+                <path
+                  d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+                />
+              </svg>
+            </i>
+          </th>
+          <th />
+          <th />
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className="sources-table-line"
+        >
+          <td
+            className="sources-table-grid-role"
+          >
+            <span>
+              主线路
+            </span>
+          </td>
+          <td
+            className="sources-table-grid-host"
+          >
+            <input
+              className="ant-input"
+              disabled={false}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="text"
+              value=""
+            />
+          </td>
+          <td
+            className="sources-table-grid-port"
+          >
+            <input
+              className="ant-input"
+              disabled={false}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="number"
+              value=""
+            />
+          </td>
+          <td
+            className="sources-table-grid-weight"
+          >
+            <input
+              className="ant-input"
+              disabled={false}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="number"
+              value="1"
+            />
+          </td>
+          <td
+            className="sources-table-grid-operation"
+          />
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

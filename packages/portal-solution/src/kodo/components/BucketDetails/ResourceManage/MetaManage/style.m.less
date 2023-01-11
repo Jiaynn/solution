@@ -1,0 +1,111 @@
+/**
+ * @file style for MetaManage
+ * @author zhangheng <zhangheng01@qiniu.com>
+ */
+
+@import "~kodo/styles/font.less";
+@import "~kodo/styles/variables.less";
+
+.letLine {
+  width: 4px;
+  height: 16px;
+  background: #BAEDFF;
+  margin-right: 6px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: @icecream-font-size-3;
+  padding-left: 5px;
+}
+
+.versionSelect {
+  width: 200px;
+}
+
+.baseInfo {
+  margin-top: @page-content-gap-regular;
+
+  .title {
+    font-size: @icecream-font-size-2;
+    font-weight: 500;
+    color: black;
+  }
+
+  .line {
+    border: 1px dotted #E9E9E9;
+    margin: @page-content-gap-regular 0;
+  }
+
+  div.item {
+    padding-right: 10px;
+    margin-bottom: @page-content-gap-regular;
+
+    .label {
+      display: inline-block;
+      width: 80px;
+      font-size: @icecream-font-size-2;
+      color: @icecream-text-color-weight;
+    }
+
+    .expiration {
+      margin-left: 5px;
+      font-size: @icecream-font-size-1;
+    }
+
+    .content {
+      color: @icecream-grey-6;
+    }
+
+    .warning {
+      color: @icecream-yellow-3;
+    }
+
+    .url {
+      cursor: pointer;
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+  }
+
+  .imageWrapper {
+    width: 100%;
+    border: 1px solid transparent;
+    margin: @page-content-gap-regular 0;
+    background-color: transparent;
+    overflow: hidden;
+
+    audio, video {
+      width: 280px;
+    }
+
+    .previewImage {
+      max-width: 40%;
+      max-height: 210px;
+    }
+  }
+
+  .boxGap {
+    margin-top: 20px;
+  }
+}
+
+.versions {
+  margin-top: 24px;
+}
+
+.basicCardHeight {
+  height: 330px;
+  margin-top: @page-content-gap-regular;
+  overflow: auto;
+}
+
+.externalLinkWarning {
+  margin-top: @page-content-gap-half;
+  font-size: @icecream-font-size-1;
+
+  color: #fa8c16; // TODO：升级到 icecream-2 后换成 2 的 alert 组件去掉
+  background: #fef3e7; // TODO：升级到 icecream-2 后换成 2 的 alert 组件去掉
+}

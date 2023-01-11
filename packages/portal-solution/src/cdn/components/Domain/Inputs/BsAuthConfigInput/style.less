@@ -1,0 +1,84 @@
+@import "../common/style.less";
+
+.domain-bs-auth-config-input-wrapper {
+  .input-wrapper();
+
+  .tips {
+    .tip-list();
+  }
+
+  .text-input-wrapper {
+    width: 400px;
+  }
+
+  .strict-input-wrapper {
+    position: relative;
+  }
+
+  .cache-input-wrapper {
+    .cache-time-input {
+      margin-top: 10px;
+
+      .cache-input-label {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .status-code-input-label {
+    margin-right: 10px;
+  }
+
+  .status-code-input-wrapper {
+    width: 150px;
+  }
+
+  .time-limit-input-wrapper, .strict-input-wrapper {
+    width: 216px;
+  }
+
+  .time-limit-unit {
+    display: inline-block;
+    width: 60px;
+  }
+  .sources-table {
+    .input-table();
+  }
+  .req-conf-content-wrapper {
+    .title-wrapper {
+      margin: 15px 0px 5px;
+    }
+    .second-level-title {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .icon-remove {
+      cursor: pointer;
+    }
+    .icon-add {
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .sources-table-grid-key {
+      min-width: 90px;
+    }
+    .sources-table-grid-value {
+      min-width: 90px;
+    }
+    .sources-table-grid-type {
+      min-width: 100px;
+    }
+    .sources-table-grid-error {
+      min-width: 60px;
+      .error-wrapper {
+        line-height: 22px;
+      }
+    }
+    .config-param-input-wrapper {
+      position: relative;
+      .config-param-select {
+        min-width: 150px;
+      }
+    }
+  }
+}

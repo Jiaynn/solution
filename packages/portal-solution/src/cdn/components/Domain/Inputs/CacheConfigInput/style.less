@@ -1,0 +1,133 @@
+@import "../common/style.less";
+
+.domain-cache-config-input-wrapper {
+  .input-wrapper();
+
+  .cache-config-input-content {
+    display: inline-block;
+    margin-top: 0;
+    padding: 16px;
+    background-color: #f5f5f5;
+    line-height: 22px;
+  }
+
+  .help.line {
+    padding: 0;
+    margin-top: 0;
+    color: #FA8C16;
+  }
+
+  .default-type-all-cache-control-block {
+    margin-top: 14px;
+  }
+
+  .default-type-all-cache-control-block .cache-controls-table-line {
+    border-bottom: none;
+  }
+
+  .cache-control-tips {
+    color: @icecream-color-grey-8;
+  }
+}
+
+.comp-domain-cache-ignore-params-input {
+  .input-wrapper();
+
+  .cache-ignore-params-input-content {
+    display: inline-block;
+    margin-top: 0px;
+    padding: 16px;
+    background-color: #f5f5f5;
+
+    .text-input-wrapper {
+      display: block;
+    }
+  }
+}
+
+// 为了在 Domain Detail 页面使用时，放在 SideModal 中比 SideModal 高
+.sortable-list-in-domain-cache-config-input-wrapper {
+  z-index: 20;
+}
+
+// 该 className 对应的 DOM 节点在被 drag 排序时会被复制一份到 body 上
+// 这里把这个样式信息加在全局，避免在拖拽时节点样式丢失
+.cache-controls-table-line-in-domain-cache-config-input-wrapper {
+  .input-wrapper();
+
+  list-style: none;
+  background-color: #f5f5f5;
+
+  .cache-controls-table-grid {
+    display: inline-block;
+    padding: 10px 10px 0 0;
+  }
+
+  .cache-controls-table-grid-type-rule {
+    width: 370px;
+  }
+
+  .cache-controls-table-grid-error {
+    display: block;
+    padding: 0;
+    padding-left: 64px;
+  }
+
+  .cache-controls-table-grid-time {
+    width: 260px;
+    .time-input {
+      width: 140px;
+      .timeunit-input {
+        width: 72px;
+      }
+    }
+  }
+  
+  .cache-controls-table-grid-warning {
+    display: block;
+    padding-left: 64px;
+  }
+
+  .cache-controls-table-grid-move {
+    width: 40px;
+  }
+
+  // hack 解决 icecream 往 Input 外边套了个 div 导致的样式问题
+  .cache-controls-table-grid > div {
+    display: inline-block;
+  }
+
+  .cache-controls-table-grid > * {
+    vertical-align: middle;
+  }
+
+  .rule-input, .time-input {
+    margin-left: 4px;
+  }
+
+  .rule-input {
+    width: 280px;
+  }
+
+  .ant-input.time-input {
+    width: 80px;
+  }
+
+  .timeunit-input {
+    width: 72px;
+  }
+
+  .handle-remove {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .icon-remove {
+    vertical-align: middle;
+    color: #e55c5c;
+  }
+}

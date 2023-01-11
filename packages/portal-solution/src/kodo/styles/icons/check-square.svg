@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="14px" viewBox="0 0 15 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>check-square</title>
+    <desc>Created with Sketch.</desc>
+    <g id="预览页面" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-442.000000, -104.000000)">
+            <g id="check-square" transform="translate(441.996000, 103.000000)">
+                <g id="Group">
+                    <rect id="Rectangle" fill="#D8D8D8" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                    <g id="Checkbox&amp;Radio/Checkbox-icon/Checked" transform="translate(1.000000, 1.000000)" fill="#00A7E1">
+                        <path d="M12,14 L2,14 C0.8954305,14 0,13.1045695 0,12 L0,2 C0,0.8954305 0.8954305,0 2,0 L12,0 C13.1045695,0 14,0.8954305 14,2 L14,12 C14,13.1045695 13.1045695,14 12,14 L12,14 Z M10.64,5.04 C10.7712623,4.91921399 10.8385364,4.74402526 10.821856,4.56642789 C10.8051756,4.38883052 10.7064574,4.22923222 10.555,4.135 C10.2852591,3.97104496 9.93915599,4.00790802 9.71,4.225 L5.885,7.76 C5.73988992,7.89009667 5.52011008,7.89009667 5.375,7.76 L3.945,6.44 C3.71584401,6.22290802 3.36974088,6.18604496 3.1,6.35 C2.94749928,6.44341187 2.84789721,6.60319068 2.83117407,6.78124287 C2.81445094,6.95929506 2.88255986,7.13482573 3.015,7.255 L5.375,9.435 C5.52011008,9.56509667 5.73988992,9.56509667 5.885,9.435 L10.64,5.04 Z" id="checked"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,95 @@
+/**
+ * @file bucket StaticPage style
+ * @description Bucket StaticPage Style
+ * @author zhaojianan <zhaojianan@qiniu.com>
+ */
+
+ @import "react-icecream-2/dist/utils.less";
+ @upload-btn-height: 100px;
+
+ .pageUploader {
+   :global {
+     .ant-upload-text {
+      margin-top: @icecream-gap-md-x;
+     }
+
+     .ant-upload.ant-upload-select-picture-card {
+       width: 426px;
+       height: 240px;
+       min-height: @upload-btn-height;
+       position: relative;
+       margin: 0;
+ 
+       .ant-upload {
+        padding: 0;
+         img {
+           display: block;
+         }
+       }
+     }
+   }
+ 
+   .uploadBtnWrapper {
+     position: absolute;
+     width: 400px;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+   }
+   .previewContent {
+    width: 426px;
+    height: 240px;
+    position: relative;
+    .previewImg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 426px;
+      max-height: 240px;
+    }
+    .cancelButton {
+      color: @icecream-color-grey-8;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: -8px;
+      right: -8px;
+    }
+   }
+
+
+   .infoText {
+    color: @icecream-primary-color;
+    font-size: @icecream-font-size-main;
+    line-height: 20px;
+  }
+  
+  .mildText {
+    color: @icecream-color-grey-8;
+    font-size: @icecream-font-size-note;
+    line-height: 18px;
+  }
+ }
+ 
+ .textarea {
+   min-height: @upload-btn-height !important;
+   resize: none;
+ }
+
+.switch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.alert {
+  margin-bottom: @icecream-gap-md-x;
+}
+
+.card {
+  height: 140px;
+}
+.fileIcon {
+  vertical-align: middle;
+}

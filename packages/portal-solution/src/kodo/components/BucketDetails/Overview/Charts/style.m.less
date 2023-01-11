@@ -1,0 +1,39 @@
+/**
+ * @file style for charts of bucket-overview
+ * @author zhangheng <zhangheng01@qiniu.com>
+ */
+
+@import "~kodo/styles/font.less";
+@import "~kodo/styles/variables.less";
+
+.charts {
+  margin-top: @page-content-gap-large;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .chartBoxLeft, .chartBoxRight {
+    width: 50%;
+  }
+
+  .chartBoxLeft {
+    padding-right: @page-content-gap;
+  }
+
+  .chartBoxRight {
+    padding-left: @page-content-gap;
+  }
+
+  .chart {
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: @page-content-gap;
+
+      .chartTitle {
+        font-weight: 500;
+      }
+    }
+  }
+}

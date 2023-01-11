@@ -1,7 +1,11 @@
 {
   "extends": "@qiniu/build-config/portal",
   "srcDir": "src",
-  "publicUrl": "https://qiniu.staticfile.org/",
+  "optimization": {
+    "highQualitySourceMap": true,
+    "errorOverlay": false,
+    "transformDeps": ["tr46", "ansi-regex", "whatwg-url", "webidl-conversions"]
+  },
   "entries": {
     "index": "src/index.tsx"
   },
@@ -9,29 +13,14 @@
     "index": {
       "template": "src/index.ejs",
       "entries": "index",
-      "path": "^\\/kodo\\/"
+      "path": "^\\/"
     }
-  },
-  "devProxy": {
-    "/api": "http://portalv4.dev.qiniu.io",
-    "/signin": "http://portalv4.dev.qiniu.io",
-    "/financial": "http://portalv4.dev.qiniu.io",
-    "/dashboard": "http://portalv4.dev.qiniu.io",
-    "/create": "http://portalv4.dev.qiniu.io",
-    "/dynamic": "http://portalv4.dev.qiniu.io",
-    "/404": "http://portalv4.dev.qiniu.io"
-  },
-  "deploy": {
-    "config": {
-      "accessKey": "tkabCgtBh5OiAbZ32-BC3KbLpWO274oY4nL6e5hr",
-      "secretKey": "1oUlrJlpJprkl4sLZQYdJLsGoVTCZaZXEbmiZTNh",
-      "bucket": "portal-v4-static"
-    }
-  },
-  "optimization": {
-    "highQualitySourceMap": true
   },
   "engines": {
     "builder": "^2.3.0"
+  },
+  "envVariables": {
+    "process.env.TRACK_ANALYTICS": false,
+    "process.env.CONFIG": {}
   }
 }

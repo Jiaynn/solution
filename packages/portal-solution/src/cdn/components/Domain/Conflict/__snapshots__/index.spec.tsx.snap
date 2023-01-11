@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="domain-conflict-wrapper"
+>
+  <div
+    className="icecream-breadcrumb"
+  />
+  <div
+    className=""
+  >
+    <div
+      className="domain-conflict-content"
+    >
+      <div
+        className="ant-row conflict-validate-section"
+      >
+        <div
+          className="ant-col ant-col-4 validate-label"
+        >
+          <label>
+            验证信息
+          </label>
+        </div>
+        <div
+          className="ant-col ant-col-14 validate-content"
+        >
+          <div
+            className="ant-spin-nested-loading"
+          >
+            <div>
+              <div
+                className="ant-spin ant-spin-spinning"
+              >
+                <span
+                  className="ant-spin-dot ant-spin-dot-spin"
+                >
+                  <i
+                    className="ant-spin-dot-item"
+                  />
+                  <i
+                    className="ant-spin-dot-item"
+                  />
+                  <i
+                    className="ant-spin-dot-item"
+                  />
+                  <i
+                    className="ant-spin-dot-item"
+                  />
+                </span>
+              </div>
+            </div>
+            <div
+              className="ant-spin-container ant-spin-blur"
+            >
+              <p
+                className="validate-describe"
+              >
+                域名 
+                <strong>
+                  foo.com
+                </strong>
+                 与其他账号下的 
+                <strong />
+                 冲突， 如发起找回，找回成功后 
+                 会转移至当前账号下，如果账期未过该域名当前账期产生的费用也会计算到新账号下
+              </p>
+              <div
+                className="validate-info"
+              >
+                <div
+                  className="ant-row"
+                >
+                  <div
+                    className="ant-col ant-col-8 validate-info-label"
+                  >
+                    待找回域名
+                  </div>
+                  <div
+                    className="ant-col ant-col-16 validate-info-value"
+                  />
+                </div>
+                <div
+                  className="ant-row"
+                >
+                  <div
+                    className="ant-col ant-col-8 validate-info-label"
+                  >
+                    下载文件
+                  </div>
+                  <div
+                    className="ant-col ant-col-16 validate-info-value"
+                  >
+                    verifyingfile.html
+                    <a
+                      href="#!"
+                      onClick={[Function]}
+                    >
+                       (点击下载文件)
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-row conflict-validate-section"
+      >
+        <div
+          className="ant-col ant-col-4 validate-label"
+        >
+          <label>
+            注意事项
+          </label>
+        </div>
+        <div
+          className="ant-col ant-col-14 validate-content"
+        >
+          <p
+            className="validate-describe"
+          >
+            1. 请下载此验证文件后并尽快上传到待验证域名 
+             的根目录下，然后点击提交按钮验证
+            <br />
+            2. 请确保待验证域名能正常访问，以免验证不通过
+            <br />
+            3. 系统将会直接请求您的验证文件，请不要使用任何跳转重定向，以免验证不通过
+            <br />
+            4. 超时时间为 8 小时，超时不验证会置为验证失败
+            <br />
+            5. 如果当前的域名正在找回，无法重复发起找回申请
+            <br />
+            <span>
+              6. 源站为 七牛云存储的域名在找回后会自动降级为 HTTP 协议，请找回后重新配置 HTTPS 证书
+            </span>
+            <br />
+            <span
+              className="highlight"
+            >
+              7. 源站为 七牛云存储 的域名找回会导致服务中断，如需避免服务中断，请联系技术支持操作
+            </span>
+          </p>
+        </div>
+      </div>
+      <div
+        className="ant-row domain-conflict-footer"
+      >
+        <div
+          className="ant-col ant-col-8 ant-col-offset-16"
+        >
+          <button
+            className="ant-btn ant-btn-primary"
+            disabled={true}
+            onClick={[Function]}
+            type="button"
+          >
+            <span>
+              提交验证
+            </span>
+          </button>
+          <div
+            className="hint undefined"
+          >
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

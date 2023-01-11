@@ -1,0 +1,48 @@
+/**
+ * @description style of common used modal component
+ * @author duli <duli@qiniu.com>
+ */
+
+@import '~kodo/styles/variables.less';
+@import '~kodo/styles/font.less';
+@import '~kodo/styles/mixins.less';
+
+.head {
+  margin: 10px 0;
+  padding: 10px 16px;
+  background: #F5F5F5;
+}
+
+.scenario {
+  position: relative;
+  padding: 28px 10px;
+  border-bottom: 1px solid #e6e9f0;
+  cursor: pointer;
+
+  .image {
+    width: 90px;
+    height: 58px;
+    position: absolute;
+    left: 10px;
+    top: 30px;
+  }
+
+  .info {
+    max-width: 100%;
+    padding-left: 100px;
+
+    .title {
+      margin: 6px 0;
+      font-weight: 500;
+    }
+
+    .desc {
+      color: #8d9199;
+      margin: 0;
+    }
+  }
+
+  &:hover {
+    background-color: #fafcff;
+  }
+}

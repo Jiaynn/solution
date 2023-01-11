@@ -1,0 +1,39 @@
+/**
+ * @file Bucket card container style
+ * @description bucket card container 样式
+ * @author Surmon <i@surmon.me>
+ */
+
+ // TODO: 等 @huangbinjie 更新 icecream 后删除这个文件
+@import "~kodo/styles/variables.less";
+
+.card {
+  border-radius: @icecream-border-radius-base;
+  box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+
+  :global(.ant-card-head) {
+    background-color: #FAFAFA;
+    border-bottom: none;
+  }
+
+  :global(.ant-card-head-title) {
+    font-size: @icecream-font-size-2;
+  }
+
+  .question {
+    font-size: @icecream-font-size-2;
+    margin-left: 9px;
+    color: @icecream-grey-6;
+    &:hover {
+      color: @icecream-grey-7;
+    }
+  }
+}
+
+.extraButton {
+  color: @icecream-blue-6;
+  font-size: @icecream-font-size-2;
+  margin-left: @page-content-gap-half;
+}

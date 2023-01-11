@@ -1,0 +1,109 @@
+/**
+ * @file bucket event style
+ * @description Bucket setting event style
+ * @author Surmon <i@surmon.me>
+ */
+
+@import "~kodo/styles/variables.less";
+
+.toolbar {
+  margin-bottom: @page-content-gap-regular;
+}
+
+.question {
+  color: @icecream-grey-6;
+}
+
+.tableActionButtons {
+  display: flex;
+}
+
+.content {
+  .textColor {
+    color: @icecream-grey-7;
+  }
+}
+
+.formRadioGroup {
+  margin-bottom: @page-content-gap-half !important;
+}
+
+.formUrlItem {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .buttons {
+    width: 135px;
+    margin-left: @page-content-gap;
+
+    :global {
+      .ant-btn + .ant-btn {
+        margin-left: 0;
+      }
+    }
+
+    .item {
+      width: 40px;
+      padding: 0;
+      min-width: auto;
+      margin-right: @page-content-gap;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      :global(.svg-icon) {
+        position: initial;
+        height: 1em;
+      }
+    }
+  }
+}
+
+.callbackPrompt {
+  padding: 7px;
+}
+
+.eventPrompt {
+  margin: 4px 0;
+}
+.formButtons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: @page-content-gap;
+  width: 100%;
+}
+
+.pageTip {
+  font-size: @icecream-font-size-1;
+  margin-bottom: @page-content-gap;
+  cursor: pointer;
+
+  span {
+    font-weight: 500;
+  }
+
+  .arrow {
+    margin-right: 8px;
+    transition: all 0.2s;
+
+    &.arrowActive {
+      transform: rotate(90deg);
+    }
+  }
+
+  .matchEvents {
+    height: 0;
+    overflow: hidden;
+    transition: all 0.2s;
+
+    &.display {
+      height: 80px;
+    }
+  }
+}
+
+.space {
+  white-space: pre-wrap;
+}

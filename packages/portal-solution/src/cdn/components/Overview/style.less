@@ -1,0 +1,19 @@
+.comp-overview {
+  position: relative;
+  color: #333;
+
+  .overview-content {
+    display: flex;
+
+    .main {
+      flex: auto;
+      // hack: 浏览器窗口缩小时，图表不会自动缩小导致页面不能显示完全，设置一个 width 值可规避该问题
+      width: 780px;
+    }
+
+    .additional {
+      margin-left: 20px;
+      width: 282px;
+    }
+  }
+}

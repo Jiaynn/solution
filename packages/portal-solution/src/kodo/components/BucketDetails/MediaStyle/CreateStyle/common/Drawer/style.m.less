@@ -1,0 +1,70 @@
+/**
+ * @file style for media style drawer
+ * @author yinxulai <yinxulai@qiniu.com>
+ */
+
+@import "~react-icecream-2/dist/utils.less";
+
+@border-color: #e5e5e5;
+
+.layout {
+  min-height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  flex: 2;
+  min-height: 100%;
+  border-right: 1px solid @border-color;
+  padding-right: @icecream-gap-lg;
+  padding-bottom: @icecream-gap-md;
+
+  :global {
+    .ant-card-body .ant-form-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .ant-card-head {
+      background: @icecream-color-grey-2 !important;
+      font-weight: initial !important;
+      font-size: @icecream-font-size-md;
+      color: @icecream-color-grey-10;
+    }
+  }
+}
+
+.switchTypeButton {
+  position: absolute;
+  right: 0;
+  height: 24px;
+  line-height: initial !important;
+  margin-right: @icecream-gap-lg !important;
+}
+
+.preview {
+  width: 322px;
+  position: sticky;
+  top: 0;
+  right: 0;
+  flex: 0 0 auto;
+
+  min-height: 20px;
+  margin-left: @icecream-gap-lg;
+}
+
+.operationGroup {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: @icecream-gap-md * 2;
+
+  > * + * {
+    margin-left: @icecream-gap-md;
+  }
+}

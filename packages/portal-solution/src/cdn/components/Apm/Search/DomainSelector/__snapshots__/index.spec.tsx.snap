@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="domain-selector-wrapper"
+>
+  <button
+    className="ant-btn domain-selector-btn"
+    onClick={[Function]}
+    onMouseDown={[Function]}
+    onTouchStart={[Function]}
+    type="button"
+  >
+    <span>
+      选择域名
+    </span>
+  </button>
+</div>
+`;

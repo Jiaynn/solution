@@ -1,0 +1,192 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="comp-video-slim-preview"
+>
+  <div
+    className="ant-spin-nested-loading"
+  >
+    <div>
+      <div
+        className="ant-spin ant-spin-lg ant-spin-spinning"
+      >
+        <span
+          className="ant-spin-dot ant-spin-dot-spin"
+        >
+          <i
+            className="ant-spin-dot-item"
+          />
+          <i
+            className="ant-spin-dot-item"
+          />
+          <i
+            className="ant-spin-dot-item"
+          />
+          <i
+            className="ant-spin-dot-item"
+          />
+        </span>
+      </div>
+    </div>
+    <div
+      className="ant-spin-container ant-spin-blur"
+    >
+      <div
+        className="ant-row"
+        style={
+          Object {
+            "marginLeft": -10,
+            "marginRight": -10,
+          }
+        }
+      >
+        <div
+          className="ant-col ant-col-12"
+          style={
+            Object {
+              "paddingLeft": 10,
+              "paddingRight": 10,
+            }
+          }
+        >
+          <div
+            className="comp-video-player"
+          >
+            <video
+              controls={true}
+              crossOrigin="annoymous"
+              height={350}
+              preload="auto"
+            >
+              <source />
+            </video>
+          </div>
+          <div
+            className="video-control-bar-wrapper"
+          >
+            <button
+              className="ant-btn capture-btn ant-btn-sm"
+              onClick={[Function]}
+              type="button"
+            >
+              <span>
+                截帧
+              </span>
+            </button>
+          </div>
+          <div
+            className="video-info-wrapper"
+          >
+            <h4
+              className="info-title"
+            >
+              瘦身前视频文件参数
+            </h4>
+            <ul
+              className="comp-video-info"
+            >
+              <li>
+                格式：
+              </li>
+              <li>
+                文件大小：
+              </li>
+              <li>
+                码率：
+              </li>
+              <li>
+                规格：
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="ant-col ant-col-12"
+          style={
+            Object {
+              "paddingLeft": 10,
+              "paddingRight": 10,
+            }
+          }
+        >
+          <div
+            className="comp-video-player"
+          >
+            <video
+              controls={true}
+              crossOrigin="annoymous"
+              height={350}
+              preload="auto"
+            >
+              <source />
+            </video>
+          </div>
+          <div
+            className="video-control-bar-wrapper"
+          >
+            <button
+              className="ant-btn capture-btn ant-btn-sm"
+              onClick={[Function]}
+              type="button"
+            >
+              <span>
+                截帧
+              </span>
+            </button>
+          </div>
+          <div
+            className="video-info-wrapper"
+          >
+            <h4
+              className="info-title"
+            >
+              瘦身后视频文件参数
+            </h4>
+            <ul
+              className="comp-video-info"
+            >
+              <li>
+                格式：
+              </li>
+              <li>
+                文件大小：
+              </li>
+              <li>
+                码率：
+              </li>
+              <li>
+                规格：
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        className="comp-snapshots"
+      >
+        <div
+          className="swiper-container swiper-snapshots"
+        >
+          <div
+            className="swiper-button-prev"
+            onClick={[Function]}
+          />
+          <div
+            className="swiper-wrapper"
+            style={
+              Object {
+                "height": "auto",
+              }
+            }
+          />
+          <div
+            className="swiper-button-next"
+            onClick={[Function]}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

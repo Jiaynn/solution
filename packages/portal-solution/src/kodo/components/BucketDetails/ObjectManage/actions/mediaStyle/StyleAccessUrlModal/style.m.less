@@ -1,0 +1,40 @@
+/**
+ * @description style of style access url component
+ * @author duli <duli@qiniu.com>
+ */
+
+@import "~react-icecream-2/dist/utils.less";
+
+.dialog {
+  :global(.icecream-dialog-content) {
+    width: 560px;
+  }
+}
+
+.infoIcon {
+  color: @icecream-primary-color;
+}
+
+.content {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.notice {
+  margin-top: @icecream-gap-lg;
+}
+
+.url {
+  margin: @icecream-gap-lg / 6 0;
+  // svg {
+  //   margin-bottom: -2px;
+  //   margin-left: @icecream-gap-sm / 4;
+  //   color: @icecream-primary-color;
+  // }
+
+  .copyText {
+    color: @icecream-primary-color;
+    margin-left: @icecream-gap-sm / 4;
+    cursor: pointer;
+  }
+}

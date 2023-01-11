@@ -1,0 +1,38 @@
+/**
+ * @file batchDelete style
+ * @author yinxulai <me@yinxulai.com>
+ */
+
+.status {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  .icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-left: 4px;
+  }
+}
+
+.centerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > button {
+    border: none;
+  }
+}
+
+.resultTable {
+  max-height: 400px;
+
+  :global(.icecream-table-body-td) {
+    word-break: break-all;
+  }
+}
+
+.space {
+  white-space: pre-wrap;
+}

@@ -1,0 +1,105 @@
+/**
+ * @file bucket style
+ * @description bucket 样式
+ * @author yinxulai <me@yinxulai.com>
+ */
+
+@import "~kodo/styles/variables.less";
+
+.slaPrompt {
+  margin-bottom: @page-content-gap;
+}
+
+.tabs :global(.ant-tabs-top-bar) {
+  margin: -5px 0 @page-content-gap 0;
+}
+
+.tabPane {
+  height: 100%;
+}
+
+.form {
+  padding: 10px 0;
+}
+
+.content {
+  height: 100%;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .left {
+    margin-bottom: 21px;
+  }
+}
+
+.testDomainInfoModal {
+  color: @icecream-grey-7;
+  font-size: @icecream-font-size-base;
+
+  .warning {
+    font-weight: bold;
+    color: @icecream-warning-color;
+  }
+
+  .link {
+    font-size: @icecream-font-size-small;
+  }
+
+  ol {
+    color: @icecream-grey-6;
+    margin-left: @icecream-gap-md;
+    line-height: @icecream-font-size-5;
+    list-style-type: decimal;
+
+    li {
+      font-size: @icecream-font-size-small;
+    }
+
+    li + li {
+      margin-top: @icecream-gap-xs;
+    }
+  }
+}
+
+.hiddenButton {
+  display: none;
+}
+
+.regionName {
+  user-select: none;
+  display: inline-block;
+
+  .tag {
+    display: inline-block;
+
+    color: white;
+    font-size: 12px;
+    padding: 1px 4px;
+    border-radius: 2px;
+    margin-right: -8px;
+    background-color: red;
+    animation: shake 3s both infinite;
+  }
+
+  .name {
+    display: inline-block;
+  }
+
+  @keyframes shake {
+    0%, 100%, 70% {
+      transform: translateY(-50%) scale(0.8) rotate(0);
+    }
+
+    71%, 73%, 80%, 87%, 93% {
+      transform: translateY(-50%) scale(1) rotate(-3deg);
+    }
+
+    77%, 83%, 90%, 97% {
+      transform: translateY(-50%) scale(1) rotate(3deg);
+    }
+  }
+}

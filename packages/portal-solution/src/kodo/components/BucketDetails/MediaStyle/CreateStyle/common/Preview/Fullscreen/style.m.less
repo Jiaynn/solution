@@ -1,0 +1,110 @@
+/**
+* @file style for ImageStyle
+* @author zhangheng <zhangheng01@qiniu.com>
+*/
+
+@import "~kodo/styles/variables.less";
+@import "~kodo/styles/font.less";
+@import "~kodo/styles/mixins.less";
+
+@import '~react-icecream-2/dist/utils.less';
+
+.viewModal {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding-bottom: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+
+  :global(.icecream-modal-content) {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .previewImage {
+    max-width: 100%;
+  }
+
+  .modalContent {
+    text-align: center;
+    .modalTitle {
+      .pingfangMedium();
+      margin-bottom: @page-content-gap-medium;
+      margin-top: 50px;
+      position: relative;
+      width: fit-content;
+      margin-right: auto;
+      margin-left: auto;
+
+      .selectFileBtn {
+        position: absolute;
+        top: 50%;
+        transform: translateX(50%) translateY(-50%);
+        font-size: @icecream-font-size-small;
+      }
+    }
+
+    .desc {
+      display: flex;
+      justify-content: center;
+      margin-bottom: @page-content-gap-medium;
+      span {
+        font-weight: 500;
+        color: @icecream-text-color-weight;
+      }
+    }
+
+    .gap {
+      margin-right: @page-content-gap-medium;
+    }
+
+    .skeleton {
+      min-width: 500px;
+      min-height: 300px;
+      max-width: 100%;
+      max-height: 100%;
+      overflow: auto;
+      margin: auto;
+      display: inline-flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      font-size: @icecream-font-size-large;
+      background-color: #f5f5f5;
+      border: 1px solid @icecream-border-color-base;
+
+      .errorIcon {
+        color: @icecream-color-red-6;
+        margin-bottom: @icecream-gap-md-x;
+      }
+    }
+
+    .player {
+      display: inline-block;
+      background-color: #f5f5f5;
+      border: 1px solid @icecream-border-color-base;
+
+      :global(.icecream-loading-content) {
+        > div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-width: 500px;
+          min-height: 260px;
+        }
+      }
+
+      video {
+        display: block;
+        max-width: 1000px;
+        max-height: 550px;
+      }
+    }
+  }
+}

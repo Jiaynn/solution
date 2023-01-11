@@ -1,0 +1,288 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<table
+  className="prime-desc-table"
+>
+  <thead>
+    <tr>
+      <th />
+      <th>
+        基础版
+      </th>
+      <th>
+        优享版
+      </th>
+      <th>
+        旗舰版
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        可用性保障
+        <i
+          aria-label="icon: info-circle"
+          className="anticon anticon-info-circle info-icon"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="info-circle"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+            />
+            <path
+              d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+            />
+          </svg>
+        </i>
+      </td>
+      <td>
+        99.95%
+      </td>
+      <td>
+        99.99%
+      </td>
+      <td>
+        100%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        不可用时间赔偿
+        <i
+          aria-label="icon: info-circle"
+          className="anticon anticon-info-circle info-icon"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="info-circle"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+            />
+            <path
+              d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+            />
+          </svg>
+        </i>
+      </td>
+      <td>
+        15 倍
+      </td>
+      <td>
+        30 倍
+      </td>
+      <td>
+        50 倍
+      </td>
+    </tr>
+    <tr>
+      <td>
+        VIP 线路资源服务
+      </td>
+      <td>
+        <i
+          aria-label="icon: check"
+          className="anticon anticon-check"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="check"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"
+            />
+          </svg>
+        </i>
+      </td>
+      <td>
+        <i
+          aria-label="icon: check"
+          className="anticon anticon-check"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="check"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"
+            />
+          </svg>
+        </i>
+      </td>
+      <td>
+        <i
+          aria-label="icon: check"
+          className="anticon anticon-check"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="check"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"
+            />
+          </svg>
+        </i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        重点运维监测服务
+      </td>
+      <td>
+        <i
+          aria-label="icon: check"
+          className="anticon anticon-check"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="check"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"
+            />
+          </svg>
+        </i>
+      </td>
+      <td>
+        <i
+          aria-label="icon: check"
+          className="anticon anticon-check"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="check"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"
+            />
+          </svg>
+        </i>
+      </td>
+      <td>
+        <i
+          aria-label="icon: check"
+          className="anticon anticon-check"
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="check"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"
+            />
+          </svg>
+        </i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        质量监测报告
+      </td>
+      <td>
+        无
+      </td>
+      <td>
+        每月提供
+      </td>
+      <td>
+        每周提供
+      </td>
+    </tr>
+    <tr>
+      <td>
+        架构优化咨询
+        <i
+          aria-label="icon: info-circle"
+          className="anticon anticon-info-circle info-icon"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <svg
+            aria-hidden="true"
+            className=""
+            data-icon="info-circle"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+            />
+            <path
+              d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+            />
+          </svg>
+        </i>
+      </td>
+      <td>
+        无
+      </td>
+      <td>
+        2 小时/月
+      </td>
+      <td>
+        4 小时/月
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

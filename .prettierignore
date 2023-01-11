@@ -10,3 +10,4 @@ coverage
 .prettierignore
 
 packages/portal-solution
+packages/certificate

@@ -1,0 +1,73 @@
+@import "~cdn/utils/style/index.less";
+@import "~cdn/utils/style/legacy-variable.less";
+
+.comp-update-bill-modal {
+  p {
+    margin: 0;
+  }
+
+  .empty-bill-tip {
+    color: @icecream-red-3;
+  }
+
+  .bill-tip {
+    padding: @icecream-gap-md;
+    background-color: @icecream-color-grey-2;
+    font-size: @icecream-font-size-1;
+
+    &-title {
+      font-weight: 500;
+      margin: 0;
+    }
+
+    &-content {
+      color: #8C8C8C;
+    }
+  }
+
+  .price-footer-tip {
+    display: flex;
+    flex-direction: column;
+
+    .bill-month {
+      color: @icecream-color-grey-7;
+      font-size: @icecream-font-size-1;
+      text-align: right;
+    }
+
+    .price-unit {
+      font-size: @icecream-font-size-1;
+    }
+
+    .bill-content {
+      display: flex;
+
+      &-current {
+        display: flex;
+        align-items: center;
+
+        &-money {
+          color: @icecream-yellow-3;
+          font-size: @icecream-font-size-6;
+          &-value {
+            margin-left: 2px;
+          }
+        }
+      }
+
+      &-origin {
+        display: flex;
+        align-items: center;
+        margin-left: @icecream-gap-lg;
+
+        &-money {
+          color: #8C8C8C;
+          font-size: @icecream-font-size-6;
+          &-value {
+            margin-left: 2px;
+          }
+        }
+      }
+    }
+  }
+}

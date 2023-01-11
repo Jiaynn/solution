@@ -1,0 +1,43 @@
+@import "../common/style.less";
+
+.comp-time-referer-config {
+  .time-referer-tip {
+    padding: @icecream-gap-sm;
+    background-color: rgba(255,251,227,0.4);
+    border-radius: 2px;
+
+    &-title {
+      margin-bottom: @icecream-gap-sm;
+    }
+  }
+
+  .check-url {
+    .ant-form-item-label {
+      white-space: normal;
+      line-height: 22px;
+    }
+  }
+
+  .key-content {
+    background-color: @icecream-color-grey-2;
+    padding: @icecream-gap-md;
+
+    .key-row {
+      display: flex;
+      align-items: center;
+
+      &:not(:first-child) {
+        margin-top: @icecream-gap-md;
+      }
+
+      &-action {
+        display: inline-block;
+        margin-left: @icecream-gap-sm;
+      }
+    }
+
+    .key-operation {
+      margin-top: @icecream-gap-lg;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@import "../common/style.less";
+
+.domain-source-config-input-wrapper {
+  line-height: 22px;
+
+  .input-wrapper();
+
+  .sub-input-label {
+    min-width: 120px;
+  }
+
+  .source-config-input-content {
+    margin-top: 16px;
+    padding: 16px;
+    background-color: #f5f5f5;
+
+    .source-bucket-tip {
+      margin: 0;
+      color: #333;
+    }
+  }
+
+  .ips-input {
+    line-height: 1.42857143;
+    padding: 6px 12px;
+  }
+
+  .source-type-tab-tip-icon {
+    margin-left: .5em;
+    pointer-events: initial;
+  }
+
+  .domain-source-ips-input-wrapper,
+  .domain-source-host-input-wrapper {
+    .text-input-wrapper {
+      display: block;
+    }
+  }
+
+  .domain-test-source-host-input-wrapper {
+    .input-tip {
+      margin-left: 140px;
+    }
+  }
+}

@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly BucketDetails 1`] = `
+<div>
+  <div>
+    <div>
+      <span />
+      bucketName
+    </div>
+    <div>
+      <div>
+        <div
+          className="ant-spin-nested-loading"
+        >
+          <div>
+            <div
+              className="ant-spin ant-spin-spinning"
+            >
+              <span
+                className="ant-spin-dot ant-spin-dot-spin"
+              >
+                <i
+                  className="ant-spin-dot-item"
+                />
+                <i
+                  className="ant-spin-dot-item"
+                />
+                <i
+                  className="ant-spin-dot-item"
+                />
+                <i
+                  className="ant-spin-dot-item"
+                />
+              </span>
+            </div>
+          </div>
+          <div
+            className="ant-spin-container ant-spin-blur"
+          >
+            <span>
+              <span>
+                存储区域
+                ：
+              </span>
+              <span>
+                --
+              </span>
+            </span>
+          </div>
+        </div>
+        <div
+          className="ant-spin-nested-loading"
+        >
+          <div
+            className="ant-spin-container"
+          >
+            <span>
+              <span>
+                存储量
+                ：
+              </span>
+              <span>
+                0
+              </span>
+            </span>
+          </div>
+        </div>
+        <div
+          className="ant-spin-nested-loading"
+        >
+          <div
+            className="ant-spin-container"
+          >
+            <span>
+              <span>
+                对象数
+                ：
+              </span>
+              <span>
+                0
+              </span>
+            </span>
+          </div>
+        </div>
+        <div
+          className="ant-spin-nested-loading"
+        >
+          <div>
+            <div
+              className="ant-spin ant-spin-spinning"
+            >
+              <span
+                className="ant-spin-dot ant-spin-dot-spin"
+              >
+                <i
+                  className="ant-spin-dot-item"
+                />
+                <i
+                  className="ant-spin-dot-item"
+                />
+                <i
+                  className="ant-spin-dot-item"
+                />
+                <i
+                  className="ant-spin-dot-item"
+                />
+              </span>
+            </div>
+          </div>
+          <div
+            className="ant-spin-container ant-spin-blur"
+          >
+            <span>
+              <span>
+                访问控制
+                ：
+              </span>
+              <span>
+                --
+              </span>
+            </span>
+          </div>
+        </div>
+        <div
+          className="ant-spin-nested-loading"
+        >
+          <div>
+            <div
+              className="ant-spin ant-spin-spinning"
+            >
+              <span
+                className="ant-spin-dot ant-spin-dot-spin"
+              >
+                <i
+                  className="ant-spin-dot-item"
+                />
+                <i
+                  className="ant-spin-dot-item"
+                />
+                <i
+                  className="ant-spin-dot-item"
+                />
+                <i
+                  className="ant-spin-dot-item"
+                />
+              </span>
+            </div>
+          </div>
+          <div
+            className="ant-spin-container ant-spin-blur"
+          >
+            <span>
+              <span>
+                空间类型
+                ：
+              </span>
+              <span>
+                --
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-tabs ant-tabs-top ant-tabs-line"
+    onScroll={[Function]}
+    style={Object {}}
+  >
+    <div
+      className="mock-antd-scrollable-ink-tab-bar"
+    >
+       
+       
+    </div>
+    <div
+      onKeyDown={[Function]}
+      role="presentation"
+      style={
+        Object {
+          "height": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "width": 0,
+        }
+      }
+      tabIndex={0}
+    />
+    <div
+      className="ant-tabs-content ant-tabs-content-animated ant-tabs-top-content"
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    >
+      <div
+        aria-hidden="true"
+        className="ant-tabs-tabpane ant-tabs-tabpane-inactive"
+        role="tabpanel"
+      />
+    </div>
+    <div
+      onKeyDown={[Function]}
+      role="presentation"
+      style={
+        Object {
+          "height": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "width": 0,
+        }
+      }
+      tabIndex={0}
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="prime-item"
+>
+  <div
+    className="prime-item-level"
+  >
+    <span
+      className="prime-item-level-title"
+    >
+      旗舰版
+    </span>
+    <span
+      className="prime-item-level-status"
+    >
+      服务生效中 
+    </span>
+  </div>
+  <div
+    className="prime-item-text"
+  >
+    可用性保障
+  </div>
+  <p
+    className="prime-item-sla"
+  >
+    100
+    <span>
+      %
+    </span>
+  </p>
+  <p
+    className="prime-item-desc"
+  >
+    <span>
+      50
+       倍
+    </span>
+    不可用时间赔偿
+  </p>
+  <button
+    className="ant-btn prime-item-open"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      关闭服务
+    </span>
+  </button>
+</div>
+`;

@@ -1,0 +1,80 @@
+@import "~cdn/utils/style/index.less";
+@import "~cdn/utils/style/legacy-variable.less";
+
+.comp-domain-state {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+
+  .state-dot {
+    display: inline-block;
+    margin-right: 4px;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+
+    &-success {
+      background-color: @success-color;
+    }
+
+    &-processing {
+      background-color: @warning-color;
+    }
+
+    &-offlined {
+      background-color: @text-level-4-color;
+    }
+
+    &-failed,
+    &-frozen {
+      background-color: @danger-color;
+    }
+  }
+}
+
+.cname-tooltip {
+  .copy-cname {
+    display: inline-block;
+    margin-left: 4px;
+    color: @primary-color;
+
+    &:hover {
+      color: #27c5f5;
+    }
+  }
+}
+
+.comp-domain-cname {
+  text-align: center;
+  .cname-loading {
+    color: @icecream-color-grey-7;
+  }
+}
+
+.comp-domain-list {
+
+  .domain-createdAt,
+  .domain-name {
+    .monospaced();
+  }
+
+  .domain-operations {
+    .operation-item {
+      display: inline-block;
+      margin-right: 8px;
+      :last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .domain-oem-user {
+    display: inline-block;
+  }
+
+  .domain-oem-user,
+  .domain-name-col {
+    min-width: 120px;
+    word-break: break-all;
+  }
+}

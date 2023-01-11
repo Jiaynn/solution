@@ -1,0 +1,869 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section
+  className="content-block"
+>
+  <h4
+    className="content-block-title"
+  >
+    访问控制
+  </h4>
+  <div
+    className="ant-table-wrapper content-config-table"
+  >
+    <div
+      className="ant-spin-nested-loading"
+    >
+      <div
+        className="ant-spin-container"
+      >
+        <div
+          className="ant-table ant-table-default ant-table-scroll-position-left"
+          style={Object {}}
+        >
+          <div
+            className="ant-table-content"
+          >
+            <div
+              className="ant-table-body"
+              onScroll={[Function]}
+              onWheel={[Function]}
+              style={Object {}}
+            >
+              <table
+                className=""
+                style={Object {}}
+              >
+                <colgroup>
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "120px",
+                        "width": "120px",
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": undefined,
+                        "width": undefined,
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "240px",
+                        "width": "240px",
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "180px",
+                        "width": "180px",
+                      }
+                    }
+                  />
+                </colgroup>
+                <thead
+                  className="ant-table-thead"
+                >
+                  <tr
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            配置项
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            描述
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            当前配置
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            操作
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  className="ant-table-tbody"
+                >
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="Referer 防盗链"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      Referer 防盗链
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      配置 Request Header 中 referer 黑白名单，从而限制访问来源。
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-warning"
+                      >
+                        未开启
+                      </span>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="ant-btn"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span>
+                          修改配置
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="时间戳防盗链"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      时间戳防盗链
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <p>
+                        设置密钥，配合签名过期时间来控制资源内容的访问时限。
+                        <a
+                          href="https://support.qiniu.com/hc/kb/article/195128/"
+                          rel="noopener"
+                          target="_blank"
+                        >
+                          帮助文档
+                        </a>
+                      </p>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-warning"
+                      >
+                        未开启
+                      </span>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="ant-btn"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span>
+                          修改配置
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="回源鉴权"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      回源鉴权
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <p>
+                        配置回源验证策略，对 CDN 接收到的访问请求进行鉴权，适用于对防盗链有很高实时性要求的场景。
+                        <a
+                          href="https://developer.qiniu.com/fusion/manual/3930/back-to-the-source-authentication"
+                          rel="noopener"
+                          target="_blank"
+                        >
+                          帮助文档
+                        </a>
+                      </p>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-warning"
+                      >
+                        未开启
+                      </span>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="ant-btn"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span>
+                          修改配置
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="IP 黑白名单"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      IP 黑白名单
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <p>
+                        允许或者禁止某些 IP 或 IP 段的访问，帮助您解决恶意 IP 盗刷、攻击等问题。
+                      </p>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-warning"
+                      >
+                        未开启
+                      </span>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="ant-btn"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span>
+                          修改配置
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`renders correctly with loading: true 1`] = `
+<section
+  className="content-block"
+>
+  <h4
+    className="content-block-title"
+  >
+    访问控制
+  </h4>
+  <div
+    className="ant-table-wrapper content-config-table"
+  >
+    <div
+      className="ant-spin-nested-loading"
+    >
+      <div>
+        <div
+          className="ant-spin ant-spin-spinning ant-table-without-pagination ant-table-spin-holder"
+        >
+          <span
+            className="ant-spin-dot ant-spin-dot-spin"
+          >
+            <i
+              className="ant-spin-dot-item"
+            />
+            <i
+              className="ant-spin-dot-item"
+            />
+            <i
+              className="ant-spin-dot-item"
+            />
+            <i
+              className="ant-spin-dot-item"
+            />
+          </span>
+        </div>
+      </div>
+      <div
+        className="ant-spin-container ant-spin-blur"
+      >
+        <div
+          className="ant-table ant-table-default ant-table-scroll-position-left"
+          style={Object {}}
+        >
+          <div
+            className="ant-table-content"
+          >
+            <div
+              className="ant-table-body"
+              onScroll={[Function]}
+              onWheel={[Function]}
+              style={Object {}}
+            >
+              <table
+                className=""
+                style={Object {}}
+              >
+                <colgroup>
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "120px",
+                        "width": "120px",
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": undefined,
+                        "width": undefined,
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "240px",
+                        "width": "240px",
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": "180px",
+                        "width": "180px",
+                      }
+                    }
+                  />
+                </colgroup>
+                <thead
+                  className="ant-table-thead"
+                >
+                  <tr
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            配置项
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            描述
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            当前配置
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            操作
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  className="ant-table-tbody"
+                >
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="Referer 防盗链"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      Referer 防盗链
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      配置 Request Header 中 referer 黑白名单，从而限制访问来源。
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-warning"
+                      >
+                        未开启
+                      </span>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="ant-btn"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span>
+                          修改配置
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="时间戳防盗链"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      时间戳防盗链
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <p>
+                        设置密钥，配合签名过期时间来控制资源内容的访问时限。
+                        <a
+                          href="https://support.qiniu.com/hc/kb/article/195128/"
+                          rel="noopener"
+                          target="_blank"
+                        >
+                          帮助文档
+                        </a>
+                      </p>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-warning"
+                      >
+                        未开启
+                      </span>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="ant-btn"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span>
+                          修改配置
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="回源鉴权"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      回源鉴权
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <p>
+                        配置回源验证策略，对 CDN 接收到的访问请求进行鉴权，适用于对防盗链有很高实时性要求的场景。
+                        <a
+                          href="https://developer.qiniu.com/fusion/manual/3930/back-to-the-source-authentication"
+                          rel="noopener"
+                          target="_blank"
+                        >
+                          帮助文档
+                        </a>
+                      </p>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-warning"
+                      >
+                        未开启
+                      </span>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="ant-btn"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span>
+                          修改配置
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="IP 黑白名单"
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDoubleClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-row-indent indent-level-0"
+                        style={
+                          Object {
+                            "paddingLeft": "0px",
+                          }
+                        }
+                      />
+                      IP 黑白名单
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <p>
+                        允许或者禁止某些 IP 或 IP 段的访问，帮助您解决恶意 IP 盗刷、攻击等问题。
+                      </p>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="text-warning"
+                      >
+                        未开启
+                      </span>
+                    </td>
+                    <td
+                      className=""
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="ant-btn"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span>
+                          修改配置
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;

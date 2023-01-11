@@ -1,0 +1,480 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    className="mock-antd-spin"
+  >
+    <div
+      className="ant-row display-control"
+    >
+      <div
+        className="ant-col ant-col-16"
+      >
+        <div
+          className="ant-row"
+        >
+          <div
+            className="ant-col ant-col-6"
+          >
+            <div
+              className="comp-statistics-summary-item"
+            >
+              <div
+                className="summary-item-title"
+              >
+                资源访问总次数
+              </div>
+              <div
+                className="summary-item-value"
+              >
+                --
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-col ant-col-6"
+          >
+            <div
+              className="comp-statistics-summary-item"
+            >
+              <div
+                className="summary-item-title"
+              >
+                节省流量（估算）
+              </div>
+              <div
+                className="summary-item-value"
+              >
+                --
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-4 ant-col-offset-4"
+      >
+        <button
+          className="ant-btn"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          <i
+            aria-label="icon: download"
+            className="anticon anticon-download"
+          >
+            <svg
+              aria-hidden="true"
+              className=""
+              data-icon="download"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M505.7 661a8 8 0 0 0 12.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"
+              />
+            </svg>
+          </i>
+          <span>
+            导出 CSV
+          </span>
+        </button>
+      </div>
+    </div>
+    <div
+      className="chart"
+    >
+      <p>
+        {
+  "series": [],
+  "chartOptions": {
+    "tooltip": {
+      "shared": true,
+      "xDateFormat": "%Y-%m-%d %H:%M"
+    },
+    "xAxis": {
+      "type": "datetime"
+    },
+    "yAxis": [
+      {
+        "title": "节省流量",
+        "decimals": 0
+      },
+      {
+        "title": "访问次数",
+        "decimals": 0
+      }
+    ],
+    "height": 300,
+    "unit": [
+      [
+        {
+          "name": "B",
+          "threshold": 0
+        },
+        {
+          "name": "KB",
+          "threshold": 1024
+        },
+        {
+          "name": "MB",
+          "threshold": 1048576
+        },
+        {
+          "name": "GB",
+          "threshold": 1073741824
+        }
+      ],
+      [
+        {
+          "threshold": 0,
+          "name": "次"
+        },
+        {
+          "threshold": 1000,
+          "name": "千次"
+        }
+      ]
+    ],
+    "decimals": [
+      4,
+      3
+    ]
+  }
+}
+      </p>
+      <p
+        className="chart-tips"
+      >
+        注：瘦身文件单次访问的估算节点流量 = 单次访问流量 * (视频瘦身比 - 1)
+        <br />
+        瘦身文件节省的流量是根据日志分析估算得出的结果，仅供参考，不能作为计量核对的依据。
+      </p>
+    </div>
+  </div>
+  <div>
+    <div
+      className="table-title-wrapper"
+    >
+      <h3
+        className="title"
+      >
+        瘦身资源访问 TOP 1000
+      </h3>
+      <div
+        className="table-search-input"
+      >
+        <span
+          className="ant-input-search ant-input-affix-wrapper ant-input-affix-wrapper-sm"
+        >
+          <input
+            className="ant-input ant-input-sm"
+            disabled={false}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            size="small"
+            style={null}
+            type="text"
+            value=""
+          />
+          <span
+            className="ant-input-suffix"
+          >
+            <i
+              aria-label="icon: search"
+              className="anticon anticon-search ant-input-search-icon"
+              onClick={[Function]}
+              tabIndex={-1}
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="search"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
+                />
+              </svg>
+            </i>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div
+      className="ant-table-wrapper"
+    >
+      <div
+        className="mock-antd-spin"
+      >
+        <div
+          className="ant-table ant-table-default ant-table-empty ant-table-scroll-position-left"
+          style={Object {}}
+        >
+          <div
+            className="ant-table-content"
+          >
+            <div
+              className="ant-table-body"
+              onScroll={[Function]}
+              onWheel={[Function]}
+              style={Object {}}
+            >
+              <table
+                className=""
+                style={Object {}}
+              >
+                <colgroup>
+                  <col
+                    style={
+                      Object {
+                        "minWidth": undefined,
+                        "width": undefined,
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": undefined,
+                        "width": undefined,
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": undefined,
+                        "width": undefined,
+                      }
+                    }
+                  />
+                  <col
+                    style={
+                      Object {
+                        "minWidth": undefined,
+                        "width": undefined,
+                      }
+                    }
+                  />
+                </colgroup>
+                <thead
+                  className="ant-table-thead"
+                >
+                  <tr
+                    style={
+                      Object {
+                        "height": null,
+                      }
+                    }
+                  >
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            #
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className=""
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div>
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            URL
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          />
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className="ant-table-column-has-actions ant-table-column-has-sorters"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div
+                          className="ant-table-column-sorters"
+                        >
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            访问次数
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          >
+                            <div
+                              className="ant-table-column-sorter-inner ant-table-column-sorter-inner-full"
+                              title="Sort"
+                            >
+                              <i
+                                aria-label="icon: caret-up"
+                                className="anticon anticon-caret-up ant-table-column-sorter-up off"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className=""
+                                  data-icon="caret-up"
+                                  fill="currentColor"
+                                  focusable="false"
+                                  height="1em"
+                                  viewBox="0 0 1024 1024"
+                                  width="1em"
+                                >
+                                  <path
+                                    d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
+                                  />
+                                </svg>
+                              </i>
+                              <i
+                                aria-label="icon: caret-down"
+                                className="anticon anticon-caret-down ant-table-column-sorter-down off"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className=""
+                                  data-icon="caret-down"
+                                  fill="currentColor"
+                                  focusable="false"
+                                  height="1em"
+                                  viewBox="0 0 1024 1024"
+                                  width="1em"
+                                >
+                                  <path
+                                    d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
+                                  />
+                                </svg>
+                              </i>
+                            </div>
+                          </span>
+                        </div>
+                      </span>
+                    </th>
+                    <th
+                      className="ant-table-column-has-actions ant-table-column-has-sorters"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="ant-table-header-column"
+                      >
+                        <div
+                          className="ant-table-column-sorters"
+                        >
+                          <span
+                            className="ant-table-column-title"
+                          >
+                            估算节省流量
+                          </span>
+                          <span
+                            className="ant-table-column-sorter"
+                          >
+                            <div
+                              className="ant-table-column-sorter-inner ant-table-column-sorter-inner-full"
+                              title="Sort"
+                            >
+                              <i
+                                aria-label="icon: caret-up"
+                                className="anticon anticon-caret-up ant-table-column-sorter-up off"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className=""
+                                  data-icon="caret-up"
+                                  fill="currentColor"
+                                  focusable="false"
+                                  height="1em"
+                                  viewBox="0 0 1024 1024"
+                                  width="1em"
+                                >
+                                  <path
+                                    d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
+                                  />
+                                </svg>
+                              </i>
+                              <i
+                                aria-label="icon: caret-down"
+                                className="anticon anticon-caret-down ant-table-column-sorter-down off"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className=""
+                                  data-icon="caret-down"
+                                  fill="currentColor"
+                                  focusable="false"
+                                  height="1em"
+                                  viewBox="0 0 1024 1024"
+                                  width="1em"
+                                >
+                                  <path
+                                    d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
+                                  />
+                                </svg>
+                              </i>
+                            </div>
+                          </span>
+                        </div>
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  className="ant-table-tbody"
+                />
+              </table>
+            </div>
+            <div
+              className="ant-table-placeholder"
+            >
+              <div
+                className="ant-empty ant-empty-normal"
+              >
+                <div
+                  className="ant-empty-image"
+                >
+                  <img
+                    alt="No Data"
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCA2NCA0MSIgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxKSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxlbGxpcHNlIGZpbGw9IiNGNUY1RjUiIGN4PSIzMiIgY3k9IjMzIiByeD0iMzIiIHJ5PSI3Ii8+CiAgICA8ZyBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0iI0Q5RDlEOSI+CiAgICAgIDxwYXRoIGQ9Ik01NSAxMi43Nkw0NC44NTQgMS4yNThDNDQuMzY3LjQ3NCA0My42NTYgMCA0Mi45MDcgMEgyMS4wOTNjLS43NDkgMC0xLjQ2LjQ3NC0xLjk0NyAxLjI1N0w5IDEyLjc2MVYyMmg0NnYtOS4yNHoiLz4KICAgICAgPHBhdGggZD0iTTQxLjYxMyAxNS45MzFjMC0xLjYwNS45OTQtMi45MyAyLjIyNy0yLjkzMUg1NXYxOC4xMzdDNTUgMzMuMjYgNTMuNjggMzUgNTIuMDUgMzVoLTQwLjFDMTAuMzIgMzUgOSAzMy4yNTkgOSAzMS4xMzdWMTNoMTEuMTZjMS4yMzMgMCAyLjIyNyAxLjMyMyAyLjIyNyAyLjkyOHYuMDIyYzAgMS42MDUgMS4wMDUgMi45MDEgMi4yMzcgMi45MDFoMTQuNzUyYzEuMjMyIDAgMi4yMzctMS4zMDggMi4yMzctMi45MTN2LS4wMDd6IiBmaWxsPSIjRkFGQUZBIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K"
+                  />
+                </div>
+                <p
+                  className="ant-empty-description"
+                >
+                  No Data
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,94 @@
+/**
+ * @description style of preview
+ * @author duli <duli@qiniu.com>
+ */
+
+@import '~kodo/styles/variables.less';
+@import '~kodo/styles/font.less';
+@import '~kodo/styles/mixins.less';
+
+@border-color: #e5e5e5;
+
+.previewWrap {
+  width: 346px;
+  flex: 0 0 auto;
+
+  .preview {
+    position: sticky;
+    top: 0;
+    right: 0;
+    overflow-y: auto;
+
+    .section {
+      width: 325px;
+      margin-bottom: @page-content-gap-regular;
+
+      .head {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: @page-content-gap-regular / 2;
+      }
+
+      .title {
+        font-weight: 500;
+      }
+
+      .extra {
+        color: @icecream-primary-color;
+        cursor: pointer;
+
+        label {
+          cursor: pointer;
+        }
+
+        input {
+          display: none;
+        }
+      }
+    }
+
+    .code, .accessUrl {
+      border: 1px solid @border-color;
+      padding: 5px 10px;
+      .line-wrap();
+    }
+
+    .imagePreview {
+      width: 100%;
+      background-color: #eee;
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+      border: 1px solid @border-color;
+      // background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 0, transparent 75%, rgba(0, 0, 0, 0.25) 0), linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 0, transparent 75%, rgba(0, 0, 0, 0.25) 0);
+
+      img {
+        display: block;
+        max-width: 100%;
+        max-height: 300px;
+        margin: auto;
+      }
+
+      .desc {
+        text-align: center;
+        padding: 15px;
+        background-color: white;
+      }
+    }
+  }
+}
+
+.disabledBtn {
+  color: @icecream-disabled-color;
+  cursor: not-allowed !important;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  > * + * {
+    margin-left: @page-content-gap-regular;
+  }
+}

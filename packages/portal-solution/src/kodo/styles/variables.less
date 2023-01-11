@@ -1,0 +1,22 @@
+/**
+ * @file variables
+ * @author lizhifeng <lizhifeng@qiniu.com>
+ */
+
+// 注意：用这个，而不是直接用 portal-base 或 icecream
+// 但是 portal-base 里的变量定义得不好，尽量不用，默认直接基于 icecream
+// @import "~portal-base/common/utils/style/variables";
+
+@import "~react-icecream/style/less/variables/index.less";
+
+// font family backup
+// @base-font-family: "PingFangSC-Regular", "PingFangSC-Medium", "Microsoft YaHei", 'Alright Sans LP', "Avenir Next", "Helvetica Neue", Helvetica,Arial, "Source Han Sans SC", "Hiragino Sans GB", "WenQuanYi MicroHei", sans-serif;
+
+// 所有元素的1个单位的间距（用于一切尺寸单位）
+@page-content-gap: @icecream-padding-md;
+
+@page-content-gap-half: @icecream-gap-xs; // 0.5 gap
+@page-content-gap-small: @icecream-gap-sm; // 0.75 gap
+@page-content-gap-regular: @icecream-gap-lg; // 1.5 gap
+@page-content-gap-medium: 2 * @icecream-padding-md; // 2 gap
+@page-content-gap-large: 3 * @icecream-padding-md; // 3 gap

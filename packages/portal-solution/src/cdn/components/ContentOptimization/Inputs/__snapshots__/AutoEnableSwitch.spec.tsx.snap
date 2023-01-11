@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="ant-row ant-form-item"
+>
+  <div
+    className="ant-col ant-col-6 ant-form-item-label"
+  >
+    <label
+      className=""
+      htmlFor={null}
+      onClick={[Function]}
+      title="自动启用 CDN 分发"
+    >
+      自动启用 CDN 分发
+    </label>
+  </div>
+  <div
+    className="ant-col ant-col-16 ant-form-item-control-wrapper"
+  >
+    <div
+      className="ant-form-item-control"
+    >
+      <span
+        className="ant-form-item-children"
+      >
+        <button
+          aria-checked={true}
+          checked={true}
+          className="ant-switch ant-switch-checked"
+          defaultChecked={false}
+          onChange={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseUp={[Function]}
+          role="switch"
+          type="button"
+        >
+          <span
+            className="ant-switch-inner"
+          >
+            开启
+          </span>
+        </button>
+      </span>
+      <div
+        className="ant-form-extra"
+      >
+        <ol>
+          <li>
+            1. 开启后，当视频文件瘦身成功时会自动启用 CDN 分发，将瘦身后的视频文件预取到各 CDN 节点；
+          </li>
+          <li>
+            2. 通过本配置「已启用」CDN 分发的文件，可在「视频瘦身列表」的「操作」中单独停用。
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+`;

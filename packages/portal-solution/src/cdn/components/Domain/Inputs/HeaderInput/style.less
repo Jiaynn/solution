@@ -1,0 +1,41 @@
+@import "../common/style.less";
+
+.domain-response-header-input-wrapper {
+  .input-wrapper();
+
+  .respheader-table {
+    width: 100%;
+
+    .input-table();
+
+    .port-tip {
+      margin-left: .5em;
+    }
+
+    .sources-table-grid-key {
+      width: 250px;
+    }
+    .sources-table-grid-op {
+      width: 100px;
+    }
+    .sources-table-grid-value {
+      width: 200px;
+    }
+    .sources-table-grid-operation {
+      width: 40px;
+      text-align: center;
+
+      .icon-remove {
+        color: #e55c5c;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .add-tag {
+    background-color: @white;
+    padding: 0 8px;
+    margin-top: 10px
+  }
+
+}

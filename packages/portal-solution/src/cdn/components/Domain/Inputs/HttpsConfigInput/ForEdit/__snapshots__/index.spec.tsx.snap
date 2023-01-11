@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cert type input renders correctly 1`] = `
+<div
+  className="ant-radio-group ant-radio-group-outline"
+>
+  <label
+    className="ant-radio-wrapper"
+  >
+    <span
+      className="ant-radio"
+      style={Object {}}
+    >
+      <input
+        checked={false}
+        className="ant-radio-input"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="radio"
+        value="existed"
+      />
+      <span
+        className="ant-radio-inner"
+      />
+    </span>
+    <span>
+      已有证书
+    </span>
+  </label>
+  <label
+    className="ant-radio-wrapper"
+  >
+    <span
+      className="ant-radio"
+      style={Object {}}
+    >
+      <input
+        checked={false}
+        className="ant-radio-input"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="radio"
+        value="local"
+      />
+      <span
+        className="ant-radio-inner"
+      />
+    </span>
+    <span>
+      本地证书
+    </span>
+  </label>
+  <label
+    className="ant-radio-wrapper"
+  >
+    <span
+      className="ant-radio"
+      style={Object {}}
+    >
+      <input
+        checked={false}
+        className="ant-radio-input"
+        disabled={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="radio"
+        value="free"
+      />
+      <span
+        className="ant-radio-inner"
+      />
+    </span>
+    <span>
+      免费证书
+    </span>
+  </label>
+</div>
+`;
+
+exports[`protocol input renders correctly 1`] = `
+<button
+  aria-checked={true}
+  checked={true}
+  className="ant-switch ant-switch-checked"
+  defaultChecked={false}
+  onChange={[Function]}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onMouseUp={[Function]}
+  role="switch"
+  type="button"
+>
+  <span
+    className="ant-switch-inner"
+  >
+    开启
+  </span>
+</button>
+`;

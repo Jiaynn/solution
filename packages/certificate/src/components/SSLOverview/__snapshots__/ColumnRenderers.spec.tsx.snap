@@ -1,0 +1,312 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CertOperationsRenderer renders correctly with cert by order 1`] = `
+<span>
+  <button
+    className="ant-btn btn-href download ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      下载
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href certDetail ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      详情
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href rename ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      重命名
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href delete ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      删除
+    </span>
+  </button>
+</span>
+`;
+
+exports[`CertOperationsRenderer renders correctly with cert by upload 1`] = `
+<span>
+  <button
+    className="ant-btn btn-href download ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <a
+      href="/api/certificate/v1/ssl/5c3ff02ef9537d3d2a0000e9/download"
+      rel="noopener"
+      target="_blank"
+    >
+      下载
+    </a>
+  </button>
+  <button
+    className="ant-btn btn-href certDetail ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      详情
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href rename ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      重命名
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href delete ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      删除
+    </span>
+  </button>
+</span>
+`;
+
+exports[`not paid free order  OrderOperationsRenderer renders correctly 1`] = `
+<span>
+  <button
+    className="ant-btn btn-href pay ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      支付
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href detail ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      详情
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href close ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      关闭订单
+    </span>
+  </button>
+</span>
+`;
+
+exports[`not paid free order  StatusRenderer renders correctly 1`] = `
+<div>
+  <span
+    className="status-paying"
+  >
+    待支付
+  </span>
+</div>
+`;
+
+exports[`not paid order for OrderOperationsRenderer renders correctly 1`] = `
+<span>
+  <button
+    className="ant-btn btn-href pay ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      支付
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href detail ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      详情
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href close ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      关闭订单
+    </span>
+  </button>
+</span>
+`;
+
+exports[`not paid order for StatusRenderer renders correctly 1`] = `
+<div>
+  <span
+    className="status-paying"
+  >
+    待支付
+  </span>
+</div>
+`;
+
+exports[`order pending OrderOperationsRenderer renders correctly 1`] = `
+<span>
+  <button
+    className="ant-btn btn-href confirmation ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      上传确认函
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href detail ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      详情
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href close ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      关闭订单
+    </span>
+  </button>
+</span>
+`;
+
+exports[`order pending OrderOperationsRenderer renders correctly 2`] = `
+<span>
+  <button
+    className="ant-btn btn-href detail ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      详情
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href close ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      关闭订单
+    </span>
+  </button>
+</span>
+`;
+
+exports[`order pending StatusRenderer renders correctly 1`] = `
+<div>
+  <span
+    className="status-pending"
+  >
+    待确认
+  </span>
+</div>
+`;
+
+exports[`order pending StatusRenderer renders correctly 2`] = `
+<div>
+  <span
+    className="status-pending"
+  >
+    待确认
+  </span>
+  <i
+    aria-label="icon: info-circle"
+    className="anticon anticon-info-circle status-icon"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <svg
+      aria-hidden="true"
+      className=""
+      data-icon="info-circle"
+      fill="currentColor"
+      focusable="false"
+      height="1em"
+      viewBox="64 64 896 896"
+      width="1em"
+    >
+      <path
+        d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+      />
+      <path
+        d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+      />
+    </svg>
+  </i>
+</div>
+`;
+
+exports[`to be completed order  OrderOperationsRenderer renders correctly 1`] = `
+<span>
+  <button
+    className="ant-btn btn-href fixup ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      补全
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href detail ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      详情
+    </span>
+  </button>
+  <button
+    className="ant-btn btn-href close ant-btn-link"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      关闭订单
+    </span>
+  </button>
+</span>
+`;
+
+exports[`to be completed order  StatusRenderer renders correctly 1`] = `
+<div>
+  <span
+    className="status-paid"
+  >
+    待补全
+  </span>
+</div>
+`;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>error-fill</title>
+    <desc>Created with Sketch.</desc>
+    <g id="预览页面" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-156.000000, -209.000000)">
+            <g id="error-fill" transform="translate(156.000000, 209.000000)">
+                <circle id="Oval-Copy" stroke="#D94B37" fill="#D94B37" cx="8" cy="8" r="7.5"></circle>
+                <path d="M11,5 L5,11" id="Path-25-Copy" stroke="#FFFFFF"></path>
+                <path d="M11,5 L5,11" id="Path-25-Copy-2" stroke="#FFFFFF" transform="translate(8.000000, 8.000000) scale(-1, 1) translate(-8.000000, -8.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

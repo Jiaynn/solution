@@ -1,0 +1,43 @@
+.comp-alarm-callback {
+  color: #333;
+
+  .callback-config {
+    &-label {
+      margin-right: 16px;
+      font-weight: 500;
+    }
+
+    &-uri {
+      margin-right: 12px;
+    }
+
+    &-btn {
+      margin-right: 8px;
+    }
+    // 覆盖全局的配置
+    .ant-btn + .ant-btn {
+      margin-left: 0;
+    }
+  }
+
+  &-apply {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 120px;
+    color: #333;
+
+    .apply-title {
+      font-size: 24px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .apply-submit,
+    .apply-tips {
+      margin-top: 48px;
+      text-align: center;
+    }
+  }
+}

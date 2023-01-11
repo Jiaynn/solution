@@ -1,0 +1,1104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with empty referer values 1`] = `
+<div
+  className="domain-referer-config-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      aria-checked={true}
+      checked={true}
+      className="ant-switch ant-switch-checked"
+      defaultChecked={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      role="switch"
+      type="button"
+    >
+      <span
+        className="ant-switch-inner"
+      >
+        开启
+      </span>
+    </button>
+  </div>
+  <div>
+    <div
+      className="line"
+    >
+      <div
+        className="ant-radio-group ant-radio-group-outline"
+      >
+        <label
+          className="ant-radio-wrapper ant-radio-wrapper-checked"
+        >
+          <span
+            className="ant-radio ant-radio-checked"
+            style={Object {}}
+          >
+            <input
+              checked={true}
+              className="ant-radio-input"
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="white"
+            />
+            <span
+              className="ant-radio-inner"
+            />
+          </span>
+          <span>
+            白名单
+          </span>
+        </label>
+        <label
+          className="ant-radio-wrapper"
+        >
+          <span
+            className="ant-radio"
+            style={Object {}}
+          >
+            <input
+              checked={false}
+              className="ant-radio-input"
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="black"
+            />
+            <span
+              className="ant-radio-inner"
+            />
+          </span>
+          <span>
+            黑名单
+          </span>
+        </label>
+      </div>
+    </div>
+    <div
+      className="line help"
+    >
+      请输入您
+      白名单
+      访问的来源域名，编辑域名时注意以下规则：
+      <ul
+        className="referer-value-rules"
+      >
+        <li>
+          防盗链配置将不再自动同步给存储源站，如有需要请单独在存储页面配置。
+        </li>
+        <li>
+          域名之间请回车换行，无需填写 http://，https://；
+        </li>
+        <li>
+          支持域名前使用通配符 *：*.example.com 可用于指代所有 example.com 下的多级子域名，比如 a.example.com 等，
+          <span
+            className="highlight"
+          >
+            但是不包括 example.com，如需要请额外填写一条 example.com
+          </span>
+          ；
+        </li>
+        <li>
+          防盗链个数设置不能超过 
+          100
+           个；
+        </li>
+        <li>
+          黑白名单生效时间为 1 小时，在此期间不能修改其它配置；
+        </li>
+        <li>
+          不支持 IP，不支持端口号。
+        </li>
+      </ul>
+    </div>
+    <div
+      className="line"
+    >
+      <div
+        className="text-input-wrapper"
+      >
+        <textarea
+          className="ant-input"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="example.com
+*.example.com"
+          style={Object {}}
+          value=""
+        />
+      </div>
+    </div>
+    <h4
+      className="line"
+    >
+      是否允许空 Referer
+      <i
+        aria-label="icon: info-circle"
+        className="anticon anticon-info-circle tip-icon"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "color": "#999",
+            "cursor": "pointer",
+            "fontSize": "14px",
+            "fontWeight": "normal",
+            "marginLeft": "4px",
+            "verticalAlign": "-0.125em",
+          }
+        }
+      >
+        <svg
+          aria-hidden="true"
+          className=""
+          data-icon="info-circle"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+          />
+          <path
+            d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+          />
+        </svg>
+      </i>
+      。
+      <a
+        href="https://support.qiniu.com/hc/kb/article/112798/"
+        rel="noopener"
+        target="_blank"
+      >
+        相关文档
+      </a>
+    </h4>
+    <p
+      className="line"
+    >
+      <button
+        aria-checked={false}
+        checked={false}
+        className="ant-switch"
+        defaultChecked={false}
+        onChange={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseUp={[Function]}
+        role="switch"
+        type="button"
+      >
+        <span
+          className="ant-switch-inner"
+        >
+          否
+        </span>
+      </button>
+    </p>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with error 1`] = `
+<div
+  className="domain-referer-config-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      aria-checked={true}
+      checked={true}
+      className="ant-switch ant-switch-checked"
+      defaultChecked={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      role="switch"
+      type="button"
+    >
+      <span
+        className="ant-switch-inner"
+      >
+        开启
+      </span>
+    </button>
+  </div>
+  <div>
+    <div
+      className="line"
+    >
+      <div
+        className="ant-radio-group ant-radio-group-outline"
+      >
+        <label
+          className="ant-radio-wrapper ant-radio-wrapper-checked"
+        >
+          <span
+            className="ant-radio ant-radio-checked"
+            style={Object {}}
+          >
+            <input
+              checked={true}
+              className="ant-radio-input"
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="white"
+            />
+            <span
+              className="ant-radio-inner"
+            />
+          </span>
+          <span>
+            白名单
+          </span>
+        </label>
+        <label
+          className="ant-radio-wrapper"
+        >
+          <span
+            className="ant-radio"
+            style={Object {}}
+          >
+            <input
+              checked={false}
+              className="ant-radio-input"
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="black"
+            />
+            <span
+              className="ant-radio-inner"
+            />
+          </span>
+          <span>
+            黑名单
+          </span>
+        </label>
+      </div>
+    </div>
+    <div
+      className="line help"
+    >
+      请输入您
+      白名单
+      访问的来源域名，编辑域名时注意以下规则：
+      <ul
+        className="referer-value-rules"
+      >
+        <li>
+          防盗链配置将不再自动同步给存储源站，如有需要请单独在存储页面配置。
+        </li>
+        <li>
+          域名之间请回车换行，无需填写 http://，https://；
+        </li>
+        <li>
+          支持域名前使用通配符 *：*.example.com 可用于指代所有 example.com 下的多级子域名，比如 a.example.com 等，
+          <span
+            className="highlight"
+          >
+            但是不包括 example.com，如需要请额外填写一条 example.com
+          </span>
+          ；
+        </li>
+        <li>
+          防盗链个数设置不能超过 
+          100
+           个；
+        </li>
+        <li>
+          黑白名单生效时间为 1 小时，在此期间不能修改其它配置；
+        </li>
+        <li>
+          不支持 IP，不支持端口号。
+        </li>
+      </ul>
+    </div>
+    <div
+      className="line"
+    >
+      <div
+        className="text-input-wrapper"
+      >
+        <textarea
+          className="ant-input"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="example.com
+*.example.com"
+          style={Object {}}
+          value=""
+        />
+      </div>
+      <span
+        className="error-wrapper"
+        style={
+          Object {
+            "color": "#e55c5c",
+            "display": "block",
+            "lineHeight": "20px",
+            "marginTop": "8px",
+            "verticalAlign": "middle",
+          }
+        }
+      >
+        test error
+      </span>
+    </div>
+    <h4
+      className="line"
+    >
+      是否允许空 Referer
+      <i
+        aria-label="icon: info-circle"
+        className="anticon anticon-info-circle tip-icon"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "color": "#999",
+            "cursor": "pointer",
+            "fontSize": "14px",
+            "fontWeight": "normal",
+            "marginLeft": "4px",
+            "verticalAlign": "-0.125em",
+          }
+        }
+      >
+        <svg
+          aria-hidden="true"
+          className=""
+          data-icon="info-circle"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+          />
+          <path
+            d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+          />
+        </svg>
+      </i>
+      。
+      <a
+        href="https://support.qiniu.com/hc/kb/article/112798/"
+        rel="noopener"
+        target="_blank"
+      >
+        相关文档
+      </a>
+    </h4>
+    <p
+      className="line"
+    >
+      <button
+        aria-checked={false}
+        checked={false}
+        className="ant-switch"
+        defaultChecked={false}
+        onChange={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseUp={[Function]}
+        role="switch"
+        type="button"
+      >
+        <span
+          className="ant-switch-inner"
+        >
+          否
+        </span>
+      </button>
+    </p>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with nullReferer enabled 1`] = `
+<div
+  className="domain-referer-config-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      aria-checked={true}
+      checked={true}
+      className="ant-switch ant-switch-checked"
+      defaultChecked={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      role="switch"
+      type="button"
+    >
+      <span
+        className="ant-switch-inner"
+      >
+        开启
+      </span>
+    </button>
+  </div>
+  <div>
+    <div
+      className="line"
+    >
+      <div
+        className="ant-radio-group ant-radio-group-outline"
+      >
+        <label
+          className="ant-radio-wrapper ant-radio-wrapper-checked"
+        >
+          <span
+            className="ant-radio ant-radio-checked"
+            style={Object {}}
+          >
+            <input
+              checked={true}
+              className="ant-radio-input"
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="white"
+            />
+            <span
+              className="ant-radio-inner"
+            />
+          </span>
+          <span>
+            白名单
+          </span>
+        </label>
+        <label
+          className="ant-radio-wrapper"
+        >
+          <span
+            className="ant-radio"
+            style={Object {}}
+          >
+            <input
+              checked={false}
+              className="ant-radio-input"
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="black"
+            />
+            <span
+              className="ant-radio-inner"
+            />
+          </span>
+          <span>
+            黑名单
+          </span>
+        </label>
+      </div>
+    </div>
+    <div
+      className="line help"
+    >
+      请输入您
+      白名单
+      访问的来源域名，编辑域名时注意以下规则：
+      <ul
+        className="referer-value-rules"
+      >
+        <li>
+          防盗链配置将不再自动同步给存储源站，如有需要请单独在存储页面配置。
+        </li>
+        <li>
+          域名之间请回车换行，无需填写 http://，https://；
+        </li>
+        <li>
+          支持域名前使用通配符 *：*.example.com 可用于指代所有 example.com 下的多级子域名，比如 a.example.com 等，
+          <span
+            className="highlight"
+          >
+            但是不包括 example.com，如需要请额外填写一条 example.com
+          </span>
+          ；
+        </li>
+        <li>
+          防盗链个数设置不能超过 
+          100
+           个；
+        </li>
+        <li>
+          黑白名单生效时间为 1 小时，在此期间不能修改其它配置；
+        </li>
+        <li>
+          不支持 IP，不支持端口号。
+        </li>
+      </ul>
+    </div>
+    <div
+      className="line"
+    >
+      <div
+        className="text-input-wrapper"
+      >
+        <textarea
+          className="ant-input"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="example.com
+*.example.com"
+          style={Object {}}
+          value=""
+        />
+      </div>
+    </div>
+    <h4
+      className="line"
+    >
+      是否允许空 Referer
+      <i
+        aria-label="icon: info-circle"
+        className="anticon anticon-info-circle tip-icon"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "color": "#999",
+            "cursor": "pointer",
+            "fontSize": "14px",
+            "fontWeight": "normal",
+            "marginLeft": "4px",
+            "verticalAlign": "-0.125em",
+          }
+        }
+      >
+        <svg
+          aria-hidden="true"
+          className=""
+          data-icon="info-circle"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+          />
+          <path
+            d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+          />
+        </svg>
+      </i>
+      。
+      <a
+        href="https://support.qiniu.com/hc/kb/article/112798/"
+        rel="noopener"
+        target="_blank"
+      >
+        相关文档
+      </a>
+    </h4>
+    <p
+      className="line"
+    >
+      <button
+        aria-checked={true}
+        checked={true}
+        className="ant-switch ant-switch-checked"
+        defaultChecked={false}
+        onChange={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseUp={[Function]}
+        role="switch"
+        type="button"
+      >
+        <span
+          className="ant-switch-inner"
+        >
+          是
+        </span>
+      </button>
+    </p>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with referer disabled 1`] = `
+<div
+  className="domain-referer-config-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      aria-checked={false}
+      checked={false}
+      className="ant-switch"
+      defaultChecked={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      role="switch"
+      type="button"
+    >
+      <span
+        className="ant-switch-inner"
+      >
+        关闭
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with referer type black 1`] = `
+<div
+  className="domain-referer-config-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      aria-checked={true}
+      checked={true}
+      className="ant-switch ant-switch-checked"
+      defaultChecked={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      role="switch"
+      type="button"
+    >
+      <span
+        className="ant-switch-inner"
+      >
+        开启
+      </span>
+    </button>
+  </div>
+  <div>
+    <div
+      className="line"
+    >
+      <div
+        className="ant-radio-group ant-radio-group-outline"
+      >
+        <label
+          className="ant-radio-wrapper"
+        >
+          <span
+            className="ant-radio"
+            style={Object {}}
+          >
+            <input
+              checked={false}
+              className="ant-radio-input"
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="white"
+            />
+            <span
+              className="ant-radio-inner"
+            />
+          </span>
+          <span>
+            白名单
+          </span>
+        </label>
+        <label
+          className="ant-radio-wrapper ant-radio-wrapper-checked"
+        >
+          <span
+            className="ant-radio ant-radio-checked"
+            style={Object {}}
+          >
+            <input
+              checked={true}
+              className="ant-radio-input"
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="black"
+            />
+            <span
+              className="ant-radio-inner"
+            />
+          </span>
+          <span>
+            黑名单
+          </span>
+        </label>
+      </div>
+    </div>
+    <div
+      className="line help"
+    >
+      请输入您
+      黑名单
+      访问的来源域名，编辑域名时注意以下规则：
+      <ul
+        className="referer-value-rules"
+      >
+        <li>
+          防盗链配置将不再自动同步给存储源站，如有需要请单独在存储页面配置。
+        </li>
+        <li>
+          域名之间请回车换行，无需填写 http://，https://；
+        </li>
+        <li>
+          支持域名前使用通配符 *：*.example.com 可用于指代所有 example.com 下的多级子域名，比如 a.example.com 等，
+          <span
+            className="highlight"
+          >
+            但是不包括 example.com，如需要请额外填写一条 example.com
+          </span>
+          ；
+        </li>
+        <li>
+          防盗链个数设置不能超过 
+          100
+           个；
+        </li>
+        <li>
+          黑白名单生效时间为 1 小时，在此期间不能修改其它配置；
+        </li>
+        <li>
+          不支持 IP，不支持端口号。
+        </li>
+      </ul>
+    </div>
+    <div
+      className="line"
+    >
+      <div
+        className="text-input-wrapper"
+      >
+        <textarea
+          className="ant-input"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="example.com
+*.example.com"
+          style={Object {}}
+          value="b.com"
+        />
+      </div>
+    </div>
+    <h4
+      className="line"
+    >
+      是否允许空 Referer
+      <i
+        aria-label="icon: info-circle"
+        className="anticon anticon-info-circle tip-icon"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "color": "#999",
+            "cursor": "pointer",
+            "fontSize": "14px",
+            "fontWeight": "normal",
+            "marginLeft": "4px",
+            "verticalAlign": "-0.125em",
+          }
+        }
+      >
+        <svg
+          aria-hidden="true"
+          className=""
+          data-icon="info-circle"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+          />
+          <path
+            d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+          />
+        </svg>
+      </i>
+      。
+      <a
+        href="https://support.qiniu.com/hc/kb/article/112798/"
+        rel="noopener"
+        target="_blank"
+      >
+        相关文档
+      </a>
+    </h4>
+    <p
+      className="line"
+    >
+      <button
+        aria-checked={false}
+        checked={false}
+        className="ant-switch"
+        defaultChecked={false}
+        onChange={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseUp={[Function]}
+        role="switch"
+        type="button"
+      >
+        <span
+          className="ant-switch-inner"
+        >
+          否
+        </span>
+      </button>
+    </p>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with referer type white 1`] = `
+<div
+  className="domain-referer-config-input-wrapper"
+>
+  <div
+    className="line"
+  >
+    <button
+      aria-checked={true}
+      checked={true}
+      className="ant-switch ant-switch-checked"
+      defaultChecked={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      role="switch"
+      type="button"
+    >
+      <span
+        className="ant-switch-inner"
+      >
+        开启
+      </span>
+    </button>
+  </div>
+  <div>
+    <div
+      className="line"
+    >
+      <div
+        className="ant-radio-group ant-radio-group-outline"
+      >
+        <label
+          className="ant-radio-wrapper ant-radio-wrapper-checked"
+        >
+          <span
+            className="ant-radio ant-radio-checked"
+            style={Object {}}
+          >
+            <input
+              checked={true}
+              className="ant-radio-input"
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="white"
+            />
+            <span
+              className="ant-radio-inner"
+            />
+          </span>
+          <span>
+            白名单
+          </span>
+        </label>
+        <label
+          className="ant-radio-wrapper"
+        >
+          <span
+            className="ant-radio"
+            style={Object {}}
+          >
+            <input
+              checked={false}
+              className="ant-radio-input"
+              disabled={false}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="black"
+            />
+            <span
+              className="ant-radio-inner"
+            />
+          </span>
+          <span>
+            黑名单
+          </span>
+        </label>
+      </div>
+    </div>
+    <div
+      className="line help"
+    >
+      请输入您
+      白名单
+      访问的来源域名，编辑域名时注意以下规则：
+      <ul
+        className="referer-value-rules"
+      >
+        <li>
+          防盗链配置将不再自动同步给存储源站，如有需要请单独在存储页面配置。
+        </li>
+        <li>
+          域名之间请回车换行，无需填写 http://，https://；
+        </li>
+        <li>
+          支持域名前使用通配符 *：*.example.com 可用于指代所有 example.com 下的多级子域名，比如 a.example.com 等，
+          <span
+            className="highlight"
+          >
+            但是不包括 example.com，如需要请额外填写一条 example.com
+          </span>
+          ；
+        </li>
+        <li>
+          防盗链个数设置不能超过 
+          100
+           个；
+        </li>
+        <li>
+          黑白名单生效时间为 1 小时，在此期间不能修改其它配置；
+        </li>
+        <li>
+          不支持 IP，不支持端口号。
+        </li>
+      </ul>
+    </div>
+    <div
+      className="line"
+    >
+      <div
+        className="text-input-wrapper"
+      >
+        <textarea
+          className="ant-input"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="example.com
+*.example.com"
+          style={Object {}}
+          value="a.com"
+        />
+      </div>
+    </div>
+    <h4
+      className="line"
+    >
+      是否允许空 Referer
+      <i
+        aria-label="icon: info-circle"
+        className="anticon anticon-info-circle tip-icon"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "color": "#999",
+            "cursor": "pointer",
+            "fontSize": "14px",
+            "fontWeight": "normal",
+            "marginLeft": "4px",
+            "verticalAlign": "-0.125em",
+          }
+        }
+      >
+        <svg
+          aria-hidden="true"
+          className=""
+          data-icon="info-circle"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+          />
+          <path
+            d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"
+          />
+        </svg>
+      </i>
+      。
+      <a
+        href="https://support.qiniu.com/hc/kb/article/112798/"
+        rel="noopener"
+        target="_blank"
+      >
+        相关文档
+      </a>
+    </h4>
+    <p
+      className="line"
+    >
+      <button
+        aria-checked={false}
+        checked={false}
+        className="ant-switch"
+        defaultChecked={false}
+        onChange={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onMouseUp={[Function]}
+        role="switch"
+        type="button"
+      >
+        <span
+          className="ant-switch-inner"
+        >
+          否
+        </span>
+      </button>
+    </p>
+  </div>
+</div>
+`;

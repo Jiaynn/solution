@@ -1,0 +1,64 @@
+/**
+ * @description style of image style drawer
+ * @author duli <duli@qiniu.com>
+ */
+
+@import "~react-icecream-2/dist/utils.less";
+
+.autoSaveTip {
+  display: block;
+  box-sizing: border-box;
+
+  margin: 4px 0;
+  color: #8c8c8c;
+  font-size: @icecream-font-size-1;
+  line-height: @icecream-line-height;
+}
+
+.persistence {
+  margin-top: @icecream-gap-lg;
+  margin-bottom: 0 !important;
+}
+
+.persistenceTip {
+  display: block;
+  box-sizing: border-box;
+  word-break: break-all;
+
+  color: #8c8c8c;
+  line-height: @icecream-line-height;
+  font-size: @icecream-font-size-1;
+}
+
+.persistenceSwitch {
+  width: 100%;
+}
+
+.cardGap {
+  margin-top: @icecream-gap-lg;
+}
+
+.rowInputGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > *+* {
+    margin-left: @icecream-gap-md;
+  }
+}
+
+.horizontalAlignmentLabel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  :last-child {
+    margin-left: @icecream-gap-xs;
+    cursor: pointer;
+  }
+}
+
+.h256Tip {
+  color: @icecream-warning-color;  
+}

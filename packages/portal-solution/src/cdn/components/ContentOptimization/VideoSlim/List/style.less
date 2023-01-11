@@ -1,0 +1,72 @@
+@import '~cdn/utils/style/index.less';
+@import '~cdn/utils/style/legacy-variable.less';
+
+.comp-video-slim-list {
+  .list-header-wrapper {
+    line-height: 40px;
+    > * {
+      display: inline-block;
+    }
+
+    .chart-link {
+      margin-left: 20px;
+      .anticon {
+        margin-right: 6px;
+      }
+    }
+  }
+
+  .operations-wrapper {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+
+    .video-slim-task-filter {
+      display: flex;
+      justify-content: space-between;
+
+      .ant-input-affix-wrapper {
+        margin: 0 10px;
+      }
+      .url-input {
+        min-width: 300px;
+        height: 32px; // icecream 设置的组件大小问题，这里特别处理下
+      }
+    }
+  }
+
+  .state-icon {
+    margin-left: 4px;
+  }
+
+  .operations-cell {
+    .link-btn {
+      margin-left: 8px;
+      &:first-of-type {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.status-color {
+  &-success {
+    color: @success-color;
+  }
+  &-failed {
+    color: @text-level-4-color;
+  }
+}
+
+.batch-operations {
+  min-width: 100px;
+  text-align: center;
+  li {
+    line-height: 24px;
+    cursor: pointer;
+  }
+}
+
+.confirm-content-text {
+  word-break: break-all;
+}

@@ -1,0 +1,60 @@
+@import "~cdn/utils/style/index.less";
+@import "~cdn/utils/style/legacy-variable.less";
+
+.statistics-search-wrapper {
+  padding: 16px 0 6px;
+  line-height: 40px;
+  background-color: @icecream-color-grey-3;
+  display: flex;
+
+  .filter-items {
+    flex: 1
+  }
+
+  .filter-button {
+    padding: 0 20px 0 10px;
+
+    .search-submit {
+      margin: 0;
+    }
+  }
+
+  &::after {
+    content: '.';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .search-control {
+    display: inline-block;
+    margin-left: 20px;
+    margin-bottom: 10px;
+
+    .search-options-error {
+      color: @danger-color;
+      font-size: @icecream-font-size-sm;
+      line-height: 1;
+      margin-top: 10px;
+      text-align: center;
+    }
+  }
+
+  .search-option {
+    > div {
+      display: inline-block;
+    }
+    .search-option-label {
+      margin-right: 10px;
+
+      .info-icon {
+        margin-right: 5px;
+      }
+    }
+    .search-option-item {
+      max-height: 40px;
+      vertical-align: middle;
+    }
+  }
+}

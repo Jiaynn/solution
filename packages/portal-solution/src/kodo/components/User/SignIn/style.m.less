@@ -1,0 +1,100 @@
+/**
+ * @file 私有云登录
+ * @author JinXM
+ */
+
+// from: https://github.com/qbox/rmb-web/blob/master/portal-platform/src/components/Signin/index.less
+@import "~kodo/styles/variables.less";
+
+.container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.formWrap {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .alert {
+    margin-bottom: @page-content-gap-regular;
+
+    color: #fa8c16; // TODO：升级到 icecream-2 后换成 2 的 alert 组件去掉
+    background: #fef3e7; // TODO：升级到 icecream-2 后换成 2 的 alert 组件去掉
+  }
+
+  .form {
+    display: table-cell;
+    vertical-align: middle;
+
+    width: 300px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+
+    .icon {
+      color: @icecream-grey-5;
+    }
+
+    .formButton {
+      width: 100%;
+    }
+
+    .captcha {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .input {
+        width: 60%;
+      }
+
+      .image {
+        width: 82px;
+        height: 32px;
+        border: 1px solid @icecream-border-color-base;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .formGroup {
+    margin-bottom: 15px;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e6e9f0;
+  padding: 0 15px;
+  height: 51px;
+  background-color: white;
+
+  .logo {
+    margin-right: .5rem;
+    height: 100%;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+
+  .copyright {
+    width: 100%;
+    padding: 15px 10px 25px 10px;
+    text-align: center;
+    color: #8f9bb2;
+  }
+}

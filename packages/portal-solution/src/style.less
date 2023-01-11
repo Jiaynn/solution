@@ -1,8 +1,131 @@
 /**
  * @file global style
- * @author lizhifeng <lizhifeng@qiniu.com>
+ * @author nighca <nighca@live.cn>
  */
 
-@import "~portal-base/common/utils/style/global.less"; // 可以按需引入 global 里的 reset 等东西
+@import "~kodo/styles/font.less";
+@import "~kodo/styles/variables.less";
 
-@import "~utils/style/common.less";
+@font-face {
+  font-family: 'Alright Sans LP';
+  src: url('/static/fonts/alrightsanslp-regular-1v7-webfont.eot');
+  src: url('/static/fonts/alrightsanslp-regular-1v7-webfont.eot?#iefix') format('embedded-opentype'),
+  url('/static/fonts/alrightsanslp-regular-1v7-webfont.woff2') format('woff2'),
+  url('/static/fonts/alrightsanslp-regular-1v7-webfont.woff') format('woff'),
+  url('/static/fonts/alrightsanslp-regular-1v7-webfont.ttf') format('truetype'),
+  url('/static/fonts/alrightsanslp-regular-1v7-webfont.svg') format('svg');
+}
+
+@font-face {
+  font-family: 'Alright Sans LP';
+  src: url('/static/fonts/alrightsanslp-medium-1v7-webfont.eot');
+  src: url('/static/fonts/alrightsanslp-medium-1v7-webfont.eot?#iefix') format('embedded-opentype'),
+  url('/static/fonts/alrightsanslp-medium-1v7-webfont.woff2') format('woff2'),
+  url('/static/fonts/alrightsanslp-medium-1v7-webfont.woff') format('woff'),
+  url('/static/fonts/alrightsanslp-medium-1v7-webfont.ttf') format('truetype'),
+  url('/static/fonts/alrightsanslp-medium-1v7-webfont.svg') format('svg');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Alright Sans LP';
+  src: url('/static/fonts/alrightsanslp-bold-1v7-webfont.eot');
+  src: url('/static/fonts/alrightsanslp-bold-1v7-webfont.eot?#iefix') format('embedded-opentype'),
+  url('/static/fonts/alrightsanslp-bold-1v7-webfont.woff2') format('woff2'),
+  url('/static/fonts/alrightsanslp-bold-1v7-webfont.woff') format('woff'),
+  url('/static/fonts/alrightsanslp-bold-1v7-webfont.ttf') format('truetype'),
+  url('/static/fonts/alrightsanslp-bold-1v7-webfont.svg') format('svg');
+  font-weight: 600;
+}
+
+.main-view-wrapper {
+  overflow: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  // 解决 -ms-overflow-style: scrollbar; 引起的在 ie 下的双滚动条
+  overflow: hidden;
+}
+
+body {
+  font-size: @icecream-font-size-2;
+}
+
+p {
+  font-size: @icecream-font-size-2;
+  line-height: 28px;
+  margin: 15px 0;
+}
+
+img {
+  vertical-align: middle;
+}
+
+// ================
+// HACK: @huangbinjie
+
+.ant-btn {
+  margin-right: @page-content-gap;
+}
+
+.ant-btn:last-child {
+  margin-right: 0;
+}
+
+.ant-table-wrapper {
+  .ant-btn {
+    margin-right: @page-content-gap-half;
+  }
+
+  .ant-btn:last-child {
+    margin-right: 0;
+  }
+}
+
+// 修复 icecream-1 select 在 disabled 时字体颜色不正确的问题
+.ant-select-disabled {
+  .ant-select-selection-selected-value {
+    color: @icecream-grey-5 !important;
+  }
+}
+
+// ================
+// HACK: @surmon
+// TODO: 此处样式是为了让 antd + e2e.highlight 可以正常工作；若最终没有更好解决方案，此代码应该实现在 portal-base
+
+.e2e-role-highlight {
+  .center() {
+    top: 50%;
+    left: 50%;
+    margin-top: -1em;
+    transform: translateX(-50%);
+  }
+
+  &.ant-form-item {
+    overflow: hidden;
+
+    &::before,
+    &::after {
+      .center();
+    }
+  }
+}
+
+.old-browser {
+  .old-browser-img {
+    background: url('/static/older-browsers.png') no-repeat;
+  }
+}
+
+td {
+  vertical-align: middle;
+}
+
+// TODO: @huangbinjie portal-base 更新后移除
+.icecream-toaster-container {
+  z-index: 2000 !important;
+}

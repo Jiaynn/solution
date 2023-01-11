@@ -1,0 +1,42 @@
+/**
+ * @file mixins
+ * @author lizhifeng <lizhifeng@qiniu.com>
+ */
+
+// 注意：用这个，而不是直接用 portal-base
+
+// @import "./variables.less";
+@import "~portal-base/common/utils/style/mixins.less";
+
+// 清除浮动
+.clearfix() {
+  &::after {
+    content: " ";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+  }
+}
+
+// 等宽字体
+.monospaced() {
+  font-family: monospace, Courier New, Courier;
+}
+
+.line-wrap() {
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+}
+
+.line-nowrap() {
+  word-wrap: normal;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+.line-ellipsis() {
+  .ellipsis();
+  .line-nowrap();
+}

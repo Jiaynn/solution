@@ -1,0 +1,117 @@
+@import "~cdn/utils/style/index.less";
+@import "~cdn/utils/style/legacy-variable.less";
+
+.statistics-wrapper {
+  .statistics-main-wrap {
+    padding: 20px;
+    padding-top: 0;
+  }
+
+  .info-icon {
+    margin-left: 5px;
+    color: #999;
+    font-size: 14px;
+  }
+
+  .statistics-menu {
+    padding-top: 0!important;
+    .tabs-width-padding();
+  }
+
+  .chart {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .statistics-panel {
+    font-size: 16px;
+    margin-top: 15px;
+
+    .statistics-panel-title {
+      font-weight: @font-weight-default;
+      color: @icecream-grey-9;
+    }
+
+    .statistics-panel-content {
+      padding-bottom: 10px;
+      margin-top: 10px;
+
+      .chart.pie {
+        max-width: 460px;
+        margin: 0 auto;
+      }
+      .ant-tabs {
+        .ant-tabs-bar {
+          margin: -10px 0 0;
+          .ant-tabs-tab {
+            color: @text-level-3-color;
+          }
+          .ant-tabs-tab-active {
+            color: @primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  .ant-table {
+    .ant-table-tbody > tr > td {
+      word-break: break-all;
+    }
+  }
+
+  .statistics-content-wrapper {
+    padding-top: 10px;
+    margin-top: 12px;
+    position: relative;
+
+    .display-control {
+      padding: 10px 0;
+      .title {
+        font-weight: @font-weight-title;
+        color: @text-level-1-color;
+        font-size: 16px;
+      }
+
+      > div:last-of-type {
+        text-align: right;
+      }
+
+      .comp-summary-item {
+        text-align: left;
+        line-height: 1.6;
+        .summary-item-title {
+          color: @describe-info-bg;
+        }
+        .summary-item-value {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .access-table {
+      margin-left: 42px;
+    }
+
+    .top-table {
+      text-align: left;
+      margin-top: 2px;
+
+      .column-value {
+        min-width: 18%;
+      }
+    }
+  }
+
+  .access-region-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .access-chart-desc {
+      font-size: 12px;
+      color: #333;
+      margin-right: 20px;
+    }
+  }
+}

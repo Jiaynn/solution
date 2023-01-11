@@ -1,0 +1,49 @@
+@import "~cdn/utils/style/legacy-variable.less";
+
+.comp-video-slim-preview {
+  padding: 30px 0;
+  margin: 0 20px;
+
+  .spin-wrapper {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2em;
+  }
+
+  .video-control-bar-wrapper {
+    position: relative;
+    .capture-btn {
+      position: absolute;
+      right: 0;
+      top: 20px; // magic number
+      border-radius: 12px;
+
+      @capture-btn-bg-color: #333333;
+      background: @capture-btn-bg-color;
+      border-color: @capture-btn-bg-color;
+      color: #eaeaea;
+
+      &:hover {
+        border-color: #cacaca;
+      }
+
+      &.ant-btn-loading {
+        position: absolute!important; // 覆盖默认的 position: relative
+      }
+    }
+  }
+
+  .video-info-wrapper {
+    margin: 20px 0;
+    .info-title {
+      line-height: 32px;
+      color: @white;
+    }
+
+    .comp-video-info {
+      li {
+        line-height: 1.5;
+      }
+    }
+  }
+}

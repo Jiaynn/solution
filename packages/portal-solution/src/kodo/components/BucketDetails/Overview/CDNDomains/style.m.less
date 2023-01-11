@@ -1,0 +1,91 @@
+/**
+ * @file style for CDNDomains
+ * @author zhangheng <zhangheng01@qiniu.com>
+ */
+
+@import "~kodo/styles/font.less";
+@import "~kodo/styles/variables.less";
+
+.cdnDomain {
+  display: flex;
+  border: 1px solid @icecream-grey-3;
+  border-radius: 4px;
+  padding: @page-content-gap;
+
+  .gapLine {
+    width: 1px;
+    height: 280px;
+    background-color: @icecream-grey-3;
+    position: relative;
+    top: 12px;
+  }
+
+  .domainBox {
+    flex: 1;
+
+    .testBox,
+    .acceleratBox {
+      border-radius: @icecream-border-radius-base;
+      max-height: 290px;
+    }
+
+    &.gap {
+      padding-right: @page-content-gap-regular;
+    }
+
+    .acceleratBox {
+      .svgIcon {
+        width: 12px;
+        height: 12px;
+        margin-right: 10px;
+      }
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 13px;
+      .title {
+        .pingfangMedium();
+        font-size: @icecream-font-size-2;
+      }
+    }
+
+    .testBox {
+      padding-left: @page-content-gap-regular;
+
+      ul {
+        overflow: auto;
+        padding-left: 0;
+        height: 140px;
+        .testDomain {
+          padding: 15px;
+          list-style: none;
+        }
+      }
+    }
+
+    .testWarning {
+      display: flex;
+      line-height: 22px;
+      background: #fef3e7; // TODO：升级到 icecream-2 后换成 2 的 less 变量
+      padding: 10px;
+
+      span.icon {
+        margin-right: 10px;
+        color: #fa8c16; // TODO：升级到 icecream-2 后换成 2 的 less 变量
+      }
+
+      p {
+        .pingfangRegular();
+
+        margin: 0;
+        color: rgba(0, 0, 0, 0.45);
+        font-size: @icecream-font-size-1;
+        span {
+          color: #fc7467;
+        }
+      }
+    }
+  }
+}

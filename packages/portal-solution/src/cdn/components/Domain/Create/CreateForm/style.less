@@ -1,0 +1,68 @@
+/**
+* create domain form styles
+*/
+
+@border-color: #eee;
+
+.label() {
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+}
+
+.comp-create-domain-form {
+  .ant-form-item {
+    display: flex;
+
+    .ant-form-item-label {
+      line-height: 22px;
+      text-align: left;
+      min-width: 120px;
+  
+      & > label {
+        .label();
+      }
+    }
+  }
+
+  .ant-form-item-children {
+    .ant-radio-wrapper {
+      // FIXME
+      color: #666 !important;
+    }
+  }
+
+  .sep-line {
+    margin: 30px 0;
+    border: none;
+    border-top: 1px solid @border-color;
+  }
+
+  .submit-line {
+    text-align: right;
+    padding-bottom: 20px;
+  }
+}
+
+.comp-create-domain-config-block {
+  padding-top: 32px;
+  border-top: 1px solid @border-color;
+
+  &:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  > .title {
+    margin: 0;
+    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #333;
+  }
+
+  .content {
+    margin-bottom: 32px;
+  }
+}

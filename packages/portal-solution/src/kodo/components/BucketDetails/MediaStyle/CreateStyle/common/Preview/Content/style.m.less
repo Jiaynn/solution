@@ -1,0 +1,212 @@
+/**
+ * @description preview content component of
+ * @author duli <duli@qiniu.com>
+ */
+
+@import '~kodo/styles/variables.less';
+@import '~kodo/styles/font.less';
+@import '~kodo/styles/mixins.less';
+
+@import '~react-icecream-2/dist/utils.less';
+
+@mediaWidth: 320px;
+@mediaHeight: 180px;
+
+@border: 1px solid @icecream-border-color-base;
+
+@controller-theme-color: #666;
+@slider-rail-color: #D9D9D9;
+
+.head {
+  font-weight: 500;
+  word-break: break-all;
+  margin-bottom: @page-content-gap-half;
+
+  .helpIcon {
+    margin-left: @icecream-gap-xs;
+    margin-bottom: -(@icecream-gap-xs / 4);
+  }
+}
+
+.body {
+  position: relative;
+  background-color: #f5f5f5;
+
+  min-width: @mediaWidth;
+  min-height: @mediaHeight;
+
+  img, video {
+    display: block;
+    margin: auto;
+    max-width: @mediaWidth;
+    max-height: @mediaHeight;
+  }
+
+  .imageWrapper {
+    width: @mediaWidth + 2px;
+    height: @mediaHeight + 2px;
+    border: @border;
+  }
+
+  .playerWrapper {
+    width: @mediaWidth + 2px;
+    height: @mediaHeight + 42px;
+    border: @border;
+  }
+
+  .centerWrapper {
+    .imageWrapper();
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    .errorIcon {
+      color: @icecream-color-red-6;
+      margin-bottom: @icecream-gap-md-x;
+    }
+  }
+
+  .media {
+    width: @mediaWidth;
+    height: @mediaHeight;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fullscreenIcon {
+    cursor: pointer;
+    position: absolute;
+    z-index: 5;
+    top: @icecream-gap-md;
+    right: @icecream-gap-md;
+    color: @controller-theme-color;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: @icecream-border-radius-base;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    padding: @icecream-gap-xs / 2;
+  }
+}
+
+.media {
+  background-color: #f5f5f5;
+}
+
+.player .media {
+  cursor: pointer;
+}
+
+.filename {
+  margin-top: @page-content-gap-half;
+}
+
+.controller {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  color: @controller-theme-color;
+  background-color: white;
+  padding: 0 @page-content-gap-half;
+
+  :global {
+    .icecream-slider-handle {
+      margin-top: -5px;
+      width: @icecream-font-size-4;
+      height: @icecream-font-size-4;
+      background: @controller-theme-color !important;
+      border-color: @controller-theme-color !important;
+      box-shadow: none;
+    }
+
+    .icecream-slider-vertical .icecream-slider-handle {
+      margin-left: -5px;
+    }
+
+    .icecream-slider-track {
+      background: @controller-theme-color !important;
+    }
+
+    .icecream-slider-rail {
+      background: @slider-rail-color !important;
+    }
+  }
+
+  .disabled {
+    cursor: not-allowed !important;
+  }
+
+  .playIcon {
+    font-size: 20px;
+  }
+
+  .progress {
+    flex: 1 0 auto;
+    margin: 0 @page-content-gap-half;
+    color: black;
+  }
+
+  .time {
+    min-width: 80px;
+    font-size: @icecream-font-size-small;
+    margin: 0 @page-content-gap-half;
+
+    span {
+      display: inline-block;
+      min-width: 40px;
+
+      &:first-child {
+        text-align: right;
+      }
+
+      &:last-child {
+        text-align: left;
+      }
+    }
+  }
+
+  .volume {
+    position: relative;
+    margin: 0 @page-content-gap-half;
+    line-height: 1 !important;
+    cursor: pointer;
+
+    &:hover {
+      padding-top: 20px;
+      transform: translateY(-10px);
+
+      .volumeSliderWrapper {
+        display: flex;
+      }
+    }
+
+    &SliderWrapper {
+      display: none;
+      position: absolute;
+      right: -8px;
+      bottom: 25px;
+      height: 100px;
+      padding: 12px 2px;
+      padding-top: 0;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      background: rgba(21, 21, 21, .9);
+      border-radius: @icecream-border-radius-base;
+
+      .slider {
+        flex: 1 0 auto;
+        height: auto;
+        min-height: 0;
+        margin: 0 4px;
+      }
+
+      .value {
+        font-size: @icecream-font-size-small;
+        line-height: 32px;
+      }
+    }
+  }
+}
