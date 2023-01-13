@@ -2,10 +2,13 @@
   "name": "portal-solution",
   "version": "0.0.1",
   "scripts": {
-    "dev": "fec-builder --BUILD_CONFIG_FILE build-config.public.json -p 3000",
-    "dev:public.fog": "fec-builder --BUILD_CONFIG_FILE build-config.public.fog.json -p 3000",
-    "dev:privatized": "fec-builder --BUILD_CONFIG_FILE build-config.privatized.json -p 3000",
-    "dev:privatized.fog": "fec-builder --BUILD_CONFIG_FILE build-config.privatized.fog.json -p 3000",
+    "dev": "npm run start:public",
+    "build": "npm run build:public",
+    "start": "fec-builder --BUILD_CONFIG_FILE build-config.json -p 3000",
+    "start:public": "fec-builder --BUILD_CONFIG_FILE build-config.public.json -p 3000",
+    "start:public.fog": "fec-builder --BUILD_CONFIG_FILE build-config.public.fog.json -p 3000",
+    "start:privatized": "fec-builder --BUILD_CONFIG_FILE build-config.privatized.json -p 3000",
+    "start:privatized.fog": "fec-builder --BUILD_CONFIG_FILE build-config.privatized.fog.json -p 3000",
     "build:public": "fec-builder clean && fec-builder -e production -c build-config.public.json build",
     "build:privatized": "fec-builder clean && fec-builder generate -e production -c build-config.privatized.json",
     "lint": "tsc --noEmit && eslint --ignore-path .gitignore --ext .ts,.tsx ./",
@@ -17,7 +20,7 @@
     "link:cert": "bash ./link-certificate.sh",
     "copy:cert": "bash ./copy-certificate.sh",
     "delete:cert": "bash ./delete-certificate.sh",
-    "postinstall": "yarn copy:cert"
+    "postinstall": "npm run copy:cert"
   },
   "dependencies": {
     "autobind-decorator": "^2.1.0",
