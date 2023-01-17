@@ -287,6 +287,8 @@ class InternalBucketList extends React.Component<IProps & DiDeps> {
       <Link
         to={!this.iamStore.isIamUser ? this.getBucketNameLink(data) : ''}
         {...this.iamStore.isIamUser && { onClick: e => { e.preventDefault(); this.handleIamUserRouterJump(data.tbl) } }}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         {data.tbl}
       </Link>
@@ -323,32 +325,34 @@ class InternalBucketList extends React.Component<IProps & DiDeps> {
           <Link
             className={styles.operationButton}
             to={getOverviewPath(this.props.inject, { bucketName })}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             概览
           </Link>
         )}
-        <Link
-          className={styles.operationButton}
-          to={this.resourceManagerPath(bucketName)}
-        >
-          文件
-        </Link>
-        <Auth notIamUser featureKeys={['KODO.KODO_BUCKET_SETTING']}>
-          <Link
-            className={styles.operationButton}
-            to={getSettingPath(this.props.inject, { bucketName })}
-          >
-            设置
-          </Link>
-        </Auth>
-        {isDomainAvailable(this.props.inject, data.region) && (
-          <Link
-            className={styles.operationButton}
-            to={getDomainPath(this.props.inject, { bucketName })}
-          >
-            域名
-          </Link>
-        )}
+        {/* <Link */}
+        {/*  className={styles.operationButton} */}
+        {/*  to={this.resourceManagerPath(bucketName)} */}
+        {/* > */}
+        {/*  文件 */}
+        {/* </Link> */}
+        {/* <Auth notIamUser featureKeys={['KODO.KODO_BUCKET_SETTING']}> */}
+        {/*  <Link */}
+        {/*    className={styles.operationButton} */}
+        {/*    to={getSettingPath(this.props.inject, { bucketName })} */}
+        {/*  > */}
+        {/*    设置 */}
+        {/*  </Link> */}
+        {/* </Auth> */}
+        {/* {isDomainAvailable(this.props.inject, data.region) && ( */}
+        {/*  <Link */}
+        {/*    className={styles.operationButton} */}
+        {/*    to={getDomainPath(this.props.inject, { bucketName })} */}
+        {/*  > */}
+        {/*    域名 */}
+        {/*  </Link> */}
+        {/* )} */}
       </>
     )
 

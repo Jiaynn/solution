@@ -33,14 +33,14 @@ import Overview from 'components/Overview'
 import ImageManagement from 'components/ImageManagement'
 import ResourcePack from 'components/ResourcePack'
 import { sensorsTagFlag, sensorsTrack } from 'kodo/utils/sensors'
-import Setting from 'components/Setting'
 import { CdnBootProvider } from 'cdn/components/App/BootProvider'
+import Configuration from 'components/Configuration'
 
 const Sidebar = observer(function MySidebar() {
   return (
     <SubSidebar title={productName}>
       <LinkItem to="/overview" relative exact>方案概览</LinkItem>
-      <LinkItem to="/setting" relative>方案配置</LinkItem>
+      <LinkItem to="/configuration" relative>方案配置</LinkItem>
       <LinkItem to="/image-management" relative>图片管理</LinkItem>
       <LinkItem to="/resource-pack" relative>购买资源包</LinkItem>
     </SubSidebar>
@@ -74,9 +74,12 @@ export default observer(function App() {
                         <Route path={basename} title={productName}>
                           <Layout>
                             <ContentLayout sidebar={<Sidebar />}>
-                              <Switch placeholder={<NotFound />}>
+                              <Switch>
                                 <Route relative title="方案概览" exact path="/overview"><Overview /></Route>
-                                <Route relative title="方案配置" exact path="/setting"><Setting /></Route>
+                                <Route relative title="方案配置" path="/configuration">
+                                  {/* 子路由详见组件内部 */}
+                                  <Configuration />
+                                </Route>
                                 <Route relative title="图片管理" exact path="/image-management"><ImageManagement /></Route>
                                 <Route relative title="购买资源包" exact path="/resource-pack"><ResourcePack /></Route>
                               </Switch>

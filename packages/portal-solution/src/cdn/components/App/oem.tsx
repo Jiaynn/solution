@@ -84,6 +84,7 @@ export default observer(function OemApp() {
                                 anchor={
                                   inject(RouterStore).location!.hash
                                   ? inject(RouterStore).location!.hash.slice(1)
+
                                   : undefined
                                 }
                               />
