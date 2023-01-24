@@ -79,6 +79,8 @@ export class BucketStore extends Store {
 
   private promiseMap = new Map<string, Promise<any>>()
 
+  public lastCreatedBucketName: string | null = null
+
   // isLoading
   @autobind
   isLoading(key?: Loading) {
@@ -257,6 +259,8 @@ export class BucketStore extends Store {
 
   @autobind
   create(options: ICreateBucketOptions) {
+    this.lastCreatedBucketName = options.name
+
     const req = this.bucketApis.createBucket(options)
     req.then(() => this.handleCreateBucketSuccess(options.name)).catch(() => { /**/ }) // 创建成功 fetch 一下
     return req

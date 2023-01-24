@@ -14,8 +14,10 @@ const prefixCls = 'comp-configuration-open-service'
 export default observer(function OpenService() {
   const routerStore = useInjection(RouterStore)
 
-  const [billingModeChecked, setBillingModeChecked] = useState(false)
-  const [serviceAgreementChecked, setServiceAgreementChecked] = useState(false)
+  const [values, setValues] = useState({
+    billingModeChecked: false,
+    serviceAgreementChecked: false
+  })
   const [step, setStep] = useState(1)
 
   const onStep1ButtonClick = () => {
@@ -27,7 +29,7 @@ export default observer(function OpenService() {
   }
 
   const onStep3ButtonClick = () => {
-    routerStore.push('/kodo/configuration/step/0?shouldCreateBucket=true')
+    routerStore.push('/kodo/configuration/step/1?shouldCreateBucket=true')
   }
 
   return (
@@ -48,15 +50,15 @@ export default observer(function OpenService() {
             <label className={`${prefixCls}-step2-label`}>
               <span className={`${prefixCls}-step2-label-text`}>计费模式：</span>
               <Radio
-                value={billingModeChecked}
-                onChange={event => setBillingModeChecked(event.target.value)}
+                value={values.billingModeChecked}
+                onChange={event => setValues({ ...values, billingModeChecked: event.target.value })}
               >按使用流量计费</Radio>
             </label>
             <label className={`${prefixCls}-step2-label`}>
               <span className={`${prefixCls}-step2-label-text`}>服务协议：</span>
               <Checkbox
-                value={serviceAgreementChecked}
-                onChange={event => setServiceAgreementChecked(event.target.value)}
+                value={values.serviceAgreementChecked}
+                onChange={event => setValues({ ...values, serviceAgreementChecked: event.target.value })}
               >图片存储分发处理解决方案</Checkbox>
             </label>
           </div>

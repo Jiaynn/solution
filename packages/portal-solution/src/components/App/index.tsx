@@ -73,7 +73,7 @@ export default observer(function App() {
                         </Route>
                         <Route path={basename} title={productName}>
                           <Layout>
-                            <ContentLayout sidebar={<Sidebar />}>
+                            <ContentLayout mainClassName="main" sidebar={<Sidebar />}>
                               <Switch>
                                 <Route relative title="方案概览" exact path="/overview"><Overview /></Route>
                                 <Route relative title="方案配置" path="/configuration">
