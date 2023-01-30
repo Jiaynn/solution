@@ -5,7 +5,7 @@
 
 import * as React from 'react'
 import { observer } from 'mobx-react'
-import { Drawer, Icon } from 'react-icecream/lib'
+import { Icon,Modal } from 'react-icecream/lib'
 import { useInjection } from 'qn-fe-core/di'
 import { ToasterStore } from 'portal-base/common/toaster'
 import { useLocalStore } from 'qn-fe-core/local-store'
@@ -119,7 +119,7 @@ export default observer(function StyleDrawer(props: Props) {
   }, [isManualMode, isEqual, store])
 
   return (
-    <Drawer width={1240} title={title} visible={visible} onClose={onClose} footer={null} destroyOnClose>
+    <Modal width={1240} title={title} visible={visible} onCancel={onClose} footer={null} destroyOnClose>
       <div className={styles.drawer}>
         <Form
           isEditMode={isEditMode}
@@ -142,6 +142,6 @@ export default observer(function StyleDrawer(props: Props) {
           onUpdateCode={handleUpdateCode}
         />
       </div>
-    </Drawer>
+    </Modal>
   )
 })

@@ -52,7 +52,7 @@ export function useDoraImageConfig(bucketName: string) {
 
 export interface IProps {
   bucketName: string
-
+  drawerVisible:boolean
   onUpdate(): void
 }
 
@@ -74,7 +74,7 @@ class InternalImageStyle extends React.Component<IProps & DiDeps> {
   @observable viewState = false
   @observable isSeparatorVisible = false
   @observable.ref previewData: MediaStyle | undefined
-  @observable drawerVisible = false
+  @observable drawerVisible = this.props.drawerVisible 
   configStore = this.props.inject(ConfigStore)
 
   @computed

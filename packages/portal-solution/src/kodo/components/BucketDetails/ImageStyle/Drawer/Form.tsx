@@ -77,7 +77,7 @@ export function createFormState(initVal?: StyleProcessFormInitValue) {
   return new FormState({
     name: new FieldState(initVal?.name || '').validators(val => {
       if (!val) return '名称不能为空'
-      if (val.length > 60 || /[^\d\w.]/.test(val)) return '名称使用数字、字母、小数点、不超过 60 个字符'
+      if (val.length > 60 || /[^\da-zA-Z.]|_/.test(val)) return '名称使用数字、字母、小数点、不超过 60 个字符'
     }),
 
     code: new FieldState(initVal?.code || ''),

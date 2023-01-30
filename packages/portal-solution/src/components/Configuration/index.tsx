@@ -24,6 +24,9 @@ import { basename } from 'constants/routes'
 
 import './style.less'
 
+import ConfigureImageStyle from './ConfigureImageStyle'
+import ConfigurationComplete from './ConfigurationComplete'
+
 const prefixCls = 'comp-configuration'
 
 const { Step } = Steps
@@ -81,11 +84,12 @@ const StepRouter = () => <Switch>
       }
 
       if (id === '3') {
-        return <div>/step/3</div>
+        return <ConfigureImageStyle isFristVisit={true} defaultBucketName='001' />
       }
 
       if (id === '4') {
-        return <div>/step/4</div>
+        return <ConfigurationComplete buyResourcesURI='https://baidu.com' />
+
       }
 
       return <NotFound />
