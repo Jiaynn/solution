@@ -9,14 +9,12 @@ import { observer } from 'mobx-react'
 import { Button } from 'react-icecream'
 import autobind from 'autobind-decorator'
 import { Inject, InjectFunc } from 'qn-fe-core/di'
-import { Link } from 'portal-base/common/router'
 import Role from 'portal-base/common/components/Role'
 import { ToasterStore as Toaster } from 'portal-base/common/toaster'
 
 import { DomainStore } from 'kodo/stores/domain'
 
 import { IDetailsBaseOptions } from 'kodo/routes/bucket'
-import { getCDNCreateBucketDomainPath } from 'kodo/routes/cdn'
 
 import { BucketDomainRole } from 'kodo/constants/role'
 
@@ -51,7 +49,9 @@ class InternalCDN extends React.Component<IProps & DiDeps> {
     return domainStore
       .fetchCDNDomainListByBucketName(this.props.bucketName)
   }
-
+  handleCreateDomain(visible:(visible:boolean)=>void){
+    visible(true)
+  }
   componentDidMount() {
     this.fetchCDNDomains()
   }
@@ -59,24 +59,16 @@ class InternalCDN extends React.Component<IProps & DiDeps> {
   // 创建按钮
   @computed
   get createButtonView() {
-    const { bucketName } = this.props
+    const {visible} = this.props
 
     return (
       <Auth
         notProtectedUser
         render={disabled => (
           <Role name={BucketDomainRole.BindCDNDomainEntry}>
-            <Link
-              to={getCDNCreateBucketDomainPath(bucketName)}
-              className={styles.button}
-              disabled={disabled}
-              target="_blank"
-              rel="noopener"
-            >
-              <Button type="primary" disabled={disabled} icon="plus">
+              <Button type="primary" disabled={disabled} icon="plus" onClick={()=>this.handleCreateDomain(visible!)}>
                 绑定域名
               </Button>
-            </Link>
           </Role>
         )}
       />

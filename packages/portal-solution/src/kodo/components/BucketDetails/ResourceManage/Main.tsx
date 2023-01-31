@@ -50,7 +50,8 @@ interface DiDeps {
 class InternalContent extends React.Component<IProps & DiDeps> {
   constructor(props: IProps & DiDeps) {
     super(props)
-
+    console.log('props',props);
+    
     makeObservable(this)
 
     this.toasterStore = this.props.inject(Toaster)
@@ -242,6 +243,7 @@ class InternalContent extends React.Component<IProps & DiDeps> {
 }
 
 export default function Content(props: IProps) {
+  console.log('Content render',props);
   return (
     <Inject render={({ inject }) => (
       <InternalContent {...props} inject={inject} />

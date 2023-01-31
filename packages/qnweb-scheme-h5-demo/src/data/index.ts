@@ -151,6 +151,66 @@ export const list = [
 		content: '33',
 		folder: 'vr'
 	}
+	// {
+	// 	id: 15,
+	// 	title: '广电级拍摄&监看',
+	// 	icon: 'https://demo-qnrtc-files.qnsdk.com/%E5%9C%A8%E7%BA%BF%E8%80%83%E8%AF%95.png',
+	// 	type: 3,
+	// 	url: 'https://niucube-exam.qiniu.com',
+	// 	isHot: false,
+	// 	content: 'broadcasting',
+	// 	folder: 'broadcasting'
+	// },
+	// {
+	// 	id: 16,
+	// 	title: '影视制作后期',
+	// 	icon: 'https://demo-qnrtc-files.qnsdk.com/%E5%9C%A8%E7%BA%BF%E8%80%83%E8%AF%95.png',
+	// 	type: 3,
+	// 	url: 'https://niucube-exam.qiniu.com',
+	// 	isHot: false,
+	// 	content: '',
+	// 	folder: 'films and television'
+	// },
+	// {
+	// 	id: 17,
+	// 	title: '数字人',
+	// 	icon: 'https://demo-qnrtc-files.qnsdk.com/%E5%9C%A8%E7%BA%BF%E8%80%83%E8%AF%95.png',
+	// 	type: 4,
+	// 	url: 'https://niucube-exam.qiniu.com',
+	// 	isHot: false,
+	// 	content: 'https://www.qiniu.com/solutions/avatar#scene',
+	// 	folder: 'digital human'
+	// },
+	// {
+	// 	id: 18,
+	// 	title: '数字展厅',
+	// 	icon: 'https://demo-qnrtc-files.qnsdk.com/%E5%9C%A8%E7%BA%BF%E8%80%83%E8%AF%95.png',
+	// 	type: 4,
+	// 	url: 'https://niucube-exam.qiniu.com',
+	// 	isHot: false,
+	// 	content: '',
+	// 	folder: 'Digital exhibition hall'
+	// },
+	// {
+	// 	id: 19,
+	// 	title: '音视频低代码平台',
+	// 	icon: 'https://demo-qnrtc-files.qnsdk.com/%E5%9C%A8%E7%BA%BF%E8%80%83%E8%AF%95.png',
+	// 	type: 5,
+	// 	url: 'https://niucube-exam.qiniu.com',
+	// 	isHot: false,
+	// 	content: '',
+	// 	folder: 'Audio and video'
+	// },
+	// {
+	// 	id: 20,
+	// 	title: '视联网低代码平台',
+	// 	icon: 'https://demo-qnrtc-files.qnsdk.com/%E5%9C%A8%E7%BA%BF%E8%80%83%E8%AF%95.png',
+	// 	type: 5,
+	// 	url: 'https://niucube-exam.qiniu.com',
+	// 	isHot: false,
+	// 	content: '',
+	// 	folder: 'Visual network'
+	// }
 ];
 
 export const tabs = [
@@ -178,4 +238,8 @@ export const tabs = [
 		id: 5,
 		title: '元宇宙'
 	}
+	// {
+	// 	id: 5,
+	// 	title: '低代码音视频工厂'
+	// }
 ];

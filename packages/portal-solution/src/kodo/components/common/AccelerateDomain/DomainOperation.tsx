@@ -104,7 +104,7 @@ class InternalDomainOperation extends React.Component<IProps & DiDeps> {
           {
             domainInfo.operatingState === CDNDomainStatus.Success && domainInfo.couldOperateBySelf
               ? (
-                <Link to={getCDNDomainDetailPath(domainInfo.name)} className={useTextStyle ? styles.textGap : ''}>
+                <Link target='_blank' to={getCDNDomainDetailPath(domainInfo.name)} className={useTextStyle ? styles.textGap : ''}>
                   {
                     useTextStyle
                       ? (<Button type="link">详情</Button>)

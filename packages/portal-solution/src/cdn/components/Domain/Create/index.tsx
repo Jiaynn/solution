@@ -33,6 +33,8 @@ export interface Props {
   sourceType?: SourceType       // 回源类型
   sourceDomain?: string         // 源站域名
   testURLPath?: string          // 源站测试资源名
+  visible:(visible:boolean)=>void
+  isCreateDomain:()=>Promise<void>
 }
 
 export const DomainCreate = observer(function DomainCreate(props: Props) {
@@ -41,8 +43,10 @@ export const DomainCreate = observer(function DomainCreate(props: Props) {
   const routerStore = useInjection(RouterStore)
   const routes = useInjection(Routes)
   const { iamActions } = useInjection(IamInfo)
-
-  const handleCancel = React.useCallback(() => routerStore.push(routes.domainList), [routerStore, routes])
+  const {visible,isCreateDomain}=props
+  const handleCancel = React.useCallback(() => visible(false),[])
+  
+  
 
   const handleCreate = React.useCallback(
     () => (
@@ -54,10 +58,12 @@ export const DomainCreate = observer(function DomainCreate(props: Props) {
             ? [store.panCreateOptions]
             : store.normalCreateOptionsList
         }
+        
         if (results.some(it => !!it.shouldVerify)) {
           routerStore.push(routes.domainVerifyOwnership(createDomainState))
         } else {
-          routerStore.push(routes.domainCreateResult(createDomainState))
+          visible(false)
+          isCreateDomain()
         }
       })
     ),
@@ -65,8 +71,9 @@ export const DomainCreate = observer(function DomainCreate(props: Props) {
   )
 
   return (
-    <Iamed actions={[iamActions.CreateDomain]}>
-      <Page className="comp-create-domain">
+    <Iamed actions={[iamActions.CreateDomain]} >
+      
+         <Page className="comp-create-domain">
         <CreateForm
           onCancel={handleCancel}
           onCreate={handleCreate}
@@ -80,17 +87,21 @@ export const DomainCreate = observer(function DomainCreate(props: Props) {
           isPrivateBucket={store.isQiniuPrivate}
         />
       </Page>
+     
+     
     </Iamed>
   )
 })
 
-export default observer(function DomainCreateWithQuery(props: { query: Query }) {
+export default observer(function DomainCreateWithQuery(props: { query: Query,visible: (visible:boolean)=>void,isCreateDomain:()=>Promise<void>}) {
   const {
     type, pareDomain, bucket, platform, geoCover, sourceType,
     sourceDomain, testURLPath, fixBucket
   } = props.query
+  const {visible,isCreateDomain} =props
   const routerStore = useInjection(RouterStore)
   const routeHash = routerStore.location!.hash
+
 
   return (
     <DomainCreate
@@ -104,6 +115,8 @@ export default observer(function DomainCreateWithQuery(props: { query: Query }) 
       testURLPath={testURLPath as string | undefined}
       anchor={routeHash ? routeHash.slice(1) : undefined}
       shouldFixBucket={fixBucket != null}
+      visible={visible}
+      isCreateDomain={isCreateDomain}
     />
   )
 })

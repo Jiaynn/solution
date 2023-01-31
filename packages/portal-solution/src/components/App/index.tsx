@@ -34,6 +34,7 @@ import ImageManagement from 'components/ImageManagement'
 import ResourcePack from 'components/ResourcePack'
 import { sensorsTagFlag, sensorsTrack } from 'kodo/utils/sensors'
 import { CdnBootProvider } from 'cdn/components/App/BootProvider'
+
 import Configuration from 'components/Configuration'
 
 const Sidebar = observer(function MySidebar() {
@@ -48,12 +49,14 @@ const Sidebar = observer(function MySidebar() {
 })
 
 export default observer(function App() {
+ 
   return (
     <BootProvider>
       <LocalProvider locale={zhCN}>
         <Inject
           render={({ inject: injectA }) => {
             const externalUrlModalStore = injectA(ExternalUrlModalStore)
+          
             const kodoBaseContextValue: KodoBaseContext = {
               roleWrap: Role,
               sensorsTagFlag,
@@ -61,6 +64,7 @@ export default observer(function App() {
               toaster: injectA(ToasterStore),
               openExternalUrlModal: externalUrlModalStore.open
             }
+
 
             return (
               <KodoBaseProvider value={kodoBaseContextValue}>
@@ -82,6 +86,9 @@ export default observer(function App() {
                                 </Route>
                                 <Route relative title="图片管理" exact path="/image-management"><ImageManagement /></Route>
                                 <Route relative title="购买资源包" exact path="/resource-pack"><ResourcePack /></Route>
+                                {/* <Route relative title="域名管理" path="/domain">
+                   
+                  </Route> */}
                               </Switch>
                             </ContentLayout>
                           </Layout>

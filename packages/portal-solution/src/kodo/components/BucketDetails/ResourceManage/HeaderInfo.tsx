@@ -396,7 +396,7 @@ class InternalHeaderInfo extends React.Component<IProps & DiDeps> {
     }
 
     const { store } = this.props
-
+    
     return (
       <div className={styles.defaultDomain}>
         <div>

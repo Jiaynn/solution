@@ -85,21 +85,22 @@ class InternalAccelerateDomains extends React.Component<IProps & DiDeps> {
   }
 
   renderDomainName(domainInfo: ICDNDomain) {
-    if (
-      this.userInfoStore.isBufferedUser
-      || this.iamStore.isIamUser
-      || [CDNDomainBucketType.FusionHttps, CDNDomainBucketType.PanCustomer].includes(domainInfo.domainBucketType)
-    ) {
-      return (
-        <Tooltip title={getCDNDomainPrompt(domainInfo)}>
-          <div className={styles.tdBreak}>{domainInfo.name}</div>
-        </Tooltip>
-      )
-    }
+    // if (
+    //   this.userInfoStore.isBufferedUser
+    //   || this.iamStore.isIamUser
+    //   || [CDNDomainBucketType.FusionHttps, CDNDomainBucketType.PanCustomer].includes(domainInfo.domainBucketType)
+    // ) {
+    //   return (
+    //     <Tooltip title={getCDNDomainPrompt(domainInfo)}>
+    //       <div className={styles.tdBreak}>{domainInfo.name}</div>
+    //     </Tooltip>
+    //   )
+    // }
 
     return (
       <Tooltip title={getCDNDomainPrompt(domainInfo)}>
-        <Link to={getCDNDomainDetailPath(domainInfo.name)} className={styles.tdBreak}>{domainInfo.name}</Link>
+        {/* <Link to={getCDNDomainDetailPath(domainInfo.name)} className={styles.tdBreak}>{domainInfo.name}</Link> */}
+        <Link target='_blank' to={getCDNDomainDetailPath(domainInfo.name)} className={styles.tdBreak}>{domainInfo.name}</Link>
       </Tooltip>
     )
   }

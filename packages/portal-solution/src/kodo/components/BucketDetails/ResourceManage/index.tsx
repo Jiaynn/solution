@@ -25,6 +25,8 @@ interface DiDeps {
 
 @observer
 class InternalResourceManage extends React.Component<IProps & DiDeps> {
+ 
+  
   render() {
     return (
       <Switch>
@@ -45,6 +47,8 @@ class InternalResourceManage extends React.Component<IProps & DiDeps> {
 }
 
 export default function ResourceManage(props: IProps) {
+  console.log('ResourceManage render',props);
+  
   const container = useContainer()
   const inject = React.useCallback(function inject<T>(identifier: Identifier<T>) {
     return container.get(identifier)

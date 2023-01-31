@@ -91,6 +91,7 @@ const DomainTypeInput = observer(function _DomainTypeInput(props: DomainTypeInpu
   )
 
   const radioButtons = radios.map(radio => radio.radioButton)
+console.log('radioGroup',radioButtons);
 
   const helpBlock = getHelpBlock(value, supportMidSource)
 

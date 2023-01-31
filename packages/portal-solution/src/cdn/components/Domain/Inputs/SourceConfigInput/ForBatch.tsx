@@ -154,6 +154,7 @@ export default observer(function DomainSourceConfigInput(props: Props) {
   const userInfo = useInjection(UserInfo)
   const featureConfig = useInjection(FeatureConfig)
   const abilityConfig = useInjection(AbilityConfig)
+console.log('信息',bucketStore,domainStore,userInfo,featureConfig,abilityConfig);
 
   return (
     <DomainSourceConfigInputInner
@@ -181,6 +182,7 @@ export class DomainSourceConfigInputInner extends React.Component<IDomainSourceC
 
   componentDidMount() {
     this.props.bucketStore.fetchBuckets()
+    
     // 回源 HOST 默认为加速域名，当加速域名变化时，更新 sourceHost
     this.disposable.addDisposer(reaction(
       () => [
@@ -189,6 +191,8 @@ export class DomainSourceConfigInputInner extends React.Component<IDomainSourceC
       ] as const,
       ([domain, sourceHost]) => {
         const config = sourceHostInput.getValue(sourceHost)
+      
+        
         if (config.domainValue !== domain) {
           sourceHost.set({
             ...config,
@@ -315,6 +319,7 @@ export class DomainSourceConfigInputInner extends React.Component<IDomainSourceC
       ? <p className="source-bucket-tip">* 泛域名和对应的泛子域名暂时只支持源站同为公有存储空间或同为私有存储空间。</p>
       : null
     )
+console.log('七牛存储的bucket',buckets);
 
     return (
       <>
@@ -408,7 +413,9 @@ export class DomainSourceConfigInputInner extends React.Component<IDomainSourceC
     }
     const sourceTypeText = humanizeSourceTypeAsOption(sourceType)
     const shouldForbid = this.shouldForbid(sourceType)
-
+  
+    // const visible=sourceType=='qiniuBucket'?false:true
+    
     return (
       <Radio key={sourceType} value={sourceType} disabled={!!shouldForbid}>
         {
@@ -446,6 +453,7 @@ export class DomainSourceConfigInputInner extends React.Component<IDomainSourceC
 
     const radios = this.props.abilityConfig.domainSourceTypes
       .map(sourceType => this.getSourceTypeRadio(sourceType))
+console.log('源站',this.props.abilityConfig.domainSourceTypes);
 
     return (
       <div className="domain-source-config-input-wrapper">

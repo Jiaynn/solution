@@ -391,7 +391,6 @@ export default observer(function CreateForm({
       }
     })
   }, [state, onCreate, setScrollAnchor, safeSetLoading])
-
   const bucketStore = useInjection(BucketStore)
 
   return (

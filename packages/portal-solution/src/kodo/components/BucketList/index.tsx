@@ -79,6 +79,7 @@ class InternalBucketList extends React.Component<IListOptions & DiDeps> {
 
   constructor(props: IListOptions & DiDeps) {
     super(props)
+
     makeObservable(this)
     const toaster = this.props.inject(Toaster)
     Toaster.bindTo(this, toaster)

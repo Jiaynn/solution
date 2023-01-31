@@ -19,6 +19,7 @@ export interface IDetailsBaseOptions<T extends object = object> {
   path?: string
   query?: T
   anchor?: string
+  visible?:(visible:boolean)=>void
 }
 
 export interface IDetailsOptions<T extends object = object> extends IDetailsBaseOptions<T> {
