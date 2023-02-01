@@ -13,12 +13,12 @@ export function renderImageUrl(
 		const image = document.createElement('img');
 		const judgeUrl =
 			i < 9
-				? `https://demo-qnrtc-files.qnsdk.com/qnweb-scheme-h5-demo/static/${folder}/Qiniu-Event-Cloud-Annual-Meeting-Solution_page-000${
+				? `https://demo-qnrtc-files.qnsdk.com/qnweb-scheme-h5-demo/static/${folder}/${folder}_0${
 						i + 1
-				  }.jpg`
-				: `https://demo-qnrtc-files.qnsdk.com/qnweb-scheme-h5-demo/static/${folder}/Qiniu-Event-Cloud-Annual-Meeting-Solution_page-00${
+				  }.png`
+				: `https://demo-qnrtc-files.qnsdk.com/qnweb-scheme-h5-demo/static/${folder}/${folder}_${
 						i + 1
-				  }.jpg`;
+				  }.png`;
 		const url = new URL(judgeUrl, import.meta.url).href;
 		image.setAttribute('src', url);
 		image.setAttribute('style', 'width:100%');

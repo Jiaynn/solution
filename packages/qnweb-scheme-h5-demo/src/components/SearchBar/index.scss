@@ -1,18 +1,35 @@
 .search {
-  position: relative;
-  height: 40px;
-  line-height: 40px;
-  background-color: white;
-  text-align: center;
-  input {
-    width: 90%;
-    border: none;
-    background-color: #f2f2f2;
-    padding: 4px 12px;
-    border-radius: 4px;
-    &:focus {
-      border: none;
-      outline: none;
-    }
-  }
+	position: relative;
+	height: 44px;
+	line-height: 44px;
+	background-color: white;
+	text-align: center;
+	input {
+		width: 90%;
+		border: none;
+		height: 28px;
+		line-height: 28px;
+
+		background-color: #f2f2f2;
+		padding: 4px 12px;
+		border-radius: 4px;
+		font-size: 14px;
+		text-align: center;
+		&:focus {
+			border: none;
+			outline: none;
+		}
+		&::input-placeholder {
+			color: rgba(0, 0, 0, 0.4);
+		}
+		&::-webkit-input-placeholder {
+			color: rgba(0, 0, 0, 0.4);
+		}
+	}
+	.icon {
+		position: absolute;
+		top: 15px;
+		left: 152px;
+		color: rgba(0, 0, 0, 0.4);
+	}
 }

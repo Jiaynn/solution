@@ -1,15 +1,26 @@
 .list-wrapper {
-	display: grid;
-	grid-template-columns: 105px 105px 105px;
+	display: flex;
 	list-style: none;
-	margin: 16px;
-	grid-gap: 20px;
+	flex-wrap: wrap;
+	margin: 0px 6px;
+	li {
+		flex: 1;
+		width: 90px;
+		min-width: 90px;
+		max-width: 80px;
+	}
 	.icon-pic {
-		width: 85px;
-		height: 85px;
+		width: 48px;
+		height: 48px;
+		margin: 12px 21px 8px 21px;
 	}
 	.app-title {
-		margin-top: 2px;
-		width: 90px;
+		margin: 0px 6px 12px 6px;
+		width: 78px;
+		text-align: center;
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 18px;
+		color: rgba(0, 0, 0, 0.9);
 	}
 }
