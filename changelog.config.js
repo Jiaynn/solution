@@ -1,16 +1,23 @@
 const fs = require('fs');
 
-const projects = fs
-	.readdirSync('./packages')
-	.filter((dirName) => {
-		return fs.existsSync(`./packages/${dirName}/package.json`);
-	})
-	.map((dirName) => {
-		return fs.readFileSync(`./packages/${dirName}/package.json`, 'utf8');
-	})
-	.map((packageJson) => {
-		return JSON.parse(packageJson).name;
-	});
+const getPackageJsons = (path) => {
+	return fs
+		.readdirSync(path)
+		.map((dirName) => {
+			const packageJsonPath = `${path}/${dirName}/package.json`;
+			return fs.existsSync(packageJsonPath)
+				? fs.readFileSync(packageJsonPath, 'utf8')
+				: null;
+		})
+		.filter(Boolean);
+};
+
+const projects = [
+	...getPackageJsons('./packages'),
+	...getPackageJsons('./portal/front')
+].map((packageJson) => {
+	return JSON.parse(packageJson).name;
+});
 
 module.exports = {
 	disableEmoji: true,
