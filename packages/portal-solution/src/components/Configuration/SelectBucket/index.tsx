@@ -2,7 +2,7 @@ import { BucketListStore } from 'kodo/stores/bucket/list';
 import { observer } from 'mobx-react';
 import { useInjection } from 'qn-fe-core/di';
 import React, { useEffect, useState } from 'react';
-import { Select, SelectOption as Option } from 'react-icecream-2';
+import { Select } from 'react-icecream';
 import styles from './style.m.less';
 
 interface IProps {
@@ -28,17 +28,15 @@ export default observer(function SelectBucket({
 			<div className={styles.blueBar}></div>
 			<div className={styles.title}>当前空间：</div>
 			<Select
-				className={styles.selector}
-				searchable
-				size="large"
+				style={{ width: "200px" }}
 				onChange={onChange}
 				defaultValue={defaultBucketName}
 			>
 				{bucketNames.map((bucketName) => {
 					return (
-						<Option key={bucketName} value={bucketName}>
+						<Select.Option key={bucketName} value={bucketName}>
 							{bucketName}
-						</Option>
+						</Select.Option>
 					);
 				})}
 			</Select>

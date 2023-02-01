@@ -7,21 +7,30 @@ import { useInjection } from 'qn-fe-core/di';
 import { BucketStore } from 'kodo/stores/bucket';
 import { Spin } from 'antd';
 import ConfigurationStore from './ConfigurationStore';
+import { Query, RouterStore } from 'portal-base/common/router';
+import { basename } from 'constants/routes';
+import { getFirstQuery } from 'kodo/utils/url';
 
 interface IProps {
-  isFristVisit: boolean;
-  defaultBucketName: string;
+  query: Query
 }
 
 export default observer(function ConfigureImageStyle({
-  isFristVisit,
-  defaultBucketName
+  query
 }: IProps) {
+
+  const { bucket, state } = query;
+  const isFristVisit = getFirstQuery(state) === '1';
+  const defaultBucketName = getFirstQuery(bucket) as string
+
   const [selectedBucketName, setSelectedBucketName] =
     useState(defaultBucketName);
+
   const [visible, setVisible] = useState(false);
   const bucketStore = useInjection(BucketStore);
   const configurationStore = ConfigurationStore;
+  const routerStore = useInjection(RouterStore)
+
   configurationStore.setIsFristVisit(isFristVisit);
 
   useEffect(() => {
@@ -36,6 +45,9 @@ export default observer(function ConfigureImageStyle({
   }, []);
 
   const onChange = (value: string) => {
+    routerStore.push(
+      `${basename}/configuration/step/3?bucket=${value}&state=${state}&fixBucket`
+    );
     setSelectedBucketName(value);
     bucketStore.fetchDetailsByName(value);
   };

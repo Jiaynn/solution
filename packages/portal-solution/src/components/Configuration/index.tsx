@@ -113,13 +113,13 @@ const StepRouter = () => (
 				}
 
 				if (id === '3') {
-					return (
-						<ConfigureImageStyle isFristVisit={true} defaultBucketName="001" />
-					);
+					return (<ConfigureImageStyle query={query} />);
 				}
 
 				if (id === '4') {
-					return <ConfigurationComplete buyResourcesURI="https://baidu.com" />;
+					return (
+						<ConfigurationComplete buyResourcesURI="https://qmall.qiniu.com" />
+					);
 				}
 
 				return <NotFound />;
@@ -147,16 +147,14 @@ export default observer(function Configuration() {
 		const prefixRoute = `${basename}/configuration/step`;
 		if (lastCreatedBucketName) {
 			routerStore.push(
-				`${prefixRoute}/${
-					step + 1
+				`${prefixRoute}/${step + 1
 				}?bucket=${lastCreatedBucketName}&state=1&fixBucket`
 			);
 			return;
 		}
 		if (list.length) {
 			routerStore.push(
-				`${prefixRoute}/${step + 1}?bucket=${
-					list[list.length - 1].tbl
+				`${prefixRoute}/${step + 1}?bucket=${list[list.length - 1].tbl
 				}&state=1&fixBucket`
 			);
 			return;
@@ -192,7 +190,11 @@ export default observer(function Configuration() {
 	};
 
 	const onPrev = () => {
-		routerStore.push(`/kodo/configuration/step/${step - 1}`);
+		const prefixRoute = `${basename}/configuration/step`;
+		const { bucket, state } = routerStore.query;
+		routerStore.push(
+			`${prefixRoute}/${step - 1}?bucket=${bucket}&state=${state}&fixBucket`
+		);
 	};
 
 	const curDescription = descriptions[step - 1];
