@@ -3,34 +3,30 @@
  * @author yaojingtian <yaojingtian@qiniu.com>
  */
 
-import React from 'react'
-import { LocalStorageStore } from 'portal-base/common/utils/storage'
+import React from "react";
+import { LocalStorageStore } from "portal-base/common/utils/storage";
 
-import { createRendererWithRouter } from 'test'
+import { createRendererWithRouter } from "cdn/test";
 
-import { videoSlimGuidesName } from 'cdn/constants/guide'
+import { videoSlimGuidesName } from "cdn/constants/guide";
 
-import { getLocalStorageKey } from 'cdn/components/common/Guide/Group'
+import { getLocalStorageKey } from "cdn/components/common/Guide/Group";
 
-import VideoSlim from '.'
+import VideoSlim from ".";
 
-const renderer = createRendererWithRouter()
+const renderer = createRendererWithRouter();
 
 beforeAll(() => {
-  const storageStore = renderer.inject(LocalStorageStore)
-  storageStore.setItem(getLocalStorageKey(videoSlimGuidesName), true)
-})
+  const storageStore = renderer.inject(LocalStorageStore);
+  storageStore.setItem(getLocalStorageKey(videoSlimGuidesName), true);
+});
 
-it('renders correctly', () => {
-  const tree = renderer.createWithAct(
-    <VideoSlim />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+it("renders correctly", () => {
+  const tree = renderer.createWithAct(<VideoSlim />).toJSON();
+  expect(tree).toMatchSnapshot();
+});
 
-it('renders correctly with domain', () => {
-  const tree = renderer.createWithAct(
-    <VideoSlim domain="foo.com" />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+it("renders correctly with domain", () => {
+  const tree = renderer.createWithAct(<VideoSlim domain="foo.com" />).toJSON();
+  expect(tree).toMatchSnapshot();
+});

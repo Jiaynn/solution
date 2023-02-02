@@ -1,14 +1,14 @@
-import React from 'react'
+import React from "react";
 
-import { RendererUtils as Renderer } from 'test'
+import { RendererUtils as Renderer } from "cdn/test";
 
-import AutoEnableSwitch from './AutoEnableSwitch'
+import AutoEnableSwitch from "./AutoEnableSwitch";
 
-it('renders correctly', () => {
-  const renderer = new Renderer()
+it("renders correctly", () => {
+  const renderer = new Renderer();
 
-  const tree = renderer.createWithAct(
-    <AutoEnableSwitch value onChange={() => null} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+  const tree = renderer
+    .createWithAct(<AutoEnableSwitch value onChange={() => null} />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});

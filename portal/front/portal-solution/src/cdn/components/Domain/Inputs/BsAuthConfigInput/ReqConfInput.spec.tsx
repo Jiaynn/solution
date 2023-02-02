@@ -1,41 +1,51 @@
+import React from "react";
 
-import React from 'react'
+import { RendererUtils as Renderer } from "cdn/test";
 
-import { RendererUtils as Renderer } from 'test'
+import { userAuthReqObjectKeyOfTypes } from "cdn/constants/domain";
+import { ReqConfInput, IProps } from "./ReqConfInput";
 
-import { userAuthReqObjectKeyOfTypes } from 'cdn/constants/domain'
-import { ReqConfInput, IProps } from './ReqConfInput'
-
-const noop = () => null
+const noop = () => null;
 
 const testCase: IProps[] = [
   {
-    value: [{
-      key: '',
-      value: '',
-      type: ''
-    }],
+    value: [
+      {
+        key: "",
+        value: "",
+        type: "",
+      },
+    ],
     error: [],
-    title: '',
-    onChange: noop
+    title: "",
+    onChange: noop,
   },
   {
-    value: [{
-      key: 'x-from-cdn',
-      value: 'qiniu',
-      type: userAuthReqObjectKeyOfTypes.originIp
-    }],
+    value: [
+      {
+        key: "x-from-cdn",
+        value: "qiniu",
+        type: userAuthReqObjectKeyOfTypes.originIp,
+      },
+    ],
     error: [],
-    title: 'Header',
-    onChange: noop
-  }
-]
+    title: "Header",
+    onChange: noop,
+  },
+];
 
-it('renders correctly', () => {
+it("renders correctly", () => {
   for (const props of testCase) {
-    const tree = new Renderer().createWithAct(
-      <ReqConfInput error={props.error} value={props.value} title={props.title} onChange={props.onChange} />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    const tree = new Renderer()
+      .createWithAct(
+        <ReqConfInput
+          error={props.error}
+          value={props.value}
+          title={props.title}
+          onChange={props.onChange}
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
   }
-})
+});

@@ -3,22 +3,22 @@
  * @author nighca <nighca@live.cn>
  */
 
-import React from 'react'
+import React from "react";
 
-import { RendererUtils as Renderer } from 'test'
+import { RendererUtils as Renderer } from "cdn/test";
 
-import mockDomainDetail from 'cdn/test/domain-detail-mock'
+import mockDomainDetail from "cdn/test/domain-detail-mock";
 
-import BasicInfoBlock from './BasicInfoBlock'
+import BasicInfoBlock from "./BasicInfoBlock";
 
-const domain = mockDomainDetail()
+const domain = mockDomainDetail();
 
-const noop = () => {}
+const noop = () => {};
 
-it('renders correctly', () => {
-  const renderer = new Renderer()
-  const tree = renderer.createWithAct(
-    <BasicInfoBlock domain={domain} hasIcp onRefresh={noop} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+it("renders correctly", () => {
+  const renderer = new Renderer();
+  const tree = renderer
+    .createWithAct(<BasicInfoBlock domain={domain} hasIcp onRefresh={noop} />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});

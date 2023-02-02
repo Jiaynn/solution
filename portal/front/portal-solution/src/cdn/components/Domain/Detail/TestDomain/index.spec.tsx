@@ -3,16 +3,16 @@
  * @author nighca <nighca@live.cn>
  */
 
-import React from 'react'
+import React from "react";
 
-import { RendererUtils as Renderer } from 'test'
+import { RendererUtils as Renderer } from "cdn/test";
 
-import TestDomain from '.'
+import TestDomain from ".";
 
-it('renders correctly', () => {
-  const renderer = new Renderer()
-  const tree = renderer.createWithAct(
-    <TestDomain name="pc1xib4ss.test.bkt.clouddn.com" />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+it("renders correctly", () => {
+  const renderer = new Renderer();
+  const tree = renderer
+    .createWithAct(<TestDomain name="pc1xib4ss.test.bkt.clouddn.com" />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});

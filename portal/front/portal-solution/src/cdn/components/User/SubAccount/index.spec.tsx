@@ -1,14 +1,12 @@
-import React from 'react'
+import React from "react";
 
-import { createOemRendererWithRouter } from 'test'
+import { createOemRendererWithRouter } from "cdn/test";
 
-import UserSubAccount from '.'
+import UserSubAccount from ".";
 
-const renderer = createOemRendererWithRouter()
+const renderer = createOemRendererWithRouter();
 
-it('renders correctly', () => {
-  const tree = renderer.createWithAct(
-    <UserSubAccount />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+it("renders correctly", () => {
+  const tree = renderer.createWithAct(<UserSubAccount />).toJSON();
+  expect(tree).toMatchSnapshot();
+});

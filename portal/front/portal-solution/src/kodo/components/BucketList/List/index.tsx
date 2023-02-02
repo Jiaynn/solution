@@ -4,152 +4,179 @@
  * @author yinxulai <me@yinxulai.com>
  */
 
-import * as React from 'react'
-import classNames from 'classnames'
-import Disposable from 'qn-fe-core/disposable'
-import { action, computed, observable, reaction, when, makeObservable } from 'mobx'
-import { observer, Observer } from 'mobx-react'
-import autobind from 'autobind-decorator'
-import { InjectFunc, Inject } from 'qn-fe-core/di'
-import { Icon, Table, Tooltip } from 'react-icecream/lib'
-import Role from 'portal-base/common/components/Role'
-import { Link, RouterStore } from 'portal-base/common/router'
-import { ToasterStore as Toaster } from 'portal-base/common/toaster'
-import { FeatureConfigStore } from 'portal-base/user/feature-config'
+import * as React from "react";
+import classNames from "classnames";
+import Disposable from "qn-fe-core/disposable";
+import {
+  action,
+  computed,
+  observable,
+  reaction,
+  when,
+  makeObservable,
+} from "mobx";
+import { observer, Observer } from "mobx-react";
+import autobind from "autobind-decorator";
+import { InjectFunc, Inject } from "qn-fe-core/di";
+import { Icon, Table, Tooltip } from "react-icecream/lib";
+import Role from "portal-base/common/components/Role";
+import { Link, RouterStore } from "portal-base/common/router";
+import { ToasterStore as Toaster } from "portal-base/common/toaster";
+import { FeatureConfigStore } from "portal-base/user/feature-config";
 
-import { PaginationProps } from 'react-icecream/lib/pagination'
+import { PaginationProps } from "react-icecream/lib/pagination";
 
-import { keysOf, valuesOfEnum } from 'kodo/utils/ts'
+import { keysOf, valuesOfEnum } from "kodo/utils/ts";
 
-import { ColumnSortOrder, Filters, OnChange } from 'kodo/types/icecream/table'
+import { ColumnSortOrder, Filters, OnChange } from "kodo/types/icecream/table";
 
-import { ArrayCompareFn } from 'kodo/types/ts'
+import { ArrayCompareFn } from "kodo/types/ts";
 
-import { humanizeTimestamp } from 'kodo/transforms/date-time'
+import { humanizeTimestamp } from "kodo/transforms/date-time";
 
-import { isShared } from 'kodo/transforms/bucket/setting/authorization'
+import { isShared } from "kodo/transforms/bucket/setting/authorization";
 
-import { isDomainAvailable } from 'kodo/transforms/domain'
+import { BucketListStore } from "kodo/stores/bucket/list";
+import { ConfigStore } from "kodo/stores/config";
+import { KodoIamStore } from "kodo/stores/iam";
 
-import { BucketListStore } from 'kodo/stores/bucket/list'
-import { ConfigStore } from 'kodo/stores/config'
-import { KodoIamStore } from 'kodo/stores/iam'
+import {
+  getOverviewPath,
+  getResourceV2Path,
+  SearchType,
+} from "kodo/routes/bucket";
 
-import { getDomainPath, getOverviewPath, getResourceV2Path, getSettingPath, SearchType } from 'kodo/routes/bucket'
+import { BucketRole } from "kodo/constants/role";
+import {
+  regionAll,
+  RegionSymbol,
+  RegionSymbolWithAll,
+} from "kodo/constants/region";
+import {
+  privateNameMap,
+  PrivateType,
+} from "kodo/constants/bucket/setting/access";
+import { shareNameMapForConsumer } from "kodo/constants/bucket/setting/authorization";
 
-import { BucketRole } from 'kodo/constants/role'
-import { regionAll, RegionSymbol, RegionSymbolWithAll } from 'kodo/constants/region'
-import { privateNameMap, PrivateType } from 'kodo/constants/bucket/setting/access'
-import { shareNameMapForConsumer } from 'kodo/constants/bucket/setting/authorization'
+import { IBucketListItem } from "kodo/apis/bucket/list";
 
-import { Auth } from 'kodo/components/common/Auth'
-
-import { IBucketListItem } from 'kodo/apis/bucket/list'
-
-import BucketTags from '../BucketTags'
-import styles from './style.m.less'
+import BucketTags from "../BucketTags";
+import styles from "./style.m.less";
 
 export interface IProps {
-  region: RegionSymbolWithAll // 地区
-  loading: boolean
-  searchTag?: string // 标签搜索
-  searchName?: string // 搜索条件
-  searchType?: SearchType // 标签类型
+  region: RegionSymbolWithAll; // 地区
+  loading: boolean;
+  searchTag?: string; // 标签搜索
+  searchName?: string; // 搜索条件
+  searchType?: SearchType; // 标签类型
 }
 
 interface DiDeps {
-  inject: InjectFunc
+  inject: InjectFunc;
 }
 
-class BucketTable extends Table<IBucketListItem> { }
+class BucketTable extends Table<IBucketListItem> {}
 
-class BucketTableColumn extends Table.Column<IBucketListItem> { }
+class BucketTableColumn extends Table.Column<IBucketListItem> {}
 
 function stringFieldSorter(a: string, b: string) {
   if (a === b) {
-    return 0
+    return 0;
   }
-  return a < b ? -1 : 1
+  return a < b ? -1 : 1;
 }
 
 function numberFieldSorter(a: number, b: number) {
-  return a - b
+  return a - b;
 }
 
 @observer
 class InternalBucketList extends React.Component<IProps & DiDeps> {
-
   constructor(props: IProps & DiDeps) {
-    super(props)
+    super(props);
 
-    makeObservable(this)
+    makeObservable(this);
 
-    const toaster = this.props.inject(Toaster)
-    Toaster.bindTo(this, toaster)
+    const toaster = this.props.inject(Toaster);
+    Toaster.bindTo(this, toaster);
   }
 
-  iamStore = this.props.inject(KodoIamStore)
-  routerStore = this.props.inject(RouterStore)
-  configStore = this.props.inject(ConfigStore)
-  bucketListStore = this.props.inject(BucketListStore)
-  featureStore = this.props.inject(FeatureConfigStore)
+  iamStore = this.props.inject(KodoIamStore);
+  routerStore = this.props.inject(RouterStore);
+  configStore = this.props.inject(ConfigStore);
+  bucketListStore = this.props.inject(BucketListStore);
+  featureStore = this.props.inject(FeatureConfigStore);
 
-  disposable = new Disposable()
-  @observable currentPage = 1
-  @observable sortKey = 'ctime'
-  @observable sortOrder: ColumnSortOrder<IBucketListItem> = 'descend'
-  @observable.ref filteredValues: Partial<Filters<IBucketListItem>> = {}
+  disposable = new Disposable();
+  @observable currentPage = 1;
+  @observable sortKey = "ctime";
+  @observable sortOrder: ColumnSortOrder<IBucketListItem> = "descend";
+  @observable.ref filteredValues: Partial<Filters<IBucketListItem>> = {};
 
   componentDidMount() {
-    this.fetchBucketList()
+    this.fetchBucketList();
 
     // 处理搜索条件变化
-    this.disposable.addDisposer(reaction(
-      () => this.props.searchName,
-      () => {
-        // 如果搜索空间确实存在、则 fetch 更新一下信息
-        if (this.props.searchName && this.bucketListStore.nameList.includes(this.props.searchName)) {
-          this.bucketListStore.fetchByName(this.props.searchName)
+    this.disposable.addDisposer(
+      reaction(
+        () => this.props.searchName,
+        () => {
+          // 如果搜索空间确实存在、则 fetch 更新一下信息
+          if (
+            this.props.searchName &&
+            this.bucketListStore.nameList.includes(this.props.searchName)
+          ) {
+            this.bucketListStore.fetchByName(this.props.searchName);
+          }
         }
-      }
-    ))
+      )
+    );
 
     // 标签搜索
-    this.disposable.addDisposer(reaction(
-      () => this.props.searchTag,
-      () => this.props.searchTag && this.bucketListStore.fetchNameListByTag(this.props.searchTag),
-      { fireImmediately: true }
-    ))
+    this.disposable.addDisposer(
+      reaction(
+        () => this.props.searchTag,
+        () =>
+          this.props.searchTag &&
+          this.bucketListStore.fetchNameListByTag(this.props.searchTag),
+        { fireImmediately: true }
+      )
+    );
   }
 
   componentWillUnmount() {
-    this.disposable.dispose()
+    this.disposable.dispose();
   }
 
   @computed
   get tableData(): IBucketListItem[] {
-    const { searchType, searchTag, searchName, region } = this.props
+    const { searchType, searchTag, searchName, region } = this.props;
     const currentRegionBucketList = !this.isAllTabActive
       ? this.bucketListStore.getListByRegion(region as RegionSymbol) || []
-      : this.bucketListStore.list || []
+      : this.bucketListStore.list || [];
 
-    if (searchType === 'name' && searchName) {
-      return currentRegionBucketList.filter(bucket => bucket.tbl.includes(searchName))
+    if (searchType === "name" && searchName) {
+      return currentRegionBucketList.filter((bucket) =>
+        bucket.tbl.includes(searchName)
+      );
     }
-    if (searchType === 'tag' && searchTag) {
-      const matchTagBucketNames = this.bucketListStore.getNameListByTagKey(searchTag)
+    if (searchType === "tag" && searchTag) {
+      const matchTagBucketNames =
+        this.bucketListStore.getNameListByTagKey(searchTag);
       if (matchTagBucketNames && matchTagBucketNames.size) {
-        return currentRegionBucketList.filter(bucket => matchTagBucketNames.has(bucket.tbl))
+        return currentRegionBucketList.filter((bucket) =>
+          matchTagBucketNames.has(bucket.tbl)
+        );
       }
-      return [] // 没有匹配就返回空
+      return []; // 没有匹配就返回空
     }
 
-    return currentRegionBucketList
+    return currentRegionBucketList;
   }
 
   @computed
   get isAllTabActive(): boolean {
-    return this.props.region === regionAll.symbol
+    return this.props.region === regionAll.symbol;
   }
 
   @computed
@@ -157,8 +184,8 @@ class InternalBucketList extends React.Component<IProps & DiDeps> {
     return {
       defaultPageSize: 30,
       current: this.currentPage,
-      onChange: this.handlePaginationChange
-    }
+      onChange: this.handlePaginationChange,
+    };
   }
 
   // TODO：FiltersOptions 类型下次加到 icecream @huangibnjie
@@ -166,8 +193,9 @@ class InternalBucketList extends React.Component<IProps & DiDeps> {
   get shareFiltersOptions() {
     return {
       filteredValue: this.filteredValues.perm,
-      onFilter: (value: string, record: IBucketListItem): boolean => record.perm.toString() === value,
-      filterIcon: filtered => (
+      onFilter: (value: string, record: IBucketListItem): boolean =>
+        record.perm.toString() === value,
+      filterIcon: (filtered) => (
         // 经过充分测试及源码阅读，And 此处仅接受可包含内容的元素返回，如 div/span 或 <Icon>；<Role> 无法工作，故需要包装
         <span className={styles.filterIcon}>
           <Role name={BucketRole.BucketListTypeFilterCtrl}>
@@ -176,19 +204,17 @@ class InternalBucketList extends React.Component<IProps & DiDeps> {
               theme="filled"
               className={classNames(
                 styles.icon,
-                filtered && 'ant-table-filter-selected'
+                filtered && "ant-table-filter-selected"
               )}
             />
           </Role>
         </span>
       ),
-      filters: keysOf(shareNameMapForConsumer).map(
-        perm => ({
-          value: String(perm),
-          text: shareNameMapForConsumer[perm]
-        })
-      )
-    }
+      filters: keysOf(shareNameMapForConsumer).map((perm) => ({
+        value: String(perm),
+        text: shareNameMapForConsumer[perm],
+      })),
+    };
   }
 
   @computed
@@ -196,46 +222,50 @@ class InternalBucketList extends React.Component<IProps & DiDeps> {
     return {
       filteredValue: this.filteredValues.private,
       onFilter(value: string, record: IBucketListItem): boolean {
-        return String(record.private) === value
+        return String(record.private) === value;
       },
-      filters: valuesOfEnum(PrivateType).map(value => ({
+      filters: valuesOfEnum(PrivateType).map((value) => ({
         text: privateNameMap[value],
-        value: value.toString()
-      }))
-    }
+        value: value.toString(),
+      })),
+    };
   }
 
   @computed
   get isOverviewVisible(): boolean {
-    return !this.iamStore.isIamUser
+    return !this.iamStore.isIamUser;
   }
 
   @autobind
   isSharedBucket(bucketName: string): boolean {
-    return isShared(this.bucketListStore.getByName(bucketName)!.perm)
+    return isShared(this.bucketListStore.getByName(bucketName)!.perm);
   }
 
   @autobind
   isResourceManageAvailable() {
-    const config = this.configStore.getFull()
-    return config.objectStorage.resourceManage && config.objectStorage.resourceManage.enable || false
+    const config = this.configStore.getFull();
+    return (
+      (config.objectStorage.resourceManage &&
+        config.objectStorage.resourceManage.enable) ||
+      false
+    );
   }
 
   @autobind
   resourceManagerPath(bucketName: string) {
-    return getResourceV2Path(this.props.inject, { bucketName })
+    return getResourceV2Path(this.props.inject, { bucketName });
   }
 
   @autobind
   getBucketNameLink(bucket: IBucketListItem) {
-    return (!this.isOverviewVisible || this.isSharedBucket(bucket.tbl))
+    return !this.isOverviewVisible || this.isSharedBucket(bucket.tbl)
       ? this.resourceManagerPath(bucket.tbl)
-      : getOverviewPath(this.props.inject, { bucketName: bucket.tbl })
+      : getOverviewPath(this.props.inject, { bucketName: bucket.tbl });
   }
 
   @Toaster.handle()
   fetchBucketList() {
-    return this.bucketListStore.fetchList()
+    return this.bucketListStore.fetchList();
   }
 
   // TODO：SortOptions 下次加到 icecream @huangbinjie
@@ -243,72 +273,76 @@ class InternalBucketList extends React.Component<IProps & DiDeps> {
   getTableSortOptions<T>(key: keyof T, sorter: ArrayCompareFn<T[keyof T]>) {
     return {
       sortOrder: this.sortKey === key ? this.sortOrder : false,
-      sorter: (a, b) => sorter(a[key], b[key])
-    }
+      sorter: (a, b) => sorter(a[key], b[key]),
+    };
   }
 
   @action.bound
   handlePaginationChange(current: number) {
-    this.currentPage = current
+    this.currentPage = current;
   }
 
   @action.bound
   handleTableChange: OnChange<IBucketListItem> = (_, filters, sorter) => {
-    this.sortKey = sorter.columnKey
-    this.sortOrder = sorter.order
-    this.filteredValues = filters
-  }
+    this.sortKey = sorter.columnKey;
+    this.sortOrder = sorter.order;
+    this.filteredValues = filters;
+  };
 
   @Toaster.handle()
   async handleIamUserRouterJump(bucketName: string) {
     const params = {
-      actionName: 'Statistics',
-      resource: bucketName
-    } as const
+      actionName: "Statistics",
+      resource: bucketName,
+    } as const;
 
-    this.iamStore.fetchIamActionsByResource(bucketName)
+    this.iamStore.fetchIamActionsByResource(bucketName);
     // 因为需要根据权限决定路由，所以这里需要等到请求结束
     // 调用 fetchIamActionsByResource 后 isLoadingEffects 变为 true，当为 false 时代表请求结束
     // https://mobx.js.org/reactions.html#when
-    const promise = when(() => !this.iamStore.isLoadingEffects)
-    this.disposable.addDisposer(promise.cancel)
-    await promise
+    const promise = when(() => !this.iamStore.isLoadingEffects);
+    this.disposable.addDisposer(promise.cancel);
+    await promise;
 
-    const path = (this.iamStore.isActionDeny(params) || this.isSharedBucket(bucketName))
-      ? this.resourceManagerPath(bucketName)
-      : getOverviewPath(this.props.inject, { bucketName })
+    const path =
+      this.iamStore.isActionDeny(params) || this.isSharedBucket(bucketName)
+        ? this.resourceManagerPath(bucketName)
+        : getOverviewPath(this.props.inject, { bucketName });
 
-    this.routerStore.push(path)
+    this.routerStore.push(path);
   }
 
   renderBucketName(data: IBucketListItem): React.ReactElement {
     // iam 用户需要调用接口看 action 权限才能确定进入页面，所以这里把是否是 iam 用户分开判断
     const buttonView = (
       <Link
-        to={!this.iamStore.isIamUser ? this.getBucketNameLink(data) : ''}
-        {...this.iamStore.isIamUser && { onClick: e => { e.preventDefault(); this.handleIamUserRouterJump(data.tbl) } }}
+        to={!this.iamStore.isIamUser ? this.getBucketNameLink(data) : ""}
+        {...(this.iamStore.isIamUser && {
+          onClick: (e) => {
+            e.preventDefault();
+            this.handleIamUserRouterJump(data.tbl);
+          },
+        })}
         target="_blank"
         rel="noopener noreferrer"
       >
         {data.tbl}
       </Link>
-    )
+    );
 
-    return isShared(data.perm) && !this.featureStore.isDisabled('KODO.KODO_BUCKET_SHARE')
-      ? (
-        <Tooltip
-          placement="bottomLeft"
-          title={`所属：${data.oemail}`}
-        >
-          {buttonView}
-        </Tooltip>
-      )
-      : buttonView
+    return isShared(data.perm) &&
+      !this.featureStore.isDisabled("KODO.KODO_BUCKET_SHARE") ? (
+      <Tooltip placement="bottomLeft" title={`所属：${data.oemail}`}>
+        {buttonView}
+      </Tooltip>
+    ) : (
+      buttonView
+    );
   }
 
   // 空间设置
   renderSetting(data: IBucketListItem): React.ReactElement {
-    const bucketName = data.tbl
+    const bucketName = data.tbl;
 
     const sharedButtonsView = (
       <Link
@@ -317,7 +351,7 @@ class InternalBucketList extends React.Component<IProps & DiDeps> {
       >
         文件
       </Link>
-    )
+    );
 
     const defaultButtonsView = (
       <>
@@ -354,13 +388,13 @@ class InternalBucketList extends React.Component<IProps & DiDeps> {
         {/*  </Link> */}
         {/* )} */}
       </>
-    )
+    );
 
     return (
       <span className={styles.icons}>
         {isShared(data.perm) ? sharedButtonsView : defaultButtonsView}
       </span>
-    )
+    );
   }
 
   @computed
@@ -378,8 +412,13 @@ class InternalBucketList extends React.Component<IProps & DiDeps> {
           title="空间名称"
           dataIndex="tbl"
           className={styles.bucketName}
-          render={(_, data) => <Observer render={() => this.renderBucketName(data)} />}
-          {...this.getTableSortOptions<IBucketListItem>('tbl', stringFieldSorter)}
+          render={(_, data) => (
+            <Observer render={() => this.renderBucketName(data)} />
+          )}
+          {...this.getTableSortOptions<IBucketListItem>(
+            "tbl",
+            stringFieldSorter
+          )}
         />
         {!this.iamStore.isIamUser && (
           <BucketTableColumn
@@ -387,7 +426,9 @@ class InternalBucketList extends React.Component<IProps & DiDeps> {
             title="空间标签"
             width="120px"
             align="center"
-            render={(_, { tbl, perm }) => <BucketTags bucketName={tbl} shareType={perm} />}
+            render={(_, { tbl, perm }) => (
+              <BucketTags bucketName={tbl} shareType={perm} />
+            )}
           />
         )}
         <BucketTableColumn
@@ -406,10 +447,12 @@ class InternalBucketList extends React.Component<IProps & DiDeps> {
               width="160px"
               align="center"
               render={(_, { region }) => (
-                <Observer render={() => {
-                  const regionConfig = this.configStore.getRegion({ region })
-                  return <>{regionConfig.name}</>
-                }} />
+                <Observer
+                  render={() => {
+                    const regionConfig = this.configStore.getRegion({ region });
+                    return <>{regionConfig.name}</>;
+                  }}
+                />
               )}
             />
           )
@@ -445,37 +488,36 @@ class InternalBucketList extends React.Component<IProps & DiDeps> {
           width="200px"
           align="center"
           render={(_, { ctime }) => humanizeTimestamp(ctime * 1000)}
-          {...this.getTableSortOptions<IBucketListItem>('ctime', numberFieldSorter)}
+          {...this.getTableSortOptions<IBucketListItem>(
+            "ctime",
+            numberFieldSorter
+          )}
         />
         <BucketTableColumn
           key="setting"
           title="操作"
           width="180px"
           render={(_, bucket) => (
-            <Observer
-              render={() => this.renderSetting(bucket)}
-            />
+            <Observer render={() => this.renderSetting(bucket)} />
           )}
         />
       </BucketTable>
-    )
+    );
   }
 
   render() {
     return (
       <div className={styles.content}>
-        <div className={styles.bucketTable}>
-          {this.bucketTableView}
-        </div>
+        <div className={styles.bucketTable}>{this.bucketTableView}</div>
       </div>
-    )
+    );
   }
 }
 
 export default function BucketList(props: IProps) {
   return (
-    <Inject render={({ inject }) => (
-      <InternalBucketList {...props} inject={inject} />
-    )} />
-  )
+    <Inject
+      render={({ inject }) => <InternalBucketList {...props} inject={inject} />}
+    />
+  );
 }

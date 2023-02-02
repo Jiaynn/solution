@@ -1,54 +1,54 @@
-import React from 'react'
+import React from "react";
 
-import { RendererUtils as Renderer } from 'test'
+import { RendererUtils as Renderer } from "cdn/test";
 
-import mockDomainDetail from 'cdn/test/domain-detail-mock'
+import mockDomainDetail from "cdn/test/domain-detail-mock";
 
-import FreeCertInput from './index'
+import FreeCertInput from "./index";
 
-const domain = mockDomainDetail()
+const domain = mockDomainDetail();
 
 const freeCertInputProps = {
   value: true,
   needConfigureCname: true,
   onChange: jest.fn(),
-  domain
-}
+  domain,
+};
 
 const freeCertInputPropsNeedCname = {
   value: true,
   needConfigureCname: true,
   onChange: jest.fn(),
-  domain
-}
+  domain,
+};
 
 const freeCertInputPropsWithError = {
   value: true,
   needConfigureCname: true,
   onChange: jest.fn(),
-  error: '测试错误',
-  domain
-}
+  error: "测试错误",
+  domain,
+};
 
-const renderer = new Renderer()
+const renderer = new Renderer();
 
-it('free cert input render correctly', () => {
+it("free cert input render correctly", () => {
   const tree = renderer
     .createWithAct(<FreeCertInput {...freeCertInputProps} />)
-    .toJSON()
-  expect(tree).toMatchSnapshot()
-})
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
 
-it('free cert input render correctly need cname', () => {
+it("free cert input render correctly need cname", () => {
   const tree = renderer
     .createWithAct(<FreeCertInput {...freeCertInputPropsNeedCname} />)
-    .toJSON()
-  expect(tree).toMatchSnapshot()
-})
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
 
-it('free cert input render correctly with error', () => {
+it("free cert input render correctly with error", () => {
   const tree = renderer
     .createWithAct(<FreeCertInput {...freeCertInputPropsWithError} />)
-    .toJSON()
-  expect(tree).toMatchSnapshot()
-})
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});

@@ -63,6 +63,7 @@
     "react-icecream-charts": "0.10.2",
     "react-transition-group": "^2.6.1",
     "resize-detector": "^0.3.0",
+    "react-virtualized": "^9.21.1",
     "sha.js": "^2.4.11",
     "ua-parser-js": "^1.0.2",
     "uuid": "^2.0.2",

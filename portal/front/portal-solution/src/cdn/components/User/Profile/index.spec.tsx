@@ -1,17 +1,15 @@
-import React from 'react'
-import { RouterStore } from 'portal-base/common/router'
+import React from "react";
+import { RouterStore } from "portal-base/common/router";
 
-import { createRendererWithRouter } from 'test'
+import { createRendererWithRouter } from "cdn/test";
 
-import UserProfile from '.'
+import UserProfile from ".";
 
-const renderer = createRendererWithRouter()
+const renderer = createRendererWithRouter();
 
-it('renders correctly', () => {
-  const routerStore = renderer.inject(RouterStore)
-  routerStore.push('/user/profile')
-  const tree = renderer.create(
-    <UserProfile />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+it("renders correctly", () => {
+  const routerStore = renderer.inject(RouterStore);
+  routerStore.push("/user/profile");
+  const tree = renderer.create(<UserProfile />).toJSON();
+  expect(tree).toMatchSnapshot();
+});

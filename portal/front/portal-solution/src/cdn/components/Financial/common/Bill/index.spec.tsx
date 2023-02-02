@@ -1,16 +1,16 @@
-import React from 'react'
-import MockDate from 'mockdate'
+import React from "react";
+import MockDate from "mockdate";
 
-import { OemRendererUtils } from 'test'
+import { OemRendererUtils } from "cdn/test";
 
-MockDate.set('2020-05-01')
+MockDate.set("2020-05-01");
 
-import Bill from '.'
+import Bill from ".";
 
-it('renders correctly', () => {
-  const tree = new OemRendererUtils().createWithAct(
-    <Bill queryOptions={{ uid: 10086 }} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-  MockDate.reset()
-})
+it("renders correctly", () => {
+  const tree = new OemRendererUtils()
+    .createWithAct(<Bill queryOptions={{ uid: 10086 }} />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+  MockDate.reset();
+});
