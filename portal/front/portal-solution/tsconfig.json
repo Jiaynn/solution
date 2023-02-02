@@ -28,9 +28,8 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
-    "strictFunctionTypes": false, // TODO
-    "resolveJsonModule": true,
-    "noImplicitAny": false
+    "strictFunctionTypes": false,
+    "resolveJsonModule": true
   },
   "exclude": [
     "e2e",

@@ -22,7 +22,7 @@ import More, { createMoreConfigForm } from 'kodo/components/BucketDetails/ImageS
 import { MediaStyle } from 'kodo/apis/bucket/image-style'
 
 import { MediaStyleParsing } from '../../common/MediaStyleParsing'
-import { parseStyleName, useCommands } from '../../common/command'
+import { useCommands } from '../../common/command'
 import { useMediaStyleImageConfig } from '../../common/hooks'
 import { FormController } from '../../common/types'
 
@@ -291,7 +291,7 @@ export default observer(function ImageForm(props: Props) {
 
   const handleSceneChange = React.useCallback((sceneCommands: string) => {
     const [, ...rest] = initStyles || []
-      || parseStyleName(formState.value.base.name)
+
     const newMainStyle: MediaStyle = {
       name: formState.value.base.name,
       persistence_enable: formState.value.persistenceEnable || false,

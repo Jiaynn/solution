@@ -722,7 +722,7 @@ export function parseStyle(style: MediaStyle): StyleProcessFormInitValue | undef
   }
 
   const ensurePassedResult = (checkResult: CheckResult) => {
-    if (!checkResult.pass) throw new Error(checkResult.msg)
+    if (checkResult.pass === false) throw new Error(checkResult.msg)
     return true
   }
 
