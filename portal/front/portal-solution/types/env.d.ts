@@ -1,5 +1,34 @@
 /**
  * @file env config
+ * @author lizhifeng <lizhifeng@qiniu.com>
+ */
+
+// build config hack
+declare const KODO_PORTAL_ENV: {
+  // 禁止使用的保留字段
+  DOC: never
+}
+
+// process.env
+declare namespace NodeJS {
+  export interface ProcessEnv {
+    NODE_ENV: 'development' | 'production' | 'test'
+
+    ROUTE_BASE_NAME_MAP: 'built-in' | Record<string, string> // 路由的 basename 配置
+
+    TRACK_ANALYTICS: boolean // 追踪分析
+
+    SITE_CONFIG: {
+      favicon: string // 网站的 favicon
+      pageTitle: string // 网站标题
+      loadingText: string // loading 时的文字
+      loadingImg: string // loading 时的图片
+    }
+  }
+}
+
+/**
+ * @file env config
  * @author linchen <linchen@qiniu.com>
  */
 

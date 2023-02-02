@@ -1,5 +1,4 @@
 declare module '*.svg' {
-  // export { SvgComponent } from 'portal-base/common/utils/svg'
-  const svgExport: (props: React.SVGProps<SVGSVGElement>) => React.ReactElement
+  const svgExport: React.FunctionComponent<React.HTMLAttributes<SVGElement>>
   export default svgExport
 }
