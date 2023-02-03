@@ -11,13 +11,15 @@ import { Loadings } from 'portal-base/common/loading'
 import { ToasterStore as Toaster } from 'portal-base/common/toaster'
 import { IUserInfo } from 'portal-base/user/account'
 
+import { basenameMap } from 'portal-base/common/router'
+
 import { keysOf, valuesOfEnum } from 'kodo/utils/ts'
 
 import { isDev } from 'kodo/utils/dev'
 
 import { StorageType } from 'kodo/constants/statistics'
 import { RegionSymbol } from 'kodo/constants/region'
-import { App, appNameMap } from 'kodo/constants/app'
+import { App } from 'kodo/constants/app'
 
 import { UserInfoApisWithCache } from 'kodo/apis/user-info'
 import { ConfigApis, IBaseConfigResponse, IConfigResponse } from 'kodo/apis/config'
@@ -127,26 +129,26 @@ export class ConfigStore extends Store {
 
   @computed
   get routerBasenameMap(): Record<App, string> {
-    const currentApp = this.matchApp()
-    if (currentApp == null) return {} as Record<App, string>
-
-    const currentAppBaseConfig = this.appBaseConfigMap.get(currentApp)!
-
-    const basenameMap: Record<string, string> = process.env.ROUTE_BASE_NAME_MAP !== 'built-in'
-      ? ({ ...process.env.ROUTE_BASE_NAME_MAP })
-      : {}
-
-    if (this.appBaseConfigMap.size > 0) {
-      this.appBaseConfigMap.forEach((config, app) => {
-        // 如果非当前 APP，又出现 rootPath 相同，一定是域名不同，对于真·跨站无需设置 basenameMap
-        if (app !== currentApp && currentAppBaseConfig.site.rootPath === config.site.rootPath) {
-          return
-        }
-
-        const appName = appNameMap[app]
-        basenameMap[appName] = config.site.rootPath
-      })
-    }
+    // const currentApp = this.matchApp()
+    // if (currentApp == null) return {} as Record<App, string>
+    //
+    // const currentAppBaseConfig = this.appBaseConfigMap.get(currentApp)!
+    //
+    // const basenameMap: Record<string, string> = process.env.ROUTE_BASE_NAME_MAP !== 'built-in'
+    //   ? ({ ...process.env.ROUTE_BASE_NAME_MAP })
+    //   : {}
+    //
+    // if (this.appBaseConfigMap.size > 0) {
+    //   this.appBaseConfigMap.forEach((config, app) => {
+    //     // 如果非当前 APP，又出现 rootPath 相同，一定是域名不同，对于真·跨站无需设置 basenameMap
+    //     if (app !== currentApp && currentAppBaseConfig.site.rootPath === config.site.rootPath) {
+    //       return
+    //     }
+    //
+    //     const appName = appNameMap[app]
+    //     basenameMap[appName] = config.site.rootPath
+    //   })
+    // }
 
     return basenameMap
   }
@@ -174,6 +176,10 @@ export class ConfigStore extends Store {
         return app
       }
     }
+
+    console.log('log storedList', storedList)
+    console.log('log this.appUrlMap', this.appUrlMap)
+    console.log('log this.this.appBaseConfigMap', this.appBaseConfigMap)
 
     if (isDev) {
       // 先做一下安全检查，有没有出现跨域名的配置

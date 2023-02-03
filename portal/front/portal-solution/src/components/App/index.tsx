@@ -25,8 +25,7 @@ import Role from 'portal-base/common/components/Role'
 
 import { ToasterStore } from 'portal-base/common/toaster'
 
-import { basename, entry } from 'constants/routes'
-import { name as productName } from 'constants/product'
+import { basename, entry, name as productName } from 'constants/routes'
 
 import { BootProvider } from 'kodo/components/common/BootProvider'
 import Overview from 'components/Overview'
@@ -84,9 +83,6 @@ export default observer(function App() {
                                 </Route>
                                 <Route relative title="图片管理" exact path="/image-management"><ImageManagement /></Route>
                                 <Route relative title="购买资源包" exact path="/resource-pack"><ResourcePack /></Route>
-                                {/* <Route relative title="域名管理" path="/domain">
-
-                  </Route> */}
                               </Switch>
                             </ContentLayout>
                           </Layout>

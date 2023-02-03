@@ -8317,9 +8317,9 @@ klona@^2.0.4:
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.6.tgz#85bffbf819c03b2f53270412420a4555ef882e22"
   integrity sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==
 
-"kodo-base@git+ssh://git@github.com:qbox/kodo-web.git#base-v2.2.33":
+"kodo-base@https://github.com/qbox/kodo-web.git#base-v2.2.33":
   version "2.2.33"
-  resolved "git+ssh://git@github.com:qbox/kodo-web.git#6f71195a47e391451afd913db4ed25dde6c66779"
+  resolved "https://github.com/qbox/kodo-web.git#6f71195a47e391451afd913db4ed25dde6c66779"
   dependencies:
     filesize "^8.0.3"
     lodash "~4.17.15"
@@ -10086,9 +10086,9 @@ pn@^1.0.0:
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
   integrity sha512-2qHaIQr2VLRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
 
-"portal-base@git+ssh://git@github.com:qbox/portal-base.git#v3.5.4":
-  version "3.5.4"
-  resolved "git+ssh://git@github.com:qbox/portal-base.git#8b08372892bb6d235ec9638a966125f9e1bd2ef0"
+"portal-base@https://github.com/qbox/portal-base.git#v3.5.6 ":
+  version "3.5.6"
+  resolved "https://github.com/qbox/portal-base.git#feaeb07b8427931df285bfeccf7463edebf35597"
   dependencies:
     "@dnd-kit/core" "^5.0.0"
     "@dnd-kit/sortable" "^6.0.0"
@@ -10935,9 +10935,9 @@ qiniu@^7.3.2:
     tunnel-agent "^0.6.0"
     urllib "^2.34.1"
 
-"qn-fe-core@git+ssh://git@github.com/qbox/fe-core.git#semver:^v2.1.6":
-  version "2.2.0"
-  resolved "git+ssh://git@github.com/qbox/fe-core.git#f484a4446072868c8dfdf3a466d3422219cb6178"
+"qn-fe-core@https://github.com/qbox/fe-core.git#semver:^v2.1.6":
+  version "2.2.1"
+  resolved "https://github.com/qbox/fe-core.git#6cd3dd34f66639b5fd01eb93399465ca5631c2b1"
   dependencies:
     inversify "~5.0.1"
     lodash "~4.17.20"
