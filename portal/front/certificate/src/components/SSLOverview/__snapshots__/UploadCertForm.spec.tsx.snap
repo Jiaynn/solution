@@ -1,0 +1,341 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<form
+  className="ant-form ant-form-horizontal"
+  onSubmit={[Function]}
+>
+  <div
+    className=""
+  >
+    <div
+      className="ant-alert ant-alert-warning upload-warn"
+      data-show={true}
+    >
+      <i
+        aria-label="icon: warning"
+        className="anticon anticon-warning ant-alert-icon"
+      >
+        <svg
+          aria-hidden="true"
+          className=""
+          data-icon="warning"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M464 720a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm16-304v184c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V416c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8zm475.7 440l-416-720c-6.2-10.7-16.9-16-27.7-16s-21.6 5.3-27.7 16l-416 720C56 877.4 71.4 904 96 904h832c24.6 0 40-26.6 27.7-48zm-783.5-27.9L512 239.9l339.8 588.2H172.2z"
+          />
+        </svg>
+      </i>
+      <span
+        className="ant-alert-message"
+      >
+        <span>
+          请上传有效期不小于 30 天的证书。目前只支持 PEM 格式，其它格式请前往 
+          <a
+            className="link"
+            href="https://myssl.com/cert_convert.html"
+            rel="noopener"
+            target="_blank"
+          >
+            该站点
+          </a>
+           转换。
+        </span>
+      </span>
+      <span
+        className="ant-alert-description"
+      />
+    </div>
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-col ant-col-6 ant-form-item-label"
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="name"
+          onClick={[Function]}
+          title="证书备注名"
+        >
+          证书备注名
+        </label>
+      </div>
+      <div
+        className="ant-col ant-col-18 ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <input
+              className="ant-input"
+              data-__field={
+                Object {
+                  "name": "name",
+                }
+              }
+              data-__meta={
+                Object {
+                  "initialValue": undefined,
+                  "name": "name",
+                  "originalProps": Object {
+                    "disabled": false,
+                    "type": "text",
+                  },
+                  "ref": null,
+                  "rules": Array [
+                    Object {
+                      "message": "必填",
+                      "required": true,
+                    },
+                    Object {
+                      "message": "仅支持中英文字符、数字、空格、_、-、*、.、()",
+                      "pattern": /\\^\\[a-zA-Z0-9_\\\\s\\\\-\\*\\.\\(\\)\\\\u4e00-\\\\u9fa5\\]\\+\\$/,
+                    },
+                    Object {
+                      "message": "不可以为空",
+                      "whitespace": true,
+                    },
+                  ],
+                  "trigger": "onChange",
+                  "validate": Array [
+                    Object {
+                      "rules": Array [
+                        Object {
+                          "message": "必填",
+                          "required": true,
+                        },
+                        Object {
+                          "message": "仅支持中英文字符、数字、空格、_、-、*、.、()",
+                          "pattern": /\\^\\[a-zA-Z0-9_\\\\s\\\\-\\*\\.\\(\\)\\\\u4e00-\\\\u9fa5\\]\\+\\$/,
+                        },
+                        Object {
+                          "message": "不可以为空",
+                          "whitespace": true,
+                        },
+                      ],
+                      "trigger": Array [
+                        "onChange",
+                      ],
+                    },
+                  ],
+                  "validateTrigger": "onChange",
+                  "valuePropName": "value",
+                }
+              }
+              disabled={false}
+              id="name"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="text"
+              value=""
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-col ant-col-6 ant-form-item-label"
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="ca"
+          onClick={[Function]}
+          title="证书内容 ( PEM格式 )"
+        >
+          证书内容 ( PEM格式 )
+        </label>
+      </div>
+      <div
+        className="ant-col ant-col-18 ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <textarea
+              className="ant-input"
+              data-__field={
+                Object {
+                  "name": "ca",
+                }
+              }
+              data-__meta={
+                Object {
+                  "initialValue": undefined,
+                  "name": "ca",
+                  "originalProps": Object {
+                    "placeholder": "请将证书内容(包含证书链)复制粘贴到此处",
+                    "rows": 10,
+                  },
+                  "ref": null,
+                  "rules": Array [
+                    Object {
+                      "message": "必填",
+                      "required": true,
+                    },
+                    Object {
+                      "message": "不可以为空",
+                      "whitespace": true,
+                    },
+                  ],
+                  "trigger": "onChange",
+                  "validate": Array [
+                    Object {
+                      "rules": Array [
+                        Object {
+                          "message": "必填",
+                          "required": true,
+                        },
+                        Object {
+                          "message": "不可以为空",
+                          "whitespace": true,
+                        },
+                      ],
+                      "trigger": Array [
+                        "onChange",
+                      ],
+                    },
+                  ],
+                  "validateTrigger": "onChange",
+                  "valuePropName": "value",
+                }
+              }
+              id="ca"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder="请将证书内容(包含证书链)复制粘贴到此处"
+              rows={10}
+              style={Object {}}
+              value=""
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+    >
+      <div
+        className="ant-col ant-col-6 ant-form-item-label"
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="pri"
+          onClick={[Function]}
+          title="证书私钥 ( PEM格式 )"
+        >
+          证书私钥 ( PEM格式 )
+        </label>
+      </div>
+      <div
+        className="ant-col ant-col-18 ant-form-item-control-wrapper"
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <textarea
+              className="ant-input"
+              data-__field={
+                Object {
+                  "name": "pri",
+                }
+              }
+              data-__meta={
+                Object {
+                  "initialValue": undefined,
+                  "name": "pri",
+                  "originalProps": Object {
+                    "placeholder": "请将证书私钥复制粘贴到此处",
+                    "rows": 10,
+                  },
+                  "ref": null,
+                  "rules": Array [
+                    Object {
+                      "message": "必填",
+                      "required": true,
+                    },
+                    Object {
+                      "message": "不可以为空",
+                      "whitespace": true,
+                    },
+                  ],
+                  "trigger": "onChange",
+                  "validate": Array [
+                    Object {
+                      "rules": Array [
+                        Object {
+                          "message": "必填",
+                          "required": true,
+                        },
+                        Object {
+                          "message": "不可以为空",
+                          "whitespace": true,
+                        },
+                      ],
+                      "trigger": Array [
+                        "onChange",
+                      ],
+                    },
+                  ],
+                  "validateTrigger": "onChange",
+                  "valuePropName": "value",
+                }
+              }
+              id="pri"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder="请将证书私钥复制粘贴到此处"
+              rows={10}
+              style={Object {}}
+              value=""
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr
+    className="split-line sub-split-line"
+  />
+  <div
+    className="footer-center"
+  >
+    <button
+      className="ant-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <span>
+        取消
+      </span>
+    </button>
+    <button
+      className="ant-btn ant-btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <span>
+        确定上传
+      </span>
+    </button>
+  </div>
+</form>
+`;

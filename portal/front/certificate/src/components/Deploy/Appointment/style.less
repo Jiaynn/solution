@@ -1,0 +1,36 @@
+.deploy-appointment-wrapper {
+  margin-top: 20px;
+  position: relative;
+  .domain-selection-tip {
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    max-height: 42px;
+    width: 50%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    .tip-icon {
+      margin-right: 8px;
+    }
+    .tip-desc {
+      .domain-number {
+        color: #36D2F6;
+      }
+    }
+    .tip-warn {
+      color: #EB3B2A;
+      margin-left: 10px;
+    }
+  }
+  .validity-period-normal {
+    color: inherit;
+  }
+  .validity-period-deploy {
+    color: #FFA400;
+  }
+  .validity-period-expire {
+    color: #EB3B2A;
+  }
+}
