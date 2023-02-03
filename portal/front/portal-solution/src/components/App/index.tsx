@@ -26,7 +26,6 @@ import Role from 'portal-base/common/components/Role'
 import { ToasterStore } from 'portal-base/common/toaster'
 
 import { basename, entry } from 'constants/routes'
-import { name as productName } from 'constants/product'
 
 import { BootProvider } from 'kodo/components/common/BootProvider'
 import Overview from 'components/Overview'
@@ -37,10 +36,11 @@ import { CdnBootProvider } from 'cdn/components/App/BootProvider'
 
 import Configuration from 'components/Configuration'
 
+const productName = '图片处理方案'
+
 const Sidebar = observer(function MySidebar() {
   return (
     <SubSidebar title={productName}>
-      {/* <LinkItem to="/overview" relative exact>方案概览</LinkItem> */}
       <LinkItem to="/configuration" relative>方案配置</LinkItem>
       <LinkItem to="/image-management" relative>图片管理</LinkItem>
     </SubSidebar>
@@ -70,9 +70,6 @@ export default observer(function App() {
                   <TaskCenterContextProvider>
                     <CdnBootProvider>
                       <Switch placeholder={<NotFound />}>
-                        <Route path="/overview" title="方案概览" exact>
-                          <Redirect to={entry} />
-                        </Route>
                         <Route path={basename} title={productName}>
                           <Layout>
                             <ContentLayout mainClassName="main" sidebar={<Sidebar />}>
@@ -84,9 +81,6 @@ export default observer(function App() {
                                 </Route>
                                 <Route relative title="图片管理" exact path="/image-management"><ImageManagement /></Route>
                                 <Route relative title="购买资源包" exact path="/resource-pack"><ResourcePack /></Route>
-                                {/* <Route relative title="域名管理" path="/domain">
-
-                  </Route> */}
                               </Switch>
                             </ContentLayout>
                           </Layout>
