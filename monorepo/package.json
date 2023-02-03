@@ -36,7 +36,6 @@
     "lint-fix": "eslint --fix 'packages/**/src/**/*.{ts,tsx}'",
     "pretty": "prettier --write 'packages/**/src/**/*.{ts,tsx}'",
     "pretty-check": "prettier --check 'packages/**/src/**/*.{ts,tsx}'",
-    "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
