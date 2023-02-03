@@ -15,7 +15,6 @@ id_rsa_for_builder
 
 # less type
 src/**/*.m.less.d.ts
-src/cdn/certificate
 
 # ide
 .idea

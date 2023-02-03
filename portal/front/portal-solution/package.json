@@ -19,8 +19,7 @@
     "validate": "npm run lint && npm run test",
     "link:cert": "bash ./link-certificate.sh",
     "copy:cert": "bash ./copy-certificate.sh",
-    "delete:cert": "bash ./delete-certificate.sh",
-    "postinstall": "npm run copy:cert"
+    "delete:cert": "bash ./delete-certificate.sh"
   },
   "dependencies": {
     "number-precision": "^1.3.2",
