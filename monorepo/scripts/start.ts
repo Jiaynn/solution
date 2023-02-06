@@ -1,7 +1,6 @@
 import { getPackages } from '@manypkg/get-packages';
 import { cyan, red } from 'kolorist';
 import * as process from 'process';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 import prompts from 'prompts';
 
 import { preRunTask, TPackageName } from './task';
