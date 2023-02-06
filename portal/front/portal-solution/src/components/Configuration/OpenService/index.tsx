@@ -7,6 +7,8 @@ import { RouterStore } from 'portal-base/common/router'
 
 import { Header } from 'components/Configuration/Header'
 
+import { basename } from 'constants/routes'
+
 import './style.less'
 
 const prefixCls = 'comp-configuration-open-service'
@@ -29,7 +31,7 @@ export default observer(function OpenService() {
   }
 
   const onStep3ButtonClick = () => {
-    routerStore.push('/kodo/configuration/step/1?shouldCreateBucket=true')
+    routerStore.push(`${basename}/configuration/step/1?shouldCreateBucket=true`)
   }
 
   return (

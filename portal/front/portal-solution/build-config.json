@@ -13,7 +13,7 @@
     "index": {
       "template": "src/index.ejs",
       "entries": "index",
-      "path": "^\\/"
+      "path": "^\\/solutions\\/"
     }
   },
   "engines": {
