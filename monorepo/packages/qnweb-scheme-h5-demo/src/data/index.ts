@@ -6,7 +6,7 @@ export const list = [
 		title: '企业直播/私域营销',
 		icon: '/static/live.svg',
 		type: 1,
-		url: 'niucube://liveKit/index',
+		url: '',
 		isHot: true,
 		content: 'https://www.qiniu.com/solutions/ent-live',
 		folder: 'Enterprise live broadcasting'
@@ -26,7 +26,7 @@ export const list = [
 		title: '低代码电商直播',
 		icon: '/static/lowcode.svg',
 		type: 1,
-		url: '',
+		url: 'niucube://shopping/index',
 		isHot: true,
 		content: '30',
 		folder: 'LowCodeCommerce'
@@ -36,7 +36,7 @@ export const list = [
 		title: '短视频点播营销',
 		icon: '/static/dianbo.svg',
 		type: 1,
-		url: 'niucube://liveKit/index',
+		url: '',
 		isHot: false,
 		content: '',
 		folder: 'VR live streaming'
@@ -46,7 +46,7 @@ export const list = [
 		title: '营销推送',
 		icon: '/static/customer.svg',
 		type: 1,
-		url: 'niucube://liveKit/index',
+		url: '',
 		isHot: false,
 		content: '28',
 		folder: 'CustomerMarketing'
@@ -56,7 +56,7 @@ export const list = [
 		title: '图片处理分发加速',
 		icon: '/static/picture.svg',
 		type: 2,
-		url: 'niucube://liveKit/index',
+		url: '',
 		isHot: false,
 		content: '',
 		folder: 'Scenic VR'
@@ -66,7 +66,7 @@ export const list = [
 		title: '视频点播',
 		icon: '/static/video.svg',
 		type: 2,
-		url: 'niucube://liveKit/index',
+		url: '',
 		isHot: false,
 		content: '11',
 		folder: 'video'
@@ -76,7 +76,7 @@ export const list = [
 		title: '互动直播',
 		icon: '/static/interavtive.svg',
 		type: 2,
-		url: 'niucube://shopping/index',
+		url: 'niucube://liveKit/index',
 		isHot: false,
 		content: '22',
 		folder: 'InteractiveLiveStreaming'
@@ -86,7 +86,7 @@ export const list = [
 		title: '幼儿园监控',
 		icon: '/static/preschool.svg',
 		type: 3,
-		url: 'niucube://interview/index',
+		url: '',
 		isHot: true,
 		content: '24',
 		folder: 'preschoolEducation'
@@ -96,7 +96,7 @@ export const list = [
 		title: '智能家居&猫眼',
 		icon: '/static/cat.svg',
 		type: 3,
-		url: 'https://niucube-class.qiniu.com',
+		url: '',
 		isHot: false,
 		content: '22',
 		folder: 'catEye'
@@ -106,7 +106,7 @@ export const list = [
 		title: 'ISV',
 		icon: '/static/ISV.svg',
 		type: 3,
-		url: 'niucube://ktv/index',
+		url: '',
 		isHot: false,
 		content: '33',
 		folder: 'ISV'
@@ -116,7 +116,7 @@ export const list = [
 		title: '智能媒资管理',
 		icon: '/static/media.svg',
 		type: 4,
-		url: 'niucube://show/index',
+		url: '',
 		isHot: false,
 		content: '24',
 		folder: 'MediaAsset'
@@ -126,7 +126,7 @@ export const list = [
 		title: '新媒体拍摄剪辑加速',
 		icon: '/static/shooting.svg',
 		type: 4,
-		url: 'niucube://movie/index',
+		url: '',
 		isHot: false,
 		content: '12',
 		folder: 'ShootingEditing'
@@ -136,7 +136,7 @@ export const list = [
 		title: '数字人直播',
 		icon: '/static/number.svg',
 		type: 5,
-		url: 'https://niucube-exam.qiniu.com',
+		url: '',
 		isHot: false,
 		content: 'https://www.qiniu.com/solutions/avatar#scene',
 		folder: 'CarCamera'
@@ -146,71 +146,11 @@ export const list = [
 		title: 'VR直播/点播',
 		icon: '/static/vr.svg',
 		type: 5,
-		url: 'niucube://voiceChatRoom/index',
+		url: '',
 		isHot: false,
 		content: '33',
 		folder: 'vr'
 	}
-	// {
-	// 	id: 15,
-	// 	title: '广电级拍摄&监看',
-	// 	icon: 'https://demo-qnrtc-files.qnsdk.com/%E5%9C%A8%E7%BA%BF%E8%80%83%E8%AF%95.png',
-	// 	type: 3,
-	// 	url: 'https://niucube-exam.qiniu.com',
-	// 	isHot: false,
-	// 	content: 'broadcasting',
-	// 	folder: 'broadcasting'
-	// },
-	// {
-	// 	id: 16,
-	// 	title: '影视制作后期',
-	// 	icon: 'https://demo-qnrtc-files.qnsdk.com/%E5%9C%A8%E7%BA%BF%E8%80%83%E8%AF%95.png',
-	// 	type: 3,
-	// 	url: 'https://niucube-exam.qiniu.com',
-	// 	isHot: false,
-	// 	content: '',
-	// 	folder: 'films and television'
-	// },
-	// {
-	// 	id: 17,
-	// 	title: '数字人',
-	// 	icon: 'https://demo-qnrtc-files.qnsdk.com/%E5%9C%A8%E7%BA%BF%E8%80%83%E8%AF%95.png',
-	// 	type: 4,
-	// 	url: 'https://niucube-exam.qiniu.com',
-	// 	isHot: false,
-	// 	content: 'https://www.qiniu.com/solutions/avatar#scene',
-	// 	folder: 'digital human'
-	// },
-	// {
-	// 	id: 18,
-	// 	title: '数字展厅',
-	// 	icon: 'https://demo-qnrtc-files.qnsdk.com/%E5%9C%A8%E7%BA%BF%E8%80%83%E8%AF%95.png',
-	// 	type: 4,
-	// 	url: 'https://niucube-exam.qiniu.com',
-	// 	isHot: false,
-	// 	content: '',
-	// 	folder: 'Digital exhibition hall'
-	// },
-	// {
-	// 	id: 19,
-	// 	title: '音视频低代码平台',
-	// 	icon: 'https://demo-qnrtc-files.qnsdk.com/%E5%9C%A8%E7%BA%BF%E8%80%83%E8%AF%95.png',
-	// 	type: 5,
-	// 	url: 'https://niucube-exam.qiniu.com',
-	// 	isHot: false,
-	// 	content: '',
-	// 	folder: 'Audio and video'
-	// },
-	// {
-	// 	id: 20,
-	// 	title: '视联网低代码平台',
-	// 	icon: 'https://demo-qnrtc-files.qnsdk.com/%E5%9C%A8%E7%BA%BF%E8%80%83%E8%AF%95.png',
-	// 	type: 5,
-	// 	url: 'https://niucube-exam.qiniu.com',
-	// 	isHot: false,
-	// 	content: '',
-	// 	folder: 'Visual network'
-	// }
 ];
 
 export const tabs = [
@@ -238,8 +178,4 @@ export const tabs = [
 		id: 5,
 		title: '元宇宙'
 	}
-	// {
-	// 	id: 5,
-	// 	title: '低代码音视频工厂'
-	// }
 ];
