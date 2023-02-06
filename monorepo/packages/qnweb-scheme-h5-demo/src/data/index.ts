@@ -31,26 +31,26 @@ export const list = [
 		content: '30',
 		folder: 'LowCodeCommerce'
 	},
-	{
-		id: 3,
-		title: '短视频点播营销',
-		icon: '/static/dianbo.svg',
-		type: 1,
-		url: '',
-		isHot: false,
-		content: '',
-		folder: 'VR live streaming'
-	},
-	{
-		id: 4,
-		title: '营销推送',
-		icon: '/static/customer.svg',
-		type: 1,
-		url: '',
-		isHot: false,
-		content: '28',
-		folder: 'CustomerMarketing'
-	},
+	// {
+	// 	id: 3,
+	// 	title: '短视频点播营销',
+	// 	icon: '/static/dianbo.svg',
+	// 	type: 1,
+	// 	url: '',
+	// 	isHot: false,
+	// 	content: '',
+	// 	folder: 'VR live streaming'
+	// },
+	// {
+	// 	id: 4,
+	// 	title: '营销推送',
+	// 	icon: '/static/customer.svg',
+	// 	type: 1,
+	// 	url: '',
+	// 	isHot: false,
+	// 	content: '28',
+	// 	folder: 'CustomerMarketing'
+	// },
 	{
 		id: 5,
 		title: '图片处理分发加速',
@@ -58,8 +58,8 @@ export const list = [
 		type: 2,
 		url: '',
 		isHot: false,
-		content: '',
-		folder: 'Scenic VR'
+		content: '11',
+		folder: 'pictureProcessing'
 	},
 	{
 		id: 6,
@@ -81,16 +81,16 @@ export const list = [
 		content: '22',
 		folder: 'InteractiveLiveStreaming'
 	},
-	{
-		id: 8,
-		title: '幼儿园监控',
-		icon: '/static/preschool.svg',
-		type: 3,
-		url: '',
-		isHot: true,
-		content: '24',
-		folder: 'preschoolEducation'
-	},
+	// {
+	// 	id: 8,
+	// 	title: '幼儿园监控',
+	// 	icon: '/static/preschool.svg',
+	// 	type: 3,
+	// 	url: '',
+	// 	isHot: true,
+	// 	content: '24',
+	// 	folder: 'preschoolEducation'
+	// },
 	{
 		id: 9,
 		title: '智能家居&猫眼',
