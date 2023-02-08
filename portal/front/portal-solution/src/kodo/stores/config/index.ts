@@ -13,8 +13,6 @@ import { IUserInfo } from 'portal-base/user/account'
 
 import { keysOf, valuesOfEnum } from 'kodo/utils/ts'
 
-import { isDev } from 'kodo/utils/dev'
-
 import { StorageType } from 'kodo/constants/statistics'
 import { RegionSymbol } from 'kodo/constants/region'
 import { App, appNameMap } from 'kodo/constants/app'
@@ -175,20 +173,18 @@ export class ConfigStore extends Store {
       }
     }
 
-    if (isDev) {
-      // 先做一下安全检查，有没有出现跨域名的配置
-      const urls = storedList.map(item => item[0])
-      const hosts = new Set(urls.map(url => url.split('/')[0]))
-      // eslint-disable-next-line no-console
-      if (hosts.size > 1) oncePrint('存在多个 host 定义，本机的调试时可能无法准确命中 APP。')
+    // 先做一下安全检查，有没有出现跨域名的配置
+    const urls = storedList.map(item => item[0])
+    const hosts = new Set(urls.map(url => url.split('/')[0]))
+    // eslint-disable-next-line no-console
+    if (hosts.size > 1) oncePrint('存在多个 host 定义，本机的调试时可能无法准确命中 APP。')
 
-      // 再去把 host 换成本地的匹配试试
-      for (const [url, app] of storedList) {
-        const devUrl = url.replace(/[^/]*/, window.location.host)
-        if (currentUrl.indexOf(devUrl) === 0) {
-          printCurrentApp(app)
-          return app
-        }
+    // 再去把 host 换成本地的匹配试试
+    for (const [url, app] of storedList) {
+      const devUrl = url.replace(/[^/]*/, window.location.host)
+      if (currentUrl.indexOf(devUrl) === 0) {
+        printCurrentApp(app)
+        return app
       }
     }
 
