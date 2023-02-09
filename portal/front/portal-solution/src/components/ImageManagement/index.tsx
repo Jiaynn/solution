@@ -1,45 +1,40 @@
-import SelectBucket from "components/Configuration/SelectBucket";
-import React, { useEffect, useState } from "react";
-import { BucketStore } from "kodo/stores/bucket";
-import { BucketListStore } from "kodo/stores/bucket/list";
-import { useInjection } from "qn-fe-core/di";
-import { ObjectManage } from "kodo/components/BucketDetails/ObjectManage";
+import React, { useEffect, useState } from 'react'
+
+import { useInjection } from 'qn-fe-core/di'
+
+import SelectBucket from 'components/Configuration/SelectBucket'
+import { BucketListStore } from 'kodo/stores/bucket/list'
+
+import { ObjectManage } from 'kodo/components/BucketDetails/ObjectManage'
 
 export default function ImageManagement() {
-  const [selectedBucketName, setSelectedBucketName] = useState("");
-  const bucketListStore = useInjection(BucketListStore);
-  const bucketStore = useInjection(BucketStore);
-  // const domainStore = useInjection(DomainStore);
+  const [selectedBucketName, setSelectedBucketName] = useState('')
+  const bucketListStore = useInjection(BucketListStore)
+
   const onChange = (value: string) => {
-    setSelectedBucketName(value);
-    bucketStore.fetchDetailsByName(value);
-    // domainStore.fetchCDNDomainListByBucketName(value);
-  };
+    setSelectedBucketName(value)
+  }
 
   useEffect(() => {
     bucketListStore.fetchList().then(() => {
-      const { nameList } = bucketListStore;
-      setSelectedBucketName(nameList.sort()[0]);
-    });
-  }, []);
+      const { nameList } = bucketListStore
+      setSelectedBucketName(nameList.slice().sort()[0])
+    })
+  }, [bucketListStore])
 
-  return (
-    <div>
-      {selectedBucketName !== "" ? (
-        <>
-          <SelectBucket
-            defaultBucketName={selectedBucketName}
-            onChange={onChange}
-          />
+  return selectedBucketName !== ''
+    ? (
+      <>
+        <SelectBucket
+          defaultBucketName={selectedBucketName}
+          onChange={onChange}
+        />
 
-          <ObjectManage
-            bucketName={selectedBucketName}
-            isUploadModalOpen={false}
-          />
-        </>
-      ) : (
-        <></>
-      )}
-    </div>
-  );
+        <ObjectManage
+          bucketName={selectedBucketName}
+          isUploadModalOpen={false}
+        />
+      </>
+    )
+    : null
 }

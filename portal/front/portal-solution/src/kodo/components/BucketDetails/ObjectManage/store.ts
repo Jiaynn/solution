@@ -92,6 +92,11 @@ export default class StateStore extends Store {
     this.mediaStyleList = list
   }
 
+  @autobind
+  updateCurrentBucket(bucketName: string) {
+    this.currentBucket = bucketName
+  }
+
   @computed
   get isFetchingBucketInfo() {
     return this.bucketStore.isLoading(BucketStoreLoading.Details)
@@ -380,6 +385,7 @@ export default class StateStore extends Store {
   // 私有云会有源站域名和配置域名，公有云只有 cdn 域名
   @Loadings.handle(LoadingId.Domain)
   async fetchDomains() {
+    this.selectedDomainInfo = null
     const result = await this.domainStore.fetchAllDomainsByBucketName(this.currentBucket)
 
     for (const item of result) {
