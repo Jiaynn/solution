@@ -12,7 +12,7 @@ $ yarn
 
 ```shell
 $ yarn dev
-$ open http://localhost:3000/kodo/overview
+$ open http://localhost:3000/solutions
 ```
 
 ## 参考资料
