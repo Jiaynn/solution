@@ -15,7 +15,7 @@
   "scripts": {
     "build:prod": "rollup -c rollup.config.ts --environment NODE_ENV:prod",
     "build": "rollup -c rollup.config.ts --environment NODE_ENV:prod",
-    "build:test": "rollup -c rollup.config.ts --environment NODE_ENV:test",
+    "build:staging": "rollup -c rollup.config.ts --environment NODE_ENV:staging",
     "build:dev": "rollup -c rollup.config.ts --environment NODE_ENV:dev",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",

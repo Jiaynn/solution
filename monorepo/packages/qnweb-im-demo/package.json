@@ -3,7 +3,9 @@
   "version": "1.0.5",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build:staging": "tsc && vite build --mode staging",
+    "build:prod": "tsc && vite build --mode prod",
+    "build": "tsc && vite build --mode prod",
     "serve": "vite preview",
     "test": "jest --passWithNoTests"
   },

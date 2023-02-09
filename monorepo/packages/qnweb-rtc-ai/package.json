@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "build:prod": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:prod && tsc-alias",
-    "build:test": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:test && tsc-alias",
+    "build:staging": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:staging && tsc-alias",
     "build:dev": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:dev && tsc-alias",
     "build": "npm run build:prod",
     "prepublishOnly": "npm run build",

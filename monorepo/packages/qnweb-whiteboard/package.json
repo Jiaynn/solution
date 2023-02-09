@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build:prod": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:prod",
-    "build:test": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:test",
+    "build:staging": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:staging",
     "build:dev": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:dev",
     "build": "rimraf build && rollup -c rollup.config.ts --silent --environment NODE_ENV:prod",
     "prepublishOnly": "npm run build",

@@ -11,7 +11,7 @@ export const envConfig = {
       timeout: 3000,
     }
   },
-  test: {
+  staging: {
     imConfig: {
       appKey: 'cigzypnhoyno'
     },

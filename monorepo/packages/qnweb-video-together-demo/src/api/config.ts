@@ -2,18 +2,18 @@
  * 不同环境下不同配置
  */
 export const apiBaseConfig = {
-  dev: {
-    baseURL: 'http://10.200.20.28:5080',
-    timeout: 10000,
-  },
-  test: {
-    baseURL: 'http://10.200.20.28:5080',
-    timeout: 10000,
-  },
-  prod: {
-    baseURL: 'https://niucube-api.qiniu.com',
-    timeout: 10000,
-  },
+	dev: {
+		baseURL: 'http://10.200.20.28:5080',
+		timeout: 10000
+	},
+	staging: {
+		baseURL: 'http://10.200.20.28:5080',
+		timeout: 10000
+	},
+	prod: {
+		baseURL: 'https://niucube-api.qiniu.com',
+		timeout: 10000
+	}
 };
 
 /**

@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
+    "build:staging": "tsc && vite build --mode staging",
+    "build:prod": "tsc && vite build --mode prod",
     "build": "tsc && vite build --mode prod",
     "preview": "vite preview",
     "test": "vitest --config vitest.config.ts",
