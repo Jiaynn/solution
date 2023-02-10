@@ -42,19 +42,23 @@ import { useRefreshCndActions, useBatchRefreshCdnActions } from './actions/refre
 import styles from './style.m.less'
 
 export interface IProps extends IDetailsBaseOptions {
-  isUploadModalOpen: boolean
+  isUploadModalOpen: boolean;
 }
 
 export const ObjectManage = observer((props: IProps) => {
+  console.log('ObjectManage render')
   const iamStore = useInjection(KodoIamStore)
   const configStore = useInjection(ConfigStore)
   const resourceApis = useInjection(ResourceApis)
   const featureConfigStore = useInjection(FeatureConfigStore)
 
   const container = useContainer()
-  const inject = React.useCallback(function inject<T>(identifier: Identifier<T>) {
-    return container.get(identifier)
-  }, [container])
+  const inject = React.useCallback(
+    function inject<T>(identifier: Identifier<T>) {
+      return container.get(identifier)
+    },
+    [container]
+  )
 
   const store = useLocalStore(StateStore, {
     bucketName: props.bucketName,
@@ -81,16 +85,39 @@ export const ObjectManage = observer((props: IProps) => {
   const changeObjectStatus = useChangeObjectStatusOptions(bucketName, bucketInfo)
   const archiveObjectUnfreeze = useArchiveObjectUnfreeze(bucketName, bucketInfo)
   const uploadObjectOptions = useUploadObjectOptions(
-    bucketName, store.fetchBucketInfo, bucketInfo, regionConfig, isUploadModalOpen
+    bucketName,
+    store.fetchBucketInfo,
+    bucketInfo,
+    regionConfig,
+    isUploadModalOpen
   )
-  const changeObjectMimeTypeOptions = useChangeObjectMimeTypeOptions(bucketName, bucketInfo)
-  const createFolderOptions = useCreateFolderOptions(bucketName, bucketInfo && bucketInfo.perm, regionConfig)
-  const changeObjectNameOptions = useChangeObjectBasenameProps(props.bucketName, bucketInfo && bucketInfo.perm)
-  const changeObjectStorageTypeOptions = useChangeObjectStorageTypeOptions(bucketName, bucketInfo)
+  const changeObjectMimeTypeOptions = useChangeObjectMimeTypeOptions(
+    bucketName,
+    bucketInfo
+  )
+  const createFolderOptions = useCreateFolderOptions(
+    bucketName,
+    bucketInfo && bucketInfo.perm,
+    regionConfig
+  )
+  const changeObjectNameOptions = useChangeObjectBasenameProps(
+    props.bucketName,
+    bucketInfo && bucketInfo.perm
+  )
+  const changeObjectStorageTypeOptions = useChangeObjectStorageTypeOptions(
+    bucketName,
+    bucketInfo
+  )
   const detailOptions = useObjectDetailOptions(store)
 
-  const refreshCndActions = useRefreshCndActions(bucketInfo, store.selectedDomainInfo)
-  const batchRefreshCdnAction = useBatchRefreshCdnActions(bucketInfo, store.selectedDomainInfo)
+  const refreshCndActions = useRefreshCndActions(
+    bucketInfo,
+    store.selectedDomainInfo
+  )
+  const batchRefreshCdnAction = useBatchRefreshCdnActions(
+    bucketInfo,
+    store.selectedDomainInfo
+  )
 
   const mediaStyleActions = useMediaStyleActions({
     bucketName,
@@ -101,31 +128,55 @@ export const ObjectManage = observer((props: IProps) => {
   })
 
   // 版本管理配置
-  const versionOptions = React.useMemo<ObjectManagerProps['objectVersion']>(() => {
-    if (featureConfigStore.isDisabled('KODO.KODO_VERSION')) { return { availability: 'Invisible' } }
-    if (!globalConfig.objectStorage.fileMultiVersion.enable) { return { availability: 'Invisible' } }
-    if (!bucketInfo || !bucketInfo.versioning) { return { availability: 'Invisible' } }
+  const versionOptions = React.useMemo<
+    ObjectManagerProps['objectVersion']
+  >(() => {
+    if (featureConfigStore.isDisabled('KODO.KODO_VERSION')) {
+      return { availability: 'Invisible' }
+    }
+    if (!globalConfig.objectStorage.fileMultiVersion.enable) {
+      return { availability: 'Invisible' }
+    }
+    if (!bucketInfo || !bucketInfo.versioning) {
+      return { availability: 'Invisible' }
+    }
     return { availability: 'Normal' }
-  }, [bucketInfo, featureConfigStore, globalConfig.objectStorage.fileMultiVersion.enable])
+  }, [
+    bucketInfo,
+    featureConfigStore,
+    globalConfig.objectStorage.fileMultiVersion.enable
+  ])
 
   const listApi = React.useMemo<ObjectManagerProps['list']['listApi']>(() => {
     if (!hasInitDomain || denyList) return
 
-    return (options: Omit<IFileResourceOptions, 'bucket'>) => (
-      resourceApis.getFileResource({
+    return (options: Omit<IFileResourceOptions, 'bucket'>) => resourceApis
+      .getFileResource({
         ...options,
         ...(baseUrl ? { baseUrl } : null), // 可优化成判断依赖了 baseUrl 的功能是否有开启的
         bucket: bucketName
-      }).then(res => {
+      })
+      .then(res => {
         if (res.has_sensitive_words) updateHasSensitive(true)
         return res
       })
-    )
-  }, [resourceApis, hasInitDomain, denyList, bucketName, baseUrl, updateHasSensitive])
+  }, [
+    resourceApis,
+    hasInitDomain,
+    denyList,
+    bucketName,
+    baseUrl,
+    updateHasSensitive
+  ])
 
-  const getObject = React.useCallback(({ fullPath, version }: GetObjectApiOptions) => (
-    resourceApis.getFileState(bucketName, { key: fullPath, version }, baseUrl || undefined)
-  ), [resourceApis, bucketName, baseUrl])
+  const getObject = React.useCallback(
+    ({ fullPath, version }: GetObjectApiOptions) => resourceApis.getFileState(
+      bucketName,
+      { key: fullPath, version },
+      baseUrl || undefined
+    ),
+    [resourceApis, bucketName, baseUrl]
+  )
 
   const [tableScroll] = React.useState(() => ({ y: 'calc(100vh - 310px)' }))
 
@@ -154,13 +205,13 @@ export const ObjectManage = observer((props: IProps) => {
               changeObjectStatus={changeObjectStatus}
               changeObjectMimeType={changeObjectMimeTypeOptions}
               changeObjectStorageType={changeObjectStorageTypeOptions}
-              onCreateSingleActions={versionEnabled => ([
+              onCreateSingleActions={versionEnabled => [
                 ...mediaStyleActions(versionEnabled),
                 ...refreshCndActions(versionEnabled)
-              ])}
-              onCreateBatchActions={versionEnabled => ([
+              ]}
+              onCreateBatchActions={versionEnabled => [
                 ...batchRefreshCdnAction(versionEnabled)
-              ])}
+              ]}
             />
           </GuideGroup>
         </Route>

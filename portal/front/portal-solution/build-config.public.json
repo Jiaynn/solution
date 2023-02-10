@@ -36,6 +36,7 @@
     "/certificate": "http://portalv4.dev.qiniu.io",
     "/iam": "http://portalv4.dev.qiniu.io",
     "/identity": "http://portalv4.dev.qiniu.io",
-    "/user": "http://portalv4.dev.qiniu.io"
+    "/user": "http://portalv4.dev.qiniu.io",
+    "/api/solution": "http://100.100.106.151:6002"
   }
 }

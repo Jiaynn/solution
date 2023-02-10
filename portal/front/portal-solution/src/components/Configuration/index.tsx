@@ -32,6 +32,7 @@ import DomainName from 'components/DomainName'
 
 import ConfigureImageStyle from './ConfigureImageStyle'
 import ConfigurationComplete from './ConfigurationComplete'
+import { MockApi } from 'apis/mock'
 
 const prefixCls = 'comp-configuration'
 
@@ -44,7 +45,8 @@ const steps = [
   },
   {
     title: '加速域名配置',
-    description: '为空间绑定自定义 CDN 加速域名，通过 CDN 边缘节点缓存数据，提高存储空间内的文件访问响应速度。'
+    description:
+      '为空间绑定自定义 CDN 加速域名，通过 CDN 边缘节点缓存数据，提高存储空间内的文件访问响应速度。'
   },
   {
     title: '图片处理配置',
@@ -55,11 +57,13 @@ const steps = [
 const descriptions = [
   {
     title: '存储空间管理',
-    content: '下方列表展示本方案的专属空间，可以点击「操作」栏中的「概览」可以查看空间的详细信息'
+    content:
+      '下方列表展示本方案的专属空间，可以点击「操作」栏中的「概览」可以查看空间的详细信息'
   },
   {
     title: '自定义CDN加速域名',
-    content: '为空间绑定自定义CDN加速域名，通过CDN边缘节点缓存数据，提高存储空间内的文件访问响应速度'
+    content:
+      '为空间绑定自定义CDN加速域名，通过CDN边缘节点缓存数据，提高存储空间内的文件访问响应速度'
   },
   { title: '图片样式处理配置', content: '' }
 ] as const
@@ -97,9 +101,9 @@ const StepRouter = () => (
               redirectAfterCreate={getFirstQuery(redirectAfterCreate)}
               retrieveDomain={getFirstQuery(retrieveDomain)}
               privateType={
-              getFirstQuery(privateType) === PrivateType.Public.toString()
-                ? PrivateType.Public
-                : PrivateType.Private
+                getFirstQuery(privateType) === PrivateType.Public.toString()
+                  ? PrivateType.Public
+                  : PrivateType.Private
               }
             />
           )
@@ -110,7 +114,7 @@ const StepRouter = () => (
         }
 
         if (id === '3') {
-          return (<ConfigureImageStyle query={query} />)
+          return <ConfigureImageStyle query={query} />
         }
 
         if (id === '4') {
@@ -129,7 +133,6 @@ export default observer(function Configuration() {
   const routerStore = useInjection(RouterStore)
   const bucketStore = useInjection(BucketStore)
   const bucketListStore = useInjection(BucketListStore)
-  console.log('bucketListStore', bucketListStore)
 
   const step = useMemo(
     () => Number(routerStore.location?.pathname.split('/').pop() || '0'),
@@ -141,18 +144,19 @@ export default observer(function Configuration() {
   const onStep1Next = () => {
     const { list } = bucketListStore
     const { lastCreatedBucketName } = bucketStore
+    const { configurationState } = routerStore.query
     const prefixRoute = `${basename}/configuration/step`
     if (lastCreatedBucketName) {
       routerStore.push(
         `${prefixRoute}/${step + 1
-        }?bucket=${lastCreatedBucketName}&state=1&fixBucket`
+        }?bucket=${lastCreatedBucketName}&configurationState=${configurationState}&fixBucket`
       )
       return
     }
     if (list.length) {
       routerStore.push(
         `${prefixRoute}/${step + 1}?bucket=${list[list.length - 1].tbl
-        }&state=1&fixBucket`
+        }&configurationState=${configurationState}&fixBucket`
       )
       return
     }
@@ -169,12 +173,15 @@ export default observer(function Configuration() {
   }
   const onStep2Next = () => {
     const prefixRoute = `${basename}/configuration/step`
-    const { bucket, state } = routerStore.query
+    const { bucket, configurationState } = routerStore.query
     routerStore.push(
-      `${prefixRoute}/${step + 1}?bucket=${bucket}&state=${state}`
+      `${prefixRoute}/${step + 1
+      }?bucket=${bucket}&configurationState=${configurationState}`
     )
   }
-  const onStep3Next = () => {
+  const onStep3Next = async () => {
+    // 发送配置完成的请求，改变是否配置状态
+    const res = await MockApi.completeSolution({ solution_code: 'test' })
     routerStore.push(`${basename}/configuration/step/${step + 1}`)
   }
 
@@ -188,10 +195,18 @@ export default observer(function Configuration() {
 
   const onPrev = () => {
     const prefixRoute = `${basename}/configuration/step`
-    const { bucket, state } = routerStore.query
-    routerStore.push(
-      `${prefixRoute}/${step - 1}?bucket=${bucket}&state=${state}&fixBucket`
-    )
+    const { bucket, configurationState } = routerStore.query
+    const shouldCreateBucketState = JSON.parse(String(configurationState))
+    if (step === 2) {
+      routerStore.push(
+        `${prefixRoute}/${step - 1}?configurationState=${configurationState}&shouldCreateBucket=${!shouldCreateBucketState}`
+      )
+    } else if (step === 3) {
+      routerStore.push(
+        `${prefixRoute}/${step - 1
+        }?bucket=${bucket}&configurationState=${configurationState}&fixBucket`
+      )
+    }
   }
 
   const curDescription = descriptions[step - 1]

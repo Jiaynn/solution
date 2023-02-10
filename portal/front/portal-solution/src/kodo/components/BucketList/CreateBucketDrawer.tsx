@@ -20,8 +20,10 @@ import { Button, Drawer, Form, Input, Radio, Spin } from 'react-icecream/lib'
 
 import { valuesOfEnum } from 'kodo/utils/ts'
 import {
-  bindFormItem, getValuesFromFormState,
-  bindField, bindTextInputField
+  bindFormItem,
+  getValuesFromFormState,
+  bindField,
+  bindTextInputField
 } from 'kodo/utils/formstate'
 
 import { validateBucketNameWithLabel } from 'kodo/transforms/bucket'
@@ -32,7 +34,10 @@ import { RegionApplyStore } from 'kodo/stores/region-apply'
 import { BucketStore } from 'kodo/stores/bucket'
 import { ConfigStore } from 'kodo/stores/config'
 
-import { PrivateType, privateNameMap } from 'kodo/constants/bucket/setting/access'
+import {
+  PrivateType,
+  privateNameMap
+} from 'kodo/constants/bucket/setting/access'
 import { PublicRegionSymbol, RegionSymbol } from 'kodo/constants/region'
 import { bucketNameRule } from 'kodo/constants/bucket'
 
@@ -45,23 +50,25 @@ import { Description } from 'kodo/components/common/Description'
 import { ICreateBucketOptions, BucketApis } from 'kodo/apis/bucket'
 
 import styles from './style.m.less'
+import { MockApi } from 'apis/mock'
+import { SolutionApis } from 'apis/imageSolution'
 
 export interface IData extends Partial<ICreateBucketOptions> { }
 
 export interface IProps {
-  visible: boolean // 显示
-  onClose: (newBucketName?: string, newBucketRegion?: string) => void
+  visible: boolean; // 显示
+  onClose: (newBucketName?: string, newBucketRegion?: string) => void;
 
-  data?: IData
+  data?: IData;
 }
 
 interface DiDeps {
-  inject: InjectFunc
+  inject: InjectFunc;
 }
 
 enum Loading {
   Create = 'create',
-  GetApplyPassedRegions = 'getApplyPassedRegions'
+  GetApplyPassedRegions = 'getApplyPassedRegions',
 }
 
 const formItemLayout = {
@@ -69,7 +76,7 @@ const formItemLayout = {
   wrapperCol: { span: 19 }
 } as const
 
-function RegionNameWithTag(props: { name: string, tag?: string }) {
+function RegionNameWithTag(props: { name: string; tag?: string }) {
   return (
     <div className={styles.regionName}>
       <span className={styles.name}>{props.name}</span>
@@ -89,16 +96,16 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
     Toaster.bindTo(this, toaster)
   }
 
-  iamStore = this.props.inject(KodoIamStore)
-  bucketApis = this.props.inject(BucketApis)
-  userInfoStore = this.props.inject(UserInfo)
-  configStore = this.props.inject(ConfigStore)
-  bucketStore = this.props.inject(BucketStore)
-  regionApplyStore = this.props.inject(RegionApplyStore)
-
-  disposable = new Disposable()
-  @observable.ref form = this.createFormState(this.props.data)
-  loadings = Loadings.collectFrom(this, ...valuesOfEnum(Loading))
+  iamStore = this.props.inject(KodoIamStore);
+  bucketApis = this.props.inject(BucketApis);
+  userInfoStore = this.props.inject(UserInfo);
+  configStore = this.props.inject(ConfigStore);
+  bucketStore = this.props.inject(BucketStore);
+  regionApplyStore = this.props.inject(RegionApplyStore);
+  solutionAPi = this.props.inject(SolutionApis);
+  disposable = new Disposable();
+  @observable.ref form = this.createFormState(this.props.data);
+  loadings = Loadings.collectFrom(this, ...valuesOfEnum(Loading));
 
   @computed
   get globalConfig() {
@@ -111,19 +118,20 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
       <br />
       名称格式为{bucketNameRule}。
     </Prompt>
-  )
+  );
 
   privatePromptView = (
     <Prompt>
-      公开和私有仅对 Bucket 的读文件生效，修改、删除、写入等对 Bucket 的操作均需要拥有者的授权才能进行操作。
+      公开和私有仅对 Bucket 的读文件生效，修改、删除、写入等对 Bucket
+      的操作均需要拥有者的授权才能进行操作。
     </Prompt>
-  )
+  );
 
   versionEnabledPromptView = (
     <Prompt>
       开启版本管理会自动为文件开启版本控制、同名文件的每次上传都会为之创建一个新的版本，而不是覆盖，默认访问最新版本。
     </Prompt>
-  )
+  );
 
   @computed
   get descriptionView() {
@@ -133,9 +141,11 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
 
     return (
       <Prompt type="assist">
-        <Description dangerouslyText={
-          this.globalConfig.objectStorage.createBucket.description
-        } />
+        <Description
+          dangerouslyText={
+            this.globalConfig.objectStorage.createBucket.description
+          }
+        />
       </Prompt>
     )
   }
@@ -154,7 +164,9 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
   @computed
   get isRegionApplyDisabled() {
     const region = this.form.$.region.value
-    if (region == null) { return true }
+    if (region == null) {
+      return true
+    }
 
     return this.regionApplyStore.isApplyDisabled(region)
   }
@@ -162,15 +174,18 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
   @computed
   get isApplyRegionApproved() {
     const region = this.form.$.region.value
-    if (region == null) { return false }
+    if (region == null) {
+      return false
+    }
 
     return this.regionApplyStore.isApproved(region)
   }
 
   @computed
   get isCreateDisabled() {
-    return this.loadings.isLoading(Loading.Create)
-      || !this.isApplyRegionApproved
+    return (
+      this.loadings.isLoading(Loading.Create) || !this.isApplyRegionApproved
+    )
   }
 
   @computed
@@ -178,7 +193,7 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
     const region = this.form.$.region.value
 
     if (region == null) {
-      return (<Prompt>请选择一个区域</Prompt>)
+      return <Prompt>请选择一个区域</Prompt>
     }
 
     const regionConfig = this.configStore.getRegion({ region })
@@ -187,22 +202,21 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
     if (this.isApplyRegionApproved) {
       return (
         <Prompt>
-          {
-            (regionConfig && regionConfig.description)
-              ? (<Description dangerouslyText={regionConfig.description} />)
-              : `此空间将会在 ${(regionConfig && regionConfig.name) || region} 创建。`
-          }
+          {regionConfig && regionConfig.description
+            ? (
+              <Description dangerouslyText={regionConfig.description} />
+            )
+            : (
+              `此空间将会在 ${(regionConfig && regionConfig.name) || region
+              } 创建。`
+            )}
         </Prompt>
       )
     }
 
     // 禁止申请该区域
     if (this.isRegionApplyDisabled) {
-      return (
-        <Prompt type="warning">
-          该区域需要申请，当前无法创建。
-        </Prompt>
-      )
+      return <Prompt type="warning">该区域需要申请，当前无法创建。</Prompt>
     }
 
     return (
@@ -211,7 +225,11 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
           {regionConfig.apply?.description && (
             <Description dangerouslyText={regionConfig.apply?.description} />
           )}
-          <Button size="small" type="link" onClick={() => this.regionApplyStore.open(region)}>
+          <Button
+            size="small"
+            type="link"
+            onClick={() => this.regionApplyStore.open(region)}
+          >
             立即申请使用。
           </Button>
         </Prompt>
@@ -251,8 +269,15 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
     if (result.hasError) {
       throw makeCancelled()
     }
-
+    // 先请求kodo的创建空间
     await this.bucketStore.create(getValuesFromFormState(this.form))
+    // 请求我们自己的创建bucket
+    const create = await this.solutionAPi.createBucket({
+      region,
+      bucket_id: searchName,
+      solution_code: 'image'
+    })
+
     this.props.onClose(searchName, region) // 关闭
     // 根据作为 props 的 url 重新创建表单
     this.form = this.createFormState(this.props.data)
@@ -271,7 +296,9 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
     const { name, region } = data
     const allRegionConfigs = this.configStore.getRegion({ allRegion: true })
 
-    const defaultRegion = allRegionConfigs.find(item => item.symbol === PublicRegionSymbol.Z2)
+    const defaultRegion = allRegionConfigs.find(
+      item => item.symbol === PublicRegionSymbol.Z2
+    )
       ? PublicRegionSymbol.Z2
       : allRegionConfigs[0].symbol
 
@@ -281,10 +308,14 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
     }
 
     return new FormState({
-      name: new FieldState<string>(name || '')
-        .validators(validateBucketNameWithLabel, this.isBucketExistValidator),
+      name: new FieldState<string>(name || '').validators(
+        validateBucketNameWithLabel,
+        this.isBucketExistValidator
+      ),
       region: new FieldState<RegionSymbol>(region || defaultRegion),
-      privateType: new FieldState<PrivateType>(privateType == null ? PrivateType.Private : privateType)
+      privateType: new FieldState<PrivateType>(
+        privateType == null ? PrivateType.Private : privateType
+      )
     })
   }
 
@@ -337,14 +368,21 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
               // TODO: radio 和 radio group 的 bindField 封装
               {...bindField(region, (e: any) => e.target.value)}
             >
-              {allRegionConfigs.filter(i => !i.invisible).map(item => {
-                const regionInfo = this.configStore.getRegion({ region: item.symbol })
-                return (
-                  <Radio key={item.symbol} value={item.symbol}>
-                    <RegionNameWithTag name={regionInfo.name} tag={regionInfo.tag} />
-                  </Radio>
-                )
-              })}
+              {allRegionConfigs
+                .filter(i => !i.invisible)
+                .map(item => {
+                  const regionInfo = this.configStore.getRegion({
+                    region: item.symbol
+                  })
+                  return (
+                    <Radio key={item.symbol} value={item.symbol}>
+                      <RegionNameWithTag
+                        name={regionInfo.name}
+                        tag={regionInfo.tag}
+                      />
+                    </Radio>
+                  )
+                })}
             </Radio.Group>
           </Form.Item>
           <Form.Item
@@ -356,10 +394,7 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
               disabled={!this.isApplyRegionApproved}
               {...bindField(privateType, (e: any) => e.target.value)}
             >
-              <Radio
-                key={PrivateType.Public}
-                value={PrivateType.Public}
-              >
+              <Radio key={PrivateType.Public} value={PrivateType.Public}>
                 {privateNameMap[PrivateType.Public]}
               </Radio>
               <Radio
@@ -381,40 +416,48 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
   }
 
   componentDidMount() {
-    this.disposable.addDisposer(reaction(
-      () => {
-        if (this.iamStore.isActionDeny({ actionName: 'Mkbucket' })) return false
-        const allRegions = this.configStore.getRegion({ allRegion: true })
-        return allRegions.some(region => region && region.apply?.enable)
-      },
-      allow => {
-        if (allow) {
-          this.regionApplyStore.fetchApplyRecordList()
+    this.disposable.addDisposer(
+      reaction(
+        () => {
+          if (this.iamStore.isActionDeny({ actionName: 'Mkbucket' })) { return false }
+          const allRegions = this.configStore.getRegion({ allRegion: true })
+          return allRegions.some(region => region && region.apply?.enable)
+        },
+        allow => {
+          if (allow) {
+            this.regionApplyStore.fetchApplyRecordList()
+          }
+        },
+        { fireImmediately: true }
+      )
+    )
+
+    this.disposable.addDisposer(
+      reaction(
+        () => this.props.data?.region,
+        region => {
+          this.updateFormRegion(region)
         }
-      },
-      { fireImmediately: true }
-    ))
+      )
+    )
 
-    this.disposable.addDisposer(reaction(
-      () => this.props.data?.region,
-      region => {
-        this.updateFormRegion(region)
-      }
-    ))
-
-    this.disposable.addDisposer(reaction(
-      () => this.props.data?.privateType,
-      privateType => {
-        this.updateFormPrivateType(privateType)
-      }
-    ))
+    this.disposable.addDisposer(
+      reaction(
+        () => this.props.data?.privateType,
+        privateType => {
+          this.updateFormPrivateType(privateType)
+        }
+      )
+    )
   }
 }
 
 export default function CreateBucketDrawer(props: IProps) {
   return (
-    <Inject render={({ inject }) => (
-      <InternalCreateBucketDrawer {...props} inject={inject} />
-    )} />
+    <Inject
+      render={({ inject }) => (
+        <InternalCreateBucketDrawer {...props} inject={inject} />
+      )}
+    />
   )
 }

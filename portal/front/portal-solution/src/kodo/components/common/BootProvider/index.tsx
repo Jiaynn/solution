@@ -6,16 +6,14 @@
 import React, { Suspense, useMemo } from 'react'
 import { observer } from 'mobx-react'
 
-import {
-  HttpClient,
-  JsonClient,
-  TypedPayloadClient
-} from 'qn-fe-core/client'
+import { HttpClient, JsonClient, TypedPayloadClient } from 'qn-fe-core/client'
 
 import {
-  Provider, Provides,
+  Provider,
+  Provides,
   provides2ProvidePairList,
-  dedupeProvides, useInjection
+  dedupeProvides,
+  useInjection
 } from 'qn-fe-core/di'
 
 import PublicBootProvider, {
@@ -23,10 +21,7 @@ import PublicBootProvider, {
   PrivatizedBootProvider
 } from 'portal-base/common/components/BootProvider'
 
-import {
-  RouterStore,
-  createRouterStore
-} from 'portal-base/common/router'
+import { RouterStore, createRouterStore } from 'portal-base/common/router'
 import { Toaster, ToasterStore } from 'portal-base/common/toaster'
 
 import { GaeaClient } from 'portal-base/user/gaea-client'
@@ -68,7 +63,14 @@ import version from 'kodo/constants/version'
 
 import Monitor from 'kodo/clients/monitor'
 import JsonClientWithMonitor from 'kodo/clients/json'
-import { CommonClientWithMonitor, GaeaClientWithMonitor, KodoCommonClientWithMonitor, KodoProxyClientWithMonitor, ProxyClientV2WithMonitor, ProxyClientWithMonitor } from 'kodo/clients/portal-base'
+import {
+  CommonClientWithMonitor,
+  GaeaClientWithMonitor,
+  KodoCommonClientWithMonitor,
+  KodoProxyClientWithMonitor,
+  ProxyClientV2WithMonitor,
+  ProxyClientWithMonitor
+} from 'kodo/clients/portal-base'
 import { ProeProxyClient } from 'kodo/clients/proxy-proe'
 import { PrometheusClient } from 'kodo/clients/prometheus'
 
@@ -114,20 +116,29 @@ import { RefreshCdnStore } from 'kodo/components/common/RefreshCdnModal/store'
 import { MediaStyleDrawerStore } from 'kodo/components/BucketDetails/MediaStyle/CreateStyle/common/Drawer/store'
 
 import { ApplyNotices } from './ApplyNotice'
+import { SolutionApis } from 'apis/imageSolution'
+import { MockApi } from 'apis/mock'
 
 const DevTools = React.lazy(() => import('../DevTools'))
 
 const getClientProvides = (hasUserInfoStore: boolean): Provides => {
   const monitor = {
     identifier: BaseMonitor,
-    factory: inject => new Monitor(hasUserInfoStore ? { getUid: () => inject(UserInfoStore).uid ?? undefined } : {})
+    factory: inject => new Monitor(
+      hasUserInfoStore
+        ? { getUid: () => inject(UserInfoStore).uid ?? undefined }
+        : {}
+    )
   }
 
   return [
     monitor,
     {
       identifier: HttpClient,
-      factory: inject => new HttpClientWithMonitor(inject(BaseMonitor), window.fetch.bind(window))
+      factory: inject => new HttpClientWithMonitor(
+        inject(BaseMonitor),
+        window.fetch.bind(window)
+      )
     },
     { identifier: JsonClient, constr: JsonClientWithMonitor },
     { identifier: CommonClient, constr: CommonClientWithMonitor },
@@ -140,12 +151,15 @@ const getClientProvides = (hasUserInfoStore: boolean): Provides => {
 }
 
 // utils: Boot + LifecycleAttacher 考虑挪个位置或者 base 提供
-function BaseBootProvider(props: React.PropsWithChildren<{ provides: Provides }>) {
-  const identifiers = useMemo(() => (
-    provides2ProvidePairList(
-      dedupeProvides(props.provides)
-    ).map(pair => pair.identifier)
-  ), [props.provides])
+function BaseBootProvider(
+  props: React.PropsWithChildren<{ provides: Provides }>
+) {
+  const identifiers = useMemo(
+    () => provides2ProvidePairList(dedupeProvides(props.provides)).map(
+      pair => pair.identifier
+    ),
+    [props.provides]
+  )
 
   return (
     <Provider provides={props.provides}>
@@ -161,20 +175,23 @@ function BootConfigStore(props: React.PropsWithChildren<{}>) {
     // 在配置加载完后会根据配置重新注入并设置正确的 helpWords
     { identifier: ToasterStore, value: new ToasterStore('') },
     { identifier: I18nStore, factory: () => createI18nStore() },
-    { identifier: TypedPayloadClient, factory: inject => new TypedPayloadClient(inject(HttpClient)) },
+    {
+      identifier: TypedPayloadClient,
+      factory: inject => new TypedPayloadClient(inject(HttpClient))
+    },
     { identifier: UserInfoApisWithCache, constr: UserInfoApisWithCache },
     ...getClientProvides(false), // 粗糙一点，其实导入了很多 bootConfig 没用到的 store，问题不大
     ConfigApis,
     ConfigStore
   ]
   return (
-    <BaseBootProvider provides={provides}>
-      {props.children}
-    </BaseBootProvider>
+    <BaseBootProvider provides={provides}>{props.children}</BaseBootProvider>
   )
 }
 
-const BootBaseProvider = observer(function BootBaseProvider(props: React.PropsWithChildren<{}>) {
+const BootBaseProvider = observer(function BootBaseProvider(
+  props: React.PropsWithChildren<{}>
+) {
   const configStore = useInjection(ConfigStore)
   const app = configStore.matchApp()
 
@@ -250,63 +267,68 @@ const BootBaseProvider = observer(function BootBaseProvider(props: React.PropsWi
 })
 
 function BootLocalProvider(props: React.PropsWithChildren<{}>) {
-  const provides: Provides = React.useMemo(() => ([
-    // global store
-    { identifier: ProeProxyClient, constr: ProeProxyClient },
-    { identifier: PrometheusClient, constr: PrometheusClient },
-    { identifier: KodoIamStore, constr: KodoIamStore },
-    { identifier: CertStore, constr: CertStore },
-    { identifier: DomainStore, constr: DomainStore },
-    { identifier: BucketStore, constr: BucketStore },
-    { identifier: SignInStore, constr: SignInStore },
-    { identifier: BucketListStore, constr: BucketListStore },
-    { identifier: RefreshCdnStore, constr: RefreshCdnStore },
-    { identifier: RegionApplyStore, constr: RegionApplyStore },
+  const provides: Provides = React.useMemo(
+    () => [
+      // global store
+      { identifier: ProeProxyClient, constr: ProeProxyClient },
+      { identifier: PrometheusClient, constr: PrometheusClient },
+      { identifier: KodoIamStore, constr: KodoIamStore },
+      { identifier: CertStore, constr: CertStore },
+      { identifier: DomainStore, constr: DomainStore },
+      { identifier: BucketStore, constr: BucketStore },
+      { identifier: SignInStore, constr: SignInStore },
+      { identifier: BucketListStore, constr: BucketListStore },
+      { identifier: RefreshCdnStore, constr: RefreshCdnStore },
+      { identifier: RegionApplyStore, constr: RegionApplyStore },
 
-    // apis
-    { identifier: CdnApis, constr: CdnApis },
-    { identifier: BucketApis, constr: BucketApis },
-    { identifier: BucketListApis, constr: BucketListApis },
-    { identifier: LogApis, constr: LogApis },
-    { identifier: TagApis, constr: TagApis },
-    { identifier: SMSGApis, constr: SMSGApis },
-    { identifier: ResourceApis, constr: ResourceApis },
-    { identifier: EventNotificationRuleApi, constr: EventNotificationRuleApi },
-    { identifier: SourceApis, constr: SourceApis },
-    { identifier: AccessApis, constr: AccessApis },
-    { identifier: CensorApis, constr: CensorApis },
-    { identifier: ImageStyleApis, constr: ImageStyleApis },
-    { identifier: MaxAgeApis, constr: MaxAgeApis },
-    { identifier: VersionApis, constr: VersionApis },
-    { identifier: ReferrerApis, constr: ReferrerApis },
-    { identifier: LifecycleRuleApi, constr: LifecycleRuleApi },
-    { identifier: EncryptionApis, constr: EncryptionApis },
-    { identifier: CrossOriginApis, constr: CrossOriginApis },
-    { identifier: DefaultIndexApis, constr: DefaultIndexApis },
-    { identifier: AuthorizationApis, constr: AuthorizationApis },
-    { identifier: RoutingApis, constr: RoutingApis },
-    { identifier: OriginalProtectedApis, constr: OriginalProtectedApis },
-    { identifier: DomainApis, constr: DomainApis },
-    { identifier: RegionApis, constr: RegionApis },
-    { identifier: SignInApis, constr: SignInApis },
-    { identifier: WormApis, constr: WormApis },
-    { identifier: TokenApis, constr: TokenApis },
-    { identifier: TranscodeApis, constr: TranscodeApis },
-    { identifier: StatisticsApis, constr: StatisticsApis },
-    { identifier: StreamPushApis, constr: StreamPushApis },
-    { identifier: CertificateApis, constr: CertificateApis },
-    { identifier: TranscodeStyleApis, constr: TranscodeStyleApis },
-    { identifier: RemarkApis, constr: RemarkApis },
-
-    { identifier: ObjectPickerStore, constr: ObjectPickerStore },
-    { identifier: MediaStyleDrawerStore, constr: MediaStyleDrawerStore },
-    { identifier: ExternalUrlModalStore, constr: ExternalUrlModalStore }
-  ]), [])
+      // apis
+      { identifier: CdnApis, constr: CdnApis },
+      { identifier: BucketApis, constr: BucketApis },
+      { identifier: BucketListApis, constr: BucketListApis },
+      { identifier: LogApis, constr: LogApis },
+      { identifier: TagApis, constr: TagApis },
+      { identifier: SMSGApis, constr: SMSGApis },
+      { identifier: ResourceApis, constr: ResourceApis },
+      {
+        identifier: EventNotificationRuleApi,
+        constr: EventNotificationRuleApi
+      },
+      { identifier: SourceApis, constr: SourceApis },
+      { identifier: AccessApis, constr: AccessApis },
+      { identifier: CensorApis, constr: CensorApis },
+      { identifier: ImageStyleApis, constr: ImageStyleApis },
+      { identifier: MaxAgeApis, constr: MaxAgeApis },
+      { identifier: VersionApis, constr: VersionApis },
+      { identifier: ReferrerApis, constr: ReferrerApis },
+      { identifier: LifecycleRuleApi, constr: LifecycleRuleApi },
+      { identifier: EncryptionApis, constr: EncryptionApis },
+      { identifier: CrossOriginApis, constr: CrossOriginApis },
+      { identifier: DefaultIndexApis, constr: DefaultIndexApis },
+      { identifier: AuthorizationApis, constr: AuthorizationApis },
+      { identifier: RoutingApis, constr: RoutingApis },
+      { identifier: OriginalProtectedApis, constr: OriginalProtectedApis },
+      { identifier: DomainApis, constr: DomainApis },
+      { identifier: RegionApis, constr: RegionApis },
+      { identifier: SignInApis, constr: SignInApis },
+      { identifier: WormApis, constr: WormApis },
+      { identifier: TokenApis, constr: TokenApis },
+      { identifier: TranscodeApis, constr: TranscodeApis },
+      { identifier: StatisticsApis, constr: StatisticsApis },
+      { identifier: StreamPushApis, constr: StreamPushApis },
+      { identifier: CertificateApis, constr: CertificateApis },
+      { identifier: TranscodeStyleApis, constr: TranscodeStyleApis },
+      { identifier: RemarkApis, constr: RemarkApis },
+      { identifier: SolutionApis, constr: SolutionApis },
+      // { identifier: MockApi, constr: MockApi },
+      { identifier: ObjectPickerStore, constr: ObjectPickerStore },
+      { identifier: MediaStyleDrawerStore, constr: MediaStyleDrawerStore },
+      { identifier: ExternalUrlModalStore, constr: ExternalUrlModalStore }
+    ],
+    []
+  )
 
   return (
-    <BaseBootProvider provides={provides}>
-      {props.children}
-    </BaseBootProvider>
+    <BaseBootProvider provides={provides}>{props.children}</BaseBootProvider>
   )
 }
 
@@ -318,8 +340,14 @@ const UpdateConfigEffect = observer((props: React.PropsWithChildren<{}>) => {
   // 更新 favicon
   React.useEffect(() => {
     if (app == null) return
-    const { site: { favicon } } = configStore.getBase(app)
-    if (favicon == null || document == null || document.getElementById == null) {
+    const {
+      site: { favicon }
+    } = configStore.getBase(app)
+    if (
+      favicon == null
+      || document == null
+      || document.getElementById == null
+    ) {
       return
     }
 
@@ -328,10 +356,9 @@ const UpdateConfigEffect = observer((props: React.PropsWithChildren<{}>) => {
     if (linkEle != null) {
       linkEle.href = favicon
     }
-
   }, [app, configStore])
 
-  return (<>{props.children}</>)
+  return <>{props.children}</>
 })
 
 const BootDevTools = observer((props: React.PropsWithChildren<{}>) => {
@@ -348,9 +375,7 @@ const BootDevTools = observer((props: React.PropsWithChildren<{}>) => {
   return (
     <>
       {props.children}
-      <Suspense fallback={null}>
-        {shouldShowDevTools && (<DevTools />)}
-      </Suspense>
+      <Suspense fallback={null}>{shouldShowDevTools && <DevTools />}</Suspense>
     </>
   )
 })

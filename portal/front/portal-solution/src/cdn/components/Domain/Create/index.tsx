@@ -3,29 +3,29 @@
  * @author linchen <gakiclin@gmail.com>
  */
 
-import React from "react";
-import { observer } from "mobx-react";
-import { useInjection } from "qn-fe-core/di";
-import { useLocalStore } from "qn-fe-core/local-store";
-import { Query, RouterStore } from "portal-base/common/router";
-import { Iamed } from "portal-base/user/iam";
-import Page from "portal-base/common/components/Page";
+import React from 'react'
+import { observer } from 'mobx-react'
+import { useInjection } from 'qn-fe-core/di'
+import { useLocalStore } from 'qn-fe-core/local-store'
+import { Query, RouterStore } from 'portal-base/common/router'
+import { Iamed } from 'portal-base/user/iam'
+import Page from 'portal-base/common/components/Page'
 
 import {
   DomainType,
   Platform,
   GeoCover,
-  SourceType,
-} from "cdn/constants/domain";
-import Routes from "cdn/constants/routes";
-import IamInfo from "cdn/constants/iam-info";
+  SourceType
+} from 'cdn/constants/domain'
+import Routes from 'cdn/constants/routes'
+import IamInfo from 'cdn/constants/iam-info'
 
-import { ICreateDomainState } from "./Result";
-import CreateForm, { ConfigInputType } from "./CreateForm";
+import { ICreateDomainState } from './Result'
+import CreateForm, { ConfigInputType } from './CreateForm'
 
-import LocalStore from "./store";
+import LocalStore from './store'
 
-import "./style.less";
+import './style.less'
 
 export interface Props {
   type?: DomainType; // 设置默认的域名类型
@@ -46,47 +46,46 @@ export interface CreateDomainProps {
 export const DomainCreate = observer(function DomainCreate(
   props: Props & CreateDomainProps
 ) {
-  const store = useLocalStore(LocalStore, props);
+  const store = useLocalStore(LocalStore, props)
 
-  const routerStore = useInjection(RouterStore);
-  const routes = useInjection(Routes);
-  const { iamActions } = useInjection(IamInfo);
-  const { modalVisible, isCreateDomain } = props;
+  const routerStore = useInjection(RouterStore)
+  const routes = useInjection(Routes)
+  const { iamActions } = useInjection(IamInfo)
+  const { modalVisible, isCreateDomain } = props
   const handleCancel = React.useCallback(() => {
     if (modalVisible) {
-      modalVisible(false);
+      modalVisible(false)
     }
-  }, []);
+  }, [modalVisible])
 
   const handleCreate = React.useCallback(
-    () =>
-      store.create().then((results) => {
-        const createDomainState: ICreateDomainState = {
-          results,
-          domainType: store.domainType,
-          createOptions:
-            store.domainType === DomainType.Pan
-              ? [store.panCreateOptions]
-              : store.normalCreateOptionsList,
-        };
+    () => store.create().then(results => {
+      const createDomainState: ICreateDomainState = {
+        results,
+        domainType: store.domainType,
+        createOptions:
+          store.domainType === DomainType.Pan
+            ? [store.panCreateOptions]
+            : store.normalCreateOptionsList
+      }
 
-        if (results.some((it) => !!it.shouldVerify)) {
-          routerStore.push(routes.domainVerifyOwnership(createDomainState));
-        } else {
-          if (modalVisible) {
-            modalVisible(false);
-          }
-          if (isCreateDomain) {
-            isCreateDomain();
-          }
+      if (results.some(it => !!it.shouldVerify)) {
+        routerStore.push(routes.domainVerifyOwnership(createDomainState))
+      } else {
+        if (modalVisible) {
+          modalVisible(false)
         }
-      }),
-    [store, routerStore, routes]
-  );
+        if (isCreateDomain) {
+          isCreateDomain()
+        }
+      }
+    }),
+    [store, routerStore, routes, modalVisible, isCreateDomain]
+  )
 
   return (
     <Iamed actions={[iamActions.CreateDomain]}>
-      <Page className="comp-create-domain">
+      <Page className="comp-create-domain" mainClassName="page-wrapper">
         <CreateForm
           onCancel={handleCancel}
           onCreate={handleCreate}
@@ -101,8 +100,8 @@ export const DomainCreate = observer(function DomainCreate(
         />
       </Page>
     </Iamed>
-  );
-});
+  )
+})
 
 export default observer(function DomainCreateWithQuery(props: {
   query: Query;
@@ -118,11 +117,11 @@ export default observer(function DomainCreateWithQuery(props: {
     sourceType,
     sourceDomain,
     testURLPath,
-    fixBucket,
-  } = props.query;
-  const { modalVisible, isCreateDomain } = props;
-  const routerStore = useInjection(RouterStore);
-  const routeHash = routerStore.location!.hash;
+    fixBucket
+  } = props.query
+  const { modalVisible, isCreateDomain } = props
+  const routerStore = useInjection(RouterStore)
+  const routeHash = routerStore.location!.hash
 
   return (
     <DomainCreate
@@ -139,5 +138,5 @@ export default observer(function DomainCreateWithQuery(props: {
       modalVisible={modalVisible}
       isCreateDomain={isCreateDomain}
     />
-  );
-});
+  )
+})

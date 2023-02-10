@@ -3,27 +3,27 @@
  * @author lizhifeng <lizhifeng@qiniu.com>
  */
 
-const prefix = '/api'
-const piliPrefix = `${prefix}/pili`
+const prefix = "/api";
+const piliPrefix = `${prefix}/pili`;
 
 // proxy 转发用的目标服务前缀
 export const service = {
-  prometheus: '/prometheus',                           // 普罗米修斯数据接口
-  kodoBill: '/blobio',                                 // 统计接口
-  apiServer: '/api-server',                            // /kodo/api.qiniu.com.md; https://api.qiniu.com
-  apiServerWithQiniuAuth: '/api-server-qiniuauth',     // TODO: 使用类似 'api-server/qiniuauth 的风格
-  rs: '/rs',                                           // 文件信息相关接口
-  rsf: '/rsf',
-  sisyphusRouter: '/sisyphus-router',                  // 跨区域同步任务
-  uc: '/uc',
-  one: '/one',
-  log: '/logd',
-  censor: '/censor',
-  media: '/media-gate',
-  cdn: '/fusion',                               // cdn 域名服务
-  proe: '/proe',                                       // 流媒体网关 & 拉流转推流服务
-  doraImage: '/dora-image'                             // dora 图片处理服务
-} as const
+  prometheus: "/prometheus", // 普罗米修斯数据接口
+  kodoBill: "/blobio", // 统计接口
+  apiServer: "/api-server", // /kodo/api.qiniu.com.md; https://api.qiniu.com
+  apiServerWithQiniuAuth: "/api-server-qiniuauth", // TODO: 使用类似 'api-server/qiniuauth 的风格
+  rs: "/rs", // 文件信息相关接口
+  rsf: "/rsf",
+  sisyphusRouter: "/sisyphus-router", // 跨区域同步任务
+  uc: "/uc",
+  one: "/one",
+  log: "/logd",
+  censor: "/censor",
+  media: "/media-gate",
+  cdn: "/fusion", // cdn 域名服务
+  proe: "/proe", // 流媒体网关 & 拉流转推流服务
+  doraImage: "/dora-image", // dora 图片处理服务
+} as const;
 
 // 通用 proxy 接口, TODO: proxy 接口全部按照 prefix + service + api
 export const proxy = {
@@ -37,7 +37,8 @@ export const proxy = {
 
   getBucketInfo: `${service.uc}/bucket`,
   /** 空间生命周期规则新 API */
-  lifecycle: (bucketName: string) => `${service.uc}/buckets/${bucketName}/lifecycle`,
+  lifecycle: (bucketName: string) =>
+    `${service.uc}/buckets/${bucketName}/lifecycle`,
 
   bucketTagging: `${service.uc}/bucketTagging`,
 
@@ -58,7 +59,8 @@ export const proxy = {
   enableSourceRawQuery: `${service.uc}/mirrorRawQuerySupport`,
 
   /** 空间事件通知规则新 API */
-  notification: (bucketName: string) => `${service.uc}/buckets/${bucketName}/notification`,
+  notification: (bucketName: string) =>
+    `${service.uc}/buckets/${bucketName}/notification`,
 
   getCorsRules: `${service.uc}/corsRules/get`,
   setCorsRules: `${service.uc}/corsRules/set`,
@@ -67,11 +69,13 @@ export const proxy = {
   getBucketNameList: `${service.uc}/buckets`,
   setBucketPrivate: `${service.uc}/private`,
 
-  routing: (bucketName: string) => `${service.uc}/buckets/${bucketName}/routing`,
+  routing: (bucketName: string) =>
+    `${service.uc}/buckets/${bucketName}/routing`,
 
   worm: `${service.uc}/worm`,
 
-  setRemark: (bucketName: string) => `${service.uc}/buckets/${bucketName}/remark`,
+  setRemark: (bucketName: string) =>
+    `${service.uc}/buckets/${bucketName}/remark`,
 
   certificate: `${service.one}/sslcert`,
   getCertificatesByDomain: `${service.one}/cert/domain`,
@@ -121,27 +125,27 @@ export const proxy = {
   getPipelineList: `${service.media}/v1/pipelines`,
   getTranscodePreset: `${service.media}/v1/preferences/transcode/all`,
 
-  bucketSMSG: `${service.proe}/smsg/buckets`,     // 空间流媒体网关配置
-  streamPushTask: `${service.proe}/tasks`,        // 拉流转推任务
-  streamPushHistory: `${service.proe}/history`    // 拉流转推任务执行记录
-}
+  bucketSMSG: `${service.proe}/smsg/buckets`, // 空间流媒体网关配置
+  streamPushTask: `${service.proe}/tasks`, // 拉流转推任务
+  streamPushHistory: `${service.proe}/history`, // 拉流转推任务执行记录
+};
 
 // 新的 kodo web server 提供的带特定业务逻辑的接口，有自己的数据格式和 fetch store
 // 大部分 url 的地址跟背后实际调用了的主体服务的地址是一一对应的
 export const kodov2 = {
-  getConfig: '/front/config',
-  getBaseConfig: '/base/config',
+  getConfig: "/front/config",
+  getBaseConfig: "/base/config",
 
-  regionApply: '/region/apply',
+  regionApply: "/region/apply",
 
-  getUpToken: '/uptoken',
-  downloadUrl: '/download-url',
-  watermark: '/dora-watermark',
-  canDropBucket: '/candropbucket',
-  setDefaultDomain: '/domain/default/set',
-  getDefaultDomain: '/domain/default/get',
-  hasSensitive: '/verify/file/name',
-  getIamStatisticsBuckets: '/statistics/buckets',
+  getUpToken: "/uptoken",
+  downloadUrl: "/download-url",
+  watermark: "/dora-watermark",
+  canDropBucket: "/candropbucket",
+  setDefaultDomain: "/domain/default/set",
+  getDefaultDomain: "/domain/default/get",
+  hasSensitive: "/verify/file/name",
+  getIamStatisticsBuckets: "/statistics/buckets",
 
   getFiles: `${service.rsf}/list`,
   getFilesV2: `${service.rsf}/v2/list`,
@@ -165,12 +169,12 @@ export const kodov2 = {
 
   getCertificatesWithDomain: `${service.one}/cert/bindings`,
 
-  doraImage: `${service.doraImage}/upinfo`
-}
+  doraImage: `${service.doraImage}/upinfo`,
+};
 
 // 老的 kodo web server，/kodo 开头（而不是 /kodov2）
-export const kodo = {}
+export const kodo = {};
 
 export const pili = {
-  hubsByBucket: `${piliPrefix}/list/hubs/bybucket`
-}
+  hubsByBucket: `${piliPrefix}/list/hubs/bybucket`,
+};
