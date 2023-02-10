@@ -44,11 +44,6 @@
       "eslint --cache --fix"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "devDependencies": {
     "@changesets/cli": "^2.23.0",
     "@manypkg/get-packages": "^1.1.3",
