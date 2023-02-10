@@ -10,14 +10,14 @@ import { Header } from 'components/Configuration/Header'
 import { basename } from 'constants/routes'
 
 import './style.less'
-import { SolutionApis } from 'apis/imageSolution'
+// import { SolutionApis } from 'apis/imageSolution'
 import { MockApi } from 'apis/mock'
 
 const prefixCls = 'comp-configuration-open-service'
 
 export default observer(function OpenService() {
   const routerStore = useInjection(RouterStore)
-  const solution = useInjection(SolutionApis)
+  // const solution = useInjection(SolutionApis)
   const [values, setValues] = useState({
     billingModeChecked: false,
     serviceAgreementChecked: false

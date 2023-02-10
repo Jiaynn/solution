@@ -50,7 +50,7 @@ import { Description } from 'kodo/components/common/Description'
 import { ICreateBucketOptions, BucketApis } from 'kodo/apis/bucket'
 
 import styles from './style.m.less'
-import { MockApi } from 'apis/mock'
+// import { MockApi } from 'apis/mock'
 import { SolutionApis } from 'apis/imageSolution'
 
 export interface IData extends Partial<ICreateBucketOptions> { }
@@ -272,11 +272,11 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
     // 先请求kodo的创建空间
     await this.bucketStore.create(getValuesFromFormState(this.form))
     // 请求我们自己的创建bucket
-    const create = await this.solutionAPi.createBucket({
-      region,
-      bucket_id: searchName,
-      solution_code: 'image'
-    })
+    // const create = await this.solutionAPi.createBucket({
+    //   region,
+    //   bucket_id: searchName,
+    //   solution_code: 'image'
+    // })
 
     this.props.onClose(searchName, region) // 关闭
     // 根据作为 props 的 url 重新创建表单

@@ -6,7 +6,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import { Route, Switch, Redirect } from 'portal-base/common/router'
+import { Route, Redirect } from 'portal-base/common/router'
 import Layout, { ContentLayout } from 'portal-base/common/components/Layout'
 import SubSidebar, { LinkItem } from 'portal-base/common/components/SubSidebar'
 import { FileClipboardProvider } from 'kodo-base/lib/context/file-clipboard'

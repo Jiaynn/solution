@@ -19,7 +19,7 @@ import {
 
 export class MockApi {
   // 是否开通某服务
-  static isOpenSolution(options: IsOpenSolutionOptions) {
+  static isOpenSolution(_options: IsOpenSolutionOptions) {
     return mockRequest<IsOpenSolutionResult>(
       Mock.mock({
         code: -79418438.63190451,
@@ -33,7 +33,7 @@ export class MockApi {
   }
 
   // 是否配置某方案
-  static isConfigSolution(options: IsConfigSolutionOptions) {
+  static isConfigSolution(_options: IsConfigSolutionOptions) {
     return mockRequest<IsConfigSolutionResult>(
       Mock.mock({
         code: -79418438.63190451,
@@ -46,7 +46,7 @@ export class MockApi {
     )
   }
   // 开通服务
-  static openSolution(options: OpenSolutionOptions) {
+  static openSolution(_options: OpenSolutionOptions) {
     return mockRequest<OpenSolutionResult>(
       Mock.mock({
         request_id: '@id',
@@ -57,7 +57,7 @@ export class MockApi {
   }
 
   // 创建bucket
-  static createBucket(options: CreateBucketOptions) {
+  static createBucket(_options: CreateBucketOptions) {
     return mockRequest<CreateBucketResult>(
       Mock.mock({
         request_id: '@id',
@@ -68,7 +68,7 @@ export class MockApi {
   }
 
   // 方案配置完成
-  static completeSolution(options: CompleteSolutionOptions) {
+  static completeSolution(_options: CompleteSolutionOptions) {
     return mockRequest<CompleteSolutionResult>(
       Mock.mock({
         request_id: '@id',
@@ -84,7 +84,7 @@ export class MockApi {
   }
 
   // 获取方案列表
-  static getBucketList(options: GetBucketListOptions) {
+  static getBucketList(_options: GetBucketListOptions) {
     return mockRequest<GetBucketListResult>(
       Mock.mock({
         code: '@integer(0, 100)',

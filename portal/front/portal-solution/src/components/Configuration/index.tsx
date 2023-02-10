@@ -32,7 +32,7 @@ import DomainName from 'components/DomainName'
 
 import ConfigureImageStyle from './ConfigureImageStyle'
 import ConfigurationComplete from './ConfigurationComplete'
-import { MockApi } from 'apis/mock'
+// import { MockApi } from 'apis/mock'
 
 const prefixCls = 'comp-configuration'
 
@@ -181,7 +181,7 @@ export default observer(function Configuration() {
   }
   const onStep3Next = async () => {
     // 发送配置完成的请求，改变是否配置状态
-    const res = await MockApi.completeSolution({ solution_code: 'test' })
+    //  const res = await MockApi.completeSolution({ solution_code: 'test' })
     routerStore.push(`${basename}/configuration/step/${step + 1}`)
   }
 

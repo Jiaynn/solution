@@ -117,7 +117,7 @@ import { MediaStyleDrawerStore } from 'kodo/components/BucketDetails/MediaStyle/
 
 import { ApplyNotices } from './ApplyNotice'
 import { SolutionApis } from 'apis/imageSolution'
-import { MockApi } from 'apis/mock'
+// import { MockApi } from 'apis/mock'
 
 const DevTools = React.lazy(() => import('../DevTools'))
 
