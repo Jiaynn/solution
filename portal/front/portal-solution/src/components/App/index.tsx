@@ -67,30 +67,22 @@ export default observer(function App() {
                 <FileClipboardProvider>
                   <TaskCenterContextProvider>
                     <CdnBootProvider>
-                      <Switch>
-                        <Route path={basename}>
-                          <Switch>
-                            <Route relative path="/">
-                              <Layout>
-                                <ContentLayout mainClassName="main" sidebar={<Sidebar />}>
-                                  <Switch>
-                                    <Route relative exact title="首页" path="/">
-                                      <Redirect relative to="configuration" />
-                                    </Route>
-                                    <Route relative title="方案概览" exact path="/overview"><Overview /></Route>
-                                    <Route relative title="方案配置" path="/configuration">
-                                      {/* 子路由详见组件内部 */}
-                                      <Configuration />
-                                    </Route>
-                                    <Route relative title="图片管理" exact path="/image-management"><ImageManagement /></Route>
-                                    <Route relative title="购买资源包" exact path="/resource-pack"><ResourcePack /></Route>
-                                  </Switch>
-                                </ContentLayout>
-                              </Layout>
+                      <Route path={basename}>
+                        <Layout>
+                          <ContentLayout mainClassName="main" sidebar={<Sidebar />}>
+                            <Route relative exact title="首页" path="/">
+                              <Redirect relative to="/configuration" />
                             </Route>
-                          </Switch>
-                        </Route>
-                      </Switch>
+                            <Route relative title="方案概览" exact path="/overview"><Overview /></Route>
+                            <Route relative title="方案配置" path="/configuration">
+                              {/* 子路由详见组件内部 */}
+                              <Configuration />
+                            </Route>
+                            <Route relative title="图片管理" exact path="/image-management"><ImageManagement /></Route>
+                            <Route relative title="购买资源包" exact path="/resource-pack"><ResourcePack /></Route>
+                          </ContentLayout>
+                        </Layout>
+                      </Route>
                     </CdnBootProvider>
                   </TaskCenterContextProvider>
                 </FileClipboardProvider>
