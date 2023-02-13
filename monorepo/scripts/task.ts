@@ -5,7 +5,6 @@ export const preRunTask = {
 	'qnweb-cloud-class-demo': {
 		title: '云课堂场景',
 		async run() {
-			await runBuild('whiteboard');
 			await runBuild('qnweb-whiteboard');
 			await runBuild('qnweb-im');
 			await runBuild('qnweb-high-level-rtc');
@@ -32,7 +31,6 @@ export const preRunTask = {
 	'qnweb-overhaul-demo': {
 		title: '检修场景',
 		async run() {
-			await runBuild('whiteboard');
 			await runBuild('qnweb-whiteboard');
 			await runBuild('qnweb-im');
 			await runBuild('qnweb-high-level-rtc');
@@ -68,18 +66,6 @@ export const preRunTask = {
 		async run() {
 			await runBuild('qnweb-whiteboard');
 			await runShell('copy_whiteboard');
-		}
-	},
-	'qnweb-scheme-h5-demo': {
-		title: '牛魔方方案h5 demo',
-		async run() {
-			await runBuild('qnweb-scheme-h5-demo');
-		}
-	},
-	'portal-solution': {
-		title: 'portal-solution',
-		async run() {
-			await runBuild('portal-solution');
 		}
 	}
 };
