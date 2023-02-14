@@ -13,13 +13,13 @@ import { useLocalStore } from 'qn-fe-core/local-store'
 import Disposable from 'qn-fe-core/disposable'
 import { InjectFunc, Inject } from 'qn-fe-core/di'
 
-import { Route, Switch } from 'portal-base/common/router'
+import { Route, RouterStore, Switch } from 'portal-base/common/router'
 
 import { isTransferAvailable } from 'kodo/transforms/transfer'
 
 import { ConfigStore } from 'kodo/stores/config'
 
-import { getDashboardPath, gotoDashboardPage } from 'kodo/routes/dashboard'
+import { getDashboardPath } from 'kodo/routes/dashboard'
 
 import { granularityDateRangeLimitTextMap } from 'kodo/constants/date-time'
 import { regionAll } from 'kodo/constants/region'
@@ -32,9 +32,9 @@ import StorageReport from './StorageReport'
 import FlowReport from './Flow/FlowReport'
 import BandwidthReport from './Flow/BandwidthReport'
 import APIReport from './APIReport'
-import Transfer from './Transfer'
 import { StateStore, IQueryOptions } from './store'
 import styles from './style.m.less'
+import { kodoOverviewBasename } from 'components/Overview/overviewRouterConfig'
 
 const { Option } = Select
 const { TabPane } = Tabs
@@ -52,6 +52,7 @@ interface DiDeps {
   inject: InjectFunc
 }
 
+
 @observer
 class InternalDashboard extends React.Component<IProps & DiDeps> {
   disposable = new Disposable()
@@ -64,7 +65,9 @@ class InternalDashboard extends React.Component<IProps & DiDeps> {
 
   @action.bound
   handleTabChange(key: ReportType) {
-    gotoDashboardPage(this.props.inject, key)
+    // gotoDashboardPage(this.props.inject, key)
+    const routerStore = this.props.inject(RouterStore)
+    routerStore.push(`${kodoOverviewBasename}/${key}`)
   }
 
   @computed
@@ -95,11 +98,6 @@ class InternalDashboard extends React.Component<IProps & DiDeps> {
         key: ReportType.API,
         path: getDashboardPath(this.props.inject, ReportType.API)
       },
-      {
-        name: reportTextMap.transfer,
-        key: ReportType.Transfer,
-        path: getDashboardPath(this.props.inject, ReportType.Transfer)
-      }
     ]
   }
 
@@ -121,11 +119,11 @@ class InternalDashboard extends React.Component<IProps & DiDeps> {
       updateCurrentFlowType, updateCurrentGranularity
     } = this.props.store
 
-    const { flow, bandwidth, storage, api, transfer } = keyBy<ITabConfig>('key')(this.tabsConfig)
+    const { flow, bandwidth, storage, api } = keyBy<ITabConfig>('key')(this.tabsConfig)
 
     return (
       <Switch>
-        <Route exact title="空间流量" path={flow.path}>
+        <Route title="空间流量" path={`${kodoOverviewBasename}/${flow.key}`}>
           <Inject render={({ inject }) => (
             <FlowReport
               inject={inject}
@@ -138,7 +136,7 @@ class InternalDashboard extends React.Component<IProps & DiDeps> {
           )} />
 
         </Route>
-        <Route exact title="空间带宽" path={bandwidth.path}>
+        <Route title="空间带宽" path={`${kodoOverviewBasename}/${bandwidth.key}`}>
           <Inject render={({ inject }) => (
             <BandwidthReport
               inject={inject}
@@ -151,14 +149,11 @@ class InternalDashboard extends React.Component<IProps & DiDeps> {
           )} />
 
         </Route>
-        <Route exact title="存储" path={storage.path}>
+        <Route title="存储" path={`${kodoOverviewBasename}/${storage.key}`}>
           <StorageReport queryOptions={this.props.store.queryOptions} />
         </Route>
-        <Route exact title="API 请求" path={api.path}>
+        <Route title="API 请求" path={`${kodoOverviewBasename}/${api.key}`}>
           <APIReport queryOptions={this.props.store.queryOptions} />
-        </Route>
-        <Route exact title="跨区域同步" path={transfer.path}>
-          <Transfer queryOptions={this.props.store.queryOptions} />
         </Route>
         <Route exact path="*">
           <NotFoundRedirect />
@@ -213,7 +208,7 @@ class InternalDashboard extends React.Component<IProps & DiDeps> {
             onChange={updateCurrentBucket}
             disabled={this.props.type === ReportType.Transfer || bucketNames.length === 0}
           >
-            {isAllowAllBucket ? (<Option value={bucketAll} key={bucketAll}>{bucketAll}</Option>) : null}
+            {/* {isAllowAllBucket ? (<Option value={bucketAll} key={bucketAll}>{bucketAll}</Option>) : null} */}
             {
               bucketNames.map(bucket => (
                 <Option value={bucket} key={bucket}>{bucket}</Option>
@@ -299,7 +294,7 @@ class InternalDashboard extends React.Component<IProps & DiDeps> {
   }
 }
 
-export default function Dashboard(props: IProps) {
+export default observer(function Dashboard(props: IProps) {
   const store = useLocalStore(StateStore)
 
   return (
@@ -307,4 +302,4 @@ export default function Dashboard(props: IProps) {
       <InternalDashboard {...props} store={store} inject={inject} />
     )} />
   )
-}
+})

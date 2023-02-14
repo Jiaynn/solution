@@ -18,6 +18,7 @@ import { PageConfig } from './config'
 import LocalStore from './store'
 
 import './style.less'
+import { cdnOverviewBasename } from 'components/Overview/overviewRouterConfig'
 
 export interface IProps {
   type: 'usage' | 'log'
@@ -80,6 +81,7 @@ class StatisticsInner extends React.Component<PropsWithDeps> {
         <div className="statistics-main-wrap">
           <Route relative exact path="/">
             {this.links.length > 0 && <Redirect to={this.links[0].path} />}
+            <Redirect to={`${cdnOverviewBasename}/flow`} />
           </Route>
           <Route
             relative

@@ -38,6 +38,7 @@
     "js-base64": "^2.5.1",
     "json-schema-md-doc": "^1.0.0",
     "json-server": "^0.17.1",
+    "json2csv": "4.5.2",
     "jsoneditor": "^9.9.0",
     "jszip": "^3.6.0",
     "kodo-base": "https://github.com/qbox/kodo-web.git#base-v2.2.33",

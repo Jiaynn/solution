@@ -74,7 +74,7 @@ export default observer(function App() {
                               <Route relative exact title="首页" path="/">
                                 <Redirect relative to="/configuration" />
                               </Route>
-                              <Route relative title="方案概览" exact path="/overview"><Overview /></Route>
+                              <Route relative title="方案概览" path="/overview"><Overview /></Route>
                               <Route relative title="方案配置" path="/configuration">
                                 {/* 子路由详见组件内部 */}
                                 <Configuration />

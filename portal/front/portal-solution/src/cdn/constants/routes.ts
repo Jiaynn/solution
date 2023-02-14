@@ -14,6 +14,7 @@ import { DomainType } from 'cdn/constants/domain'
 
 import { ICreateDomainState } from 'cdn/components/Domain/Create/Result'
 import { ConfigInputType } from 'cdn/components/Domain/Create/CreateForm'
+import { cdnOverviewBasename } from 'components/Overview/overviewRouterConfig'
 
 @injectable()
 export default class Routes {
@@ -62,7 +63,8 @@ export default class Routes {
 
   /** 统计分析 */
   statistics(type: 'usage' | 'log', searchType: SearchType) {
-    return `${this.basename}/statistics/${type}/${searchType}`
+    // return `${this.basename}/statistics/${type}/${searchType}`
+    return `${cdnOverviewBasename}/${searchType}`
   }
 
   /** 统计分析 - 用量统计 */
