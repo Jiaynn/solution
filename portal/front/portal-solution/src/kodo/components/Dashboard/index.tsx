@@ -24,7 +24,7 @@ import { getDashboardPath } from 'kodo/routes/dashboard'
 import { granularityDateRangeLimitTextMap } from 'kodo/constants/date-time'
 import { regionAll } from 'kodo/constants/region'
 import { storageTypeTextMap, FlowSrcType } from 'kodo/constants/statistics'
-import { ITabConfig, reportTextMap, ReportType, bucketAll } from 'kodo/constants/dashboard'
+import { ITabConfig, reportTextMap, ReportType } from 'kodo/constants/dashboard'
 
 import { NotFoundRedirect } from 'kodo/components/common/NotFoundRedirect'
 import OverviewDateRangeTab from 'kodo/components/common/Tabs/OverviewDateRangeTab'
@@ -51,7 +51,6 @@ interface DiDeps {
   store: StateStore
   inject: InjectFunc
 }
-
 
 @observer
 class InternalDashboard extends React.Component<IProps & DiDeps> {
@@ -97,7 +96,7 @@ class InternalDashboard extends React.Component<IProps & DiDeps> {
         name: reportTextMap.api,
         key: ReportType.API,
         path: getDashboardPath(this.props.inject, ReportType.API)
-      },
+      }
     ]
   }
 
@@ -165,7 +164,7 @@ class InternalDashboard extends React.Component<IProps & DiDeps> {
   @computed get inputControlView() {
     const {
       regions, currentRegion, bucketNames, updateCurrentBucket,
-      currentBucket, ftype, updateCurrentRegion, updateFtype, isAllowAllBucket
+      currentBucket, ftype, updateCurrentRegion, updateFtype
     } = this.props.store
 
     return (

@@ -62,7 +62,7 @@ export default class Routes {
   }
 
   /** 统计分析 */
-  statistics(type: 'usage' | 'log', searchType: SearchType) {
+  statistics(_type: 'usage' | 'log', searchType: SearchType) {
     // return `${this.basename}/statistics/${type}/${searchType}`
     return `${cdnOverviewBasename}/${searchType}`
   }

@@ -3,7 +3,7 @@ import autobind from 'autobind-decorator'
 import { CommonClient } from 'portal-base/common/apis/common'
 import { injectable } from 'qn-fe-core/di'
 
-import { DomainApis, ICDNDomainInfo } from 'portal-base/fusion'
+import { ICDNDomainInfo } from 'portal-base/fusion'
 
 import { service } from 'constants/api'
 import {
@@ -20,12 +20,11 @@ import {
   IsConfigSolutionOptions,
   IsConfigSolutionResult
 } from './_types/imageType'
-import { DomainStore } from 'kodo/stores/domain'
 
 @autobind
 @injectable()
 export class SolutionApis {
-  constructor(private solutionCommonClient: CommonClient, private domainApis:DomainApis, private domainStore:DomainStore) {}
+  constructor(private solutionCommonClient: CommonClient) {}
 
   /**
    * @des 是否开通某方案
@@ -101,9 +100,9 @@ export class SolutionApis {
    * @returns 本方案所有空间的域名
    */
   async getDomains() {
-    const res = await this.solutionCommonClient.get(
-      `${service.getBucketList}?page_num=${1}&page_size=${1000}&solution_code=image`
-    ) as GetBucketListResult
+    // const res = await this.solutionCommonClient.get(
+    //   `${service.getBucketList}?page_num=${1}&page_size=${1000}&solution_code=image`
+    // ) as GetBucketListResult
 
     // eslint-disable-next-line no-console
 
