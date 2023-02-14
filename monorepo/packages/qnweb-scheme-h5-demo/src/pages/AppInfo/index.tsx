@@ -1,9 +1,20 @@
 import React, { useEffect, useRef } from 'react';
+import { Modal } from 'antd';
 import { useLocation } from 'react-router-dom';
 
 import { renderImageUrl } from '@/utils';
 
 import './index.scss';
+
+const getErrorMessage = (error: unknown): string => {
+	if (typeof error === 'string') {
+		return error;
+	}
+	if (error instanceof Error) {
+		return error.message;
+	}
+	return '未知错误';
+};
 
 export default function AppInfo() {
 	const stateParams = useLocation();
@@ -15,10 +26,26 @@ export default function AppInfo() {
 	 * @desc demo演示跳转
 	 */
 	const handleDemo = () => {
-		window.router
-			? window.router.routerNative(url)
-			: alert('请在app上运行哦～');
+		try {
+			const isAndroid = /Android/i.test(navigator.userAgent);
+			const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+			if (isAndroid) {
+				window.router.routerNative(url);
+			} else if (isIOS) {
+				window.webkit.messageHandlers.routerNative.postMessage(url);
+			} else {
+				Modal.info({
+					content: '请用手机打开'
+				});
+			}
+		} catch (error) {
+			console.log(error);
+			Modal.error({
+				content: getErrorMessage(error)
+			});
+		}
 	};
+
 	useEffect(() => {
 		if (!content.includes('http')) {
 			renderImageUrl(content, folder, contentRef.current);
