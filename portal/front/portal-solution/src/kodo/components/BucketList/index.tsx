@@ -28,7 +28,7 @@ import GuideGroup from 'kodo/components/common/Guide'
 import HelpDocLink from 'kodo/components/common/HelpDocLink'
 import { Description } from 'kodo/components/common/Description'
 
-import { getDomainPath, IListOptions, SearchType } from 'kodo/routes/bucket'
+import { IListOptions, SearchType } from 'kodo/routes/bucket'
 import { BucketListStore } from 'kodo/stores/bucket/list'
 import { ConfigStore } from 'kodo/stores/config'
 import { KodoIamStore } from 'kodo/stores/iam'
@@ -387,24 +387,11 @@ class InternalBucketList extends React.Component<IListOptions & DiDeps> {
       visible: this.testDomainInfoModalVisible,
 
       ...(
-        !this.isCreatedBucketDomainEnable
-          ? {
-            okText: '好的，我知道了',
-            onOk: this.closeTestDomainInfoModal,
-            cancelButtonProps: { className: styles.hiddenButton }
-          }
-          : {
-            okText: '立即绑定自定义域名',
-            cancelText: '好的，我知道了',
-            onCancel: this.closeTestDomainInfoModal,
-            onOk: () => {
-              this.closeTestDomainInfoModal()
-              this.routerStore.push(getDomainPath(
-                this.props.inject,
-                { bucketName: this.lastCreatedBucketName }
-              ))
-            }
-          }
+        {
+          okText: '好的，我知道了',
+          onOk: this.closeTestDomainInfoModal,
+          cancelButtonProps: { className: styles.hiddenButton }
+        }
       )
     }
 

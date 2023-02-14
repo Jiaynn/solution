@@ -22,8 +22,7 @@ export default class Routes {
 
   constructor(basename: string) {
     this.basename = basename
-    console.log('域名',this.basename);
-    
+
   }
 
   get domainList() {

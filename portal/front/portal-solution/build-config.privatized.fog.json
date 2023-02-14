@@ -27,6 +27,7 @@
     }
   },
   "devProxy": {
+    "/api/proxy/solution": "http://portalv4.dev.qiniu.io",
     "/api/proxy": "http://kodo-web-kodo-oem-env-dev.qa.qiniu.io/",
     "/api/kodov2": "http://kodo-web-kodo-oem-env-dev.qa.qiniu.io/",
     "/api/gaea": "http://kodo-web-kodo-oem-env-dev.qa.qiniu.io/",

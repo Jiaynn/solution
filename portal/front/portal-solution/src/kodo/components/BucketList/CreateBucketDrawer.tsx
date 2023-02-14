@@ -18,6 +18,8 @@ import { UserInfoStore as UserInfo } from 'portal-base/user/account'
 // TODO: treeshaking 优化
 import { Button, Drawer, Form, Input, Radio, Spin } from 'react-icecream/lib'
 
+import Modal from 'react-icecream/lib/modal'
+
 import { valuesOfEnum } from 'kodo/utils/ts'
 import {
   bindFormItem,
@@ -272,11 +274,15 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
     // 先请求kodo的创建空间
     await this.bucketStore.create(getValuesFromFormState(this.form))
     // 请求我们自己的创建bucket
-    // const create = await this.solutionAPi.createBucket({
-    //   region,
-    //   bucket_id: searchName,
-    //   solution_code: 'image'
-    // })
+    try {
+      await this.solutionAPi.createBucket({
+        region,
+        bucket_id: searchName,
+        solution_code: 'image'
+      })
+    } catch (error) {
+      Modal.error({ content: `${error}` })
+    }
 
     this.props.onClose(searchName, region) // 关闭
     // 根据作为 props 的 url 重新创建表单

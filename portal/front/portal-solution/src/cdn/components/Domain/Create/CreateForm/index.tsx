@@ -287,10 +287,10 @@ const CreateFormContent = observer(function _CreateFormContent({
       <Form.Item
         key="cacheIgnoreParamsConfig"
         label={<IgnoreParamsInputLabel />}
-        // FIXME: 这里 bind 了两次 cacheConfig，第二次会覆盖第一次，正确的做法应该是
-        // 1. 拿这两个 Form Item 的共同父节点 bind 到 cacheConfig
-        // 2. 或者干脆把这俩（cacheConfig & ignoreParams）分开，不要都放在 cacheConfig 名字下
-        // ref={bindRef('cacheConfig')}
+      // FIXME: 这里 bind 了两次 cacheConfig，第二次会覆盖第一次，正确的做法应该是
+      // 1. 拿这两个 Form Item 的共同父节点 bind 到 cacheConfig
+      // 2. 或者干脆把这俩（cacheConfig & ignoreParams）分开，不要都放在 cacheConfig 名字下
+      // ref={bindRef('cacheConfig')}
       >
         <DomainCacheIgnoreParamsConfigInput
           state={state.$.cacheConfig.$.$.$.ignoreParams}

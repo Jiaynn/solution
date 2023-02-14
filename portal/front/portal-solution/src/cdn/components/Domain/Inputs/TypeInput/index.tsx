@@ -56,6 +56,7 @@ const DomainTypeInput = observer(function _DomainTypeInput(props: DomainTypeInpu
   const bucketStore = useInjection(BucketStore)
   const { domainTypes, supportMidSource } = useInjection(AbilityConfig)
   const t = useTranslation()
+
   const radios = domainTypes.map(
     type => {
       const shouldForbidTypeByBucketNameMessage = (
@@ -91,7 +92,6 @@ const DomainTypeInput = observer(function _DomainTypeInput(props: DomainTypeInpu
   )
 
   const radioButtons = radios.map(radio => radio.radioButton)
-console.log('radioGroup',radioButtons);
 
   const helpBlock = getHelpBlock(value, supportMidSource)
 

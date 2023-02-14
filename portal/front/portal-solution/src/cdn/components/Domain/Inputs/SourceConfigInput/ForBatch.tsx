@@ -154,7 +154,6 @@ export default observer(function DomainSourceConfigInput(props: Props) {
   const userInfo = useInjection(UserInfo)
   const featureConfig = useInjection(FeatureConfig)
   const abilityConfig = useInjection(AbilityConfig)
-console.log('信息',bucketStore,domainStore,userInfo,featureConfig,abilityConfig);
 
   return (
     <DomainSourceConfigInputInner
@@ -182,7 +181,7 @@ export class DomainSourceConfigInputInner extends React.Component<IDomainSourceC
 
   componentDidMount() {
     this.props.bucketStore.fetchBuckets()
-    
+
     // 回源 HOST 默认为加速域名，当加速域名变化时，更新 sourceHost
     this.disposable.addDisposer(reaction(
       () => [
@@ -191,8 +190,7 @@ export class DomainSourceConfigInputInner extends React.Component<IDomainSourceC
       ] as const,
       ([domain, sourceHost]) => {
         const config = sourceHostInput.getValue(sourceHost)
-      
-        
+
         if (config.domainValue !== domain) {
           sourceHost.set({
             ...config,
@@ -316,10 +314,9 @@ export class DomainSourceConfigInputInner extends React.Component<IDomainSourceC
     const buckets = bucketStore.buckets
     const tip = (
       domains[0].type === DomainType.Wildcard
-      ? <p className="source-bucket-tip">* 泛域名和对应的泛子域名暂时只支持源站同为公有存储空间或同为私有存储空间。</p>
-      : null
+        ? <p className="source-bucket-tip">* 泛域名和对应的泛子域名暂时只支持源站同为公有存储空间或同为私有存储空间。</p>
+        : null
     )
-console.log('七牛存储的bucket',buckets);
 
     return (
       <>
@@ -401,8 +398,8 @@ console.log('七牛存储的bucket',buckets);
     const domain = this.props.domains[0]
     const bindDomainForbid = (
       sourceType !== SourceType.QiniuBucket && this.props.shouldFixBucket
-      ? '绑定域名时只支持七牛云存储'
-      : null
+        ? '绑定域名时只支持七牛云存储'
+        : null
     )
     return bindDomainForbid || shouldForbidSourceTypeAndPlatform(sourceType as SourceType, domain.platform as Platform)
   }
@@ -413,24 +410,24 @@ console.log('七牛存储的bucket',buckets);
     }
     const sourceTypeText = humanizeSourceTypeAsOption(sourceType)
     const shouldForbid = this.shouldForbid(sourceType)
-  
+
     // const visible=sourceType=='qiniuBucket'?false:true
-    
+
     return (
       <Radio key={sourceType} value={sourceType} disabled={!!shouldForbid}>
         {
           shouldForbid
-          ? (
-            <span>
-              {sourceTypeText}
-              <TipIcon
-                className="source-type-tab-tip-icon"
-                size="12px"
-                tip={shouldForbid}
-              />
-            </span>
-          )
-          : sourceTypeText
+            ? (
+              <span>
+                {sourceTypeText}
+                <TipIcon
+                  className="source-type-tab-tip-icon"
+                  size="12px"
+                  tip={shouldForbid}
+                />
+              </span>
+            )
+            : sourceTypeText
         }
       </Radio>
     )
@@ -453,8 +450,6 @@ console.log('七牛存储的bucket',buckets);
 
     const radios = this.props.abilityConfig.domainSourceTypes
       .map(sourceType => this.getSourceTypeRadio(sourceType))
-console.log('源站',this.props.abilityConfig.domainSourceTypes);
-
     return (
       <div className="domain-source-config-input-wrapper">
         <Radio.Group

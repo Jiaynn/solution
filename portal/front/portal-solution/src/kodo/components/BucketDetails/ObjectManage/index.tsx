@@ -46,7 +46,7 @@ export interface IProps extends IDetailsBaseOptions {
 }
 
 export const ObjectManage = observer((props: IProps) => {
-  console.log('ObjectManage render')
+
   const iamStore = useInjection(KodoIamStore)
   const configStore = useInjection(ConfigStore)
   const resourceApis = useInjection(ResourceApis)

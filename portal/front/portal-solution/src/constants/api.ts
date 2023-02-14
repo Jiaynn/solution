@@ -1,4 +1,4 @@
-export const prefix = '/api/solution'
+export const prefix = '/api/proxy/solution'
 export const service = {
   openSolution: `${prefix}`,
   createBucket: `${prefix}/bucket/create`,

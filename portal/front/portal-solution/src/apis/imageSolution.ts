@@ -24,26 +24,34 @@ import {
 export class SolutionApis {
   constructor(private solutionCommonClient: CommonClient) {}
 
-  // 是否开通某方案
+  /**
+   * @des 是否开通某方案
+   * @url /enable
+   * @param options
+   * @returns
+   */
   isOpenSolution(
     options: IsOpenSolutionOptions
   ): Promise<IsOpenSolutionResult> {
     return this.solutionCommonClient.get(
-      `${service.isOpenSolution}?solution_code=${options.solution_code}`,
-      {}
+      `${service.isOpenSolution}?solution_code=${options.solution_code}`
     )
   }
 
-  // 是否配置某方案
+  /**
+   * @des 是否配置某方案
+   * @url /status
+   * @param options
+   * @returns
+   */
   isConfigSolution(options:IsConfigSolutionOptions):Promise<IsConfigSolutionResult> {
     return this.solutionCommonClient.get(
-      `${service.isConfigSolution}?solution_code=${options.solution_code}`,
-      {}
+      `${service.isConfigSolution}?solution_code=${options.solution_code}`
     )
   }
   /**
    * @desc 开通方案
-   * @URL /solution
+   * @URL /
    * @param options
    * @returns
    */
@@ -54,15 +62,11 @@ export class SolutionApis {
   /**
    * @desc 创建bucket
    * @param options
-   * @url /solution/bucket/create
+   * @url /bucket/create
    * @returns
    */
   createBucket(options: CreateBucketOptions): Promise<CreateBucketResult> {
-    return this.solutionCommonClient.post(`${service.createBucket}`, options, {
-      headers: {
-        Authorization: 'QiniuStub uid=1381218000'
-      }
-    })
+    return this.solutionCommonClient.post(`${service.createBucket}`, options)
   }
 
   /**
@@ -77,16 +81,15 @@ export class SolutionApis {
     return this.solutionCommonClient.post(`${service.completeSolution}`, options)
   }
 
-  // 获取bucket列表
+  /**
+   * @desc 获取bucket列表
+   * @url /bucket/list
+   * @param options
+   * @returns
+   */
   getBucketList(options: GetBucketListOptions): Promise<GetBucketListResult> {
     return this.solutionCommonClient.get(
-      `${service.getBucketList}?page_num=${options.page_num}&page_size=${options.page_size}&solution_code=${options.solution_code}&region=${options.region}`,
-      {},
-      {
-        headers: {
-          Authorization: 'QiniuStub uid=1381218098'
-        }
-      }
+      `${service.getBucketList}?page_num=${options.page_num}&page_size=${options.page_size}&solution_code=${options.solution_code}`
     )
   }
 }

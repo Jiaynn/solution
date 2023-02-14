@@ -12,6 +12,7 @@ import { DomainStore } from 'kodo/stores/domain'
 import SelectBucket from 'components/Configuration/SelectBucket'
 
 import { basename } from 'constants/routes'
+import BucketStore from 'cdn/stores/bucket'
 
 interface DomainNameProps {
   query: Query;
@@ -21,6 +22,7 @@ export default function DomainName(props: DomainNameProps) {
   const { query } = props
   const domainStore = useInjection(DomainStore)
   const routerStore = useInjection(RouterStore)
+  const bucketStore = useInjection(BucketStore)
   const bucketName = String(query.bucket)
 
   const [visible, setVisible] = useState(false)
@@ -40,13 +42,14 @@ export default function DomainName(props: DomainNameProps) {
   }
   useEffect(() => {
     const state = JSON.parse(String(query.configurationState))
-
+    bucketStore.fetchBuckets(true)
     if (!state) {
       setVisible(true)
+
     } else {
       setVisible(false)
     }
-  }, [query.configurationState])
+  }, [bucketStore, query.configurationState])
 
   return (
     <div>

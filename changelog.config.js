@@ -44,6 +44,7 @@ module.exports = {
     "breaking",
     "issues",
     "lerna"
+    
   ],
   scopes: ["*"].concat(projects),
   types: {
