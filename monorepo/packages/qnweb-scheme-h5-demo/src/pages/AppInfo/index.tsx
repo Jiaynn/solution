@@ -6,6 +6,16 @@ import { renderImageUrl } from '@/utils';
 
 import './index.scss';
 
+const getErrorMessage = (error: unknown): string => {
+	if (typeof error === 'string') {
+		return error;
+	}
+	if (error instanceof Error) {
+		return error.message;
+	}
+	return '未知错误';
+};
+
 export default function AppInfo() {
 	const stateParams = useLocation();
 	const contentRef = useRef<HTMLDivElement | null>(null);
@@ -21,14 +31,17 @@ export default function AppInfo() {
 			const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 			if (isAndroid) {
 				window.router.routerNative(url);
-			}
-
-			if (isIOS) {
+			} else if (isIOS) {
 				window.webkit.messageHandlers.routerNative.postMessage(url);
+			} else {
+				Modal.info({
+					content: '请用手机打开'
+				});
 			}
 		} catch (error) {
+			console.log(error);
 			Modal.error({
-				content: JSON.stringify(error)
+				content: getErrorMessage(error)
 			});
 		}
 	};
