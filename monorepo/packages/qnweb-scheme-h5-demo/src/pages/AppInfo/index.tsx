@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Modal } from 'antd';
 import { useLocation } from 'react-router-dom';
 
 import { renderImageUrl } from '@/utils';
@@ -15,10 +16,23 @@ export default function AppInfo() {
 	 * @desc demo演示跳转
 	 */
 	const handleDemo = () => {
-		window.router
-			? window.router.routerNative(url)
-			: alert('请在app上运行哦～');
+		try {
+			const isAndroid = /Android/i.test(navigator.userAgent);
+			const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+			if (isAndroid) {
+				window.router.routerNative(url);
+			}
+
+			if (isIOS) {
+				window.webkit.messageHandlers.routerNative.postMessage(url);
+			}
+		} catch (error) {
+			Modal.error({
+				content: JSON.stringify(error)
+			});
+		}
 	};
+
 	useEffect(() => {
 		if (!content.includes('http')) {
 			renderImageUrl(content, folder, contentRef.current);
