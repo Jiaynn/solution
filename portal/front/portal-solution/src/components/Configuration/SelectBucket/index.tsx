@@ -3,26 +3,31 @@ import { useInjection } from 'qn-fe-core/di'
 import React, { useEffect, useState } from 'react'
 import { Select } from 'react-icecream'
 
-import { BucketListStore } from 'kodo/stores/bucket/list'
-import styles from './style.m.less'
+import { SelectProps } from 'antd/lib/select'
 
-interface IProps {
+import styles from './style.m.less'
+import { SolutionApis } from 'apis/imageSolution'
+
+interface IProps extends SelectProps {
   defaultBucketName: string;
   onChange: (bucketName: string) => void;
 }
 
-export default observer(function SelectBucket({
-  defaultBucketName,
-  onChange
-}: IProps) {
-  const bucketListStore = useInjection(BucketListStore)
+export default observer(function SelectBucket(props: IProps) {
+  const {
+    defaultBucketName
+  } = props
+
   const [bucketNames, setBucketNames] = useState<string[]>([])
 
+  const solutionApis = useInjection(SolutionApis)
+
   useEffect(() => {
-    bucketListStore.fetchList().then(() => {
-      setBucketNames(bucketListStore.nameList.sort())
+    solutionApis.getBucketList({ page_num: 1, page_size: 100, solution_code: 'image' }).then(res => {
+      const buckets = res.list.map(b => b.bucket_id)
+      setBucketNames(buckets)
     })
-  }, [])
+  }, [solutionApis])
 
   return (
     <div className={styles.wrapper}>
@@ -30,8 +35,8 @@ export default observer(function SelectBucket({
       <div className={styles.title}>当前空间：</div>
       <Select
         style={{ width: '200px' }}
-        onChange={onChange}
-        defaultValue={defaultBucketName}
+        value={defaultBucketName}
+        {...props}
       >
         {bucketNames.map(bucketName => (
           <Select.Option key={bucketName} value={bucketName}>

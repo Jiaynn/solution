@@ -90,8 +90,9 @@ export class SolutionApis {
    * @returns
    */
   getBucketList(options: GetBucketListOptions): Promise<GetBucketListResult> {
+    const regionQuery = options.region ? `&region=${options.region}` : ''
     return this.solutionCommonClient.get(
-      `${service.getBucketList}?page_num=${options.page_num}&page_size=${options.page_size}&solution_code=${options.solution_code}`
+      `${service.getBucketList}?page_num=${options.page_num}&page_size=${options.page_size}&solution_code=${options.solution_code}${regionQuery}`
     )
   }
 
