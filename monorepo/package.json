@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "keywords": [],
   "engines": {
-    "node": "14.16.1",
-    "pnpm": "7.14.0"
+    "node": ">=16.17.0",
+    "pnpm": ">=7.14.0"
   },
   "scripts": {
     "interview-demo:jenkins-staging": "pnpm install && ts-node scripts/start.ts qnweb-interview-demo && pnpm -F qnweb-interview-demo build",
@@ -28,7 +28,6 @@
     "qnweb-scheme-h5-demo:jenkins-prod": "pnpm install && pnpm --filter qnweb-scheme-h5-demo build",
     "portal-solution:jenkins-staging": "pnpm install && pnpm --filter portal-solution build",
     "portal-solution:jenkins-prod": "pnpm install && pnpm --filter portal-solution build",
-    "cz": "git-cz",
     "start": "ts-node scripts/start.ts",
     "release": "ar-changelog release",
     "changeset": "changeset",
