@@ -55,7 +55,7 @@ export default observer(function ConfigureImageStyle({ query }: IProps) {
 
   return (
     <div className={styles.wrapper}>
-      <SelectBucket defaultBucketName={defaultBucketName} onChange={onChange} />
+      <SelectBucket value={defaultBucketName} onChange={onChange} />
       {visible
 ? (
   <ImageStyleContent bucketName={selectedBucketName} />

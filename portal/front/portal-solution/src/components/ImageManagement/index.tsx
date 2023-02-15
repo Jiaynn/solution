@@ -30,7 +30,7 @@ export default function ImageManagement() {
     ? (
       <>
         <SelectBucket
-          defaultBucketName={selectedBucketName}
+          value={selectedBucketName}
           onChange={onChange}
         />
 

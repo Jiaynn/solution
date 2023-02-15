@@ -67,7 +67,7 @@ export default function DomainName(props: DomainNameProps) {
           isCreateDomain={handleCreate}
         />
       </Modal>
-      <SelectBucket defaultBucketName={bucketName} onChange={onChange} />
+      <SelectBucket value={bucketName} onChange={onChange} />
       <Domain bucketName={bucketName} visible={handleVisible} />
     </div>
   )

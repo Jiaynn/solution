@@ -8,15 +8,7 @@ import { SelectProps } from 'antd/lib/select'
 import styles from './style.m.less'
 import { SolutionApis } from 'apis/imageSolution'
 
-interface IProps extends SelectProps {
-  defaultBucketName: string;
-  onChange: (bucketName: string) => void;
-}
-
-export default observer(function SelectBucket(props: IProps) {
-  const {
-    defaultBucketName
-  } = props
+export default observer(function SelectBucket(props: SelectProps) {
 
   const [bucketNames, setBucketNames] = useState<string[]>([])
 
@@ -35,7 +27,6 @@ export default observer(function SelectBucket(props: IProps) {
       <div className={styles.title}>当前空间：</div>
       <Select
         style={{ width: '200px' }}
-        value={defaultBucketName}
         {...props}
       >
         {bucketNames.map(bucketName => (
