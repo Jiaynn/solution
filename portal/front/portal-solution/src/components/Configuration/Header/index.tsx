@@ -22,7 +22,7 @@ export const Header: React.FC<HeaderProps> = props => {
         <div className={`${prefixCls}-text-title`}>图片存储分发处理解决方案</div>
         <div
           className={`${prefixCls}-text-content`}
-        >针对有海量用户生成内容的场景。七牛云存储服务的高并发能力使您灵活应对大流量的业务场景。您可以兑存储在云端的图片文件进行数据处理。
+        >针对有海量用户生成内容的场景。七牛云存储服务的高并发能力使您灵活应对大流量的业务场景。您可以对存储在云端的图片文件进行数据处理。
         </div>
       </div>
     </div>
