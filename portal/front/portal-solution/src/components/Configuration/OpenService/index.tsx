@@ -38,11 +38,12 @@ export default observer(function OpenService() {
         solution_code: 'image',
         mode
       })
+      setIsOpenSolution(true)
+      setStep(3)
     } catch (error) {
       Modal.error({ content: `${error}` })
     }
-    setIsOpenSolution(true)
-    setStep(3)
+
   }
 
   const onStep3ButtonClick = () => {
