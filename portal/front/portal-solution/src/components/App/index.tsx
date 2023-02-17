@@ -24,6 +24,8 @@ import Role from 'portal-base/common/components/Role'
 
 import { ToasterStore } from 'portal-base/common/toaster'
 
+import ExternalUrlModal from 'kodo-base/lib/components/common/ExternalUrlModal'
+
 import { basename, name as productName } from 'constants/routes'
 
 import { BootProvider } from 'kodo/components/common/BootProvider'
@@ -34,6 +36,12 @@ import { sensorsTagFlag, sensorsTrack } from 'kodo/utils/sensors'
 import { CdnBootProvider } from 'cdn/components/App/BootProvider'
 
 import Configuration from 'components/Configuration'
+import { ApplyRegionModal } from 'kodo/components/common/RegionApply'
+import { RefreshCdnModal } from 'kodo/components/common/RefreshCdnModal'
+import GuideGroup from 'kodo/components/common/Guide'
+import { TaskCenter } from 'kodo/components/common/TaskCenter'
+import { ResourceApis } from 'kodo/apis/bucket/resource'
+import { taskCenterGuideName, taskCenterSteps } from 'kodo/constants/guide'
 
 const Sidebar = observer(function MySidebar() {
   return (
@@ -62,13 +70,30 @@ export default observer(function App() {
               openExternalUrlModal: externalUrlModalStore.open
             }
 
+            const resourceApis = injectA(ResourceApis)
+
             return (
               <KodoBaseProvider value={kodoBaseContextValue}>
+                <ApplyRegionModal />
+                <RefreshCdnModal />
                 <FileClipboardProvider>
                   <TaskCenterContextProvider>
                     <CdnBootProvider>
                       <Route path={basename}>
                         <Layout>
+                          <ExternalUrlModal
+                            visible={externalUrlModalStore.visible}
+                            objects={externalUrlModalStore.objects!}
+                            title={externalUrlModalStore.title}
+                            domain={externalUrlModalStore.domain!}
+                            onCancel={externalUrlModalStore.handleClose}
+                            getSignedDownloadUrls={resourceApis.getSignedDownloadUrls}
+                            isPrivateBucket={!!externalUrlModalStore.isPrivateBucket}
+                            mediaStyleConfig={externalUrlModalStore.mediaStyleConfig}
+                          />
+                          <GuideGroup name={taskCenterGuideName} steps={taskCenterSteps}>
+                            <TaskCenter />
+                          </GuideGroup>
                           <ContentLayout mainClassName="main" sidebar={<Sidebar />}>
                             <Switch>
                               <Route relative exact title="首页" path="/">
