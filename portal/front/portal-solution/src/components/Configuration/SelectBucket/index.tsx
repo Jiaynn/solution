@@ -1,25 +1,16 @@
 import { observer } from 'mobx-react'
 import { useInjection } from 'qn-fe-core/di'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Select } from 'react-icecream'
 
 import { SelectProps } from 'antd/lib/select'
 
 import styles from './style.m.less'
-import { SolutionApis } from 'apis/imageSolution'
+import ImageSolutionStore from 'store/imageSolution'
 
 export default observer(function SelectBucket(props: SelectProps) {
-
-  const [bucketNames, setBucketNames] = useState<string[]>([])
-
-  const solutionApis = useInjection(SolutionApis)
-
-  useEffect(() => {
-    solutionApis.getBucketList({ page_num: 1, page_size: 100, solution_code: 'image' }).then(res => {
-      const buckets = res.list.map(b => b.bucket_id)
-      setBucketNames(buckets)
-    })
-  }, [solutionApis])
+  const imageSolutionStore = useInjection(ImageSolutionStore)
+  const { bucketNames } = imageSolutionStore
 
   return (
     <div className={styles.wrapper}>

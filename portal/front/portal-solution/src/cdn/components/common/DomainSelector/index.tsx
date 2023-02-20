@@ -11,7 +11,7 @@ import { useInjection } from 'qn-fe-core/di'
 import { I18nStore } from 'portal-base/common/i18n'
 import { useLocalStore } from 'portal-base/common/utils/store'
 
-import { MAX_DOMAIN_COUNT } from 'cdn/constants/domain'
+import { computed } from 'mobx'
 
 import { SimpleTagSelector } from 'cdn/components/common/TagSelector'
 import Popover, { PopoverProps } from 'cdn/components/common/Popover'
@@ -21,11 +21,11 @@ import { IQueryParams } from 'cdn/apis/domain'
 import DomainFilter from './DomainFilter'
 import ProtocolFilter from './ProtocolFilter'
 import DomainList from './DomainList'
-import FullSelector from './FullSelector'
 
 import LocalStore, { State } from './store'
 
 import './style.less'
+import ImageSolutionStore from 'store/imageSolution'
 
 export { createState, getValue, State } from './store'
 
@@ -38,6 +38,10 @@ export interface IProps {
 
 export default observer(function DomainSelector(props: IProps) {
   const store = useLocalStore(LocalStore, props)
+  const iss = useInjection(ImageSolutionStore)
+
+  // 过滤成本方案的空间下的域名
+  const filtered = computed(() => store.domainsForSelect.filter(d => iss.currentDomains.includes(d.name))).get()
 
   const selectorCnt = (
     <>
@@ -50,15 +54,16 @@ export default observer(function DomainSelector(props: IProps) {
       />
       <DomainList
         loading={store.isLoading}
-        domainList={store.domainsForSelect}
+        domainList={filtered}
         state={store.props.state.$.domains}
       />
-      <FullSelector
+      {/** 去除全量选择 */}
+      {/* <FullSelector
         total={store.total}
         maxDomainCount={MAX_DOMAIN_COUNT}
         state={store.props.state.$.fullSelector}
         showFullCheck={props.showFullCheck}
-      />
+      /> */}
     </>
   )
 

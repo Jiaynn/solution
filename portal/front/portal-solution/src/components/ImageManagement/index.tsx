@@ -7,7 +7,7 @@ import { Loading } from 'react-icecream-2'
 import SelectBucket from 'components/Configuration/SelectBucket'
 
 import { ObjectManage } from 'kodo/components/BucketDetails/ObjectManage'
-import { SolutionApis } from 'apis/imageSolution'
+import ImageSolutionStore from 'store/imageSolution'
 
 export default function ImageManagement() {
   const [selectedBucketName, setSelectedBucketName] = useState('')
@@ -16,15 +16,14 @@ export default function ImageManagement() {
     setSelectedBucketName(value)
   }
 
-  const solutionApi = useInjection(SolutionApis)
+  const imageSolutionStore = useInjection(ImageSolutionStore)
 
   useEffect(() => {
-    solutionApi.getBucketList({ page_num: 1, page_size: 100, solution_code: 'image' }).then(res => {
-      const bucket = res.list[0].bucket_id
-      setSelectedBucketName(bucket)
+    imageSolutionStore.fetchBucketList().then(() => {
+      setSelectedBucketName(imageSolutionStore.bucketNames[0])
     })
     setLoading(false)
-  }, [solutionApi])
+  }, [imageSolutionStore])
 
   return selectedBucketName !== '' && !loading
     ? (

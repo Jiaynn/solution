@@ -117,6 +117,7 @@ import { MediaStyleDrawerStore } from 'kodo/components/BucketDetails/MediaStyle/
 
 import { ApplyNotices } from './ApplyNotice'
 import { SolutionApis } from 'apis/imageSolution'
+import ImageSolutionStore from 'store/imageSolution'
 // import { MockApi } from 'apis/mock'
 
 const DevTools = React.lazy(() => import('../DevTools'))
@@ -280,6 +281,7 @@ function BootLocalProvider(props: React.PropsWithChildren<{}>) {
       { identifier: BucketListStore, constr: BucketListStore },
       { identifier: RefreshCdnStore, constr: RefreshCdnStore },
       { identifier: RegionApplyStore, constr: RegionApplyStore },
+      { identifier: ImageSolutionStore, constr: ImageSolutionStore },
 
       // apis
       { identifier: CdnApis, constr: CdnApis },

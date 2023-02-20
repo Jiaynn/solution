@@ -13,6 +13,7 @@ import SelectBucket from 'components/Configuration/SelectBucket'
 
 import { basename } from 'constants/routes'
 import BucketStore from 'cdn/stores/bucket'
+import ImageSolutionStore from 'store/imageSolution'
 
 interface DomainNameProps {
   query: Query;
@@ -23,6 +24,7 @@ export default function DomainName(props: DomainNameProps) {
   const domainStore = useInjection(DomainStore)
   const routerStore = useInjection(RouterStore)
   const bucketStore = useInjection(BucketStore)
+  const imageSolutionStore = useInjection(ImageSolutionStore)
   const bucketName = String(query.bucket)
 
   const [visible, setVisible] = useState(false)
@@ -41,6 +43,7 @@ export default function DomainName(props: DomainNameProps) {
     domainStore.fetchCDNDomainListByBucketName(value)
   }
   useEffect(() => {
+    imageSolutionStore.fetchBucketList()
     const state = JSON.parse(String(query.configurationState))
     bucketStore.fetchBuckets(true)
     if (!state) {
@@ -49,7 +52,7 @@ export default function DomainName(props: DomainNameProps) {
     } else {
       setVisible(false)
     }
-  }, [bucketStore, query.configurationState])
+  }, [bucketStore, query.configurationState, imageSolutionStore])
 
   return (
     <div>

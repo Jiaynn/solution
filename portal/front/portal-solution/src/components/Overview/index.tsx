@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Tabs } from 'react-icecream/lib'
 
 import { Redirect, Route, Switch } from 'qn-fe-core/router'
@@ -8,7 +8,6 @@ import { observer } from 'mobx-react'
 
 import KodoOverview from './KodoOverview'
 import CDNOverview from './CDNOverview'
-import { SolutionApis } from 'apis/imageSolution'
 
 export default observer(function Overview() {
 
@@ -18,21 +17,19 @@ export default observer(function Overview() {
     routerStore.push(`/solutions/overview/${value}`)
   }
 
-  const solutionApis = useInjection(SolutionApis)
-
-  useEffect(() => {
-    solutionApis.getDomains().then(res => {
-      // eslint-disable-next-line no-console
-      console.log(res.map(r => r.name))
-    })
-  })
-
   return (
     <div>
-      <Tabs onChange={handleTabChange}>
-        <Tabs.TabPane tab="流量概览" key="cdn" />
-        <Tabs.TabPane tab="存储概览" key="kodo" />
-      </Tabs>
+      <Route relative
+        path="/:type"
+        component={({ match }) => {
+          const type = match.params.type
+          return (
+            <Tabs activeKey={type} onChange={handleTabChange}>
+              <Tabs.TabPane tab="流量概览" key="cdn" />
+              <Tabs.TabPane tab="存储概览" key="kodo" />
+            </Tabs>
+          )
+        }} />
       <Switch placeholder="404 not found">
         <Route relative path="/" exact>
           <Redirect relative to="/cdn" />

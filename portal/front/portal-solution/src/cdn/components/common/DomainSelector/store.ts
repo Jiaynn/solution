@@ -120,7 +120,9 @@ export default class LocalStore extends Store {
   }
 
   @computed get isFullDomainChecked() {
-    return this.props.state.value.fullSelector
+    // return this.props.state.value.fullSelector
+    // 去除全量选择
+    return false
   }
 
   @computed get selectedTags() {
@@ -169,7 +171,7 @@ export default class LocalStore extends Store {
   @Loadings.handle(LoadingType.SearchDomains)
   searchDomains() {
     const params = this.queryParams
-    return this.domainStore.searchDomains(params).then(resp => {
+    return this.domainStore.searchDomains({ sortBy: 'createAt', ...params, all: true }).then(resp => {
       const { total, domains } = resp
 
       // FIXME: 认为不带 name、tagList 的搜索结果中的 total 为当前状态的 total
@@ -196,6 +198,19 @@ export default class LocalStore extends Store {
   }
 
   init() {
+    // this.addDisposer(reaction(() => this.imageSolutionStore.currentBucket,
+    //   () => {
+
+    //     this.imageSolutionStore.fetchCurrentDomains().then(() => {
+    //       console.log('searchDomains', this.imageSolutionStore.currentBucket, this.imageSolutionStore.currentDomains)
+
+    //       runInAction(() => {
+    //         const domains = this.imageSolutionStore.currentDomains.map(name => ({ name })) as IDomain[]
+    //         this.updateDomains(domains, params)
+    //       })
+    //     })
+    //   }))
+
     // 切换协议、查询的域名结果变化的时候，重排域名列表
     this.addDisposer(reaction(
       () => [this.domains, this.selectedProtocols],

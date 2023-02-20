@@ -18,6 +18,7 @@ import ConfigurationStore from './ConfigurationStore'
 
 import { basename } from 'constants/routes'
 import { getFirstQuery } from 'kodo/utils/url'
+import ImageSolutionStore from 'store/imageSolution'
 
 interface IProps {
   query: Query;
@@ -38,12 +39,14 @@ export default observer(function ConfigureImageStyle({ query }: IProps) {
   const routerStore = useInjection(RouterStore)
 
   configurationStore.setIsFristVisit(isFristVisit)
+  const imageSolutinoStore = useInjection(ImageSolutionStore)
 
   useEffect(() => {
+    imageSolutinoStore.fetchBucketList()
     bucketStore.fetchDetailsByName(defaultBucketName).then(() => {
       setVisible(true)
     })
-  }, [bucketStore, defaultBucketName])
+  }, [bucketStore, defaultBucketName, imageSolutinoStore])
 
   const onChange = (value: string) => {
     routerStore.push(

@@ -22,13 +22,13 @@ import { RangePickerValue } from 'kodo/polyfills/icecream/date-picker'
 
 import { regionAll, RegionSymbolWithAll } from 'kodo/constants/region'
 import { FlowSrcType, StorageType } from 'kodo/constants/statistics'
-import { bucketAll } from 'kodo/constants/dashboard'
 import { Granularity, granularityDateRangeLimitMap } from 'kodo/constants/date-time'
 
 import { OverviewDateRangeType } from 'kodo/components/common/Tabs/OverviewDateRangeTab'
 
 import { StatisticsApis, IIamStatisticsBucketInfo } from 'kodo/apis/statistics'
 import { IBucketListItem } from 'kodo/apis/bucket/list'
+import ImageSolutionStore from 'store/imageSolution'
 
 export interface IQueryOptions {
   region: RegionSymbolWithAll
@@ -44,6 +44,7 @@ export class StateStore extends Store {
     private configStore: ConfigStore,
     private iamStore: KodoIamStore,
     private statisticsApis: StatisticsApis,
+    private imageSolutionStore: ImageSolutionStore,
     toasterStore: Toaster
   ) {
     super()
@@ -117,6 +118,7 @@ export class StateStore extends Store {
         !isShared(perm) && (this.isAllowAllBucket || this.iamStatisticsBucketInfo.allowList.includes(tbl))
       ))
       .map(({ tbl }) => tbl)
+      .filter(tbl => this.imageSolutionStore.bucketNames.includes(tbl))
   }
 
   @computed
@@ -255,7 +257,8 @@ export class StateStore extends Store {
         buckets: this.bucketNames
       }),
       // 切换 region 的时候，Bucket 默认选全部，对于不具有查询所有空间权限的子账号，默认选第一个空间
-      ({ buckets }) => { this.updateCurrentBucket(this.isAllowAllBucket ? bucketAll : buckets[0]) }
+      // ({ buckets }) => { this.updateCurrentBucket(this.isAllowAllBucket ? bucketAll : buckets[0]) }
+      ({ buckets }) => { this.updateCurrentBucket(buckets[0]) }
     ))
 
     this.addDisposer(reaction(
@@ -271,5 +274,6 @@ export class StateStore extends Store {
     ))
 
     this.fetchBucketList()
+    this.imageSolutionStore.fetchBucketList()
   }
 }
