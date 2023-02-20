@@ -41,7 +41,7 @@ export interface Props {
 }
 
 export const DomainCreate = observer(function DomainCreate(
-  props: Props & Pick<CreateFormProps, 'onCreate' | 'onCancel'>
+  props: Props & Partial<Pick<CreateFormProps, 'onCreate' | 'onCancel'>>
 ) {
   const store = useLocalStore(LocalStore, props)
 
@@ -93,7 +93,7 @@ export const DomainCreate = observer(function DomainCreate(
 
 export default observer(function DomainCreateWithQuery(props: {
   query: Query;
-} & Pick<CreateFormProps, 'onCreate' | 'onCancel'>) {
+} & Partial<Pick<CreateFormProps, 'onCreate' | 'onCancel'>>) {
   const {
     type,
     pareDomain,
