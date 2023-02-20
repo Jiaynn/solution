@@ -20,7 +20,7 @@ import {
 import Routes from 'cdn/constants/routes'
 import IamInfo from 'cdn/constants/iam-info'
 
-import { ICreateDomainState } from './Result'
+import { CreateResult, ICreateDomainState } from './Result'
 import CreateForm, { ConfigInputType, Props as CreateFormProps } from './CreateForm'
 
 import LocalStore from './store'
@@ -60,12 +60,12 @@ export const DomainCreate = observer(function DomainCreate(
             ? [store.panCreateOptions]
             : store.normalCreateOptionsList
       }
-      if (results.some(it => !!it.shouldVerify)) { // 验证
+      if (results.some(it => !!it.shouldVerify)) {
         routerStore.push(routes.domainVerifyOwnership(createDomainState))
-      } else if (createDomainState.results.length) {
-        routerStore.push(routes.domainCreateResult(createDomainState))
-      } else {
+      } else if (createDomainState.results.every(item => item.result === CreateResult.Success)) {
         onCreate()
+      } else {
+        routerStore.push(routes.domainCreateResult(createDomainState))
       }
     }),
     [store, routerStore, routes, onCreate]
