@@ -14,7 +14,7 @@ import { TaskCenterContextProvider } from 'kodo-base/lib/components/TaskCenter'
 import LocalProvider from 'react-icecream/lib/locale-provider'
 import zhCN from 'react-icecream/lib/locale-provider/zh_CN'
 
-import { Inject } from 'qn-fe-core/di'
+import { useInjection } from 'qn-fe-core/di'
 
 import { ExternalUrlModalStore } from 'kodo-base/lib/components/common/ExternalUrlModal/store'
 
@@ -42,6 +42,7 @@ import GuideGroup from 'kodo/components/common/Guide'
 import { TaskCenter } from 'kodo/components/common/TaskCenter'
 import { ResourceApis } from 'kodo/apis/bucket/resource'
 import { taskCenterGuideName, taskCenterSteps } from 'kodo/constants/guide'
+import MediaStyleDrawerProvider from 'kodo/components/BucketDetails/MediaStyle/CreateStyle/common/Drawer/Provider'
 
 const Sidebar = observer(function MySidebar() {
   return (
@@ -53,70 +54,71 @@ const Sidebar = observer(function MySidebar() {
   )
 })
 
-export default observer(function App() {
+const Root = observer(() => {
+  const externalUrlModalStore = useInjection(ExternalUrlModalStore)
+  const toasterStore = useInjection(ToasterStore)
+  const resourceApis = useInjection(ResourceApis)
 
+  const kodoBaseContextValue: KodoBaseContext = {
+    roleWrap: Role,
+    sensorsTagFlag,
+    sensorsTrack,
+    toaster: toasterStore,
+    openExternalUrlModal: externalUrlModalStore.open
+  }
+
+  return (
+    <KodoBaseProvider value={kodoBaseContextValue}>
+      <ApplyRegionModal />
+      <RefreshCdnModal />
+      <FileClipboardProvider>
+        <TaskCenterContextProvider>
+          <CdnBootProvider>
+            <MediaStyleDrawerProvider>
+              <Route path={basename}>
+                <Layout>
+                  <ExternalUrlModal
+                    visible={externalUrlModalStore.visible}
+                    objects={externalUrlModalStore.objects!}
+                    title={externalUrlModalStore.title}
+                    domain={externalUrlModalStore.domain!}
+                    onCancel={externalUrlModalStore.handleClose}
+                    getSignedDownloadUrls={resourceApis.getSignedDownloadUrls}
+                    isPrivateBucket={!!externalUrlModalStore.isPrivateBucket}
+                    mediaStyleConfig={externalUrlModalStore.mediaStyleConfig}
+                  />
+                  <GuideGroup name={taskCenterGuideName} steps={taskCenterSteps}>
+                    <TaskCenter />
+                  </GuideGroup>
+                  <ContentLayout mainClassName="main" sidebar={<Sidebar />}>
+                    <Switch>
+                      <Route relative exact title="首页" path="/">
+                        <Redirect relative to="/configuration" />
+                      </Route>
+                      <Route relative title="方案概览" path="/overview"><Overview /></Route>
+                      <Route relative title="方案配置" path="/configuration">
+                        {/* 子路由详见组件内部 */}
+                        <Configuration />
+                      </Route>
+                      <Route relative title="图片管理" exact path="/image-management"><ImageManagement /></Route>
+                      <Route relative title="购买资源包" exact path="/resource-pack"><ResourcePack /></Route>
+                    </Switch>
+                  </ContentLayout>
+                </Layout>
+              </Route>
+            </MediaStyleDrawerProvider>
+          </CdnBootProvider>
+        </TaskCenterContextProvider>
+      </FileClipboardProvider>
+    </KodoBaseProvider>
+  )
+})
+
+export default observer(function App() {
   return (
     <BootProvider>
       <LocalProvider locale={zhCN}>
-        <Inject
-          render={({ inject: injectA }) => {
-            const externalUrlModalStore = injectA(ExternalUrlModalStore)
-
-            const kodoBaseContextValue: KodoBaseContext = {
-              roleWrap: Role,
-              sensorsTagFlag,
-              sensorsTrack,
-              toaster: injectA(ToasterStore),
-              openExternalUrlModal: externalUrlModalStore.open
-            }
-
-            const resourceApis = injectA(ResourceApis)
-
-            return (
-              <KodoBaseProvider value={kodoBaseContextValue}>
-                <ApplyRegionModal />
-                <RefreshCdnModal />
-                <FileClipboardProvider>
-                  <TaskCenterContextProvider>
-                    <CdnBootProvider>
-                      <Route path={basename}>
-                        <Layout>
-                          <ExternalUrlModal
-                            visible={externalUrlModalStore.visible}
-                            objects={externalUrlModalStore.objects!}
-                            title={externalUrlModalStore.title}
-                            domain={externalUrlModalStore.domain!}
-                            onCancel={externalUrlModalStore.handleClose}
-                            getSignedDownloadUrls={resourceApis.getSignedDownloadUrls}
-                            isPrivateBucket={!!externalUrlModalStore.isPrivateBucket}
-                            mediaStyleConfig={externalUrlModalStore.mediaStyleConfig}
-                          />
-                          <GuideGroup name={taskCenterGuideName} steps={taskCenterSteps}>
-                            <TaskCenter />
-                          </GuideGroup>
-                          <ContentLayout mainClassName="main" sidebar={<Sidebar />}>
-                            <Switch>
-                              <Route relative exact title="首页" path="/">
-                                <Redirect relative to="/configuration" />
-                              </Route>
-                              <Route relative title="方案概览" path="/overview"><Overview /></Route>
-                              <Route relative title="方案配置" path="/configuration">
-                                {/* 子路由详见组件内部 */}
-                                <Configuration />
-                              </Route>
-                              <Route relative title="图片管理" exact path="/image-management"><ImageManagement /></Route>
-                              <Route relative title="购买资源包" exact path="/resource-pack"><ResourcePack /></Route>
-                            </Switch>
-                          </ContentLayout>
-                        </Layout>
-                      </Route>
-                    </CdnBootProvider>
-                  </TaskCenterContextProvider>
-                </FileClipboardProvider>
-              </KodoBaseProvider>
-            )
-          }}
-        />
+        <Root />
       </LocalProvider>
     </BootProvider>
   )
