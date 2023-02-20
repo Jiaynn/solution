@@ -21,7 +21,7 @@ import Routes from 'cdn/constants/routes'
 import IamInfo from 'cdn/constants/iam-info'
 
 import { ICreateDomainState } from './Result'
-import CreateForm, { ConfigInputType } from './CreateForm'
+import CreateForm, { ConfigInputType, Props as CreateFormProps } from './CreateForm'
 
 import LocalStore from './store'
 
@@ -39,24 +39,16 @@ export interface Props {
   sourceDomain?: string; // 源站域名
   testURLPath?: string; // 源站测试资源名
 }
-export interface CreateDomainProps {
-  modalVisible?: (visible: boolean) => void;
-  isCreateDomain?: () => Promise<void>;
-}
+
 export const DomainCreate = observer(function DomainCreate(
-  props: Props & CreateDomainProps
+  props: Props & Pick<CreateFormProps, 'onCreate' | 'onCancel'>
 ) {
   const store = useLocalStore(LocalStore, props)
 
   const routerStore = useInjection(RouterStore)
   const routes = useInjection(Routes)
   const { iamActions } = useInjection(IamInfo)
-  const { modalVisible, isCreateDomain } = props
-  const handleCancel = React.useCallback(() => {
-    if (modalVisible) {
-      modalVisible(false)
-    }
-  }, [modalVisible])
+  const { onCancel, onCreate } = props
 
   const handleCreate = React.useCallback(
     () => store.create().then(results => {
@@ -68,26 +60,22 @@ export const DomainCreate = observer(function DomainCreate(
             ? [store.panCreateOptions]
             : store.normalCreateOptionsList
       }
-
-      if (results.some(it => !!it.shouldVerify)) {
+      if (results.some(it => !!it.shouldVerify)) { // 验证
         routerStore.push(routes.domainVerifyOwnership(createDomainState))
+      } else if (createDomainState.results.length) {
+        routerStore.push(routes.domainCreateResult(createDomainState))
       } else {
-        if (modalVisible) {
-          modalVisible(false)
-        }
-        if (isCreateDomain) {
-          isCreateDomain()
-        }
+        onCreate()
       }
     }),
-    [store, routerStore, routes, modalVisible, isCreateDomain]
+    [store, routerStore, routes, onCreate]
   )
 
   return (
     <Iamed actions={[iamActions.CreateDomain]}>
       <Page className="comp-create-domain" mainClassName="page-wrapper">
         <CreateForm
-          onCancel={handleCancel}
+          onCancel={onCancel}
           onCreate={handleCreate}
           domains={store.domains}
           wildcardDomains={store.wildcardDomains}
@@ -105,9 +93,7 @@ export const DomainCreate = observer(function DomainCreate(
 
 export default observer(function DomainCreateWithQuery(props: {
   query: Query;
-  modalVisible?: (visible: boolean) => void;
-  isCreateDomain?: () => Promise<void>;
-}) {
+} & Pick<CreateFormProps, 'onCreate' | 'onCancel'>) {
   const {
     type,
     pareDomain,
@@ -119,7 +105,7 @@ export default observer(function DomainCreateWithQuery(props: {
     testURLPath,
     fixBucket
   } = props.query
-  const { modalVisible, isCreateDomain } = props
+  const { onCancel, onCreate } = props
   const routerStore = useInjection(RouterStore)
   const routeHash = routerStore.location!.hash
 
@@ -135,8 +121,8 @@ export default observer(function DomainCreateWithQuery(props: {
       testURLPath={testURLPath as string | undefined}
       anchor={routeHash ? routeHash.slice(1) : undefined}
       shouldFixBucket={fixBucket != null}
-      modalVisible={modalVisible}
-      isCreateDomain={isCreateDomain}
+      onCreate={onCreate}
+      onCancel={onCancel}
     />
   )
 })

@@ -33,25 +33,27 @@ export default function DomainName(props: DomainNameProps) {
   }
 
   function handleCreate() {
-    return domainStore.fetchCDNDomainListByBucketName(bucketName)
+    return domainStore.fetchCDNDomainListByBucketName(bucketName).then(() => {
+      handleVisible(false)
+    })
   }
 
   const onChange = (value: string) => {
-    routerStore.push(
-      `${basename}/configuration/step/2?bucket=${value}&configurationState=${query.configurationState}&fixBucket`
-    )
-    domainStore.fetchCDNDomainListByBucketName(value)
+    domainStore.fetchCDNDomainListByBucketName(value).then(() => {
+      routerStore.push(
+        `${basename}/configuration/step/2?bucket=${value}&configurationState=${query.configurationState}&fixBucket`
+      )
+    })
   }
-  useEffect(() => {
-    imageSolutionStore.fetchBucketList()
-    const state = JSON.parse(String(query.configurationState))
-    bucketStore.fetchBuckets(true)
-    if (!state) {
-      setVisible(true)
 
-    } else {
-      setVisible(false)
-    }
+  useEffect(() => {
+    const state = JSON.parse(String(query.configurationState))
+    Promise.all([
+      imageSolutionStore.fetchBucketList(),
+      bucketStore.fetchBuckets(true)
+    ]).then(() => {
+      setVisible(!state)
+    })
   }, [bucketStore, query.configurationState, imageSolutionStore])
 
   return (
@@ -66,8 +68,8 @@ export default function DomainName(props: DomainNameProps) {
       >
         <DomainCreateWithQuery
           query={query}
-          modalVisible={handleVisible}
-          isCreateDomain={handleCreate}
+          onCreate={handleCreate}
+          onCancel={() => setVisible(false)}
         />
       </Modal>
       <SelectBucket value={bucketName} onChange={onChange} />
