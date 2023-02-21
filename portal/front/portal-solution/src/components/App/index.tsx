@@ -33,7 +33,6 @@ import Overview from 'components/Overview'
 import ImageManagement from 'components/ImageManagement'
 import ResourcePack from 'components/ResourcePack'
 import { sensorsTagFlag, sensorsTrack } from 'kodo/utils/sensors'
-import { CdnBootProvider } from 'cdn/components/App/BootProvider'
 
 import Configuration from 'components/Configuration'
 import { ApplyRegionModal } from 'kodo/components/common/RegionApply'
@@ -73,7 +72,6 @@ const Root = observer(() => {
       <RefreshCdnModal />
       <FileClipboardProvider>
         <TaskCenterContextProvider>
-          {/* <CdnBootProvider> */}
           <Route path={basename}>
             <Layout>
               <ExternalUrlModal
@@ -113,7 +111,6 @@ const Root = observer(() => {
               </ContentLayout>
             </Layout>
           </Route>
-          {/* </CdnBootProvider> */}
         </TaskCenterContextProvider>
       </FileClipboardProvider>
     </KodoBaseProvider>
