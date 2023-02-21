@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import { useInjection } from 'qn-fe-core/di'
-
-import { Loading } from 'react-icecream-2'
 
 import { observer } from 'mobx-react'
 
@@ -15,43 +13,44 @@ import { MediaStyleDrawerStore } from 'kodo/components/BucketDetails/MediaStyle/
 import { BucketStore } from 'kodo/stores/bucket'
 
 export default observer(function ImageManagement() {
-  const [selectedBucketName, setSelectedBucketName] = useState('')
-  const [loading, setLoading] = useState(true)
   const mediaStyleStore = useInjection(MediaStyleDrawerStore)
   const bucketStore = useInjection(BucketStore)
 
-  const onChange = (value: string) => {
+  const [selectedBucketName, setSelectedBucketName] = useState('')
+
+  const onChange = useCallback((value: string) => {
     setSelectedBucketName(value)
-  }
+  }, [])
 
   const imageSolutionStore = useInjection(ImageSolutionStore)
 
   useEffect(() => {
     imageSolutionStore.fetchBucketList().then(() => {
-      setSelectedBucketName(imageSolutionStore.bucketNames[0])
+      onChange(imageSolutionStore.bucketNames[0])
     })
-    setLoading(false)
-  }, [imageSolutionStore])
+  }, [imageSolutionStore, onChange])
 
-  return selectedBucketName !== '' && !loading
-    ? (
-      <>
-        <MediaStyleDrawer
-          {...mediaStyleStore}
-          bucketName={selectedBucketName}
-          region={bucketStore?.getDetailsByName(selectedBucketName)?.region ?? ''}
-          onClose={mediaStyleStore.handleClose}
-        />
+  console.log('mediaStyleStore')
 
-        <SelectBucket
-          value={selectedBucketName}
-          onChange={onChange}
-        />
-        <ObjectManage
-          bucketName={selectedBucketName}
-          isUploadModalOpen={false}
-        />
-      </>
-    )
-    : <Loading loading={loading} style={{ marginTop: '25%' }} />
+  return selectedBucketName && (
+    <>
+      <MediaStyleDrawer
+        {...mediaStyleStore}
+        bucketName={selectedBucketName}
+        region={bucketStore?.getDetailsByName(selectedBucketName)?.region ?? ''}
+        onClose={mediaStyleStore.handleClose}
+        key={`${selectedBucketName}-MediaStyleDrawer`}
+      />
+
+      <SelectBucket
+        value={selectedBucketName}
+        onChange={onChange}
+      />
+      <ObjectManage
+        bucketName={selectedBucketName}
+        isUploadModalOpen={false}
+        key={`${selectedBucketName}-ObjectManage`}
+      />
+    </>
+  )
 })

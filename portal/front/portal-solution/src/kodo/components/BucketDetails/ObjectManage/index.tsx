@@ -10,8 +10,6 @@ import { Route, Switch } from 'portal-base/common/router'
 import { FeatureConfigStore } from 'portal-base/user/feature-config'
 import { ObjectManager, ObjectManagerProps, GetObjectApiOptions } from 'kodo-base/lib/components/ObjectManager'
 
-import { useEffect } from 'react'
-
 import { ConfigStore } from 'kodo/stores/config'
 import { KodoIamStore } from 'kodo/stores/iam'
 
@@ -64,11 +62,6 @@ export const ObjectManage = observer((props: IProps) => {
     bucketName: props.bucketName,
     inject
   })
-
-  useEffect(() => {
-    store.updateCurrentBucket(props.bucketName)
-    store.fetchDomains()
-  }, [props.bucketName, store])
 
   const { bucketName, isUploadModalOpen } = props
   const globalConfig = configStore.getFull()

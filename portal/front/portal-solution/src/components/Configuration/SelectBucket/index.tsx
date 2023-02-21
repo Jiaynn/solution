@@ -5,8 +5,9 @@ import { Select } from 'react-icecream'
 
 import { SelectProps } from 'antd/lib/select'
 
-import styles from './style.m.less'
 import ImageSolutionStore from 'store/imageSolution'
+
+import styles from './style.m.less'
 
 export default observer(function SelectBucket(props: SelectProps) {
   const imageSolutionStore = useInjection(ImageSolutionStore)
@@ -20,11 +21,13 @@ export default observer(function SelectBucket(props: SelectProps) {
         style={{ width: '200px' }}
         {...props}
       >
-        {bucketNames.map(bucketName => (
-          <Select.Option key={bucketName} value={bucketName}>
-            {bucketName}
-          </Select.Option>
-        ))}
+        {
+          bucketNames.map(bucketName => (
+            <Select.Option key={bucketName} value={bucketName}>
+              {bucketName}
+            </Select.Option>
+          ))
+        }
       </Select>
     </div>
   )
