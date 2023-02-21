@@ -4,7 +4,11 @@ import { useInjection } from 'qn-fe-core/di'
 
 import { observer } from 'mobx-react'
 
-import { Empty, Loading } from 'react-icecream-2'
+import { Loading } from 'react-icecream-2'
+
+import { Button, Icon } from 'react-icecream'
+
+import { RouterStore } from 'portal-base/common/router'
 
 import SelectBucket from 'components/Configuration/SelectBucket'
 
@@ -15,10 +19,13 @@ import { MediaStyleDrawerStore } from 'kodo/components/BucketDetails/MediaStyle/
 import { BucketStore } from 'kodo/stores/bucket'
 
 import './style.less'
+import { basename } from 'constants/routes'
 
 export default observer(function ImageManagement() {
   const mediaStyleStore = useInjection(MediaStyleDrawerStore)
   const bucketStore = useInjection(BucketStore)
+  const imageSolutionStore = useInjection(ImageSolutionStore)
+  const routerStore = useInjection(RouterStore)
 
   const [selectedBucketName, setSelectedBucketName] = useState('')
   const [loading, setLoading] = useState(false)
@@ -27,7 +34,9 @@ export default observer(function ImageManagement() {
     setSelectedBucketName(value)
   }, [])
 
-  const imageSolutionStore = useInjection(ImageSolutionStore)
+  const onCreateBucket = () => {
+    routerStore.push(`${basename}/configuration/step/1?configurationState=false&shouldCreateBucket=true`)
+  }
 
   useEffect(() => {
     setLoading(true)
@@ -70,8 +79,18 @@ export default observer(function ImageManagement() {
   }
 
   return (
-    <div className="absolution-center">
-      <Empty />
-    </div>
+    <>
+      <SelectBucket
+        value="无空间"
+        onChange={onChange}
+      />
+
+      <div className="card absolution-center">
+        <Icon type="info" className="info-icon" />
+        <h1 className="title">未创建图片存储空间</h1>
+        <div className="description">您还没有创建图片的存储空间，有了图片存储空间后才可以对图片进行管理操作，请点击下方按钮前去创建空间</div>
+        <Button type="primary" onClick={onCreateBucket}>创建空间</Button>
+      </div>
+    </>
   )
 })
