@@ -30,8 +30,6 @@ export default observer(function ImageManagement() {
     })
   }, [imageSolutionStore, onChange])
 
-  console.log('mediaStyleStore')
-
   return selectedBucketName && (
     <>
       <MediaStyleDrawer
