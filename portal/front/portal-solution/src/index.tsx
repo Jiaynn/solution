@@ -13,7 +13,7 @@ import './style.less'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from 'components/App'
+import App from 'components/common/App'
 
 // 渲染 APP
 const rootEl = document.getElementById('main-view-wrapper')

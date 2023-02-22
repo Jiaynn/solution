@@ -23,17 +23,15 @@ import { PrivateType } from 'kodo/constants/bucket/setting/access'
 import OpenService from 'components/Configuration/OpenService'
 import { Header } from 'components/Configuration/Header'
 import { BucketStore } from 'kodo/stores/bucket'
-
 import { BucketListStore } from 'kodo/stores/bucket/list'
 import { basename } from 'constants/routes'
-
-import './style.less'
-import DomainName from 'components/DomainName'
+import { SolutionApis } from 'apis/imageSolution'
 
 import ConfigureImageStyle from './ConfigureImageStyle'
 import ConfigurationComplete from './ConfigurationComplete'
-import { SolutionApis } from 'apis/imageSolution'
-// import { MockApi } from 'apis/mock'
+import DomainName from './DomainName'
+
+import './style.less'
 
 const prefixCls = 'comp-configuration'
 

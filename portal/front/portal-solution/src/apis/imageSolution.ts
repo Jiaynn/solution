@@ -3,8 +3,6 @@ import autobind from 'autobind-decorator'
 import { CommonClient } from 'portal-base/common/apis/common'
 import { injectable } from 'qn-fe-core/di'
 
-import { ICDNDomainInfo } from 'portal-base/fusion'
-
 import { service } from 'constants/api'
 import {
   OpenSolutionResult,
@@ -36,7 +34,7 @@ export class SolutionApis {
     options: IsOpenSolutionOptions
   ): Promise<IsOpenSolutionResult> {
     return this.solutionCommonClient.get(
-      `${service.isOpenSolution}?solution_code=${options.solution_code}`
+      `${service.openSolution}?solution_code=${options.solution_code}`
     )
   }
 
@@ -48,7 +46,7 @@ export class SolutionApis {
    */
   isConfigSolution(options:IsConfigSolutionOptions):Promise<IsConfigSolutionResult> {
     return this.solutionCommonClient.get(
-      `${service.isConfigSolution}?solution_code=${options.solution_code}`
+      `${service.configSolution}?solution_code=${options.solution_code}`
     )
   }
   /**
@@ -94,27 +92,5 @@ export class SolutionApis {
     return this.solutionCommonClient.get(
       `${service.getBucketList}?page_num=${options.page_num}&page_size=${options.page_size}&solution_code=${options.solution_code}${regionQuery}`
     )
-  }
-
-  /**
-   *
-   * @returns 本方案所有空间的域名
-   */
-  async getDomains() {
-    // const res = await this.solutionCommonClient.get(
-    //   `${service.getBucketList}?page_num=${1}&page_size=${1000}&solution_code=image`
-    // ) as GetBucketListResult
-
-    // eslint-disable-next-line no-console
-
-    const domains: ICDNDomainInfo[] = []
-
-    // for (let i = 0; i < res.list.length; i++) {
-    //   const cdnDomainInfo = await this.domainApis.searchDomains(res.list[i].bucket_id, 1000)
-    //   // eslint-disable-next-line no-await-in-loop
-    //   domains.push(...cdnDomainInfo)
-    // }
-
-    return domains
   }
 }
