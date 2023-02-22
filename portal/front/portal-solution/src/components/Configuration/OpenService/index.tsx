@@ -19,7 +19,7 @@ export default observer(function OpenService() {
   const routerStore = useInjection(RouterStore)
   const solution = useInjection(SolutionApis)
   const [values, setValues] = useState({
-    billingModeChecked: false,
+    billingModeChecked: true,
     serviceAgreementChecked: false
   })
   const [step, setStep] = useState(1)
@@ -31,12 +31,10 @@ export default observer(function OpenService() {
     setStep(2)
   }
   const onStep2ButtonClick = async () => {
-    // 开通服务
-    const mode = Number(!values.billingModeChecked)
     try {
       await solution.openSolution({
         solution_code: 'image',
-        mode
+        mode: 0
       })
       setIsOpenSolution(true)
       setStep(3)
@@ -98,7 +96,7 @@ export default observer(function OpenService() {
                       计费模式：
                     </span>
                     <Radio
-                      value={values.billingModeChecked}
+                      checked={values.billingModeChecked}
                       onChange={(checked: boolean) => setValues({
                         ...values,
                         billingModeChecked: checked
@@ -112,7 +110,7 @@ export default observer(function OpenService() {
                       服务协议：
                     </span>
                     <Checkbox
-                      value={values.serviceAgreementChecked}
+                      checked={values.serviceAgreementChecked}
                       onChange={(checked: boolean) => {
                         setValues({
                           ...values,
