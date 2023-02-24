@@ -74,7 +74,7 @@ class InternalImageStyle extends React.Component<IProps & DiDeps> {
   @observable viewState = false
   @observable isSeparatorVisible = false
   @observable.ref previewData: MediaStyle | undefined
-  @observable drawerVisible = this.props.drawerVisible 
+  @observable drawerVisible = this.props.drawerVisible
   configStore = this.props.inject(ConfigStore)
 
   @computed
@@ -165,7 +165,7 @@ class InternalImageStyle extends React.Component<IProps & DiDeps> {
         type="primary"
         icon="plus"
         disabled={disabled}
-        onClick={isOldVersion ? undefined : () => this.openDrawer()}
+        onClick={() => this.openDrawer()}
         {...sensorsTagFlag('portalKodo@imageStyle-image-styleCreate')}
       >
         新建图片样式
