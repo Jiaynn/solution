@@ -159,24 +159,17 @@ class InternalImageStyle extends React.Component<IProps & DiDeps> {
 
   @autobind
   renderCreateStyle(disabled: boolean) {
-    const isOldVersion = this.doraImageConfig?.isOldVersion
-    const btnView = (
-      <Button
-        type="primary"
-        icon="plus"
-        disabled={disabled}
-        onClick={() => this.openDrawer()}
-        {...sensorsTagFlag('portalKodo@imageStyle-image-styleCreate')}
-      >
-        新建图片样式
-      </Button>
-    )
-
-    const oldVersionView = <Link to={getImageStyleSetPath(this.props.bucketName)}>{btnView}</Link>
-
     return (
       <Role name={BucketImageStyleRole.AddNewImageStyleEntry}>
-        {isOldVersion ? oldVersionView : btnView}
+        <Button
+          type="primary"
+          icon="plus"
+          disabled={disabled}
+          onClick={() => this.openDrawer()}
+          {...sensorsTagFlag('portalKodo@imageStyle-image-styleCreate')}
+        >
+          新建图片样式
+        </Button>
       </Role>
     )
   }
