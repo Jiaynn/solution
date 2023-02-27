@@ -9,9 +9,13 @@ import { useInjection } from 'qn-fe-core/di'
 import DomainCreateWithQuery from 'cdn/components/Domain/Create'
 import Domain from 'kodo/components/BucketDetails/Domain'
 import { DomainStore } from 'kodo/stores/domain'
+<<<<<<< HEAD:portal/front/portal-solution/src/components/Configuration/DomainName/index.tsx
 import SelectBucket from 'components/common/SelectBucket'
+=======
+import SelectBucket from 'components/image/Configuration/SelectBucket'
+>>>>>>> dbfa609 (refactor(portal-solution): 图片方案):portal/front/portal-solution/src/components/image/Configuration/DomainName/index.tsx
 
-import { basename } from 'constants/routes'
+import { getSolutionPath } from 'constants/routes'
 import BucketStore from 'cdn/stores/bucket'
 import ImageSolutionStore from 'store/imageSolution'
 
@@ -41,7 +45,7 @@ export default function DomainName(props: DomainNameProps) {
   const onChange = (value: string) => {
     domainStore.fetchCDNDomainListByBucketName(value).then(() => {
       routerStore.push(
-        `${basename}/configuration/step/2?bucket=${value}&configurationState=${query.configurationState}&fixBucket`
+        `${getSolutionPath('image')}/configuration/step/2?bucket=${value}&configurationState=${query.configurationState}&fixBucket`
       )
     })
   }

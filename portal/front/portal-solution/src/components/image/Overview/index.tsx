@@ -8,13 +8,14 @@ import { observer } from 'mobx-react'
 
 import KodoOverview from './KodoOverview'
 import CDNOverview from './CDNOverview'
+import { getSolutionPath } from 'constants/routes'
 
 export default observer(function Overview() {
 
   const routerStore = useInjection(RouterStore)
 
   const handleTabChange = (value: string) => {
-    routerStore.push(`/solutions/overview/${value}`)
+    routerStore.push(`${getSolutionPath('image')}/overview/${value}`)
   }
 
   return (

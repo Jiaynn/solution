@@ -34,7 +34,7 @@ import BandwidthReport from './Flow/BandwidthReport'
 import APIReport from './APIReport'
 import { StateStore, IQueryOptions } from './store'
 import styles from './style.m.less'
-import { kodoOverviewBasename } from 'components/Overview/overviewRouterConfig'
+import { kodoOverviewBasename } from 'components/image/Overview/overviewRouterConfig'
 
 const { Option } = Select
 const { TabPane } = Tabs

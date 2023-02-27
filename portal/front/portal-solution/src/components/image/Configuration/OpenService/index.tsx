@@ -6,12 +6,16 @@ import { useInjection } from 'qn-fe-core/di'
 import { RouterStore } from 'portal-base/common/router'
 import Modal from 'react-icecream/lib/modal'
 
+<<<<<<< HEAD:portal/front/portal-solution/src/components/Configuration/OpenService/index.tsx
 import { Header } from 'components/common/Header'
+=======
+import { Header } from 'components/image/Configuration/Header'
+>>>>>>> dbfa609 (refactor(portal-solution): 图片方案):portal/front/portal-solution/src/components/image/Configuration/OpenService/index.tsx
 
-import { basename } from 'constants/routes'
+import { SolutionApis } from 'apis/imageSolution'
+import { getSolutionPath } from 'constants/routes'
 
 import './style.less'
-import { SolutionApis } from 'apis/imageSolution'
 
 const prefixCls = 'comp-configuration-open-service'
 
@@ -47,7 +51,7 @@ export default observer(function OpenService() {
   const onStep3ButtonClick = () => {
     // 是否为第一次进行配置，通过props传递，默认为false:第一次进行配置，如果在后续配置完成后更新状态，通过props值传递的状态也随之更新
     routerStore.push(
-      `${basename}/configuration/step/1?shouldCreateBucket=${!isConfigSolution}&configurationState=${isConfigSolution}`
+      `${getSolutionPath('image')}/configuration/step/1?shouldCreateBucket=${!isConfigSolution}&configurationState=${isConfigSolution}`
     )
   }
 
@@ -62,7 +66,7 @@ export default observer(function OpenService() {
       setIsConfigSolution(configStateRes.status)
       setLoading(false)
       if (openStateRes.status && configStateRes.status) {
-        routerStore.push(`${basename}/configuration/step/1?shouldCreateBucket=${!configStateRes.status}&configurationState=${configStateRes.status}`)
+        routerStore.push(`${getSolutionPath('image')}/configuration/step/1?shouldCreateBucket=${!configStateRes.status}&configurationState=${configStateRes.status}`)
       }
 
     }

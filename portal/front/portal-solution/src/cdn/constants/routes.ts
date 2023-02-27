@@ -14,7 +14,7 @@ import { DomainType } from 'cdn/constants/domain'
 
 import { ICreateDomainState } from 'cdn/components/Domain/Create/Result'
 import { ConfigInputType } from 'cdn/components/Domain/Create/CreateForm'
-import { cdnOverviewBasename } from 'components/Overview/overviewRouterConfig'
+import { cdnOverviewBasename } from 'components/image/Overview/overviewRouterConfig'
 
 @injectable()
 export default class Routes {

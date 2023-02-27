@@ -20,11 +20,16 @@ import { SearchType } from 'kodo/routes/bucket'
 import { RegionSymbolWithAll } from 'kodo/constants/region'
 import { getBooleanQuery, updateQueryString } from 'kodo/utils/route'
 import { PrivateType } from 'kodo/constants/bucket/setting/access'
+<<<<<<< HEAD:portal/front/portal-solution/src/components/Configuration/index.tsx
 import OpenService from 'components/Configuration/OpenService'
 import { Header } from 'components/common/Header'
+=======
+import OpenService from 'components/image/Configuration/OpenService'
+import { Header } from 'components/image/Configuration/Header'
+>>>>>>> dbfa609 (refactor(portal-solution): 图片方案):portal/front/portal-solution/src/components/image/Configuration/index.tsx
 import { BucketStore } from 'kodo/stores/bucket'
 import { BucketListStore } from 'kodo/stores/bucket/list'
-import { basename } from 'constants/routes'
+import { getSolutionPath } from 'constants/routes'
 import { SolutionApis } from 'apis/imageSolution'
 
 import ConfigureImageStyle from './ConfigureImageStyle'
@@ -144,7 +149,7 @@ export default observer(function Configuration() {
     const { list } = bucketListStore
     const { lastCreatedBucketName } = bucketStore
     const { configurationState } = routerStore.query
-    const prefixRoute = `${basename}/configuration/step`
+    const prefixRoute = `${getSolutionPath('image')}/configuration/step`
     if (lastCreatedBucketName) {
       routerStore.push(
         `${prefixRoute}/${step + 1
@@ -171,7 +176,7 @@ export default observer(function Configuration() {
     })
   }
   const onStep2Next = () => {
-    const prefixRoute = `${basename}/configuration/step`
+    const prefixRoute = `${getSolutionPath('image')}/configuration/step`
     const { bucket, configurationState } = routerStore.query
     routerStore.push(
       `${prefixRoute}/${step + 1
@@ -185,7 +190,7 @@ export default observer(function Configuration() {
     } catch (error) {
       Modal.error({ content: `${error}` })
     }
-    routerStore.push(`${basename}/configuration/step/${step + 1}`)
+    routerStore.push(`${getSolutionPath('image')}/configuration/step/${step + 1}`)
   }
 
   /**
@@ -197,7 +202,7 @@ export default observer(function Configuration() {
   }
 
   const onPrev = () => {
-    const prefixRoute = `${basename}/configuration/step`
+    const prefixRoute = `${getSolutionPath('image')}/configuration/step`
     const { bucket, configurationState } = routerStore.query
     const shouldCreateBucketState = JSON.parse(String(configurationState))
     if (step === 2) {
@@ -215,7 +220,7 @@ export default observer(function Configuration() {
   const curDescription = descriptions[step - 1]
 
   return (
-    <Switch placeholder={<NotFound />}>
+    <Switch>
       <Route relative exact path="/">
         <Redirect relative to="/open-service" />
       </Route>

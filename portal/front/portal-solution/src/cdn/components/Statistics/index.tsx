@@ -18,7 +18,7 @@ import { PageConfig } from './config'
 import LocalStore from './store'
 
 import './style.less'
-import { cdnOverviewBasename } from 'components/Overview/overviewRouterConfig'
+import { cdnOverviewBasename } from 'components/image/Overview/overviewRouterConfig'
 
 export interface IProps {
   type: 'usage' | 'log'

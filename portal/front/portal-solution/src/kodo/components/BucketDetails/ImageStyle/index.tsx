@@ -17,7 +17,7 @@ import { IDetailsBaseOptions as IProps } from 'kodo/routes/bucket'
 import Image from './Image'
 
 import styles from './style.m.less'
-import ConfigurationStore from 'components/Configuration/ConfigureImageStyle/ConfigurationStore'
+import ConfigurationStore from 'components/image/Configuration/ConfigureImageStyle/ConfigurationStore'
 
 interface DiDeps {
   inject: InjectFunc

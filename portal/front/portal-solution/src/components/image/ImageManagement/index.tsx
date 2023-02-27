@@ -10,7 +10,11 @@ import { Button, Icon } from 'react-icecream'
 
 import { RouterStore } from 'portal-base/common/router'
 
+<<<<<<< HEAD:portal/front/portal-solution/src/components/ImageManagement/index.tsx
 import SelectBucket from 'components/common/SelectBucket'
+=======
+import SelectBucket from 'components/image/Configuration/SelectBucket'
+>>>>>>> dbfa609 (refactor(portal-solution): 图片方案):portal/front/portal-solution/src/components/image/ImageManagement/index.tsx
 
 import { ObjectManage } from 'kodo/components/BucketDetails/ObjectManage'
 import ImageSolutionStore from 'store/imageSolution'
@@ -19,7 +23,7 @@ import { MediaStyleDrawerStore } from 'kodo/components/BucketDetails/MediaStyle/
 import { BucketStore } from 'kodo/stores/bucket'
 
 import './style.less'
-import { basename } from 'constants/routes'
+import { getSolutionPath } from 'constants/routes'
 
 export default observer(function ImageManagement() {
   const mediaStyleStore = useInjection(MediaStyleDrawerStore)
@@ -35,7 +39,7 @@ export default observer(function ImageManagement() {
   }, [])
 
   const onCreateBucket = () => {
-    routerStore.push(`${basename}/configuration/step/1?configurationState=false&shouldCreateBucket=true`)
+    routerStore.push(`${getSolutionPath('image')}/configuration/step/1?configurationState=false&shouldCreateBucket=true`)
   }
 
   useEffect(() => {
