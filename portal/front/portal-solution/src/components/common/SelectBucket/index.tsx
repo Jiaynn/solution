@@ -20,6 +20,7 @@ export default observer(function SelectBucket(props: SelectProps) {
       <Select
         style={{ width: '200px' }}
         {...props}
+        disabled={!imageSolutionStore.hasBucket}
       >
         {
           bucketNames.map(bucketName => (

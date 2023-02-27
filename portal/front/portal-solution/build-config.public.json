@@ -25,7 +25,6 @@
     }
   },
   "devProxy": {
-    "/api/proxy/solution": "http://portalv4.dev.qiniu.io",
     "/dynamic": "http://portalv4.dev.qiniu.io",
     "/api": "http://portalv4.dev.qiniu.io",
     "/signin": "http://portalv4.dev.qiniu.io",

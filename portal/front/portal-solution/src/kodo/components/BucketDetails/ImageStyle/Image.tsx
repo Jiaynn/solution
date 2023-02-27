@@ -9,7 +9,6 @@ import autobind from 'autobind-decorator'
 import { Observer, observer } from 'mobx-react'
 import { Inject, InjectFunc, useInjection } from 'qn-fe-core/di'
 import { Button, Table, Modal } from 'react-icecream/lib'
-import { Link } from 'portal-base/common/router'
 import Role from 'portal-base/common/components/Role'
 import { ToasterStore as Toaster } from 'portal-base/common/toaster'
 
@@ -159,13 +158,14 @@ class InternalImageStyle extends React.Component<IProps & DiDeps> {
 
   @autobind
   renderCreateStyle(disabled: boolean) {
+    const openCreateImageStyle = () => window.open(`https://portal.qiniu.com/dora/fop/imageprocess?bucket=${this.props.bucketName}`, '_blank')
     return (
       <Role name={BucketImageStyleRole.AddNewImageStyleEntry}>
         <Button
           type="primary"
           icon="plus"
           disabled={disabled}
-          onClick={() => this.openDrawer()}
+          onClick={openCreateImageStyle}
           {...sensorsTagFlag('portalKodo@imageStyle-image-styleCreate')}
         >
           新建图片样式
@@ -176,28 +176,17 @@ class InternalImageStyle extends React.Component<IProps & DiDeps> {
 
   @autobind
   renderAction(_, value: MediaStyle) {
-    const renderSettingBtn = (disabled: boolean) => {
-      if (this.doraImageConfig?.isOldVersion) {
-        return (
-          <Link
-            disabled={disabled}
-            className={styles.gap}
-            to={getImageStyleSetPath(this.props.bucketName, value.name)}
-          >
-            设置
-          </Link>
-        )
-      }
-      return (
-        <Button
-          disabled={disabled}
-          type="link"
-          onClick={() => this.openDrawer(value)}
-        >
-          设置
-        </Button>
-      )
-    }
+
+    const openImageStyleConfig = () => window.open('https://portal.qiniu.com/' + getImageStyleSetPath(this.props.bucketName, value.name), '_blank')
+
+    const renderSettingBtn = (disabled: boolean) => (
+      <Button
+        disabled={disabled}
+        type="link"
+        onClick={openImageStyleConfig}
+      >
+        设置
+      </Button>)
 
     return (
       <div>

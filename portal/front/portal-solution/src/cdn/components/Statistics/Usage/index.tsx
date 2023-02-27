@@ -11,7 +11,7 @@ import Tooltip from 'react-icecream/lib/tooltip'
 import Icon from 'react-icecream/lib/icon'
 import Spin from 'react-icecream/lib/spin'
 import Radio from 'react-icecream/lib/radio'
-import { Provides, useInjection } from 'qn-fe-core/di'
+import { Inject, InjectFunc, Provides, useInjection } from 'qn-fe-core/di'
 import { Iamed } from 'portal-base/user/iam'
 import { UserInfoStore } from 'portal-base/user/account'
 import { Featured, FeatureConfigStore } from 'portal-base/user/feature-config'
@@ -40,6 +40,7 @@ import LocalStore, { NightBandwidthData, ReqCountData, IStatisticsUsageProps } f
 import * as messages from './messages'
 
 import './style.less'
+import ImageSolutionStore from 'store/imageSolution'
 
 const RadioButton = Radio.Button
 const RadioGroup = Radio.Group
@@ -50,6 +51,8 @@ type PropsWithDeps = IStatisticsUsageProps & {
   featureConfigStore: FeatureConfigStore
   iamInfo: IamInfo
   i18n: I18nStore
+} & {
+  inject:InjectFunc
 }
 
 @observer
@@ -57,6 +60,12 @@ class StatisticsUsageInner extends React.Component<PropsWithDeps> {
   constructor(props: PropsWithDeps) {
     super(props)
     makeObservable(this)
+
+  }
+
+  imageSolutionStore = this.props.inject(ImageSolutionStore)
+  @computed get hasData() {
+    return this.imageSolutionStore.hasBucket && this.props.store.usageSearchOptions.domains.length > 0
   }
 
   @autobind getFlowSummary() {
@@ -257,17 +266,19 @@ class StatisticsUsageInner extends React.Component<PropsWithDeps> {
   }
 
   @computed get chartSummary() {
-    const { store } = this.props
-    switch (store.currentType) {
-      case SearchType.Flow:
-        return this.getFlowSummary()
-      case SearchType.Bandwidth:
-        return this.getBandwidthSummary()
-      case SearchType.Reqcount:
-        return this.getReqcountSummary()
-      case SearchType.NightBandwidth:
-        return this.getNightBandwidthSummary()
-      default:
+    if (this.hasData) {
+      const { store } = this.props
+      switch (store.currentType) {
+        case SearchType.Flow:
+          return this.getFlowSummary()
+        case SearchType.Bandwidth:
+          return this.getBandwidthSummary()
+        case SearchType.Reqcount:
+          return this.getReqcountSummary()
+        case SearchType.NightBandwidth:
+          return this.getNightBandwidthSummary()
+        default:
+      }
     }
     return null
   }
@@ -328,7 +339,7 @@ class StatisticsUsageInner extends React.Component<PropsWithDeps> {
             </div>
             <div className="chart">
               <AreaChart
-                series={store.seriesData}
+                series={this.hasData ? store.seriesData : []}
                 chartOptions={store.chartOptions}
                 options={{ stacking: 'normal' }}
               />
@@ -361,13 +372,14 @@ export default function StatisticsUsage(props: IStatisticsUsageProps) {
   const i18n = useInjection(I18nStore)
 
   return (
-    <StatisticsUsageInner
+    <Inject render={({ inject }) => <StatisticsUsageInner
+      inject={inject}
       {...props}
       store={store}
       i18n={i18n}
       userInfoStore={userInfoStore}
       featureConfigStore={featureConfigStore}
       iamInfo={iamInfo}
-    />
+    />} />
   )
 }

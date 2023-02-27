@@ -30,6 +30,11 @@ export default class ImageSolutionStore extends Store {
     return this.buckets.map(b => b.bucket_id)
   }
 
+  @computed
+  get hasBucket() {
+    return this.bucketNames.length > 0
+  }
+
   @autobind
   async fetchBucketList() {
     const { list } = await this.solutionApis.getBucketList({ page_num: 1, page_size: 1000, solution_code: 'image' })
