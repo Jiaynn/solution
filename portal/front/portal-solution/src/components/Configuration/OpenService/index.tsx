@@ -6,7 +6,7 @@ import { useInjection } from 'qn-fe-core/di'
 import { RouterStore } from 'portal-base/common/router'
 import Modal from 'react-icecream/lib/modal'
 
-import { Header } from 'components/Configuration/Header'
+import { Header } from 'components/common/Header'
 
 import { basename } from 'constants/routes'
 

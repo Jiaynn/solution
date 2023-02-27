@@ -10,7 +10,7 @@ import { Query, RouterStore } from 'portal-base/common/router'
 
 import ImageStyleContent from 'kodo/components/BucketDetails/ImageStyle'
 import styles from './style.m.less'
-import SelectBucket from '../SelectBucket'
+import SelectBucket from '../../common/SelectBucket'
 
 import { BucketStore } from 'kodo/stores/bucket'
 
@@ -60,12 +60,12 @@ export default observer(function ConfigureImageStyle({ query }: IProps) {
     <div className={styles.wrapper}>
       <SelectBucket value={defaultBucketName} onChange={onChange} />
       {visible
-? (
-  <ImageStyleContent bucketName={selectedBucketName} />
-      )
-: (
-  <Spin />
-      )}
+        ? (
+          <ImageStyleContent bucketName={selectedBucketName} />
+        )
+        : (
+          <Spin />
+        )}
     </div>
   )
 })

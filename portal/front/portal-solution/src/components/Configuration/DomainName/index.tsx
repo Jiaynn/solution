@@ -9,7 +9,7 @@ import { useInjection } from 'qn-fe-core/di'
 import DomainCreateWithQuery from 'cdn/components/Domain/Create'
 import Domain from 'kodo/components/BucketDetails/Domain'
 import { DomainStore } from 'kodo/stores/domain'
-import SelectBucket from 'components/Configuration/SelectBucket'
+import SelectBucket from 'components/common/SelectBucket'
 
 import { basename } from 'constants/routes'
 import BucketStore from 'cdn/stores/bucket'

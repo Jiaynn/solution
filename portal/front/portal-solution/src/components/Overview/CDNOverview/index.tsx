@@ -8,7 +8,7 @@ import { getUsagePageConfig } from 'cdn/components/Statistics/config'
 import IamInfo from 'cdn/constants/iam-info'
 
 import Statistics from 'cdn/components/Statistics'
-import SelectBucket from 'components/Configuration/SelectBucket'
+import SelectBucket from 'components/common/SelectBucket'
 import ImageSolutionStore from 'store/imageSolution'
 
 export default observer(function CDNOverview() {
@@ -20,7 +20,7 @@ export default observer(function CDNOverview() {
     imageSolutionStore.fetchBucketList()
   }, [imageSolutionStore])
 
-  const onChange = (name:string) => {
+  const onChange = (name: string) => {
     imageSolutionStore.updateCurrentBucket(name)
     imageSolutionStore.fetchCurrentDomains()
   }
