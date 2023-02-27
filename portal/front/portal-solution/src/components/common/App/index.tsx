@@ -25,8 +25,6 @@ import { ToasterStore } from 'portal-base/common/toaster'
 
 import ExternalUrlModal from 'kodo-base/lib/components/common/ExternalUrlModal'
 
-import BaseBootProvider from 'portal-base/common/components/BootProvider'
-
 import { basename } from 'constants/routes'
 
 import { BootProvider } from 'kodo/components/common/BootProvider'
@@ -61,33 +59,31 @@ const Root = observer(() => {
       <RefreshCdnModal />
       <FileClipboardProvider>
         <TaskCenterContextProvider>
-          <BaseBootProvider>
-            <Route path={basename}>
-              <Layout>
-                <ExternalUrlModal
-                  visible={externalUrlModalStore.visible}
-                  objects={externalUrlModalStore.objects!}
-                  title={externalUrlModalStore.title}
-                  domain={externalUrlModalStore.domain!}
-                  onCancel={externalUrlModalStore.handleClose}
-                  getSignedDownloadUrls={resourceApis.getSignedDownloadUrls}
-                  isPrivateBucket={!!externalUrlModalStore.isPrivateBucket}
-                  mediaStyleConfig={externalUrlModalStore.mediaStyleConfig}
-                />
-                <GuideGroup name={taskCenterGuideName} steps={taskCenterSteps}>
-                  <TaskCenter />
-                </GuideGroup>
-                <ContentLayout mainClassName="main" sidebar={<Sidebar />}>
-                  <Switch>
-                    <Route relative exact title="首页" path="/">
-                      <Redirect relative to="/image" />
-                    </Route>
-                    {ImageRouter}
-                  </Switch>
-                </ContentLayout>
-              </Layout>
-            </Route>
-          </BaseBootProvider>
+          <Route path={basename}>
+            <Layout>
+              <ExternalUrlModal
+                visible={externalUrlModalStore.visible}
+                objects={externalUrlModalStore.objects!}
+                title={externalUrlModalStore.title}
+                domain={externalUrlModalStore.domain!}
+                onCancel={externalUrlModalStore.handleClose}
+                getSignedDownloadUrls={resourceApis.getSignedDownloadUrls}
+                isPrivateBucket={!!externalUrlModalStore.isPrivateBucket}
+                mediaStyleConfig={externalUrlModalStore.mediaStyleConfig}
+              />
+              <GuideGroup name={taskCenterGuideName} steps={taskCenterSteps}>
+                <TaskCenter />
+              </GuideGroup>
+              <ContentLayout mainClassName="main" sidebar={<Sidebar />}>
+                <Switch>
+                  <Route relative exact title="首页" path="/">
+                    <Redirect relative to="/image" />
+                  </Route>
+                  {ImageRouter}
+                </Switch>
+              </ContentLayout>
+            </Layout>
+          </Route>
         </TaskCenterContextProvider>
       </FileClipboardProvider>
     </KodoBaseProvider>

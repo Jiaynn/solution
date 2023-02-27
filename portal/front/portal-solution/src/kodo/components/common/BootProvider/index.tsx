@@ -260,7 +260,9 @@ const BootBaseProvider = observer(function BootBaseProvider(
   if (baseConfig.layout.type === 'public') {
     return (
       <PublicBootProvider provides={provides}>
-        {props.children}
+        <PublicBootProvider provides={cdnProvides}>
+          {props.children}
+        </PublicBootProvider>
       </PublicBootProvider>
     )
   }
@@ -325,8 +327,7 @@ function BootLocalProvider(props: React.PropsWithChildren<{}>) {
       // { identifier: MockApi, constr: MockApi },
       { identifier: ObjectPickerStore, constr: ObjectPickerStore },
       { identifier: MediaStyleDrawerStore, constr: MediaStyleDrawerStore },
-      { identifier: ExternalUrlModalStore, constr: ExternalUrlModalStore },
-      ...cdnProvides
+      { identifier: ExternalUrlModalStore, constr: ExternalUrlModalStore }
     ],
     []
   )
