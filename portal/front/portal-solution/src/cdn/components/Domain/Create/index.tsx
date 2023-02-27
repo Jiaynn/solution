@@ -10,6 +10,7 @@ import { useLocalStore } from 'qn-fe-core/local-store'
 import { Query, RouterStore } from 'portal-base/common/router'
 import { Iamed } from 'portal-base/user/iam'
 import Page from 'portal-base/common/components/Page'
+import Modal from 'react-icecream/lib/modal'
 
 import {
   DomainType,
@@ -60,12 +61,15 @@ export const DomainCreate = observer(function DomainCreate(
             ? [store.panCreateOptions]
             : store.normalCreateOptionsList
       }
+
       if (results.some(it => !!it.shouldVerify)) {
         routerStore.push(routes.domainVerifyOwnership(createDomainState))
       } else if (createDomainState.results.every(item => item.result === CreateResult.Success)) {
         onCreate()
       } else {
-        routerStore.push(routes.domainCreateResult(createDomainState))
+        Modal.error({
+          content: `${results[0].errorMsg}`
+        })
       }
     }),
     [store, routerStore, routes, onCreate]
