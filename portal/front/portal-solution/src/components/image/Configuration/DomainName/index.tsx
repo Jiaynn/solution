@@ -9,11 +9,7 @@ import { useInjection } from 'qn-fe-core/di'
 import DomainCreateWithQuery from 'cdn/components/Domain/Create'
 import Domain from 'kodo/components/BucketDetails/Domain'
 import { DomainStore } from 'kodo/stores/domain'
-<<<<<<< HEAD:portal/front/portal-solution/src/components/Configuration/DomainName/index.tsx
 import SelectBucket from 'components/common/SelectBucket'
-=======
-import SelectBucket from 'components/image/Configuration/SelectBucket'
->>>>>>> dbfa609 (refactor(portal-solution): 图片方案):portal/front/portal-solution/src/components/image/Configuration/DomainName/index.tsx
 
 import { getSolutionPath } from 'constants/routes'
 import BucketStore from 'cdn/stores/bucket'

@@ -10,7 +10,7 @@ import { Query, RouterStore } from 'portal-base/common/router'
 
 import ImageStyleContent from 'kodo/components/BucketDetails/ImageStyle'
 import styles from './style.m.less'
-import SelectBucket from '../../common/SelectBucket'
+import SelectBucket from 'components/common/SelectBucket'
 
 import { BucketStore } from 'kodo/stores/bucket'
 

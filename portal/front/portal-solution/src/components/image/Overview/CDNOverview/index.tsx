@@ -8,11 +8,7 @@ import { getUsagePageConfig } from 'cdn/components/Statistics/config'
 import IamInfo from 'cdn/constants/iam-info'
 
 import Statistics from 'cdn/components/Statistics'
-<<<<<<< HEAD:portal/front/portal-solution/src/components/Overview/CDNOverview/index.tsx
 import SelectBucket from 'components/common/SelectBucket'
-=======
-import SelectBucket from 'components/image/Configuration/SelectBucket'
->>>>>>> dbfa609 (refactor(portal-solution): 图片方案):portal/front/portal-solution/src/components/image/Overview/CDNOverview/index.tsx
 import ImageSolutionStore from 'store/imageSolution'
 
 export default observer(function CDNOverview() {

@@ -6,12 +6,7 @@ import { useInjection } from 'qn-fe-core/di'
 import { RouterStore } from 'portal-base/common/router'
 import Modal from 'react-icecream/lib/modal'
 
-<<<<<<< HEAD:portal/front/portal-solution/src/components/Configuration/OpenService/index.tsx
 import { Header } from 'components/common/Header'
-=======
-import { Header } from 'components/image/Configuration/Header'
->>>>>>> dbfa609 (refactor(portal-solution): 图片方案):portal/front/portal-solution/src/components/image/Configuration/OpenService/index.tsx
-
 import { SolutionApis } from 'apis/imageSolution'
 import { getSolutionPath } from 'constants/routes'
 

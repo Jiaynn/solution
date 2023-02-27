@@ -20,13 +20,8 @@ import { SearchType } from 'kodo/routes/bucket'
 import { RegionSymbolWithAll } from 'kodo/constants/region'
 import { getBooleanQuery, updateQueryString } from 'kodo/utils/route'
 import { PrivateType } from 'kodo/constants/bucket/setting/access'
-<<<<<<< HEAD:portal/front/portal-solution/src/components/Configuration/index.tsx
-import OpenService from 'components/Configuration/OpenService'
 import { Header } from 'components/common/Header'
-=======
 import OpenService from 'components/image/Configuration/OpenService'
-import { Header } from 'components/image/Configuration/Header'
->>>>>>> dbfa609 (refactor(portal-solution): 图片方案):portal/front/portal-solution/src/components/image/Configuration/index.tsx
 import { BucketStore } from 'kodo/stores/bucket'
 import { BucketListStore } from 'kodo/stores/bucket/list'
 import { getSolutionPath } from 'constants/routes'
