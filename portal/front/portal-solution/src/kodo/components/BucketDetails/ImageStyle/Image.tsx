@@ -293,6 +293,16 @@ class InternalImageStyle extends React.Component<IProps & DiDeps> {
               </Button>
             )}
           />
+          <Button
+            className={styles.separatorButton}
+            icon="reload"
+            onClick={() => {
+              const bucketStore = this.props.inject(BucketStore)
+              bucketStore.fetchDetailsByName(this.props.bucketName)
+            }}
+          >
+            刷新列表
+          </Button>
         </div>
         <div className={styles.tableContainer}>
           <MediaStyleTable dataSource={this.styleList} pagination={false} rowKey="name">

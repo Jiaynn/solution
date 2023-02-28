@@ -42,8 +42,10 @@ export default observer(function ConfigureImageStyle({ query }: IProps) {
   const imageSolutinoStore = useInjection(ImageSolutionStore)
 
   useEffect(() => {
-    imageSolutinoStore.fetchBucketList()
-    bucketStore.fetchDetailsByName(defaultBucketName).then(() => {
+    Promise.all([
+      imageSolutinoStore.fetchBucketList(),
+      bucketStore.fetchDetailsByName(defaultBucketName)
+    ]).finally(() => {
       setVisible(true)
     })
   }, [bucketStore, defaultBucketName, imageSolutinoStore])
