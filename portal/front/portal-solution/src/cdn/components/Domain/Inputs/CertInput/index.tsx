@@ -119,8 +119,8 @@ export class LocalStore extends Store {
         if (!this.selectedCert) {
           this.props.onChange(
             certs.length > 0
-            ? certs[0].id
-            : ''
+              ? certs[0].id
+              : ''
           )
         }
       }
@@ -168,7 +168,7 @@ class DomainCertInputInner extends React.Component<PropsWithDeps> {
       <div className="cert-input-tips">
         <IamDisabled>
           <OEMDisabled>
-            您可以在&nbsp;<Link to="/certificate/ssl#cert">SSL 证书服务</Link>&nbsp;页面申请或上传自有证书。
+            您可以在&nbsp;<Link to="/certificate/ssl#cert" target="_blank">SSL 证书服务</Link>&nbsp;页面申请或上传自有证书。
           </OEMDisabled>
         </IamDisabled>
         该列表不包含有效期小于 7 天的证书。

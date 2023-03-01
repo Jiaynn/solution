@@ -18,7 +18,7 @@ import {
   GeoCover,
   SourceType
 } from 'cdn/constants/domain'
-import Routes from 'cdn/constants/routes'
+// import Routes from 'cdn/constants/routes'
 import IamInfo from 'cdn/constants/iam-info'
 
 import { CreateResult, ICreateDomainState } from './Result'
@@ -47,7 +47,7 @@ export const DomainCreate = observer(function DomainCreate(
   const store = useLocalStore(LocalStore, props)
 
   const routerStore = useInjection(RouterStore)
-  const routes = useInjection(Routes)
+  // const routes = useInjection(Routes)
   const { iamActions } = useInjection(IamInfo)
   const { onCancel, onCreate } = props
 
@@ -61,9 +61,9 @@ export const DomainCreate = observer(function DomainCreate(
             ? [store.panCreateOptions]
             : store.normalCreateOptionsList
       }
-
       if (results.some(it => !!it.shouldVerify)) {
-        routerStore.push(routes.domainVerifyOwnership(createDomainState))
+        const w = window.open('about:blank')
+        w.location.href = `/cdn/domain/verify-ownership?bucket=${routerStore.query.bucket}&fixBucket`
       } else if (createDomainState.results.every(item => item.result === CreateResult.Success)) {
         onCreate()
       } else {
@@ -72,7 +72,7 @@ export const DomainCreate = observer(function DomainCreate(
         })
       }
     }),
-    [store, routerStore, routes, onCreate]
+    [store, routerStore, onCreate]
   )
 
   return (

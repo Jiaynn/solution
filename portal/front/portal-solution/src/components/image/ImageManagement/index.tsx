@@ -17,7 +17,6 @@ import ImageSolutionStore from 'store/imageSolution'
 import { MediaStyleDrawer } from 'kodo/components/BucketDetails/MediaStyle/CreateStyle/common/Drawer'
 import { MediaStyleDrawerStore } from 'kodo/components/BucketDetails/MediaStyle/CreateStyle/common/Drawer/store'
 import { BucketStore } from 'kodo/stores/bucket'
-
 import './style.less'
 import { getSolutionPath } from 'constants/routes'
 
@@ -35,7 +34,7 @@ export default observer(function ImageManagement() {
   }, [])
 
   const onCreateBucket = () => {
-    routerStore.push(`${getSolutionPath('image')}/configuration/step/1?configurationState=false&shouldCreateBucket=true`)
+    routerStore.push(`${getSolutionPath('image')}/configuration/open-service`)
   }
 
   useEffect(() => {
@@ -88,8 +87,8 @@ export default observer(function ImageManagement() {
       <div className="card absolution-center">
         <Icon type="info" className="info-icon" />
         <h1 className="title">未创建图片存储空间</h1>
-        <div className="description">您还没有创建图片的存储空间，有了图片存储空间后才可以对图片进行管理操作，请点击下方按钮前去创建空间</div>
-        <Button type="primary" onClick={onCreateBucket}>创建空间</Button>
+        <div className="description">您还没有创建图片的存储空间，有了图片存储空间后才可以对图片进行管理操作，请点击下方按钮前去开通服务后创建空间吧</div>
+        <Button type="primary" onClick={onCreateBucket}>开通服务</Button>
       </div>
     </>
   )
