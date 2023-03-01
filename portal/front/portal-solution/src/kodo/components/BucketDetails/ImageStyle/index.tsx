@@ -17,7 +17,6 @@ import { IDetailsBaseOptions as IProps } from 'kodo/routes/bucket'
 import Image from './Image'
 
 import styles from './style.m.less'
-import ConfigurationStore from 'components/image/Configuration/ConfigureImageStyle/ConfigurationStore'
 
 interface DiDeps {
   inject: InjectFunc
@@ -33,8 +32,6 @@ class InternalImageStyleContent extends React.Component<IProps & DiDeps> {
     const toaster = this.props.inject(Toaster)
     Toaster.bindTo(this, toaster)
   }
-
-  ConfigurationStore = ConfigurationStore
 
   @autobind
   @Toaster.handle()
@@ -60,7 +57,7 @@ class InternalImageStyleContent extends React.Component<IProps & DiDeps> {
           <div className={styles.styleImage}>
             <Image
               bucketName={this.props.bucketName}
-              drawerVisible={this.ConfigurationStore.isFristVisit}
+              drawerVisible={false}
               onUpdate={this.fetchBucketInfo}
             />
           </div>
