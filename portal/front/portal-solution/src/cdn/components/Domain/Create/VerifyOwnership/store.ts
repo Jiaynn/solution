@@ -74,7 +74,9 @@ export default class LocalStore extends Store {
   }
 
   @computed get createDomainState(): ICreateDomainState {
-    const state = (this.routerStore.location!.state || {}) as ICreateDomainState
+    const domainState = JSON.parse(sessionStorage.getItem('domain-verify'))
+
+    const state = (domainState || {}) as ICreateDomainState
     return {
       results: state.results || [],
       domainType: state.domainType,

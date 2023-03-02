@@ -12,13 +12,14 @@ import { Iamed } from 'portal-base/user/iam'
 import Page from 'portal-base/common/components/Page'
 import Modal from 'react-icecream/lib/modal'
 
+import { jsonStringify } from 'qn-fe-core/client'
+
 import {
   DomainType,
   Platform,
   GeoCover,
   SourceType
 } from 'cdn/constants/domain'
-// import Routes from 'cdn/constants/routes'
 import IamInfo from 'cdn/constants/iam-info'
 
 import { CreateResult, ICreateDomainState } from './Result'
@@ -27,6 +28,7 @@ import CreateForm, { ConfigInputType, Props as CreateFormProps } from './CreateF
 import LocalStore from './store'
 
 import './style.less'
+import { basename } from 'constants/routes'
 
 export interface Props {
   type?: DomainType; // 设置默认的域名类型
@@ -45,9 +47,6 @@ export const DomainCreate = observer(function DomainCreate(
   props: Props & Partial<Pick<CreateFormProps, 'onCreate' | 'onCancel'>>
 ) {
   const store = useLocalStore(LocalStore, props)
-
-  const routerStore = useInjection(RouterStore)
-  // const routes = useInjection(Routes)
   const { iamActions } = useInjection(IamInfo)
   const { onCancel, onCreate } = props
 
@@ -62,8 +61,8 @@ export const DomainCreate = observer(function DomainCreate(
             : store.normalCreateOptionsList
       }
       if (results.some(it => !!it.shouldVerify)) {
-        const w = window.open('about:blank')
-        w.location.href = `/cdn/domain/verify-ownership?bucket=${routerStore.query.bucket}&fixBucket`
+        sessionStorage.setItem('domain-verify', jsonStringify(createDomainState))
+        window.open(`${basename}/image/configuration/domain/verify-ownership`)
       } else if (createDomainState.results.every(item => item.result === CreateResult.Success)) {
         onCreate()
       } else {
@@ -72,7 +71,7 @@ export const DomainCreate = observer(function DomainCreate(
         })
       }
     }),
-    [store, routerStore, onCreate]
+    [store, onCreate]
   )
 
   return (

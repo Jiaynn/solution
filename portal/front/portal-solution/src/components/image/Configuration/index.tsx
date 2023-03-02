@@ -32,6 +32,7 @@ import ConfigurationComplete from './ConfigurationComplete'
 import DomainName from './DomainName'
 
 import './style.less'
+import VerifyOwnership from 'cdn/components/Domain/Create/VerifyOwnership'
 
 const prefixCls = 'comp-configuration'
 
@@ -222,6 +223,7 @@ export default observer(function Configuration() {
       <Route relative path="/open-service">
         <OpenService />
       </Route>
+      <Route relative path="/domain/verify-ownership" title="七牛云-验证域名归属权"><VerifyOwnership /></Route>
       <Route relative path="/">
         <div className={prefixCls}>
           <Header />
@@ -256,6 +258,7 @@ export default observer(function Configuration() {
           )}
         </div>
       </Route>
+
     </Switch>
   )
 })
