@@ -12,7 +12,7 @@ import { Iamed } from 'portal-base/user/iam'
 import Page from 'portal-base/common/components/Page'
 import Modal from 'react-icecream/lib/modal'
 
-// import { jsonStringify } from 'qn-fe-core/client'
+import { jsonStringify } from 'qn-fe-core/client'
 
 import {
   DomainType,
@@ -26,9 +26,9 @@ import { CreateResult, ICreateDomainState } from './Result'
 import CreateForm, { ConfigInputType, Props as CreateFormProps } from './CreateForm'
 
 import LocalStore from './store'
-import Routes from 'cdn/constants/routes'
+
 import './style.less'
-// import { basename } from 'constants/routes'
+import { basename } from 'constants/routes'
 
 export interface Props {
   type?: DomainType; // 设置默认的域名类型
@@ -49,8 +49,6 @@ export const DomainCreate = observer(function DomainCreate(
   const store = useLocalStore(LocalStore, props)
   const { iamActions } = useInjection(IamInfo)
   const { onCancel, onCreate } = props
-  const routerStore = useInjection(RouterStore)
-  const routes = useInjection(Routes)
   const handleCreate = React.useCallback(
     () => store.create().then(results => {
       const createDomainState: ICreateDomainState = {
@@ -61,10 +59,11 @@ export const DomainCreate = observer(function DomainCreate(
             ? [store.panCreateOptions]
             : store.normalCreateOptionsList
       }
+      // console.log('createDomainState', createDomainState)
+
       if (results.some(it => !!it.shouldVerify)) {
-        // sessionStorage.setItem('domain-verify', jsonStringify(createDomainState))
-        // window.open(`${basename}/image/configuration/domain/verify-ownership`)
-        routerStore.push(routes.domainVerifyOwnership(createDomainState))
+        sessionStorage.setItem('domain-verify', jsonStringify(createDomainState))
+        window.open(`${basename}/image/configuration/domain/verify-ownership`)
       } else if (createDomainState.results.every(item => item.result === CreateResult.Success)) {
         onCreate()
       } else {
@@ -73,7 +72,7 @@ export const DomainCreate = observer(function DomainCreate(
         })
       }
     }),
-    [store, routerStore, routes, onCreate]
+    [store, onCreate]
   )
 
   return (
