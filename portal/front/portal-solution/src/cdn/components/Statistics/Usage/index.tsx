@@ -65,7 +65,9 @@ class StatisticsUsageInner extends React.Component<PropsWithDeps> {
 
   imageSolutionStore = this.props.inject(ImageSolutionStore)
   @computed get hasData() {
-    return this.imageSolutionStore.hasBucket && this.props.store.usageSearchOptions.domains.length > 0
+    return this.imageSolutionStore.hasBucket
+    && this.imageSolutionStore.currentDomains.length > 0
+    && this.props.store.usageSearchOptions.domains.length > 0
   }
 
   @autobind getFlowSummary() {

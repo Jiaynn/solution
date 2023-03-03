@@ -23,6 +23,7 @@ import { Freq } from 'cdn/apis/statistics'
 import { IDomain, IDomainSearchResult } from 'cdn/apis/domain'
 
 import { Props } from '.'
+import ImageSolutionStore from 'store/imageSolution'
 
 export interface ISearchOptionProps {
   startDate: Moment
@@ -59,7 +60,8 @@ export default class LocalStore extends Store {
   constructor(
     @injectProps() public props: Props,
     private userInfo: UserInfo,
-    private domainStore: DomainStore
+    private domainStore: DomainStore,
+    private imageSolutionStore: ImageSolutionStore
   ) {
     super()
   }
@@ -194,7 +196,10 @@ export default class LocalStore extends Store {
         size: MAX_DOMAIN_COUNT,
         ...this.queryParams
       }
-    ).then(this.updateSearchDomainsResp)
+    ).then(() => {
+      const domains = this.imageSolutionStore.currentDomains as unknown as IDomain[]
+      this.updateSearchDomainsResp({ domains } as IDomainSearchResult)
+    })
   }
 
   init() {

@@ -27,6 +27,7 @@ import * as protocolFilterInput from './ProtocolFilter'
 import * as domainListInput from './DomainList'
 
 import { IProps } from '.'
+import ImageSolutionStore from 'store/imageSolution'
 
 export type State = FormState<{
   domainFilter: FieldState<string>
@@ -77,7 +78,8 @@ export default class LocalStore extends Store {
     private toasterStore: Toaster,
     private userInfo: UserInfo,
     private iamPermissionStore: IamPermissionStore,
-    private iamInfo: IamInfo
+    private iamInfo: IamInfo,
+    private imageSolutionStore: ImageSolutionStore
   ) {
     super()
     Toaster.bindTo(this, this.toasterStore)
@@ -172,7 +174,8 @@ export default class LocalStore extends Store {
   searchDomains() {
     const params = this.queryParams
     return this.domainStore.searchDomains({ sortBy: 'createAt', ...params, all: true }).then(resp => {
-      const { total, domains } = resp
+      const { total } = resp
+      const domains = this.imageSolutionStore.currentDomains as unknown as IDomain[]
 
       // FIXME: 认为不带 name、tagList 的搜索结果中的 total 为当前状态的 total
       // 视频瘦身页面才会传 queryParams 参数，用以增加过滤条件，不包含 name、tagList 属性
@@ -191,26 +194,15 @@ export default class LocalStore extends Store {
 
   @autobind
   @Toaster.handle()
-  searchDomainByTags(selectAll = true) {
-    return this.domainStore.searchDomains(this.queryParams).then(({ domains }) => {
-      this.updateDomainsByTags(domains, selectAll)
+  searchDomainByTags(_selectAll = false) {
+    return this.domainStore.searchDomains(this.queryParams).then(() => {
+      // this.updateDomainsByTags(domains, selectAll)
+      const domains = this.imageSolutionStore.currentDomains as unknown as IDomain[]
+      this.updateDomainsByTags(domains, _selectAll)
     })
   }
 
   init() {
-    // this.addDisposer(reaction(() => this.imageSolutionStore.currentBucket,
-    //   () => {
-
-    //     this.imageSolutionStore.fetchCurrentDomains().then(() => {
-    //       console.log('searchDomains', this.imageSolutionStore.currentBucket, this.imageSolutionStore.currentDomains)
-
-    //       runInAction(() => {
-    //         const domains = this.imageSolutionStore.currentDomains.map(name => ({ name })) as IDomain[]
-    //         this.updateDomains(domains, params)
-    //       })
-    //     })
-    //   }))
-
     // 切换协议、查询的域名结果变化的时候，重排域名列表
     this.addDisposer(reaction(
       () => [this.domains, this.selectedProtocols],

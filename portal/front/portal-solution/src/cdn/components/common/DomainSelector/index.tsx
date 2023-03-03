@@ -11,12 +11,9 @@ import { useInjection } from 'qn-fe-core/di'
 import { I18nStore } from 'portal-base/common/i18n'
 import { useLocalStore } from 'portal-base/common/utils/store'
 
-import { computed } from 'mobx'
-
-import { SimpleTagSelector } from 'cdn/components/common/TagSelector'
 import Popover, { PopoverProps } from 'cdn/components/common/Popover'
 
-import { IQueryParams } from 'cdn/apis/domain'
+import { IDomain, IQueryParams } from 'cdn/apis/domain'
 
 import DomainFilter from './DomainFilter'
 import ProtocolFilter from './ProtocolFilter'
@@ -38,15 +35,12 @@ export interface IProps {
 
 export default observer(function DomainSelector(props: IProps) {
   const store = useLocalStore(LocalStore, props)
-  const iss = useInjection(ImageSolutionStore)
-
-  // 过滤成本方案的空间下的域名
-  const filtered = computed(() => store.domainsForSelect.filter(d => iss.currentDomains.includes(d.name))).get()
+  const imageSolutionStore = useInjection(ImageSolutionStore)
 
   const selectorCnt = (
     <>
       <DomainFilter
-        state={store.props.state.$.domainFilter}
+        state={imageSolutionStore.state.$.filterDomainName}
         onSearch={store.searchDomains}
       />
       <ProtocolFilter
@@ -54,7 +48,7 @@ export default observer(function DomainSelector(props: IProps) {
       />
       <DomainList
         loading={store.isLoading}
-        domainList={filtered}
+        domainList={imageSolutionStore.filterDomainsByName as unknown as IDomain[]}
         state={store.props.state.$.domains}
       />
       {/** 去除全量选择 */}
@@ -76,14 +70,15 @@ export default observer(function DomainSelector(props: IProps) {
   return (
     <div className="comp-domain-selector">
       <Input.Group compact>
-        {
+        {/** 去除tag选择 */}
+        {/* {
           store.shouldShowTags && (
             <SimpleTagSelector
               style={{ marginRight: '8px' }}
               state={store.props.state.$.tags}
             />
           )
-        }
+        } */}
         <DomainSelectorContainer
           content={selectorCnt}
           onVisibleChange={handleVisibleChange}

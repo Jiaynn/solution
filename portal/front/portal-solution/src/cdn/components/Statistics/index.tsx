@@ -80,7 +80,6 @@ class StatisticsInner extends React.Component<PropsWithDeps> {
         <StatisticsMenu links={this.links} params={menuParams} />
         <div className="statistics-main-wrap">
           <Route relative exact path="/">
-            {this.links.length > 0 && <Redirect to={this.links[0].path} />}
             <Redirect to={`${cdnOverviewBasename}/flow`} />
           </Route>
           <Route

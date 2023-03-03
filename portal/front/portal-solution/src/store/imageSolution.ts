@@ -1,12 +1,14 @@
 import autobind from 'autobind-decorator'
-import { makeObservable, observable, computed, action, runInAction } from 'mobx'
+import { makeObservable, observable, computed, action, runInAction, reaction } from 'mobx'
 import Store from 'qn-fe-core/store'
 
 import { injectable } from 'qn-fe-core/di'
 
+import { FieldState, FormState } from 'formstate-x'
+
 import { SolutionApis } from 'apis/imageSolution'
 import { GetBucketListResultDataList } from 'apis/_types/imageType'
-import { DomainStore } from 'kodo/stores/domain'
+import { DomainStore, ICDNDomain } from 'kodo/stores/domain'
 
 @injectable()
 export default class ImageSolutionStore extends Store {
@@ -47,27 +49,47 @@ export default class ImageSolutionStore extends Store {
   @action.bound
   updateCurrentBucket(name:string) {
     this.currentBucket = name
-    // console.log('currentBucket', this.currentBucket)
   }
 
-  // 当前空间对应的域名
-  @observable.ref currentDomains:string[] = []
+  @observable.ref currentDomains:ICDNDomain[] = []
+
+  @observable.ref state = new FormState({ filterDomainName: new FieldState('', 500) })
+
+  @computed
+  get filterDomainsByName() {
+    if (!this.state.$.filterDomainName || this.state.$.filterDomainName.value === '') {
+      return this.currentDomains
+    }
+    return this.currentDomains.filter(d => d.name.includes(this.state.$.filterDomainName.value))
+  }
 
   @action.bound
-  updateCurrentDomains(data: string[]) {
-    this.currentDomains = data
-    // console.log('currentDomains', this.currentDomains)
+  updateCurrentDomains(domains: ICDNDomain[]) {
+    this.currentDomains = domains
+  }
+  // 当前空间对应的域名
+  @computed get currentDomainNames() {
+    return this.currentDomains.map(d => d.name)
   }
 
   @autobind
   fetchCurrentDomains() {
     return this.domainStore.fetchCDNDomainListByBucketName(this.currentBucket).then(() => {
       const domains = this.domainStore.getCDNAccelerateDomainListByBucketName(this.currentBucket)
-      const domainNames = domains.map(d => d.name)
       runInAction(() => {
-        this.updateCurrentDomains(domainNames)
+        this.updateCurrentDomains(domains)
       })
     })
+  }
+
+  init() {
+    // 当currentBucket改变时也要改变currentDomains
+    this.addDisposer(reaction(
+      () => this.currentBucket,
+      async () => {
+        this.fetchCurrentDomains()
+      }
+    ))
   }
 }
 
