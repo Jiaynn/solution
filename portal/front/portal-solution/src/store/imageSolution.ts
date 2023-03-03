@@ -6,14 +6,15 @@ import { injectable } from 'qn-fe-core/di'
 
 import { FieldState, FormState } from 'formstate-x'
 
-import { SolutionApis } from 'apis/imageSolution'
+import { ImageSolutionApis } from 'apis/image'
+
 import { GetBucketListResultDataList } from 'apis/_types/imageType'
 import { DomainStore, ICDNDomain } from 'kodo/stores/domain'
 
 @injectable()
 export default class ImageSolutionStore extends Store {
   constructor(
-    private solutionApis: SolutionApis,
+    private solutionApis: ImageSolutionApis,
     private domainStore: DomainStore
   ) {
     super()

@@ -75,8 +75,7 @@ export default class LocalStore extends Disposable {
   }
 
   @computed get createDomainState(): ICreateDomainState {
-    const domainState = JSON.parse(sessionStorage.getItem('domain-result'))
-    const state = (domainState || {}) as ICreateDomainState
+    const state = (this.routerStore.location!.state || {}) as ICreateDomainState
     return {
       results: state.results || [],
       domainType: state.domainType,
@@ -94,6 +93,7 @@ export default class LocalStore extends Disposable {
       if (domainName) {
         acc[domainName] = cur
       }
+
       return acc
     }, {} as Record<string, ICreateDomainReq | ICreatePanDomainReq>)
   }
@@ -169,6 +169,7 @@ export default class LocalStore extends Disposable {
 
   @autobind
   reload(results: ICreateDomainResult[]) {
+
     // FIXME: routerStore push/replace 不支持 state
     // https://github.com/ReactTraining/history/tree/master/docs/api-reference.md#history.replace
     // 注意：state 需要支持被 cloned，否则会有 DataCloneError 错误：
@@ -181,6 +182,7 @@ export default class LocalStore extends Disposable {
         results
       }
     )
+
   }
 
   @autobind

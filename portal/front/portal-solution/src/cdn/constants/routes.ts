@@ -36,7 +36,7 @@ export default class Routes {
 
   domainCreateResult({ retryImmediately, ...createState }: ICreateDomainState & { retryImmediately?: boolean }): To {
     return {
-      pathname: `${this.basename}/domain/create/result`,
+      pathname: '/solutions/image/configuration/domain/create/result',
       search: withQueryParams('', { retryImmediately }),
       state: createState
     }

@@ -7,7 +7,7 @@ import { RouterStore } from 'portal-base/common/router'
 import Modal from 'react-icecream/lib/modal'
 
 import { Header } from 'components/common/Header'
-import { SolutionApis } from 'apis/imageSolution'
+import { ImageSolutionApis } from 'apis/image'
 import { getSolutionPath } from 'constants/routes'
 
 import './style.less'
@@ -16,7 +16,7 @@ const prefixCls = 'comp-configuration-open-service'
 
 export default observer(function OpenService() {
   const routerStore = useInjection(RouterStore)
-  const solution = useInjection(SolutionApis)
+  const solution = useInjection(ImageSolutionApis)
   const [values, setValues] = useState({
     billingModeChecked: true,
     serviceAgreementChecked: false

@@ -21,7 +21,7 @@ import {
 
 @autobind
 @injectable()
-export class SolutionApis {
+export class ImageSolutionApis {
   constructor(private solutionCommonClient: CommonClient) {}
 
   /**

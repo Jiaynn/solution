@@ -53,7 +53,7 @@ import { ICreateBucketOptions, BucketApis } from 'kodo/apis/bucket'
 
 import styles from './style.m.less'
 // import { MockApi } from 'apis/mock'
-import { SolutionApis } from 'apis/imageSolution'
+import { ImageSolutionApis } from 'apis/image'
 
 export interface IData extends Partial<ICreateBucketOptions> { }
 
@@ -104,7 +104,7 @@ class InternalCreateBucketDrawer extends React.Component<IProps & DiDeps> {
   configStore = this.props.inject(ConfigStore);
   bucketStore = this.props.inject(BucketStore);
   regionApplyStore = this.props.inject(RegionApplyStore);
-  solutionAPi = this.props.inject(SolutionApis);
+  solutionAPi = this.props.inject(ImageSolutionApis);
   disposable = new Disposable();
   @observable.ref form = this.createFormState(this.props.data);
   loadings = Loadings.collectFrom(this, ...valuesOfEnum(Loading));

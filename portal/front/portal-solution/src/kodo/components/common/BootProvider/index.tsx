@@ -116,7 +116,7 @@ import { RefreshCdnStore } from 'kodo/components/common/RefreshCdnModal/store'
 import { MediaStyleDrawerStore } from 'kodo/components/BucketDetails/MediaStyle/CreateStyle/common/Drawer/store'
 
 import { ApplyNotices } from './ApplyNotice'
-import { SolutionApis } from 'apis/imageSolution'
+import { ImageSolutionApis } from 'apis/image'
 import ImageSolutionStore from 'store/imageSolution'
 import { cdnProvides } from 'cdn/components/App/BootProvider'
 // import { MockApi } from 'apis/mock'
@@ -323,7 +323,7 @@ function BootLocalProvider(props: React.PropsWithChildren<{}>) {
       { identifier: CertificateApis, constr: CertificateApis },
       { identifier: TranscodeStyleApis, constr: TranscodeStyleApis },
       { identifier: RemarkApis, constr: RemarkApis },
-      { identifier: SolutionApis, constr: SolutionApis },
+      { identifier: ImageSolutionApis, constr: ImageSolutionApis },
       // { identifier: MockApi, constr: MockApi },
       { identifier: ObjectPickerStore, constr: ObjectPickerStore },
       { identifier: MediaStyleDrawerStore, constr: MediaStyleDrawerStore },

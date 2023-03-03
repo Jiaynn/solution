@@ -25,7 +25,7 @@ import OpenService from 'components/image/Configuration/OpenService'
 import { BucketStore } from 'kodo/stores/bucket'
 import { BucketListStore } from 'kodo/stores/bucket/list'
 import { getSolutionPath } from 'constants/routes'
-import { SolutionApis } from 'apis/imageSolution'
+import { ImageSolutionApis } from 'apis/image'
 
 import ConfigureImageStyle from './ConfigureImageStyle'
 import ConfigurationComplete from './ConfigurationComplete'
@@ -134,7 +134,7 @@ export default observer(function Configuration() {
   const routerStore = useInjection(RouterStore)
   const bucketStore = useInjection(BucketStore)
   const bucketListStore = useInjection(BucketListStore)
-  const solutionAPi = useInjection(SolutionApis)
+  const solutionAPi = useInjection(ImageSolutionApis)
   const step = useMemo(
     () => Number(routerStore.location?.pathname.split('/').pop() || '0'),
     [routerStore.location?.pathname]
@@ -225,7 +225,16 @@ export default observer(function Configuration() {
         <OpenService />
       </Route>
       <Route relative path="/domain/verify-ownership" title="七牛云-验证域名归属权"><VerifyOwnership /></Route>
-      <Route relative path="/domain/create/result" title="七牛云-创建完成"> <DomainCreateResult retryImmediately /></Route>
+      <Route relative
+        path="/domain/create/result"
+        title="七牛云-创建完成"
+        component={
+          ({ query }) => (
+            <DomainCreateResult
+              retryImmediately={Boolean(query.retryImmediately)}
+            />
+          )
+        } />
       <Route relative path="/">
         <div className={prefixCls}>
           <Header />

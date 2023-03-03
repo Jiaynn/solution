@@ -11,19 +11,16 @@ import { Loadings } from 'portal-base/common/loading'
 import { ToasterStore as Toaster } from 'portal-base/common/toaster'
 import { RouterStore } from 'portal-base/common/router'
 
-import { jsonStringify } from 'qn-fe-core/client'
-
 import { assert } from 'cdn/utils'
 
 import { OwnershipVerifyType } from 'cdn/constants/domain'
 
-// import Routes from 'cdn/constants/routes'
+import Routes from 'cdn/constants/routes'
 import { DomainProxyApiException } from 'cdn/apis/clients/domain-proxy'
 import DomainApis, { verifyOwnershipErrorCode, OwnershipVerifyInfo } from 'cdn/apis/domain'
 
 import { ICreateDomainState } from '../Result'
 import { Props } from '.'
-import { basename } from 'constants/routes'
 
 enum LoadingType {
   GetOwnershipVerifyInfo = 'getOwnershipVerifyInfo'
@@ -54,8 +51,8 @@ export default class LocalStore extends Store {
     @injectProps() protected props: Props,
     private toasterStore: Toaster,
     private routerStore: RouterStore,
-    private domainApis: DomainApis
-    // private routes: Routes
+    private domainApis: DomainApis,
+    private routes: Routes
   ) {
     super()
   }
@@ -132,8 +129,9 @@ export default class LocalStore extends Store {
         ([_, status]) => status === VerifyStatus.Success
       ),
       () => {
-        sessionStorage.setItem('domain-result', jsonStringify(this.createDomainState))
-        this.routerStore.push(`${basename}/image/configuration/domain/create/result`)
+        this.routerStore.push(
+          this.routes.domainCreateResult({ ...this.createDomainState, retryImmediately: true })
+        )
       }
     ))
   }

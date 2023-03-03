@@ -64,6 +64,7 @@ export const DomainCreate = observer(function DomainCreate(
       if (results.some(it => !!it.shouldVerify)) {
         sessionStorage.setItem('domain-verify', jsonStringify(createDomainState))
         window.open(`${basename}/image/configuration/domain/verify-ownership`)
+        onCancel()
       } else if (createDomainState.results.every(item => item.result === CreateResult.Success)) {
         onCreate()
       } else {
@@ -72,7 +73,7 @@ export const DomainCreate = observer(function DomainCreate(
         })
       }
     }),
-    [store, onCreate]
+    [store, onCancel, onCreate]
   )
 
   return (
