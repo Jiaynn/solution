@@ -10,7 +10,8 @@
     "test:dev": "jest --collectCoverage=false -i --watch",
     "clear": "jest --clearCache",
     "snapshot": "jest -u",
-    "validate": "npm run lint && npm run test"
+    "validate": "npm run lint && npm run test",
+    "release": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . -l portal-solution"
   },
   "dependencies": {
     "autobind-decorator": "^2.4.0",
@@ -79,6 +80,7 @@
     "@types/react-test-renderer": "~17.0.1",
     "@types/sha.js": "^2.4.0",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "conventional-changelog-cli": "^2.2.2",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-import-resolver-typescript": "^2.3.0",
