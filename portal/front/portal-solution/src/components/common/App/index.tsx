@@ -3,33 +3,23 @@
  * @author nighca <nighca@live.cn>
  */
 
-import React from 'react'
-import { observer } from 'mobx-react'
-
-import { Route, Redirect, Switch } from 'portal-base/common/router'
+import React, { useEffect, useState } from 'react'
+import { Route, Redirect, Switch, RouterStore } from 'portal-base/common/router'
 import Layout, { ContentLayout } from 'portal-base/common/components/Layout'
 import { FileClipboardProvider } from 'kodo-base/lib/context/file-clipboard'
 import { TaskCenterContextProvider } from 'kodo-base/lib/components/TaskCenter'
 import LocalProvider from 'react-icecream/lib/locale-provider'
 import zhCN from 'react-icecream/lib/locale-provider/zh_CN'
-
 import { useInjection } from 'qn-fe-core/di'
-
 import { ExternalUrlModalStore } from 'kodo-base/lib/components/common/ExternalUrlModal/store'
-
 import { KodoBaseProvider, KodoBaseContext } from 'kodo-base/lib/context'
-
 import Role from 'portal-base/common/components/Role'
-
 import { ToasterStore } from 'portal-base/common/toaster'
-
 import ExternalUrlModal from 'kodo-base/lib/components/common/ExternalUrlModal'
 
 import { basename } from 'constants/routes'
-
 import { BootProvider } from 'kodo/components/common/BootProvider'
 import { sensorsTagFlag, sensorsTrack } from 'kodo/utils/sensors'
-
 import { ApplyRegionModal } from 'kodo/components/common/RegionApply'
 import { RefreshCdnModal } from 'kodo/components/common/RefreshCdnModal'
 import GuideGroup from 'kodo/components/common/Guide'
@@ -37,10 +27,28 @@ import { TaskCenter } from 'kodo/components/common/TaskCenter'
 import { ResourceApis } from 'kodo/apis/bucket/resource'
 import { taskCenterGuideName, taskCenterSteps } from 'kodo/constants/guide'
 import { ImageRouter, ImageSidebar } from 'components/common/App/image'
+import { imagePath } from 'utils/router'
 
-const Sidebar = observer(() => <ImageSidebar />)
+const Sidebar = () => {
+  const routerStore = useInjection(RouterStore)
+  const [pathname, setPathname] = useState('')
 
-const Root = observer(() => {
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setPathname(routerStore.location.pathname)
+    }, 60)
+    return () => {
+      clearInterval(timer)
+    }
+  }, [routerStore])
+
+  if (pathname.startsWith(imagePath)) {
+    return <ImageSidebar />
+  }
+  return null
+}
+
+const Root = () => {
   const externalUrlModalStore = useInjection(ExternalUrlModalStore)
   const toasterStore = useInjection(ToasterStore)
   const resourceApis = useInjection(ResourceApis)
@@ -88,14 +96,12 @@ const Root = observer(() => {
       </FileClipboardProvider>
     </KodoBaseProvider>
   )
-})
+}
 
-export default observer(function App() {
-  return (
-    <BootProvider>
-      <LocalProvider locale={zhCN}>
-        <Root />
-      </LocalProvider>
-    </BootProvider>
-  )
-})
+const App = () => <BootProvider>
+  <LocalProvider locale={zhCN}>
+    <Root />
+  </LocalProvider>
+</BootProvider>
+
+export default App

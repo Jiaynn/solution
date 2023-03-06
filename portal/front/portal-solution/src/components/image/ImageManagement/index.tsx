@@ -10,7 +10,7 @@ import { Button, Icon } from 'react-icecream'
 
 import { RouterStore } from 'portal-base/common/router'
 
-import SelectBucket from 'components/common/SelectBucket'
+import SelectBucket from 'components/image/common/SelectBucket'
 
 import { ObjectManage } from 'kodo/components/BucketDetails/ObjectManage'
 import ImageSolutionStore from 'store/imageSolution'

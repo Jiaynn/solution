@@ -6,7 +6,7 @@ import { useInjection } from 'qn-fe-core/di'
 import { RouterStore } from 'portal-base/common/router'
 import Modal from 'react-icecream/lib/modal'
 
-import { Header } from 'components/common/Header'
+import { ConfigurationHeader } from 'components/image/Configuration/common/ConfigurationHeader'
 import { ImageSolutionApis } from 'apis/image'
 
 import './style.less'
@@ -74,7 +74,7 @@ export default observer(function OpenService() {
         loading
           ? <Loading loading={loading} style={{ marginTop: '25%' }} />
           : <div className={prefixCls}>
-            <Header />
+            <ConfigurationHeader />
             {(step === 1 && !isOpenSolution && !isConfigSolution) && (
               <div className={`${prefixCls}-step1`}>
                 <Button type="primary" onClick={onStep1ButtonClick}>

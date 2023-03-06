@@ -8,7 +8,7 @@ import { getUsagePageConfig } from 'cdn/components/Statistics/config'
 import IamInfo from 'cdn/constants/iam-info'
 
 import Statistics from 'cdn/components/Statistics'
-import SelectBucket from 'components/common/SelectBucket'
+import SelectBucket from 'components/image/common/SelectBucket'
 import ImageSolutionStore from 'store/imageSolution'
 
 export default observer(function CDNOverview() {

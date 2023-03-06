@@ -76,7 +76,7 @@ export default function AccessControlConfigBlock(props: {
 
   const refererInfo = {
     name: 'Referer 防盗链',
-    desc: '配置 Request Header 中 referer 黑白名单，从而限制访问来源。',
+    desc: '配置 Request ConfigurationHeader 中 referer 黑白名单，从而限制访问来源。',
     value: getRefererText(domain),
     configureHandler: handleConfigureReferer,
     iamAction: () => iamInfo.iamActions.UpdateReferer

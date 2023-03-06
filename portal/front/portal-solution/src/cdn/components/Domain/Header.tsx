@@ -1,5 +1,5 @@
 /**
- * @file Domain Manager Header Component
+ * @file Domain Manager ConfigurationHeader Component
  * @author linchen <linchen@qiniu.com>
  */
 
