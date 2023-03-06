@@ -144,7 +144,7 @@ export class SourceApis {
     })
   }
 
-  // 设置镜像回源时向源站透传请求 Header
+  // 设置镜像回源时向源站透传请求 ConfigurationHeader
   passMirrorHeaders(bucketName: string, headers: string[]) {
     return this.kodoProxyClient.post(proxy.passMirrorHeaders, {
       bucket: bucketName,

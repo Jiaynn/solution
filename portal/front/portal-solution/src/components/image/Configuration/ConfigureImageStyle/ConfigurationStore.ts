@@ -1,13 +1,15 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from 'mobx'
+import Store from 'qn-fe-core/store'
+import { injectable } from 'qn-fe-core/di'
 
-class ConfigurationStore {
-	isFristVisit: boolean = false;
-	constructor() {
-		makeAutoObservable(this);
-	}
-	setIsFristVisit(value: boolean) {
-		this.isFristVisit = value;
-	}
+@injectable()
+export class ConfigurationStore extends Store {
+  isFirstVisit = false;
+  constructor() {
+    super()
+    makeAutoObservable(this)
+  }
+  setIsFirstVisit(value: boolean) {
+    this.isFirstVisit = value
+  }
 }
-
-export default new ConfigurationStore();

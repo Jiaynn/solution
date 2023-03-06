@@ -10,11 +10,11 @@ import { Query, RouterStore } from 'portal-base/common/router'
 
 import ImageStyleContent from 'kodo/components/BucketDetails/ImageStyle'
 import styles from './style.m.less'
-import SelectBucket from 'components/common/SelectBucket'
+import SelectBucket from 'components/image/common/SelectBucket'
 
 import { BucketStore } from 'kodo/stores/bucket'
 
-import ConfigurationStore from './ConfigurationStore'
+import { ConfigurationStore } from './ConfigurationStore'
 
 import { getFirstQuery } from 'kodo/utils/url'
 import ImageSolutionStore from 'store/imageSolution'
@@ -27,7 +27,7 @@ interface IProps {
 export default observer(function ConfigureImageStyle({ query }: IProps) {
   const { bucket, configurationState } = query
   // 等于1 为true第一次进入
-  const isFristVisit = !JSON.parse(getFirstQuery(configurationState))
+  const isFirstVisit = !JSON.parse(getFirstQuery(configurationState))
 
   const defaultBucketName = getFirstQuery(bucket) as string
 
@@ -35,20 +35,20 @@ export default observer(function ConfigureImageStyle({ query }: IProps) {
 
   const [visible, setVisible] = useState(false)
   const bucketStore = useInjection(BucketStore)
-  const configurationStore = ConfigurationStore
+  const configurationStore = useInjection(ConfigurationStore)
   const routerStore = useInjection(RouterStore)
 
-  configurationStore.setIsFristVisit(isFristVisit)
-  const imageSolutinoStore = useInjection(ImageSolutionStore)
+  configurationStore.setIsFirstVisit(isFirstVisit)
+  const imageSolutionStore = useInjection(ImageSolutionStore)
 
   useEffect(() => {
     Promise.all([
-      imageSolutinoStore.fetchBucketList(),
+      imageSolutionStore.fetchBucketList(),
       bucketStore.fetchDetailsByName(defaultBucketName)
     ]).finally(() => {
       setVisible(true)
     })
-  }, [bucketStore, defaultBucketName, imageSolutinoStore])
+  }, [bucketStore, defaultBucketName, imageSolutionStore])
 
   const onChange = (value: string) => {
     routerStore.push(
