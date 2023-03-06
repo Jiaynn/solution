@@ -5,14 +5,16 @@ import React from 'react'
 
 import { Redirect, Route, Switch } from 'portal-base/common/router'
 
-import { solutionsTitleMap } from 'constants/routes'
 import Overview from 'components/image/Overview'
 import Configuration from 'components/image/Configuration'
 import MediaStyleDrawerProvider from 'kodo/components/BucketDetails/MediaStyle/CreateStyle/common/Drawer/Provider'
 import ImageManagement from 'components/image/ImageManagement'
 import ResourcePack from 'components/image/ResourcePack'
+import { basenameMap, nameMap, Solution } from 'constants/solutions'
 
-const title = solutionsTitleMap.image
+const title = nameMap[Solution.Image]
+
+export const imageBasename = basenameMap[Solution.Image]
 
 export const ImageSidebar = observer(() => <SubSidebar title={title}>
   {/* <LinkItem to="/overview" relative exact>方案概览</LinkItem> */}
@@ -21,7 +23,7 @@ export const ImageSidebar = observer(() => <SubSidebar title={title}>
 </SubSidebar>)
 
 export const ImageRouter = (
-  <Route relative title={title} path="/image">
+  <Route relative title={title} path={imageBasename}>
     <Switch>
       <Route exact relative title={title} path="/">
         <Redirect relative to="/configuration" />

@@ -18,7 +18,7 @@ import ConfigurationStore from './ConfigurationStore'
 
 import { getFirstQuery } from 'kodo/utils/url'
 import ImageSolutionStore from 'store/imageSolution'
-import { getSolutionPath } from 'constants/routes'
+import { imagePath } from 'utils/router'
 
 interface IProps {
   query: Query;
@@ -52,7 +52,7 @@ export default observer(function ConfigureImageStyle({ query }: IProps) {
 
   const onChange = (value: string) => {
     routerStore.push(
-      `${getSolutionPath('image')}/configuration/step/3?bucket=${value}&configurationState=${configurationState}&fixBucket`
+      `${imagePath}/configuration/step/3?bucket=${value}&configurationState=${configurationState}&fixBucket`
     )
     setSelectedBucketName(value)
     bucketStore.fetchDetailsByName(value)

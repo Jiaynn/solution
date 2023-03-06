@@ -1,4 +1,4 @@
-import { getSolutionPath } from 'constants/routes'
+import { imagePath } from 'utils/router'
 
-export const kodoOverviewBasename = `${getSolutionPath('image')}/overview/kodo`
-export const cdnOverviewBasename = `${getSolutionPath('image')}/overview/cdn`
+export const kodoOverviewBasename = `${imagePath}/overview/kodo`
+export const cdnOverviewBasename = `${imagePath}/overview/cdn`

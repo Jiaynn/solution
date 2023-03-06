@@ -8,9 +8,9 @@ import Modal from 'react-icecream/lib/modal'
 
 import { Header } from 'components/common/Header'
 import { ImageSolutionApis } from 'apis/image'
-import { getSolutionPath } from 'constants/routes'
 
 import './style.less'
+import { imagePath } from 'utils/router'
 
 const prefixCls = 'comp-configuration-open-service'
 
@@ -46,7 +46,7 @@ export default observer(function OpenService() {
   const onStep3ButtonClick = () => {
     // 是否为第一次进行配置，通过props传递，默认为false:第一次进行配置，如果在后续配置完成后更新状态，通过props值传递的状态也随之更新
     routerStore.push(
-      `${getSolutionPath('image')}/configuration/step/1?shouldCreateBucket=${!isConfigSolution}&configurationState=${isConfigSolution}`
+      `${imagePath}/configuration/step/1?shouldCreateBucket=${!isConfigSolution}&configurationState=${isConfigSolution}`
     )
   }
 
@@ -61,7 +61,7 @@ export default observer(function OpenService() {
       setIsConfigSolution(configStateRes.status)
       setLoading(false)
       if (openStateRes.status && configStateRes.status) {
-        routerStore.push(`${getSolutionPath('image')}/configuration/step/1?shouldCreateBucket=${!configStateRes.status}&configurationState=${configStateRes.status}`)
+        routerStore.push(`${imagePath}/configuration/step/1?shouldCreateBucket=${!configStateRes.status}&configurationState=${configStateRes.status}`)
       }
 
     }

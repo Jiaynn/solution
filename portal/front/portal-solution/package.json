@@ -2,24 +2,15 @@
   "name": "portal-solution",
   "version": "0.0.1",
   "scripts": {
-    "dev": "npm run start:public",
-    "build": "npm run build:public",
-    "start": "fec-builder --BUILD_CONFIG_FILE build-config.json -p 3000",
-    "start:public": "fec-builder --BUILD_CONFIG_FILE build-config.public.json -p 3000",
-    "start:public.fog": "fec-builder --BUILD_CONFIG_FILE build-config.public.fog.json -p 3000",
-    "start:privatized": "fec-builder --BUILD_CONFIG_FILE build-config.privatized.json -p 3000",
-    "start:privatized.fog": "fec-builder --BUILD_CONFIG_FILE build-config.privatized.fog.json -p 3000",
-    "build:public": "fec-builder clean && fec-builder -e production -c build-config.public.json build",
-    "build:privatized": "fec-builder clean && fec-builder generate -e production -c build-config.privatized.json",
+    "dev": "npm run start",
+    "build": "fec-builder clean && fec-builder -e production build",
+    "start": "fec-builder -p 3000",
     "lint": "tsc --noEmit && eslint --ignore-path .gitignore --ext .ts,.tsx ./",
     "test": "jest --coverage",
     "test:dev": "jest --collectCoverage=false -i --watch",
     "clear": "jest --clearCache",
     "snapshot": "jest -u",
-    "validate": "npm run lint && npm run test",
-    "link:cert": "bash ./link-certificate.sh",
-    "copy:cert": "bash ./copy-certificate.sh",
-    "delete:cert": "bash ./delete-certificate.sh"
+    "validate": "npm run lint && npm run test"
   },
   "dependencies": {
     "autobind-decorator": "^2.4.0",

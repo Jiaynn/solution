@@ -24,7 +24,6 @@ import { Header } from 'components/common/Header'
 import OpenService from 'components/image/Configuration/OpenService'
 import { BucketStore } from 'kodo/stores/bucket'
 import { BucketListStore } from 'kodo/stores/bucket/list'
-import { getSolutionPath } from 'constants/routes'
 import { ImageSolutionApis } from 'apis/image'
 
 import ConfigureImageStyle from './ConfigureImageStyle'
@@ -34,6 +33,7 @@ import DomainName from './DomainName'
 import './style.less'
 import VerifyOwnership from 'cdn/components/Domain/Create/VerifyOwnership'
 import DomainCreateResult from 'cdn/components/Domain/Create/Result'
+import { imagePath } from 'utils/router'
 
 const prefixCls = 'comp-configuration'
 
@@ -146,7 +146,7 @@ export default observer(function Configuration() {
     const { list } = bucketListStore
     const { lastCreatedBucketName } = bucketStore
     const { configurationState } = routerStore.query
-    const prefixRoute = `${getSolutionPath('image')}/configuration/step`
+    const prefixRoute = `${imagePath}/configuration/step`
     if (lastCreatedBucketName) {
       routerStore.push(
         `${prefixRoute}/${step + 1
@@ -173,7 +173,7 @@ export default observer(function Configuration() {
     })
   }
   const onStep2Next = () => {
-    const prefixRoute = `${getSolutionPath('image')}/configuration/step`
+    const prefixRoute = `${imagePath}/configuration/step`
     const { bucket, configurationState } = routerStore.query
     routerStore.push(
       `${prefixRoute}/${step + 1
@@ -187,7 +187,7 @@ export default observer(function Configuration() {
     } catch (error) {
       Modal.error({ content: `${error}` })
     }
-    routerStore.push(`${getSolutionPath('image')}/configuration/step/${step + 1}`)
+    routerStore.push(`${imagePath}/configuration/step/${step + 1}`)
   }
 
   /**
@@ -199,7 +199,7 @@ export default observer(function Configuration() {
   }
 
   const onPrev = () => {
-    const prefixRoute = `${getSolutionPath('image')}/configuration/step`
+    const prefixRoute = `${imagePath}/configuration/step`
     const { bucket, configurationState } = routerStore.query
     const shouldCreateBucketState = JSON.parse(String(configurationState))
     if (step === 2) {

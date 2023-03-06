@@ -17,8 +17,9 @@ import ImageSolutionStore from 'store/imageSolution'
 import { MediaStyleDrawer } from 'kodo/components/BucketDetails/MediaStyle/CreateStyle/common/Drawer'
 import { MediaStyleDrawerStore } from 'kodo/components/BucketDetails/MediaStyle/CreateStyle/common/Drawer/store'
 import { BucketStore } from 'kodo/stores/bucket'
+import { imagePath } from 'utils/router'
+
 import './style.less'
-import { getSolutionPath } from 'constants/routes'
 
 export default observer(function ImageManagement() {
   const mediaStyleStore = useInjection(MediaStyleDrawerStore)
@@ -34,7 +35,7 @@ export default observer(function ImageManagement() {
   }, [])
 
   const onCreateBucket = () => {
-    routerStore.push(`${getSolutionPath('image')}/configuration/open-service`)
+    routerStore.push(`${imagePath}/configuration/open-service`)
   }
 
   useEffect(() => {

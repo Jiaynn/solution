@@ -11,9 +11,9 @@ import Domain from 'kodo/components/BucketDetails/Domain'
 import { DomainStore } from 'kodo/stores/domain'
 import SelectBucket from 'components/common/SelectBucket'
 
-import { getSolutionPath } from 'constants/routes'
 import BucketStore from 'cdn/stores/bucket'
 import ImageSolutionStore from 'store/imageSolution'
+import { imagePath } from 'utils/router'
 
 interface DomainNameProps {
   query: Query;
@@ -41,7 +41,7 @@ export default function DomainName(props: DomainNameProps) {
   const onChange = (value: string) => {
     domainStore.fetchCDNDomainListByBucketName(value).then(() => {
       routerStore.push(
-        `${getSolutionPath('image')}/configuration/step/2?bucket=${value}&configurationState=${query.configurationState}&fixBucket`
+        `${imagePath}/configuration/step/2?bucket=${value}&configurationState=${query.configurationState}&fixBucket`
       )
     })
   }
