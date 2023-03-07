@@ -22,7 +22,7 @@ import {
 @autobind
 @injectable()
 export class ImageSolutionApis {
-  constructor(private solutionCommonClient: CommonClient) {}
+  constructor(private solutionCommonClient: CommonClient) { }
 
   /**
    * @des 是否开通某方案
@@ -44,7 +44,7 @@ export class ImageSolutionApis {
    * @param options
    * @returns
    */
-  isConfigSolution(options:IsConfigSolutionOptions):Promise<IsConfigSolutionResult> {
+  isConfigSolution(options: IsConfigSolutionOptions): Promise<IsConfigSolutionResult> {
     return this.solutionCommonClient.get(
       `${service.configSolution}?solution_code=${options.solution_code}`
     )
@@ -90,7 +90,7 @@ export class ImageSolutionApis {
   getBucketList(options: GetBucketListOptions): Promise<GetBucketListResult> {
     const regionQuery = options.region ? `&region=${options.region}` : ''
     return this.solutionCommonClient.get(
-      `${service.getBucketList}?page_num=${options.page_num}&page_size=${options.page_size}&solution_code=${options.solution_code}${regionQuery}`
+      `${service.getBucketList}?solution_code=${options.solution_code}${regionQuery}`
     )
   }
 }
