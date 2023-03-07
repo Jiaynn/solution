@@ -16,7 +16,7 @@ export interface IsOpenSolutionResult {
  *
  * @请求头 `GET /api/proxy/solution/status`
  */
-export interface IsConfigSolutionOptions{
+export interface IsConfigSolutionOptions {
   uid?: string;
   solution_code: string;
 }
@@ -75,8 +75,6 @@ export interface CompleteSolutionResult {
  * @请求头 `GET /api/proxy/solution/bucket/list`
  */
 export interface GetBucketListOptions {
-  page_num: number;
-  page_size: number;
   region?: string;
   solution_code: string;
 }
