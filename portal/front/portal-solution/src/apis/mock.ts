@@ -16,7 +16,7 @@ import {
   IsConfigSolutionOptions,
   IsConfigSolutionResult
 } from './_types/imageType'
-import { GetMessageListOptions, GetMessageListResult } from './_types/messageType'
+import { GetMessageListOptions } from './_types/messageType'
 
 export class MockApi {
   // 是否开通某服务
