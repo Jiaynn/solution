@@ -8,31 +8,33 @@ export enum Solution {
   /** 互动营销 */
   InteractMarketing = 'interact_marketing',
   /** 电商直播 */
-  EcommerceLive='ecommerce_live',
+  EcommerceLive = 'ecommerce_live',
   /** 短视频点播营销 */
-  ShortvideoMarketing='shortvideo_marketing',
+  ShortvideoMarketing = 'shortvideo_marketing',
   /** 营销推送 */
-  MarketingPush='marketing_push',
+  MarketingPush = 'marketing_push',
   /** 图片处理分发加速 */
-  Image='image',
+  Image = 'image',
   /** 视频点播 */
-  Vod='vod',
+  Vod = 'vod',
   /** 互动直播 */
-  InteractLive='interact_live',
+  InteractLive = 'interact_live',
   /** 幼儿园监控 */
-  KindergartenMonitoring='kindergarten_monitoring',
+  KindergartenMonitoring = 'kindergarten_monitoring',
   /** 智能家居&猫眼 */
-  SmarthomeSurvilance='smarthome_survilance',
+  SmarthomeSurvilance = 'smarthome_survilance',
   /** ISV */
-  ISV='ISV',
+  ISV = 'ISV',
   /** 智能媒资管理（多模态） */
-  IntelligentMediaManagement='intelligent_media_management',
+  IntelligentMediaManagement = 'intelligent_media_management',
   /** 新媒体拍摄剪辑加速 */
-  CloudMediaProduction='cloud_media_production',
+  CloudMediaProduction = 'cloud_media_production',
   /** 数字人直播 */
-  AvatarLive='avatar_live',
+  AvatarLive = 'avatar_live',
   /** VR直播/点播 */
-  VrLive='vr_live',
+  VrLive = 'vr_live',
+  /** 统一消息触达 */
+  Message = 'message'
 }
 
 /**
@@ -53,7 +55,8 @@ export const nameMap = {
   [Solution.IntelligentMediaManagement]: '智能媒资管理（多模态）',
   [Solution.CloudMediaProduction]: '新媒体拍摄剪辑加速',
   [Solution.AvatarLive]: '数字人直播',
-  [Solution.VrLive]: 'VR直播/点播'
+  [Solution.VrLive]: 'VR直播/点播',
+  [Solution.Message]: '统一消息触达'
 }
 
 // 用于 router 匹配 URL pathname
@@ -72,20 +75,21 @@ export const basenameMap = {
   [Solution.IntelligentMediaManagement]: '/intelligent-media-management',
   [Solution.CloudMediaProduction]: '/cloud-media-production',
   [Solution.AvatarLive]: '/avatar-live',
-  [Solution.VrLive]: '/vr-live'
+  [Solution.VrLive]: '/vr-live',
+  [Solution.Message]: '/message'
 }
 
 export enum Category {
   /** 视频营销 */
-  VideoMarketing='video_marketing',
+  VideoMarketing = 'video_marketing',
   /** 社交互娱 */
-  SocialEntertainment='social_entertainment',
+  SocialEntertainment = 'social_entertainment',
   /** 视联网 */
-  VideoInternetOfThings='video_internet_of_things',
+  VideoInternetOfThings = 'video_internet_of_things',
   /** 智慧新媒体 */
-  SmartMedia='smart_media',
+  SmartMedia = 'smart_media',
   /** 元宇宙 */
-  MetaUniverse='meta_universe',
+  MetaUniverse = 'meta_universe',
 }
 
 /** 视频营销 */
