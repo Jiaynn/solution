@@ -119,6 +119,7 @@ import { ApplyNotices } from './ApplyNotice'
 import { ImageSolutionApis } from 'apis/image'
 import ImageSolutionStore from 'store/imageSolution'
 import { cdnProvides } from 'cdn/components/App/BootProvider'
+import { MessageSolutionApi } from 'apis/message'
 // import { MockApi } from 'apis/mock'
 
 const DevTools = React.lazy(() => import('../DevTools'))
@@ -324,6 +325,7 @@ function BootLocalProvider(props: React.PropsWithChildren<{}>) {
       { identifier: TranscodeStyleApis, constr: TranscodeStyleApis },
       { identifier: RemarkApis, constr: RemarkApis },
       { identifier: ImageSolutionApis, constr: ImageSolutionApis },
+      { identifier: MessageSolutionApi, constr: MessageSolutionApi },
       // { identifier: MockApi, constr: MockApi },
       { identifier: ObjectPickerStore, constr: ObjectPickerStore },
       { identifier: MediaStyleDrawerStore, constr: MediaStyleDrawerStore },

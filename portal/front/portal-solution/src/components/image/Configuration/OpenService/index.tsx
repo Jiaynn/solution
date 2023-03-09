@@ -8,9 +8,9 @@ import Modal from 'react-icecream/lib/modal'
 
 import { ConfigurationHeader } from 'components/image/Configuration/common/ConfigurationHeader'
 import { ImageSolutionApis } from 'apis/image'
+import { imagePath } from 'utils/router'
 
 import './style.less'
-import { imagePath } from 'utils/router'
 
 const prefixCls = 'comp-configuration-open-service'
 

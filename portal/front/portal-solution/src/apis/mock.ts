@@ -16,6 +16,7 @@ import {
   IsConfigSolutionOptions,
   IsConfigSolutionResult
 } from './_types/imageType'
+import { GetMessageListOptions, GetMessageListResult } from './_types/messageType'
 
 export class MockApi {
   // 是否开通某服务
@@ -103,6 +104,27 @@ export class MockApi {
         },
         request_id: '@title(5,10)',
         message: '@ctitle(5,10)'
+      })
+    )
+  }
+
+  // 获取消息列表
+  static getMessageList(_options: GetMessageListOptions) {
+    return mockRequest<any>(
+      Mock.mock({
+        'list|1-10': [
+          {
+            icon_image_url: '@title(5,10)',
+            title: '@ctitle(3,7)',
+            describe: '@ctitle(30,40)',
+            bottomList: [
+              '@title(5,10)',
+              '@title(5,10)',
+              '@title(5,10)'
+
+            ]
+          }
+        ]
       })
     )
   }
