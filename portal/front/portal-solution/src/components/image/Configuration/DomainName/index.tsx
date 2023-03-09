@@ -73,4 +73,4 @@ export default function DomainName(props: DomainNameProps) {
       <Domain bucketName={bucketName} visible={value => handleVisible(value)} />
     </div>
   )
-} s
+}
