@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react'
 import { useInjection } from 'qn-fe-core/di'
 
 import './style.less'
+import { Tooltip } from 'react-icecream-2'
+
 import { MessageSolutionApi } from 'apis/message'
 import { GetMessageListResultDataList } from 'apis/_types/messageType'
 
@@ -31,7 +33,7 @@ export const MessageList = () => {
                 </div>
                 <div className="list-desc">
                   <div className="list-desc-title">{item.title}</div>
-                  <div className="list-desc-content">{item.describe}</div>
+                  <Tooltip placement="bottom" title={item.describe}><div className="list-desc-content">{item.describe}</div></Tooltip>
                 </div>
               </div>
               <div className="link">
