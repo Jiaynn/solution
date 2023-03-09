@@ -1,14 +1,16 @@
-import { makeAutoObservable } from 'mobx'
+import { makeObservable, observable } from 'mobx'
 import Store from 'qn-fe-core/store'
 import { injectable } from 'qn-fe-core/di'
 
 @injectable()
 export class ConfigurationStore extends Store {
-  isFirstVisit = false;
+  @observable.ref isFirstVisit = false;
+
   constructor() {
     super()
-    makeAutoObservable(this)
+    makeObservable(this)
   }
+
   setIsFirstVisit(value: boolean) {
     this.isFirstVisit = value
   }
