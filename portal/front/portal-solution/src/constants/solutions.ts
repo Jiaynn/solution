@@ -34,7 +34,9 @@ export enum Solution {
   /** VR直播/点播 */
   VrLive = 'vr_live',
   /** 统一消息触达 */
-  Message = 'message'
+  Message = 'message',
+  /** 七牛低代码平台 */
+  Lowcode= 'lowcode'
 }
 
 /**
@@ -56,7 +58,8 @@ export const nameMap = {
   [Solution.CloudMediaProduction]: '新媒体拍摄剪辑加速',
   [Solution.AvatarLive]: '数字人直播',
   [Solution.VrLive]: 'VR直播/点播',
-  [Solution.Message]: '统一消息触达'
+  [Solution.Message]: '统一消息触达',
+  [Solution.Lowcode]: '七牛低代码平台'
 }
 
 // 用于 router 匹配 URL pathname
@@ -76,7 +79,8 @@ export const basenameMap = {
   [Solution.CloudMediaProduction]: '/cloud-media-production',
   [Solution.AvatarLive]: '/avatar-live',
   [Solution.VrLive]: '/vr-live',
-  [Solution.Message]: '/message'
+  [Solution.Message]: '/message',
+  [Solution.Lowcode]: '/lowcode'
 }
 
 export enum Category {

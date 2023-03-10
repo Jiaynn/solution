@@ -1,19 +1,18 @@
 import React, { useRef } from 'react'
 import { Button, TextInput, Tooltip } from 'react-icecream-2'
-import './style.less'
-
 import { RouterStore } from 'qn-fe-core/router'
-
 import { useInjection } from 'qn-fe-core/di'
 
-import { lists, tabs } from '../static/data'
-import { basename } from 'constants/routes'
+import { lowcodePath } from 'utils/router'
+import { lists, tabs } from 'components/lowcode/static/data'
+
+import './style.less'
 
 export const Home = () => {
   const routerStore = useInjection(RouterStore)
   const inputRef = useRef<HTMLInputElement>(null)
   function handleListClick(scheme, list) {
-    routerStore.push(`${basename}/image/detail?scheme=${scheme}&list=${list}`)
+    routerStore.push(`${lowcodePath}/detail?scheme=${scheme}&list=${list}`)
   }
 
   return (

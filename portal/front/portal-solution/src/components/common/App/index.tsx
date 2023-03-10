@@ -27,9 +27,10 @@ import GuideGroup from 'kodo/components/common/Guide'
 import { TaskCenter } from 'kodo/components/common/TaskCenter'
 import { ResourceApis } from 'kodo/apis/bucket/resource'
 import { taskCenterGuideName, taskCenterSteps } from 'kodo/constants/guide'
-import { ImageRouter } from 'components/common/App/image'
+import { imageBasename, ImageRouter } from 'components/common/App/image'
 import { Sidebar } from '../Sidebar'
 import { MessageRouter } from './message'
+import { LowcodeRouter } from 'components/common/App/lowcode'
 
 const Root = observer(() => {
   const externalUrlModalStore = useInjection(ExternalUrlModalStore)
@@ -67,10 +68,11 @@ const Root = observer(() => {
               <ContentLayout mainClassName="main" sidebar={<Sidebar />}>
                 <Switch>
                   <Route relative exact title="首页" path="/">
-                    <Redirect relative to="/image" />
+                    <Redirect relative to={imageBasename} />
                   </Route>
                   {ImageRouter}
                   {MessageRouter}
+                  {LowcodeRouter}
                 </Switch>
               </ContentLayout>
             </Layout>
