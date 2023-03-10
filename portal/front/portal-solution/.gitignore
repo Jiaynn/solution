@@ -18,3 +18,5 @@ src/**/*.m.less.d.ts
 
 # ide
 .idea
+
+out/

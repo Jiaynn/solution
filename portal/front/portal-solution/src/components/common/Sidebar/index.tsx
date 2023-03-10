@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { observer } from 'mobx-react'
 import { useInjection } from 'qn-fe-core/di'
-
 import { RouterStore } from 'qn-fe-core/router'
 
-import { ImageSidebar } from '../App/image'
-import { MessageSidebar } from '../App/message'
-import { imagePath, messagePath } from 'utils/router'
+import { LowcodeSidebar } from 'components/common/App/lowcode'
+import { imagePath, lowcodePath, messagePath } from 'utils/router'
+import { ImageSidebar } from 'components/common/App/image'
+import { MessageSidebar } from 'components/common/App/message'
 
 export const Sidebar = observer(() => {
   const routerStore = useInjection(RouterStore)
@@ -26,6 +26,9 @@ export const Sidebar = observer(() => {
   }
   if (pathname.startsWith(messagePath)) {
     return <MessageSidebar />
+  }
+  if (pathname.startsWith(lowcodePath)) {
+    return <LowcodeSidebar />
   }
   return null
 })
