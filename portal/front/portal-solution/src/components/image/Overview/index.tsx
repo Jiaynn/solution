@@ -9,6 +9,7 @@ import { observer } from 'mobx-react'
 import KodoOverview from './KodoOverview'
 import CDNOverview from './CDNOverview'
 import { imagePath } from 'utils/router'
+import { Header } from '../common/Header'
 
 export default observer(function Overview() {
 
@@ -25,10 +26,14 @@ export default observer(function Overview() {
         component={({ match }) => {
           const type = match.params.type
           return (
-            <Tabs activeKey={type} onChange={handleTabChange}>
-              <Tabs.TabPane tab="流量概览" key="cdn" />
-              <Tabs.TabPane tab="存储概览" key="kodo" />
-            </Tabs>
+            <>
+              <Header />
+              <Tabs activeKey={type} onChange={handleTabChange}>
+                <Tabs.TabPane tab="流量概览" key="cdn" />
+                <Tabs.TabPane tab="存储概览" key="kodo" />
+              </Tabs>
+            </>
+
           )
         }} />
       <Switch placeholder="404 not found">
