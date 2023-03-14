@@ -5,7 +5,7 @@ import logoPNG from './logo.png'
 
 import './style.less'
 
-const prefixCls = 'comp-configuration-header'
+const prefixCls = 'header'
 
 export interface HeaderProps {
   className?: string

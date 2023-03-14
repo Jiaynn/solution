@@ -20,6 +20,7 @@ import { BucketStore } from 'kodo/stores/bucket'
 import { imagePath } from 'utils/router'
 
 import './style.less'
+import { Header } from '../common/Header'
 
 export default observer(function ImageManagement() {
   const mediaStyleStore = useInjection(MediaStyleDrawerStore)
@@ -57,6 +58,7 @@ export default observer(function ImageManagement() {
   if (selectedBucketName) {
     return (
       <>
+        <Header />
         <MediaStyleDrawer
           {...mediaStyleStore}
           bucketName={selectedBucketName}
@@ -80,6 +82,7 @@ export default observer(function ImageManagement() {
 
   return (
     <>
+      <Header />
       <SelectBucket
         value="无空间"
         onChange={onChange}
