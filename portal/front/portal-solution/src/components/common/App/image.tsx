@@ -11,6 +11,8 @@ import MediaStyleDrawerProvider from 'kodo/components/BucketDetails/MediaStyle/C
 import ImageManagement from 'components/image/ImageManagement'
 import ResourcePack from 'components/image/ResourcePack'
 import { basenameMap, nameMap, Solution } from 'constants/solutions'
+import { Home } from 'components/lowcode/Home'
+import { Detail } from 'components/lowcode/Detail'
 
 const title = nameMap[Solution.Image]
 
@@ -30,6 +32,7 @@ export const ImageRouter = (
       </Route>
       <Route relative title="方案概览" path="/overview"><Overview /></Route>
       <Route relative title="方案配置" path="/configuration">
+
         {/* 子路由详见组件内部 */}
         <Configuration />
       </Route>
@@ -43,6 +46,9 @@ export const ImageRouter = (
         </MediaStyleDrawerProvider>}
       />
       <Route relative title="购买资源包" exact path="/resource-pack"><ResourcePack /></Route>
+      <Route relative title="低代码" path="/lowcode"><Home /></Route>
+      <Route relative title="低代码详情" path="/detail"><Detail /></Route>
+
     </Switch>
   </Route>
 )

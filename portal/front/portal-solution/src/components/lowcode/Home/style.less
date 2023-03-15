@@ -1,0 +1,107 @@
+.header {
+  margin: -20px -20px 0px -20px;
+  background-image: url('https://demo-qnrtc-files.qnsdk.com/lowcode/banner.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #213149;
+  color: white;
+
+  .lowcode {
+    padding: 40px 40px 40px 50px;
+
+    &-title {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    &-desc {
+      margin: 20px 0;
+      width: 500px;
+    }
+
+    &-btns {
+
+      .btn-consult {
+        margin-right: 40px;
+      }
+    }
+  }
+}
+
+.search {
+  display: flex;
+  width: 40%;
+  margin: 15px 0px 35px 0;
+
+  &-btn {
+    margin-left: -2px;
+  }
+}
+
+.content {
+  .scheme-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .list-container {
+    display: grid;
+    grid-template-columns: repeat(3, 33.33%);
+
+    .list {
+      width: 250px;
+      // height: 270px;
+      margin-bottom: 50px;
+      border: 1px solid #E9E9E9;
+      border-radius: 2px;
+
+      &-img {
+        width: 248px;
+        height: 149px;
+        border-bottom: 1px solid #E9E9E9;
+      }
+
+      &-title {
+        font-weight: 500;
+        margin-top: 5px;
+        padding: 5px 0px 0px 18px;
+      }
+
+      &-desc {
+        font-size: 14px;
+        padding: 0px 18px;
+        line-height: 23px;
+        color: #666666;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .bottom_link {
+        padding: 0px 18px;
+        height: 40px;
+        line-height: 40px;
+
+        a {
+          margin-right: 50px;
+        }
+
+        .no-console {
+          color: #AEAEAE;
+
+          &:hover {
+            cursor: not-allowed;
+          }
+        }
+
+      }
+    }
+  }
+}
