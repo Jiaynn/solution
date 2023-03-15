@@ -17,32 +17,46 @@ const title = nameMap[Solution.Lowcode]
 export const lowcodeBasename = basenameMap[Solution.Lowcode]
 
 export const LowcodeSidebar = observer(() => <SubSidebar className="lowcode-sidebar" title={title}>
-  <LinkItem to="/scenes" relative>场景解决方案</LinkItem>
-  <LinkItem to="/projects" relative>项目列表</LinkItem>
+  <LinkItem to="/scene" relative>场景解决方案</LinkItem>
+  <LinkItem to="/project" relative>项目列表</LinkItem>
 </SubSidebar>)
 
 const LowcodeRouterComponent = () => <Switch>
   <Route exact relative title={title} path="/">
     <Redirect relative to="/welcome" />
   </Route>
-  <Route relative title="欢迎页" path="/welcome">
+  <Route exact relative title="欢迎页" path="/welcome">
     <Welcome />
   </Route>
   <Route relative title="首页" path="/">
     <div className="lowcode-main">
       <ContentLayout sidebar={<LowcodeSidebar />}>
         <Switch>
-          <Route exact relative title="首页" path="/">
+          <Route exact relative path="/">
             <Redirect relative to="/list" />
           </Route>
-          <Route exact relative title="场景解决方案" path="/scenes">
-            <Home />
+          <Route relative path="/project">
+            <Switch>
+              <Route exact relative path="/">
+                <Redirect relative to="/list" />
+              </Route>
+              <Route relative path="/list">
+                <ProjectList />
+              </Route>
+            </Switch>
           </Route>
-          <Route exact relative title="项目列表" path="/projects">
-            <ProjectList />
-          </Route>
-          <Route exact relative path="/detail">
-            <Detail />
+          <Route relative path="/scene">
+            <Switch>
+              <Route exact relative path="/">
+                <Redirect relative to="/list" />
+              </Route>
+              <Route relative path="/list">
+                <Home />
+              </Route>
+              <Route relative path="/detail">
+                <Detail />
+              </Route>
+            </Switch>
           </Route>
         </Switch>
       </ContentLayout>

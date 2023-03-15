@@ -69,7 +69,7 @@ app.whenReady().then(() => {
   session.defaultSession.cookies.on("changed", (event, cookie, cause, removed) => {
     if (cookie.session && cookie.name === "PORTAL_SESSION") {
       session.defaultSession.cookies.set({
-        url: pageURL,
+        url: pageUrl,
         ...cookie,
         expirationDate: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2
       });

@@ -12,7 +12,7 @@ export const Home = () => {
   const routerStore = useInjection(RouterStore)
   const inputRef = useRef<HTMLInputElement>(null)
   function handleListClick(scheme, list) {
-    routerStore.push(`${lowcodePath}/detail?scheme=${scheme}&list=${list}`)
+    routerStore.push(`${lowcodePath}/scene/detail?scheme=${scheme}&list=${list}`)
   }
 
   return (

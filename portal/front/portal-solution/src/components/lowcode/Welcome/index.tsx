@@ -13,7 +13,7 @@ export const Welcome = () => {
   const routerStore = useInjection(RouterStore)
 
   const onClick = () => {
-    routerStore.push(`${lowcodePath}/scenes`)
+    routerStore.push(`${lowcodePath}/scene/list`)
   }
 
   return (
