@@ -1,16 +1,16 @@
 //content为数字说明加载的资源是图片，内容是图片张数
 //url为是否有demo演示的链接，如果没有则显示为空
 export const list = [
-	{
-		id: 0,
-		title: '企业直播/私域营销',
-		icon: '/static/live.svg',
-		type: 1,
-		url: '',
-		isHot: true,
-		content: 'https://www.qiniu.com/solutions/ent-live',
-		folder: 'Enterprise live broadcasting'
-	},
+	// {
+	// 	id: 0,
+	// 	title: '企业直播/私域营销',
+	// 	icon: '/static/live.svg',
+	// 	type: 1,
+	// 	url: '',
+	// 	isHot: true,
+	// 	content: 'https://www.qiniu.com/solutions/ent-live',
+	// 	folder: 'Enterprise live broadcasting'
+	// },
 	{
 		id: 1,
 		title: '互动营销',

@@ -31,7 +31,7 @@ export default function Search() {
 				) : (
 					<div className="empty">
 						<img
-							src="http://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a0082b7754fbdb2d98a5c18d0b0edd25.png~tplv-uwbnlip3yd-webp.webp"
+							src="https://demo-qnrtc-files.qnsdk.com/qnweb-scheme-h5-demo/static/empty.png"
 							alt=""
 						/>
 						<div className="empty-des">空空如也</div>
