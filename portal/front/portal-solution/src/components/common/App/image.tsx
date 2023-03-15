@@ -15,9 +15,9 @@ const title = nameMap[Solution.Image]
 export const imageBasename = basenameMap[Solution.Image]
 
 export const ImageSidebar = observer(() => <SubSidebar title={title}>
-  <LinkItem to="image/overview" relative >方案概览</LinkItem>
-  <LinkItem to="image/configuration" relative>方案配置</LinkItem>
-  <LinkItem to="image/image-management" relative>图片管理</LinkItem>
+  <LinkItem to="/image/overview" relative >方案概览</LinkItem>
+  <LinkItem to="/image/configuration" relative>方案配置</LinkItem>
+  <LinkItem to="/image/image-management" relative>图片管理</LinkItem>
 </SubSidebar>)
 
 export const ImageRouter = (
