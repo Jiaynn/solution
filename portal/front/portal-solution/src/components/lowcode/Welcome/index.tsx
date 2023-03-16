@@ -9,7 +9,7 @@ import './style.less'
 
 const prefixCls = 'welcome'
 
-export const Welcome = () => {
+export const LowCodeWelcome = () => {
   const routerStore = useInjection(RouterStore)
 
   const onClick = () => {

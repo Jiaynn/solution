@@ -5,10 +5,10 @@ import { Redirect, Route, Switch } from 'portal-base/common/router'
 import { ContentLayout } from 'portal-base/common/components/Layout'
 
 import { basenameMap, nameMap, Solution } from 'constants/solutions'
-import { Welcome } from 'components/lowcode/Welcome'
+import { LowCodeWelcome } from 'components/lowcode/Welcome'
 import { ProjectList } from 'components/lowcode/ProjectList'
-import { Home } from 'components/lowcode/Home'
-import { Detail } from 'components/lowcode/Detail'
+import { LowCodeSchemeList } from 'components/lowcode/SchemeList'
+import { LowCodeDetail } from 'components/lowcode/Detail'
 
 import './style.less'
 
@@ -26,7 +26,7 @@ const LowcodeRouterComponent = () => <Switch>
     <Redirect relative to="/welcome" />
   </Route>
   <Route exact relative title="欢迎页" path="/welcome">
-    <Welcome />
+    <LowCodeWelcome />
   </Route>
   <Route relative title="首页" path="/">
     <div className="lowcode-main">
@@ -51,10 +51,10 @@ const LowcodeRouterComponent = () => <Switch>
                 <Redirect relative to="/list" />
               </Route>
               <Route relative path="/list">
-                <Home />
+                <LowCodeSchemeList />
               </Route>
               <Route relative path="/detail">
-                <Detail />
+                <LowCodeDetail />
               </Route>
             </Switch>
           </Route>

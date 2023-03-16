@@ -10,17 +10,18 @@ import {
 import './style.less'
 import { Tabs } from 'react-icecream/lib'
 
-export const Detail = () => {
+export const LowCodeDetail = () => {
+  const prefixCls = 'lowcode-detail'
   const { query } = useInjection(RouterStore)
   const { scheme, list } = query
   const [visible, setVisible] = useState(false)
   return (
-    <div className="detail">
-      <div className="detail-title">场景解决方案  /  {list}</div>
-      <div className="detail-wrapper">
-        <div className="detail-left">
-          <img src="https://www-static.qbox.me/_next/static/media/image2.8841d7f6fb5683c2aca63fa52e899546.jpg" alt="" className="top-image" />
-          <div className="small-banner">
+    <div className={`${prefixCls}`}>
+      <div className={`${prefixCls}-title`}>场景解决方案  /  {list}</div>
+      <div className={`${prefixCls}-wrapper`}>
+        <div className={`${prefixCls}-left`}>
+          <img src="https://www-static.qbox.me/_next/static/media/image2.8841d7f6fb5683c2aca63fa52e899546.jpg" alt="" className={`${prefixCls}-left-top-image`} />
+          <div className={`${prefixCls}-left-small-banner`}>
             <span> <svg width="1em" height="1em" viewBox="0 0 16 16" >
               <polygon fill="currentColor" points="5.655 3.471 5.655 10.47 12.655 10.471 12.655 12.471 3.655 12.471 3.655 3.471" transform="scale(1 -1) rotate(45 27.398 0)" />
             </svg></span>
@@ -32,23 +33,23 @@ export const Detail = () => {
             </svg></span>
           </div>
         </div>
-        <div className="detail-right">
-          <div className="right-title">{list}解决方案</div>
-          <div className="right-title1">{scheme}</div>
-          <div className="score">
-            <span>★  ★  ★  ★  ☆</span>
+        <div className={`${prefixCls}-right`}>
+          <div className={`${prefixCls}-right-title`}>{list}解决方案</div>
+          <div className={`${prefixCls}-right-title1`}>{scheme}</div>
+          <div className={`${prefixCls}-right-score`}>
+            <span className={`${prefixCls}-right-score-start`}>★  ★  ★  ★  ☆</span>
             <span>4.0</span>
             <span>129 个评分</span></div>
-          <div className="download">
+          <div className={`${prefixCls}-right-download`}>
             <img src="https://demo-qnrtc-files.qnsdk.com/lowcode/down.svg" alt="" />
             <span>301次</span>
           </div>
           <Divider />
-          <div className="platform">
-            <span className="support">支持平台</span>
+          <div className={`${prefixCls}-right-platform`}>
+            <span className={`${prefixCls}-right-platform-support`}>支持平台</span>
             <span>Android | iOS</span>
           </div>
-          <Button type="primary" className="create-app" onClick={() => setVisible(true)}>创建应用</Button>
+          <Button type="primary" className={`${prefixCls}-right-create-app`} onClick={() => setVisible(true)}>创建应用</Button>
         </div>
       </div>
       <Tabs size="large">
