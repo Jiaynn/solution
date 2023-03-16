@@ -79,15 +79,15 @@ export interface GetBucketListOptions {
   solution_code: string;
 }
 export interface GetBucketListResultDataList {
-  solution_code: string;
-  bucket_id: string;
-  uid: string;
-  region: string;
+  solution_code?: string;
+  bucket_id?: string;
+  uid?: string;
+  region?: string;
 }
 export interface GetBucketListResult {
-  end_page: boolean;
-  page_total: number;
-  total_count: number;
-  list: GetBucketListResultDataList[];
+  end_page?: boolean;
+  page_total?: number;
+  total_count?: number;
+  list?: GetBucketListResultDataList[];
 }
 

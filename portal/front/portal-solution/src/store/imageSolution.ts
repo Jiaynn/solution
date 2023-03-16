@@ -30,7 +30,7 @@ export default class ImageSolutionStore extends Store {
 
   @computed
   get bucketNames() {
-    return this.buckets.map(b => b.bucket_id)
+    return this.buckets && this.buckets.map(b => b.bucket_id)
   }
 
   @computed
@@ -40,7 +40,8 @@ export default class ImageSolutionStore extends Store {
 
   @autobind
   async fetchBucketList() {
-    const { list } = await this.solutionApis.getBucketList({ solution_code: 'image' })
+    const result = await this.solutionApis.getBucketList({ solution_code: 'image' })
+    const list = result.list || []
     this.updateBuckets(list)
     this.updateCurrentBucket(list[0]?.bucket_id)
   }
