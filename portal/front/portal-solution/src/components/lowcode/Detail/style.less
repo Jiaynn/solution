@@ -1,4 +1,5 @@
-.detail {
+
+.lowcode-detail {
 
   &-title {
     font-size: 20px;
@@ -16,12 +17,12 @@
     height: 380px;
     background-color: pink;
 
-    .top-image {
+    &-top-image {
       width: 595px;
       height: 380px;
     }
 
-    .small-banner {
+    &-small-banner {
       margin-top: 10px;
       display: flex;
       justify-content: space-around;
@@ -44,31 +45,33 @@
     margin-left: 30px;
     width: 45%;
 
-    .right-title {
+    &-title {
       font-size: 22px;
       font-family: 'PingFangSC-Regular', 'PingFang SC', sans-serif;
       font-weight: 400;
       font-style: normal;
     }
 
-    .right-title1 {
+    &-title1 {
 
       font-size: 18px;
       color: #AEAEAE;
       margin: 25px 0;
     }
 
-    .score {
+    &-score {
       font-size: 18px;
       color: #AEAEAE;
-
+      &-start{
+         color: #ffa843f0;
+      }
       span {
         margin-right: 25px;
 
       }
     }
 
-    .download {
+    &-download {
       font-size: 18px;
       color: #AEAEAE;
       margin: 35px 0 35px 0;
@@ -85,17 +88,17 @@
       }
     }
 
-    .platform {
+    &-platform {
       font-size: 18px;
       margin-top: 30px;
 
-      .support {
+      &-support {
         color: #AEAEAE;
         margin-right: 130px
       }
     }
 
-    .create-app {
+    &-create-app {
       width: 92%;
       margin-top: 40px;
       font-size: 18px;
@@ -104,5 +107,5 @@
       line-height: 24px;
     }
   }
-
-}
+ 
+} 
