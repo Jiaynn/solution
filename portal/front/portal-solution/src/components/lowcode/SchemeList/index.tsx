@@ -8,11 +8,13 @@ import { lists, tabs } from 'components/lowcode/static/data'
 
 import './style.less'
 
+const prefixCls = 'lowcode-scheme-list'
+
 export const LowCodeSchemeList = () => {
-  const prefixCls = 'lowcode-scheme-list'
+  
   const routerStore = useInjection(RouterStore)
   const inputRef = useRef<HTMLInputElement>(null)
-  function handleListClick(scheme, list) {
+  function handleListClick(scheme: string, list: string) {
     routerStore.push(`${lowcodePath}/scene/detail?scheme=${scheme}&list=${list}`)
   }
 

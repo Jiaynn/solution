@@ -1,23 +1,23 @@
-.list-wrapper {
+.message-list-wrapper {
   ul {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
 
-    .list {
+    .message-list {
       width: 367px;
       height: 184px;
-      border: 1px solid #E9E9E9;
+      border: 1px solid #e9e9e9;
       border-radius: 2px;
       margin: 0px 19px 20px 0px;
 
-      .list-content {
+      &-content {
         display: flex;
         justify-content: flex-start;
         padding-top: 20px;
         height: 136px;
 
-        .list-icon {
+        &-icon {
           width: 64px;
           height: 50px;
 
@@ -30,7 +30,7 @@
           }
         }
 
-        .list-desc {
+        &-desc {
           width: 77%;
 
           &-title {
@@ -38,10 +38,9 @@
             line-height: 24px;
             color: #333333;
             margin-bottom: 12px;
-            font-family: 'PingFang SC';
+            font-family: "PingFang SC";
             font-style: normal;
             font-weight: 500;
-
           }
 
           &-content {
@@ -54,20 +53,19 @@
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-            &:hover{
+            &:hover {
               cursor: pointer;
             }
           }
-
         }
       }
 
-      .link {
+      .message-list-link {
         height: 46px;
-        background-color: #FAFAFA;
+        background-color: #fafafa;
         display: flex;
         justify-content: flex-start;
-        border-top: 1px solid #E9E9E9;
+        border-top: 1px solid #e9e9e9;
 
         a {
           line-height: 42px;
@@ -76,29 +74,28 @@
           text-align: center;
 
           &:hover {
-            color: #00AAE7;
+            color: #00aae7;
             transition: 0.48s ease;
           }
         }
 
         span {
-          background-color: #E8E8E8;
+          background-color: #e8e8e8;
           margin-top: 13px;
           width: 1px;
           height: 16px;
         }
 
-        .wait {
+        &-wait {
           width: 100%;
           color: #999999;
           line-height: 42px;
           text-align: center;
-          &:hover{
+          &:hover {
             cursor: not-allowed;
           }
         }
       }
-
     }
   }
 }
