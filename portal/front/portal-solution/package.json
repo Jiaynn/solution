@@ -1,7 +1,6 @@
 {
   "name": "portal-solution",
   "version": "0.0.1",
-  "main": "electron/main.js",
   "scripts": {
     "dev": "fec-builder -p 3000",
     "build": "fec-builder clean && fec-builder -e production build",
@@ -11,23 +10,16 @@
     "clear": "jest --clearCache",
     "snapshot": "jest -u",
     "validate": "npm run lint && npm run test",
-    "release": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . -l portal-solution",
-    "electron:dev": "concurrently \"npm run dev\" \"NODE_ENV=dev && electron-forge start\" ",
-    "electron:build:staging": "NODE_ENV=staging && npm run make",
-    "electron:build": "NODE_ENV=prod && npm run make",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "release": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . -l portal-solution"
   },
   "dependencies": {
     "ahooks": "^3.7.5",
     "autobind-decorator": "^2.4.0",
     "better-mock": "^0.3.6",
     "classnames": "^2.2.6",
-    "compressing": "^1.8.0",
     "copy-text-to-clipboard": "^3.0.1",
     "copy-to-clipboard": "^3.3.1",
     "core-js": "^3.21.0",
-    "electron-squirrel-startup": "^1.0.0",
     "file-saver": "^2.0.5",
     "formstate": "^2.0.0",
     "formstate-x": "^2.0.1",
@@ -47,7 +39,6 @@
     "mobx": "^6.3.3",
     "mobx-react": "^7.2.0",
     "moment": "^2.24.0",
-    "node-cmd": "^5.0.0",
     "number-precision": "^1.3.2",
     "portal-base": "https://github.com/qbox/portal-base.git#v3.5.6 ",
     "psl": "^1.4.0",
@@ -74,11 +65,6 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.5",
-    "@electron-forge/maker-deb": "^6.0.5",
-    "@electron-forge/maker-rpm": "^6.0.5",
-    "@electron-forge/maker-squirrel": "^6.0.5",
-    "@electron-forge/maker-zip": "^6.0.5",
     "@qiniu/build-config": "^0.0.2",
     "@qiniu/eslint-config": "^0.0.6",
     "@types/core-js": "^2.5.5",
@@ -96,7 +82,6 @@
     "@typescript-eslint/eslint-plugin": "^4.10.0",
     "concurrently": "^7.6.0",
     "conventional-changelog-cli": "^2.2.2",
-    "electron": "^23.1.3",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-import-resolver-typescript": "^2.3.0",
