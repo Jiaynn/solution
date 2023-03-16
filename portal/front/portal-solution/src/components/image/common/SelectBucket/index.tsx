@@ -23,11 +23,12 @@ export default observer(function SelectBucket(props: SelectProps) {
         disabled={!imageSolutionStore.hasBucket}
       >
         {
-          bucketNames.map(bucketName => (
+          bucketNames?.map(bucketName => (
             <Select.Option key={bucketName} value={bucketName}>
               {bucketName}
             </Select.Option>
           ))
+
         }
       </Select>
     </div>
