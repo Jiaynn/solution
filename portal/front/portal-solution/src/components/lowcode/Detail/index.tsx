@@ -10,8 +10,10 @@ import {
 import './style.less'
 import { Tabs } from 'react-icecream/lib'
 
+const prefixCls = 'lowcode-detail'
+
 export const LowCodeDetail = () => {
-  const prefixCls = 'lowcode-detail'
+
   const { query } = useInjection(RouterStore)
   const { scheme, list } = query
   const [visible, setVisible] = useState(false)

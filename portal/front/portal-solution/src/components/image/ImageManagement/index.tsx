@@ -22,6 +22,8 @@ import { imagePath } from 'utils/router'
 import './style.less'
 import { Header } from '../common/Header'
 
+const prefixCls = 'image-management'
+
 export default observer(function ImageManagement() {
   const mediaStyleStore = useInjection(MediaStyleDrawerStore)
   const bucketStore = useInjection(BucketStore)
@@ -49,7 +51,7 @@ export default observer(function ImageManagement() {
   if (loading) {
     return (
       <Loading
-        className="absolution-center"
+        className={`${prefixCls}-absolution-center`}
         loading={loading}
       />
     )
@@ -88,12 +90,13 @@ export default observer(function ImageManagement() {
         onChange={onChange}
       />
 
-      <div className="card absolution-center">
-        <Icon type="info" className="info-icon" />
-        <h1 className="title">未创建图片存储空间</h1>
-        <div className="description">您还没有创建图片的存储空间，有了图片存储空间后才可以对图片进行管理操作，请点击下方按钮前去开通服务后创建空间吧</div>
+      <div className={`${prefixCls}-card`}>
+        <Icon type="info" className={`${prefixCls}-info-icon`} />
+        <h1 className={`${prefixCls}-title`}>未创建图片存储空间</h1>
+        <div className={`${prefixCls}-description`}>您还没有创建图片的存储空间，有了图片存储空间后才可以对图片进行管理操作<br></br>请点击下方按钮前去开通服务后创建空间吧</div>
         <Button type="primary" onClick={onCreateBucket}>开通服务</Button>
       </div>
     </>
   )
 })
+

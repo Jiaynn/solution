@@ -9,6 +9,7 @@ import { Tooltip } from 'react-icecream-2'
 import { MessageSolutionApi } from 'apis/message'
 import { GetMessageListResultDataList } from 'apis/_types/messageType'
 
+const prefixCls = 'message-list'
 export const MessageList = () => {
   const messageApi = useInjection(MessageSolutionApi)
 
@@ -22,27 +23,27 @@ export const MessageList = () => {
   }, [messageApi])
 
   return (
-    <div className="list-wrapper">
+    <div className={`${prefixCls}-wrapper`}>
       <ul>
         {
           messageList
-            ? messageList.map((item: GetMessageListResultDataList) => (<li className="list" key={item.id}>
-              <div className="list-content">
-                <div className="list-icon">
+            ? messageList.map((item: GetMessageListResultDataList) => (<li className={`${prefixCls}`} key={item.id}>
+              <div className={`${prefixCls}-content`}>
+                <div className={`${prefixCls}-content-icon`}>
                   <img src={item.icon_image_url} alt="" />
                 </div>
-                <div className="list-desc">
-                  <div className="list-desc-title">{item.title}</div>
-                  <Tooltip placement="bottom" title={item.describe}><div className="list-desc-content">{item.describe}</div></Tooltip>
+                <div className={`${prefixCls}-content-desc`}>
+                  <div className={`${prefixCls}-content-desc-title`}>{item.title}</div>
+                  <Tooltip placement="bottom" title={item.describe}><div className={`${prefixCls}-content-desc-content`}>{item.describe}</div></Tooltip>
                 </div>
               </div>
-              <div className="link">
+              <div className={`${prefixCls}-link`}>
                 {
                   item.bottom_list.length
                     ? <><a href={item.bottom_list[0].link_url} target="_blank" rel="noreferrer">{item.bottom_list[0].link_mark}</a><span></span>
                       <a href={item.bottom_list[1].link_url} target="_blank" rel="noreferrer">{item.bottom_list[1].link_mark}</a><span></span>
                       <a href={item.bottom_list[2].link_url} target="_blank" rel="noreferrer">{item.bottom_list[2].link_mark}</a></>
-                    : <div className="wait">敬请期待</div>
+                    : <div className={`${prefixCls}-link-wait`}>敬请期待</div>
                 }
 
               </div>
