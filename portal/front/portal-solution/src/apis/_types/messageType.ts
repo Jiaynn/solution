@@ -18,9 +18,9 @@ export interface GetMessageListResultDataList {
   }>
 }
 export interface GetMessageListResult {
-  page_total: number
-  end_page: boolean
-  total_count: number
-  list: GetMessageListResultDataList[]
+  page_total?: number
+  end_page?: boolean
+  total_count?: number
+  list?: GetMessageListResultDataList[]
 }
 

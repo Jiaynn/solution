@@ -8,7 +8,7 @@ export interface IsOpenSolutionOptions {
   solution_code: string;
 }
 export interface IsOpenSolutionResult {
-  status: boolean;
+  status?: boolean;
 }
 
 /**
@@ -66,7 +66,7 @@ export interface CompleteSolutionOptions {
 export interface CompleteSolutionResult {
   solution_code: string;
   status: number;
-  solution_name: string;
+  solution_name?: string;
 }
 
 /**
