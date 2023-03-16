@@ -3,7 +3,7 @@
  * @author nighca <nighca@live.cn>
  */
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Redirect, Switch } from 'portal-base/common/router'
 import Layout, { ContentLayout } from 'portal-base/common/components/Layout'
 import { FileClipboardProvider } from 'kodo-base/lib/context/file-clipboard'
@@ -17,6 +17,8 @@ import Role from 'portal-base/common/components/Role'
 import { ToasterStore } from 'portal-base/common/toaster'
 import ExternalUrlModal from 'kodo-base/lib/components/common/ExternalUrlModal'
 import { observer } from 'mobx-react'
+import { RouterStore } from 'qn-fe-core/router'
+import classNames from 'classnames'
 
 import { basename } from 'constants/routes'
 import { BootProvider } from 'kodo/components/common/BootProvider'
@@ -27,21 +29,52 @@ import GuideGroup from 'kodo/components/common/Guide'
 import { TaskCenter } from 'kodo/components/common/TaskCenter'
 import { ResourceApis } from 'kodo/apis/bucket/resource'
 import { taskCenterGuideName, taskCenterSteps } from 'kodo/constants/guide'
-import { imageBasename, ImageRouter } from 'components/common/App/image'
-import { Sidebar } from '../Sidebar'
-import { MessageRouter } from './message'
-import { LowcodeRouter } from 'components/common/App/lowcode'
+import { imageBasename, ImageRouter, ImageSidebar } from 'components/common/App/image'
+import { MessageRouter, MessageSidebar } from './message'
+import { LowcodeRouter, LowcodeSidebar } from 'components/common/App/lowcode'
+import { imagePath, lowcodePath, messagePath } from 'utils/router'
 
 const Root = observer(() => {
   const externalUrlModalStore = useInjection(ExternalUrlModalStore)
   const toasterStore = useInjection(ToasterStore)
   const resourceApis = useInjection(ResourceApis)
+  const routerStore = useInjection(RouterStore)
+
   const kodoBaseContextValue: KodoBaseContext = {
     roleWrap: Role,
     sensorsTagFlag,
     sensorsTrack,
     toaster: toasterStore,
     openExternalUrlModal: externalUrlModalStore.open
+  }
+
+  const [pathname, setPathname] = useState('')
+
+  const noNavbarPaths: RegExp[] = [/^\/solutions\/lowcode/]
+  const noSidebarPaths: RegExp[] = [/^\/solutions\/lowcode\/welcome/]
+  const noNavbar = noNavbarPaths.some(path => path.test(pathname))
+  const noSidebar = noSidebarPaths.some(path => path.test(pathname))
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setPathname(routerStore.location.pathname)
+    }, 60)
+    return () => {
+      clearInterval(timer)
+    }
+  }, [routerStore])
+
+  const renderSidebar = () => {
+    if (pathname.startsWith(imagePath)) {
+      return <ImageSidebar />
+    }
+    if (pathname.startsWith(messagePath)) {
+      return <MessageSidebar />
+    }
+    if (pathname.startsWith(lowcodePath)) {
+      return <LowcodeSidebar />
+    }
+    return null
   }
 
   return (
@@ -51,7 +84,12 @@ const Root = observer(() => {
       <FileClipboardProvider>
         <TaskCenterContextProvider>
           <Route path={basename}>
-            <Layout>
+            <Layout
+              className={classNames({
+                'layout-no-sidebar': noSidebar,
+                'layout-no-navbar': noNavbar
+              })}
+            >
               <ExternalUrlModal
                 visible={externalUrlModalStore.visible}
                 objects={externalUrlModalStore.objects!}
@@ -65,7 +103,10 @@ const Root = observer(() => {
               <GuideGroup name={taskCenterGuideName} steps={taskCenterSteps}>
                 <TaskCenter />
               </GuideGroup>
-              <ContentLayout mainClassName="main" sidebar={<Sidebar />}>
+              <ContentLayout
+                mainClassName="content-layout-main"
+                sidebar={renderSidebar()}
+              >
                 <Switch>
                   <Route relative exact title="首页" path="/">
                     <Redirect relative to={imageBasename} />
