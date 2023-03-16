@@ -5,10 +5,6 @@ import { RouterStore } from 'qn-fe-core/router'
 
 import { lowcodePath } from 'utils/router'
 
-import './style.less'
-
-const prefixCls = 'welcome'
-
 export const LowCodeWelcome = () => {
   const routerStore = useInjection(RouterStore)
 
@@ -16,9 +12,5 @@ export const LowCodeWelcome = () => {
     routerStore.push(`${lowcodePath}/scene/list`)
   }
 
-  return (
-    <div className={prefixCls}>
-      <Button type="primary" onClick={onClick}>/list</Button>
-    </div>
-  )
+  return <Button type="primary" onClick={onClick}>/list</Button>
 }

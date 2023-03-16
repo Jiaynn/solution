@@ -6,7 +6,25 @@
 @import "~kodo/styles/font.less";
 @import "~kodo/styles/variables.less";
 
-.main {
+.layout {
+  &-no-navbar {
+    .comp-dynamic-navbar {
+      display: none;
+    }
+  }
+
+  &-no-sidebar {
+    .comp-sub-sidebar {
+      display: none;
+    }
+
+    .content-layout-main {
+      margin: -20px;
+    }
+  }
+}
+
+.content-layoutmain {
   height: 100%;
   position: relative;
 }
