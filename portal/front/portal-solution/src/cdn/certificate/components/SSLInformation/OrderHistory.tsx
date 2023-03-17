@@ -274,7 +274,7 @@ export class OrderHistory extends React.Component<OrderHistoryInnerProps> {
               title="操作"
               key="orders.operations"
               render={(_text, record, _index) => {
-                const operations = []
+                const operations:Array<{to:OperationType, text:string, isPaid?:boolean}> = []
                 // 显示 支付 操作
                 if (isStatusPaying(record.state)) {
                   operations.push({ to: OperationType.Pay, text: '支付' })

@@ -363,7 +363,7 @@ export default observer(function DomainCacheConfigInput(props: Props) {
 
     const cacheControlStates = state.$.$.cacheControls.$.slice()
 
-    let cacheControlCnt = null
+    let cacheControlCnt:ReactNode = null
     if (cacheControlStates.length
       && cacheControlStates[cacheControlStates.length - 1].value.type === CacheControlType.All) {
       const tailCacheControlState = cacheControlStates.pop()!

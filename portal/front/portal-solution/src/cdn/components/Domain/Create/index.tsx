@@ -12,8 +12,6 @@ import { Iamed } from 'portal-base/user/iam'
 import Page from 'portal-base/common/components/Page'
 import Modal from 'react-icecream/lib/modal'
 
-import { jsonStringify } from 'qn-fe-core/client'
-
 import {
   DomainType,
   Platform,
@@ -62,11 +60,16 @@ export const DomainCreate = observer(function DomainCreate(
       // console.log('createDomainState', createDomainState)
 
       if (results.some(it => !!it.shouldVerify)) {
-        sessionStorage.setItem('domain-verify', jsonStringify(createDomainState))
+        sessionStorage.setItem('domain-verify', createDomainState.toString())
         window.open(`${basename}/image/configuration/domain/verify-ownership`)
-        onCancel()
+        if (onCancel) {
+          onCancel()
+        }
+
       } else if (createDomainState.results.every(item => item.result === CreateResult.Success)) {
-        onCreate()
+        if (onCreate) {
+          onCreate()
+        }
       } else {
         Modal.error({
           content: `${results[0].errorMsg}`
@@ -80,7 +83,7 @@ export const DomainCreate = observer(function DomainCreate(
     <Iamed actions={[iamActions.CreateDomain]}>
       <Page className="comp-create-domain" mainClassName="page-wrapper">
         <CreateForm
-          onCancel={onCancel}
+          onCancel={onCancel!}
           onCreate={handleCreate}
           domains={store.domains}
           wildcardDomains={store.wildcardDomains}

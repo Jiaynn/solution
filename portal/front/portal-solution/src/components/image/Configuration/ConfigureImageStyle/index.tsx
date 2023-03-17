@@ -27,7 +27,7 @@ interface IProps {
 export default observer(function ConfigureImageStyle({ query }: IProps) {
   const { bucket, configurationState } = query
   // 等于1 为true第一次进入
-  const isFirstVisit = !JSON.parse(getFirstQuery(configurationState))
+  const isFirstVisit = JSON.parse(getFirstQuery(configurationState)!)
 
   const defaultBucketName = getFirstQuery(bucket) as string
 

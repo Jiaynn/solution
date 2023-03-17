@@ -3,7 +3,7 @@
  * @author linchen <gakiclin@gmail.com>
  */
 
-import React, { useCallback } from 'react'
+import React, { ReactNode, useCallback } from 'react'
 import { observer } from 'mobx-react'
 import { saveAs } from 'file-saver'
 import { Tabs, TabPane, Steps, Step, Button, Table, TableType, StepsProps } from 'react-icecream-2'
@@ -91,8 +91,8 @@ function DnsVerify({ domain, config, verifyStatus, onVerify }: DnsVerifyProps) {
     </VerifyConfigTable>
   )
 
-  let verifyResultTitle = null
-  let verifyResultDesc = null
+  let verifyResultTitle: ReactNode = null
+  let verifyResultDesc: ReactNode = null
 
   switch (verifyStatus) {
     case VerifyStatus.Verifying:
@@ -173,8 +173,8 @@ function FileVerify({ domain, config, verifyStatus, onVerify }: FileVerifyProps)
     saveAs(blob, fileName)
   }, [verifyContent, fileName])
 
-  let verifyResultTitle = null
-  let verifyResultDesc = null
+  let verifyResultTitle:string|ReactNode = null
+  let verifyResultDesc:ReactNode = null
 
   switch (verifyStatus) {
     case VerifyStatus.Verifying:

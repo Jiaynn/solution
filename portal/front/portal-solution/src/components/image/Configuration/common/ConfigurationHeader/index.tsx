@@ -56,7 +56,7 @@ const guides = [
 export const ConfigurationHeader: React.FC<ConfigurationHeaderProps> = props => {
   const {
     className, style,
-    current, stepsVisible = false
+    current = 0, stepsVisible = false
   } = props
 
   const currentGuide = guides[current - 1]
