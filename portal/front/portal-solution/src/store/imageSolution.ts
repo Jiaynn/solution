@@ -41,9 +41,13 @@ export default class ImageSolutionStore extends Store {
   @autobind
   async fetchBucketList() {
     const result = await this.solutionApis.getBucketList({ solution_code: 'image' })
+
     const list = result.list || []
     this.updateBuckets(list)
-    this.updateCurrentBucket(list[0]?.bucket_id)
+    if (list[0]?.bucket_id) {
+      this.updateCurrentBucket(list[0]?.bucket_id)
+    }
+
   }
 
   @observable currentBucket = ''

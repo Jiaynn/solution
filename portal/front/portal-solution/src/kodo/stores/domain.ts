@@ -280,7 +280,7 @@ export class DomainStore extends Store {
    * @description 获取空间的资源链接，默认顺序依次为默认域名、CDN 自定义、源站、CDN 加速、系统配置下载域名
    */
   @autobind
-  getResourceBaseUrl(bucketName: string, domainInfo?: IDomainInfo, sourceFirst = false): string | undefined {
+  getResourceBaseUrl(bucketName: string, domainInfo?: IDomainInfo | null, sourceFirst = false): string | undefined {
     let currentDomain = domainInfo
 
     // 用户未指定域名，使用默认域名

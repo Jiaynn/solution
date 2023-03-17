@@ -57,7 +57,10 @@ const Root = observer(() => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setPathname(routerStore.location.pathname)
+      if (routerStore.location) {
+        setPathname(routerStore.location.pathname)
+      }
+
     }, 60)
     return () => {
       clearInterval(timer)
@@ -104,7 +107,7 @@ const Root = observer(() => {
                 <TaskCenter />
               </GuideGroup>
               <ContentLayout
-                mainClassName="content-layout-main"
+                mainClassName="main content-layout-main"
                 sidebar={renderSidebar()}
               >
                 <Switch>

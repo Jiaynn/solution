@@ -44,7 +44,10 @@ export default observer(function ImageManagement() {
   useEffect(() => {
     setLoading(true)
     imageSolutionStore.fetchBucketList().then(() => {
-      onChange(imageSolutionStore.bucketNames[0])
+      if (imageSolutionStore.bucketNames[0]) {
+        onChange(imageSolutionStore.bucketNames[0])
+      }
+
     }).finally(() => setLoading(false))
   }, [imageSolutionStore, onChange])
 

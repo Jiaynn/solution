@@ -49,7 +49,7 @@ export function getCertFormData(data: IOrderDetail): ICertFormValue {
 }
 
 export function certFormData2Display(formData: ICertFormValue) {
-  const domainTexts = []
+  const domainTexts:string[] = []
   if (formData.domain.normal > 0) {
     domainTexts.push(`*标准域名 ${formData.domain.normal} 个`)
   }
@@ -58,7 +58,7 @@ export function certFormData2Display(formData: ICertFormValue) {
   }
   const wildcardNames = formData.dnsNames.filter(name => wildcardDomainRegx.test(name))
   const standardNames = formData.dnsNames.filter(name => standardDomainRegx.test(name))
-  const boundedDomains = []
+  const boundedDomains:string[] = []
   if (standardNames.length > 0) {
     boundedDomains.push(`*标准域名 ${standardNames.length} 个`)
   }
