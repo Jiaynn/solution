@@ -34,7 +34,7 @@ import { MessageRouter, MessageSidebar } from './message'
 import { LowcodeRouter, LowcodeSidebar } from 'components/common/App/lowcode'
 import { imagePath, lowcodePath, messagePath } from 'utils/router'
 
-const Root = observer(() => {
+const AppContainer = observer(() => {
   const externalUrlModalStore = useInjection(ExternalUrlModalStore)
   const toasterStore = useInjection(ToasterStore)
   const resourceApis = useInjection(ResourceApis)
@@ -129,7 +129,7 @@ const Root = observer(() => {
 
 const App = () => <BootProvider>
   <LocalProvider locale={zhCN}>
-    <Root />
+    <AppContainer />
   </LocalProvider>
 </BootProvider>
 
