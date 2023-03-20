@@ -11,6 +11,7 @@ files:
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
 asarUnpack:
   - resources/*
+#afterSign: build/notarize.js
 win:
   executableName: portal-solution-desktop
 nsis:
@@ -18,13 +19,13 @@ nsis:
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
-mac:
-  entitlementsInherit: build/entitlements.mac.plist
-  extendInfo:
-    - NSCameraUsageDescription: Application requests access to the device's camera.
-    - NSMicrophoneUsageDescription: Application requests access to the device's microphone.
-    - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
-    - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
+#mac:
+#  entitlementsInherit: build/entitlements.mac.plist
+#  extendInfo:
+#    - NSCameraUsageDescription: Application requests access to the device's camera.
+#    - NSMicrophoneUsageDescription: Application requests access to the device's microphone.
+#    - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
+#    - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
 dmg:
   artifactName: ${name}-${version}.${ext}
 linux:
