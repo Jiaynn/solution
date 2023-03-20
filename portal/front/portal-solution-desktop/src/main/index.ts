@@ -50,9 +50,10 @@ function createWindow(): void {
       if (editor === 'android') {
         return cmd.run(`open -a /Applications/Android\\ Studio.app ${dest}`)
       }
-      if (editor === 'ios') {
+      if (editor === 'iOS') {
         return cmd.run(`open -a /Applications/Xcode.app ${dest}`)
       }
+      return dialog.showMessageBox({ message: '打开失败，请检查编辑器是否安装或项目是否存在' })
     })
   })
 }
