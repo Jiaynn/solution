@@ -22,10 +22,6 @@ const records: Bucket[] = [
 ]
 
 export function ProjectList() {
-  const onDownload = () => {
-    const url = 'http://searchbox.bj.bcebos.com/miniapp/demo-1.0.1.zip'
-    window.api.download(url)
-  }
   const onAndroid = () => {
     window.api.openEditor({
       editor: 'android',
@@ -41,32 +37,16 @@ export function ProjectList() {
   return (
     <BucketTable records={records}>
       <BucketTable.Column
-        id="idx"
-        title="索引"
-        width="40px"
-        render={(_, __, idx) => idx + 1}
-      />
-      <BucketTable.Column
-        title="空间名称"
+        title="项目名称"
         accessor="name"
-      />
-      <BucketTable.Column
-        title="空间类型"
-        accessor="type"
-        render={type => humanizeBucketType(type)}
       />
       <BucketTable.Column
         title="操作"
         render={() => <>
-          <Button type="primary" size="small" onClick={onDownload}>下载</Button>
           <Button type="primary" size="small" onClick={onAndroid}>安卓打开</Button>
           <Button type="primary" size="small" onClick={oniOS}>iOS打开</Button>
         </>}
       />
     </BucketTable>
   )
-}
-
-function humanizeBucketType(type: BucketType) {
-  return type === BucketType.Public ? '公开空间' : '私有空间'
 }

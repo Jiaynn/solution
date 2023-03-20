@@ -13,10 +13,16 @@ import { Tabs } from 'react-icecream/lib'
 const prefixCls = 'lowcode-detail'
 
 export const LowCodeDetail = () => {
-
   const { query } = useInjection(RouterStore)
   const { scheme, list } = query
   const [visible, setVisible] = useState(false)
+
+  const onSubmit = () => {
+    const url = 'http://searchbox.bj.bcebos.com/miniapp/demo-1.0.1.zip'
+    window.api.download(url)
+    setVisible(false)
+  }
+
   return (
     <div className={`${prefixCls}`}>
       <div className={`${prefixCls}-title`}>场景解决方案  /  {list}</div>
@@ -67,7 +73,7 @@ export const LowCodeDetail = () => {
         layout="horizontal"
         verticalGap="30px"
         labelColor="light"
-        onSubmit={() => setVisible(false)}
+        onSubmit={onSubmit}
         onCancel={() => setVisible(false)}
         maskClickable
         width={650}
