@@ -31,8 +31,8 @@ import { ResourceApis } from 'kodo/apis/bucket/resource'
 import { taskCenterGuideName, taskCenterSteps } from 'kodo/constants/guide'
 import { imageBasename, ImageRouter, ImageSidebar } from 'components/common/App/image'
 import { MessageRouter, MessageSidebar } from './message'
-import { LowcodeRouter, LowcodeSidebar } from 'components/common/App/lowcode'
-import { imagePath, lowcodePath, messagePath } from 'utils/router'
+import { LowcodeRouter } from 'components/common/App/lowcode'
+import { imagePath, messagePath } from 'utils/router'
 
 const AppContainer = observer(() => {
   const externalUrlModalStore = useInjection(ExternalUrlModalStore)
@@ -74,9 +74,6 @@ const AppContainer = observer(() => {
     if (pathname.startsWith(messagePath)) {
       return <MessageSidebar />
     }
-    if (pathname.startsWith(lowcodePath)) {
-      return <LowcodeSidebar />
-    }
     return null
   }
 
@@ -107,7 +104,9 @@ const AppContainer = observer(() => {
                 <TaskCenter />
               </GuideGroup>
               <ContentLayout
-                mainClassName="main content-layout-main"
+                mainClassName={classNames('content-layout-main', {
+                  'content-layout-main-lowcode': pathname.startsWith('/solutions/lowcode/')
+                })}
                 sidebar={renderSidebar()}
               >
                 <Switch>

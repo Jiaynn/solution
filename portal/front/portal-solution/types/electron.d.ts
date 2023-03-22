@@ -1,17 +1,18 @@
 export {}
 
 interface EditorInfo {
-  editor: 'android' | 'iOS',
-  fileName: string
+  platform: 'Android' | 'iOS',
+  filePath: string,
 }
 
-interface Api {
-  openEditor: (info: EditorInfo) => void,
+interface ElectronBridgeApi {
+  openEditor: (info: EditorInfo) => void
   download: (url: string) => void
+  getDownloadsPath: () => Promise<string>
 }
 
 declare global {
   interface Window {
-    api: Api
+    electronBridgeApi: ElectronBridgeApi
   }
 }
