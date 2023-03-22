@@ -19,8 +19,8 @@ export const lowcodeBasename = basenameMap[Solution.Lowcode]
 const prefixCls = 'lowcode-main'
 
 export const LowcodeSidebar = () => <SubSidebar className="lowcode-sub-sidebar" title={title}>
-  <LinkItem to="/lowcode/scene" relative>场景解决方案</LinkItem>
-  {isElectron && <LinkItem to="/lowcode/project" relative>项目列表</LinkItem>}
+  <LinkItem to="/scene" relative>场景解决方案</LinkItem>
+  {isElectron && <LinkItem to="/project" relative>项目列表</LinkItem>}
 </SubSidebar>
 
 const LowcodeRouterComponent = () => <Switch>
