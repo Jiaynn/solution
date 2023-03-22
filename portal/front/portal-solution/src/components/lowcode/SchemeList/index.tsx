@@ -11,7 +11,7 @@ import './style.less'
 const prefixCls = 'lowcode-scheme-list'
 
 export const LowCodeSchemeList = () => {
-  
+
   const routerStore = useInjection(RouterStore)
   const inputRef = useRef<HTMLInputElement>(null)
   function handleListClick(scheme: string, list: string) {

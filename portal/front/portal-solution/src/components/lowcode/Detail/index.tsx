@@ -7,8 +7,11 @@ import {
   Select, SelectOption as Option,
   CheckboxGroup, Checkbox, TextArea, Tooltip
 } from 'react-icecream-2'
-import './style.less'
 import { Tabs } from 'react-icecream/lib'
+
+import { isElectron } from 'constants/is'
+
+import './style.less'
 
 const prefixCls = 'lowcode-detail'
 
@@ -19,7 +22,9 @@ export const LowCodeDetail = () => {
 
   const onSubmit = () => {
     const url = 'http://searchbox.bj.bcebos.com/miniapp/demo-1.0.1.zip'
-    window.api.download(url)
+    if (isElectron) {
+      window.electronBridgeApi.download(url)
+    }
     setVisible(false)
   }
 
