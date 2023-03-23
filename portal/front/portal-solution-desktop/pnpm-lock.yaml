@@ -12,6 +12,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.54.1
   '@vitejs/plugin-react': ^3.1.0
   compressing: ^1.8.0
+  custom-electron-titlebar: 4.2.0-beta.0
   electron: ^22.3.2
   electron-builder: ^23.6.0
   electron-updater: ^5.3.0
@@ -31,6 +32,7 @@ dependencies:
   '@electron-toolkit/preload': 1.0.3_electron@22.3.3
   '@electron-toolkit/utils': 1.0.2_electron@22.3.3
   compressing: 1.8.0
+  custom-electron-titlebar: 4.2.0-beta.0_electron@22.3.3
   electron-updater: 5.3.0
   node-cmd: 5.0.0
 
@@ -1497,6 +1499,14 @@ packages:
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: true
+
+  /custom-electron-titlebar/4.2.0-beta.0_electron@22.3.3:
+    resolution: {integrity: sha512-d2HMG5uwlnTk6Qug37lYUsRFchXgqEyjhR+b9FnyIAN2l+GGnJohLOfmjgzBM3w/9TmuKI4XGvQiiyHujuZskg==}
+    peerDependencies:
+      electron: '>20.0.0'
+    dependencies:
+      electron: 22.3.3
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}

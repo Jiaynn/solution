@@ -12,7 +12,7 @@ import { basename } from 'constants/routes'
 
 const prefixCls = 'lowcode-scheme-list'
 
-export const LowCodeSchemeList = () => {
+export const LowcodeSchemeList = () => {
 
   const routerStore = useInjection(RouterStore)
 

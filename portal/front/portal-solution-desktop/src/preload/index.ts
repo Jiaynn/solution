@@ -1,5 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import { Titlebar, TitlebarColor } from 'custom-electron-titlebar'
 
 interface EditorInfo {
   platform: 'Android' | 'iOS'
@@ -35,3 +36,13 @@ if (process.contextIsolated) {
   // @ts-ignore (define in dts)
   window.electronBridgeApi = electronBridgeApi
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  // Title bar implemenation
+  const titleBar = new Titlebar({
+    titleHorizontalAlignment: 'center',
+    backgroundColor: TitlebarColor.fromHex('#252730'),
+    shadow: false
+  })
+  titleBar.updateTitle('七牛低代码平台')
+})
