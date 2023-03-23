@@ -5,15 +5,15 @@ import cmd from 'node-cmd'
 import { pageUrl } from './config'
 import { ElectronBridgeApi } from '../preload'
 
-import icon from '../../resources/icon.png?asset'
+import icon from '../../resources/icon.jpg?asset'
 
 export const createWindow = (): BrowserWindow => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1280,
-    height: 800,
-    minWidth: 960,
-    minHeight: 800,
+    width: 1024,
+    height: 768,
+    minWidth: 1024,
+    minHeight: 768,
     show: false,
     autoHideMenuBar: true,
     titleBarStyle: 'hidden',

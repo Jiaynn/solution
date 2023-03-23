@@ -1,5 +1,5 @@
 appId: com.electron.app
-productName: portal-solution-desktop
+productName: 七牛低代码平台
 directories:
   buildResources: build
 files:
