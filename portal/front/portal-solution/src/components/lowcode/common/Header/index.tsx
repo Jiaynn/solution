@@ -5,7 +5,7 @@ import { useInjection } from 'qn-fe-core/di'
 import { UserInfoStore } from 'portal-base/user/account'
 import { Dropdown, Menu, MenuItem } from 'react-icecream-2'
 
-import IconBackPNG from './icon-back.png'
+import IconBackPNG from './static/icon-back.png'
 
 import './style.less'
 
@@ -16,7 +16,7 @@ interface Props {
   style?: React.CSSProperties
 }
 
-export const LowCodeHeader: React.FC<Props> = props => {
+export const LowcodeHeader: React.FC<Props> = props => {
   const { className, style } = props
   const userInfoStore = useInjection(UserInfoStore)
 

@@ -1,17 +1,23 @@
 import SubSidebar, { LinkItem } from 'portal-base/common/components/SubSidebar'
 import React from 'react'
 import { Redirect, Route, Switch } from 'portal-base/common/router'
+import { SVGIcon } from 'portal-base/common/utils/svg'
+import { To } from 'qn-fe-core/router'
 
 import { isElectron } from 'constants/is'
 import { basenameMap, nameMap, Solution } from 'constants/solutions'
-import { LowCodeWelcome } from 'components/lowcode/Welcome'
-import { ProjectList } from 'components/lowcode/ProjectList'
-import { LowCodeSchemeList } from 'components/lowcode/SchemeList'
+import { LowcodeWelcome } from 'components/lowcode/Welcome'
+import { LowcodeProjectList } from 'components/lowcode/ProjectList'
+import { LowcodeSchemeList } from 'components/lowcode/SchemeList'
+import { LowcodeSchemeDetail } from 'components/lowcode/SchemeDetail'
+import { LowcodeHeader } from 'components/lowcode/common/Header'
 
-import { LowCodeHeader } from 'components/lowcode/common/Header'
+import IconScene from './static/icon-scene.svg'
+import IconApp from './static/icon-app.svg'
+import IconDeveloperCommunity from './static/icon-developer-community.svg'
+import IconDocumentCenter from './static/icon-document-center.svg'
 
 import './index.less'
-import SchemeDetail from 'components/lowcode/SchemeDetail'
 
 const title = nameMap[Solution.Lowcode]
 
@@ -19,9 +25,52 @@ export const lowcodeBasename = basenameMap[Solution.Lowcode]
 
 const prefixCls = 'lowcode-main'
 
+const links: Array<{
+  icon: string
+  title: string
+  to: To
+  visible: boolean
+}> = [
+  {
+    icon: IconScene,
+    title: '场景解决方案',
+    to: '/scene',
+    visible: true
+  },
+  {
+    icon: IconApp,
+    title: '应用管理',
+    to: '/project',
+    visible: isElectron
+  },
+  {
+    icon: IconDeveloperCommunity,
+    title: '开发者社区',
+    to: '/developer-community',
+    visible: true
+  },
+  {
+    icon: IconDocumentCenter,
+    title: '文档中心',
+    to: '/document-center',
+    visible: true
+  }
+]
+
 export const LowcodeSidebar = () => <SubSidebar className="lowcode-sub-sidebar" title={title}>
-  <LinkItem to="/scene" relative>场景解决方案</LinkItem>
-  {isElectron && <LinkItem to="/project" relative>项目列表</LinkItem>}
+  {
+    links.map(item => {
+      if (item.visible) {
+        return (
+          <LinkItem className="context" key={JSON.stringify(item.to)} to={item.to} relative>
+            <SVGIcon className="icon" src={item.icon} />
+            <span className="title">{item.title}</span>
+          </LinkItem>
+        )
+      }
+      return null
+    })
+  }
 </SubSidebar>
 
 const LowcodeRouterComponent = () => <Switch>
@@ -29,44 +78,60 @@ const LowcodeRouterComponent = () => <Switch>
     <Redirect relative to="/welcome" />
   </Route>
   <Route exact relative title="欢迎页" path="/welcome">
-    <LowCodeWelcome />
+    <LowcodeWelcome />
   </Route>
   <Route relative title="首页" path="/">
     <div className={prefixCls}>
       <LowcodeSidebar />
       <div className={`${prefixCls}-right`}>
-        <LowCodeHeader className={`${prefixCls}-right-header`} />
+        <LowcodeHeader className={`${prefixCls}-right-header`} />
         <div className={`${prefixCls}-right-content`}>
-          <Switch>
-            <Route exact relative path="/">
-              <Redirect relative to="/scene" />
-            </Route>
-            <Route relative path="/scene">
-              <Switch>
-                <Route exact relative path="/">
-                  <Redirect relative to="/list" />
-                </Route>
-                <Route relative path="/list">
-                  <LowCodeSchemeList />
-                </Route>
-                <Route relative path="/detail">
-                  <SchemeDetail />
-                </Route>
-              </Switch>
-            </Route>
-            {
-              isElectron && <Route relative path="/project">
+          <div className={`${prefixCls}-right-content-main`}>
+            <Switch>
+              <Route exact relative path="/">
+                <Redirect relative to="/scene" />
+              </Route>
+              <Route relative path="/scene">
                 <Switch>
                   <Route exact relative path="/">
                     <Redirect relative to="/list" />
                   </Route>
                   <Route relative path="/list">
-                    <ProjectList />
+                    <LowCodeSchemeList />
+                  </Route>
+                  <Route relative path="/detail">
+                    <SchemeDetail />
                   </Route>
                 </Switch>
               </Route>
-            }
-          </Switch>
+
+              {
+                isElectron && <Route relative path="/project">
+                  <Switch>
+                    <Route exact relative path="/">
+                      <Redirect relative to="/list" />
+                    </Route>
+                    <Route relative path="/list">
+                      <LowcodeProjectList />
+                    </Route>
+                  </Switch>
+                </Route>
+              }
+
+              <Route
+                relative
+                path="/developer-community"
+              >
+                <iframe width="100%" height="100%" src="https://segmentfault.com/site/qiniu" />
+              </Route>
+              <Route
+                relative
+                path="/document-center"
+              >
+                <iframe width="100%" height="100%" src="https://developer.qiniu.com/lowcode" />
+              </Route>
+            </Switch>
+          </div>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { RouterStore } from 'qn-fe-core/router'
 
 import { lowcodePath } from 'utils/router'
 
-export const LowCodeWelcome = () => {
+export const LowcodeWelcome = () => {
   const routerStore = useInjection(RouterStore)
 
   const onClick = () => {

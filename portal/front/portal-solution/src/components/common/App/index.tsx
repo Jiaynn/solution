@@ -54,6 +54,8 @@ const AppContainer = observer(() => {
   const noSidebarPaths: RegExp[] = [/^\/solutions\/lowcode\/welcome/]
   const noNavbar = noNavbarPaths.some(path => path.test(pathname))
   const noSidebar = noSidebarPaths.some(path => path.test(pathname))
+  const isLowcode = pathname.startsWith('/solutions/lowcode/')
+
   useEffect(() => {
     const timer = setInterval(() => {
       if (routerStore.location) {
@@ -86,7 +88,8 @@ const AppContainer = observer(() => {
             <Layout
               className={classNames({
                 'layout-no-sidebar': noSidebar,
-                'layout-no-navbar': noNavbar
+                'layout-no-navbar': noNavbar,
+                'layout-lowcode': isLowcode
               })}
             >
               <ExternalUrlModal
@@ -104,7 +107,7 @@ const AppContainer = observer(() => {
               </GuideGroup>
               <ContentLayout
                 mainClassName={classNames('content-layout-main', {
-                  'content-layout-main-lowcode': pathname.startsWith('/solutions/lowcode/')
+                  'content-layout-main-lowcode': isLowcode
                 })}
                 sidebar={renderSidebar()}
               >

@@ -55,7 +55,7 @@ const platformOptions = [
   <Option key="iOS" value="iOS">iOS</Option>
 ]
 
-export function ProjectList() {
+export function LowcodeProjectList() {
   const [scene, setScene] = useState<string | null>(null)
   const [platform, setPlatform] = useState<string | null>(null)
   const [downloadsPath, setDownloadsPath] = useState('')
