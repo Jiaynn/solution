@@ -4,7 +4,8 @@ import React from 'react'
 import './style.less'
 
 const prefixCls = 'lowcode-scheme-detail'
-export default function LowcodeSchemeDetail() {
+
+export function LowcodeSchemeDetail() {
   const { query } = useInjection(RouterStore)
   const { url } = query
 

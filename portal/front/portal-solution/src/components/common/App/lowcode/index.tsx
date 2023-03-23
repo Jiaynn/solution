@@ -73,73 +73,71 @@ export const LowcodeSidebar = () => <SubSidebar className="lowcode-sub-sidebar" 
   }
 </SubSidebar>
 
-const LowcodeRouterComponent = () => <Switch>
-  <Route exact relative title={title} path="/">
-    <Redirect relative to="/welcome" />
-  </Route>
-  <Route exact relative title="欢迎页" path="/welcome">
-    <LowcodeWelcome />
-  </Route>
-  <Route relative title="首页" path="/">
-    <div className={prefixCls}>
-      <LowcodeSidebar />
-      <div className={`${prefixCls}-right`}>
-        <LowcodeHeader className={`${prefixCls}-right-header`} />
-        <div className={`${prefixCls}-right-content`}>
-          <div className={`${prefixCls}-right-content-main`}>
-            <Switch>
-              <Route exact relative path="/">
-                <Redirect relative to="/scene" />
-              </Route>
-              <Route relative path="/scene">
-                <Switch>
-                  <Route exact relative path="/">
-                    <Redirect relative to="/list" />
-                  </Route>
-                  <Route relative path="/list">
-                    <LowCodeSchemeList />
-                  </Route>
-                  <Route relative path="/detail">
-                    <SchemeDetail />
-                  </Route>
-                </Switch>
-              </Route>
-
-              {
-                isElectron && <Route relative path="/project">
-                  <Switch>
-                    <Route exact relative path="/">
-                      <Redirect relative to="/list" />
-                    </Route>
-                    <Route relative path="/list">
-                      <LowcodeProjectList />
-                    </Route>
-                  </Switch>
-                </Route>
-              }
-
-              <Route
-                relative
-                path="/developer-community"
-              >
-                <iframe width="100%" height="100%" src="https://segmentfault.com/site/qiniu" />
-              </Route>
-              <Route
-                relative
-                path="/document-center"
-              >
-                <iframe width="100%" height="100%" src="https://developer.qiniu.com/lowcode" />
-              </Route>
-            </Switch>
-          </div>
-        </div>
-      </div>
-    </div>
-  </Route>
-</Switch>
-
 export const LowcodeRouter = (
   <Route relative title={title} path={lowcodeBasename}>
-    <LowcodeRouterComponent />
+    <Switch>
+      <Route exact relative title={title} path="/">
+        <Redirect relative to="/welcome" />
+      </Route>
+      <Route exact relative title="欢迎页" path="/welcome">
+        <LowcodeWelcome />
+      </Route>
+      <Route relative title="首页" path="/">
+        <div className={prefixCls}>
+          <LowcodeSidebar />
+          <div className={`${prefixCls}-right`}>
+            <LowcodeHeader className={`${prefixCls}-right-header`} />
+            <div className={`${prefixCls}-right-content`}>
+              <div className={`${prefixCls}-right-content-main`}>
+                <Switch>
+                  <Route exact relative path="/">
+                    <Redirect relative to="/scene" />
+                  </Route>
+                  <Route relative path="/scene">
+                    <Switch>
+                      <Route exact relative path="/">
+                        <Redirect relative to="/list" />
+                      </Route>
+                      <Route relative path="/list">
+                        <LowcodeSchemeList />
+                      </Route>
+                      <Route relative path="/detail">
+                        <LowcodeSchemeDetail />
+                      </Route>
+                    </Switch>
+                  </Route>
+
+                  {
+                    isElectron && <Route relative path="/project">
+                      <Switch>
+                        <Route exact relative path="/">
+                          <Redirect relative to="/list" />
+                        </Route>
+                        <Route relative path="/list">
+                          <LowcodeProjectList />
+                        </Route>
+                      </Switch>
+                    </Route>
+                  }
+
+                  <Route
+                    relative
+                    path="/developer-community"
+                  >
+                    <iframe width="100%" height="100%" src="https://segmentfault.com/site/qiniu" />
+                  </Route>
+                  <Route
+                    relative
+                    path="/document-center"
+                  >
+                    <iframe width="100%" height="100%" src="https://developer.qiniu.com/lowcode" />
+                  </Route>
+                </Switch>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Route>
+    </Switch>
   </Route>
 )
