@@ -1,28 +1,20 @@
 import React from 'react'
-import { Button } from 'react-icecream-2'
+import { Button, Link } from 'react-icecream-2'
 import { useInjection } from 'qn-fe-core/di'
 import { RouterStore } from 'qn-fe-core/router'
 
 import { lists, tabs } from 'components/lowcode/static/data'
+import { lowcodePath } from 'utils/router'
 
 import './style.less'
-
-import { lowcodeBasename } from 'components/common/App/lowcode'
-import { basename } from 'constants/routes'
 
 const prefixCls = 'lowcode-scheme-list'
 
 export const LowcodeSchemeList = () => {
-
   const routerStore = useInjection(RouterStore)
 
-  const handleLearnMore = (url: string) => {
-    routerStore.push(`${basename}${lowcodeBasename}/scene/detail?url=${url}`)
-  }
-
   return (
-
-    <div className={`${prefixCls}-contain`}>
+    <div className={`${prefixCls}-container`}>
       <div className={`${prefixCls}-header`}>
         <div className={`${prefixCls}`}>
           <div className={`${prefixCls}-title`}>
@@ -46,13 +38,13 @@ export const LowcodeSchemeList = () => {
             <div className={`${prefixCls}-content`}>
               {lists
                 .filter(card => card.type === item.id)
-                .map(list => (
+                .map(listItem => (
                   <div
-                    key={list.id}
+                    key={listItem.id}
                     className={`${prefixCls}-content-list`}
                   >
                     <img
-                      src={list.img}
+                      src={listItem.img}
                       alt=""
                       className={`${prefixCls}-content-list-img`}
                     />
@@ -60,34 +52,18 @@ export const LowcodeSchemeList = () => {
                       <div
                         className={`${prefixCls}-content-list-detail-title`}
                       >
-                        {list.title}
+                        {listItem.title}
                       </div>
                       <div
                         className={`${prefixCls}-content-list-detail-desc`}
                       >
-                        {list.desc}
+                        {listItem.desc}
                       </div>
                       <div
                         className={`${prefixCls}-content-list-detail-link`}
                       >
-                        <a
-                          href={list.link_console}
-                          style={
-                                list.link_console === ''
-                                  ? { display: 'none' }
-                                  : {}
-                          }
-                        >
-                          控制台
-                        </a>
-                        <span
-                          style={
-                                list.link_more === '' ? { display: 'none' } : {}
-                          }
-                          onClick={() => handleLearnMore(list.link_more)}
-                        >
-                          了解更多
-                        </span>
+                        {listItem.link_console && <Link onClick={() => routerStore.push(`${lowcodePath}/scene/iframe?url=${listItem.link_console}`)}>控制台</Link>}
+                        {listItem.link_more && <Link onClick={() => routerStore.push(`${lowcodePath}/scene/detail?url=${listItem.link_more}`)}>了解更多</Link>}
                       </div>
                     </div>
                   </div>
@@ -97,6 +73,5 @@ export const LowcodeSchemeList = () => {
         ))}
       </div>
     </div>
-
   )
 }

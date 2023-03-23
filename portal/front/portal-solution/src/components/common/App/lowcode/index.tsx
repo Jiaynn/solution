@@ -104,6 +104,14 @@ export const LowcodeRouter = (
                       <Route relative path="/detail">
                         <LowcodeSchemeDetail />
                       </Route>
+                      <Route
+                        relative
+                        path="/iframe"
+                        component={({ query }) => {
+                          const url = query.url as string
+                          return <iframe width="100%" height="100%" src={url} />
+                        }}
+                      />
                     </Switch>
                   </Route>
 

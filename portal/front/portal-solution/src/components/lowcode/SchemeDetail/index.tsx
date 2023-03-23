@@ -1,6 +1,7 @@
 import { useInjection } from 'qn-fe-core/di'
 import { RouterStore } from 'qn-fe-core/router'
 import React from 'react'
+
 import './style.less'
 
 const prefixCls = 'lowcode-scheme-detail'
@@ -12,10 +13,10 @@ export function LowcodeSchemeDetail() {
   return (
     <div className={`${prefixCls}-iframe`}>
       <iframe
-        src={url?.toString()}
         className={`${prefixCls}-iframe-shrink`}
-        width="135%"
-        height="135%"
+        src={url?.toString()}
+        width="100%"
+        height="100%"
       ></iframe>
     </div>
 

@@ -102,11 +102,13 @@ export function LowcodeProjectList() {
         <BucketTable.Column
           title="链路"
           accessor="linkPath"
-          render={(_value, record) => <Link>{downloadsPath}/{record.name}</Link>}
+          width="120px"
+          render={(_value, record) => <Link style={{ wordBreak: 'break-all' }}>{downloadsPath}/{record.name}</Link>}
         />
         <BucketTable.Column
           title="场景分类"
           accessor="scene"
+          width="120px"
         />
         <BucketTable.Column
           title="应用ID"
