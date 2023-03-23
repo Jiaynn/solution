@@ -7,10 +7,11 @@ import { basenameMap, nameMap, Solution } from 'constants/solutions'
 import { LowCodeWelcome } from 'components/lowcode/Welcome'
 import { ProjectList } from 'components/lowcode/ProjectList'
 import { LowCodeSchemeList } from 'components/lowcode/SchemeList'
-import { LowCodeDetail } from 'components/lowcode/Detail'
+
 import { LowCodeHeader } from 'components/lowcode/common/Header'
 
 import './index.less'
+import SchemeDetail from 'components/lowcode/SchemeDetail'
 
 const title = nameMap[Solution.Lowcode]
 
@@ -49,7 +50,7 @@ const LowcodeRouterComponent = () => <Switch>
                   <LowCodeSchemeList />
                 </Route>
                 <Route relative path="/detail">
-                  <LowCodeDetail />
+                  <SchemeDetail />
                 </Route>
               </Switch>
             </Route>
