@@ -54,7 +54,6 @@ const AppContainer = observer(() => {
   const noSidebarPaths: RegExp[] = [/^\/solutions\/lowcode\/welcome/]
   const noNavbar = noNavbarPaths.some(path => path.test(pathname))
   const noSidebar = noSidebarPaths.some(path => path.test(pathname))
-
   useEffect(() => {
     const timer = setInterval(() => {
       if (routerStore.location) {
