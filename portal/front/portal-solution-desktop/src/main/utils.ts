@@ -9,11 +9,13 @@ import icon from '../../resources/icon.jpg?asset'
 
 export const createWindow = (): BrowserWindow => {
   // Create the browser window.
+  const minWidth = 1024
+  const minHeight = 768
   const mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 768,
-    minWidth: 1024,
-    minHeight: 768,
+    width: minWidth,
+    height: minHeight,
+    minWidth,
+    minHeight,
     show: false,
     autoHideMenuBar: true,
     titleBarStyle: 'hidden',
@@ -24,6 +26,8 @@ export const createWindow = (): BrowserWindow => {
       nodeIntegration: true
     }
   })
+
+  mainWindow.center()
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
