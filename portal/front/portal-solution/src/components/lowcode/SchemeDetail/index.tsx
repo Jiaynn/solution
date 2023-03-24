@@ -1,24 +1,37 @@
 import { useInjection } from 'qn-fe-core/di'
 import { RouterStore } from 'qn-fe-core/router'
-import React from 'react'
-
-import './style.less'
-
-const prefixCls = 'lowcode-scheme-detail'
+import React, { useEffect, useMemo, useState } from 'react'
 
 export function LowcodeSchemeDetail() {
   const { query } = useInjection(RouterStore)
   const { url } = query
+  const [scaleValue, setScaleValue] = useState<number>(1024 / 1280)
+  const width = useMemo(() => `${1 / scaleValue * 100}%`, [scaleValue])
+
+  useEffect(() => {
+    const calculateWidth = () => {
+      const container = document.querySelector<HTMLDivElement>('.lowcode-main-right-content-main')
+      if (container) {
+        const value = container.clientWidth / 1280
+        setScaleValue(value)
+      }
+    }
+    calculateWidth()
+    window.addEventListener('resize', calculateWidth)
+    return () => {
+      window.removeEventListener('resize', calculateWidth)
+    }
+  }, [])
 
   return (
-    <div className={`${prefixCls}-iframe`}>
-      <iframe
-        className={`${prefixCls}-iframe-shrink`}
-        src={url?.toString()}
-        width="100%"
-        height="100%"
-      ></iframe>
-    </div>
-
+    <iframe
+      src={url?.toString()}
+      width={width}
+      height={width}
+      style={{
+        transformOrigin: 'left top',
+        transform: `scale(${scaleValue})`
+      }}
+    />
   )
 }
