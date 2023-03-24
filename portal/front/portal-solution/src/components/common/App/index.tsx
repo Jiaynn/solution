@@ -3,7 +3,7 @@
  * @author nighca <nighca@live.cn>
  */
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Route, Redirect, Switch } from 'portal-base/common/router'
 import Layout, { ContentLayout } from 'portal-base/common/components/Layout'
 import { FileClipboardProvider } from 'kodo-base/lib/context/file-clipboard'
@@ -17,8 +17,8 @@ import Role from 'portal-base/common/components/Role'
 import { ToasterStore } from 'portal-base/common/toaster'
 import ExternalUrlModal from 'kodo-base/lib/components/common/ExternalUrlModal'
 import { observer } from 'mobx-react'
-import { RouterStore } from 'qn-fe-core/router'
 import classNames from 'classnames'
+import { useLocation } from 'react-use'
 
 import { basename } from 'constants/routes'
 import { BootProvider } from 'kodo/components/common/BootProvider'
@@ -38,7 +38,8 @@ const AppContainer = observer(() => {
   const externalUrlModalStore = useInjection(ExternalUrlModalStore)
   const toasterStore = useInjection(ToasterStore)
   const resourceApis = useInjection(ResourceApis)
-  const routerStore = useInjection(RouterStore)
+  const location = useLocation()
+  const pathname = location.pathname || ''
 
   const kodoBaseContextValue: KodoBaseContext = {
     roleWrap: Role,
@@ -48,25 +49,11 @@ const AppContainer = observer(() => {
     openExternalUrlModal: externalUrlModalStore.open
   }
 
-  const [pathname, setPathname] = useState('')
-
   const noNavbarPaths: RegExp[] = [/^\/solutions\/lowcode/]
   const noSidebarPaths: RegExp[] = [/^\/solutions\/lowcode\/welcome/]
   const noNavbar = noNavbarPaths.some(path => path.test(pathname))
   const noSidebar = noSidebarPaths.some(path => path.test(pathname))
   const isLowcode = pathname.startsWith('/solutions/lowcode/')
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (routerStore.location) {
-        setPathname(routerStore.location.pathname)
-      }
-
-    }, 60)
-    return () => {
-      clearInterval(timer)
-    }
-  }, [routerStore])
 
   const renderSidebar = () => {
     if (pathname.startsWith(imagePath)) {
