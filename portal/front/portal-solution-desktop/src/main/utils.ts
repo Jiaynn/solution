@@ -5,7 +5,7 @@ import cmd from 'node-cmd'
 import { pageUrl } from './config'
 import { ElectronBridgeApi } from '../preload'
 
-import icon from '../../resources/icon.jpg?asset'
+import icon from '../../resources/logo.png?asset'
 
 export const createWindow = (): BrowserWindow => {
   // Create the browser window.

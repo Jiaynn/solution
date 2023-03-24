@@ -19,7 +19,8 @@ nsis:
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
-#mac:
+mac:
+  icon: ./resources/logo.png
 #  entitlementsInherit: build/entitlements.mac.plist
 #  extendInfo:
 #    - NSCameraUsageDescription: Application requests access to the device's camera.
