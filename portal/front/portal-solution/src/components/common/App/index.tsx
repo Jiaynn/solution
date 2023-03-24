@@ -67,10 +67,24 @@ const AppContainer = observer(() => {
 
   return (
     <KodoBaseProvider value={kodoBaseContextValue}>
-      <ApplyRegionModal />
-      <RefreshCdnModal />
       <FileClipboardProvider>
         <TaskCenterContextProvider>
+          <ApplyRegionModal />
+          <RefreshCdnModal />
+          <ExternalUrlModal
+            visible={externalUrlModalStore.visible}
+            objects={externalUrlModalStore.objects!}
+            title={externalUrlModalStore.title}
+            domain={externalUrlModalStore.domain!}
+            onCancel={externalUrlModalStore.handleClose}
+            getSignedDownloadUrls={resourceApis.getSignedDownloadUrls}
+            isPrivateBucket={!!externalUrlModalStore.isPrivateBucket}
+            mediaStyleConfig={externalUrlModalStore.mediaStyleConfig}
+          />
+          <GuideGroup name={taskCenterGuideName} steps={taskCenterSteps}>
+            <TaskCenter />
+          </GuideGroup>
+
           <Route path={basename}>
             <Layout
               className={classNames({
@@ -79,19 +93,6 @@ const AppContainer = observer(() => {
                 'layout-lowcode': isLowcode
               })}
             >
-              <ExternalUrlModal
-                visible={externalUrlModalStore.visible}
-                objects={externalUrlModalStore.objects!}
-                title={externalUrlModalStore.title}
-                domain={externalUrlModalStore.domain!}
-                onCancel={externalUrlModalStore.handleClose}
-                getSignedDownloadUrls={resourceApis.getSignedDownloadUrls}
-                isPrivateBucket={!!externalUrlModalStore.isPrivateBucket}
-                mediaStyleConfig={externalUrlModalStore.mediaStyleConfig}
-              />
-              <GuideGroup name={taskCenterGuideName} steps={taskCenterSteps}>
-                <TaskCenter />
-              </GuideGroup>
               <ContentLayout
                 mainClassName={classNames('content-layout-main', {
                   'content-layout-main-lowcode': isLowcode
