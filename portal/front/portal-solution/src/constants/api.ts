@@ -11,3 +11,7 @@ export const imageService = {
 export const messageService = {
   getMessageList: `${prefix}/unifiedmessage/list`
 }
+
+export const commonService = {
+  getLiveWhitelistCheck: `${prefix}/live/whitelist/check`
+}

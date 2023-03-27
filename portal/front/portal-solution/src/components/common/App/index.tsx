@@ -4,7 +4,7 @@
  */
 
 import React from 'react'
-import { Route, Redirect, Switch } from 'portal-base/common/router'
+import { Route, Switch } from 'portal-base/common/router'
 import Layout, { ContentLayout } from 'portal-base/common/components/Layout'
 import { FileClipboardProvider } from 'kodo-base/lib/context/file-clipboard'
 import { TaskCenterContextProvider } from 'kodo-base/lib/components/TaskCenter'
@@ -29,10 +29,11 @@ import GuideGroup from 'kodo/components/common/Guide'
 import { TaskCenter } from 'kodo/components/common/TaskCenter'
 import { ResourceApis } from 'kodo/apis/bucket/resource'
 import { taskCenterGuideName, taskCenterSteps } from 'kodo/constants/guide'
-import { imageBasename, ImageRouter, ImageSidebar } from 'components/common/App/image'
+import { ImageRouter, ImageSidebar } from 'components/common/App/image'
 import { MessageRouter, MessageSidebar } from './message'
 import { LowcodeRouter } from 'components/common/App/lowcode'
 import { imagePath, messagePath } from 'utils/router'
+import { Auth } from 'components/common/Auth'
 
 const AppContainer = observer(() => {
   const externalUrlModalStore = useInjection(ExternalUrlModalStore)
@@ -99,14 +100,13 @@ const AppContainer = observer(() => {
                 })}
                 sidebar={renderSidebar()}
               >
-                <Switch>
-                  <Route relative exact title="首页" path="/">
-                    <Redirect relative to={imageBasename} />
-                  </Route>
-                  {ImageRouter}
-                  {MessageRouter}
-                  {LowcodeRouter}
-                </Switch>
+                <Auth>
+                  <Switch>
+                    {ImageRouter}
+                    {MessageRouter}
+                    {LowcodeRouter}
+                  </Switch>
+                </Auth>
               </ContentLayout>
             </Layout>
           </Route>

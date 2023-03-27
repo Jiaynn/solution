@@ -121,6 +121,7 @@ import ImageSolutionStore from 'store/imageSolution'
 import { cdnProvides } from 'cdn/components/App/BootProvider'
 import { MessageSolutionApi } from 'apis/message'
 import { ConfigurationStore } from 'components/image/Configuration/ConfigureImageStyle/ConfigurationStore'
+import { CommonApi } from 'apis/common'
 // import { MockApi } from 'apis/mock'
 
 const DevTools = React.lazy(() => import('../DevTools'))
@@ -331,7 +332,8 @@ function BootLocalProvider(props: React.PropsWithChildren<{}>) {
       // { identifier: MockApi, constr: MockApi },
       { identifier: ObjectPickerStore, constr: ObjectPickerStore },
       { identifier: MediaStyleDrawerStore, constr: MediaStyleDrawerStore },
-      { identifier: ExternalUrlModalStore, constr: ExternalUrlModalStore }
+      { identifier: ExternalUrlModalStore, constr: ExternalUrlModalStore },
+      { identifier: CommonApi, constr: CommonApi }
     ],
     []
   )
