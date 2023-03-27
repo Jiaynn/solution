@@ -1,0 +1,78 @@
+.lowcode-welcome {
+  margin: -20px;
+  background-color: #07beff;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+ 
+  &-name {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    
+    img {
+      width: 103.19px;
+      height: 68.74px;
+    }
+   
+    p {
+      font-weight: 500;
+      font-size: 20px;
+      color: #00011f;
+    }
+  }
+
+  &-btn {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 340px;
+    height: 48px;
+    border: none;
+    background: linear-gradient(0deg, #00011f, #00011f), #07beff;
+    border-radius: 71px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 48px;
+    color: #f6f7fc;
+    text-align: center;
+    
+    &:hover{
+      cursor: pointer;
+    }
+
+
+  }
+
+  &-footer {
+    position: absolute;
+    bottom: 0;
+    height: 70px;
+    text-align: center;
+    width: 100%;
+    line-height: 70px;
+    font-size: 14px;
+    color: #333333;
+    font-family: "PingFang SC";
+    font-style: normal;
+    font-weight: 400;
+    background: linear-gradient(
+        113.73deg,
+        rgba(255, 255, 255, 0.06) 5.31%,
+        rgba(255, 255, 255, 0.06) 30.61%,
+        rgba(255, 255, 255, 0) 31.75%
+      ),
+      rgba(241, 243, 249, 0.12);
+    box-shadow: inset 1.97465px -1.97465px 11.8479px rgba(248, 248, 255, 0.2);
+    backdrop-filter: blur(78.9861px);
+   
+    a {
+      font-weight: bold;
+      color: #333333;
+      text-decoration: underline;
+    }
+  }
+}
