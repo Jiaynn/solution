@@ -9,8 +9,8 @@ import icon from '../../resources/logo.png?asset'
 
 export const createWindow = (): BrowserWindow => {
   // Create the browser window.
-  const minWidth = 1024
-  const minHeight = 768
+  const minWidth = 1280
+  const minHeight = 800
   const mainWindow = new BrowserWindow({
     width: minWidth,
     height: minHeight,
