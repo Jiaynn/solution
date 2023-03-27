@@ -23,6 +23,14 @@ export function LowcodeSchemeDetail() {
     }
   }, [])
 
+  useEffect(() => {
+    const right = document.querySelector('.lowcode-main-right-content')
+    if (right) {
+      right.scrollTop = 0
+    }
+
+  }, [])
+
   return (
     <iframe
       src={url?.toString()}
@@ -32,6 +40,7 @@ export function LowcodeSchemeDetail() {
         transformOrigin: 'left top',
         transform: `scale(${scaleValue})`
       }}
+
     />
   )
 }

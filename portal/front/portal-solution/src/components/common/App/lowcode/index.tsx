@@ -18,6 +18,7 @@ import IconDeveloperCommunity from './static/icon-developer-community.svg'
 import IconDocumentCenter from './static/icon-document-center.svg'
 
 import './index.less'
+import { LowcodePrompt } from 'components/lowcode/Prompt'
 
 const title = nameMap[Solution.Lowcode]
 
@@ -81,6 +82,9 @@ export const LowcodeRouter = (
       </Route>
       <Route exact relative title="欢迎页" path="/welcome">
         <LowcodeWelcome />
+      </Route>
+      <Route exact relative title="提示页" path="/prompt">
+        <LowcodePrompt />
       </Route>
       <Route relative title="首页" path="/">
         <div className={prefixCls}>
