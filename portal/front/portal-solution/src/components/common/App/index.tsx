@@ -5,7 +5,7 @@
 
 import React from 'react'
 import { Route, Switch } from 'portal-base/common/router'
-import Layout, { ContentLayout } from 'portal-base/common/components/Layout'
+import Layout, { ContentLayoutScaffold } from 'portal-base/common/components/Layout'
 import { FileClipboardProvider } from 'kodo-base/lib/context/file-clipboard'
 import { TaskCenterContextProvider } from 'kodo-base/lib/components/TaskCenter'
 import LocalProvider from 'react-icecream/lib/locale-provider'
@@ -19,6 +19,7 @@ import ExternalUrlModal from 'kodo-base/lib/components/common/ExternalUrlModal'
 import { observer } from 'mobx-react'
 import classNames from 'classnames'
 import { useLocation } from 'react-use'
+import Page from 'portal-base/common/components/Page'
 
 import { basename } from 'constants/routes'
 import { BootProvider } from 'kodo/components/common/BootProvider'
@@ -34,6 +35,8 @@ import { MessageRouter, MessageSidebar } from './message'
 import { LowcodeRouter } from 'components/common/App/lowcode'
 import { imagePath, messagePath } from 'utils/router'
 import { Auth } from 'components/common/Auth'
+
+const prefixCls = 'app-container'
 
 const AppContainer = observer(() => {
   const externalUrlModalStore = useInjection(ExternalUrlModalStore)
@@ -88,26 +91,32 @@ const AppContainer = observer(() => {
 
           <Route path={basename}>
             <Layout
-              className={classNames({
-                'layout-no-sidebar': noSidebar,
-                'layout-no-navbar': noNavbar,
-                'layout-lowcode': isLowcode
+              className={classNames(prefixCls, {
+                [`${prefixCls}-layout-no-sidebar`]: noSidebar,
+                [`${prefixCls}-layout-no-navbar`]: noNavbar
               })}
             >
-              <ContentLayout
-                mainClassName={classNames('content-layout-main', {
-                  'content-layout-main-lowcode': isLowcode
-                })}
+              <ContentLayoutScaffold
                 sidebar={renderSidebar()}
+                hasSpace={!isLowcode}
+                mainClassName={classNames({
+                  [`${prefixCls}-scaffold-lowcode`]: isLowcode
+                })}
               >
-                <Auth>
-                  <Switch>
-                    {ImageRouter}
-                    {MessageRouter}
-                    {LowcodeRouter}
-                  </Switch>
-                </Auth>
-              </ContentLayout>
+                <Page
+                  hasBackground
+                  hasSpace={!isLowcode}
+                  mainClassName={classNames(`${prefixCls}-page`)}
+                >
+                  <Auth>
+                    <Switch>
+                      {ImageRouter}
+                      {MessageRouter}
+                      {LowcodeRouter}
+                    </Switch>
+                  </Auth>
+                </Page>
+              </ContentLayoutScaffold>
             </Layout>
           </Route>
         </TaskCenterContextProvider>
