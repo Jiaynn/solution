@@ -1,6 +1,7 @@
 import { join } from 'path'
 import { BrowserWindow, dialog, session, shell } from 'electron'
 import cmd from 'node-cmd'
+import { setupTitlebar } from 'custom-electron-titlebar/main'
 
 import { pageUrl } from './config'
 import { ElectronBridgeApi } from '../preload'
@@ -8,6 +9,8 @@ import { ElectronBridgeApi } from '../preload'
 import icon from '../../resources/logo.png?asset'
 
 export const createWindow = (): BrowserWindow => {
+  setupTitlebar()
+
   // Create the browser window.
   const minWidth = 1280
   const minHeight = 800
