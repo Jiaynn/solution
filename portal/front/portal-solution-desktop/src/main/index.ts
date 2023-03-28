@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 
-import { createWindow, persistentCookie } from './utils'
+import { createWindow, persistentCookie, setUpResponseHeader } from './utils'
 import { initRendererToMain } from './ipc'
 
 // This method will be called when Electron has finished
