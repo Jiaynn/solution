@@ -90,3 +90,20 @@ export const callEditor = (platform: Platform, dest: string): void => {
   }
   dialog.showMessageBox({ message: '打开失败，请检查编辑器是否安装或项目是否存在' })
 }
+
+export const setUpResponseHeader = (): void => {
+  session.defaultSession.webRequest.onHeadersReceived(
+    {
+      urls: ['https://portal.qiniu.com/*']
+    },
+    (details, callback) => {
+      console.log('onHeadersReceived', details)
+      callback({
+        responseHeaders: {
+          ...details.responseHeaders,
+          'Content-Security-Policy': ["default-src 'none'"]
+        }
+      })
+    }
+  )
+}
