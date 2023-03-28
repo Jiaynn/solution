@@ -1,7 +1,6 @@
 import { join } from 'path'
 import { BrowserWindow, dialog, session, shell } from 'electron'
 import cmd from 'node-cmd'
-import { setupTitlebar } from 'custom-electron-titlebar/main'
 
 import { pageUrl } from './config'
 import { ElectronBridgeApi } from '../preload'
@@ -9,8 +8,6 @@ import { ElectronBridgeApi } from '../preload'
 import icon from '../../resources/logo.png?asset'
 
 export const createWindow = (): BrowserWindow => {
-  setupTitlebar()
-
   // Create the browser window.
   const minWidth = 1280
   const minHeight = 800
@@ -21,7 +18,7 @@ export const createWindow = (): BrowserWindow => {
     minHeight,
     show: false,
     autoHideMenuBar: true,
-    titleBarStyle: 'hidden',
+    title: '七牛低代码平台',
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -94,16 +91,26 @@ export const callEditor = (platform: Platform, dest: string): void => {
 export const setUpResponseHeader = (): void => {
   session.defaultSession.webRequest.onHeadersReceived(
     {
-      urls: ['https://portal.qiniu.com/*']
+      urls: [
+        'https://portal.qiniu.com/*',
+        'https://sso.qiniu.com/*',
+        'https://developer.qiniu.com/*',
+        'https://segmentfault.com/*'
+      ]
     },
     (details, callback) => {
-      console.log('onHeadersReceived', details)
-      callback({
-        responseHeaders: {
-          ...details.responseHeaders,
-          'Content-Security-Policy': ["default-src 'none'"]
+      const resHeadersStr = JSON.stringify(Object.keys(details.responseHeaders || {}))
+      const removeHeaders = ['X-Frame-Options', 'Content-Security-Policy'] // 在这里把你想要移除的header头部添加上，代码中已经实现了忽略大小了，所以不用担心匹配不到大小写的问题
+      removeHeaders.forEach((header) => {
+        const regPattern = new RegExp(header, 'ig')
+        const matchResult = resHeadersStr.match(regPattern)
+        if (matchResult && matchResult.length) {
+          matchResult.forEach((i) => {
+            delete details.responseHeaders?.[i]
+          })
         }
       })
+      callback({ cancel: false, responseHeaders: details.responseHeaders })
     }
   )
 }
