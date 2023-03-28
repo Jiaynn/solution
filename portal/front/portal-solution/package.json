@@ -10,7 +10,13 @@
     "clear": "jest --clearCache",
     "snapshot": "jest -u",
     "validate": "npm run lint && npm run test",
-    "release": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . -l portal-solution"
+    "release": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . -l portal-solution",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "packages/**/src/**/*.{ts,tsx}": [
+      "npm run lint --fix"
+    ]
   },
   "dependencies": {
     "ahooks": "^3.7.5",
@@ -94,6 +100,7 @@
     "express-http-proxy": "^1.5.1",
     "fec-builder": "^2.6.0",
     "jest": "^24.5.0",
+    "lint-staged": "^13.2.0",
     "moment-timezone": "^0.5.14",
     "react-test-renderer": "~17.0.1",
     "ts-jest": "^24.0.0",
