@@ -5,10 +5,8 @@ import { injectable } from 'qn-fe-core/di'
 
 import { imageService } from 'constants/api'
 import {
-  OpenSolutionResult,
   OpenSolutionOptions,
   CreateBucketOptions,
-  CreateBucketResult,
   IsOpenSolutionOptions,
   IsOpenSolutionResult,
   CompleteSolutionOptions,
@@ -55,7 +53,7 @@ export class ImageSolutionApis {
    * @param options
    * @returns
    */
-  openSolution(options: OpenSolutionOptions): Promise<OpenSolutionResult> {
+  openSolution(options: OpenSolutionOptions): Promise<boolean> {
     return this.solutionCommonClient.post(`${imageService.openSolution}`, options)
   }
 
@@ -65,7 +63,7 @@ export class ImageSolutionApis {
    * @url /bucket/create
    * @returns
    */
-  createBucket(options: CreateBucketOptions): Promise<CreateBucketResult> {
+  createBucket(options: CreateBucketOptions): Promise<void> {
     return this.solutionCommonClient.post(`${imageService.createBucket}`, options)
   }
 

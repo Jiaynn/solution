@@ -12,7 +12,7 @@ export interface IsOpenSolutionResult {
 }
 
 /**
- * 接口 [是否配置方案↗](http://portalv4.dev.qiniu.io/api/proxy/solution/status)
+ * 接口 [方案配置状态↗](http://portalv4.dev.qiniu.io/api/proxy/solution/status)
  *
  * @请求头 `GET /api/proxy/solution/status`
  */
@@ -33,11 +33,6 @@ export interface OpenSolutionOptions {
   solution_code: string;
   mode: number;
 }
-export interface OpenSolutionResult {
-  request_id?: string;
-  code?: number;
-  message?: string;
-}
 
 /**
  * 接口 [创建bucket↗](http://portalv4.dev.qiniu.io/api/proxy/solution/bucket/create)
@@ -48,11 +43,6 @@ export interface CreateBucketOptions {
   region: string;
   bucket_id: string;
   solution_code: string;
-}
-export interface CreateBucketResult {
-  request_id?: string;
-  code?: number;
-  message?: string;
 }
 
 /**

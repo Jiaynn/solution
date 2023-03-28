@@ -1,4 +1,19 @@
-export const lists = [
+interface SchemeLists{
+  id:number
+  type:number
+  title:string
+  img:string
+  desc:string
+  link_console:string
+  link_more:string
+}
+
+interface SchemeTabs{
+  id:number
+  title:string
+}
+
+export const lists:SchemeLists[] = [
   {
     id: 0,
     type: 1,
@@ -44,10 +59,9 @@ export const lists = [
     link_console: 'https://s.qiniu.com/uYjYB3 ',
     link_more: 'https://www.qiniu.com/solutions/ent-live'
   }
-
 ]
 
-export const tabs = [
+export const tabs:SchemeTabs[] = [
   {
     id: 0,
     title: '视频营销'
@@ -56,5 +70,4 @@ export const tabs = [
     id: 1,
     title: '社交互娱'
   }
-
 ]
