@@ -1,37 +1,30 @@
-export type Record = {
-  /**
-   * 项目icon
-   */
-  icon?: string
+export type Platform = Parameters<typeof window.electronBridgeApi.openEditor>[0]['platform']
+
+export type ProjectInfo = {
   /**
    * 项目名称
    */
-  name?: string
+  name: string
   /**
    * 项目描述
    */
-  description?: string
-  /**
-   * 链路
-   */
-  linkPath?: string
+  description: string
   /**
    * 场景分类
+   * 1: 视频营销/统一消息推送
    */
-  scene?: string
+  sceneType: number
   /**
    * 应用ID
    */
-  appId?: string
+  appId: string
   /**
-   * 更新时间
+   * 创建时间
    */
-  updateTime?: number
+  createTime: number
   /**
    * 端类型
+   * 'Android' | 'iOS'
    */
-  platform?: string
+  platform: Platform[]
 }
-
-export type Platform = Parameters<typeof window.electronBridgeApi.openEditor>[0]['platform']
-
