@@ -109,16 +109,16 @@ const LowcodeRouterComponent = () => {
         isElectron ? <Redirect relative to="/welcome" /> : <Redirect relative to="/scene" />
         }
       </Route>
-      <Route exact relative title="欢迎页" path="/welcome">
+      <Route exact relative title="七牛低代码平台" path="/welcome">
         <LowcodeWelcome />
       </Route>
-      <Route exact relative title="提示页" path="/prompt">
+      <Route exact relative title="七牛低代码平台" path="/prompt">
         <LowcodePrompt />
       </Route>
-      <Route exact relative title="欢迎页" path="/demo">
+      <Route exact relative title="七牛低代码平台" path="/demo">
         <Demo />
       </Route>
-      <Route relative title="首页" path="/">
+      <Route relative title="七牛低代码平台" path="/">
         <div className={prefixCls}>
           <LowcodeSidebar />
           <div className={`${prefixCls}-right`}>

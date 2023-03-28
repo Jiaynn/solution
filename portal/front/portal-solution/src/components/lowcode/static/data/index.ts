@@ -20,7 +20,7 @@ export const lists:SchemeLists[] = [
     title: '图片处理分发加速',
     img: 'https://demo-qnrtc-files.qnsdk.com/lowcode/docuement.png',
     desc: '针对有海量用户生成内容的场景。七牛云存储服务的高并发能力使您灵活应对大流量的业务场景。您可以对存储在云端的图片文件进行数据处理。',
-    link_console: 'https://portal.qiniu.com/solutions/image/configuration/step/1?shouldCreateBucket=false&configurationState=true',
+    link_console: window.location.origin + '/solutions/image/configuration/step/1?shouldCreateBucket=false&configurationState=true',
     link_more: ''
   },
   {
@@ -47,7 +47,7 @@ export const lists:SchemeLists[] = [
     title: '统一消息营销触达',
     img: 'https://demo-qnrtc-files.qnsdk.com/lowcode/sms.png',
     desc: '提供了包括短信、5G消息、微信、钉钉、客户端APP等多种消息触达客户通道，支持预设消息内容与变量，规范消息格式； 提供推送统计报表，从渠道、通道、用户多维度分析转换率，以进行针对性促活。',
-    link_console: 'https://portal.qiniu.com/solutions/message',
+    link_console: window.location.origin + '/solutions/message',
     link_more: ''
   },
   {
