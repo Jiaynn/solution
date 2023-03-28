@@ -30,6 +30,7 @@ app.whenReady().then(() => {
 
   initRendererToMain(mainWindow)
   persistentCookie()
+  setUpResponseHeader()
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common
