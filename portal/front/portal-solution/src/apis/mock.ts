@@ -3,10 +3,6 @@ import Mock from 'better-mock'
 import { mockRequest } from './request'
 
 import {
-  OpenSolutionResult,
-  OpenSolutionOptions,
-  CreateBucketOptions,
-  CreateBucketResult,
   IsOpenSolutionOptions,
   IsOpenSolutionResult,
   CompleteSolutionOptions,
@@ -46,28 +42,6 @@ export class MockApi {
       })
     )
   }
-  // 开通服务
-  static openSolution(_options: OpenSolutionOptions) {
-    return mockRequest<OpenSolutionResult>(
-      Mock.mock({
-        request_id: '@id',
-        message: '@ctitle(5,10)',
-        code: '@integer(0, 100)'
-      })
-    )
-  }
-
-  // 创建bucket
-  static createBucket(_options: CreateBucketOptions) {
-    return mockRequest<CreateBucketResult>(
-      Mock.mock({
-        request_id: '@id',
-        message: '@ctitle(5,10)',
-        code: '@integer(0, 100)'
-      })
-    )
-  }
-
   // 方案配置完成
   static completeSolution(_options: CompleteSolutionOptions) {
     return mockRequest<CompleteSolutionResult>(
