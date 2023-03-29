@@ -1,48 +1,51 @@
 import { join } from 'path'
-import { app, BrowserWindow, dialog, ipcMain, session } from 'electron'
+import { app, BrowserWindow, ipcMain, session } from 'electron'
 import compressing from 'compressing'
 
 import { callEditor } from './utils'
 
-export const initRendererToMain = (mainWindow: BrowserWindow): void => {
-  ipcMain.on('download', (_, url) => {
-    mainWindow.webContents.downloadURL(url)
-  })
+const unzip = (fileName: string, filePath: string, suffix: string): Promise<void> => {
+  if (suffix === '.zip') {
+    const source = `${filePath}/${fileName}${suffix}`
+    console.log('unzip dest', source)
+    return compressing.zip.uncompress(source, filePath)
+  }
+  return Promise.reject(new TypeError(`不支持的文件类型：${suffix}`))
+}
+
+const registerWillDownload = (mainWindow: BrowserWindow): void => {
   session.defaultSession.on('will-download', (_, item) => {
     const fileName = item.getFilename()
     const filePath = join(app.getPath('downloads'), fileName)
-    console.log('will-download filePath', filePath)
     item.setSavePath(filePath)
+
+    mainWindow.webContents.send('downloadStatus', {
+      code: 0,
+      message: `${fileName}下载中`
+    })
+
     item.once('done', () => {
-      console.log('will-download download done.')
-      const suffix = fileName.split('.').pop()
-      if (suffix === 'zip') {
-        compressing.zip
-          .uncompress(filePath, filePath.replace(`.${suffix}`, ''))
-          .then(() => {
-            console.log('compressing.zip.uncompress success')
-            return dialog.showMessageBox({ message: `${fileName}下载完成` })
-          })
-          .catch((err) => {
-            console.log('compressing.zip.uncompress error', err)
-            return dialog.showMessageBox({ message: `${fileName}下载失败` })
-          })
-        return
-      }
-      dialog.showMessageBox({ message: '不支持的格式' })
+      mainWindow.webContents.send('downloadStatus', {
+        code: 1,
+        message: `${fileName}下载成功`
+      })
     })
   })
+}
 
-  ipcMain.on('openEditor', (_, info) => {
+export const initIPC = (mainWindow: BrowserWindow): void => {
+  registerWillDownload(mainWindow)
+
+  ipcMain.handle('openEditor', (_, info) => {
     const { filePath, platform } = info
-    console.log('openEditor', info)
-    callEditor(platform, filePath)
+    return callEditor(platform, filePath)
   })
 
-  ipcMain.on('getDownloadsPath', (_, value) => {
-    console.log('getDownloadPath', value)
-  })
   ipcMain.handle('getDownloadsPath', async () => {
     return app.getPath('downloads')
+  })
+
+  ipcMain.handle('unzip', async (_, fileName, filePath, suffix) => {
+    return unzip(fileName, filePath, suffix)
   })
 }

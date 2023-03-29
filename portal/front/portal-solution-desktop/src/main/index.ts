@@ -2,7 +2,7 @@ import { app, BrowserWindow } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 
 import { createWindow, persistentCookie, setUpResponseHeader } from './utils'
-import { initRendererToMain } from './ipc'
+import { initIPC } from './ipc'
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -28,7 +28,7 @@ app.whenReady().then(() => {
     }
   })
 
-  initRendererToMain(mainWindow)
+  initIPC(mainWindow)
   persistentCookie()
   setUpResponseHeader()
 })

@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { BrowserWindow, dialog, session, shell, app } from 'electron'
+import { BrowserWindow, session, shell, app } from 'electron'
 import cmd from 'node-cmd'
 
 import { pageUrl } from './config'
@@ -65,28 +65,40 @@ export const persistentCookie = (): void => {
 }
 
 type Platform = Parameters<ElectronBridgeApi['openEditor']>[0]['platform']
-export const callEditor = (platform: Platform, dest: string): void => {
-  if (process.platform === 'darwin') {
-    // 运行在 macOS 上
-    if (platform === 'Android') {
-      cmd.run(`open -a /Applications/Android\\ Studio.app ${dest}`)
-      return
+export const callEditor = (platform: Platform, dest: string): Promise<unknown> => {
+  return new Promise((resolve, reject) => {
+    if (process.platform === 'darwin') {
+      // 运行在 macOS 上
+      if (platform === 'Android') {
+        cmd.run(`open -a /Applications/Android\\ Studio.app ${dest}`, (err, data) => {
+          if (!err) {
+            return resolve(data)
+          }
+          return reject(err)
+        })
+        return
+      }
+      if (platform === 'iOS') {
+        cmd.run(`open -a /Applications/Xcode.app ${dest}`, (err, data) => {
+          if (!err) {
+            return resolve(data)
+          }
+          return reject(err)
+        })
+      }
     }
-    if (platform === 'iOS') {
-      cmd.run(`open -a /Applications/Xcode.app ${dest}`)
-      return
+    if (process.platform === 'win32') {
+      // 运行在 Windows 上
+      // ...
+      return reject(new TypeError('暂不支持 Windows 平台'))
     }
-  }
-  if (process.platform === 'win32') {
-    // 运行在 Windows 上
-    // ...
-    return
-  }
-  if (process.platform === 'linux') {
-    // 运行在 Linux 上
-    // ...
-  }
-  dialog.showMessageBox({ message: '打开失败，请检查编辑器是否安装或项目是否存在' })
+    if (process.platform === 'linux') {
+      // 运行在 Linux 上
+      // ...
+      return reject(new TypeError('暂不支持 Linux 平台'))
+    }
+    reject(new TypeError('暂不支持当前平台'))
+  })
 }
 
 export const setUpResponseHeader = (): void => {
