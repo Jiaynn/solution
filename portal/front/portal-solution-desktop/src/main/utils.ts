@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { BrowserWindow, dialog, session, shell } from 'electron'
+import { BrowserWindow, dialog, session, shell, app } from 'electron'
 import cmd from 'node-cmd'
 
 import { pageUrl } from './config'
@@ -19,7 +19,7 @@ export const createWindow = (): BrowserWindow => {
     show: false,
     autoHideMenuBar: true,
     title: '七牛低代码平台',
-    ...(process.platform === 'linux' ? { icon } : {}),
+    icon,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false,
@@ -27,6 +27,7 @@ export const createWindow = (): BrowserWindow => {
     }
   })
 
+  app.dock.setIcon(icon)
   mainWindow.center()
 
   mainWindow.on('ready-to-show', () => {
