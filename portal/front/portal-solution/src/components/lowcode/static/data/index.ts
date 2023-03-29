@@ -1,19 +1,19 @@
-interface SchemeLists{
-  id:number
-  type:number
-  title:string
-  img:string
-  desc:string
-  link_console:string
-  link_more:string
+interface SchemeLists {
+  id: number;
+  type: number;
+  title: string;
+  img: string;
+  desc: string;
+  link_console: string;
+  link_more: string;
 }
 
-interface SchemeTabs{
-  id:number
-  title:string
+interface SchemeTabs {
+  id: number;
+  title: string;
 }
 
-export const lists:SchemeLists[] = [
+export const lists: SchemeLists[] = [
   {
     id: 0,
     type: 1,
@@ -56,12 +56,12 @@ export const lists:SchemeLists[] = [
     title: '企业直播',
     img: 'https://demo-qnrtc-files.qnsdk.com/lowcode/zhibo.png',
     desc: '覆盖营销、带货、企业培训、活动直播等场景；无需开发即可使用，快速集成和接入直播服务，支持与企业自有的会员系统、商城系统对接；丰富的互营销互动及数据分析能力，实现内容生产、直播数据与流量三方面的闭环。',
-    link_console: 'https://s.qiniu.com/uYjYB3 ',
+    link_console: 'https://s.qiniu.com/uYjYB3',
     link_more: 'https://www.qiniu.com/solutions/ent-live'
   }
 ]
 
-export const tabs:SchemeTabs[] = [
+export const tabs: SchemeTabs[] = [
   {
     id: 0,
     title: '视频营销'

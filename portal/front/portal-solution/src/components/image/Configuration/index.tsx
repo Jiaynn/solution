@@ -163,7 +163,7 @@ export default observer(function Configuration() {
   const onPrev = () => {
     const prefixRoute = `${imagePath}/configuration/step`
     const { bucket, configurationState } = routerStore.query
-    const shouldCreateBucketState = JSON.parse(String(configurationState))
+    const shouldCreateBucketState = JSON.parse(String(configurationState || 'false'))
     if (currentStep === 2) {
       routerStore.push(
         `${prefixRoute}/${currentStep - 1}?configurationState=${configurationState}&shouldCreateBucket=${!shouldCreateBucketState}`
