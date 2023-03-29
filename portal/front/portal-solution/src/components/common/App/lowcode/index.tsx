@@ -9,7 +9,6 @@ import { basenameMap, nameMap, Solution } from 'constants/solutions'
 import { LowcodeWelcome } from 'components/lowcode/Welcome'
 import { LowcodeProjectList } from 'components/lowcode/ProjectList'
 import { LowcodeSchemeList } from 'components/lowcode/SchemeList'
-import { LowcodeSchemeDetail } from 'components/lowcode/SchemeDetail'
 import { LowcodeHeader } from 'components/lowcode/common/Header'
 import { LowcodePrompt } from 'components/lowcode/Prompt'
 import { Demo } from 'components/lowcode/Demo'
@@ -21,6 +20,7 @@ import IconDeveloperCommunity from './static/icon-developer-community.svg'
 import IconDocumentCenter from './static/icon-document-center.svg'
 
 import './index.less'
+import { LowcodeIframe } from 'components/lowcode/common/Iframe'
 
 const title = nameMap[Solution.Lowcode]
 
@@ -137,16 +137,14 @@ const LowcodeRouterComponent = () => {
                       <Route relative path="/list">
                         <LowcodeSchemeList />
                       </Route>
-                      <Route relative path="/detail">
-                        <LowcodeSchemeDetail />
-                      </Route>
+                      <Route relative
+                        path="/detail"
+                        component={({ query }) => (<LowcodeIframe url={query.url as string} isAdaptive />)} />
+
                       <Route
                         relative
                         path="/iframe"
-                        component={({ query }) => {
-                          const url = query.url as string
-                          return <iframe width="100%" height="100%" src={url} />
-                        }}
+                        component={({ query }) => (<LowcodeIframe url={query.url as string} isAdaptive />)}
                       />
                     </Switch>
                   </Route>
@@ -168,13 +166,13 @@ const LowcodeRouterComponent = () => {
                     relative
                     path="/developer-community"
                   >
-                    <iframe width="100%" height="100%" src="https://segmentfault.com/site/qiniu" />
+                    <LowcodeIframe url="https://segmentfault.com/site/qiniu" isAdaptive={false} width="100%" height="100%" />
                   </Route>
                   <Route
                     relative
                     path="/document-center"
                   >
-                    <iframe width="100%" height="100%" src="https://developer.qiniu.com/lowcode" />
+                    <LowcodeIframe url="https://developer.qiniu.com/lowcode" isAdaptive={false} width="100%" height="100%" />
                   </Route>
                 </Switch>
               </div>

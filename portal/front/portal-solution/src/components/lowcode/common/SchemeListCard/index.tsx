@@ -1,29 +1,28 @@
 import React from 'react'
-import { useInjection } from 'qn-fe-core/di'
-import { RouterStore } from 'qn-fe-core/router'
 import { Link } from 'react-icecream-2'
 
-import { lowcodePath } from 'utils/router'
 import './style.less'
 
 interface ListCardProps{
-  schemeImg:string
-  schemeTitle:string
-  schemeDesc:string
-  schemeLinkConsole?:string
-  schemeLinkMore?:string
+  img:string
+  title:string
+  describe:string
+  linkConsole?:string
+  linkMore?:string
+  handleLinkConsole?:()=>void
+  handleLinkMore?:()=>void
 }
 
 const prefixCls = 'lowcode-scheme-list-card'
 export const SchemeListCard: React.FC<ListCardProps> = props => {
-  const { schemeImg, schemeTitle, schemeDesc, schemeLinkConsole, schemeLinkMore } = props
-  const routerStore = useInjection(RouterStore)
+  const { img, title, describe, linkConsole, linkMore, handleLinkConsole, handleLinkMore } = props
+
   return (
     <div
       className={`${prefixCls}-content-list`}
     >
       <img
-        src={schemeImg}
+        src={img}
         alt=""
         className={`${prefixCls}-content-list-img`}
       />
@@ -31,18 +30,18 @@ export const SchemeListCard: React.FC<ListCardProps> = props => {
         <div
           className={`${prefixCls}-content-list-detail-title`}
         >
-          {schemeTitle}
+          {title}
         </div>
         <div
           className={`${prefixCls}-content-list-detail-desc`}
         >
-          {schemeDesc}
+          {describe}
         </div>
         <div
           className={`${prefixCls}-content-list-detail-link`}
         >
-          {schemeLinkConsole && <Link onClick={() => routerStore.push(`${lowcodePath}/scene/iframe?url=${schemeLinkConsole}`)}>控制台</Link>}
-          {schemeLinkMore && <Link onClick={() => routerStore.push(`${lowcodePath}/scene/detail?url=${schemeLinkMore}`)}>了解更多</Link>}
+          {linkConsole && <Link onClick={handleLinkConsole}>控制台</Link>}
+          {linkMore && <Link onClick={handleLinkMore}>了解更多</Link>}
         </div>
       </div>
     </div>
