@@ -1,18 +1,19 @@
-
 import React, { useEffect, useMemo, useState } from 'react'
 
-import { iframeWebPageWidth, iframeWidth } from 'constants/iframe'
-
 interface LowcodeIframeProps extends React.IframeHTMLAttributes<HTMLIFrameElement> {
-  isAdaptive?: boolean
-  url?:string
+  isAdaptive?: boolean;
+  url?: string;
 }
 
-export const LowcodeIframe:React.FC<LowcodeIframeProps> = props => {
+const iframeWebPageWidth = 1280
+const iframeWidth = 1040
+
+export const LowcodeIframe: React.FC<LowcodeIframeProps> = props => {
   const { url, width, height, isAdaptive } = props
 
   const [scaleValue, setScaleValue] = useState<number>(iframeWidth / iframeWebPageWidth)
   const adaptWidth = useMemo(() => `${1 / scaleValue * 100}%`, [scaleValue])
+
   useEffect(() => {
     const calculateWidth = () => {
       const container = document.querySelector<HTMLDivElement>('.lowcode-main-right-content-main')
@@ -35,13 +36,15 @@ export const LowcodeIframe:React.FC<LowcodeIframeProps> = props => {
     }
   }, [])
 
-  return (
-    <>
-      {
-        isAdaptive
-        ? <iframe src={url} width={adaptWidth} height={adaptWidth} style={{ transformOrigin: 'left top', transform: `scale(${scaleValue})` }} />
-        : <iframe src={url} width={width} height={height} />
-      }
-    </>
-  )
+  if (isAdaptive) {
+    return (
+      <iframe
+        src={url}
+        width={adaptWidth}
+        height={adaptWidth}
+        style={{ transformOrigin: 'left top', transform: `scale(${scaleValue})` }}
+      />
+    )
+  }
+  return <iframe src={url} width={width} height={height} />
 }

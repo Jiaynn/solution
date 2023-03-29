@@ -137,14 +137,21 @@ const LowcodeRouterComponent = () => {
                       <Route relative path="/list">
                         <LowcodeSchemeList />
                       </Route>
-                      <Route relative
+                      <Route
+                        relative
                         path="/detail"
-                        component={({ query }) => (<LowcodeIframe url={query.url as string} isAdaptive />)} />
-
+                        component={({ query }) => {
+                          const url = query.url as string
+                          return <LowcodeIframe key={url} url={url} isAdaptive />
+                        }}
+                      />
                       <Route
                         relative
                         path="/iframe"
-                        component={({ query }) => (<LowcodeIframe url={query.url as string} isAdaptive />)}
+                        component={({ query }) => {
+                          const url = query.url as string
+                          return <LowcodeIframe key={url} url={url} isAdaptive />
+                        }}
                       />
                     </Switch>
                   </Route>
@@ -166,13 +173,13 @@ const LowcodeRouterComponent = () => {
                     relative
                     path="/developer-community"
                   >
-                    <LowcodeIframe url="https://segmentfault.com/site/qiniu" isAdaptive={false} width="100%" height="100%" />
+                    <LowcodeIframe key="/developer-community" url="https://segmentfault.com/site/qiniu" isAdaptive={false} width="100%" height="100%" />
                   </Route>
                   <Route
                     relative
                     path="/document-center"
                   >
-                    <LowcodeIframe url="https://developer.qiniu.com/lowcode" isAdaptive={false} width="100%" height="100%" />
+                    <LowcodeIframe key="/document-center" url="https://developer.qiniu.com/lowcode" isAdaptive width="100%" height="100%" />
                   </Route>
                 </Switch>
               </div>

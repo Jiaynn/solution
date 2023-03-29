@@ -44,7 +44,7 @@ export default function DomainName(props: DomainNameProps) {
   }
 
   useEffect(() => {
-    const state = JSON.parse(String(query.configurationState))
+    const state = JSON.parse(String(query.configurationState || false))
     Promise.all([
       imageSolutionStore.fetchBucketList(),
       bucketStore.fetchBuckets(true)

@@ -16,15 +16,19 @@ const prefixCls = 'lowcode-scheme-list'
 export const LowcodeSchemeList = () => {
   const routerStore = useInjection(RouterStore)
   const [visible, setVisible] = useState(false)
+
   function handleCancel() {
     setVisible(false)
   }
-  function handleLinkConsole(url:string) {
-    routerStore.push(`${lowcodePath}/scene/iframe?url=${url}`)
+
+  function onConsoleClick(url:string) {
+    routerStore.push(`${lowcodePath}/scene/iframe?url=${encodeURIComponent(url)}`)
   }
-  function handleLinkMore(url:string) {
-    routerStore.push(`${lowcodePath}/scene/detail?url=${url}`)
+
+  function onMoreClick(url:string) {
+    routerStore.push(`${lowcodePath}/scene/detail?url=${encodeURIComponent(url)}`)
   }
+
   return (
     <div className={`${prefixCls}-container`}>
       <div className={`${prefixCls}-header`}>
@@ -40,34 +44,36 @@ export const LowcodeSchemeList = () => {
               立即咨询
             </Button>
             <LowcodeModal visible={visible} handleCancel={() => handleCancel()} />
-
           </div>
         </div>
       </div>
 
       <div>
-        {tabs.map(item => (
-          <div key={item.id}>
-            <div className={`${prefixCls}-scheme-title`}>{item.title}</div>
-            <div className={`${prefixCls}-content`}>
-
-              {lists
-                .filter(card => card.type === item.id)
-                .map(listItem => (
-                  <div key={listItem.id}>
-                    <SchemeListCard img={listItem.img}
-                      title={listItem.title}
-                      describe={listItem.desc}
-                      linkConsole={listItem.link_console}
-                      linkMore={listItem.link_more}
-                      handleLinkConsole={() => handleLinkConsole(listItem.link_console)}
-                      handleLinkMore={() => handleLinkMore(listItem.link_more)} />
-                  </div>
-
-                ))}
+        {
+          tabs.map(item => (
+            <div key={item.id}>
+              <div className={`${prefixCls}-scheme-title`}>{item.title}</div>
+              <div className={`${prefixCls}-content`}>
+                {
+                  lists
+                    .filter(card => card.type === item.id)
+                    .map(listItem => (
+                      <div key={listItem.id}>
+                        <SchemeListCard
+                          img={listItem.img}
+                          title={listItem.title}
+                          describe={listItem.desc}
+                          linkConsole={listItem.link_console}
+                          linkMore={listItem.link_more}
+                          onConsoleClick={() => onConsoleClick(listItem.link_console)}
+                          onMoreClick={() => onMoreClick(listItem.link_more)} />
+                      </div>
+                    ))
+                }
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   )
