@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from 'react-icecream-2'
+import { useInjection } from 'qn-fe-core/di'
+import { RouterStore } from 'qn-fe-core/router'
 
 import { lists, tabs } from 'components/lowcode/static/data'
 
@@ -7,15 +9,22 @@ import './style.less'
 import { LowcodeModal } from '../common/Modal'
 import { SchemeListCard } from '../common/SchemeListCard'
 
+import { lowcodePath } from 'utils/router'
+
 const prefixCls = 'lowcode-scheme-list'
 
 export const LowcodeSchemeList = () => {
-
+  const routerStore = useInjection(RouterStore)
   const [visible, setVisible] = useState(false)
   function handleCancel() {
     setVisible(false)
   }
-
+  function handleLinkConsole(url:string) {
+    routerStore.push(`${lowcodePath}/scene/iframe?url=${url}`)
+  }
+  function handleLinkMore(url:string) {
+    routerStore.push(`${lowcodePath}/scene/detail?url=${url}`)
+  }
   return (
     <div className={`${prefixCls}-container`}>
       <div className={`${prefixCls}-header`}>
@@ -46,11 +55,13 @@ export const LowcodeSchemeList = () => {
                 .filter(card => card.type === item.id)
                 .map(listItem => (
                   <div key={listItem.id}>
-                    <SchemeListCard schemeImg={listItem.img}
-                      schemeTitle={listItem.title}
-                      schemeDesc={listItem.desc}
-                      schemeLinkConsole={listItem.link_console}
-                      schemeLinkMore={listItem.link_more} />
+                    <SchemeListCard img={listItem.img}
+                      title={listItem.title}
+                      describe={listItem.desc}
+                      linkConsole={listItem.link_console}
+                      linkMore={listItem.link_more}
+                      handleLinkConsole={() => handleLinkConsole(listItem.link_console)}
+                      handleLinkMore={() => handleLinkMore(listItem.link_more)} />
                   </div>
 
                 ))}
