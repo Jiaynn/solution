@@ -83,9 +83,27 @@ export function LowcodeProjectList() {
    * @param record
    */
   const onOpenEditor = (type: Platform, record: ProjectInfo) => {
-    window.electronBridgeApi.openEditor({
-      platform: type,
-      filePath: `${downloadsPath}/${record.name}`
+    window.electronBridgeApi.unzip(
+      record.name,
+      downloadsPath,
+      '.zip'
+    ).then(() => {
+      Modal.success({
+        content: '解压成功'
+      })
+      return window.electronBridgeApi.openEditor({
+        platform: type,
+        filePath: `${downloadsPath}/${record.name}`
+      })
+    }).then(() => {
+      Modal.success({
+        content: '打开编辑器成功'
+      })
+    }).catch(error => {
+      Modal.error({
+        title: '打开编辑器失败',
+        content: error.message
+      })
     })
   }
 
