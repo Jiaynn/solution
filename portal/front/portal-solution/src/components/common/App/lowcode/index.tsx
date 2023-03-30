@@ -1,5 +1,5 @@
 import SubSidebar, { LinkItem } from 'portal-base/common/components/SubSidebar'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Redirect, Route, Switch } from 'portal-base/common/router'
 import { SVGIcon } from 'portal-base/common/utils/svg'
 import { To } from 'qn-fe-core/router'
@@ -12,7 +12,6 @@ import { LowcodeSchemeList } from 'components/lowcode/SchemeList'
 import { LowcodeHeader } from 'components/lowcode/common/Header'
 import { LowcodePrompt } from 'components/lowcode/Prompt'
 import { Demo } from 'components/lowcode/Demo'
-import { ProjectInfo } from 'components/lowcode/ProjectList/type'
 
 import IconScene from './static/icon-scene.svg'
 import IconApp from './static/icon-app.svg'
@@ -76,37 +75,12 @@ export const LowcodeSidebar = () => <SubSidebar className="lowcode-sub-sidebar" 
   }
 </SubSidebar>
 
-const LowcodeRouterComponent = () => {
-
-  const messageHandler = (event: MessageEvent<{
-    type: 'createProject',
-    data: ProjectInfo
-  }>) => {
-    const { data } = event
-    if (
-      typeof data === 'object' && data !== null
-      && data.type === 'createProject'
-    ) {
-      const { data: projectInfo } = data
-      const projectList = JSON.parse(window.localStorage.getItem('projectList') || '[]')
-      window.localStorage.setItem('projectList', JSON.stringify(
-        [...projectList, projectInfo]
-      ))
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener('message', messageHandler)
-    return () => {
-      window.removeEventListener('message', messageHandler)
-    }
-  }, [])
-
-  return (
+export const LowcodeRouter = (
+  <Route relative title={title} path={lowcodeBasename}>
     <Switch>
       <Route exact relative title={title} path="/">
         {
-        isElectron ? <Redirect relative to="/welcome" /> : <Redirect relative to="/scene" />
+          isElectron ? <Redirect relative to="/welcome" /> : <Redirect relative to="/scene" />
         }
       </Route>
       <Route exact relative title="七牛低代码平台" path="/welcome">
@@ -188,11 +162,5 @@ const LowcodeRouterComponent = () => {
         </div>
       </Route>
     </Switch>
-  )
-}
-
-export const LowcodeRouter = (
-  <Route relative title={title} path={lowcodeBasename}>
-    <LowcodeRouterComponent />
   </Route>
 )

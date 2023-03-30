@@ -48,10 +48,12 @@ import {
   InteractMarketingRouter,
   InteractMarketingSideBar
 } from './interfactMarketing'
+import { useWindowMessage } from 'components/common/App/useWindowMessage'
 
 const prefixCls = 'app-container'
 
 const AppContainer = observer(() => {
+  useWindowMessage()
   const externalUrlModalStore = useInjection(ExternalUrlModalStore)
   const toasterStore = useInjection(ToasterStore)
   const resourceApis = useInjection(ResourceApis)
