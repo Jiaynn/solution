@@ -14,8 +14,6 @@ import SelectBucket from 'components/image/common/SelectBucket'
 
 import { BucketStore } from 'kodo/stores/bucket'
 
-import { ConfigurationStore } from './ConfigurationStore'
-
 import { getFirstQuery } from 'kodo/utils/url'
 import ImageSolutionStore from 'store/imageSolution'
 import { imagePath } from 'utils/router'
@@ -26,8 +24,6 @@ interface IProps {
 
 export default observer(function ConfigureImageStyle({ query }: IProps) {
   const { bucket, configurationState } = query
-  // 等于1 为true第一次进入
-  const isFirstVisit = JSON.parse(getFirstQuery(configurationState) || 'false')
 
   const defaultBucketName = getFirstQuery(bucket) as string
 
@@ -35,10 +31,8 @@ export default observer(function ConfigureImageStyle({ query }: IProps) {
 
   const [visible, setVisible] = useState(false)
   const bucketStore = useInjection(BucketStore)
-  const configurationStore = useInjection(ConfigurationStore)
   const routerStore = useInjection(RouterStore)
 
-  configurationStore.setIsFirstVisit(isFirstVisit)
   const imageSolutionStore = useInjection(ImageSolutionStore)
 
   useEffect(() => {

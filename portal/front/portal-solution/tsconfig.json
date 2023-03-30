@@ -30,7 +30,8 @@
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
     "strictFunctionTypes": false,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "strictNullChecks": true
   },
   "exclude": [
     "e2e",
