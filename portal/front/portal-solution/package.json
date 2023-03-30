@@ -14,8 +14,8 @@
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
-    "packages/**/src/**/*.{ts,tsx}": [
-      "npm run lint --fix"
+    "src/**/*.{ts,tsx}": [
+      "eslint --cache --fix"
     ]
   },
   "dependencies": {
