@@ -93,7 +93,7 @@ export enum Category {
   /** 智慧新媒体 */
   SmartMedia = 'smart_media',
   /** 元宇宙 */
-  MetaUniverse = 'meta_universe',
+  MetaUniverse = 'meta_universe'
 }
 
 /** 视频营销 */

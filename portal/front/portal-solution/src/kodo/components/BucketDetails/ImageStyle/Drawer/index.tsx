@@ -5,7 +5,7 @@
 
 import * as React from 'react'
 import { observer } from 'mobx-react'
-import { Icon,Modal } from 'react-icecream/lib'
+import { Icon, Modal } from 'react-icecream/lib'
 import { useInjection } from 'qn-fe-core/di'
 import { ToasterStore } from 'portal-base/common/toaster'
 import { useLocalStore } from 'qn-fe-core/local-store'

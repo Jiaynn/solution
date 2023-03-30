@@ -1,0 +1,60 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  .subConfig {
+    position: relative;
+    background-color: #fbfbfb;
+    padding: 0.75rem 1rem 1rem 1rem;
+    border: #d7d7d7 1px solid;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    & > .links {
+      align-self: flex-end;
+    }
+
+    .subConfigTitle {
+      width: 7.5rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .configWithShowMore {
+      @height: 3rem;
+      display: flex;
+      & > .title {
+        height: @height;
+        line-height: @height;
+      }
+      & > :global(.ant-radio-group) {
+        display: inline-grid;
+        grid-template-columns: repeat(3, minmax(12rem, 1fr));
+        flex-grow: 1;
+        & > :global(.ant-radio-wrapper) {
+          line-height: @height;
+          & > span:nth-child(2) {
+            display: inline-block;
+            width: 100%;
+          }
+        }
+      }
+
+      .domainWrapper {
+        display: flex;
+        .domain {
+          overflow: hidden;
+        }
+        .gaba {
+          color: #efbe7c;
+          padding-left: 1rem;
+        }
+      }
+      .showMore {
+        width: 5rem;
+        height: 100%;
+        align-self: flex-end;
+      }
+    }
+  }
+}

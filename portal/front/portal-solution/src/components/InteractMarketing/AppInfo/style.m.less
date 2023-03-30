@@ -1,0 +1,62 @@
+.appInfoWrapper {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  align-items: center;
+  .descTitle {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  .desc {
+    color: #8d8d8d;
+  }
+  .infoWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    width: 55rem;
+    .info {
+      display: flex;
+      .title {
+        line-height: 2rem;
+        align-self: flex-start;
+        text-align: right;
+        width: 6rem;
+      }
+      .contentWrapper {
+        width: 32rem;
+        .content {
+          background-color: #f5f5f5;
+          border: 1px solid #d9d9d9;
+          border-radius: 0.2rem;
+          color: #bfbfbf;
+          line-height: 2rem;
+          min-height: 2rem;
+          padding: 0 1rem;
+          position: relative;
+          overflow-wrap: anywhere;
+        }
+        .list {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          & > * {
+            .content;
+          }
+        }
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          column-gap: 2.25rem;
+          row-gap: 1rem;
+          & > * {
+            .content;
+          }
+        }
+      }
+    }
+  }
+  .footer {
+    align-self: flex-end;
+  }
+}

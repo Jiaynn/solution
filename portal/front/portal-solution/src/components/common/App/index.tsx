@@ -5,7 +5,9 @@
 
 import React from 'react'
 import { Route, Switch } from 'portal-base/common/router'
-import Layout, { ContentLayoutScaffold } from 'portal-base/common/components/Layout'
+import Layout, {
+  ContentLayoutScaffold
+} from 'portal-base/common/components/Layout'
 import { FileClipboardProvider } from 'kodo-base/lib/context/file-clipboard'
 import { TaskCenterContextProvider } from 'kodo-base/lib/components/TaskCenter'
 import LocalProvider from 'react-icecream/lib/locale-provider'
@@ -32,9 +34,20 @@ import { ResourceApis } from 'kodo/apis/bucket/resource'
 import { taskCenterGuideName, taskCenterSteps } from 'kodo/constants/guide'
 import { ImageRouter, ImageSidebar } from 'components/common/App/image'
 import { MessageRouter, MessageSidebar } from './message'
-import { LowcodeRouter } from 'components/common/App/lowcode'
-import { imagePath, messagePath } from 'utils/router'
 import { Auth } from 'components/common/Auth'
+
+import { LowcodeRouter } from 'components/common/App/lowcode'
+
+import {
+  imagePath,
+  interactMarketingPath,
+  messagePath
+} from 'utils/router'
+
+import {
+  InteractMarketingRouter,
+  InteractMarketingSideBar
+} from './interfactMarketing'
 
 const prefixCls = 'app-container'
 
@@ -65,6 +78,9 @@ const AppContainer = observer(() => {
     }
     if (pathname.startsWith(messagePath)) {
       return <MessageSidebar />
+    }
+    if (pathname.startsWith(interactMarketingPath)) {
+      return <InteractMarketingSideBar />
     }
     return null
   }
@@ -113,6 +129,7 @@ const AppContainer = observer(() => {
                       {ImageRouter}
                       {MessageRouter}
                       {LowcodeRouter}
+                      {InteractMarketingRouter}
                     </Switch>
                   </Auth>
                 </Page>
@@ -125,10 +142,12 @@ const AppContainer = observer(() => {
   )
 })
 
-const App = () => <BootProvider>
-  <LocalProvider locale={zhCN}>
-    <AppContainer />
-  </LocalProvider>
-</BootProvider>
+const App = () => (
+  <BootProvider>
+    <LocalProvider locale={zhCN}>
+      <AppContainer />
+    </LocalProvider>
+  </BootProvider>
+)
 
 export default App
