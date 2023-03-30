@@ -4,7 +4,6 @@ import { Button } from 'react-icecream'
 import { lowcodePath } from 'utils/router'
 import { ProjectInfo } from 'components/lowcode/ProjectList/type'
 import { isElectron } from 'constants/is'
-import { downloadOnWeb } from 'components/InteractMarketing/common/DownloadModal/store'
 
 const androidUrl = 'https://demo-qnrtc-files.qnsdk.com/solutions/portal/temp/238846d1d03fc84e257ce881610003c20ac13e48c359007ccede1dd41e003cb0/1680057292/droid_qlive_demo.zip'
 const iosUrl = 'https://demo-qnrtc-files.qnsdk.com/solutions/portal/code/ios/frameworks.zip'
@@ -39,29 +38,24 @@ export const Demo: React.FC = () => {
     }
   }
 
+  const downloadFiles = (urls: string[]) => {
+    const job = urls[0]
+    if (job) {
+      setLoading1(true)
+      window.top?.electronBridgeApi.downloadFile(job).then(() => {
+        setLoading1(false)
+        downloadFiles(urls.slice(1))
+      })
+    }
+  }
+
   const onDownload = () => {
     if (isInIframe && isElectron) {
-      const queue = [
+      const urls = [
         iosUrl,
         androidUrl
       ]
-      let job = queue.shift()
-      if (job) { downloadOnWeb(job) }
-      window.top?.electronBridgeApi?.getDownloadStatus((_, result) => {
-        console.log('result', result, job)
-        if (!job) return
-        if (result.code === 0) {
-          setLoading1(true)
-        }
-        if (result.code === 1) {
-          setLoading1(false)
-
-          job = queue.shift()
-          if (job) {
-            downloadOnWeb(job)
-          }
-        }
-      })
+      downloadFiles(urls)
     }
   }
 
