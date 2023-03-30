@@ -1,34 +1,31 @@
-import { app, BrowserWindow, ipcMain, session } from 'electron'
+import { app, ipcMain, session } from 'electron'
 import compressing from 'compressing'
 
 import { callEditor, openFile } from './utils'
 
-const registerWillDownload = (mainWindow: BrowserWindow): void => {
+const setUpDownload = (): void => {
+  const downloadMap = new Map()
+  ipcMain.handle('downloadFile', async (_, url) => {
+    session.defaultSession.downloadURL(url)
+    return new Promise((resolve) => {
+      downloadMap.set(url, resolve)
+    })
+  })
+
   session.defaultSession.on('will-download', (_, item) => {
     const fileName = item.getFilename()
 
-    mainWindow.webContents.send('downloadStatus', {
-      code: 0,
-      message: `${fileName}下载中`,
-      data: null
-    })
-
     item.once('done', () => {
-      console.log('done')
-      mainWindow.webContents.send('downloadStatus', {
-        code: 1,
-        message: `${fileName}下载成功`,
-        data: {
-          fileName,
-          filePath: item.getSavePath()
-        }
+      downloadMap.get(item.getURL())({
+        fileName,
+        filePath: item.getSavePath()
       })
     })
   })
 }
 
-export const initIPC = (mainWindow: BrowserWindow): void => {
-  registerWillDownload(mainWindow)
+export const initIPC = (): void => {
+  setUpDownload()
 
   ipcMain.handle('openEditor', (_, info) => {
     const { filePath, platform } = info
