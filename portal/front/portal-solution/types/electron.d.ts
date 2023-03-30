@@ -56,6 +56,11 @@ interface ElectronBridgeApi {
    * @param filePath
    */
   openFile: (filePath: string) => Promise<string>
+  /**
+   * 下载文件
+   * @param url
+   */
+  downloadFile: (url: string) => Promise<void>
 }
 
 declare global {
