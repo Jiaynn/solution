@@ -38,6 +38,10 @@ interface ElectronBridgeApi {
          * 消息
          */
         message: string
+        data?: {
+          fileName: string
+          filePath: string
+        } | null
       }
     ) => void
   ) => void
@@ -45,9 +49,13 @@ interface ElectronBridgeApi {
    * 解压
    * @param fileName
    * @param filePath
-   * @param suffix 后缀/格式
    */
-  unzip: (fileName: string, filePath: string, suffix: string) => Promise<void>
+  unzip: (fileName: string, filePath: string) => Promise<void>
+  /**
+   * 打开文件
+   * @param filePath
+   */
+  openFile: (filePath: string) => Promise<string>
 }
 
 declare global {

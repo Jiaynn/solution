@@ -38,7 +38,8 @@ export const lists: SchemeLists[] = [
     title: '互动营销',
     img: 'https://demo-qnrtc-files.qnsdk.com/lowcode/yingixao.png',
     desc: '覆盖娱乐互动直播、电商直播带货、语聊房、互动教育等多应用场景，基于七牛云音视频、AI 智能算法和网络，提供易接入、强扩展、高效部署的音视频服务，助力企业快速搭建高品质的专属音视频互动营销业务平台。',
-    link_console: window.location.origin + '/solutions/interact-marketing/app/list',
+    // link_console: window.location.origin + '/solutions/interact-marketing/app/list',
+    link_console: window.location.origin + '/solutions/lowcode/demo',
     link_more: ''
   },
   {

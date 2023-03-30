@@ -1,5 +1,10 @@
 export type Platform = Parameters<typeof window.electronBridgeApi.openEditor>[0]['platform']
 
+interface PackageInfo {
+  fileName: string
+  filePath: string
+}
+
 export type ProjectInfo = {
   /**
    * 项目名称
@@ -23,8 +28,7 @@ export type ProjectInfo = {
    */
   createTime: number
   /**
-   * 端类型
-   * 'Android' | 'iOS'
+   * 包信息
    */
-  platform: Platform[]
+  package: Record<Lowercase<Platform>, PackageInfo | null | undefined>
 }

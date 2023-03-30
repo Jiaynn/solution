@@ -28,7 +28,7 @@ const downloadJson = (url: string) => {
     })
 }
 
-const downloadOnWeb = (url: string) => {
+export const downloadOnWeb = (url: string) => {
   const filename = url.split('/').pop() || ''
 
   if (/\.json$/.test(filename)) {
