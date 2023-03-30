@@ -13,7 +13,7 @@ import {
 } from 'react-icecream-2'
 import { DownThinIcon, SearchThinIcon } from 'react-icecream-2/icons'
 import moment from 'moment'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Modal } from 'react-icecream'
 
 import { useData } from 'components/lowcode/ProjectList/useData'
@@ -44,22 +44,12 @@ const sceneMap = {
 export function LowcodeProjectList() {
   const [searchSceneType, setSearchSceneType] = useState<number>(1)
   const [searchPlatform, setSearchPlatform] = useState<Platform | 'all'>('all')
-  const [downloadsPath, setDownloadsPath] = useState('')
 
   const [originalRecords, setOriginalRecords] = useState<ProjectInfo[]>([])
   const [filteredOriginalRecords, setFilteredOriginalRecords] = useState<ProjectInfo[]>([])
   const { records, loading, currentPage, pageSize, total, setPageInfo, setLoading } = useData(filteredOriginalRecords)
 
   const [searchProjectName, setSearchProjectName] = useState('')
-
-  /**
-   * 从 electron main 进程获取下载路径
-   */
-  useEffect(() => {
-    window.electronBridgeApi.getDownloadsPath().then(value => {
-      setDownloadsPath(value)
-    })
-  }, [])
 
   /**
    * 从缓存中读取项目列表
@@ -83,17 +73,18 @@ export function LowcodeProjectList() {
    * @param record
    */
   const onOpenEditor = (type: Platform, record: ProjectInfo) => {
+    const packageInfo = record.package[type.toLowerCase()]
+    console.log('packageInfo', packageInfo)
     window.electronBridgeApi.unzip(
-      record.name,
-      downloadsPath,
-      '.zip'
+      packageInfo?.fileName,
+      packageInfo?.filePath
     ).then(() => {
       Modal.success({
         content: '解压成功'
       })
       return window.electronBridgeApi.openEditor({
         platform: type,
-        filePath: `${downloadsPath}/${record.name}`
+        filePath: `${packageInfo?.filePath.replace('.zip', '')}`
       })
     }).then(() => {
       Modal.success({
@@ -110,19 +101,23 @@ export function LowcodeProjectList() {
   /**
    * 搜索
    */
-  const onSearch = async () => {
+  const onSearch = useCallback(async () => {
     setLoading(true)
     const list = originalRecords
       .filter(item => item.sceneType === searchSceneType)
       .filter(item => {
         if (!searchPlatform || searchPlatform === 'all') return true
-        return item.platform.includes(searchPlatform)
+        return !!item.package[searchPlatform.toLowerCase()]
       })
       .filter(item => item.name.includes(searchProjectName))
     await new Promise(resolve => setTimeout(resolve, 300))
     setLoading(false)
     setFilteredOriginalRecords(list)
-  }
+  }, [originalRecords, searchPlatform, searchProjectName, searchSceneType, setLoading])
+
+  useEffect(() => {
+    onSearch()
+  }, [onSearch])
 
   return (
     <div className={prefixCls}>
@@ -182,7 +177,32 @@ export function LowcodeProjectList() {
           },
           {
             title: '链路',
-            render: (_value, record) => <Link style={{ wordBreak: 'break-all' }}>{downloadsPath}/{record.name}</Link>
+            render: (_value, record: ProjectInfo) => {
+              const { android, ios } = record.package
+              const androidLink = android?.filePath?.replace(`/${android?.fileName}`, '')
+              const iosLink = ios?.filePath?.replace(`/${ios?.fileName}`, '')
+
+              return (
+                <div>
+                  {
+                    android && <div>
+                      Android: <Link
+                        style={{ wordBreak: 'break-all' }}
+                        onClick={() => window.electronBridgeApi.openFile(androidLink || '')}
+                      >{androidLink}</Link>
+                    </div>
+                  }
+                  {
+                    ios && <div>
+                      iOS: <Link
+                        style={{ wordBreak: 'break-all' }}
+                        onClick={() => window.electronBridgeApi.openFile(iosLink || '')}
+                      >{iosLink}</Link>
+                    </div>
+                  }
+                </div>
+              )
+            }
           },
           {
             title: '场景分类',
@@ -200,17 +220,26 @@ export function LowcodeProjectList() {
           },
           {
             title: '端类型',
-            accessor: 'platform',
-            render: value => value.join('、')
+            accessor: 'package',
+            render: value => {
+              const result: Platform[] = []
+              if (value.android) {
+                result.push('Android')
+              }
+              if (value.ios) {
+                result.push('iOS')
+              }
+              return result.join('、')
+            }
           },
           {
             title: '操作',
-            render: (_, record) => <Dropdown
+            render: (_, record: ProjectInfo) => <Dropdown
               trigger="click"
               overlay={
                 <Menu>
-                  {record.platform?.includes('Android') && <MenuItem onClick={() => onOpenEditor('Android', record)}>Android</MenuItem>}
-                  {record.platform?.includes('iOS') && <MenuItem onClick={() => onOpenEditor('iOS', record)}>iOS</MenuItem>}
+                  {record.package.android && <MenuItem onClick={() => onOpenEditor('Android', record)}>Android</MenuItem>}
+                  {record.package.ios && <MenuItem onClick={() => onOpenEditor('iOS', record)}>iOS</MenuItem>}
                 </Menu>
               }
             >
