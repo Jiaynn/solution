@@ -21,7 +21,7 @@ export default class ImageSolutionStore extends Store {
     makeObservable(this)
   }
 
-  @observable.ref buckets:GetBucketListResultDataList[] = []
+  @observable.ref buckets: GetBucketListResultDataList[] = []
 
   @action.bound
   updateBuckets(data: GetBucketListResultDataList[]) {
@@ -30,7 +30,7 @@ export default class ImageSolutionStore extends Store {
 
   @computed
   get bucketNames() {
-    return this.buckets.map(b => b.bucket_id)
+    return this.buckets && this.buckets.map(b => b.bucket_id)
   }
 
   @computed
@@ -40,19 +40,24 @@ export default class ImageSolutionStore extends Store {
 
   @autobind
   async fetchBucketList() {
-    const { list } = await this.solutionApis.getBucketList({ page_num: 1, page_size: 1000, solution_code: 'image' })
+    const result = await this.solutionApis.getBucketList({ solution_code: 'image' })
+
+    const list = result.list || []
     this.updateBuckets(list)
-    this.updateCurrentBucket(list[0]?.bucket_id)
+    if (list[0]?.bucket_id) {
+      this.updateCurrentBucket(list[0]?.bucket_id)
+    }
+
   }
 
   @observable currentBucket = ''
 
   @action.bound
-  updateCurrentBucket(name:string) {
+  updateCurrentBucket(name: string) {
     this.currentBucket = name
   }
 
-  @observable.ref currentDomains:ICDNDomain[] = []
+  @observable.ref currentDomains: ICDNDomain[] = []
 
   @observable.ref state = new FormState({ filterDomainName: new FieldState('', 500) })
 

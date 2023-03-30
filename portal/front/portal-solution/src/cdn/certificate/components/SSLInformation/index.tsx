@@ -536,7 +536,7 @@ class SSLInformation extends React.Component<SSLInformationInnerProps> {
                               ? Math.max(this.orderBaseInfo.domainType.wildcard, this.wildcardNum)
                               : this.wildcardNum
                               )
-                              const res = []
+                              const res:string[] = []
                               if (normal > 0) {
                                 res.push(`*标准域名 ${normal} 个`)
                               }
@@ -838,7 +838,7 @@ class SSLInformation extends React.Component<SSLInformationInnerProps> {
                       if (this.isLoading || this.infoType === SearchType.Cert || this.order && this.certInfo) {
                         return null
                       }
-                      const operations = []
+                      const operations:Array<{to:string, icon:string, text:string}> = []
                       // 显示 补全 操作
                       if ([9].indexOf(this.order.state) !== -1 && !this.order.oneKeyFreeCert) {
                         if (this.order.orderType === 'renew') {
@@ -908,11 +908,11 @@ class SSLInformation extends React.Component<SSLInformationInnerProps> {
               {
                   this.infoType === 'order' && !this.isLoading && this.order.orderType !== 'replace'
                   ? <OrderHistory
-                    orderid={this.itemid}
-                    sslBrand={this.orderBaseInfo.sslBrand}
-                    originDomains={this.completedInfo ? this.completedInfo.newDomains.dnsNames.slice() : []}
-                    updateParentDnsNames={this.updateDnsNames}
-                    updateParentCertID={this.updateCertID}
+                      orderid={this.itemid}
+                      sslBrand={this.orderBaseInfo.sslBrand}
+                      originDomains={this.completedInfo ? this.completedInfo.newDomains.dnsNames.slice() : []}
+                      updateParentDnsNames={this.updateDnsNames}
+                      updateParentCertID={this.updateCertID}
                   />
                   : null
               }

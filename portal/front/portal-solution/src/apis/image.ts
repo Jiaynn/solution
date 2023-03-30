@@ -3,12 +3,10 @@ import autobind from 'autobind-decorator'
 import { CommonClient } from 'portal-base/common/apis/common'
 import { injectable } from 'qn-fe-core/di'
 
-import { service } from 'constants/api'
+import { imageService } from 'constants/api'
 import {
-  OpenSolutionResult,
   OpenSolutionOptions,
   CreateBucketOptions,
-  CreateBucketResult,
   IsOpenSolutionOptions,
   IsOpenSolutionResult,
   CompleteSolutionOptions,
@@ -22,7 +20,7 @@ import {
 @autobind
 @injectable()
 export class ImageSolutionApis {
-  constructor(private solutionCommonClient: CommonClient) {}
+  constructor(private solutionCommonClient: CommonClient) { }
 
   /**
    * @des 是否开通某方案
@@ -34,7 +32,7 @@ export class ImageSolutionApis {
     options: IsOpenSolutionOptions
   ): Promise<IsOpenSolutionResult> {
     return this.solutionCommonClient.get(
-      `${service.openSolution}?solution_code=${options.solution_code}`
+      `${imageService.openSolution}?solution_code=${options.solution_code}`
     )
   }
 
@@ -44,9 +42,9 @@ export class ImageSolutionApis {
    * @param options
    * @returns
    */
-  isConfigSolution(options:IsConfigSolutionOptions):Promise<IsConfigSolutionResult> {
+  isConfigSolution(options: IsConfigSolutionOptions): Promise<IsConfigSolutionResult> {
     return this.solutionCommonClient.get(
-      `${service.configSolution}?solution_code=${options.solution_code}`
+      `${imageService.configSolution}?solution_code=${options.solution_code}`
     )
   }
   /**
@@ -55,8 +53,8 @@ export class ImageSolutionApis {
    * @param options
    * @returns
    */
-  openSolution(options: OpenSolutionOptions): Promise<OpenSolutionResult> {
-    return this.solutionCommonClient.post(`${service.openSolution}`, options)
+  openSolution(options: OpenSolutionOptions): Promise<boolean> {
+    return this.solutionCommonClient.post(`${imageService.openSolution}`, options)
   }
 
   /**
@@ -65,8 +63,8 @@ export class ImageSolutionApis {
    * @url /bucket/create
    * @returns
    */
-  createBucket(options: CreateBucketOptions): Promise<CreateBucketResult> {
-    return this.solutionCommonClient.post(`${service.createBucket}`, options)
+  createBucket(options: CreateBucketOptions): Promise<void> {
+    return this.solutionCommonClient.post(`${imageService.createBucket}`, options)
   }
 
   /**
@@ -78,7 +76,7 @@ export class ImageSolutionApis {
   completeSolution(
     options: CompleteSolutionOptions
   ): Promise<CompleteSolutionResult> {
-    return this.solutionCommonClient.post(`${service.completeSolution}`, options)
+    return this.solutionCommonClient.post(`${imageService.completeSolution}`, options)
   }
 
   /**
@@ -90,7 +88,7 @@ export class ImageSolutionApis {
   getBucketList(options: GetBucketListOptions): Promise<GetBucketListResult> {
     const regionQuery = options.region ? `&region=${options.region}` : ''
     return this.solutionCommonClient.get(
-      `${service.getBucketList}?page_num=${options.page_num}&page_size=${options.page_size}&solution_code=${options.solution_code}${regionQuery}`
+      `${imageService.getBucketList}?solution_code=${options.solution_code}${regionQuery}`
     )
   }
 }

@@ -10,7 +10,7 @@ import { Button, Icon } from 'react-icecream'
 
 import { RouterStore } from 'portal-base/common/router'
 
-import SelectBucket from 'components/common/SelectBucket'
+import SelectBucket from 'components/image/common/SelectBucket'
 
 import { ObjectManage } from 'kodo/components/BucketDetails/ObjectManage'
 import ImageSolutionStore from 'store/imageSolution'
@@ -20,6 +20,9 @@ import { BucketStore } from 'kodo/stores/bucket'
 import { imagePath } from 'utils/router'
 
 import './style.less'
+import { Header } from '../common/Header'
+
+const prefixCls = 'image-management'
 
 export default observer(function ImageManagement() {
   const mediaStyleStore = useInjection(MediaStyleDrawerStore)
@@ -41,14 +44,17 @@ export default observer(function ImageManagement() {
   useEffect(() => {
     setLoading(true)
     imageSolutionStore.fetchBucketList().then(() => {
-      onChange(imageSolutionStore.bucketNames[0])
+      if (imageSolutionStore.bucketNames[0]) {
+        onChange(imageSolutionStore.bucketNames[0])
+      }
+
     }).finally(() => setLoading(false))
   }, [imageSolutionStore, onChange])
 
   if (loading) {
     return (
       <Loading
-        className="absolution-center"
+        className={`${prefixCls}-absolution-center`}
         loading={loading}
       />
     )
@@ -57,6 +63,7 @@ export default observer(function ImageManagement() {
   if (selectedBucketName) {
     return (
       <>
+        <Header />
         <MediaStyleDrawer
           {...mediaStyleStore}
           bucketName={selectedBucketName}
@@ -80,17 +87,19 @@ export default observer(function ImageManagement() {
 
   return (
     <>
+      <Header />
       <SelectBucket
         value="无空间"
         onChange={onChange}
       />
 
-      <div className="card absolution-center">
-        <Icon type="info" className="info-icon" />
-        <h1 className="title">未创建图片存储空间</h1>
-        <div className="description">您还没有创建图片的存储空间，有了图片存储空间后才可以对图片进行管理操作，请点击下方按钮前去开通服务后创建空间吧</div>
+      <div className={`${prefixCls}-card`}>
+        <Icon type="info" className={`${prefixCls}-info-icon`} />
+        <h1 className={`${prefixCls}-title`}>未创建图片存储空间</h1>
+        <div className={`${prefixCls}-description`}>您还没有创建图片的存储空间，有了图片存储空间后才可以对图片进行管理操作<br></br>请点击下方按钮前去开通服务后创建空间吧</div>
         <Button type="primary" onClick={onCreateBucket}>开通服务</Button>
       </div>
     </>
   )
 })
+

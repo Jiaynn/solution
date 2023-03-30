@@ -6,11 +6,11 @@ import { useInjection } from 'qn-fe-core/di'
 import { RouterStore } from 'portal-base/common/router'
 import Modal from 'react-icecream/lib/modal'
 
-import { Header } from 'components/common/Header'
 import { ImageSolutionApis } from 'apis/image'
+import { imagePath } from 'utils/router'
 
 import './style.less'
-import { imagePath } from 'utils/router'
+import { Header } from 'components/image/common/Header'
 
 const prefixCls = 'comp-configuration-open-service'
 
@@ -57,7 +57,7 @@ export default observer(function OpenService() {
         solution.isOpenSolution({ solution_code: 'image' }),
         solution.isConfigSolution({ solution_code: 'image' })
       ])
-      setIsOpenSolution(openStateRes.status)
+      if (openStateRes.status) { setIsOpenSolution(openStateRes.status) }
       setIsConfigSolution(configStateRes.status)
       setLoading(false)
       if (openStateRes.status && configStateRes.status) {
@@ -74,6 +74,7 @@ export default observer(function OpenService() {
         loading
           ? <Loading loading={loading} style={{ marginTop: '25%' }} />
           : <div className={prefixCls}>
+            {/* <ConfigurationHeader /> */}
             <Header />
             {(step === 1 && !isOpenSolution && !isConfigSolution) && (
               <div className={`${prefixCls}-step1`}>

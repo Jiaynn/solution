@@ -1,15 +1,12 @@
-/* eslint-disable react/jsx-no-bind */
 import React, { useState, useEffect } from 'react'
 import { Modal } from 'react-icecream/lib'
-
 import { Query, RouterStore } from 'portal-base/common/router'
-
 import { useInjection } from 'qn-fe-core/di'
 
 import DomainCreateWithQuery from 'cdn/components/Domain/Create'
 import Domain from 'kodo/components/BucketDetails/Domain'
 import { DomainStore } from 'kodo/stores/domain'
-import SelectBucket from 'components/common/SelectBucket'
+import SelectBucket from 'components/image/common/SelectBucket'
 
 import BucketStore from 'cdn/stores/bucket'
 import ImageSolutionStore from 'store/imageSolution'
@@ -47,7 +44,7 @@ export default function DomainName(props: DomainNameProps) {
   }
 
   useEffect(() => {
-    const state = JSON.parse(String(query.configurationState))
+    const state = JSON.parse(String(query.configurationState || false))
     Promise.all([
       imageSolutionStore.fetchBucketList(),
       bucketStore.fetchBuckets(true)
@@ -68,12 +65,12 @@ export default function DomainName(props: DomainNameProps) {
       >
         <DomainCreateWithQuery
           query={query}
-          onCreate={handleCreate}
+          onCreate={() => handleCreate()}
           onCancel={() => setVisible(false)}
         />
       </Modal>
       <SelectBucket value={bucketName} onChange={onChange} />
-      <Domain bucketName={bucketName} visible={handleVisible} />
+      <Domain bucketName={bucketName} visible={value => handleVisible(value)} />
     </div>
   )
 }

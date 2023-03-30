@@ -8,15 +8,15 @@ export interface IsOpenSolutionOptions {
   solution_code: string;
 }
 export interface IsOpenSolutionResult {
-  status: boolean;
+  status?: boolean;
 }
 
 /**
- * 接口 [是否配置方案↗](http://portalv4.dev.qiniu.io/api/proxy/solution/status)
+ * 接口 [方案配置状态↗](http://portalv4.dev.qiniu.io/api/proxy/solution/status)
  *
  * @请求头 `GET /api/proxy/solution/status`
  */
-export interface IsConfigSolutionOptions{
+export interface IsConfigSolutionOptions {
   uid?: string;
   solution_code: string;
 }
@@ -33,11 +33,6 @@ export interface OpenSolutionOptions {
   solution_code: string;
   mode: number;
 }
-export interface OpenSolutionResult {
-  request_id?: string;
-  code?: number;
-  message?: string;
-}
 
 /**
  * 接口 [创建bucket↗](http://portalv4.dev.qiniu.io/api/proxy/solution/bucket/create)
@@ -48,11 +43,6 @@ export interface CreateBucketOptions {
   region: string;
   bucket_id: string;
   solution_code: string;
-}
-export interface CreateBucketResult {
-  request_id?: string;
-  code?: number;
-  message?: string;
 }
 
 /**
@@ -66,7 +56,7 @@ export interface CompleteSolutionOptions {
 export interface CompleteSolutionResult {
   solution_code: string;
   status: number;
-  solution_name: string;
+  solution_name?: string;
 }
 
 /**
@@ -75,21 +65,19 @@ export interface CompleteSolutionResult {
  * @请求头 `GET /api/proxy/solution/bucket/list`
  */
 export interface GetBucketListOptions {
-  page_num: number;
-  page_size: number;
   region?: string;
   solution_code: string;
 }
 export interface GetBucketListResultDataList {
-  solution_code: string;
-  bucket_id: string;
-  uid: string;
-  region: string;
+  solution_code?: string;
+  bucket_id?: string;
+  uid?: string;
+  region?: string;
 }
 export interface GetBucketListResult {
-  end_page: boolean;
-  page_total: number;
-  total_count: number;
-  list: GetBucketListResultDataList[];
+  end_page?: boolean;
+  page_total?: number;
+  total_count?: number;
+  list?: GetBucketListResultDataList[];
 }
 

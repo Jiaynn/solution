@@ -3,7 +3,7 @@
  * @author yaojingtian <yaojingtian@qiniu.com>
  */
 
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { observer } from 'mobx-react'
 
 import Tooltip from 'react-icecream/lib/tooltip'
@@ -119,7 +119,7 @@ export interface IOrderOperationsRenderProps {
 // 订单操作列
 export const OrderOperationsRenderer = observer(function _OrderOperationsRenderer(props: IOrderOperationsRenderProps) {
   const { record, doOperation } = props
-  const operations = []
+  const operations:Array<{to:OperationName, text:string, productShortName?:ProductShortName}> = []
 
   // 显示 补全 操作
   if ([OrderStatus.Paid].indexOf(record.state) !== -1 && !record.oneKeyFreeCert) {
@@ -211,7 +211,7 @@ export interface ICertOperationRendererProps {
 
 function getRenewalTip(record: ICertInfo) {
   const childOrderUrl = `/certificate/ssl/detail/${record.child_order_id}/order`
-  let title = null
+  let title:ReactNode = null
   switch (record.state) {
     case CertStatus.ReNewing:
       title = <span>证书续费中，已生成 <Link to={childOrderUrl} target="_blank" rel="noopener">新订单</Link></span>

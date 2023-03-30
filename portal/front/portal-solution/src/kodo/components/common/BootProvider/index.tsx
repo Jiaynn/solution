@@ -119,6 +119,11 @@ import { ApplyNotices } from './ApplyNotice'
 import { ImageSolutionApis } from 'apis/image'
 import ImageSolutionStore from 'store/imageSolution'
 import { cdnProvides } from 'cdn/components/App/BootProvider'
+import { MessageSolutionApi } from 'apis/message'
+import { CommonApi } from 'apis/common'
+import AppConfigStore from 'store/interactMarketing/appConfig'
+import { InteractMarketingApis } from 'apis/interactMarketing'
+import { ConfigurationStore } from 'components/image/Configuration/ConfigureImageStyle/ConfigurationStore'
 // import { MockApi } from 'apis/mock'
 
 const DevTools = React.lazy(() => import('../DevTools'))
@@ -127,9 +132,9 @@ const getClientProvides = (hasUserInfoStore: boolean): Provides => {
   const monitor = {
     identifier: BaseMonitor,
     factory: inject => new Monitor(
-      hasUserInfoStore
-        ? { getUid: () => inject(UserInfoStore).uid ?? undefined }
-        : {}
+        hasUserInfoStore
+          ? { getUid: () => inject(UserInfoStore).uid ?? undefined }
+          : {}
     )
   }
 
@@ -285,6 +290,8 @@ function BootLocalProvider(props: React.PropsWithChildren<{}>) {
       { identifier: RefreshCdnStore, constr: RefreshCdnStore },
       { identifier: RegionApplyStore, constr: RegionApplyStore },
       { identifier: ImageSolutionStore, constr: ImageSolutionStore },
+      { identifier: AppConfigStore, constr: AppConfigStore },
+      { identifier: ConfigurationStore, constr: ConfigurationStore },
 
       // apis
       { identifier: CdnApis, constr: CdnApis },
@@ -324,10 +331,13 @@ function BootLocalProvider(props: React.PropsWithChildren<{}>) {
       { identifier: TranscodeStyleApis, constr: TranscodeStyleApis },
       { identifier: RemarkApis, constr: RemarkApis },
       { identifier: ImageSolutionApis, constr: ImageSolutionApis },
+      { identifier: MessageSolutionApi, constr: MessageSolutionApi },
+      { identifier: InteractMarketingApis, constr: InteractMarketingApis },
       // { identifier: MockApi, constr: MockApi },
       { identifier: ObjectPickerStore, constr: ObjectPickerStore },
       { identifier: MediaStyleDrawerStore, constr: MediaStyleDrawerStore },
-      { identifier: ExternalUrlModalStore, constr: ExternalUrlModalStore }
+      { identifier: ExternalUrlModalStore, constr: ExternalUrlModalStore },
+      { identifier: CommonApi, constr: CommonApi }
     ],
     []
   )

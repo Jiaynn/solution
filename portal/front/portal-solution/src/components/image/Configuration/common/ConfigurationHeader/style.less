@@ -1,0 +1,78 @@
+.comp-configuration-header {
+  &-main {
+    display: flex;
+    margin-bottom: 30px;
+    padding: 40px;
+
+    &-img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-right: 20px;
+    }
+
+    &-text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      &-title {
+        font-size: 22px;
+        font-family: "PingFangSC-Regular", "PingFang SC", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      &-content {
+        line-height: 16px;
+        color: #6e6e6eff;
+      }
+    }
+  }
+
+  &-steps {
+    margin-bottom: 20px;
+
+    &-title {
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    &-step {
+      .ant-steps-item-icon {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        margin-top: 0;
+      }
+
+      .ant-steps-item-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .ant-steps-item-description {
+        font-size: 14px;
+      }
+    }
+  }
+
+  &-description {
+    margin-bottom: 20px;
+
+    &-title {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    &-divider {
+      margin: 5px 0;
+    }
+
+    &-content {
+      font-size: 14px;
+      color: #8c8c8c;
+    }
+  }
+}
