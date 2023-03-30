@@ -1,33 +1,27 @@
-import { join } from 'path'
 import { app, BrowserWindow, ipcMain, session } from 'electron'
 import compressing from 'compressing'
 
-import { callEditor } from './utils'
-
-const unzip = (fileName: string, filePath: string, suffix: string): Promise<void> => {
-  if (suffix === '.zip') {
-    const source = `${filePath}/${fileName}${suffix}`
-    console.log('unzip dest', source)
-    return compressing.zip.uncompress(source, filePath)
-  }
-  return Promise.reject(new TypeError(`不支持的文件类型：${suffix}`))
-}
+import { callEditor, openFile } from './utils'
 
 const registerWillDownload = (mainWindow: BrowserWindow): void => {
   session.defaultSession.on('will-download', (_, item) => {
     const fileName = item.getFilename()
-    const filePath = join(app.getPath('downloads'), fileName)
-    item.setSavePath(filePath)
 
     mainWindow.webContents.send('downloadStatus', {
       code: 0,
-      message: `${fileName}下载中`
+      message: `${fileName}下载中`,
+      data: null
     })
 
     item.once('done', () => {
+      console.log('done')
       mainWindow.webContents.send('downloadStatus', {
         code: 1,
-        message: `${fileName}下载成功`
+        message: `${fileName}下载成功`,
+        data: {
+          fileName,
+          filePath: item.getSavePath()
+        }
       })
     })
   })
@@ -45,7 +39,14 @@ export const initIPC = (mainWindow: BrowserWindow): void => {
     return app.getPath('downloads')
   })
 
-  ipcMain.handle('unzip', async (_, fileName, filePath, suffix) => {
-    return unzip(fileName, filePath, suffix)
+  ipcMain.handle('unzip', async (_, fileName, filePath) => {
+    if (fileName.endsWith('.zip')) {
+      return compressing.zip.uncompress(filePath, `${filePath.replace('/' + fileName, '')}`)
+    }
+    return Promise.reject(new TypeError(`不支持的文件类型：${filePath}`))
+  })
+
+  ipcMain.handle('openFile', async (_, filePath) => {
+    return openFile(filePath)
   })
 }

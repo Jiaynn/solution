@@ -39,6 +39,10 @@ export interface ElectronBridgeApi {
          * 消息
          */
         message: string
+        data?: {
+          fileName: string
+          filePath: string
+        } | null
       }
     ) => void
   ) => void
@@ -46,9 +50,13 @@ export interface ElectronBridgeApi {
    * 解压
    * @param fileName
    * @param filePath
-   * @param suffix
    */
-  unzip: (fileName: string, filePath: string, suffix: string) => Promise<void>
+  unzip: (fileName: string, filePath: string) => Promise<void>
+  /**
+   * 打开文件
+   * @param filePath
+   */
+  openFile: (filePath: string) => Promise<string>
 }
 
 // Custom APIs for renderer
@@ -56,7 +64,8 @@ const electronBridgeApi: ElectronBridgeApi = {
   openEditor: (info) => ipcRenderer.invoke('openEditor', info),
   getDownloadsPath: () => ipcRenderer.invoke('getDownloadsPath'),
   getDownloadStatus: (callback) => ipcRenderer.on('downloadStatus', callback),
-  unzip: (fileName, filePath, suffix) => ipcRenderer.invoke('unzip', fileName, filePath, suffix)
+  unzip: (fileName, filePath) => ipcRenderer.invoke('unzip', fileName, filePath),
+  openFile: (filePath) => ipcRenderer.invoke('openFile', filePath)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
