@@ -1,4 +1,4 @@
-export type Platform = Parameters<typeof window.electronBridgeApi.openEditor>[0]['platform']
+import { Platform } from 'utils/electron'
 
 interface PackageInfo {
   fileName: string
@@ -30,5 +30,5 @@ export type ProjectInfo = {
   /**
    * 包信息
    */
-  package: Record<Lowercase<Platform>, PackageInfo | null | undefined>
+  package: Partial<Record<Platform, PackageInfo>>
 }
