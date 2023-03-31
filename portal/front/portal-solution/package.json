@@ -1,6 +1,6 @@
 {
   "name": "portal-solution",
-  "version": "0.0.1",
+  "version": "1.0.0-beta.0",
   "scripts": {
     "dev": "fec-builder -p 3000",
     "build": "fec-builder clean && fec-builder -e production build",
