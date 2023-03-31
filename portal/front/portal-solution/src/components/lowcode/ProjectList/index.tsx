@@ -41,6 +41,10 @@ const platformOptions = [
 const sceneMap = {
   1: '视频营销/统一消息推送'
 }
+const platformMap = {
+  ios: 'iOS',
+  android: 'Android'
+}
 
 export function LowcodeProjectList() {
   const [searchSceneType, setSearchSceneType] = useState<number>(1)
@@ -102,23 +106,26 @@ export function LowcodeProjectList() {
   /**
    * 搜索
    */
-  const onSearch = useCallback(async () => {
+  const onSearch = async (info: {
+    sceneType?: number
+    platform?: Platform | 'all'
+    projectName?: string
+  }) => {
+    const {
+      sceneType, projectName, platform
+    } = info
     setLoading(true)
     const list = originalRecords
-      .filter(item => item.sceneType === searchSceneType)
+      .filter(item => item.sceneType === sceneType)
       .filter(item => {
-        if (!searchPlatform || searchPlatform === 'all') return true
-        return !!item.package[searchPlatform.toLowerCase()]
+        if (!platform || platform === 'all') return true
+        return !!item.package[platform.toLowerCase()]
       })
-      .filter(item => item.name.includes(searchProjectName))
+      .filter(item => item.name.includes(projectName || ''))
     await new Promise(resolve => setTimeout(resolve, 300))
     setLoading(false)
     setFilteredOriginalRecords(list)
-  }, [originalRecords, searchPlatform, searchProjectName, searchSceneType, setLoading])
-
-  useEffect(() => {
-    onSearch()
-  }, [onSearch])
+  }
 
   return (
     <div className={prefixCls}>
@@ -131,7 +138,11 @@ export function LowcodeProjectList() {
             value={searchSceneType}
             onChange={(value: number) => {
               setSearchSceneType(value)
-              onSearch()
+              onSearch({
+                projectName: searchProjectName,
+                platform: searchPlatform,
+                sceneType: value
+              })
             }}
           >
             {sceneTypeOptions}
@@ -142,7 +153,11 @@ export function LowcodeProjectList() {
             value={searchPlatform}
             onChange={(value: Platform | 'all') => {
               setSearchPlatform(value)
-              onSearch()
+              onSearch({
+                projectName: searchProjectName,
+                platform: value,
+                sceneType: searchSceneType
+              })
             }}
           >
             {platformOptions}
@@ -157,7 +172,11 @@ export function LowcodeProjectList() {
             inputProps={{
               onKeyPress: event => {
                 if (event.key.toLowerCase() === 'enter') {
-                  onSearch()
+                  onSearch({
+                    projectName: searchProjectName,
+                    platform: searchPlatform,
+                    sceneType: searchSceneType
+                  })
                 }
               }
             }}
@@ -223,12 +242,12 @@ export function LowcodeProjectList() {
             title: '端类型',
             accessor: 'package',
             render: value => {
-              const result: Platform[] = []
+              const result: string[] = []
               if (value.android) {
-                result.push('android')
+                result.push(platformMap.android)
               }
               if (value.ios) {
-                result.push('ios')
+                result.push(platformMap.ios)
               }
               return result.join('、')
             }
