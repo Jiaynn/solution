@@ -2,9 +2,16 @@ import { ipcMain, session } from 'electron'
 import compressing from 'compressing'
 
 import { callEditor, openFile } from './utils'
+import { DownloadFileResult } from '../preload/type'
 
 const setUpDownload = (): void => {
-  const downloadMap = new Map()
+  const downloadMap = new Map<
+    string,
+    {
+      resolve: (value: DownloadFileResult) => void
+      reject: (reason?: unknown) => void
+    }
+  >()
   ipcMain.handle('downloadFile', async (_, url) => {
     session.defaultSession.downloadURL(url)
     return new Promise((resolve, reject) => {
@@ -20,7 +27,7 @@ const setUpDownload = (): void => {
 
     item.once('done', (_, result) => {
       if (result === 'completed') {
-        downloadMap.get(item.getURL()).resolve({
+        downloadMap.get(item.getURL())?.resolve({
           fileName,
           filePath: item.getSavePath()
         })
@@ -28,7 +35,7 @@ const setUpDownload = (): void => {
       }
 
       if (result === 'cancelled' || result === 'interrupted') {
-        downloadMap.get(item.getURL()).reject(new Error(result))
+        downloadMap.get(item.getURL())?.reject(new Error(result))
         return
       }
     })
