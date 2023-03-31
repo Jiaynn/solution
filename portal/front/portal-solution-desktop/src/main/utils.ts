@@ -126,9 +126,3 @@ export const setUpResponseHeader = (): void => {
     }
   )
 }
-
-export const openFile = (filePath: string): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    shell.openPath(filePath).then(resolve).catch(reject)
-  })
-}
