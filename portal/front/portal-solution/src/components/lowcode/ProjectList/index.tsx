@@ -87,7 +87,7 @@ export function LowcodeProjectList() {
       Modal.success({
         content: '解压成功'
       })
-      return window.electronBridgeApi.openEditor({
+      return window.electronBridgeApi?.openEditor({
         platform: type,
         filePath: `${packageInfo?.filePath.replace('.zip', '')}`
       })

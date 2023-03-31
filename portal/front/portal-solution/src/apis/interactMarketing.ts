@@ -27,7 +27,7 @@ import {
   AppListResult,
   KodoDomainResult,
   DomainStatus
-} from './_types/interfactMarketingType'
+} from './_types/interactMarketingType'
 
 @autobind
 @injectable()

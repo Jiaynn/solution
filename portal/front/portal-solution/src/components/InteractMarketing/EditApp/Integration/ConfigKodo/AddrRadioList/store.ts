@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable, when } from 'mobx'
+import { action, computed, makeObservable, observable, reaction } from 'mobx'
 import { injectable } from 'qn-fe-core/di'
 import Store from 'qn-fe-core/store'
 
@@ -33,8 +33,13 @@ export default class AddrRadioListStore extends Store {
 
   @autobind
   async fetchAddr() {
+    const bucket = this.appConfigStore.config.bucket
+    if (!bucket || bucket === '') {
+      return
+    }
+
     const data = await this.apis.getKodoDomain(
-      this.appConfigStore.config.bucket || ''
+      this.appConfigStore.config.bucket as string
     )
 
     this.updateBucketDomains(data || [])
@@ -52,8 +57,8 @@ export default class AddrRadioListStore extends Store {
 
   init() {
     this.addDisposer(
-      when(
-        () => this.appConfigStore.config.bucket !== '',
+      reaction(
+        () => this.appConfigStore.config.bucket,
         () => {
           this.fetchAddr()
         }

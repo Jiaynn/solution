@@ -17,7 +17,7 @@ import InputWrapper from 'components/InteractMarketing/common/InputWrapper'
 import {
   AppScenariosId,
   IntegrationWayId
-} from 'apis/_types/interfactMarketingType'
+} from 'apis/_types/interactMarketingType'
 
 export interface BasicInfoProps {}
 export default observer(function BasicInfo(_props: BasicInfoProps) {

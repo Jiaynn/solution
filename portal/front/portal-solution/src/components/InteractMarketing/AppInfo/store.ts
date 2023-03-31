@@ -10,7 +10,7 @@ import { Loadings } from 'portal-base/common/loading'
 
 import { RouterStore } from 'portal-base/common/router'
 
-import { AppInfo, AppPackStatusId } from 'apis/_types/interfactMarketingType'
+import { AppInfo, AppPackStatusId } from 'apis/_types/interactMarketingType'
 import { InteractMarketingApis } from 'apis/interactMarketing'
 
 @injectable()

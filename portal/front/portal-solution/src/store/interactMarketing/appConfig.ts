@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable, runInAction } from 'mobx'
+import { action, computed, makeObservable, observable } from 'mobx'
 import Store from 'qn-fe-core/store'
 
 import { injectable } from 'qn-fe-core/di'
@@ -12,10 +12,8 @@ import {
   AppCreateOptions,
   AppInfo,
   AppParam,
-  PiliDomain,
-  RtcAppListQuery,
   SelectableId
-} from 'apis/_types/interfactMarketingType'
+} from 'apis/_types/interactMarketingType'
 import { InteractMarketingApis } from 'apis/interactMarketing'
 
 export function infoToConfig(info: AppInfo): AppCreateOptions {
@@ -45,16 +43,38 @@ export function infoToConfig(info: AppInfo): AppCreateOptions {
 }
 
 /**
+ *
+ * 当通过网络请求获取选项列表时，更新对应配置的逻辑
+ * @param cur 当前配置的值
+ * @param options 选项列表
+ * @returns
+ */
+export function calcConfigValue(cur: string, options: string[]) {
+  // 如果获取的列表为空，当前配置应设为''
+  if (options.length < 1) {
+    return ''
+  }
+
+  // 当前配置不在列表内，选择列表的第一项
+  if (!options.includes(cur)) {
+    return options[0]
+  }
+
+  // 当前配置存在于列表内，不更新配置
+  return cur
+}
+
+/**
  * 计算默认组件的id
  * @param appParam
  * @returns
  */
-export function calcDefaultComponets(appParam: AppComponentList[]): string[] {
+export function calcDefaultComponents(appParam: AppComponentList[]): string[] {
   const result: string[] = []
   appParam.forEach(group => {
-    group.items.forEach(componet => {
-      if (componet.default === SelectableId.No) {
-        result.push(componet.componentId)
+    group.items.forEach(component => {
+      if (component.default === SelectableId.No) {
+        result.push(component.componentId)
       }
     })
   })
@@ -68,13 +88,16 @@ export function calcDefaultComponets(appParam: AppComponentList[]): string[] {
  * @param target 查询目标
  * @returns
  */
-
 export function isInCompType(
   type: string,
   compIds: string[],
   target: AppParam
 ) {
-  return compIds.some(id => target.some(group => group.items.some(c => c.componentId === id && c.type === type)))
+  return compIds.some(id =>
+    target.some(group =>
+      group.items.some(c => c.componentId === id && c.type === type)
+    )
+  )
 }
 
 @injectable()
@@ -105,6 +128,86 @@ export default class AppConfigStore extends Store {
     liveHdl: '',
     RTCApp: '',
     IMServer: ''
+  }
+
+  @computed get appName() {
+    return this.config.appName
+  }
+
+  @computed get appDesc() {
+    return this.config.appDesc
+  }
+
+  @computed get appScenarios() {
+    return this.config.appScenarios
+  }
+
+  @computed get integrationWay() {
+    return this.config.integrationWay
+  }
+
+  @computed get component() {
+    return this.config.component
+  }
+
+  @computed get hub() {
+    return this.config.hub
+  }
+
+  @computed get publishRtmp() {
+    return this.config.publishRtmp
+  }
+
+  @computed get liveRtmp() {
+    return this.config.liveRtmp
+  }
+
+  @computed get liveHls() {
+    return this.config.liveHls
+  }
+
+  @computed get liveHdl() {
+    return this.config.liveHdl
+  }
+
+  @computed get RTCApp() {
+    return this.config.RTCApp
+  }
+
+  @computed get IMServer() {
+    return this.config.IMServer
+  }
+
+  @computed get bucket() {
+    return this.config.bucket
+  }
+
+  @computed get addr() {
+    return this.config.addr
+  }
+
+  @computed get callback() {
+    return this.config.callback
+  }
+
+  @action.bound updateAppName(value) {
+    this.config.appName = value
+  }
+
+  @action.bound updateAppDesc(value) {
+    this.config.appDesc = value
+  }
+
+  @action.bound updateAppScenarios(value) {
+    this.config.appScenarios = value
+  }
+
+  @action.bound updateIntegrationWay(value) {
+    this.config.integrationWay = value
+  }
+
+  @action.bound updateComponent(value) {
+    this.config.component = value
   }
 
   /**
@@ -142,9 +245,12 @@ export default class AppConfigStore extends Store {
     return this.isSelectedCompType('安全组件')
   }
 
+  /**
+   * 设为默认组件
+   */
   @action.bound
   selectDefaultComp() {
-    this.config.component = calcDefaultComponets(this.appParam)
+    this.config.component = calcDefaultComponents(this.appParam)
   }
 
   /**
@@ -166,7 +272,6 @@ export default class AppConfigStore extends Store {
       RTCApp: '',
       IMServer: ''
     }
-    this.hubSize = 3
   }
 
   /**
@@ -188,9 +293,7 @@ export default class AppConfigStore extends Store {
   async fetchConfigByAppId(appId: string) {
     const info = await this.apis.getAppInfo({ appId })
     if (info) {
-      runInAction(() => {
-        this.updateConfig(infoToConfig(info))
-      })
+      this.updateConfig(infoToConfig(info))
     }
   }
 
@@ -200,6 +303,7 @@ export default class AppConfigStore extends Store {
     if (!this.isSelectedSafeComp) {
       this.removeKodoConfig()
     }
+
     const appId = await this.apis.createApp(this.config)
     return appId
   }
@@ -210,6 +314,7 @@ export default class AppConfigStore extends Store {
     if (!this.isSelectedSafeComp) {
       this.removeKodoConfig()
     }
+
     await this.apis.updateApp({ appId, ...this.config })
   }
 
@@ -232,157 +337,16 @@ export default class AppConfigStore extends Store {
     const appParam = await this.apis.getAppParam()
     if (appParam) {
       this.updateAppParam(appParam)
-      // TODO: 设为默认组件
-      // this.updateConfig({
-      //   component: calcDefaultComponets(appParam)
-      // })
+      // 选择默认组件, 不覆盖原来的配置
+      const setForUpdate = new Set([
+        ...calcDefaultComponents(appParam),
+        ...this.component
+      ])
+
+      this.updateConfig({ component: [...setForUpdate] })
     }
     return appParam
   }
 
-  // ********** pili hub **********
-  // TODO: 放到local store
-  @observable hubs: string[] = []
-  @action.bound updateHubs(value: string[]) {
-    this.hubs = value
-  }
-  @observable hubSize = 3
-  @action.bound updateHubSize(value: number) {
-    this.hubSize = value
-  }
-
-  @autobind
-  @ToasterStore.handle()
-  async fecthPiliHubList() {
-    const data = await this.apis.getPiliHubList({
-      page_num: 1,
-      page_size: this.hubSize
-    })
-    const hubs = data?.list.map(v => v.name)
-
-    this.updateHubs(hubs || [])
-
-    if (!this.hubs.length) {
-      this.updateConfig({ hub: '' })
-    } else if (!this.hubs.includes(this.config.hub)) {
-      this.updateConfig({ hub: this.hubs[0] })
-    }
-  }
-
-  /**
-   * pili 域名
-   */
-  @observable hubDomains: PiliDomain[] = []
-
-  @computed get publishRtmp() {
-    return this.hubDomains
-      .filter(d => d.type === 'publishRtmp')
-      .map(v => v.domain)
-  }
-
-  @computed get liveRtmp() {
-    return this.hubDomains.filter(d => d.type === 'liveRtmp').map(v => v.domain)
-  }
-
-  @computed get liveHls() {
-    return this.hubDomains.filter(d => d.type === 'liveHls').map(v => v.domain)
-  }
-
-  @computed get liveHdl() {
-    return this.hubDomains.filter(d => d.type === 'liveHdl').map(v => v.domain)
-  }
-
-  @action.bound
-  updateHubDomainsResult(result: PiliDomain[]) {
-    this.hubDomains = result
-  }
-
-  @autobind
-  @ToasterStore.handle()
-  async fecthPiliDomain() {
-    if (this.config.hub !== '') {
-      const data = await this.apis.getPiliDomain(this.config.hub)
-
-      this.updateHubDomainsResult(data?.domains || [])
-
-      const firstPublishRtmp = this.publishRtmp[0]
-      const firstLiveRtmp = this.liveRtmp[0]
-      const firstLiveHls = this.liveHls[0]
-      const firstLiveHdl = this.liveHdl[0]
-
-      this.updateConfig({
-        publishRtmp: firstPublishRtmp || '',
-        liveRtmp: firstLiveRtmp || '',
-        liveHls: firstLiveHls || '',
-        liveHdl: firstLiveHdl || ''
-      })
-    }
-  }
-
-  // ********** rtc **********
-  // TODO: 放到local store
-  @observable.ref rtcApps: string[] = []
-  @observable.ref imServer: string[] = []
-  @observable rtcSize = 3
-  @action.bound
-  updateRtcSize(value: number) {
-    this.rtcSize = value
-  }
-  @action.bound
-  updateRtcAppList(list: string[]) {
-    this.rtcApps = list
-  }
-  @action.bound
-  updateImServer(list: string[]) {
-    this.imServer = list
-  }
-
-  @autobind
-  @ToasterStore.handle()
-  async fetchRtcAppList(query: RtcAppListQuery) {
-    const data = await this.apis.getRtcAppList(query)
-    const rtcApps = data?.list.map(v => v.name)
-
-    this.updateRtcAppList(rtcApps || [])
-
-    if (!this.rtcApps.length) {
-      this.updateConfig({ RTCApp: '' })
-    } else if (!this.rtcApps.includes(this.config.RTCApp)) {
-      this.updateConfig({ RTCApp: this.rtcApps[0] })
-    }
-  }
-
-  @autobind
-  @ToasterStore.handle()
-  async fetchIMServer() {
-    if (this.config.RTCApp !== '') {
-      const imAppId = await this.apis.getImAppId(this.config.RTCApp)
-      this.updateImServer(imAppId ? [imAppId] : [])
-
-      if (!imAppId) {
-        this.updateConfig({ IMServer: '' })
-      } else if (imAppId !== this.config.IMServer) {
-        this.updateConfig({ IMServer: imAppId })
-      }
-    }
-  }
-
-  // ********** kodo **********
-
-  /**
-   * 初始化请求
-   */
-  @autobind
-  @ToasterStore.handle()
-  async fetchAllOptions() {
-    await this.fetchAppParam()
-    await this.fecthPiliHubList()
-    await this.fecthPiliDomain()
-    await this.fetchRtcAppList({ page_num: 1, page_size: 3 })
-    await this.fetchIMServer()
-  }
-
-  init(): void | Promise<void> {
-    this.fetchAllOptions()
-  }
+  init(): void | Promise<void> {}
 }

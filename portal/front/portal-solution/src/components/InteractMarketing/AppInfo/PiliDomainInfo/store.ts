@@ -12,7 +12,7 @@ import { ToasterStore } from 'portal-base/common/toaster'
 
 import { InteractMarketingApis } from 'apis/interactMarketing'
 import { PiliDomainInfoProps } from '.'
-import { PiliDomainType } from 'apis/_types/interfactMarketingType'
+import { PiliDomainType } from 'apis/_types/interactMarketingType'
 
 const LoadingType = {
   HasGaba: 'hasGaba',
@@ -62,7 +62,7 @@ export default class PiliDomainInfoStore extends Store {
    * 是否备案
    */
   @observable hasGaba = true
-  @action.bound updatehasGaba(value: boolean) {
+  @action.bound updateHasGaba(value: boolean) {
     this.hasGaba = value
   }
 
@@ -71,7 +71,7 @@ export default class PiliDomainInfoStore extends Store {
   @Loadings.handle(LoadingType.HasGaba)
   async fetchHasGaba() {
     const data = await this.apis.getDomainStatus(this.domain)
-    this.updatehasGaba(!!data?.hasGaba)
+    this.updateHasGaba(!!data?.hasGaba)
   }
 
   @autobind

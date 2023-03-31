@@ -8,7 +8,20 @@ import { useLocalStore } from 'qn-fe-core/local-store'
 
 import InputWrapper from '../InputWrapper'
 import DownloadModalStore from './store'
+import { isElectron } from 'constants/is'
 import { ProjectInfo } from 'components/lowcode/ProjectList/type'
+import { DownloadFileResult } from 'utils/electron'
+import { CodeUrl } from 'apis/_types/interactMarketingType'
+
+const downloadOnElectron = (urls: string[]) => {
+  const job = urls[0]
+  if (job) {
+    window.top?.electronBridgeApi.downloadFile(job).then(res => {
+      console.log('res', res)
+      downloadOnElectron(urls.slice(1))
+    })
+  }
+}
 
 /**
  * TODO: 自定义文件名
@@ -37,6 +50,7 @@ export interface DownloadModalProps extends ModalProps {
 export default observer(function DownloadModal(props: DownloadModalProps) {
   const { visible, setVisible } = useContext(ModalContext)
 
+  const [loading, setLoading] = useState(false)
   const store = useLocalStore(DownloadModalStore, props)
 
   const { selectedUrlTypes } = store
@@ -45,67 +59,104 @@ export default observer(function DownloadModal(props: DownloadModalProps) {
     setVisible(false)
   }
 
-  const [loading1, setLoading1] = useState(false)
-  // const [loading2, setLoading2] = useState(false)
-  const pName = 'droid_qlive_demo'
+  const isInIframe = window.top !== window.self
 
-  const onCreateProject = () => {
-    const projectInfo: ProjectInfo = {
-      name: pName,
-      description: '双十一大促_电商直播_tracecode1',
-      sceneType: 1,
-      appId: 'tracecode1',
-      createTime: Date.now(),
-      platform: ['Android', 'iOS']
+  const createProject = (projectInfo: Partial<ProjectInfo>) => {
+    if (isElectron) {
+      window.postMessage(
+        {
+          type: 'createProject',
+          data: {
+            ...store.projectInfo,
+            ...projectInfo
+          }
+        },
+        window.location.origin
+      )
     }
-    console.log('createProject', projectInfo)
-    console.log('window.location.origin', window.location.origin)
-    window.postMessage(
-      {
-        type: 'createProject',
-        data: projectInfo
-      },
-      window.location.origin
-    )
   }
 
-  const onDownload = () => {
-    // window.top?.electronBridgeApi.getDownloadStatus((_, result) => {
-    //   if (result.code === 0) {
-    //     setLoading1(true)
-    //   }
-    //   if (result.code === 1) {
-    //     setLoading1(false)
-    //   }
-    // })
-    //
-    // const a = document.createElement('a')
-    // a.href =
-    //   'https://demo-qnrtc-files.qnsdk.com/solutions/portal/temp/1c90840b9344484c8c1e1398724f67efc281772a5fd62171b86795532289fc89/1680005098/droid_qlive_demo.zip'
-    // a.download = 'droid_qlive_demo'
-    // a.click()
-
-    onCreateProject()
+  const downloadOnElectron = async (
+    urls: Array<{
+      platform: string
+      url: string
+    }>
+  ) => {
+    const result: Map<string, DownloadFileResult | undefined> = new Map()
+    for (const item of urls) {
+      try {
+        const { platform, url } = item
+        // eslint-disable-next-line no-await-in-loop
+        const downloadResult = await window.top?.electronBridgeApi.downloadFile(
+          url
+        )
+        result.set(platform, downloadResult)
+      } catch (e) {
+        console.error(e)
+      }
+    }
+    return result
   }
 
-  // const onOk = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-  //   if (!selectedUrlTypes.length) {
-  //     Modal.confirm({ content: '没有选中任何文件' })
-  //     return
-  //   }
-  //   store.download()
-  //   store.clearSelectedUrls()
-  //   hideModal()
-  // }
+  const onOk = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    e.preventDefault()
+
+    if (!selectedUrlTypes.length) {
+      Modal.confirm({ content: '没有选中任何文件' })
+      return
+    }
+
+    if (isElectron && isInIframe) {
+      const platformMap: Record<keyof CodeUrl, string> = {
+        android_url: 'android',
+        ios_url: 'ios',
+        server_fixed_url: 'server_fixed',
+        server_url: 'server'
+      }
+
+      const downloadUrls = store.selectedUrlTypes.map(urlType => ({
+        platform: platformMap[urlType],
+        url: store.urls[urlType]
+      }))
+
+      setLoading(true)
+      downloadOnElectron(downloadUrls)
+        .then(result => {
+          if (
+            store.selectedUrlTypes.some(
+              type => type === 'android_url' || type === 'ios_url'
+            )
+          ) {
+            createProject({
+              package: {
+                android: result.get('android'),
+                ios: result.get('ios')
+              }
+            })
+          }
+        })
+        .finally(() => {
+          setLoading(false)
+          store.clearSelectedUrls()
+          hideModal()
+        })
+
+      return
+    }
+
+    store.download()
+    store.clearSelectedUrls()
+    hideModal()
+  }
 
   return (
     <Modal
       title="下载应用源文件"
       okText="下载"
       visible={visible}
-      onOk={onDownload}
+      onOk={onOk}
       onCancel={hideModal}
-      confirmLoading={loading1}
+      confirmLoading={loading}
     >
       <Checkbox.Group
         value={selectedUrlTypes}
