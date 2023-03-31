@@ -1,7 +1,7 @@
 import { ipcMain, session, shell } from 'electron'
 import compressing from 'compressing'
 
-import { callEditor, openFile } from './utils'
+import { callEditor } from './utils'
 import { DownloadFileResult } from '../preload/type'
 
 const setUpDownload = (): void => {
