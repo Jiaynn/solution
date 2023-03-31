@@ -19,7 +19,8 @@
     "build:win": "npm run build && electron-builder --win --config",
     "build:mac": "npm run build && electron-builder --mac --config",
     "build:linux": "npm run build && electron-builder --linux --config",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "release": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . -l portal-solution"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
