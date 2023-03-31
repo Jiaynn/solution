@@ -18,9 +18,10 @@ import { Modal } from 'react-icecream'
 
 import { useData } from 'components/lowcode/ProjectList/useData'
 
-import { Platform, ProjectInfo } from './type'
+import { ProjectInfo } from './type'
 
 import './style.less'
+import { Platform } from 'utils/electron'
 
 // 在这里通过将 Table 赋值给 BucketTable 对所需的泛型进行声明（Bucket）
 // 这样后续在使用 BucketTable 时 TS 会结合 Bucket 类型进行检查
@@ -224,10 +225,10 @@ export function LowcodeProjectList() {
             render: value => {
               const result: Platform[] = []
               if (value.android) {
-                result.push('Android')
+                result.push('android')
               }
               if (value.ios) {
-                result.push('iOS')
+                result.push('ios')
               }
               return result.join('、')
             }
@@ -238,8 +239,8 @@ export function LowcodeProjectList() {
               trigger="click"
               overlay={
                 <Menu>
-                  {record.package.android && <MenuItem onClick={() => onOpenEditor('Android', record)}>Android</MenuItem>}
-                  {record.package.ios && <MenuItem onClick={() => onOpenEditor('iOS', record)}>iOS</MenuItem>}
+                  {record.package.android && <MenuItem onClick={() => onOpenEditor('android', record)}>Android</MenuItem>}
+                  {record.package.ios && <MenuItem onClick={() => onOpenEditor('ios', record)}>iOS</MenuItem>}
                 </Menu>
               }
             >
