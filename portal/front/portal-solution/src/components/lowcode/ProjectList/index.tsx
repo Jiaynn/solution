@@ -13,15 +13,15 @@ import {
 } from 'react-icecream-2'
 import { DownThinIcon, SearchThinIcon } from 'react-icecream-2/icons'
 import moment from 'moment'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Modal } from 'react-icecream'
 
+import { Platform } from 'utils/electron'
 import { useData } from 'components/lowcode/ProjectList/useData'
 
 import { ProjectInfo } from './type'
 
 import './style.less'
-import { Platform } from 'utils/electron'
 
 // 在这里通过将 Table 赋值给 BucketTable 对所需的泛型进行声明（Bucket）
 // 这样后续在使用 BucketTable 时 TS 会结合 Bucket 类型进行检查
