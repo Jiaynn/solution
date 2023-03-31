@@ -22,7 +22,8 @@
   "optimization": {
     "highQualitySourceMap": true,
     "errorOverlay": false,
-    "transformDeps": ["tr46", "ansi-regex", "whatwg-url", "webidl-conversions"]
+    "transformDeps": ["tr46", "ansi-regex", "whatwg-url", "webidl-conversions"],
+    "filesystemCache": false
   },
   "engines": {
     "builder": "^2.3.0"
