@@ -1,4 +1,4 @@
-import { ipcMain, session } from 'electron'
+import { ipcMain, session, shell } from 'electron'
 import compressing from 'compressing'
 
 import { callEditor, openFile } from './utils'
@@ -58,6 +58,6 @@ export const initIPC = (): void => {
   })
 
   ipcMain.handle('openFile', async (_, filePath) => {
-    return openFile(filePath)
+    return shell.openPath(filePath)
   })
 }
