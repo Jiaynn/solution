@@ -38,16 +38,12 @@ import { Auth } from 'components/common/Auth'
 
 import { LowcodeRouter } from 'components/common/App/lowcode'
 
-import {
-  imagePath,
-  interactMarketingPath,
-  messagePath
-} from 'utils/router'
+import { imagePath, interactMarketingPath, messagePath } from 'utils/router'
 
 import {
   InteractMarketingRouter,
   InteractMarketingSideBar
-} from './interfactMarketing'
+} from './interactMarketing'
 import { useWindowMessage } from 'components/common/App/useWindowMessage'
 
 const prefixCls = 'app-container'

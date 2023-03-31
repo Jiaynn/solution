@@ -4,7 +4,7 @@ import { Button } from 'react-icecream'
 import styles from './style.m.less'
 
 interface ConfigWithShowMoreProps {
-  renderTitle: ReactNode
+  title: ReactNode
   onClickShowMore?: () => void
   width?: string
 }
@@ -12,7 +12,7 @@ interface ConfigWithShowMoreProps {
 const WrapperWithShowMore: React.FC<ConfigWithShowMoreProps> = props => (
   <div className={styles.configWithShowMore}>
     <div className={styles.title} style={{ width: props.width }}>
-      {props.renderTitle}
+      {props.title}
     </div>
     {props.children}
     {props.onClickShowMore && (

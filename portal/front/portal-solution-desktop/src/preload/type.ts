@@ -1,17 +1,4 @@
-export {}
-
-interface DownloadFileResult {
-  /**
-   * 文件名
-   */
-  fileName: string
-  /**
-   * 文件路径
-   */
-  filePath: string
-}
-
-interface EditorInfo {
+export interface EditorInfo {
   /**
    * 平台
    */
@@ -22,7 +9,18 @@ interface EditorInfo {
   filePath: string
 }
 
-interface ElectronBridgeApi {
+export interface DownloadFileResult {
+  /**
+   * 文件名
+   */
+  fileName: string
+  /**
+   * 文件路径
+   */
+  filePath: string
+}
+
+export interface ElectronBridgeApi {
   /**
    * 打开编辑器
    * @param info
@@ -44,10 +42,4 @@ interface ElectronBridgeApi {
    * @param url
    */
   downloadFile: (url: string) => Promise<DownloadFileResult>
-}
-
-declare global {
-  interface Window {
-    electronBridgeApi: ElectronBridgeApi
-  }
 }

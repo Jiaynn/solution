@@ -1,3 +1,50 @@
+# [1.0.0-beta.0](https://github.com/qbox/QNSolutions_Web/compare/portal-solution@0.0.1...portal-solution@1.0.0-beta.0) (2023-03-31)
+
+
+### Bug Fixes
+
+* **portal-solution:**  修改请求bucket列表参数变化 ([#128](https://github.com/qbox/QNSolutions_Web/issues/128)) ([ab6365c](https://github.com/qbox/QNSolutions_Web/commit/ab6365cc11c9e36af3f47e949e79c95bb61f1b75))
+* **portal-solution:** 定时器检查路由改为useLocation ([d5413bf](https://github.com/qbox/QNSolutions_Web/commit/d5413bf8a69f0cc776968cba167d6571618e63c9))
+* **portal-solution:** 给每个tab添加解决方案名称 ([#137](https://github.com/qbox/QNSolutions_Web/issues/137)) ([8a879cd](https://github.com/qbox/QNSolutions_Web/commit/8a879cdc6b4e3e00e0bac1202ceb603b86eabfe6))
+* **portal-solution:** 根据ui修改方案列表页和详情页 ([#146](https://github.com/qbox/QNSolutions_Web/issues/146)) ([8dde858](https://github.com/qbox/QNSolutions_Web/commit/8dde85823dad596802e454fb068d76aa38380e52))
+* **portal-solution:** 接入electron和修复问题 ([#153](https://github.com/qbox/QNSolutions_Web/issues/153)) ([a6b0ddd](https://github.com/qbox/QNSolutions_Web/commit/a6b0dddd252fa34cdea62d9a3348c6b1eab912d5))
+* **portal-solution:** 解决方案详情页iframe自适应 ([8e1832a](https://github.com/qbox/QNSolutions_Web/commit/8e1832a00bca998f1f34be4d49740138ca9fdcaf))
+* **portal-solution:** 解决ts类型检查报错问题 ([#145](https://github.com/qbox/QNSolutions_Web/issues/145)) ([c016a5b](https://github.com/qbox/QNSolutions_Web/commit/c016a5b70d448ee97655c893964b702780c0b401))
+* **portal-solution:** 修复打包错误 ([#134](https://github.com/qbox/QNSolutions_Web/issues/134)) ([f8ce90e](https://github.com/qbox/QNSolutions_Web/commit/f8ce90ecdce65a2f8a6e8d0251961de5891c6de9))
+* **portal-solution:** 修复返回数组为null时引起页面崩溃 ([#143](https://github.com/qbox/QNSolutions_Web/issues/143)) ([26e76ea](https://github.com/qbox/QNSolutions_Web/commit/26e76eaefec5b113786583c0c0355fb5ee8764a7))
+* **portal-solution:** 修复api返回结果的类型 ([#144](https://github.com/qbox/QNSolutions_Web/issues/144)) ([c0c4aaf](https://github.com/qbox/QNSolutions_Web/commit/c0c4aaf790f397abff89a892e2f7ce2032a741d3))
+* **portal-solution:** 修复api数据返回类型以及lowcode方案类型 ([#150](https://github.com/qbox/QNSolutions_Web/issues/150)) ([c682df8](https://github.com/qbox/QNSolutions_Web/commit/c682df80851266c21ad76f7459839ac18c051bd4))
+* **portal-solution:** 修复ConfigurationStore错误 ([#135](https://github.com/qbox/QNSolutions_Web/issues/135)) ([cbe5241](https://github.com/qbox/QNSolutions_Web/commit/cbe524144c2cd8bbe9d7d7c686a4c74c7ad73b91))
+* **portal-solution:** 修复image ([22c13f5](https://github.com/qbox/QNSolutions_Web/commit/22c13f5130562c74ae74fe6c13dcbf00b6670408))
+* **portal-solution:** 修复less警告 ([#132](https://github.com/qbox/QNSolutions_Web/issues/132)) ([a6f5587](https://github.com/qbox/QNSolutions_Web/commit/a6f5587bc63421f3a022aa9aee281a4e25b0e88f))
+* **portal-solution:** 修复mock类型报错 ([#151](https://github.com/qbox/QNSolutions_Web/issues/151)) ([150c21c](https://github.com/qbox/QNSolutions_Web/commit/150c21ccdccdd6f24d1675189e72ceddad1691c1))
+* **portal-solution:** 修复postMessage消息通信监听 ([a68681d](https://github.com/qbox/QNSolutions_Web/commit/a68681d084dbc04c47cd5cd88c246109a71d4843))
+* **portal-solution:** 修改低代码组件渲染结构 ([747d3d6](https://github.com/qbox/QNSolutions_Web/commit/747d3d67758011c9af967944f1ebebc279952b09))
+* **portal-solution:** 修改图片管理以及统一消息类名 ([#142](https://github.com/qbox/QNSolutions_Web/issues/142)) ([f7e4c04](https://github.com/qbox/QNSolutions_Web/commit/f7e4c0437dc8af024c8c76417b2a3b5865f6b860))
+* **portal-solution:** 修改文案 ([#136](https://github.com/qbox/QNSolutions_Web/issues/136)) ([24202fc](https://github.com/qbox/QNSolutions_Web/commit/24202fc78bb35920c9072a73a39898ec636cf038))
+* **portal-solution:** 修改文案 ([#147](https://github.com/qbox/QNSolutions_Web/issues/147)) ([e434813](https://github.com/qbox/QNSolutions_Web/commit/e434813ff79acfe8584fd7c99476136ccb80f450))
+* **portal-solution:** 修改样式类名以及组件名 ([#141](https://github.com/qbox/QNSolutions_Web/issues/141)) ([b237e4a](https://github.com/qbox/QNSolutions_Web/commit/b237e4a520593160ac4134882aaeb1e11231c00a))
+* **portal-solution:** 组件导入、导出错误修复 ([65de673](https://github.com/qbox/QNSolutions_Web/commit/65de673cd33c88408b7e35d3d9584a81e51556f1))
+* **portal-solution:** lint-staged ([b8150d7](https://github.com/qbox/QNSolutions_Web/commit/b8150d7b6c25c77f58a1a2f0685768a73c66ceb7))
+* **portal-solution:** lowcode ([bbc8b8b](https://github.com/qbox/QNSolutions_Web/commit/bbc8b8b05ad5ae4df8571d0c0868ae576c1ea2d5))
+
+
+### Features
+
+* **portal-solution-desktop:** 基础UI ([7fecaed](https://github.com/qbox/QNSolutions_Web/commit/7fecaed9f7ed471b87942d0de27f8aca461f2b09))
+* **portal-solution:** 互动营销 ([#149](https://github.com/qbox/QNSolutions_Web/issues/149)) ([3707730](https://github.com/qbox/QNSolutions_Web/commit/37077309722531e701af926a6cee2a065b5172c3))
+* **portal-solution:** 添加低代码列表页和详情页 ([#138](https://github.com/qbox/QNSolutions_Web/issues/138)) ([ad2f548](https://github.com/qbox/QNSolutions_Web/commit/ad2f548201364f5c626d701994a9cb63d676c223))
+* **portal-solution:** 添加欢迎页和非白名单提示页 ([#148](https://github.com/qbox/QNSolutions_Web/issues/148)) ([a5d78a8](https://github.com/qbox/QNSolutions_Web/commit/a5d78a821ff75462840eb289885f89b9d8c15afc))
+* **portal-solution:** 添加iframe组件 ([#152](https://github.com/qbox/QNSolutions_Web/issues/152)) ([75d2ec7](https://github.com/qbox/QNSolutions_Web/commit/75d2ec7e312a1b47bd7134f9f28656061f4648ea))
+* **portal-solution:** 统一消息 ([7fd32f2](https://github.com/qbox/QNSolutions_Web/commit/7fd32f2793f850f327a408cd71ad6404a350bfcd))
+* **portal-solution:** 项目列表页和创建项目交互 ([ee9e38c](https://github.com/qbox/QNSolutions_Web/commit/ee9e38c461ffbb167c9f4602190512244523e7a8))
+* **portal-solution:** 新增白名单逻辑 ([c863c12](https://github.com/qbox/QNSolutions_Web/commit/c863c129f477877ba19760d991a438c03e69b5c3))
+* **portal-solution:** 增加方案概览 ([#129](https://github.com/qbox/QNSolutions_Web/issues/129)) ([2a8fc5f](https://github.com/qbox/QNSolutions_Web/commit/2a8fc5f30bceebe16ba9233539b0356fdc88364c))
+* **portal-solution:** 增加文字溢出的hover效果 ([#133](https://github.com/qbox/QNSolutions_Web/issues/133)) ([2084c51](https://github.com/qbox/QNSolutions_Web/commit/2084c5149aec6c66b344966a63932c1100598864))
+* **portal-solution:** electron运行和打包 ([eaad348](https://github.com/qbox/QNSolutions_Web/commit/eaad34852eab0e944cb1bdccc0e46ce5e365f9a2))
+
+
+
 ## 0.0.1 (2023-03-06)
 
 

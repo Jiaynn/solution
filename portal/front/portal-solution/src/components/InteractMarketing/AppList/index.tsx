@@ -31,30 +31,30 @@ import {
   AppPackStatusId,
   AppScenariosId,
   AppStatus
-} from 'apis/_types/interfactMarketingType'
+} from 'apis/_types/interactMarketingType'
 
 import styles from './style.m.less'
 import DownloadModal, { ModalContext } from '../common/DownloadModal'
 import useInteractMarketingRouter from '../../../routes/useLowcodeRouter'
 import AppListStore from './store'
 
-import Reflash from './Reflash'
+import Refresh from './Refresh'
 
-const { Column } = Table
+const { Column } = Table as any
 
 const BtnDownload: React.FC<
   {
     packed: boolean
-    onReflash: () => void
+    onRefresh: () => void
   } & ButtonProps
 > = props => {
-  const { packed, onReflash, ...params } = props
+  const { packed, onRefresh, ...params } = props
   return (
     <span>
       <a {...params} type="link">
         {packed ? '下载源文件' : AppPackingStatusLabel.Packing}
       </a>
-      {!packed && <Reflash onReflash={onReflash} />}
+      {!packed && <Refresh onRefresh={onRefresh} />}
     </span>
   )
 }
@@ -245,7 +245,9 @@ export default observer(function AppList(_props: AppListProps) {
           />
           <Column<AppListItem>
             title="创建时间"
-            render={value => moment.unix(Math.round(value)).format('YYYY-MM-DD HH:mm:ss')}
+            render={value =>
+              moment.unix(Math.round(value)).format('YYYY-MM-DD HH:mm:ss')
+            }
             dataIndex="createTime"
             key="createTime"
             sorter={(a, b) => Number(a.createTime) - Number(b.createTime)}
@@ -287,11 +289,11 @@ export default observer(function AppList(_props: AppListProps) {
                     <BtnDownload
                       onClick={() => onClickDownload(appId)}
                       disabled={
-                        status === AppStatus.UnCompleted
-                        || packStatus !== AppPackStatusId.PackCompleted
+                        status === AppStatus.UnCompleted ||
+                        packStatus !== AppPackStatusId.PackCompleted
                       }
                       packed={packStatus === AppPackStatusId.PackCompleted}
-                      onReflash={() => {
+                      onRefresh={() => {
                         store.search()
                       }}
                     />

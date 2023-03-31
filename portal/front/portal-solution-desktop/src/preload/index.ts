@@ -1,62 +1,14 @@
 import { contextBridge, ipcRenderer } from 'electron'
-import { electronAPI, IpcRendererEvent } from '@electron-toolkit/preload'
+import { electronAPI } from '@electron-toolkit/preload'
 
-interface EditorInfo {
-  /**
-   * 平台
-   */
-  platform: 'Android' | 'iOS'
-  /**
-   * 文件路径
-   */
-  filePath: string
-}
-
-export interface ElectronBridgeApi {
-  /**
-   * 打开编辑器
-   * @param info
-   */
-  openEditor: (info: EditorInfo) => Promise<unknown>
-  /**
-   * 获取下载路径
-   */
-  getDownloadsPath: () => Promise<string>
-  /**
-   * 获取下载状态
-   * @param callback
-   */
-  getDownloadStatus: (
-    callback: (
-      event: IpcRendererEvent,
-      result: {
-        /**
-         * 状态码
-         * 0 下载中，1 下载完成
-         */
-        code: number
-        /**
-         * 消息
-         */
-        message: string
-      }
-    ) => void
-  ) => void
-  /**
-   * 解压
-   * @param fileName
-   * @param filePath
-   * @param suffix
-   */
-  unzip: (fileName: string, filePath: string, suffix: string) => Promise<void>
-}
+import { ElectronBridgeApi } from './type'
 
 // Custom APIs for renderer
 const electronBridgeApi: ElectronBridgeApi = {
   openEditor: (info) => ipcRenderer.invoke('openEditor', info),
-  getDownloadsPath: () => ipcRenderer.invoke('getDownloadsPath'),
-  getDownloadStatus: (callback) => ipcRenderer.on('downloadStatus', callback),
-  unzip: (fileName, filePath, suffix) => ipcRenderer.invoke('unzip', fileName, filePath, suffix)
+  unzip: (fileName, filePath) => ipcRenderer.invoke('unzip', fileName, filePath),
+  openFile: (filePath) => ipcRenderer.invoke('openFile', filePath),
+  downloadFile: (url) => ipcRenderer.invoke('downloadFile', url)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

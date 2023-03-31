@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable, reaction } from 'mobx'
+import { action, makeObservable, observable, reaction } from 'mobx'
 import { injectable } from 'qn-fe-core/di'
 import Store from 'qn-fe-core/store'
 
@@ -9,7 +9,7 @@ import autobind from 'autobind-decorator'
 import { injectProps } from 'qn-fe-core/local-store'
 
 import { InteractMarketingApis } from 'apis/interactMarketing'
-import { CodeUrl } from 'apis/_types/interfactMarketingType'
+import { CodeUrl } from 'apis/_types/interactMarketingType'
 import { ProjectInfo } from 'components/lowcode/ProjectList/type'
 
 const downloadJson = (url: string) => {
@@ -28,7 +28,7 @@ const downloadJson = (url: string) => {
     })
 }
 
-const downloadOnWeb = (url: string) => {
+export const downloadOnWeb = (url: string) => {
   const filename = url.split('/').pop() || ''
 
   if (/\.json$/.test(filename)) {
@@ -69,24 +69,33 @@ export default class DownloadModalStore extends Store {
     sceneType: 0,
     appId: '',
     createTime: Date.now(),
-    platform: []
+    package: {
+      android: {
+        fileName: '',
+        filePath: ''
+      },
+      ios: {
+        fileName: '',
+        filePath: ''
+      }
+    }
   }
+
+  @action.bound updateAndroid(value: { fileName: string; filePath: string }) {
+    this.projectInfo.package.android = value
+  }
+
+  @action.bound updateIOS(value: { fileName: string; filePath: string }) {
+    this.projectInfo.package.ios = value
+  }
+
   @action.bound updateProjectInfo(value: ProjectInfo) {
     this.projectInfo = value
   }
-  @computed get platform(): Array<'Android' | 'iOS'> {
-    const result: Array<'Android' | 'iOS'> = []
-    if (this.selectedUrlTypes.includes('android_url')) {
-      result.push('Android')
-    }
-    if (this.selectedUrlTypes.includes('ios_url')) {
-      result.push('iOS')
-    }
-    return result
-  }
 
-  @observable selectedUrlTypes: string[] = []
-  @action.bound updateSelectedUrls(list: string[]) {
+
+  @observable selectedUrlTypes: (keyof CodeUrl)[] = []
+  @action.bound updateSelectedUrls(list: (keyof CodeUrl)[]) {
     this.selectedUrlTypes = list
   }
   @action.bound clearSelectedUrls() {
@@ -94,47 +103,9 @@ export default class DownloadModalStore extends Store {
   }
 
   @autobind
-  createProject() {
-    this.projectInfo.platform = this.platform
-    window.postMessage(
-      {
-        type: 'createProject',
-        data: {
-          name: 'name',
-          description: 'description',
-          sceneType: 1,
-          appId: 'clearslkdfjlkj239r',
-          createTime: Date.now(),
-          platform: ['IOS']
-        }
-      },
-      window.location.origin || ''
-    )
-  }
-
-  @autobind
   download() {
     this.selectedUrlTypes.forEach(urlType => {
-      const userAgent = navigator.userAgent.toLowerCase()
-
-      // 如果当前环境是electron
-      if (userAgent.indexOf(' electron/') > -1) {
-        // 使用electron的下载方法
-        window.top?.electronBridgeApi.download(this.urls[urlType])
-        // 创建项目
-        // TODO: fix
-        // this.projectInfo.platform = this.platform
-        // window.postMessage(
-        //   {
-        //     type: 'createProject',
-        //     data: this.projectInfo
-        //   },
-        //   window.location.origin
-        // )
-      } else {
-        // 使用网页端的下载方法
-        downloadOnWeb(this.urls[urlType])
-      }
+      downloadOnWeb(this.urls[urlType])
     })
   }
 
@@ -152,15 +123,23 @@ export default class DownloadModalStore extends Store {
         description: data.appDesc,
         sceneType: data.appScenarios,
         appId: data.appId,
-        createTime: Date.now(),
-        platform: []
+        createTime: data.createTime * 1000, // 从秒转换成毫秒
+        package: {
+          android: {
+            fileName: '',
+            filePath: ''
+          },
+          ios: {
+            fileName: '',
+            filePath: ''
+          }
+        }
       })
-      this.updateUrls(data.urls!)
+      this.updateUrls(data.urls)
     }
   }
 
   init(): void | Promise<void> {
-    this.fetchAppInfo()
     this.addDisposer(
       reaction(
         () => this.props.appId,
@@ -169,5 +148,6 @@ export default class DownloadModalStore extends Store {
         }
       )
     )
+    this.fetchAppInfo()
   }
 }

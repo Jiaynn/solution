@@ -6,7 +6,7 @@ import { ToasterStore } from 'portal-base/common/toaster'
 
 import autobind from 'autobind-decorator'
 
-import { AppListResult, AppListQuery } from 'apis/_types/interfactMarketingType'
+import { AppListResult, AppListQuery } from 'apis/_types/interactMarketingType'
 import { InteractMarketingApis } from 'apis/interactMarketing'
 import { ImageSolutionApis } from 'apis/image'
 
