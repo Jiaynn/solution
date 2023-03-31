@@ -1,4 +1,4 @@
-import { app, ipcMain, session } from 'electron'
+import { ipcMain, session } from 'electron'
 import compressing from 'compressing'
 
 import { callEditor, openFile } from './utils'
@@ -7,19 +7,30 @@ const setUpDownload = (): void => {
   const downloadMap = new Map()
   ipcMain.handle('downloadFile', async (_, url) => {
     session.defaultSession.downloadURL(url)
-    return new Promise((resolve) => {
-      downloadMap.set(url, resolve)
+    return new Promise((resolve, reject) => {
+      downloadMap.set(url, {
+        resolve,
+        reject
+      })
     })
   })
 
   session.defaultSession.on('will-download', (_, item) => {
     const fileName = item.getFilename()
 
-    item.once('done', () => {
-      downloadMap.get(item.getURL())({
-        fileName,
-        filePath: item.getSavePath()
-      })
+    item.once('done', (_, result) => {
+      if (result === 'completed') {
+        downloadMap.get(item.getURL()).resolve({
+          fileName,
+          filePath: item.getSavePath()
+        })
+        return
+      }
+
+      if (result === 'cancelled' || result === 'interrupted') {
+        downloadMap.get(item.getURL()).reject(new Error(result))
+        return
+      }
     })
   })
 }
@@ -30,10 +41,6 @@ export const initIPC = (): void => {
   ipcMain.handle('openEditor', (_, info) => {
     const { filePath, platform } = info
     return callEditor(platform, filePath)
-  })
-
-  ipcMain.handle('getDownloadsPath', async () => {
-    return app.getPath('downloads')
   })
 
   ipcMain.handle('unzip', async (_, fileName, filePath) => {

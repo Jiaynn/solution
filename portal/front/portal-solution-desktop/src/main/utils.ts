@@ -3,7 +3,7 @@ import { BrowserWindow, session, shell, app } from 'electron'
 import cmd from 'node-cmd'
 
 import { pageUrl } from './config'
-import { ElectronBridgeApi } from '../preload'
+import { EditorInfo } from '../preload/type'
 
 import icon from '../../resources/logo.png?asset'
 
@@ -64,12 +64,11 @@ export const persistentCookie = (): void => {
   })
 }
 
-type Platform = Parameters<ElectronBridgeApi['openEditor']>[0]['platform']
-export const callEditor = (platform: Platform, dest: string): Promise<unknown> => {
+export const callEditor = (platform: EditorInfo['platform'], dest: string): Promise<unknown> => {
   return new Promise((resolve, reject) => {
     if (process.platform === 'darwin') {
       // 运行在 macOS 上
-      if (platform === 'Android') {
+      if (platform === 'android') {
         cmd.run(`open -a /Applications/Android\\ Studio.app ${dest}`, (err, data) => {
           if (!err) {
             return resolve(data)
@@ -78,7 +77,7 @@ export const callEditor = (platform: Platform, dest: string): Promise<unknown> =
         })
         return
       }
-      if (platform === 'iOS') {
+      if (platform === 'ios') {
         cmd.run(`open -a /Applications/Xcode.app ${dest}`, (err, data) => {
           if (!err) {
             return resolve(data)
