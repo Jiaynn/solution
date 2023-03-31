@@ -42,7 +42,7 @@ export default class KodoDomainInfoStore extends Store {
    * 是否备案
    */
   @observable hasGaba = true
-  @action.bound updatehasGaba(value: boolean) {
+  @action.bound updateHasGaba(value: boolean) {
     this.hasGaba = value
   }
 
@@ -59,7 +59,7 @@ export default class KodoDomainInfoStore extends Store {
   @Loadings.handle(LoadingType.HasGaba)
   async fetchHasGaba() {
     const data = await this.apis.getDomainStatus(this.props.domain)
-    this.updatehasGaba(!!data?.hasGaba)
+    this.updateHasGaba(!!data?.hasGaba)
   }
 
   @autobind

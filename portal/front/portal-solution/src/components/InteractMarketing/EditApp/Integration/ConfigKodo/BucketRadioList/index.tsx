@@ -44,7 +44,7 @@ const BucketRadioList: React.FC<BucketRadioListProps> = observer(props => {
         }
       >
         <WrapperWithShowMore
-          renderTitle={
+          title={
             <SubConfigTitle
               id="integration-bucket"
               safety={bucket ? bucket.length > 0 : false}

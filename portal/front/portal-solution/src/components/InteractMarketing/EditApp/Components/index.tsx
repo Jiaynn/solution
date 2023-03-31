@@ -9,7 +9,7 @@ import { useInjection } from 'qn-fe-core/di'
 import styles from './style.m.less'
 import InputWrapper from 'components/InteractMarketing/common/InputWrapper'
 import TooltipIcon from 'components/InteractMarketing/EditApp/Integration/ConfigKodo/CallbackInput/TooltipIcon'
-import { SelectableId } from 'apis/_types/interfactMarketingType'
+import { SelectableId } from 'apis/_types/interactMarketingType'
 
 import AppConfigStore from 'store/interactMarketing/appConfig'
 

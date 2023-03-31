@@ -33,7 +33,7 @@ const AddrRadioList: React.FC<AddrRadioListProps> = observer(props => {
         }
       >
         <WrapperWithShowMore
-          renderTitle={
+          title={
             <SubConfigTitle
               id="integration-addr"
               safety={addr ? addr.length > 0 : false}

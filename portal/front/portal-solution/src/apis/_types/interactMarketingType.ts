@@ -208,7 +208,7 @@ export interface AppInfo {
   integrationWayVo: string
   packStatus: AppPackStatusId
   urls: null | CodeUrl
-  components: AppInfoComponet[]
+  components: AppInfoComponent[]
   hub: string
   piliDomain: {
     [key in PiliDomainType]: string
@@ -222,7 +222,7 @@ export interface AppInfo {
   }
   createTime: number
 }
-export interface AppInfoComponet {
+export interface AppInfoComponent {
   type: string
   componentId: string
   name: string

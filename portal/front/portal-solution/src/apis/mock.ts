@@ -18,7 +18,7 @@ import {
   AppParam,
   CodeUrl,
   PiliHubListResult
-} from './_types/interfactMarketingType'
+} from './_types/interactMarketingType'
 import { GetMessageListOptions } from './_types/messageType'
 
 export class MockApi {

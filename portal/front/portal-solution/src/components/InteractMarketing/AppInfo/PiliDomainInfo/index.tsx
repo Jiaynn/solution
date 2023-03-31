@@ -8,7 +8,7 @@ import { useLocalStore } from 'qn-fe-core/local-store'
 import styles from './style.m.less'
 import UselessTooltip from '../../common/UselessTooltip'
 import PiliDomainInfoStore from './store'
-import { PiliDomainType } from 'apis/_types/interfactMarketingType'
+import { PiliDomainType } from 'apis/_types/interactMarketingType'
 
 export interface PiliDomainInfoProps {
   type: PiliDomainType
