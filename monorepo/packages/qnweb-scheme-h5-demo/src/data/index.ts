@@ -17,20 +17,20 @@ export const list = [
 		icon: '/static/marketing.svg',
 		type: 1,
 		url: '',
-		isHot: false,
+		isHot: true,
 		content: '28',
 		folder: 'interactiveMarketing'
 	},
-	{
-		id: 2,
-		title: '低代码电商直播',
-		icon: '/static/lowcode.svg',
-		type: 1,
-		url: 'niucube://shopping/index',
-		isHot: true,
-		content: '30',
-		folder: 'LowCodeCommerce'
-	},
+	// {
+	// 	id: 2,
+	// 	title: '低代码电商直播',
+	// 	icon: '/static/lowcode.svg',
+	// 	type: 1,
+	// 	url: 'niucube://shopping/index',
+	// 	isHot: true,
+	// 	content: '30',
+	// 	folder: 'LowCodeCommerce'
+	// },
 	// {
 	// 	id: 3,
 	// 	title: '短视频点播营销',
