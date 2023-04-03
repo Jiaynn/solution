@@ -66,7 +66,7 @@ export default class DownloadModalStore extends Store {
   @observable projectInfo: ProjectInfo = {
     name: '',
     description: '',
-    sceneType: 0,
+    sceneType: 1,
     appId: '',
     createTime: Date.now(),
     package: {
@@ -121,7 +121,7 @@ export default class DownloadModalStore extends Store {
       this.updateProjectInfo({
         name: data.appName,
         description: data.appDesc,
-        sceneType: data.appScenarios,
+        sceneType: 1,
         appId: data.appId,
         createTime: data.createTime * 1000, // 从秒转换成毫秒
         package: {
