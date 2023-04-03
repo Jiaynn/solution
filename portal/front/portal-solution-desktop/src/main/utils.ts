@@ -5,7 +5,7 @@ import cmd from 'node-cmd'
 import { pageUrl } from './config'
 import { EditorInfo } from '../preload/type'
 
-import icon from '../../resources/logo.png?asset'
+import icon from '../../resources/logo2.png?asset'
 
 export const createWindow = (): BrowserWindow => {
   // Create the browser window.
