@@ -23,6 +23,8 @@ import classNames from 'classnames'
 import { useLocation } from 'react-use'
 import Page from 'portal-base/common/components/Page'
 
+import NotFound from 'portal-base/common/components/NotFound'
+
 import { basename } from 'constants/routes'
 import { BootProvider } from 'kodo/components/common/BootProvider'
 import { sensorsTagFlag, sensorsTrack } from 'kodo/utils/sensors'
@@ -123,7 +125,7 @@ const AppContainer = observer(() => {
                   mainClassName={classNames(`${prefixCls}-page`)}
                 >
                   <Auth>
-                    <Switch>
+                    <Switch placeholder={<NotFound />}>
                       {ImageRouter}
                       {MessageRouter}
                       {LowcodeRouter}
