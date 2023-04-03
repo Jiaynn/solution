@@ -124,6 +124,7 @@ import { CommonApi } from 'apis/common'
 import AppConfigStore from 'store/interactMarketing/appConfig'
 import { InteractMarketingApis } from 'apis/interactMarketing'
 import { ConfigurationStore } from 'components/image/Configuration/ConfigureImageStyle/ConfigurationStore'
+import { AuthStore } from 'components/common/Auth/store'
 // import { MockApi } from 'apis/mock'
 
 const DevTools = React.lazy(() => import('../DevTools'))
@@ -290,6 +291,7 @@ function BootLocalProvider(props: React.PropsWithChildren<{}>) {
       { identifier: RefreshCdnStore, constr: RefreshCdnStore },
       { identifier: RegionApplyStore, constr: RegionApplyStore },
       { identifier: ImageSolutionStore, constr: ImageSolutionStore },
+      { identifier: AuthStore, constr: AuthStore },
       { identifier: AppConfigStore, constr: AppConfigStore },
       { identifier: ConfigurationStore, constr: ConfigurationStore },
 

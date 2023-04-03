@@ -1,23 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.less'
 import { Button, Carousel, Divider, Link } from 'react-icecream-2'
 
 import { useInjection } from 'qn-fe-core/di'
 import { UserInfoStore } from 'portal-base/user/account'
 
+import { RouterStore } from 'qn-fe-core/router'
+
+import { observer } from 'mobx-react'
+
 import { LowcodeModal } from '../common/Modal'
+import { lowcodePath } from 'utils/router'
+import { AuthStore } from 'components/common/Auth/store'
 
 const prefixCls = 'lowcode-prompt'
-export const LowcodePrompt = () => {
+export const LowcodePrompt = observer(() => {
   const userInfoStore = useInjection(UserInfoStore)
+  const routerStore = useInjection(RouterStore)
+  const authStore = useInjection(AuthStore)
   const [visible, setVisible] = useState(false)
   function handleCancel() {
     setVisible(false)
   }
 
   const onToggleUser = () => {
-    userInfoStore.signOutAndGoSignIn(window.location.href)
+    userInfoStore.signOutAndGoSignIn(lowcodePath)
   }
+
+  useEffect(() => {
+    if (authStore.isAuth) {
+      routerStore.push(lowcodePath)
+    }
+  }, [authStore.isAuth, routerStore])
 
   return (
     <div className={`${prefixCls}`}>
@@ -42,4 +56,4 @@ export const LowcodePrompt = () => {
       </div>
     </div>
   )
-}
+})
