@@ -9,7 +9,10 @@ const iframeWebPageWidth = 1280
 const iframeWidth = 1040
 
 export const LowcodeIframe: React.FC<LowcodeIframeProps> = props => {
-  const { url, width, height, isAdaptive } = props
+  const {
+    url, width, height, isAdaptive,
+    ...restProps
+  } = props
 
   const [scaleValue, setScaleValue] = useState<number>(iframeWidth / iframeWebPageWidth)
   const adaptWidth = useMemo(() => `${1 / scaleValue * 100}%`, [scaleValue])
@@ -43,6 +46,7 @@ export const LowcodeIframe: React.FC<LowcodeIframeProps> = props => {
         width={adaptWidth}
         height={adaptWidth}
         style={{ transformOrigin: 'left top', transform: `scale(${scaleValue})` }}
+        {...restProps}
       />
     )
   }
