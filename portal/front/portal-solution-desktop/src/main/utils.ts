@@ -41,7 +41,9 @@ export const createWindow = (): BrowserWindow => {
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
-  mainWindow.loadURL(pageUrl)
+  mainWindow.loadURL(pageUrl, {
+    extraHeaders: 'pragma: no-cache\n'
+  })
 
   return mainWindow
 }

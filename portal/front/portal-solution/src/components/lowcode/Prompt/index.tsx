@@ -5,10 +5,13 @@ import { Button, Carousel, Divider, Link } from 'react-icecream-2'
 import { useInjection } from 'qn-fe-core/di'
 import { UserInfoStore } from 'portal-base/user/account'
 
+import { observer } from 'mobx-react'
+
 import { LowcodeModal } from '../common/Modal'
+import { lowcodePath } from 'utils/router'
 
 const prefixCls = 'lowcode-prompt'
-export const LowcodePrompt = () => {
+export const LowcodePrompt = observer(() => {
   const userInfoStore = useInjection(UserInfoStore)
   const [visible, setVisible] = useState(false)
   function handleCancel() {
@@ -16,7 +19,7 @@ export const LowcodePrompt = () => {
   }
 
   const onToggleUser = () => {
-    userInfoStore.signOutAndGoSignIn(window.location.href)
+    userInfoStore.signOutAndGoSignIn(lowcodePath)
   }
 
   return (
@@ -42,4 +45,4 @@ export const LowcodePrompt = () => {
       </div>
     </div>
   )
-}
+})
