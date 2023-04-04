@@ -23,7 +23,8 @@ export const createWindow = (): BrowserWindow => {
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false,
-      nodeIntegration: true
+      nodeIntegration: true,
+      webSecurity: false
     }
   })
 
