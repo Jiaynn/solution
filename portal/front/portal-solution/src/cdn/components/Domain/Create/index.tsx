@@ -60,7 +60,7 @@ export const DomainCreate = observer(function DomainCreate(
       // console.log('createDomainState', createDomainState)
 
       if (results.some(it => !!it.shouldVerify)) {
-        sessionStorage.setItem('domain-verify', createDomainState.toString())
+        sessionStorage.setItem('domain-verify', JSON.stringify(createDomainState || ''))
         window.open(`${basename}/image/configuration/domain/verify-ownership`)
         if (onCancel) {
           onCancel()
