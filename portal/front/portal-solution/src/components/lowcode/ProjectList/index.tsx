@@ -83,24 +83,10 @@ export function LowcodeProjectList() {
     window.electronBridgeApi.unzip(
       packageInfo?.fileName,
       packageInfo?.filePath
-    ).then(() => {
-      Modal.success({
-        content: '解压成功'
-      })
-      return window.electronBridgeApi?.openEditor({
-        platform: type,
-        filePath: `${packageInfo?.filePath.replace('.zip', '')}`
-      })
-    }).then(() => {
-      Modal.success({
-        content: '打开编辑器成功'
-      })
-    }).catch(error => {
-      Modal.error({
-        title: '打开编辑器失败',
-        content: error.message
-      })
-    })
+    ).then(() => window.electronBridgeApi?.openEditor({
+      platform: type,
+      filePath: `${packageInfo?.filePath.replace('.zip', '')}`
+    }))
   }
 
   /**
@@ -258,8 +244,18 @@ export function LowcodeProjectList() {
               trigger="click"
               overlay={
                 <Menu>
-                  {record.package.android && <MenuItem onClick={() => onOpenEditor('android', record)}>Android</MenuItem>}
-                  {record.package.ios && <MenuItem onClick={() => onOpenEditor('ios', record)}>iOS</MenuItem>}
+                  {
+                    record.package.android && <MenuItem onClick={() => onOpenEditor('android', record)}>
+                      <Button type="text">Android</Button>
+                    </MenuItem>
+                  }
+                  {
+                    record.package.ios && <MenuItem onClick={() => onOpenEditor('ios', record)}>
+                      <Button type="text">
+                        iOS
+                      </Button>
+                    </MenuItem>
+                  }
                 </Menu>
               }
             >
