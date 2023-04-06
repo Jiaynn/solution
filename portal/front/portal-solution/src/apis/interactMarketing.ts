@@ -49,8 +49,11 @@ export class InteractMarketingApis {
     return this.client.get(interactMarketingService.getAppInfo, query)
   }
 
-  getAppList(query: AppListQuery): Promise<AppListResult | null> {
-    return this.client.get(interactMarketingService.getAppList, query)
+  getAppList(query: AppListQuery) {
+    return this.client.get<AppListResult>(
+      interactMarketingService.getAppList,
+      query
+    )
   }
 
   getAppParam(): Promise<AppParam | null> {
@@ -83,7 +86,7 @@ export class InteractMarketingApis {
 
   getKodoDomain(bucket: string) {
     return this.client.get<KodoDomainResult>(
-      interactMarketingService.getKodoDoamin(bucket)
+      interactMarketingService.getKodoDomain(bucket)
     )
   }
 

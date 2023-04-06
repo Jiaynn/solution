@@ -36,20 +36,19 @@ export default class ImRadioListStore extends Store {
   @ToasterStore.handle()
   @Loadings.handle('im')
   async fetchIM() {
-    if (this.appConfigStore.config.RTCApp === '') {
+    const rtcApp = this.appConfigStore.config.RTCApp
+    if (rtcApp === '') {
       return
     }
 
-    const imAppId = await this.apis.getImAppId(
-      this.appConfigStore.config.RTCApp
-    )
+    const imAppId = await this.apis.getImAppId(rtcApp)
 
     this.updateIm(imAppId ? [imAppId] : [])
 
     if (!imAppId) {
       this.appConfigStore.updateConfig({ IMServer: '' })
       return
-    } 
+    }
 
     if (imAppId !== this.appConfigStore.config.IMServer) {
       this.appConfigStore.updateConfig({ IMServer: imAppId })

@@ -67,8 +67,10 @@ export const persistentCookie = (): void => {
   })
 }
 
-export const callEditor = (platform: EditorInfo['platform'], dest: string): Promise<unknown> => {
+export const openEditor = (platform: EditorInfo['platform'], dest: string): Promise<unknown> => {
   return new Promise((resolve, reject) => {
+    console.log('process.platform', process.platform)
+    console.log('platform', platform)
     if (process.platform === 'darwin') {
       // 运行在 macOS 上
       if (platform === 'android') {
@@ -81,13 +83,14 @@ export const callEditor = (platform: EditorInfo['platform'], dest: string): Prom
         return
       }
       if (platform === 'ios') {
-        cmd.run(`open -a /Applications/Xcode.app ${dest}`, (err, data) => {
+        cmd.run(`open -a /Applications/Xcode.app ${dest}/QNLiveKitDemo`, (err, data) => {
           if (!err) {
             return resolve(data)
           }
           return reject(err)
         })
       }
+      return
     }
     if (process.platform === 'win32') {
       // 运行在 Windows 上

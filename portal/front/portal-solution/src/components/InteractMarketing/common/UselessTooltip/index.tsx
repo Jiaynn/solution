@@ -18,7 +18,7 @@ const UselessTooltip: React.FC<UselessTooltipProps> = props => {
   const { className, infoName, style, loading = false, usable = false } = props
   return (
     <Tooltip
-      className={className}
+      className={`${className} ${styles.icon}`}
       style={style}
       overlayClassName={styles.alert}
       arrowPointAtCenter

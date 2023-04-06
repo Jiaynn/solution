@@ -1,7 +1,7 @@
 import { ipcMain, session, shell } from 'electron'
 import compressing from 'compressing'
 
-import { callEditor } from './utils'
+import { openEditor } from './utils'
 import { DownloadFileResult } from '../preload/type'
 
 const setUpDownload = (): void => {
@@ -47,7 +47,7 @@ export const initIPC = (): void => {
 
   ipcMain.handle('openEditor', (_, info) => {
     const { filePath, platform } = info
-    return callEditor(platform, filePath)
+    return openEditor(platform, filePath)
   })
 
   ipcMain.handle('unzip', async (_, fileName, filePath) => {

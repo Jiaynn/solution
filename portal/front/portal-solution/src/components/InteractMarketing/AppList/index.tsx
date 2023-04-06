@@ -125,9 +125,11 @@ export default observer(function AppList(_props: AppListProps) {
     )
   }
 
-  const toRtcUsage = (appId: string) => {
+  const toRtcUsage = (rtcApp: string) => {
     window.open(
-      withQueryParams('https://portal.qiniu.com/rtn/statistics/rtc', { appId }),
+      withQueryParams('https://portal.qiniu.com/rtn/statistics/rtc', {
+        appId: rtcApp
+      }),
       '_blank'
     )
   }
@@ -245,9 +247,7 @@ export default observer(function AppList(_props: AppListProps) {
           />
           <Column<AppListItem>
             title="创建时间"
-            render={value =>
-              moment.unix(Math.round(value)).format('YYYY-MM-DD HH:mm:ss')
-            }
+            render={value => moment.unix(Math.round(value)).format('YYYY-MM-DD HH:mm:ss')}
             dataIndex="createTime"
             key="createTime"
             sorter={(a, b) => Number(a.createTime) - Number(b.createTime)}
@@ -256,7 +256,7 @@ export default observer(function AppList(_props: AppListProps) {
             title="操作"
             dataIndex="operation"
             render={(_text, record) => {
-              const { appId, hub, status, packStatus } = record
+              const { appId, hub, status, packStatus, RTCApp } = record
               return (
                 <span>
                   <Button type="link" onClick={() => onClickAppInfo(appId)}>
@@ -275,7 +275,7 @@ export default observer(function AppList(_props: AppListProps) {
                         <Menu.Item onClick={() => toPiliUsage(hub)}>
                           视频直播
                         </Menu.Item>
-                        <Menu.Item onClick={() => toRtcUsage(appId)}>
+                        <Menu.Item onClick={() => toRtcUsage(RTCApp)}>
                           实时音视频
                         </Menu.Item>
                       </Menu>
@@ -289,8 +289,8 @@ export default observer(function AppList(_props: AppListProps) {
                     <BtnDownload
                       onClick={() => onClickDownload(appId)}
                       disabled={
-                        status === AppStatus.UnCompleted ||
-                        packStatus !== AppPackStatusId.PackCompleted
+                        status === AppStatus.UnCompleted
+                        || packStatus !== AppPackStatusId.PackCompleted
                       }
                       packed={packStatus === AppPackStatusId.PackCompleted}
                       onRefresh={() => {

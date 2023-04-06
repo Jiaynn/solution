@@ -49,19 +49,27 @@ export function infoToConfig(info: AppInfo): AppCreateOptions {
  * @param options 选项列表
  * @returns
  */
-export function calcConfigValue(cur: string, options: string[]) {
-  // 如果获取的列表为空，当前配置应设为''
-  if (options.length < 1) {
-    return ''
+export function calcConfigValue(
+  cur: string,
+  options: string[]
+): [string, string[]] {
+  const innerOptions = [...options]
+
+  // 如果获取的列表为空，当前配置应为''
+  if (innerOptions.length < 1) {
+    return ['', innerOptions]
   }
 
-  // 当前配置不在列表内，选择列表的第一项
-  if (!options.includes(cur)) {
-    return options[0]
+  // 当前配置不在列表内，配置应为列表的第一项
+  if (!innerOptions.includes(cur)) {
+    return [innerOptions[0], innerOptions]
   }
 
-  // 当前配置存在于列表内，不更新配置
-  return cur
+  // 当前配置存在于列表内，不更新配置, 并且配置的位置移动到列表的首位
+  const curIndex = innerOptions.findIndex(el => el === cur)
+  innerOptions.splice(curIndex, 1)
+  innerOptions.unshift(cur)
+  return [cur, innerOptions]
 }
 
 /**
@@ -93,11 +101,7 @@ export function isInCompType(
   compIds: string[],
   target: AppParam
 ) {
-  return compIds.some(id =>
-    target.some(group =>
-      group.items.some(c => c.componentId === id && c.type === type)
-    )
-  )
+  return compIds.some(id => target.some(group => group.items.some(c => c.componentId === id && c.type === type)))
 }
 
 @injectable()
@@ -168,14 +172,6 @@ export default class AppConfigStore extends Store {
 
   @computed get liveHdl() {
     return this.config.liveHdl
-  }
-
-  @computed get RTCApp() {
-    return this.config.RTCApp
-  }
-
-  @computed get IMServer() {
-    return this.config.IMServer
   }
 
   @computed get bucket() {

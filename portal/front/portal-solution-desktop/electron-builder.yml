@@ -22,7 +22,7 @@ nsis:
 mac:
   icon: ./resources/logo2.png
   target:
-    - target: dmg
+    - target: default
       arch:
         - x64
         - arm64

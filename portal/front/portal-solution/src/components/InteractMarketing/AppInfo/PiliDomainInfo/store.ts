@@ -75,20 +75,25 @@ export default class PiliDomainInfoStore extends Store {
   }
 
   @autobind
-  @ToasterStore.handle()
   @Loadings.handle(LoadingType.Usable)
   async fetchUsable() {
-    const data = await this.apis.getPiliDomain(this.hub)
-    const domainExist = !!data.domains
-      .filter(value => value.type === this.type)
-      .map(value => value.domain)
-      .includes(this.domain)
+    try {
+      const data = await this.apis.getPiliDomain(this.hub)
+      const domainExist = !!data.domains
+        .filter(value => value.type === this.type)
+        .map(value => value.domain)
+        .includes(this.domain)
 
-    this.updateUsable(domainExist)
+      this.updateUsable(domainExist)
+    } catch (error) {
+      if (error.payload.error === 'hub not found') {
+        this.updateUsable(false)
+      }
+    }
   }
 
-  async init() {
-    await this.fetchHasGaba()
-    await this.fetchUsable()
+  init() {
+    this.fetchHasGaba()
+    this.fetchUsable()
   }
 }

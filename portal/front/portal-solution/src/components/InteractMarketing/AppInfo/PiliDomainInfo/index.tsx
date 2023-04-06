@@ -32,7 +32,9 @@ const PiliDomainInfo: React.FC<PiliDomainInfoProps> = observer(props => {
   return (
     <span className={styles.piliDomainInfo}>
       {type && <span>{`${DOMAIN_TITLE[type]}：`}</span>}
-      <span className={styles.domainName}>{domain}</span>
+      <span className={styles.domainName} title={domain}>
+        {domain}
+      </span>
       <span className={styles.gaba}>
         <Spin spinning={loadingHasGaba} style={{ display: 'inline-block' }}>
           {loadingHasGaba && '查询备案中'}

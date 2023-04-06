@@ -26,5 +26,5 @@ export const interactMarketingService = {
   getRtcAppList: `${prefix}/live/integration/list/rtc`,
   getImAppId: (rtcAppId: string) => `${prefix}/live/integration/rtc/${rtcAppId}`,
   getKodoBucketList: `${prefix}/live/integration/list/kodo`,
-  getKodoDoamin: (bucket: string) => `${prefix}/live/integration/kodo/${bucket}`
+  getKodoDomain: (bucket: string) => `${prefix}/live/integration/kodo/${bucket}`
 } as const

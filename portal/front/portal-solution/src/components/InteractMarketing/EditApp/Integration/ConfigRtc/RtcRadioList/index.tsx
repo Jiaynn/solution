@@ -19,7 +19,7 @@ export interface RtcRadioListProps {}
 const RtcRadioList: React.FC<RtcRadioListProps> = observer(props => {
   const appConfigStore = useInjection(AppConfigStore)
   const store = useLocalStore(RtcRadioListStore, props)
-  const { loadingRtc, rtcApps } = store
+  const { loadingRtc, rtcAppsForShow } = store
 
   const toRtcList = () => {
     window.open('https://portal.qiniu.com/rtn/app', '_blank')
@@ -78,7 +78,7 @@ const RtcRadioList: React.FC<RtcRadioListProps> = observer(props => {
             onChange={onRtcChange}
             style={{ gridTemplateColumns: 'repeat(3, minmax(12rem, 1fr)' }}
           >
-            {rtcApps.map(value => (
+            {rtcAppsForShow.map(value => (
               <Radio key={value} value={value}>
                 {value}
               </Radio>
