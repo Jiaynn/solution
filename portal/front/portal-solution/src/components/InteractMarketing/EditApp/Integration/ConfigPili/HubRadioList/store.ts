@@ -9,7 +9,9 @@ import { Loadings } from 'portal-base/common/loading'
 import autobind from 'autobind-decorator'
 
 import { InteractMarketingApis } from 'apis/interactMarketing'
-import AppConfigStore from 'store/interactMarketing/appConfig'
+import AppConfigStore, {
+  calcConfigValue
+} from 'store/interactMarketing/appConfig'
 
 @injectable()
 export default class HubRadioListStore extends Store {
@@ -37,6 +39,14 @@ export default class HubRadioListStore extends Store {
   @action.bound updateHubSize(value: number) {
     this.hubSize = value
   }
+  @autobind
+  async loadMoreHub() {
+    this.updateHubSize(this.hubSize + 6)
+  }
+
+  @computed get hubsForShow() {
+    return this.hubs.slice(0, this.hubSize)
+  }
 
   @autobind
   @ToasterStore.handle()
@@ -44,22 +54,14 @@ export default class HubRadioListStore extends Store {
   async fetchHubs() {
     const data = await this.apis.getPiliHubList({
       page_num: 1,
-      page_size: this.hubSize
+      page_size: 1000
     })
-    if (data) {
-      this.updateHubs(data.list.map(v => v.name))
-      if (this.hubs.length < 1) {
-        this.appConfigStore.updateConfig({ hub: '' })
-      } else if (!this.hubs.includes(this.appConfigStore.config.hub)) {
-        this.appConfigStore.updateConfig({ hub: this.hubs[0] })
-      }
-    }
-  }
 
-  @autobind
-  async loadMoreHub() {
-    this.updateHubSize(this.hubSize + 3)
-    await this.fetchHubs()
+    const hubs = data?.list.map(v => v.name) ?? []
+    const hub = this.appConfigStore.config.hub
+    const [newHub, newHus] = calcConfigValue(hub, hubs)
+    this.appConfigStore.updateConfig({ hub: newHub })
+    this.updateHubs(newHus)
   }
 
   init() {

@@ -93,7 +93,7 @@ const AppInfo: React.FC<AppInfoWithDescriptionProps> = observer(props => {
   const onClickBtnToPage = useMemo(
     () => (showDescription
         ? () => router.toAppList()
-        : () => router.toAppEdit(appId)),
+        : () => router.toAppEdit(appId ?? '')),
     [showDescription, router, appId]
   )
 
@@ -109,7 +109,7 @@ const AppInfo: React.FC<AppInfoWithDescriptionProps> = observer(props => {
 : (
   <div className={styles.appInfoWrapper}>
     <ModalContext.Provider value={{ visible, setVisible }}>
-      <DownloadModal appId={appId} />
+      <DownloadModal appId={appId ?? ''} />
     </ModalContext.Provider>
     {showDescription && (
       <>
@@ -129,7 +129,6 @@ const AppInfo: React.FC<AppInfoWithDescriptionProps> = observer(props => {
       <SingleLineInfo title="应用ID">{appId}</SingleLineInfo>
       <SingleLineInfo title="应用名称">{appName}</SingleLineInfo>
       <SingleLineInfo title="应用场景">{appScenariosVo}</SingleLineInfo>
-      <SingleLineInfo title="应用名称">{appName}</SingleLineInfo>
       <SingleLineInfo title="集成方式">
         {integrationWayVo}
       </SingleLineInfo>
@@ -174,7 +173,7 @@ const AppInfo: React.FC<AppInfoWithDescriptionProps> = observer(props => {
       {kodo && (
         <>
           {kodo.bucket && kodo.bucket.length && (
-            <SingleLineInfo title="RTC应用">
+            <SingleLineInfo title="存储空间">
               <KodoBucketInfo bucket={kodo.bucket} />
             </SingleLineInfo>
           )}

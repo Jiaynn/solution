@@ -23,7 +23,7 @@ const BucketRadioList: React.FC<BucketRadioListProps> = observer(props => {
   const { bucket } = appConfigStore.config
 
   const store = useLocalStore(BucketRadioListStore, props)
-  const { loadingBuckets, buckets } = store
+  const { loadingBuckets, bucketsForShow } = store
 
   const onBucketChange = (e: RadioChangeEvent) => {
     appConfigStore.updateConfig({ bucket: e.target.value })
@@ -35,7 +35,7 @@ const BucketRadioList: React.FC<BucketRadioListProps> = observer(props => {
         renderLinks={
           <div>
             <BtnToBucketList />
-            <BtnToBucketSetting bucketName={bucket || ''} />
+            <BtnToBucketSetting bucketName={bucket ?? ''} />
             <BtnToCreateBucket />
             <Button type="link" onClick={store.fetchBucketList}>
               刷新列表
@@ -59,7 +59,7 @@ const BucketRadioList: React.FC<BucketRadioListProps> = observer(props => {
             onChange={onBucketChange}
             style={{ gridTemplateColumns: 'repeat(3, minmax(12rem, 1fr)' }}
           >
-            {buckets.map(value => (
+            {bucketsForShow.map(value => (
               <Radio key={value} value={value}>
                 {value}
               </Radio>

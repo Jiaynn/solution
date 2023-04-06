@@ -3,15 +3,15 @@ import { useInjection } from 'qn-fe-core/di'
 import { useLocalStore } from 'qn-fe-core/local-store'
 import React from 'react'
 import { Button, Radio, Spin } from 'react-icecream'
+import { message } from 'antd'
 
 import AppConfigStore from 'store/interactMarketing/appConfig'
 
+import PiliDomainRadioListStore from './store'
 import DomainWrapper from '../../DomainWrapper'
 import SubConfigTitle from '../../SubConfigTitle'
 import SubConfigWrapper from '../../SubConfigWrapper'
 import WrapperWithShowMore from '../../WrapperWithShowMore'
-
-import PiliDomainRadioListStore from './store'
 
 const PiliDomainTitle: React.FC<{}> = props => (
   <div style={{ width: '8.5rem' }}>{props.children}</div>
@@ -29,6 +29,9 @@ const PiliDomainRadioList: React.FC<PiliDomainRadioListProps> = observer(
     const { loading, publishRtmp, liveRtmp, liveHls, liveHdl } = store
 
     const toDomainList = () => {
+      if (!hub || hub === '') {
+        message.error('无空间')
+      }
       window.open(
         `https://portal.qiniu.com/pili/hub/${hub}/detail/domain`,
         '_blank'
@@ -53,7 +56,7 @@ const PiliDomainRadioList: React.FC<PiliDomainRadioListProps> = observer(
             id="integration-hub-domains"
             safety={appConfigStore.config.publishRtmp.length > 0}
           >
-            直播域名
+            直播域名*
           </SubConfigTitle>
           <WrapperWithShowMore
             title={<PiliDomainTitle>RTMP/SRT推流：</PiliDomainTitle>}

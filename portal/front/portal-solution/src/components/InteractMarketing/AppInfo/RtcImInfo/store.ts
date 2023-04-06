@@ -46,9 +46,12 @@ export default class RtcImInfoStore extends Store {
   @ToasterStore.handle()
   @Loadings.handle(LoadingType.Usable)
   async fetchUsable() {
-    const data = await this.apis.getImAppId(this.props.rtcApp)
-    const exist = data === this.props.im
-    this.updateUsable(exist)
+    const im = await this.apis.getImAppId(this.props.rtcApp)
+    if (this.props.im === im) {
+      this.updateUsable(true)
+    } else {
+      this.updateUsable(false)
+    }
   }
 
   init() {

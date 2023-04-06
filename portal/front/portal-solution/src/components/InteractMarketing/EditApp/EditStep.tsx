@@ -29,9 +29,13 @@ export default function EditStep(props: EditStepProps) {
   const step = props.step
 
   return (
-    <Steps className={styles.steps} current={step}>
+    <Steps className={styles.steps} current={step - 1}>
       {STEPS.map((stepItem, index) => (
-        <Step {...stepItem} className={styles.step} key={index} />
+        <Step
+          {...stepItem}
+          className={styles.step}
+          key={index}
+        />
       ))}
     </Steps>
   )

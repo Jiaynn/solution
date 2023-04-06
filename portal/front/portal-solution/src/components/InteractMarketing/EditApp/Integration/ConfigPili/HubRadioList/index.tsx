@@ -6,6 +6,8 @@ import { Button, Radio, Spin } from 'react-icecream'
 
 import { useInjection } from 'qn-fe-core/di'
 
+import { message } from 'antd'
+
 import HubRadioListStore from './store'
 import SubConfigWrapper from '../../SubConfigWrapper'
 import WrapperWithShowMore from '../../WrapperWithShowMore'
@@ -26,9 +28,12 @@ const HubRadioList: React.FC<HubRadioListProps> = observer(props => {
   const appConfigStore = useInjection(AppConfigStore)
   const { hub } = appConfigStore.config
   const store = useLocalStore(HubRadioListStore, props)
-  const { loadingHubs, hubs } = store
+  const { loadingHubs, hubsForShow } = store
 
   const toHubSetting = () => {
+    if (!hub || hub === '') {
+      message.error('无空间')
+    }
     window.open(
       `https://portal.qiniu.com/pili/hub/${hub}/detail/configuration`,
       '_blank'
@@ -70,7 +75,7 @@ const HubRadioList: React.FC<HubRadioListProps> = observer(props => {
             }}
             style={{ gridTemplateColumns: 'repeat(3, minmax(12rem, 1fr)' }}
           >
-            {hubs.map(value => (
+            {hubsForShow.map(value => (
               <Radio key={value} value={value}>
                 {value}
               </Radio>

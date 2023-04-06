@@ -7,7 +7,9 @@ import { Loadings } from 'portal-base/common/loading'
 import autobind from 'autobind-decorator'
 
 import { InteractMarketingApis } from 'apis/interactMarketing'
-import AppConfigStore from 'store/interactMarketing/appConfig'
+import AppConfigStore, {
+  calcConfigValue
+} from 'store/interactMarketing/appConfig'
 
 @injectable()
 export default class RtcRadioListStore extends Store {
@@ -31,23 +33,6 @@ export default class RtcRadioListStore extends Store {
     this.rtcApps = list
   }
 
-  @autobind
-  @ToasterStore.handle()
-  @Loadings.handle('rtc')
-  async fetchRtcAppList() {
-    const data = await this.apis.getRtcAppList({
-      page_num: 1,
-      page_size: this.size
-    })
-    const rtcApps = data?.list.map(v => v.name)
-    this.updateRtcAppList(rtcApps ?? [])
-    if (this.rtcApps.length < 1) {
-      this.appConfigStore.updateConfig({ RTCApp: '' })
-    } else if (!this.rtcApps.includes(this.appConfigStore.config.RTCApp)) {
-      this.appConfigStore.updateConfig({ RTCApp: this.rtcApps[0] })
-    }
-  }
-
   @observable size = 3
   @action.bound updateSize(value: number) {
     this.size = value
@@ -55,11 +40,29 @@ export default class RtcRadioListStore extends Store {
 
   @autobind
   async loadMore() {
-    this.updateSize(this.size + 3)
-    await this.fetchRtcAppList()
+    this.updateSize(this.size + 6)
+  }
+
+  @computed get rtcAppsForShow() {
+    return this.rtcApps.slice(0, this.size)
+  }
+
+  @autobind
+  @ToasterStore.handle()
+  @Loadings.handle('rtc')
+  async fetchRtcAppList() {
+    const data = await this.apis.getRtcAppList({
+      page_num: 1,
+      page_size: 1000
+    })
+    const rtcApps = data?.list.map(v => v.name) ?? []
+    const rtcApp = this.appConfigStore.config.RTCApp
+    const [newRtcApp, newRtcApps] = calcConfigValue(rtcApp, rtcApps)
+    this.appConfigStore.updateConfig({ RTCApp: newRtcApp })
+    this.updateRtcAppList(newRtcApps)
   }
 
   init(): void | Promise<void> {
-    this.fetchRtcAppList() 
+    this.fetchRtcAppList()
   }
 }

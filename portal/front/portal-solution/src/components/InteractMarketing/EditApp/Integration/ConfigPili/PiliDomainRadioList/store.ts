@@ -60,30 +60,35 @@ export default class PiliDomainRadioList extends Store {
   @ToasterStore.handle()
   @Loadings.handle('piliDomain')
   async fetchPiliDomain() {
-    if (this.appConfigStore.config.hub === '') {
+    const hub = this.appConfigStore.config.hub
+    if (hub === '') {
       return
     }
+    try {
+      const data = await this.apis.getPiliDomain(this.appConfigStore.config.hub)
+      this.updatePiliDomain(data?.domains ?? [])
+      const firstPublishRtmp = this.publishRtmp[0]
+      const firstLiveRtmp = this.liveRtmp[0]
+      const firstLiveHls = this.liveHls[0]
+      const firstLiveHdl = this.liveHdl[0]
 
-    const data = await this.apis.getPiliDomain(this.appConfigStore.config.hub)
-    this.updatePiliDomain(data?.domains ?? [])
-
-    if (this.publishRtmp.length < 1) {
       this.appConfigStore.updateConfig({
-        publishRtmp: ''
+        publishRtmp: firstPublishRtmp ?? '',
+        liveRtmp: firstLiveRtmp ?? '',
+        liveHls: firstLiveHls ?? '',
+        liveHdl: firstLiveHdl ?? ''
       })
+    } catch (error) {
+      if (error.payload.error === 'hub not found') {
+        this.updatePiliDomain([])
+        this.appConfigStore.updateConfig({
+          publishRtmp: '',
+          liveRtmp: '',
+          liveHls: '',
+          liveHdl: ''
+        })
+      }
     }
-
-    const firstPublishRtmp = this.publishRtmp[0]
-    const firstLiveRtmp = this.liveRtmp[0]
-    const firstLiveHls = this.liveHls[0]
-    const firstLiveHdl = this.liveHdl[0]
-
-    this.appConfigStore.updateConfig({
-      publishRtmp: firstPublishRtmp ?? '',
-      liveRtmp: firstLiveRtmp ?? '',
-      liveHls: firstLiveHls ?? '',
-      liveHdl: firstLiveHdl ?? ''
-    })
   }
 
   init(): void | Promise<void> {

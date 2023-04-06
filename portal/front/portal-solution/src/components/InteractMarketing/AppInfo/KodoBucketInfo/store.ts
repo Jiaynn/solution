@@ -36,7 +36,7 @@ export default class KodoBucketInfoStore extends Store {
   @ToasterStore.handle()
   @Loadings.handle('usable')
   async fetchUsable() {
-    const data = await this.apis.getPiliHubList({
+    const data = await this.apis.getKodoBucketList({
       page_num: 1,
       page_size: 1000
     })

@@ -112,6 +112,7 @@ export interface AppListItem {
   urls: null | CodeUrl
   createTime: number
   hub: string
+  RTCApp: string
 }
 
 export type AppStatusId = BetterEnum<typeof AppStatusId>

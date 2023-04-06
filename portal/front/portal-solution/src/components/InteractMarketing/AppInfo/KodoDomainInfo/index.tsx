@@ -23,7 +23,9 @@ const KodoDomainInfo: React.FC<KodoDomainInfoProps> = observer(
 
     return (
       <div className={styles.kodoDomainInfo}>
-        <span className={styles.domainName}>{domain}</span>
+        <span className={styles.domainName} title={domain}>
+          {domain}
+        </span>
         <span className={styles.gaba}>
           <Spin spinning={loadingHasGaba} style={{ display: 'inline-block' }}>
             {loadingHasGaba && '查询备案中'}

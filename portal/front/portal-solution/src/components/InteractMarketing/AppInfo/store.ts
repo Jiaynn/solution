@@ -30,7 +30,9 @@ export default class AppInfoStore extends Store {
   }
 
   @computed get appId() {
-    return this.routerStore.query.appId as string
+    if (typeof this.routerStore.query.appId === 'string') {
+      return this.routerStore.query.appId
+    }
   }
   /** 应用详情 */
   @observable.deep info: AppInfo = {
@@ -82,7 +84,7 @@ export default class AppInfoStore extends Store {
   @Loadings.handle('info')
   async fetchAppInfo() {
     this.updateEmpty(true)
-    const appInfo = await this.apis.getAppInfo({ appId: this.appId })
+    const appInfo = await this.apis.getAppInfo({ appId: this.appId ?? '' })
     if (appInfo) {
       this.updateInfo(appInfo)
       this.updateEmpty(false)
